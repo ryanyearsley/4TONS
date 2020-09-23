@@ -15,9 +15,23 @@ public class NewSceneSetup : Editor {
 	}
 
 	private static void OnNewScene (Scene scene, UnityEditor.SceneManagement.NewSceneSetup setup, NewSceneMode mode) {
+		//Transform parent = new GameObject ("Managers").transform;
+
 		Object initializerPrefab = Resources.Load ("RewiredInitializer");
+		//Object gameManagerPrefab = Resources.Load ("GameManager");
+		//Object playerManagerPrefab = Resources.Load ("PlayerManager");
+
 		GameObject go = (GameObject)Instantiate (initializerPrefab, Vector3.zero, Quaternion.identity);
 		go.name = "RewiredInitializer";
+		//go.transform.parent = parent;
+
+		//go = (GameObject)Instantiate (gameManagerPrefab, Vector3.up, Quaternion.identity);
+		//go.name = "GameManager";
+		//go.transform.parent = parent;
+
+		//go = (GameObject)Instantiate (playerManagerPrefab, Vector3.down, Quaternion.identity);
+		//go.name = "PlayerManager";
+		//go.transform.parent = parent;
 	}
 
 	[MenuItem ("Assets/Create/New Scene With Rewired", priority = 1)]
@@ -55,6 +69,7 @@ public class NewSceneSetup : Editor {
 
 	private class DoCreateScene : EndNameEditAction {
 		public override void Action (int instanceId, string pathName, string resourceFile) {
+			EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo ();
 			Scene newScene = EditorSceneManager.NewScene (UnityEditor.SceneManagement.NewSceneSetup.DefaultGameObjects, NewSceneMode.Single);
 			EditorSceneManager.SaveScene (newScene, pathName);
 			//GUIUtility.ExitGUI ();
