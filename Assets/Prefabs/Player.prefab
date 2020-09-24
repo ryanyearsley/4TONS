@@ -48,6 +48,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68822db9a0de1b2488518884b8a5395e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cursorPrefab: {fileID: 294513640660443360, guid: d932af68a1036c64281be587c170aadb, type: 3}
+  joystickCursorDistance: 4
 --- !u!114 &987805954785869851
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -107,7 +109,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.65, y: 1}
+  m_Size: {x: 0.56, y: 1}
   m_EdgeRadius: 0
 --- !u!95 &4015237876805548268
 Animator:

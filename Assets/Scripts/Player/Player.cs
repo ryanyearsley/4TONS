@@ -42,16 +42,13 @@ namespace PlayerManagement {
 				} else {
 					animator.SetBool ("isWalking", false);
 				}
-
-				if (sprite != null) {
-					if (directionalInput.x != 0)
-						sprite.flipX = (Mathf.Sign (directionalInput.x) == -1);
-				}
 			}
 		}
 
-		public void SetDirectionalInput (Vector2 input) {
+		public void SetDirectionalInput (Vector2 input, Vector2 cursorDirection) {
 			directionalInput = input;
+			if (sprite != null)
+				sprite.flipX = (Mathf.Sign (cursorDirection.x) == -1);
 		}
 
 		public void OnDashInputDown () {

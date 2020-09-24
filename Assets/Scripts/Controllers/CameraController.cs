@@ -10,78 +10,38 @@ namespace PlayerManagement {
 		public float lookSmoothTime;
 		public Vector2 focusAreaSize;
 
+		private PlayerInput playerInput;
 		private FocusArea focusArea;
 
-		private float currentLookAheadX;
-		private float currentLookAheadY;
-		private float targetLookAheadX;
-		private float targetLookAheadY;
-		private float lookAheadDirectionX;
-		private float lookAheadDirectionY;
-		private float smoothLookVelocityX;
-		private float smoothLookVelocityY;
-
-		private bool lookAheadXStopped;
-		private bool lookAheadYStopped;
+		private Vector2 currentLookAhead;
+		private Vector2 smoothLookVelocity;
 
 		private void Start () {
 			focusArea = new FocusArea (target.collider.bounds, focusAreaSize);
+			if (target != null)
+				playerInput = target.GetComponent<PlayerInput> ();
 		}
 
 		private void LateUpdate () {
 			focusArea.Update (target.collider.bounds);
 
 			Vector2 focusPosition = focusArea.center;
-			CalculateXLookAhead ();
-			CalculateYLookAhead ();
+			CalculateCursorLookAhead ();
 
-			focusPosition += Vector2.right * currentLookAheadX;
-			focusPosition += Vector2.up * currentLookAheadY;
+			focusPosition += currentLookAhead;
 			transform.position = (Vector3)focusPosition + Vector3.forward * -10f;
 		}
 
-		private void CalculateXLookAhead () {
-			if (focusArea.velocity.x != 0) {
-				lookAheadDirectionX = Mathf.Sign (focusArea.velocity.x);
-				if (Mathf.Sign (target.playerInput.x) == Mathf.Sign (focusArea.velocity.x) && target.playerInput.x != 0) {
-					lookAheadXStopped = false;
-					targetLookAheadX = lookAheadDirectionX * lookAheadDistance;
-				} else {
-					if (!lookAheadXStopped) {
-						lookAheadXStopped = true;
-						targetLookAheadX = currentLookAheadX + (lookAheadDirectionX * lookAheadDistance - currentLookAheadX) / 4f;
-					}
-				}
-			}
+		private void CalculateCursorLookAhead () {
+			if (playerInput == null)
+				return;
 
-			targetLookAheadX = lookAheadDirectionX * lookAheadDistance;
-			currentLookAheadX = Mathf.SmoothDamp (
-				currentLookAheadX,
-				targetLookAheadX,
-				ref smoothLookVelocityX,
-				lookSmoothTime);
-		}
+			Vector2 direction = playerInput.CursorDirection;
+			float cursorDistance = Mathf.Clamp(playerInput.CursorDistance, 0f, playerInput.joystickCursorDistance);
+			cursorDistance = cursorDistance.MapValue (0f, playerInput.joystickCursorDistance, 0f, 1f);
 
-		private void CalculateYLookAhead () {
-			if (focusArea.velocity.y != 0) {
-				lookAheadDirectionY = Mathf.Sign (focusArea.velocity.y);
-				if (Mathf.Sign (target.playerInput.y) == Mathf.Sign (focusArea.velocity.y) && target.playerInput.y != 0) {
-					lookAheadYStopped = false;
-					targetLookAheadY = lookAheadDirectionY * lookAheadDistance;
-				} else {
-					if (!lookAheadYStopped) {
-						lookAheadYStopped = true;
-						targetLookAheadY = currentLookAheadY + (lookAheadDirectionY * lookAheadDistance - currentLookAheadY) / 4f;
-					}
-				}
-			}
-
-			targetLookAheadY = lookAheadDirectionY * lookAheadDistance;
-			currentLookAheadY = Mathf.SmoothDamp (
-				currentLookAheadY,
-				targetLookAheadY,
-				ref smoothLookVelocityY,
-				lookSmoothTime);
+			Vector2 targetLookAhead = direction * lookAheadDistance * cursorDistance;
+			currentLookAhead = Vector2.SmoothDamp (currentLookAhead, targetLookAhead, ref smoothLookVelocity, lookSmoothTime);
 		}
 
 		private void OnDrawGizmos () {
