@@ -44,7 +44,8 @@ namespace PlayerManagement {
 				}
 
 				if (sprite != null) {
-					sprite.flipX = (Mathf.Sign (directionalInput.x) == -1);
+					if (directionalInput.x != 0)
+						sprite.flipX = (Mathf.Sign (directionalInput.x) == -1);
 				}
 			}
 		}
@@ -65,6 +66,11 @@ namespace PlayerManagement {
 
 		public void AddImpulseForce (Vector2 direction, float force) {
 			velocity = direction.normalized * force;
+			if (animator != null) {
+				animator.SetTrigger ("hit");
+				if (sprite != null)
+					sprite.flipX = (Mathf.Sign (direction.x) == 1);
+			}
 		}
 
 		private void CalculateVelocity () {
