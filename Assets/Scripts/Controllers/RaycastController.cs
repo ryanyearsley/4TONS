@@ -6,7 +6,7 @@ using UnityEngine;
 public class RaycastController : MonoBehaviour {
 
 	protected const float SKIN_WIDTH = 0.025f;
-	private const float DISTANCE_BETWEEN_RAYS = 0.25f;
+	private const float DISTANCE_BETWEEN_RAYS = 0.2f;
 
 	[Header ("Raycast Controller")]
 	public LayerMask collisionMask;
