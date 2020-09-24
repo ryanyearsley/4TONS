@@ -1124,11 +1124,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 987805954785869849, guid: 486e4b01e0e7b2445bd6d505c707b29f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -2.5
       objectReference: {fileID: 0}
     - target: {fileID: 987805954785869849, guid: 486e4b01e0e7b2445bd6d505c707b29f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 987805954785869849, guid: 486e4b01e0e7b2445bd6d505c707b29f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1165,14 +1165,6 @@ PrefabInstance:
     - target: {fileID: 987805954785869849, guid: 486e4b01e0e7b2445bd6d505c707b29f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 987805954785869851, guid: 486e4b01e0e7b2445bd6d505c707b29f, type: 3}
-      propertyPath: dashSpeedMultiplier
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 987805954785869851, guid: 486e4b01e0e7b2445bd6d505c707b29f, type: 3}
-      propertyPath: dashDuration
-      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 987805954785869853, guid: 486e4b01e0e7b2445bd6d505c707b29f, type: 3}
       propertyPath: m_Name
@@ -1248,6 +1240,10 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 1705133262}
+    - target: {fileID: 1818965529387775912, guid: 192d6ed79cb25c342b26e0ebd313a237, type: 3}
+      propertyPath: lookAheadDistance
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1818965529387775917, guid: 192d6ed79cb25c342b26e0ebd313a237, type: 3}
       propertyPath: m_Name
       value: Main Camera
