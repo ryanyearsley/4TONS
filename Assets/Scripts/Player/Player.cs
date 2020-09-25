@@ -47,7 +47,7 @@ namespace PlayerManagement {
 
 		public void SetDirectionalInput (Vector2 input, Vector2 cursorDirection) {
 			directionalInput = input;
-			if (sprite != null)
+			if (sprite != null && !isDashing)
 				sprite.flipX = (Mathf.Sign (cursorDirection.x) == -1);
 		}
 
@@ -55,6 +55,9 @@ namespace PlayerManagement {
 			if (!isDashing) {
 				isDashing = true;
 				StartCoroutine (ResetIsDashing (dashDuration));
+
+				if (sprite != null)
+					sprite.flipX = (Mathf.Sign (controller.collisions.faceDirectionX) == -1);
 
 				if (animator != null)
 					animator.SetTrigger ("rollDodge");

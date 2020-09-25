@@ -14,7 +14,6 @@ namespace PlayerManagement {
 		private Rewired.Player controller;
 		private new Camera camera;
 		private Transform cursor;
-		private Vector3 currentCursorPosition;
 		private float cursorSmoothTime = 0.1f;
 		private Vector3 cursorSmoothVelocity;
 
