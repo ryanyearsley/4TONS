@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 987805954785869850}
   - component: {fileID: 987805954785869854}
   - component: {fileID: 4015237876805548268}
+  - component: {fileID: 758453721}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -65,7 +66,7 @@ MonoBehaviour:
   moveSpeed: 7.5
   velocityScaling: {x: 1, y: 1}
   acceleration: 0.1
-  dashSpeedMultiplier: 4
+  dashSpeedMultiplier: 2
   dashDuration: 0.2
   sprite: {fileID: 2119968001934319000}
 --- !u!114 &987805954785869850
@@ -98,7 +99,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.15}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -109,7 +110,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.56, y: 1}
+  m_Size: {x: 0.4, y: 0.3}
   m_EdgeRadius: 0
 --- !u!95 &4015237876805548268
 Animator:
@@ -130,6 +131,17 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!210 &758453721
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 987805954785869853}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
 --- !u!1 &8027632338894685187
 GameObject:
   m_ObjectHideFlags: 0
@@ -155,7 +167,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8027632338894685187}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 987805954785869849}

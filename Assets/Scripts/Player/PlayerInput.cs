@@ -14,8 +14,10 @@ namespace PlayerManagement {
 		private Rewired.Player controller;
 		private new Camera camera;
 		private Transform cursor;
-		private float cursorSmoothTime = 0.1f;
+        private float cursorSmoothTime = 0.1f;
 		private Vector3 cursorSmoothVelocity;
+
+        private Transform cursorTransform;
 
 		private bool usingMouseControls;
 
@@ -39,6 +41,7 @@ namespace PlayerManagement {
 
 		private void Start () {
 			player = GetComponent<Player> ();
+
 			controller = ReInput.players.GetPlayer (0);
 			camera = Camera.main;
 
@@ -71,7 +74,7 @@ namespace PlayerManagement {
 			if (usingMouseControls) {
 				if (joystickInput != Vector2.zero) {
 					usingMouseControls = false;
-					cursor.parent = transform;
+					cursor.parent = cursorTransform;
 				}
 			} else {
 				if (mouseDelta != Vector2.zero) {
@@ -106,7 +109,11 @@ namespace PlayerManagement {
 			cursor = Instantiate (cursorPrefab, transform.position + Vector3.back * 9f, Quaternion.identity, transform).transform;
 			CursorController cursorController = cursor.GetComponent<CursorController> ();
 			if (cursorController != null) {
-				cursorController.SetPlayerTransform (transform);
+                GameObject go = new GameObject("CursorPivot");
+                cursorTransform = go.transform;
+                cursorTransform.parent = transform;
+                cursorTransform.localPosition = new Vector3(0, 0.5f, 0);
+				cursorController.SetCursorCenter (cursorTransform);
 			}
 		}
 
