@@ -1286,10 +1286,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 857296488853963861, guid: 486e4b01e0e7b2445bd6d505c707b29f, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.504
-      objectReference: {fileID: 0}
     - target: {fileID: 987805954785869849, guid: 486e4b01e0e7b2445bd6d505c707b29f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.622
@@ -1337,14 +1333,6 @@ PrefabInstance:
     - target: {fileID: 987805954785869853, guid: 486e4b01e0e7b2445bd6d505c707b29f, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 987805954785869854, guid: 486e4b01e0e7b2445bd6d505c707b29f, type: 3}
-      propertyPath: m_Offset.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2119968001934319000, guid: 486e4b01e0e7b2445bd6d505c707b29f, type: 3}
-      propertyPath: m_SpriteSortPoint
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 486e4b01e0e7b2445bd6d505c707b29f, type: 3}

@@ -22,6 +22,10 @@ public class Grid : MonoBehaviour {
 	private int penaltyMin = int.MaxValue;
 	private int penaltyMax = int.MinValue;
 
+	private void Start () {
+		InitializeGrid ();
+	}
+
 	public void InitializeGrid () {
 		nodeDiameter = nodeRadius * 2;
 		gridSizeX = Mathf.RoundToInt (gridWorldSize.x / nodeDiameter);
