@@ -10,5 +10,7 @@ using System.Collections;
 
 public interface IDamagable {
 
-	void TakeDamage (float damage);
+    void RegisterDamagableObject();
+	void ApplyDamage(float damage);
+    void Die ();
 }

@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 987805954785869854}
   - component: {fileID: 4015237876805548268}
   - component: {fileID: 758453721}
+  - component: {fileID: 1232360370}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -63,7 +64,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cbea48914b32fc41adb1287ba075cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 7.5
+  moveSpeed: 4
   velocityScaling: {x: 1, y: 1}
   acceleration: 0.1
   dashSpeedMultiplier: 2
@@ -142,6 +143,21 @@ SortingGroup:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &1232360370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 987805954785869853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3511cb9360d483446b3eac51605ae21e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHp: 100
+  maxMana: 100
+  overheadCanvas: {fileID: 8151796856760074609, guid: be8ef5ab34bb86c4c801aa951d8796e8, type: 3}
 --- !u!1 &8027632338894685187
 GameObject:
   m_ObjectHideFlags: 0
