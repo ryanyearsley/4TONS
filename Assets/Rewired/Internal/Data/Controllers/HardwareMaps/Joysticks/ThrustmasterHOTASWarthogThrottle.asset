@@ -3,8 +3,9 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -317,6 +318,7 @@ MonoBehaviour:
       disabled: 0
       tag: 
       hatCount: 0
+      alternateElementCounts: []
       productName_useRegex: 0
       productName: []
       productGUID: []
@@ -334,6 +336,7 @@ MonoBehaviour:
       disabled: 0
       tag: 
       hatCount: 1
+      alternateElementCounts: []
       productName_useRegex: 0
       productName:
       - Throttle - HOTAS Warthog
@@ -359,6 +362,7 @@ MonoBehaviour:
           _dataFormat: 0
           _excludeFromPolling: 0
           _specialAxisType: 1
+          _pollingDeadZone: -1
         alternateCalibrations:
         - key: 1
           calibration:
@@ -368,6 +372,14 @@ MonoBehaviour:
             _zero: 0
             _min: 0
             _max: 0
+            _sensitivityType: 0
+            _sensitivity: 1
+            _sensitivityCurve:
+              serializedVersion: 2
+              m_Curve: []
+              m_PreInfinity: 2
+              m_PostInfinity: 2
+              m_RotationOrder: 4
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
@@ -390,6 +402,7 @@ MonoBehaviour:
           _dataFormat: 0
           _excludeFromPolling: 0
           _specialAxisType: 1
+          _pollingDeadZone: -1
         alternateCalibrations:
         - key: 1
           calibration:
@@ -399,6 +412,14 @@ MonoBehaviour:
             _zero: 0
             _min: 0
             _max: 0
+            _sensitivityType: 0
+            _sensitivity: 1
+            _sensitivityCurve:
+              serializedVersion: 2
+              m_Curve: []
+              m_PreInfinity: 2
+              m_PostInfinity: 2
+              m_RotationOrder: 4
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
@@ -412,7 +433,7 @@ MonoBehaviour:
         sourceAxis: 7
         sourceAxisRange: 0
         invert: 1
-        axisDeadZone: .0500000007
+        axisDeadZone: 0.05
         calibrateAxis: 0
         axisZero: 0
         axisMin: 0
@@ -421,6 +442,7 @@ MonoBehaviour:
           _dataFormat: 0
           _excludeFromPolling: 0
           _specialAxisType: 0
+          _pollingDeadZone: -1
         alternateCalibrations: []
         sourceButton: 0
         buttonAxisContribution: 0
@@ -435,7 +457,7 @@ MonoBehaviour:
         sourceAxis: 1
         sourceAxisRange: 0
         invert: 0
-        axisDeadZone: .00999999978
+        axisDeadZone: 0.01
         calibrateAxis: 0
         axisZero: 0
         axisMin: 0
@@ -444,6 +466,7 @@ MonoBehaviour:
           _dataFormat: 0
           _excludeFromPolling: 0
           _specialAxisType: 0
+          _pollingDeadZone: -1
         alternateCalibrations: []
         sourceButton: 0
         buttonAxisContribution: 0
@@ -458,7 +481,7 @@ MonoBehaviour:
         sourceAxis: 2
         sourceAxisRange: 0
         invert: 1
-        axisDeadZone: .00999999978
+        axisDeadZone: 0.01
         calibrateAxis: 0
         axisZero: 0
         axisMin: 0
@@ -467,6 +490,7 @@ MonoBehaviour:
           _dataFormat: 0
           _excludeFromPolling: 0
           _specialAxisType: 0
+          _pollingDeadZone: -1
         alternateCalibrations: []
         sourceButton: 0
         buttonAxisContribution: 0
@@ -1256,6 +1280,7 @@ MonoBehaviour:
       disabled: 0
       tag: 
       hatCount: 1
+      alternateElementCounts: []
       productName_useRegex: 0
       productName:
       - Throttle - HOTAS Warthog
@@ -1286,10 +1311,19 @@ MonoBehaviour:
             _zero: 0
             _min: 0
             _max: 0
+            _sensitivityType: 0
+            _sensitivity: 1
+            _sensitivityCurve:
+              serializedVersion: 2
+              m_Curve: []
+              m_PreInfinity: 2
+              m_PostInfinity: 2
+              m_RotationOrder: 4
         axisInfo:
           _dataFormat: 0
           _excludeFromPolling: 0
           _specialAxisType: 1
+          _pollingDeadZone: -1
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
@@ -1316,10 +1350,19 @@ MonoBehaviour:
             _zero: 0
             _min: 0
             _max: 0
+            _sensitivityType: 0
+            _sensitivity: 1
+            _sensitivityCurve:
+              serializedVersion: 2
+              m_Curve: []
+              m_PreInfinity: 2
+              m_PostInfinity: 2
+              m_RotationOrder: 4
         axisInfo:
           _dataFormat: 0
           _excludeFromPolling: 0
           _specialAxisType: 1
+          _pollingDeadZone: -1
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
@@ -1332,7 +1375,7 @@ MonoBehaviour:
         sourceOtherAxis: 0
         sourceAxisRange: 0
         invert: 1
-        axisDeadZone: .0500000007
+        axisDeadZone: 0.05
         calibrateAxis: 0
         axisZero: 0
         axisMin: 0
@@ -1342,6 +1385,7 @@ MonoBehaviour:
           _dataFormat: 0
           _excludeFromPolling: 0
           _specialAxisType: 0
+          _pollingDeadZone: -1
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
@@ -1354,7 +1398,7 @@ MonoBehaviour:
         sourceOtherAxis: 1
         sourceAxisRange: 0
         invert: 0
-        axisDeadZone: .00999999978
+        axisDeadZone: 0.01
         calibrateAxis: 0
         axisZero: 0
         axisMin: 0
@@ -1364,6 +1408,7 @@ MonoBehaviour:
           _dataFormat: 0
           _excludeFromPolling: 0
           _specialAxisType: 0
+          _pollingDeadZone: -1
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
@@ -1376,7 +1421,7 @@ MonoBehaviour:
         sourceOtherAxis: 1
         sourceAxisRange: 0
         invert: 1
-        axisDeadZone: .00999999978
+        axisDeadZone: 0.01
         calibrateAxis: 0
         axisZero: 0
         axisMin: 0
@@ -1386,6 +1431,7 @@ MonoBehaviour:
           _dataFormat: 0
           _excludeFromPolling: 0
           _specialAxisType: 0
+          _pollingDeadZone: -1
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
@@ -2121,6 +2167,7 @@ MonoBehaviour:
       disabled: 0
       tag: 
       hatCount: 1
+      alternateElementCounts: []
       manufacturer_useRegex: 0
       productName_useRegex: 0
       systemName_useRegex: 0
@@ -2151,10 +2198,19 @@ MonoBehaviour:
             _zero: 0
             _min: 0
             _max: 0
+            _sensitivityType: 0
+            _sensitivity: 1
+            _sensitivityCurve:
+              serializedVersion: 2
+              m_Curve: []
+              m_PreInfinity: 2
+              m_PostInfinity: 2
+              m_RotationOrder: 4
         axisInfo:
           _dataFormat: 0
           _excludeFromPolling: 0
           _specialAxisType: 1
+          _pollingDeadZone: -1
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
@@ -2179,10 +2235,19 @@ MonoBehaviour:
             _zero: 0
             _min: 0
             _max: 0
+            _sensitivityType: 0
+            _sensitivity: 1
+            _sensitivityCurve:
+              serializedVersion: 2
+              m_Curve: []
+              m_PreInfinity: 2
+              m_PostInfinity: 2
+              m_RotationOrder: 4
         axisInfo:
           _dataFormat: 0
           _excludeFromPolling: 0
           _specialAxisType: 1
+          _pollingDeadZone: -1
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
@@ -2193,7 +2258,7 @@ MonoBehaviour:
         sourceAxis: 4
         sourceAxisRange: 0
         invert: 1
-        axisDeadZone: .0500000007
+        axisDeadZone: 0.05
         calibrateAxis: 0
         axisZero: 0
         axisMin: 0
@@ -2203,6 +2268,7 @@ MonoBehaviour:
           _dataFormat: 0
           _excludeFromPolling: 0
           _specialAxisType: 0
+          _pollingDeadZone: -1
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
@@ -2213,7 +2279,7 @@ MonoBehaviour:
         sourceAxis: 0
         sourceAxisRange: 0
         invert: 0
-        axisDeadZone: .00999999978
+        axisDeadZone: 0.01
         calibrateAxis: 0
         axisZero: 0
         axisMin: 0
@@ -2223,6 +2289,7 @@ MonoBehaviour:
           _dataFormat: 0
           _excludeFromPolling: 0
           _specialAxisType: 0
+          _pollingDeadZone: -1
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
@@ -2233,7 +2300,7 @@ MonoBehaviour:
         sourceAxis: 1
         sourceAxisRange: 0
         invert: 1
-        axisDeadZone: .00999999978
+        axisDeadZone: 0.01
         calibrateAxis: 0
         axisZero: 0
         axisMin: 0
@@ -2243,6 +2310,7 @@ MonoBehaviour:
           _dataFormat: 0
           _excludeFromPolling: 0
           _specialAxisType: 0
+          _pollingDeadZone: -1
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
@@ -2898,6 +2966,7 @@ MonoBehaviour:
       disabled: 0
       tag: 
       hatCount: 1
+      alternateElementCounts: []
       manufacturer_useRegex: 0
       productName_useRegex: 0
       manufacturer: []
@@ -2926,10 +2995,19 @@ MonoBehaviour:
             _zero: 0
             _min: 0
             _max: 0
+            _sensitivityType: 0
+            _sensitivity: 1
+            _sensitivityCurve:
+              serializedVersion: 2
+              m_Curve: []
+              m_PreInfinity: 2
+              m_PostInfinity: 2
+              m_RotationOrder: 4
         axisInfo:
           _dataFormat: 0
           _excludeFromPolling: 0
           _specialAxisType: 1
+          _pollingDeadZone: -1
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
@@ -2954,10 +3032,19 @@ MonoBehaviour:
             _zero: 0
             _min: 0
             _max: 0
+            _sensitivityType: 0
+            _sensitivity: 1
+            _sensitivityCurve:
+              serializedVersion: 2
+              m_Curve: []
+              m_PreInfinity: 2
+              m_PostInfinity: 2
+              m_RotationOrder: 4
         axisInfo:
           _dataFormat: 0
           _excludeFromPolling: 0
           _specialAxisType: 1
+          _pollingDeadZone: -1
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
@@ -2968,7 +3055,7 @@ MonoBehaviour:
         sourceAxis: 4
         sourceAxisRange: 0
         invert: 1
-        axisDeadZone: .0500000007
+        axisDeadZone: 0.05
         calibrateAxis: 0
         axisZero: 0
         axisMin: 0
@@ -2978,6 +3065,7 @@ MonoBehaviour:
           _dataFormat: 0
           _excludeFromPolling: 0
           _specialAxisType: 0
+          _pollingDeadZone: -1
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
@@ -2988,7 +3076,7 @@ MonoBehaviour:
         sourceAxis: 0
         sourceAxisRange: 0
         invert: 0
-        axisDeadZone: .00999999978
+        axisDeadZone: 0.01
         calibrateAxis: 0
         axisZero: 0
         axisMin: 0
@@ -2998,6 +3086,7 @@ MonoBehaviour:
           _dataFormat: 0
           _excludeFromPolling: 0
           _specialAxisType: 0
+          _pollingDeadZone: -1
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
@@ -3008,7 +3097,7 @@ MonoBehaviour:
         sourceAxis: 1
         sourceAxisRange: 0
         invert: 1
-        axisDeadZone: .00999999978
+        axisDeadZone: 0.01
         calibrateAxis: 0
         axisZero: 0
         axisMin: 0
@@ -3018,6 +3107,7 @@ MonoBehaviour:
           _dataFormat: 0
           _excludeFromPolling: 0
           _specialAxisType: 0
+          _pollingDeadZone: -1
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
@@ -3679,6 +3769,9 @@ MonoBehaviour:
       matchUnityVersion: 0
       matchUnityVersion_min: 
       matchUnityVersion_max: 
+      matchSysVersion: 0
+      matchSysVersion_min: 
+      matchSysVersion_max: 
     elements:
       axes:
       - elementIdentifier: 0
@@ -3705,10 +3798,19 @@ MonoBehaviour:
             _zero: 0
             _min: 0
             _max: 0
+            _sensitivityType: 0
+            _sensitivity: 1
+            _sensitivityCurve:
+              serializedVersion: 2
+              m_Curve: []
+              m_PreInfinity: 2
+              m_PostInfinity: 2
+              m_RotationOrder: 4
         axisInfo:
           _dataFormat: 0
           _excludeFromPolling: 0
           _specialAxisType: 1
+          _pollingDeadZone: -1
       - elementIdentifier: 1
         sourceType: 1
         sourceAxis: 3
@@ -3733,14 +3835,23 @@ MonoBehaviour:
             _zero: 0
             _min: 0
             _max: 0
+            _sensitivityType: 0
+            _sensitivity: 1
+            _sensitivityCurve:
+              serializedVersion: 2
+              m_Curve: []
+              m_PreInfinity: 2
+              m_PostInfinity: 2
+              m_RotationOrder: 4
         axisInfo:
           _dataFormat: 0
           _excludeFromPolling: 0
           _specialAxisType: 1
+          _pollingDeadZone: -1
       - elementIdentifier: 2
         sourceType: 1
         sourceAxis: 5
-        axisDeadZone: .0500000007
+        axisDeadZone: 0.05
         sourceButton: 0
         sourceKeyCode: 0
         customCalculation: {fileID: 0}
@@ -3757,10 +3868,11 @@ MonoBehaviour:
           _dataFormat: 0
           _excludeFromPolling: 0
           _specialAxisType: 0
+          _pollingDeadZone: -1
       - elementIdentifier: 21
         sourceType: 1
         sourceAxis: 1
-        axisDeadZone: .00999999978
+        axisDeadZone: 0.01
         sourceButton: 0
         sourceKeyCode: 0
         customCalculation: {fileID: 0}
@@ -3777,10 +3889,11 @@ MonoBehaviour:
           _dataFormat: 0
           _excludeFromPolling: 0
           _specialAxisType: 0
+          _pollingDeadZone: -1
       - elementIdentifier: 22
         sourceType: 1
         sourceAxis: 2
-        axisDeadZone: .00999999978
+        axisDeadZone: 0.01
         sourceButton: 0
         sourceKeyCode: 0
         customCalculation: {fileID: 0}
@@ -3797,6 +3910,7 @@ MonoBehaviour:
           _dataFormat: 0
           _excludeFromPolling: 0
           _specialAxisType: 0
+          _pollingDeadZone: -1
       buttons:
       - elementIdentifier: 8
         sourceType: 0
@@ -4049,9 +4163,9 @@ MonoBehaviour:
         sourceAxisPole: 0
         unityHat_sourceAxis1: 6
         unityHat_sourceAxis2: 7
-        unityHat_isActiveAxisValues1: {x: .699999988, y: .699999988}
-        unityHat_isActiveAxisValues2: {x: .699999988, y: .699999988}
-        unityHat_isActiveAxisValues3: {x: .699999988, y: .699999988}
+        unityHat_isActiveAxisValues1: {x: 0.7, y: 0.7}
+        unityHat_isActiveAxisValues2: {x: 0.7, y: 0.7}
+        unityHat_isActiveAxisValues3: {x: 0.7, y: 0.7}
         unityHat_zeroValues: {x: 0, y: 0}
         unityHat_checkNeverPressed: 0
         unityHat_neverPressedZeroValues: {x: 0, y: 0}
@@ -4097,9 +4211,9 @@ MonoBehaviour:
         sourceAxisPole: 0
         unityHat_sourceAxis1: 6
         unityHat_sourceAxis2: 7
-        unityHat_isActiveAxisValues1: {x: .699999988, y: -.699999988}
-        unityHat_isActiveAxisValues2: {x: .699999988, y: -.699999988}
-        unityHat_isActiveAxisValues3: {x: .699999988, y: -.699999988}
+        unityHat_isActiveAxisValues1: {x: 0.7, y: -0.7}
+        unityHat_isActiveAxisValues2: {x: 0.7, y: -0.7}
+        unityHat_isActiveAxisValues3: {x: 0.7, y: -0.7}
         unityHat_zeroValues: {x: 0, y: 0}
         unityHat_checkNeverPressed: 0
         unityHat_neverPressedZeroValues: {x: 0, y: 0}
@@ -4145,9 +4259,9 @@ MonoBehaviour:
         sourceAxisPole: 0
         unityHat_sourceAxis1: 6
         unityHat_sourceAxis2: 7
-        unityHat_isActiveAxisValues1: {x: -.699999988, y: -.699999988}
-        unityHat_isActiveAxisValues2: {x: -.699999988, y: -.699999988}
-        unityHat_isActiveAxisValues3: {x: -.699999988, y: -.699999988}
+        unityHat_isActiveAxisValues1: {x: -0.7, y: -0.7}
+        unityHat_isActiveAxisValues2: {x: -0.7, y: -0.7}
+        unityHat_isActiveAxisValues3: {x: -0.7, y: -0.7}
         unityHat_zeroValues: {x: 0, y: 0}
         unityHat_checkNeverPressed: 0
         unityHat_neverPressedZeroValues: {x: 0, y: 0}
@@ -4193,9 +4307,9 @@ MonoBehaviour:
         sourceAxisPole: 0
         unityHat_sourceAxis1: 6
         unityHat_sourceAxis2: 7
-        unityHat_isActiveAxisValues1: {x: -.699999988, y: .699999988}
-        unityHat_isActiveAxisValues2: {x: -.699999988, y: .699999988}
-        unityHat_isActiveAxisValues3: {x: -.699999988, y: .699999988}
+        unityHat_isActiveAxisValues1: {x: -0.7, y: 0.7}
+        unityHat_isActiveAxisValues2: {x: -0.7, y: 0.7}
+        unityHat_isActiveAxisValues3: {x: -0.7, y: 0.7}
         unityHat_zeroValues: {x: 0, y: 0}
         unityHat_checkNeverPressed: 0
         unityHat_neverPressedZeroValues: {x: 0, y: 0}
@@ -4484,6 +4598,9 @@ MonoBehaviour:
       matchUnityVersion: 0
       matchUnityVersion_min: 
       matchUnityVersion_max: 
+      matchSysVersion: 0
+      matchSysVersion_min: 
+      matchSysVersion_max: 
     elements:
       axes: []
       buttons: []
@@ -4502,6 +4619,9 @@ MonoBehaviour:
       matchUnityVersion: 0
       matchUnityVersion_min: 
       matchUnityVersion_max: 
+      matchSysVersion: 0
+      matchSysVersion_min: 
+      matchSysVersion_max: 
     elements:
       axes:
       - elementIdentifier: 0
@@ -4528,10 +4648,19 @@ MonoBehaviour:
             _zero: 0
             _min: 0
             _max: 0
+            _sensitivityType: 0
+            _sensitivity: 1
+            _sensitivityCurve:
+              serializedVersion: 2
+              m_Curve: []
+              m_PreInfinity: 2
+              m_PostInfinity: 2
+              m_RotationOrder: 4
         axisInfo:
           _dataFormat: 0
           _excludeFromPolling: 0
           _specialAxisType: 1
+          _pollingDeadZone: -1
       - elementIdentifier: 1
         sourceType: 1
         sourceAxis: 4
@@ -4556,14 +4685,23 @@ MonoBehaviour:
             _zero: 0
             _min: 0
             _max: 0
+            _sensitivityType: 0
+            _sensitivity: 1
+            _sensitivityCurve:
+              serializedVersion: 2
+              m_Curve: []
+              m_PreInfinity: 2
+              m_PostInfinity: 2
+              m_RotationOrder: 4
         axisInfo:
           _dataFormat: 0
           _excludeFromPolling: 0
           _specialAxisType: 1
+          _pollingDeadZone: -1
       - elementIdentifier: 2
         sourceType: 1
         sourceAxis: 3
-        axisDeadZone: .0500000007
+        axisDeadZone: 0.05
         sourceButton: 0
         sourceKeyCode: 0
         customCalculation: {fileID: 0}
@@ -4580,10 +4718,11 @@ MonoBehaviour:
           _dataFormat: 0
           _excludeFromPolling: 0
           _specialAxisType: 0
+          _pollingDeadZone: -1
       - elementIdentifier: 21
         sourceType: 1
         sourceAxis: 1
-        axisDeadZone: .00999999978
+        axisDeadZone: 0.01
         sourceButton: 0
         sourceKeyCode: 0
         customCalculation: {fileID: 0}
@@ -4600,10 +4739,11 @@ MonoBehaviour:
           _dataFormat: 0
           _excludeFromPolling: 0
           _specialAxisType: 0
+          _pollingDeadZone: -1
       - elementIdentifier: 22
         sourceType: 1
         sourceAxis: 2
-        axisDeadZone: .00999999978
+        axisDeadZone: 0.01
         sourceButton: 0
         sourceKeyCode: 0
         customCalculation: {fileID: 0}
@@ -4620,6 +4760,7 @@ MonoBehaviour:
           _dataFormat: 0
           _excludeFromPolling: 0
           _specialAxisType: 0
+          _pollingDeadZone: -1
       buttons:
       - elementIdentifier: 8
         sourceType: 0
@@ -5308,6 +5449,9 @@ MonoBehaviour:
       matchUnityVersion: 0
       matchUnityVersion_min: 
       matchUnityVersion_max: 
+      matchSysVersion: 0
+      matchSysVersion_min: 
+      matchSysVersion_max: 
     elements:
       axes:
       - elementIdentifier: 0
@@ -5331,13 +5475,22 @@ MonoBehaviour:
             _applyRangeCalibration: 1
             _invert: 1
             _deadZone: 0
-            _zero: -.5
+            _zero: -0.5
             _min: -1
             _max: 0
+            _sensitivityType: 0
+            _sensitivity: 1
+            _sensitivityCurve:
+              serializedVersion: 2
+              m_Curve: []
+              m_PreInfinity: 2
+              m_PostInfinity: 2
+              m_RotationOrder: 4
         axisInfo:
           _dataFormat: 0
           _excludeFromPolling: 0
           _specialAxisType: 1
+          _pollingDeadZone: -1
       - elementIdentifier: 1
         sourceType: 1
         sourceAxis: 3
@@ -5359,17 +5512,26 @@ MonoBehaviour:
             _applyRangeCalibration: 1
             _invert: 1
             _deadZone: 0
-            _zero: -.5
+            _zero: -0.5
             _min: -1
             _max: 0
+            _sensitivityType: 0
+            _sensitivity: 1
+            _sensitivityCurve:
+              serializedVersion: 2
+              m_Curve: []
+              m_PreInfinity: 2
+              m_PostInfinity: 2
+              m_RotationOrder: 4
         axisInfo:
           _dataFormat: 0
           _excludeFromPolling: 0
           _specialAxisType: 1
+          _pollingDeadZone: -1
       - elementIdentifier: 2
         sourceType: 1
         sourceAxis: 5
-        axisDeadZone: .0500000007
+        axisDeadZone: 0.05
         sourceButton: 0
         sourceKeyCode: 0
         customCalculation: {fileID: 0}
@@ -5386,10 +5548,11 @@ MonoBehaviour:
           _dataFormat: 0
           _excludeFromPolling: 0
           _specialAxisType: 0
+          _pollingDeadZone: -1
       - elementIdentifier: 21
         sourceType: 1
         sourceAxis: 1
-        axisDeadZone: .00999999978
+        axisDeadZone: 0.01
         sourceButton: 0
         sourceKeyCode: 0
         customCalculation: {fileID: 0}
@@ -5406,10 +5569,11 @@ MonoBehaviour:
           _dataFormat: 0
           _excludeFromPolling: 0
           _specialAxisType: 0
+          _pollingDeadZone: -1
       - elementIdentifier: 22
         sourceType: 1
         sourceAxis: 2
-        axisDeadZone: .00999999978
+        axisDeadZone: 0.01
         sourceButton: 0
         sourceKeyCode: 0
         customCalculation: {fileID: 0}
@@ -5426,6 +5590,7 @@ MonoBehaviour:
           _dataFormat: 0
           _excludeFromPolling: 0
           _specialAxisType: 0
+          _pollingDeadZone: -1
       buttons:
       - elementIdentifier: 8
         sourceType: 0
@@ -6113,6 +6278,9 @@ MonoBehaviour:
       matchUnityVersion: 0
       matchUnityVersion_min: 
       matchUnityVersion_max: 
+      matchSysVersion: 0
+      matchSysVersion_min: 
+      matchSysVersion_max: 
     elements:
       axes: []
       buttons: []
@@ -6131,12 +6299,15 @@ MonoBehaviour:
       matchUnityVersion: 0
       matchUnityVersion_min: 
       matchUnityVersion_max: 
+      matchSysVersion: 0
+      matchSysVersion_min: 
+      matchSysVersion_max: 
     elements:
       axes:
       - elementIdentifier: 0
         sourceType: 1
         sourceAxis: 4
-        axisDeadZone: .0500000007
+        axisDeadZone: 0.05
         sourceButton: 0
         sourceKeyCode: 0
         customCalculation: {fileID: 0}
@@ -6157,14 +6328,23 @@ MonoBehaviour:
             _zero: 0
             _min: 0
             _max: 0
+            _sensitivityType: 0
+            _sensitivity: 1
+            _sensitivityCurve:
+              serializedVersion: 2
+              m_Curve: []
+              m_PreInfinity: 2
+              m_PostInfinity: 2
+              m_RotationOrder: 4
         axisInfo:
           _dataFormat: 0
           _excludeFromPolling: 0
           _specialAxisType: 1
+          _pollingDeadZone: -1
       - elementIdentifier: 1
         sourceType: 1
         sourceAxis: 3
-        axisDeadZone: .0500000007
+        axisDeadZone: 0.05
         sourceButton: 0
         sourceKeyCode: 0
         customCalculation: {fileID: 0}
@@ -6185,14 +6365,23 @@ MonoBehaviour:
             _zero: 0
             _min: 0
             _max: 0
+            _sensitivityType: 0
+            _sensitivity: 1
+            _sensitivityCurve:
+              serializedVersion: 2
+              m_Curve: []
+              m_PreInfinity: 2
+              m_PostInfinity: 2
+              m_RotationOrder: 4
         axisInfo:
           _dataFormat: 0
           _excludeFromPolling: 0
           _specialAxisType: 1
+          _pollingDeadZone: -1
       - elementIdentifier: 2
         sourceType: 1
         sourceAxis: 9
-        axisDeadZone: .0500000007
+        axisDeadZone: 0.05
         sourceButton: 0
         sourceKeyCode: 0
         customCalculation: {fileID: 0}
@@ -6201,7 +6390,7 @@ MonoBehaviour:
         sourceAxisRange: 0
         buttonAxisContribution: 0
         calibrateAxis: 1
-        axisZero: .5
+        axisZero: 0.5
         axisMin: 0
         axisMax: 1
         alternateCalibrations: []
@@ -6209,10 +6398,11 @@ MonoBehaviour:
           _dataFormat: 0
           _excludeFromPolling: 0
           _specialAxisType: 0
+          _pollingDeadZone: -1
       - elementIdentifier: 21
         sourceType: 1
         sourceAxis: 1
-        axisDeadZone: .00999999978
+        axisDeadZone: 0.01
         sourceButton: 0
         sourceKeyCode: 0
         customCalculation: {fileID: 0}
@@ -6229,10 +6419,11 @@ MonoBehaviour:
           _dataFormat: 0
           _excludeFromPolling: 0
           _specialAxisType: 0
+          _pollingDeadZone: -1
       - elementIdentifier: 22
         sourceType: 1
         sourceAxis: 2
-        axisDeadZone: .00999999978
+        axisDeadZone: 0.01
         sourceButton: 0
         sourceKeyCode: 0
         customCalculation: {fileID: 0}
@@ -6249,6 +6440,7 @@ MonoBehaviour:
           _dataFormat: 0
           _excludeFromPolling: 0
           _specialAxisType: 0
+          _pollingDeadZone: -1
       buttons:
       - elementIdentifier: 23
         sourceType: 0
@@ -6744,6 +6936,9 @@ MonoBehaviour:
       matchUnityVersion: 0
       matchUnityVersion_min: 
       matchUnityVersion_max: 
+      matchSysVersion: 0
+      matchSysVersion_min: 
+      matchSysVersion_max: 
     elements:
       axes: []
       buttons: []
@@ -6761,6 +6956,9 @@ MonoBehaviour:
       matchUnityVersion: 0
       matchUnityVersion_min: 
       matchUnityVersion_max: 
+      matchSysVersion: 0
+      matchSysVersion_min: 
+      matchSysVersion_max: 
     elements:
       axes: []
       buttons: []
@@ -6778,6 +6976,9 @@ MonoBehaviour:
       matchUnityVersion: 0
       matchUnityVersion_min: 
       matchUnityVersion_max: 
+      matchSysVersion: 0
+      matchSysVersion_min: 
+      matchSysVersion_max: 
     elements:
       axes: []
       buttons: []
@@ -6795,6 +6996,9 @@ MonoBehaviour:
       matchUnityVersion: 0
       matchUnityVersion_min: 
       matchUnityVersion_max: 
+      matchSysVersion: 0
+      matchSysVersion_min: 
+      matchSysVersion_max: 
     elements:
       axes: []
       buttons: []
@@ -6812,6 +7016,9 @@ MonoBehaviour:
       matchUnityVersion: 0
       matchUnityVersion_min: 
       matchUnityVersion_max: 
+      matchSysVersion: 0
+      matchSysVersion_min: 
+      matchSysVersion_max: 
     elements:
       axes: []
       buttons: []
@@ -6829,6 +7036,9 @@ MonoBehaviour:
       matchUnityVersion: 0
       matchUnityVersion_min: 
       matchUnityVersion_max: 
+      matchSysVersion: 0
+      matchSysVersion_min: 
+      matchSysVersion_max: 
     elements:
       axes: []
       buttons: []
@@ -6846,6 +7056,9 @@ MonoBehaviour:
       matchUnityVersion: 0
       matchUnityVersion_min: 
       matchUnityVersion_max: 
+      matchSysVersion: 0
+      matchSysVersion_min: 
+      matchSysVersion_max: 
     elements:
       axes: []
       buttons: []
@@ -6863,6 +7076,9 @@ MonoBehaviour:
       matchUnityVersion: 0
       matchUnityVersion_min: 
       matchUnityVersion_max: 
+      matchSysVersion: 0
+      matchSysVersion_min: 
+      matchSysVersion_max: 
     elements:
       axes: []
       buttons: []
@@ -6880,6 +7096,9 @@ MonoBehaviour:
       matchUnityVersion: 0
       matchUnityVersion_min: 
       matchUnityVersion_max: 
+      matchSysVersion: 0
+      matchSysVersion_min: 
+      matchSysVersion_max: 
     elements:
       axes: []
       buttons: []
@@ -6897,6 +7116,9 @@ MonoBehaviour:
       matchUnityVersion: 0
       matchUnityVersion_min: 
       matchUnityVersion_max: 
+      matchSysVersion: 0
+      matchSysVersion_min: 
+      matchSysVersion_max: 
     elements:
       axes: []
       buttons: []
@@ -6914,6 +7136,9 @@ MonoBehaviour:
       matchUnityVersion: 0
       matchUnityVersion_min: 
       matchUnityVersion_max: 
+      matchSysVersion: 0
+      matchSysVersion_min: 
+      matchSysVersion_max: 
     elements:
       axes: []
       buttons: []
@@ -6931,6 +7156,9 @@ MonoBehaviour:
       matchUnityVersion: 0
       matchUnityVersion_min: 
       matchUnityVersion_max: 
+      matchSysVersion: 0
+      matchSysVersion_min: 
+      matchSysVersion_max: 
     elements:
       axes: []
       buttons: []
@@ -6948,6 +7176,9 @@ MonoBehaviour:
       matchUnityVersion: 0
       matchUnityVersion_min: 
       matchUnityVersion_max: 
+      matchSysVersion: 0
+      matchSysVersion_min: 
+      matchSysVersion_max: 
     elements:
       axes: []
       buttons: []
@@ -7023,6 +7254,21 @@ MonoBehaviour:
     elements:
       axes: []
       buttons: []
+    variants: []
+  stadia:
+    description: 
+    matchingCriteria:
+      axisCount: 0
+      buttonCount: 0
+      disabled: 0
+      tag: 
+      alwaysMatch: 0
+      productName_useRegex: 0
+      productName: []
+    elements:
+      axes: []
+      buttons: []
+    controllerName: 
     variants: []
   internalDriver:
     description: 

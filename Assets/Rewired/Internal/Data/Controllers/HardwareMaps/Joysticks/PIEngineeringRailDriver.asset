@@ -3,8 +3,9 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -352,6 +353,7 @@ MonoBehaviour:
       disabled: 0
       tag: 
       hatCount: 0
+      alternateElementCounts: []
       productName_useRegex: 0
       productName: []
       productGUID: []
@@ -369,6 +371,7 @@ MonoBehaviour:
       disabled: 0
       tag: 
       hatCount: 0
+      alternateElementCounts: []
       productName_useRegex: 0
       productName: []
       productGUID: []
@@ -398,6 +401,7 @@ MonoBehaviour:
       disabled: 0
       tag: 
       hatCount: 0
+      alternateElementCounts: []
       productName_useRegex: 0
       productName: []
       manufacturer: []
@@ -415,6 +419,7 @@ MonoBehaviour:
       disabled: 0
       tag: 
       hatCount: 0
+      alternateElementCounts: []
       manufacturer_useRegex: 0
       productName_useRegex: 0
       systemName_useRegex: 0
@@ -434,6 +439,7 @@ MonoBehaviour:
       disabled: 0
       tag: 
       hatCount: 0
+      alternateElementCounts: []
       manufacturer_useRegex: 0
       productName_useRegex: 0
       manufacturer: []
@@ -456,6 +462,9 @@ MonoBehaviour:
       matchUnityVersion: 0
       matchUnityVersion_min: 
       matchUnityVersion_max: 
+      matchSysVersion: 0
+      matchSysVersion_min: 
+      matchSysVersion_max: 
     elements:
       axes: []
       buttons: []
@@ -473,6 +482,9 @@ MonoBehaviour:
       matchUnityVersion: 0
       matchUnityVersion_min: 
       matchUnityVersion_max: 
+      matchSysVersion: 0
+      matchSysVersion_min: 
+      matchSysVersion_max: 
     elements:
       axes: []
       buttons: []
@@ -490,6 +502,9 @@ MonoBehaviour:
       matchUnityVersion: 0
       matchUnityVersion_min: 
       matchUnityVersion_max: 
+      matchSysVersion: 0
+      matchSysVersion_min: 
+      matchSysVersion_max: 
     elements:
       axes: []
       buttons: []
@@ -507,6 +522,9 @@ MonoBehaviour:
       matchUnityVersion: 0
       matchUnityVersion_min: 
       matchUnityVersion_max: 
+      matchSysVersion: 0
+      matchSysVersion_min: 
+      matchSysVersion_max: 
     elements:
       axes: []
       buttons: []
@@ -524,6 +542,9 @@ MonoBehaviour:
       matchUnityVersion: 0
       matchUnityVersion_min: 
       matchUnityVersion_max: 
+      matchSysVersion: 0
+      matchSysVersion_min: 
+      matchSysVersion_max: 
     elements:
       axes: []
       buttons: []
@@ -541,6 +562,9 @@ MonoBehaviour:
       matchUnityVersion: 0
       matchUnityVersion_min: 
       matchUnityVersion_max: 
+      matchSysVersion: 0
+      matchSysVersion_min: 
+      matchSysVersion_max: 
     elements:
       axes: []
       buttons: []
@@ -558,6 +582,9 @@ MonoBehaviour:
       matchUnityVersion: 0
       matchUnityVersion_min: 
       matchUnityVersion_max: 
+      matchSysVersion: 0
+      matchSysVersion_min: 
+      matchSysVersion_max: 
     elements:
       axes: []
       buttons: []
@@ -575,6 +602,9 @@ MonoBehaviour:
       matchUnityVersion: 0
       matchUnityVersion_min: 
       matchUnityVersion_max: 
+      matchSysVersion: 0
+      matchSysVersion_min: 
+      matchSysVersion_max: 
     elements:
       axes: []
       buttons: []
@@ -592,6 +622,9 @@ MonoBehaviour:
       matchUnityVersion: 0
       matchUnityVersion_min: 
       matchUnityVersion_max: 
+      matchSysVersion: 0
+      matchSysVersion_min: 
+      matchSysVersion_max: 
     elements:
       axes: []
       buttons: []
@@ -609,6 +642,9 @@ MonoBehaviour:
       matchUnityVersion: 0
       matchUnityVersion_min: 
       matchUnityVersion_max: 
+      matchSysVersion: 0
+      matchSysVersion_min: 
+      matchSysVersion_max: 
     elements:
       axes: []
       buttons: []
@@ -626,6 +662,9 @@ MonoBehaviour:
       matchUnityVersion: 0
       matchUnityVersion_min: 
       matchUnityVersion_max: 
+      matchSysVersion: 0
+      matchSysVersion_min: 
+      matchSysVersion_max: 
     elements:
       axes: []
       buttons: []
@@ -643,6 +682,9 @@ MonoBehaviour:
       matchUnityVersion: 0
       matchUnityVersion_min: 
       matchUnityVersion_max: 
+      matchSysVersion: 0
+      matchSysVersion_min: 
+      matchSysVersion_max: 
     elements:
       axes: []
       buttons: []
@@ -660,6 +702,9 @@ MonoBehaviour:
       matchUnityVersion: 0
       matchUnityVersion_min: 
       matchUnityVersion_max: 
+      matchSysVersion: 0
+      matchSysVersion_min: 
+      matchSysVersion_max: 
     elements:
       axes: []
       buttons: []
@@ -677,6 +722,9 @@ MonoBehaviour:
       matchUnityVersion: 0
       matchUnityVersion_min: 
       matchUnityVersion_max: 
+      matchSysVersion: 0
+      matchSysVersion_min: 
+      matchSysVersion_max: 
     elements:
       axes: []
       buttons: []
@@ -694,6 +742,9 @@ MonoBehaviour:
       matchUnityVersion: 0
       matchUnityVersion_min: 
       matchUnityVersion_max: 
+      matchSysVersion: 0
+      matchSysVersion_min: 
+      matchSysVersion_max: 
     elements:
       axes: []
       buttons: []
@@ -711,6 +762,9 @@ MonoBehaviour:
       matchUnityVersion: 0
       matchUnityVersion_min: 
       matchUnityVersion_max: 
+      matchSysVersion: 0
+      matchSysVersion_min: 
+      matchSysVersion_max: 
     elements:
       axes: []
       buttons: []
@@ -728,6 +782,9 @@ MonoBehaviour:
       matchUnityVersion: 0
       matchUnityVersion_min: 
       matchUnityVersion_max: 
+      matchSysVersion: 0
+      matchSysVersion_min: 
+      matchSysVersion_max: 
     elements:
       axes: []
       buttons: []
@@ -745,6 +802,9 @@ MonoBehaviour:
       matchUnityVersion: 0
       matchUnityVersion_min: 
       matchUnityVersion_max: 
+      matchSysVersion: 0
+      matchSysVersion_min: 
+      matchSysVersion_max: 
     elements:
       axes: []
       buttons: []
@@ -762,6 +822,9 @@ MonoBehaviour:
       matchUnityVersion: 0
       matchUnityVersion_min: 
       matchUnityVersion_max: 
+      matchSysVersion: 0
+      matchSysVersion_min: 
+      matchSysVersion_max: 
     elements:
       axes: []
       buttons: []
@@ -838,6 +901,21 @@ MonoBehaviour:
       axes: []
       buttons: []
     variants: []
+  stadia:
+    description: 
+    matchingCriteria:
+      axisCount: 0
+      buttonCount: 0
+      disabled: 0
+      tag: 
+      alwaysMatch: 0
+      productName_useRegex: 0
+      productName: []
+    elements:
+      axes: []
+      buttons: []
+    controllerName: 
+    variants: []
   internalDriver:
     description: 
     matchingCriteria:
@@ -858,7 +936,7 @@ MonoBehaviour:
       - elementIdentifier: 0
         sourceType: 1
         sourceAxis: 0
-        axisDeadZone: .0500000007
+        axisDeadZone: 0.05
         sourceButton: 0
         customCalculation: {fileID: 0}
         customCalculationSourceData: []
@@ -866,12 +944,15 @@ MonoBehaviour:
         sourceAxisRange: 0
         buttonAxisContribution: 0
         calibrateAxis: 1
-        axisZero: -.0590000004
-        axisMin: -.519999981
-        axisMax: .800000012
+        axisZero: -0.059
+        axisMin: -0.52
+        axisMax: 0.8
+        alternateCalibrations: []
         axisInfo:
           _dataFormat: 0
           _excludeFromPolling: 0
+          _specialAxisType: 0
+          _pollingDeadZone: -1
         sourceHat: 0
         sourceHatDirection: 0
         sourceHatType: 0
@@ -879,7 +960,7 @@ MonoBehaviour:
       - elementIdentifier: 1
         sourceType: 1
         sourceAxis: 1
-        axisDeadZone: .0500000007
+        axisDeadZone: 0.05
         sourceButton: 0
         customCalculation: {fileID: 0}
         customCalculationSourceData: []
@@ -887,12 +968,15 @@ MonoBehaviour:
         sourceAxisRange: 0
         buttonAxisContribution: 0
         calibrateAxis: 1
-        axisZero: .0500000007
-        axisMin: -.524999976
-        axisMax: .74000001
+        axisZero: 0.05
+        axisMin: -0.525
+        axisMax: 0.74
+        alternateCalibrations: []
         axisInfo:
           _dataFormat: 0
           _excludeFromPolling: 0
+          _specialAxisType: 0
+          _pollingDeadZone: -1
         sourceHat: 0
         sourceHatDirection: 0
         sourceHatType: 0
@@ -900,7 +984,7 @@ MonoBehaviour:
       - elementIdentifier: 2
         sourceType: 1
         sourceAxis: 2
-        axisDeadZone: .0500000007
+        axisDeadZone: 0.05
         sourceButton: 0
         customCalculation: {fileID: 0}
         customCalculationSourceData: []
@@ -908,12 +992,15 @@ MonoBehaviour:
         sourceAxisRange: 0
         buttonAxisContribution: 0
         calibrateAxis: 1
-        axisZero: .699999988
-        axisMin: -.310000002
-        axisMax: .694000006
+        axisZero: 0.7
+        axisMin: -0.31
+        axisMax: 0.694
+        alternateCalibrations: []
         axisInfo:
           _dataFormat: 0
           _excludeFromPolling: 0
+          _specialAxisType: 0
+          _pollingDeadZone: -1
         sourceHat: 0
         sourceHatDirection: 0
         sourceHatType: 0
@@ -921,7 +1008,7 @@ MonoBehaviour:
       - elementIdentifier: 3
         sourceType: 1
         sourceAxis: 3
-        axisDeadZone: .0500000007
+        axisDeadZone: 0.05
         sourceButton: 0
         customCalculation: {fileID: 0}
         customCalculationSourceData: []
@@ -929,12 +1016,15 @@ MonoBehaviour:
         sourceAxisRange: 0
         buttonAxisContribution: 0
         calibrateAxis: 1
-        axisZero: .720000029
-        axisMin: -.810000002
-        axisMax: .694000006
+        axisZero: 0.72
+        axisMin: -0.81
+        axisMax: 0.694
+        alternateCalibrations: []
         axisInfo:
           _dataFormat: 0
           _excludeFromPolling: 0
+          _specialAxisType: 0
+          _pollingDeadZone: -1
         sourceHat: 0
         sourceHatDirection: 0
         sourceHatType: 0

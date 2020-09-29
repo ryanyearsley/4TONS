@@ -3,8 +3,9 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -246,7 +247,7 @@ MonoBehaviour:
       - elementIdentifier: 0
         sourceType: 1
         sourceAxis: 1
-        axisDeadZone: .00999999978
+        axisDeadZone: 0.01
         sourceButton: 0
         sourceKeyCode: 0
         customCalculation: {fileID: 0}
@@ -263,10 +264,11 @@ MonoBehaviour:
           _dataFormat: 0
           _excludeFromPolling: 0
           _specialAxisType: 0
+          _pollingDeadZone: -1
       - elementIdentifier: 1
         sourceType: 1
         sourceAxis: 2
-        axisDeadZone: .00999999978
+        axisDeadZone: 0.01
         sourceButton: 0
         sourceKeyCode: 0
         customCalculation: {fileID: 0}
@@ -283,10 +285,11 @@ MonoBehaviour:
           _dataFormat: 0
           _excludeFromPolling: 0
           _specialAxisType: 0
+          _pollingDeadZone: -1
       - elementIdentifier: 7
         sourceType: 1
         sourceAxis: 9
-        axisDeadZone: .00999999978
+        axisDeadZone: 0.01
         sourceButton: 0
         sourceKeyCode: 0
         customCalculation: {fileID: 0}
@@ -303,10 +306,11 @@ MonoBehaviour:
           _dataFormat: 0
           _excludeFromPolling: 0
           _specialAxisType: 0
+          _pollingDeadZone: -1
       - elementIdentifier: 10
         sourceType: 1
         sourceAxis: 11
-        axisDeadZone: .00999999978
+        axisDeadZone: 0.01
         sourceButton: 0
         sourceKeyCode: 0
         customCalculation: {fileID: 0}
@@ -323,6 +327,7 @@ MonoBehaviour:
           _dataFormat: 0
           _excludeFromPolling: 0
           _specialAxisType: 0
+          _pollingDeadZone: -1
       buttons:
       - elementIdentifier: 2
         sourceType: 0
@@ -610,7 +615,7 @@ MonoBehaviour:
         - elementIdentifier: 0
           sourceType: 1
           sourceAxis: 1
-          axisDeadZone: .00999999978
+          axisDeadZone: 0.01
           sourceButton: 0
           sourceKeyCode: 0
           customCalculation: {fileID: 0}
@@ -627,10 +632,11 @@ MonoBehaviour:
             _dataFormat: 0
             _excludeFromPolling: 0
             _specialAxisType: 0
+            _pollingDeadZone: -1
         - elementIdentifier: 1
           sourceType: 1
           sourceAxis: 2
-          axisDeadZone: .00999999978
+          axisDeadZone: 0.01
           sourceButton: 0
           sourceKeyCode: 0
           customCalculation: {fileID: 0}
@@ -647,10 +653,11 @@ MonoBehaviour:
             _dataFormat: 0
             _excludeFromPolling: 0
             _specialAxisType: 0
+            _pollingDeadZone: -1
         - elementIdentifier: 7
           sourceType: 1
           sourceAxis: 9
-          axisDeadZone: .00999999978
+          axisDeadZone: 0.01
           sourceButton: 0
           sourceKeyCode: 0
           customCalculation: {fileID: 0}
@@ -667,10 +674,11 @@ MonoBehaviour:
             _dataFormat: 0
             _excludeFromPolling: 0
             _specialAxisType: 0
+            _pollingDeadZone: -1
         - elementIdentifier: 10
           sourceType: 1
           sourceAxis: 11
-          axisDeadZone: .00999999978
+          axisDeadZone: 0.01
           sourceButton: 0
           sourceKeyCode: 0
           customCalculation: {fileID: 0}
@@ -687,6 +695,7 @@ MonoBehaviour:
             _dataFormat: 0
             _excludeFromPolling: 0
             _specialAxisType: 0
+            _pollingDeadZone: -1
         buttons:
         - elementIdentifier: 2
           sourceType: 0
