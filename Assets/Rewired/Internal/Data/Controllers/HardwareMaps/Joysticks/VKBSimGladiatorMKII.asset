@@ -3,8 +3,9 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -421,6 +422,7 @@ MonoBehaviour:
           _dataFormat: 0
           _excludeFromPolling: 0
           _specialAxisType: 0
+          _pollingDeadZone: -1
         alternateCalibrations: []
         sourceButton: 0
         buttonAxisContribution: 0
@@ -444,6 +446,7 @@ MonoBehaviour:
           _dataFormat: 0
           _excludeFromPolling: 0
           _specialAxisType: 0
+          _pollingDeadZone: -1
         alternateCalibrations: []
         sourceButton: 0
         buttonAxisContribution: 0
@@ -467,6 +470,7 @@ MonoBehaviour:
           _dataFormat: 0
           _excludeFromPolling: 0
           _specialAxisType: 1
+          _pollingDeadZone: -1
         alternateCalibrations: []
         sourceButton: 0
         buttonAxisContribution: 0
@@ -490,6 +494,7 @@ MonoBehaviour:
           _dataFormat: 0
           _excludeFromPolling: 0
           _specialAxisType: 0
+          _pollingDeadZone: -1
         alternateCalibrations: []
         sourceButton: 0
         buttonAxisContribution: 0
@@ -513,6 +518,7 @@ MonoBehaviour:
           _dataFormat: 0
           _excludeFromPolling: 0
           _specialAxisType: 0
+          _pollingDeadZone: -1
         alternateCalibrations: []
         sourceButton: 0
         buttonAxisContribution: 0
@@ -536,6 +542,7 @@ MonoBehaviour:
           _dataFormat: 0
           _excludeFromPolling: 0
           _specialAxisType: 0
+          _pollingDeadZone: -1
         alternateCalibrations: []
         sourceButton: 0
         buttonAxisContribution: 0
@@ -559,6 +566,7 @@ MonoBehaviour:
           _dataFormat: 0
           _excludeFromPolling: 0
           _specialAxisType: 0
+          _pollingDeadZone: -1
         alternateCalibrations: []
         sourceButton: 0
         buttonAxisContribution: 0
@@ -1469,6 +1477,7 @@ MonoBehaviour:
           _dataFormat: 0
           _excludeFromPolling: 0
           _specialAxisType: 0
+          _pollingDeadZone: -1
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
@@ -1491,6 +1500,7 @@ MonoBehaviour:
           _dataFormat: 0
           _excludeFromPolling: 0
           _specialAxisType: 0
+          _pollingDeadZone: -1
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
@@ -1513,6 +1523,7 @@ MonoBehaviour:
           _dataFormat: 0
           _excludeFromPolling: 0
           _specialAxisType: 0
+          _pollingDeadZone: -1
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
@@ -1535,6 +1546,7 @@ MonoBehaviour:
           _dataFormat: 0
           _excludeFromPolling: 0
           _specialAxisType: 1
+          _pollingDeadZone: -1
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
@@ -1557,6 +1569,7 @@ MonoBehaviour:
           _dataFormat: 0
           _excludeFromPolling: 0
           _specialAxisType: 0
+          _pollingDeadZone: -1
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
@@ -1579,6 +1592,7 @@ MonoBehaviour:
           _dataFormat: 0
           _excludeFromPolling: 0
           _specialAxisType: 0
+          _pollingDeadZone: -1
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
@@ -1601,6 +1615,7 @@ MonoBehaviour:
           _dataFormat: 0
           _excludeFromPolling: 0
           _specialAxisType: 0
+          _pollingDeadZone: -1
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
@@ -2453,6 +2468,7 @@ MonoBehaviour:
           _dataFormat: 0
           _excludeFromPolling: 0
           _specialAxisType: 0
+          _pollingDeadZone: -1
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
@@ -2473,6 +2489,7 @@ MonoBehaviour:
           _dataFormat: 0
           _excludeFromPolling: 0
           _specialAxisType: 0
+          _pollingDeadZone: -1
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
@@ -2493,6 +2510,7 @@ MonoBehaviour:
           _dataFormat: 0
           _excludeFromPolling: 0
           _specialAxisType: 1
+          _pollingDeadZone: -1
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
@@ -2513,6 +2531,7 @@ MonoBehaviour:
           _dataFormat: 0
           _excludeFromPolling: 0
           _specialAxisType: 0
+          _pollingDeadZone: -1
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
@@ -2533,6 +2552,7 @@ MonoBehaviour:
           _dataFormat: 0
           _excludeFromPolling: 0
           _specialAxisType: 0
+          _pollingDeadZone: -1
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
@@ -2553,6 +2573,7 @@ MonoBehaviour:
           _dataFormat: 0
           _excludeFromPolling: 0
           _specialAxisType: 0
+          _pollingDeadZone: -1
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
@@ -2573,6 +2594,7 @@ MonoBehaviour:
           _dataFormat: 0
           _excludeFromPolling: 0
           _specialAxisType: 0
+          _pollingDeadZone: -1
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
@@ -3333,6 +3355,7 @@ MonoBehaviour:
           _dataFormat: 0
           _excludeFromPolling: 0
           _specialAxisType: 0
+          _pollingDeadZone: -1
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
@@ -3353,6 +3376,7 @@ MonoBehaviour:
           _dataFormat: 0
           _excludeFromPolling: 0
           _specialAxisType: 0
+          _pollingDeadZone: -1
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
@@ -3373,6 +3397,7 @@ MonoBehaviour:
           _dataFormat: 0
           _excludeFromPolling: 0
           _specialAxisType: 1
+          _pollingDeadZone: -1
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
@@ -3393,6 +3418,7 @@ MonoBehaviour:
           _dataFormat: 0
           _excludeFromPolling: 0
           _specialAxisType: 0
+          _pollingDeadZone: -1
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
@@ -3413,6 +3439,7 @@ MonoBehaviour:
           _dataFormat: 0
           _excludeFromPolling: 0
           _specialAxisType: 0
+          _pollingDeadZone: -1
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
@@ -3433,6 +3460,7 @@ MonoBehaviour:
           _dataFormat: 0
           _excludeFromPolling: 0
           _specialAxisType: 0
+          _pollingDeadZone: -1
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
@@ -3453,6 +3481,7 @@ MonoBehaviour:
           _dataFormat: 0
           _excludeFromPolling: 0
           _specialAxisType: 0
+          _pollingDeadZone: -1
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
@@ -4631,6 +4660,21 @@ MonoBehaviour:
     elements:
       axes: []
       buttons: []
+    variants: []
+  stadia:
+    description: 
+    matchingCriteria:
+      axisCount: 0
+      buttonCount: 0
+      disabled: 0
+      tag: 
+      alwaysMatch: 0
+      productName_useRegex: 0
+      productName: []
+    elements:
+      axes: []
+      buttons: []
+    controllerName: 
     variants: []
   internalDriver:
     description: 

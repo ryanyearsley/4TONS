@@ -3,8 +3,9 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -767,6 +768,7 @@ MonoBehaviour:
           _dataFormat: 0
           _excludeFromPolling: 0
           _specialAxisType: 0
+          _pollingDeadZone: -1
       - elementIdentifier: 2
         sourceType: 1
         sourceAxis: 8
@@ -786,6 +788,7 @@ MonoBehaviour:
           _dataFormat: 0
           _excludeFromPolling: 0
           _specialAxisType: 0
+          _pollingDeadZone: -1
       - elementIdentifier: 3
         sourceType: 1
         sourceAxis: 9
@@ -805,6 +808,7 @@ MonoBehaviour:
           _dataFormat: 0
           _excludeFromPolling: 0
           _specialAxisType: 0
+          _pollingDeadZone: -1
       - elementIdentifier: 4
         sourceType: 1
         sourceAxis: 10
@@ -824,6 +828,7 @@ MonoBehaviour:
           _dataFormat: 0
           _excludeFromPolling: 0
           _specialAxisType: 0
+          _pollingDeadZone: -1
       - elementIdentifier: 5
         sourceType: 1
         sourceAxis: 11
@@ -843,6 +848,7 @@ MonoBehaviour:
           _dataFormat: 0
           _excludeFromPolling: 0
           _specialAxisType: 0
+          _pollingDeadZone: -1
       - elementIdentifier: 6
         sourceType: 1
         sourceAxis: 12
@@ -862,10 +868,11 @@ MonoBehaviour:
           _dataFormat: 0
           _excludeFromPolling: 0
           _specialAxisType: 0
+          _pollingDeadZone: -1
       - elementIdentifier: 9
         sourceType: 1
         sourceAxis: 2
-        axisDeadZone: .150000006
+        axisDeadZone: 0.15
         sourceButton: 0
         customCalculation: {fileID: 0}
         customCalculationSourceData: []
@@ -881,10 +888,11 @@ MonoBehaviour:
           _dataFormat: 0
           _excludeFromPolling: 0
           _specialAxisType: 0
+          _pollingDeadZone: -1
       - elementIdentifier: 10
         sourceType: 1
         sourceAxis: 3
-        axisDeadZone: .150000006
+        axisDeadZone: 0.15
         sourceButton: 0
         customCalculation: {fileID: 0}
         customCalculationSourceData: []
@@ -900,6 +908,7 @@ MonoBehaviour:
           _dataFormat: 0
           _excludeFromPolling: 0
           _specialAxisType: 0
+          _pollingDeadZone: -1
       - elementIdentifier: 11
         sourceType: 1
         sourceAxis: 4
@@ -919,6 +928,7 @@ MonoBehaviour:
           _dataFormat: 0
           _excludeFromPolling: 0
           _specialAxisType: 0
+          _pollingDeadZone: -1
       - elementIdentifier: 12
         sourceType: 1
         sourceAxis: 5
@@ -938,6 +948,7 @@ MonoBehaviour:
           _dataFormat: 0
           _excludeFromPolling: 0
           _specialAxisType: 0
+          _pollingDeadZone: -1
       buttons:
       - elementIdentifier: 13
         sourceType: 0

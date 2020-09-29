@@ -26,6 +26,7 @@ Material:
     m_Floats:
     - Vector1_7D6CA34D: 0.3
     m_Colors:
+    - CursorCenterPosition: {r: 0, g: 0, b: 0, a: 0}
     - PlayerPosition: {r: 0, g: 0, b: 0, a: 0}
     - Vector2_F5998FE4: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []

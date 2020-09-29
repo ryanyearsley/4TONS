@@ -30,16 +30,21 @@ public class Living : MonoBehaviour, IDamagable {
 		}
 	}
 
-	protected virtual void Start () {
+    public void RegisterDamagableObject()
+    {
+        DamageManager.Instance.RegisterDamagableObject(gameObject.GetInstanceID(), this);
+    }
+    protected virtual void Start () {
 		SetDefaults ();
-	}
+        RegisterDamagableObject();
+    }
 
 	public virtual void SetDefaults () {
 		health = startingHealth;
 		dead = false;
 	}
 
-	public void TakeDamage (float damage) {
+	public void ApplyDamage(float damage) {
 		if (!dead) {
 			health -= damage;
 			if (healthBar != null) {
@@ -47,12 +52,12 @@ public class Living : MonoBehaviour, IDamagable {
 			}
 
 			if (health <= 0) {
-				Die ();
+                Die ();
 			}
 		}
 	}
 
-	protected virtual void Die () {
+	public virtual void Die () {
 		dead = true;
 	}
 }

@@ -3,8 +3,9 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -47,6 +48,7 @@ MonoBehaviour:
       disabled: 0
       tag: 
       hatCount: 0
+      alternateElementCounts: []
       productName_useRegex: 0
       productName: []
       productGUID: []
@@ -64,12 +66,15 @@ MonoBehaviour:
       disabled: 0
       tag: 
       hatCount: 0
+      alternateElementCounts: []
       productName_useRegex: 0
       productName:
       - Saitek Pro Flight Rudder Pedals
       - Saitek Pro Flight Combat Rudder Pedals
-      - "Mad Catz Pro Flight Cessna Rudder Pedals\r\nMad Catz Pro Flight Cessna Rudder
-        Pedals"
+      - 'Mad Catz Pro Flight Cessna Rudder Pedals
+
+        Mad Catz Pro Flight Cessna
+        Rudder Pedals'
       productGUID:
       - 076306a3
       - 076406a3
@@ -85,7 +90,7 @@ MonoBehaviour:
         sourceAxis: 1
         sourceAxisRange: 0
         invert: 0
-        axisDeadZone: .0500000007
+        axisDeadZone: 0.05
         calibrateAxis: 1
         axisZero: -1
         axisMin: -1
@@ -93,6 +98,9 @@ MonoBehaviour:
         axisInfo:
           _dataFormat: 0
           _excludeFromPolling: 0
+          _specialAxisType: 0
+          _pollingDeadZone: -1
+        alternateCalibrations: []
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
@@ -106,7 +114,7 @@ MonoBehaviour:
         sourceAxis: 2
         sourceAxisRange: 0
         invert: 0
-        axisDeadZone: .0500000007
+        axisDeadZone: 0.05
         calibrateAxis: 1
         axisZero: -1
         axisMin: -1
@@ -114,6 +122,9 @@ MonoBehaviour:
         axisInfo:
           _dataFormat: 0
           _excludeFromPolling: 0
+          _specialAxisType: 0
+          _pollingDeadZone: -1
+        alternateCalibrations: []
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
@@ -127,7 +138,7 @@ MonoBehaviour:
         sourceAxis: 6
         sourceAxisRange: 0
         invert: 0
-        axisDeadZone: .0500000007
+        axisDeadZone: 0.05
         calibrateAxis: 0
         axisZero: 0
         axisMin: 0
@@ -135,6 +146,9 @@ MonoBehaviour:
         axisInfo:
           _dataFormat: 0
           _excludeFromPolling: 0
+          _specialAxisType: 0
+          _pollingDeadZone: -1
+        alternateCalibrations: []
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
@@ -163,6 +177,7 @@ MonoBehaviour:
       disabled: 0
       tag: 
       hatCount: 0
+      alternateElementCounts: []
       productName_useRegex: 0
       productName:
       - Saitek Pro Flight Rudder Pedals
@@ -181,14 +196,17 @@ MonoBehaviour:
         sourceOtherAxis: 0
         sourceAxisRange: 0
         invert: 0
-        axisDeadZone: .0500000007
+        axisDeadZone: 0.05
         calibrateAxis: 1
         axisZero: -1
         axisMin: -1
         axisMax: 1
+        alternateCalibrations: []
         axisInfo:
           _dataFormat: 0
           _excludeFromPolling: 0
+          _specialAxisType: 0
+          _pollingDeadZone: -1
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
@@ -201,14 +219,17 @@ MonoBehaviour:
         sourceOtherAxis: 0
         sourceAxisRange: 0
         invert: 0
-        axisDeadZone: .0500000007
+        axisDeadZone: 0.05
         calibrateAxis: 1
         axisZero: -1
         axisMin: -1
         axisMax: 1
+        alternateCalibrations: []
         axisInfo:
           _dataFormat: 0
           _excludeFromPolling: 0
+          _specialAxisType: 0
+          _pollingDeadZone: -1
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
@@ -221,14 +242,17 @@ MonoBehaviour:
         sourceOtherAxis: 0
         sourceAxisRange: 0
         invert: 0
-        axisDeadZone: .0500000007
+        axisDeadZone: 0.05
         calibrateAxis: 0
         axisZero: 0
         axisMin: 0
         axisMax: 0
+        alternateCalibrations: []
         axisInfo:
           _dataFormat: 0
           _excludeFromPolling: 0
+          _specialAxisType: 0
+          _pollingDeadZone: -1
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
@@ -244,6 +268,7 @@ MonoBehaviour:
       disabled: 0
       tag: 
       hatCount: 0
+      alternateElementCounts: []
       manufacturer_useRegex: 0
       productName_useRegex: 0
       systemName_useRegex: 0
@@ -264,14 +289,17 @@ MonoBehaviour:
         sourceAxis: 0
         sourceAxisRange: 0
         invert: 0
-        axisDeadZone: .0500000007
+        axisDeadZone: 0.05
         calibrateAxis: 1
         axisZero: -1
         axisMin: -1
         axisMax: 1
+        alternateCalibrations: []
         axisInfo:
           _dataFormat: 0
           _excludeFromPolling: 0
+          _specialAxisType: 0
+          _pollingDeadZone: -1
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
@@ -282,14 +310,17 @@ MonoBehaviour:
         sourceAxis: 1
         sourceAxisRange: 0
         invert: 0
-        axisDeadZone: .0500000007
+        axisDeadZone: 0.05
         calibrateAxis: 1
         axisZero: -1
         axisMin: -1
         axisMax: 1
+        alternateCalibrations: []
         axisInfo:
           _dataFormat: 0
           _excludeFromPolling: 0
+          _specialAxisType: 0
+          _pollingDeadZone: -1
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
@@ -300,14 +331,17 @@ MonoBehaviour:
         sourceAxis: 2
         sourceAxisRange: 0
         invert: 0
-        axisDeadZone: .0500000007
+        axisDeadZone: 0.05
         calibrateAxis: 0
         axisZero: 0
         axisMin: 0
         axisMax: 0
+        alternateCalibrations: []
         axisInfo:
           _dataFormat: 0
           _excludeFromPolling: 0
+          _specialAxisType: 0
+          _pollingDeadZone: -1
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
@@ -323,6 +357,7 @@ MonoBehaviour:
       disabled: 0
       tag: 
       hatCount: 0
+      alternateElementCounts: []
       manufacturer_useRegex: 0
       productName_useRegex: 0
       manufacturer: []
@@ -341,14 +376,17 @@ MonoBehaviour:
         sourceAxis: 0
         sourceAxisRange: 0
         invert: 0
-        axisDeadZone: .0500000007
+        axisDeadZone: 0.05
         calibrateAxis: 1
         axisZero: -1
         axisMin: -1
         axisMax: 1
+        alternateCalibrations: []
         axisInfo:
           _dataFormat: 0
           _excludeFromPolling: 0
+          _specialAxisType: 0
+          _pollingDeadZone: -1
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
@@ -359,14 +397,17 @@ MonoBehaviour:
         sourceAxis: 1
         sourceAxisRange: 0
         invert: 0
-        axisDeadZone: .0500000007
+        axisDeadZone: 0.05
         calibrateAxis: 1
         axisZero: -1
         axisMin: -1
         axisMax: 1
+        alternateCalibrations: []
         axisInfo:
           _dataFormat: 0
           _excludeFromPolling: 0
+          _specialAxisType: 0
+          _pollingDeadZone: -1
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
@@ -377,14 +418,17 @@ MonoBehaviour:
         sourceAxis: 2
         sourceAxisRange: 0
         invert: 0
-        axisDeadZone: .0500000007
+        axisDeadZone: 0.05
         calibrateAxis: 0
         axisZero: 0
         axisMin: 0
         axisMax: 0
+        alternateCalibrations: []
         axisInfo:
           _dataFormat: 0
           _excludeFromPolling: 0
+          _specialAxisType: 0
+          _pollingDeadZone: -1
         sourceButton: 0
         buttonAxisContribution: 0
         sourceHat: 0
@@ -408,12 +452,15 @@ MonoBehaviour:
       matchUnityVersion: 0
       matchUnityVersion_min: 
       matchUnityVersion_max: 
+      matchSysVersion: 0
+      matchSysVersion_min: 
+      matchSysVersion_max: 
     elements:
       axes:
       - elementIdentifier: 0
         sourceType: 1
         sourceAxis: 1
-        axisDeadZone: .0500000007
+        axisDeadZone: 0.05
         sourceButton: 0
         sourceKeyCode: 0
         customCalculation: {fileID: 0}
@@ -425,9 +472,12 @@ MonoBehaviour:
         axisZero: -1
         axisMin: -1
         axisMax: 1
+        alternateCalibrations: []
         axisInfo:
           _dataFormat: 0
           _excludeFromPolling: 0
+          _specialAxisType: 0
+          _pollingDeadZone: -1
       - elementIdentifier: 1
         sourceType: 1
         sourceAxis: 2
@@ -443,13 +493,16 @@ MonoBehaviour:
         axisZero: -1
         axisMin: -1
         axisMax: 1
+        alternateCalibrations: []
         axisInfo:
           _dataFormat: 0
           _excludeFromPolling: 0
+          _specialAxisType: 0
+          _pollingDeadZone: -1
       - elementIdentifier: 2
         sourceType: 1
         sourceAxis: 3
-        axisDeadZone: .0500000007
+        axisDeadZone: 0.05
         sourceButton: 0
         sourceKeyCode: 0
         customCalculation: {fileID: 0}
@@ -461,9 +514,12 @@ MonoBehaviour:
         axisZero: 0
         axisMin: 0
         axisMax: 0
+        alternateCalibrations: []
         axisInfo:
           _dataFormat: 0
           _excludeFromPolling: 0
+          _specialAxisType: 0
+          _pollingDeadZone: -1
       buttons: []
     variants: []
   fallback_WindowsUWP:
@@ -479,6 +535,9 @@ MonoBehaviour:
       matchUnityVersion: 0
       matchUnityVersion_min: 
       matchUnityVersion_max: 
+      matchSysVersion: 0
+      matchSysVersion_min: 
+      matchSysVersion_max: 
     elements:
       axes: []
       buttons: []
@@ -499,12 +558,15 @@ MonoBehaviour:
       matchUnityVersion: 0
       matchUnityVersion_min: 
       matchUnityVersion_max: 
+      matchSysVersion: 0
+      matchSysVersion_min: 
+      matchSysVersion_max: 
     elements:
       axes:
       - elementIdentifier: 0
         sourceType: 1
         sourceAxis: 1
-        axisDeadZone: .0500000007
+        axisDeadZone: 0.05
         sourceButton: 0
         sourceKeyCode: 0
         customCalculation: {fileID: 0}
@@ -516,13 +578,16 @@ MonoBehaviour:
         axisZero: -1
         axisMin: -1
         axisMax: 1
+        alternateCalibrations: []
         axisInfo:
           _dataFormat: 0
           _excludeFromPolling: 0
+          _specialAxisType: 0
+          _pollingDeadZone: -1
       - elementIdentifier: 1
         sourceType: 1
         sourceAxis: 2
-        axisDeadZone: .0500000007
+        axisDeadZone: 0.05
         sourceButton: 0
         sourceKeyCode: 0
         customCalculation: {fileID: 0}
@@ -534,13 +599,16 @@ MonoBehaviour:
         axisZero: -1
         axisMin: -1
         axisMax: 1
+        alternateCalibrations: []
         axisInfo:
           _dataFormat: 0
           _excludeFromPolling: 0
+          _specialAxisType: 0
+          _pollingDeadZone: -1
       - elementIdentifier: 2
         sourceType: 1
         sourceAxis: 3
-        axisDeadZone: .0500000007
+        axisDeadZone: 0.05
         sourceButton: 0
         sourceKeyCode: 0
         customCalculation: {fileID: 0}
@@ -552,9 +620,12 @@ MonoBehaviour:
         axisZero: 0
         axisMin: 0
         axisMax: 0
+        alternateCalibrations: []
         axisInfo:
           _dataFormat: 0
           _excludeFromPolling: 0
+          _specialAxisType: 0
+          _pollingDeadZone: -1
       buttons: []
     variants: []
   fallback_Linux:
@@ -573,12 +644,15 @@ MonoBehaviour:
       matchUnityVersion: 0
       matchUnityVersion_min: 
       matchUnityVersion_max: 
+      matchSysVersion: 0
+      matchSysVersion_min: 
+      matchSysVersion_max: 
     elements:
       axes:
       - elementIdentifier: 0
         sourceType: 1
         sourceAxis: 1
-        axisDeadZone: .0500000007
+        axisDeadZone: 0.05
         sourceButton: 0
         sourceKeyCode: 0
         customCalculation: {fileID: 0}
@@ -590,13 +664,16 @@ MonoBehaviour:
         axisZero: 0
         axisMin: 0
         axisMax: 0
+        alternateCalibrations: []
         axisInfo:
           _dataFormat: 0
           _excludeFromPolling: 0
+          _specialAxisType: 0
+          _pollingDeadZone: -1
       - elementIdentifier: 1
         sourceType: 1
         sourceAxis: 2
-        axisDeadZone: .0500000007
+        axisDeadZone: 0.05
         sourceButton: 0
         sourceKeyCode: 0
         customCalculation: {fileID: 0}
@@ -608,13 +685,16 @@ MonoBehaviour:
         axisZero: 0
         axisMin: 0
         axisMax: 0
+        alternateCalibrations: []
         axisInfo:
           _dataFormat: 0
           _excludeFromPolling: 0
+          _specialAxisType: 0
+          _pollingDeadZone: -1
       - elementIdentifier: 2
         sourceType: 1
         sourceAxis: 3
-        axisDeadZone: .0500000007
+        axisDeadZone: 0.05
         sourceButton: 0
         sourceKeyCode: 0
         customCalculation: {fileID: 0}
@@ -626,9 +706,12 @@ MonoBehaviour:
         axisZero: 0
         axisMin: 0
         axisMax: 0
+        alternateCalibrations: []
         axisInfo:
           _dataFormat: 0
           _excludeFromPolling: 0
+          _specialAxisType: 0
+          _pollingDeadZone: -1
       buttons: []
     variants: []
   fallback_Linux_PreConfigured:
@@ -644,6 +727,9 @@ MonoBehaviour:
       matchUnityVersion: 0
       matchUnityVersion_min: 
       matchUnityVersion_max: 
+      matchSysVersion: 0
+      matchSysVersion_min: 
+      matchSysVersion_max: 
     elements:
       axes: []
       buttons: []
@@ -661,6 +747,9 @@ MonoBehaviour:
       matchUnityVersion: 0
       matchUnityVersion_min: 
       matchUnityVersion_max: 
+      matchSysVersion: 0
+      matchSysVersion_min: 
+      matchSysVersion_max: 
     elements:
       axes: []
       buttons: []
@@ -678,6 +767,9 @@ MonoBehaviour:
       matchUnityVersion: 0
       matchUnityVersion_min: 
       matchUnityVersion_max: 
+      matchSysVersion: 0
+      matchSysVersion_min: 
+      matchSysVersion_max: 
     elements:
       axes: []
       buttons: []
@@ -695,6 +787,9 @@ MonoBehaviour:
       matchUnityVersion: 0
       matchUnityVersion_min: 
       matchUnityVersion_max: 
+      matchSysVersion: 0
+      matchSysVersion_min: 
+      matchSysVersion_max: 
     elements:
       axes: []
       buttons: []
@@ -712,6 +807,9 @@ MonoBehaviour:
       matchUnityVersion: 0
       matchUnityVersion_min: 
       matchUnityVersion_max: 
+      matchSysVersion: 0
+      matchSysVersion_min: 
+      matchSysVersion_max: 
     elements:
       axes: []
       buttons: []
@@ -729,6 +827,9 @@ MonoBehaviour:
       matchUnityVersion: 0
       matchUnityVersion_min: 
       matchUnityVersion_max: 
+      matchSysVersion: 0
+      matchSysVersion_min: 
+      matchSysVersion_max: 
     elements:
       axes: []
       buttons: []
@@ -746,6 +847,9 @@ MonoBehaviour:
       matchUnityVersion: 0
       matchUnityVersion_min: 
       matchUnityVersion_max: 
+      matchSysVersion: 0
+      matchSysVersion_min: 
+      matchSysVersion_max: 
     elements:
       axes: []
       buttons: []
@@ -763,6 +867,9 @@ MonoBehaviour:
       matchUnityVersion: 0
       matchUnityVersion_min: 
       matchUnityVersion_max: 
+      matchSysVersion: 0
+      matchSysVersion_min: 
+      matchSysVersion_max: 
     elements:
       axes: []
       buttons: []
@@ -780,6 +887,9 @@ MonoBehaviour:
       matchUnityVersion: 0
       matchUnityVersion_min: 
       matchUnityVersion_max: 
+      matchSysVersion: 0
+      matchSysVersion_min: 
+      matchSysVersion_max: 
     elements:
       axes: []
       buttons: []
@@ -797,6 +907,9 @@ MonoBehaviour:
       matchUnityVersion: 0
       matchUnityVersion_min: 
       matchUnityVersion_max: 
+      matchSysVersion: 0
+      matchSysVersion_min: 
+      matchSysVersion_max: 
     elements:
       axes: []
       buttons: []
@@ -814,6 +927,9 @@ MonoBehaviour:
       matchUnityVersion: 0
       matchUnityVersion_min: 
       matchUnityVersion_max: 
+      matchSysVersion: 0
+      matchSysVersion_min: 
+      matchSysVersion_max: 
     elements:
       axes: []
       buttons: []
@@ -831,6 +947,9 @@ MonoBehaviour:
       matchUnityVersion: 0
       matchUnityVersion_min: 
       matchUnityVersion_max: 
+      matchSysVersion: 0
+      matchSysVersion_min: 
+      matchSysVersion_max: 
     elements:
       axes: []
       buttons: []
@@ -848,6 +967,9 @@ MonoBehaviour:
       matchUnityVersion: 0
       matchUnityVersion_min: 
       matchUnityVersion_max: 
+      matchSysVersion: 0
+      matchSysVersion_min: 
+      matchSysVersion_max: 
     elements:
       axes: []
       buttons: []
@@ -865,6 +987,9 @@ MonoBehaviour:
       matchUnityVersion: 0
       matchUnityVersion_min: 
       matchUnityVersion_max: 
+      matchSysVersion: 0
+      matchSysVersion_min: 
+      matchSysVersion_max: 
     elements:
       axes: []
       buttons: []
@@ -882,6 +1007,9 @@ MonoBehaviour:
       matchUnityVersion: 0
       matchUnityVersion_min: 
       matchUnityVersion_max: 
+      matchSysVersion: 0
+      matchSysVersion_min: 
+      matchSysVersion_max: 
     elements:
       axes: []
       buttons: []
@@ -957,6 +1085,21 @@ MonoBehaviour:
     elements:
       axes: []
       buttons: []
+    variants: []
+  stadia:
+    description: 
+    matchingCriteria:
+      axisCount: 0
+      buttonCount: 0
+      disabled: 0
+      tag: 
+      alwaysMatch: 0
+      productName_useRegex: 0
+      productName: []
+    elements:
+      axes: []
+      buttons: []
+    controllerName: 
     variants: []
   internalDriver:
     description: 

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 611328696114222812}
   - component: {fileID: 104657582465435954}
   m_Layer: 0
-  m_Name: Rewired Initializer
+  m_Name: RewiredInitializer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
