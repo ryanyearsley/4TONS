@@ -22,7 +22,7 @@ public class Grid : MonoBehaviour {
 	private int penaltyMin = int.MaxValue;
 	private int penaltyMax = int.MinValue;
 
-	private void Start () {
+	private void Awake () {
 		InitializeGrid ();
 	}
 

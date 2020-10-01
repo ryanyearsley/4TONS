@@ -8,6 +8,14 @@ public static class ExtensionMethods {
 		return new Vector2 (v3.x, v3.z);
 	}
 
+	public static Vector2 XY (this Vector3 v3) {
+		return new Vector2 (v3.x, v3.y);
+	}
+
+	public static Vector3 SetZ (this Vector3 v3, float value) {
+		return new Vector3 (v3.x, v3.y, value);
+	}
+
 	public static Vector3 RoundToInt (this Vector3 v3) {
 		return new Vector3 (Mathf.RoundToInt (v3.x), Mathf.RoundToInt (v3.y), Mathf.RoundToInt (v3.z));
 	}

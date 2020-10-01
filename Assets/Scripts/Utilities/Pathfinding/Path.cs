@@ -38,14 +38,14 @@ public class Path {
 	}
 
 	public void DrawWithGizmos () {
-		Gizmos.color = Color.black;
+		Gizmos.color = Color.green;
 		foreach (Vector3 p in lookPoints) {
-			Gizmos.DrawCube (p + Vector3.up, Vector3.one);
+			Gizmos.DrawCube (p + Vector3.back, Vector3.one * 0.1f);
 		}
 
-		Gizmos.color = Color.white;
-		foreach (Line l in turnBoundaries) {
-			l.DrawWithGizmos (10);
+		Gizmos.color = Color.green;
+		foreach (Line line in turnBoundaries) {
+			line.DrawWithGizmos (1);
 		}
 	}
 }
