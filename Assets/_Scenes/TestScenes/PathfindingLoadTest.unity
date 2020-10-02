@@ -238,6 +238,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1278914632268139021, guid: 7271fdde5993c6247ac72cb4cb95160f, type: 3}
+      propertyPath: collisionMask.m_Bits
+      value: 768
+      objectReference: {fileID: 0}
     - target: {fileID: 1341477367693980137, guid: 7271fdde5993c6247ac72cb4cb95160f, type: 3}
       propertyPath: m_Name
       value: DummyAI (7)
@@ -299,6 +303,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1278914632268139021, guid: 7271fdde5993c6247ac72cb4cb95160f, type: 3}
+      propertyPath: collisionMask.m_Bits
+      value: 768
+      objectReference: {fileID: 0}
     - target: {fileID: 1341477367693980137, guid: 7271fdde5993c6247ac72cb4cb95160f, type: 3}
       propertyPath: m_Name
       value: DummyAI (11)
@@ -360,6 +368,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1278914632268139021, guid: 7271fdde5993c6247ac72cb4cb95160f, type: 3}
+      propertyPath: collisionMask.m_Bits
+      value: 768
+      objectReference: {fileID: 0}
     - target: {fileID: 1341477367693980137, guid: 7271fdde5993c6247ac72cb4cb95160f, type: 3}
       propertyPath: m_Name
       value: DummyAI
@@ -529,6 +541,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1278914632268139021, guid: 7271fdde5993c6247ac72cb4cb95160f, type: 3}
+      propertyPath: collisionMask.m_Bits
+      value: 768
+      objectReference: {fileID: 0}
     - target: {fileID: 1341477367693980137, guid: 7271fdde5993c6247ac72cb4cb95160f, type: 3}
       propertyPath: m_Name
       value: DummyAI (9)
@@ -590,6 +606,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1278914632268139021, guid: 7271fdde5993c6247ac72cb4cb95160f, type: 3}
+      propertyPath: collisionMask.m_Bits
+      value: 768
+      objectReference: {fileID: 0}
     - target: {fileID: 1341477367693980137, guid: 7271fdde5993c6247ac72cb4cb95160f, type: 3}
       propertyPath: m_Name
       value: DummyAI (19)
@@ -651,6 +671,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1278914632268139021, guid: 7271fdde5993c6247ac72cb4cb95160f, type: 3}
+      propertyPath: collisionMask.m_Bits
+      value: 768
+      objectReference: {fileID: 0}
     - target: {fileID: 1341477367693980137, guid: 7271fdde5993c6247ac72cb4cb95160f, type: 3}
       propertyPath: m_Name
       value: DummyAI (16)
@@ -712,6 +736,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1278914632268139021, guid: 7271fdde5993c6247ac72cb4cb95160f, type: 3}
+      propertyPath: collisionMask.m_Bits
+      value: 768
+      objectReference: {fileID: 0}
     - target: {fileID: 1341477367693980137, guid: 7271fdde5993c6247ac72cb4cb95160f, type: 3}
       propertyPath: m_Name
       value: DummyAI (2)
@@ -773,6 +801,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1278914632268139021, guid: 7271fdde5993c6247ac72cb4cb95160f, type: 3}
+      propertyPath: collisionMask.m_Bits
+      value: 768
+      objectReference: {fileID: 0}
     - target: {fileID: 1341477367693980137, guid: 7271fdde5993c6247ac72cb4cb95160f, type: 3}
       propertyPath: m_Name
       value: DummyAI (10)
@@ -834,6 +866,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1278914632268139021, guid: 7271fdde5993c6247ac72cb4cb95160f, type: 3}
+      propertyPath: collisionMask.m_Bits
+      value: 768
+      objectReference: {fileID: 0}
     - target: {fileID: 1341477367693980137, guid: 7271fdde5993c6247ac72cb4cb95160f, type: 3}
       propertyPath: m_Name
       value: DummyAI (15)
@@ -895,6 +931,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1278914632268139021, guid: 7271fdde5993c6247ac72cb4cb95160f, type: 3}
+      propertyPath: collisionMask.m_Bits
+      value: 768
+      objectReference: {fileID: 0}
     - target: {fileID: 1341477367693980137, guid: 7271fdde5993c6247ac72cb4cb95160f, type: 3}
       propertyPath: m_Name
       value: DummyAI (17)
@@ -956,6 +996,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1278914632268139021, guid: 7271fdde5993c6247ac72cb4cb95160f, type: 3}
+      propertyPath: collisionMask.m_Bits
+      value: 768
+      objectReference: {fileID: 0}
     - target: {fileID: 1341477367693980137, guid: 7271fdde5993c6247ac72cb4cb95160f, type: 3}
       propertyPath: m_Name
       value: DummyAI (1)
@@ -1017,6 +1061,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1278914632268139021, guid: 7271fdde5993c6247ac72cb4cb95160f, type: 3}
+      propertyPath: collisionMask.m_Bits
+      value: 768
+      objectReference: {fileID: 0}
     - target: {fileID: 1341477367693980137, guid: 7271fdde5993c6247ac72cb4cb95160f, type: 3}
       propertyPath: m_Name
       value: DummyAI (13)
@@ -1078,6 +1126,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1278914632268139021, guid: 7271fdde5993c6247ac72cb4cb95160f, type: 3}
+      propertyPath: collisionMask.m_Bits
+      value: 768
+      objectReference: {fileID: 0}
     - target: {fileID: 1341477367693980137, guid: 7271fdde5993c6247ac72cb4cb95160f, type: 3}
       propertyPath: m_Name
       value: DummyAI (12)
@@ -1139,6 +1191,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1278914632268139021, guid: 7271fdde5993c6247ac72cb4cb95160f, type: 3}
+      propertyPath: collisionMask.m_Bits
+      value: 768
+      objectReference: {fileID: 0}
     - target: {fileID: 1341477367693980137, guid: 7271fdde5993c6247ac72cb4cb95160f, type: 3}
       propertyPath: m_Name
       value: DummyAI (3)
@@ -1200,6 +1256,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1278914632268139021, guid: 7271fdde5993c6247ac72cb4cb95160f, type: 3}
+      propertyPath: collisionMask.m_Bits
+      value: 768
+      objectReference: {fileID: 0}
     - target: {fileID: 1341477367693980137, guid: 7271fdde5993c6247ac72cb4cb95160f, type: 3}
       propertyPath: m_Name
       value: DummyAI (4)
@@ -1369,6 +1429,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1278914632268139021, guid: 7271fdde5993c6247ac72cb4cb95160f, type: 3}
+      propertyPath: collisionMask.m_Bits
+      value: 768
+      objectReference: {fileID: 0}
     - target: {fileID: 1341477367693980137, guid: 7271fdde5993c6247ac72cb4cb95160f, type: 3}
       propertyPath: m_Name
       value: DummyAI (18)
@@ -1869,6 +1933,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1278914632268139021, guid: 7271fdde5993c6247ac72cb4cb95160f, type: 3}
+      propertyPath: collisionMask.m_Bits
+      value: 768
+      objectReference: {fileID: 0}
     - target: {fileID: 1341477367693980137, guid: 7271fdde5993c6247ac72cb4cb95160f, type: 3}
       propertyPath: m_Name
       value: DummyAI (6)
@@ -1930,6 +1998,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1278914632268139021, guid: 7271fdde5993c6247ac72cb4cb95160f, type: 3}
+      propertyPath: collisionMask.m_Bits
+      value: 768
+      objectReference: {fileID: 0}
     - target: {fileID: 1341477367693980137, guid: 7271fdde5993c6247ac72cb4cb95160f, type: 3}
       propertyPath: m_Name
       value: DummyAI (8)
@@ -2194,6 +2266,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1278914632268139021, guid: 7271fdde5993c6247ac72cb4cb95160f, type: 3}
+      propertyPath: collisionMask.m_Bits
+      value: 768
+      objectReference: {fileID: 0}
     - target: {fileID: 1341477367693980137, guid: 7271fdde5993c6247ac72cb4cb95160f, type: 3}
       propertyPath: m_Name
       value: DummyAI (5)
@@ -2255,6 +2331,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1278914632268139021, guid: 7271fdde5993c6247ac72cb4cb95160f, type: 3}
+      propertyPath: collisionMask.m_Bits
+      value: 768
+      objectReference: {fileID: 0}
     - target: {fileID: 1341477367693980137, guid: 7271fdde5993c6247ac72cb4cb95160f, type: 3}
       propertyPath: m_Name
       value: DummyAI (14)

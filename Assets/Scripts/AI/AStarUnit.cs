@@ -9,23 +9,35 @@ public class AStarUnit : MonoBehaviour {
 	private const float PATH_UPDATE_MOVE_THRESHOLD = 0.25f;
 	private const float MIN_PATH_UPDATE_TIME = 0.5f;
 
-	public Transform target;
+	[Header ("Pathfinding Settings")]
+	public bool drawGizmos = false;
 	public float speed = 2f;
 	public Vector2 velocityMultiplier = new Vector2 (1f, 1f);
 	public float turnSpeed = 3f;
 	public float turnDistance = 0.5f;
 
+	public Transform target;
 	private MovementController controller;
 
 	private Path path;
-	private Vector3 lookDirection;
+	protected bool followingPath { get; private set; }
+	protected Vector3 lookDirection { get; private set; }
 
-	private void Awake () {
+	protected virtual void Awake () {
 		controller = GetComponent<MovementController> ();
 	}
 
-	private void Start () {
+	protected void GoToPosition (Vector2 position) {
+		if (target == null)
+			target = new GameObject ("A_Target").transform;
+		target.position = position;
+		StopCoroutine (UpdatePath ());
 		StartCoroutine (UpdatePath ());
+	}
+
+	protected void StopPathfinding () {
+		StopCoroutine (UpdatePath ());
+		followingPath = false;
 	}
 
 	public void OnPathFound (Vector3 [] waypoints, bool pathSuccessful) {
@@ -56,7 +68,7 @@ public class AStarUnit : MonoBehaviour {
 
 	private IEnumerator FollowPath () {
 
-		bool followingPath = true;
+		followingPath = true;
 		int pathIndex = 0;
 		lookDirection = (path.lookPoints [0] - transform.position).SetZ (0).normalized;
 
@@ -81,8 +93,8 @@ public class AStarUnit : MonoBehaviour {
 		}
 	}
 
-	public void OnDrawGizmos () {
-		if (path != null)
+	public virtual void OnDrawGizmos () {
+		if (path != null && drawGizmos)
 			path.DrawWithGizmos ();
 	}
 }
