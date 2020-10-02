@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PoolObject : MonoBehaviour {
+public class PoolObject : MonoBehaviour, IPoolable {
 
 	public virtual void SetupObject () {
 	}
@@ -10,7 +10,11 @@ public class PoolObject : MonoBehaviour {
 	public virtual void ResetObject () {
 	}
 
-	protected void Destroy (float time = 0) {
+	public virtual void Destroy () {
+		gameObject.SetActive (false);
+	}
+
+	public virtual void Destroy (float time) {
 		if (time <= 0) {
 			TerminateObjectFunctions ();
 			gameObject.SetActive (false);
