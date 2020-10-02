@@ -35,3 +35,23 @@ MonoBehaviour:
     failOperation: 0
     zFailOperation: 0
   m_ShadowTransparentReceive: 1
+--- !u!114 &2686078449813369351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a57b218f9ad688140b4464695f9f3b96, type: 3}
+  m_Name: NewKawaseBlur
+  m_EditorClassIdentifier: 
+  m_Active: 1
+  settings:
+    renderPassEvent: 450
+    blurMaterial: {fileID: 2100000, guid: ef66146d2b83e7b448462f356af5ee2a, type: 2}
+    blurPasses: 8
+    downsample: 2
+    copyToFramebuffer: 0
+    targetName: _blurTexture
