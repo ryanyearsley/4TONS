@@ -188,7 +188,7 @@ SpriteRenderer:
   m_Size: {x: 32, y: 32}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &54016923
@@ -370,8 +370,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e85af7e98e9b6e4a84b857357931cd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBarOverheadUIPrefab: {fileID: 7782048835682223337, guid: 037e243a971b6ea4ba37db3da18c5341, type: 3}
-  manaBarOverheadUIPrefab: {fileID: 2080469752280838136, guid: 1d61ee0787bec5244aa0424348880e31, type: 3}
 --- !u!1 &299735961
 GameObject:
   m_ObjectHideFlags: 0
@@ -1527,7 +1525,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentValue: 0
-  maxValue: 0
+  maxValue: 100
+  overheadUIPrefab: {fileID: 2080469752280838136, guid: 1d61ee0787bec5244aa0424348880e31, type: 3}
   manaRegenPerSec: 5
 --- !u!114 &1232360371
 MonoBehaviour:
@@ -1542,7 +1541,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentValue: 0
-  maxValue: 0
+  maxValue: 100
+  overheadUIPrefab: {fileID: 7782048835682223337, guid: 037e243a971b6ea4ba37db3da18c5341, type: 3}
 --- !u!1 &1243843913
 GameObject:
   m_ObjectHideFlags: 0

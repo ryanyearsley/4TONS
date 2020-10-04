@@ -1,90 +1,63 @@
 ﻿using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class VitalsManager : MonoBehaviour
 {
-
     public static VitalsManager Instance { get; private set; }
 
-   [SerializeField]
-    public Dictionary<int, IDamageable> damageableObjects = new Dictionary<int, IDamageable>();
-    public Dictionary<int, IHasMana> hasManaObjects = new Dictionary<int, IHasMana>();
+    public Dictionary<int, VitalsEntity> vitalsObjects = new Dictionary<int, VitalsEntity>();
     // Start is called before the first frame update
     void Awake()
     {
         Instance = this;
-        InvokeRepeating("RegenerateManaPerSecond", 1, 1);
     }
 
-    public void RegisterDamageableObject(int objectId, IDamageable damagable)
+    public void DeregisterVitalsObject(int objectId)
     {
-        damageableObjects.Add(objectId, damagable);
-    }
-    public void DeregisterDamageableObject(int objectId)
-    {
-        damageableObjects.Remove(objectId);
-    }
-    public void RegisterHasManaObject(int objectId, IHasMana hasMana)
-    {
-        hasManaObjects.Add(objectId, hasMana);
-    }
-    public void DeregisterHasManaObject(int objectId)
-    {
-        hasManaObjects.Remove(objectId);
+        vitalsObjects.Remove(objectId);
     }
 
     public void ApplyDamage(int objectId, float damage)
     {
-        Debug.Log("Attempting Apply dmg");
-        if (damageableObjects.ContainsKey(objectId))
+        if (vitalsObjects.ContainsKey(objectId) && vitalsObjects[objectId].iDamageable != null)
         {
-            Debug.Log("Found key! Apply dmg");
-            IDamageable target = damageableObjects[objectId];
-            target.ApplyDamage(damage);
+            vitalsObjects[objectId].iDamageable.ApplyDamage(damage);
         }
     }
     public void Heal(int objectId, float healAmount)
     {
-        if (damageableObjects.ContainsKey(objectId))
+        if (vitalsObjects.ContainsKey(objectId) && vitalsObjects[objectId].iDamageable != null)
         {
-            IDamageable target = damageableObjects[objectId];
-            target.Heal(healAmount);
+            vitalsObjects[objectId].iDamageable.Heal(healAmount);
         }
     }
 
+
     public void ApplyManaDamage(int objectId, float manaDamage)
     {
-        if (hasManaObjects.ContainsKey(objectId))
+        if (vitalsObjects.ContainsKey(objectId) && vitalsObjects[objectId].iHasMana != null)
         {
-            IHasMana target = hasManaObjects[objectId];
-            target.ApplyManaDamage(manaDamage);
+            vitalsObjects[objectId].iHasMana.ApplyManaDamage(manaDamage);
         }
     }
 
     public bool SubtractManaCost(int objectId, float manaCost)
     {
-        if (hasManaObjects.ContainsKey(objectId))
+
+        if (vitalsObjects.ContainsKey(objectId) && vitalsObjects[objectId].iHasMana != null)
         {
-            IHasMana target = hasManaObjects[objectId];
-            return target.SubtractManaCost(manaCost);
+           return vitalsObjects[objectId].iHasMana.SubtractManaCost(manaCost);
         }
         return false;
     }
 
     public void RegenerateMana(int objectId, float manaRegenAmount)
     {
-        if (hasManaObjects.ContainsKey(objectId))
+        if (vitalsObjects.ContainsKey(objectId) && vitalsObjects[objectId].iHasMana != null)
         {
-            IHasMana target = hasManaObjects[objectId];
-            target.RegenerateMana(manaRegenAmount);
-        }
-    }
-    public void RegenerateManaPerSecond()
-    {
-        foreach (KeyValuePair<int, IHasMana> manaEntity in hasManaObjects)
-        {
-            manaEntity.Value.RegenerateManaPerSecond();
+            vitalsObjects[objectId].iHasMana.RegenerateMana(manaRegenAmount);
         }
     }
 

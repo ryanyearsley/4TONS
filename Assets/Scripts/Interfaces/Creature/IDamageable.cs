@@ -8,9 +8,9 @@ Date:
 using System.Collections.Generic;
 using System.Collections;
 
-public interface IDamageable : IVital {
+public interface IDamageable {
 
     void ApplyDamage(float damage);
     void Heal(float healAmount);
-    void Die ();
+    void Die();
 }

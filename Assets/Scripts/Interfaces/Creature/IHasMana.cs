@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IHasMana : IVital
+public interface IHasMana
 {
     void ApplyManaDamage(float manaDamage);
     bool SubtractManaCost(float manaCost);

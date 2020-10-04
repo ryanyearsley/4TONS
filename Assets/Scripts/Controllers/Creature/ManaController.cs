@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ManaController : VitalsController, IHasMana
+public class ManaController : AbstractVitalsController, IHasMana
 {
     [SerializeField]
     private float manaRegenPerSec;
+
+    private float passiveManaRegeneration;
 
     private OverheadVitalsBarUI overheadUI;
     // Start is called before the first frame update
@@ -16,11 +18,23 @@ public class ManaController : VitalsController, IHasMana
 
     public override void RegisterVital()
     {
-        VitalsManager.Instance.RegisterHasManaObject(gameObject.GetInstanceID(), this);
+        if (VitalsManager.Instance.vitalsObjects.ContainsKey(gameObject.GetInstanceID()))
+        {
+            VitalsManager.Instance.vitalsObjects[gameObject.GetInstanceID()].iHasMana = this;
+        }
+        else
+        {
+            VitalsEntity insertVitalsEntity = new VitalsEntity();
+            insertVitalsEntity.iHasMana = this;
+            VitalsManager.Instance.vitalsObjects.Add(this.gameObject.GetInstanceID(), insertVitalsEntity);
+        }
     }
     public override void DeregisterVital()
     {
-        VitalsManager.Instance.DeregisterHasManaObject(gameObject.GetInstanceID());
+        if (VitalsManager.Instance.vitalsObjects.ContainsKey(gameObject.GetInstanceID()))
+        {
+            VitalsManager.Instance.vitalsObjects.Remove(GetInstanceID());
+        }
     }
 
     public void ApplyManaDamage(float manaDamage)
@@ -44,17 +58,14 @@ public class ManaController : VitalsController, IHasMana
             return false;
         }
     }
-
+    public void RegenerateManaPerSecond()
+    {
+        currentValue = Mathf.Clamp(currentValue += passiveManaRegeneration, 0, maxValue);
+        UpdateVitalsBar();
+    }
     public void RegenerateMana(float manaRegenAmount)
     {
         currentValue = Mathf.Clamp(currentValue += manaRegenAmount, 0, maxValue);
         UpdateVitalsBar();
     }
-
-    public void RegenerateManaPerSecond()
-    {
-        currentValue = Mathf.Clamp(currentValue += manaRegenPerSec, 0, maxValue);
-        UpdateVitalsBar();
-    }
-
 }
