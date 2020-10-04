@@ -70,9 +70,6 @@ namespace PlayerManagement {
 
 			UpdateCursorPosition ();
 
-#if UNITY_EDITOR
-			EditorImpulseForceTest ();
-#endif
 		}
 
 		private void UpdateCursorPosition () {
@@ -122,18 +119,6 @@ namespace PlayerManagement {
                 cursorTransform.parent = transform;
                 cursorTransform.localPosition = new Vector3(0, 0.5f, 0);
 				cursorController.SetCursorCenter (cursorTransform);
-			}
-		}
-
-		private void EditorImpulseForceTest () {
-			if (controller.GetButtonDown ("LeftClick")) {
-				Vector3 mousePosition = camera.ScreenToWorldPoint (Input.mousePosition);
-				Vector2 direction = (transform.position - mousePosition).normalized;
-				player.AddImpulseForce (direction, 15f);
-			} else if (controller.GetButtonDown ("RightClick")) {
-				Vector3 mousePosition = camera.ScreenToWorldPoint (Input.mousePosition);
-				Vector2 direction = (transform.position - mousePosition).normalized;
-				player.AddImpulseForce (direction, 60f);
 			}
 		}
 	}
