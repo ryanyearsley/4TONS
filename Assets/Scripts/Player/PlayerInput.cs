@@ -7,6 +7,9 @@ namespace PlayerManagement {
 	[RequireComponent (typeof (Player))]
 	public class PlayerInput : MonoBehaviour {
 
+        [SerializeField]
+        private int playerIndex;
+
 		public GameObject cursorPrefab;
 		public float joystickCursorDistance = 4f;
 
@@ -40,17 +43,22 @@ namespace PlayerManagement {
 		}
 
 		private void Start () {
-			player = GetComponent<Player> ();
-
-			controller = ReInput.players.GetPlayer (0);
-			camera = Camera.main;
-
-			if (cursorPrefab != null) {
-				CreateCursor ();
-				Cursor.lockState = CursorLockMode.Locked;
-				Cursor.visible = false;
-			}
+            InitializePlayer(0);
 		}
+
+        private void InitializePlayer(int playerIndex) {
+            player = GetComponent<Player>();
+            this.playerIndex = playerIndex;
+            controller = ReInput.players.GetPlayer(playerIndex);
+            camera = Camera.main;
+
+            if (cursorPrefab != null)
+            {
+                CreateCursor();
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+            }
+        }
 
 		private void Update () {
 			Vector2 directionalInput = new Vector2 (controller.GetAxisRaw ("MoveHorizontal"), controller.GetAxisRaw ("MoveVertical"));

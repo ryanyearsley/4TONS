@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace PlayerManagement {
 	[RequireComponent (typeof (MovementController))]
+
 	public class Player : MonoBehaviour {
 		public float moveSpeed = 6f;
 		[Tooltip ("Scaling amount used to adjust the speeds on different axis.")]
@@ -19,25 +20,27 @@ namespace PlayerManagement {
 		private Vector2 velocity;
 		private Vector2 velocitySmoothing;
 
-		private MovementController controller;
-		private Animator animator;
+        private MovementController movementController;
+
+        private AnimationController animationController;
+        private Animator animator;
 
 		private Vector2 directionalInput;
 
 		private bool isDashing;
 
 		private void Start () {
-			controller = GetComponent<MovementController> ();
+			movementController = GetComponent<MovementController> ();
 			animator = GetComponent<Animator> ();
 		}
 
 		private void FixedUpdate () {
 			CalculateVelocity ();
 
-			controller.Move (velocity * Time.fixedDeltaTime, directionalInput);
+			movementController.Move (velocity * Time.fixedDeltaTime, directionalInput);
 
 			if (animator != null) {
-				if (directionalInput != Vector2.zero && controller.collisions.moveAmountOld != Vector2.zero) {
+				if (directionalInput != Vector2.zero && movementController.collisions.moveAmountOld != Vector2.zero) {
 					animator.SetBool ("isWalking", true);
 				} else {
 					animator.SetBool ("isWalking", false);
@@ -57,7 +60,7 @@ namespace PlayerManagement {
 				StartCoroutine (ResetIsDashing (dashDuration));
 
 				if (sprite != null)
-					sprite.flipX = (Mathf.Sign (controller.collisions.faceDirectionX) == -1);
+					sprite.flipX = (Mathf.Sign (movementController.collisions.faceDirectionX) == -1);
 
 				if (animator != null)
 					animator.SetTrigger ("rollDodge");

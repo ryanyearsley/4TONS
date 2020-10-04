@@ -336,7 +336,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &195616105
@@ -370,6 +370,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e85af7e98e9b6e4a84b857357931cd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthBarOverheadUIPrefab: {fileID: 7782048835682223337, guid: 037e243a971b6ea4ba37db3da18c5341, type: 3}
+  manaBarOverheadUIPrefab: {fileID: 2080469752280838136, guid: 1d61ee0787bec5244aa0424348880e31, type: 3}
 --- !u!1 &299735961
 GameObject:
   m_ObjectHideFlags: 0
@@ -692,7 +694,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &521290924
@@ -1521,12 +1523,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 1232360369}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3511cb9360d483446b3eac51605ae21e, type: 3}
+  m_Script: {fileID: 11500000, guid: 5ba4856fe6bef0b43bd566d665241feb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 100
-  maxMana: 100
-  overheadCanvas: {fileID: 8151796856760074609, guid: be8ef5ab34bb86c4c801aa951d8796e8, type: 3}
+  currentValue: 0
+  maxValue: 0
+  manaRegenPerSec: 5
+--- !u!114 &1232360371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1232360369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 993fb23e845eba74a985a4ae2e9f37f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentValue: 0
+  maxValue: 0
 --- !u!1 &1243843913
 GameObject:
   m_ObjectHideFlags: 0
@@ -1592,7 +1608,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1243843915
@@ -2165,15 +2181,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 987805954785869851, guid: 486e4b01e0e7b2445bd6d505c707b29f, type: 3}
-      propertyPath: moveSpeed
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 987805954785869853, guid: 486e4b01e0e7b2445bd6d505c707b29f, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1232360370, guid: 486e4b01e0e7b2445bd6d505c707b29f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 486e4b01e0e7b2445bd6d505c707b29f, type: 3}
 --- !u!1001 &1590703183283350290
 PrefabInstance:
