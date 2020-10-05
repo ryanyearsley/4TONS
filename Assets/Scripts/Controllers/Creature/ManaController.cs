@@ -7,14 +7,6 @@ public class ManaController : AbstractVitalsController, IHasMana
     [SerializeField]
     private float manaRegenPerSec;
 
-    private float passiveManaRegeneration;
-
-    private OverheadVitalsBarUI overheadUI;
-    // Start is called before the first frame update
-    public override void InitializeVital()
-    {
-        base.InitializeVital();
-    }
 
     public override void RegisterVital()
     {
@@ -60,7 +52,7 @@ public class ManaController : AbstractVitalsController, IHasMana
     }
     public void RegenerateManaPerSecond()
     {
-        currentValue = Mathf.Clamp(currentValue += passiveManaRegeneration, 0, maxValue);
+        currentValue = Mathf.Clamp(currentValue += manaRegenPerSec, 0, maxValue);
         UpdateVitalsBar();
     }
     public void RegenerateMana(float manaRegenAmount)
