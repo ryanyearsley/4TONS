@@ -2,20 +2,61 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AnimationController : MonoBehaviour
-{
+public class AnimationController : MonoBehaviour {
 
+    public SpriteRenderer playerSprite;
+
+    private PlayerStateController stateController;
     private Animator animator;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    private void Start () {
+        animator = GetComponent<Animator> ();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public void OnDeath () {
+        animator.SetTrigger ("die");
+    }
+
+    public void OnRespawn () {
+        animator.Rebind ();
+    }
+
+    public void OnDash () {
+        animator.SetTrigger ("rollDodge");
+    }
+
+    public void OnSetFaceDirection (int faceDirection) {
+        playerSprite.flipX = (faceDirection < 0);
+    }
+
+    public void OnSetVelocity (Vector2 velocity) {
+        if (velocity == Vector2.zero)
+            animator.SetBool ("isWalking", false);
+        else
+            animator.SetBool ("isWalking", true);
+    }
+
+    public void OnHit (Vector2 direction) {
+        playerSprite.flipX = (Mathf.Sign (direction.x) > 0);
+        animator.SetTrigger ("hit");
+    }
+
+    private void OnEnable () {
+        stateController = GetComponent<PlayerStateController> ();
+        stateController.OnDeathEvent += OnDeath;
+        stateController.OnRespawnEvent += OnRespawn;
+        stateController.OnDashEvent += OnDash;
+        stateController.OnSetFaceDirEvent += OnSetFaceDirection;
+        stateController.OnSetVelocityEvent += OnSetVelocity;
+        stateController.OnHitEvent += OnHit;
+    }
+
+    private void OnDisable () {
+        stateController.OnDeathEvent -= OnDeath;
+        stateController.OnRespawnEvent -= OnRespawn;
+        stateController.OnDashEvent -= OnDash;
+        stateController.OnSetFaceDirEvent -= OnSetFaceDirection;
+        stateController.OnSetVelocityEvent -= OnSetVelocity;
+        stateController.OnHitEvent -= OnHit;
     }
 }
