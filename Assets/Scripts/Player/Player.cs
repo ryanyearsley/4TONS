@@ -19,20 +19,11 @@ namespace PlayerManagement {
 
 		private Vector2 velocity;
 		private Vector2 velocitySmoothing;
-<<<<<<< HEAD
+		private float speedMultiplier = 1f;
 
         private MovementController movementController;
-
         private AnimationController animationController;
         private Animator animator;
-=======
-		private float speedMultiplier;
-
-		private MovementController movementController;
-		private Animator animator;
-
-        private AnimationController animationController;
->>>>>>> 31f7d58... Fixed merge conflicts
 
 		private Vector2 directionalInput;
 
