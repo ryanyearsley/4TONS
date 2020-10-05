@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace PlayerManagement {
-	[RequireComponent (typeof (MovementController))]
+	[RequireComponent (typeof (MovementController), typeof (PlayerStateController))]
 
 	public class Player : MonoBehaviour {
 		public float moveSpeed = 6f;
@@ -22,77 +22,72 @@ namespace PlayerManagement {
 		private float speedMultiplier = 1f;
 
         private MovementController movementController;
-        private AnimationController animationController;
-        private Animator animator;
+		private PlayerStateController stateController;
 
 		private Vector2 directionalInput;
 
-		private bool isDead;
-		private bool canWalk = true;
-		private bool canCast = true;
 		private bool isDashing;
 
 		private List<DebuffInfo> debuffs;
 
 		private void Start () {
 			movementController = GetComponent<MovementController> ();
-			animator = GetComponent<Animator> ();
 			debuffs = new List<DebuffInfo> ();
 		}
 
 		private void Update () {
-			if (isDead)
+			if (stateController.isDead)
 				return;
-
-			if (Input.GetKeyDown (KeyCode.E))
-				AddDebuff (new DebuffInfo (5f, 0.5f, true));
 
 			CalculateSpeedMultipliers ();
 
-			if (!canWalk)
+			if (Input.GetKeyDown (KeyCode.E))
+				stateController.AddDebuff (new DebuffInfo (5f, 0.5f, false));
+
+			if (!stateController.canWalk)
 				directionalInput = Vector2.zero;
 
 			CalculateVelocity ();
 
 			movementController.Move (velocity);
 
-			if (directionalInput != Vector2.zero && speedMultiplier != 0f) {
-				animator.SetBool ("isWalking", true);
-			} else {
-				animator.SetBool ("isWalking", false);
-			}
+			stateController.SetFeetPosition (transform.position);
+			stateController.SetVelocity (
+				(!stateController.canWalk)
+				? Vector2.zero
+				: directionalInput * speedMultiplier);
 		}
 
 		public void SetDirectionalInput (Vector2 input, Vector2 cursorDirection) {
 			directionalInput = input;
 			if (!isDashing)
-				sprite.flipX = (Mathf.Sign (cursorDirection.x) == -1);
+				stateController.SetFaceDirection ((int)Mathf.Sign (cursorDirection.x));
 		}
 
 		public void OnDashInputDown () {
 			if (!isDashing) {
 				isDashing = true;
 				StartCoroutine (ResetIsDashing (dashDuration));
-
-				sprite.flipX = (Mathf.Sign (movementController.faceDirection) == -1);
-				animator.SetTrigger ("rollDodge");
+				stateController.SetFaceDirection ((int)Mathf.Sign (movementController.faceDirection));
+				stateController.OnDash ();
 			}
 		}
 
 		public void AddImpulseForce (Vector2 direction, float force) {
 			velocity = direction.normalized * force;
-			animator.SetTrigger ("hit");
-			sprite.flipX = (Mathf.Sign (direction.x) == 1);
+			stateController.SetFaceDirection ((int)Mathf.Sign (direction.x));
+			stateController.OnHit (direction);
 		}
 		
 
 		public void AddDebuff (DebuffInfo debuffInfo) {
-			debuffs.Add (debuffInfo);
+			if (!stateController.isDead)
+				debuffs.Add (debuffInfo);
 		}
 
 		private void CalculateSpeedMultipliers () {
-			canWalk = true;
-			canCast = true;
+			bool canWalk = true;
+			bool canCast = true;
 			speedMultiplier = 1f;
 			for (int i = 0; i < debuffs.Count; i++) {
 				if (debuffs[i].speedMultiplier == 0)
@@ -104,7 +99,8 @@ namespace PlayerManagement {
 				speedMultiplier = Mathf.Clamp (speedMultiplier, 0f, float.MaxValue);
 				debuffs[i].timeRemaining -= Time.deltaTime;
 			}
-
+			stateController.SetCanWalk (canWalk);
+			stateController.SetCanCast (canCast);
 			debuffs.RemoveAll (debuff => debuff.timeRemaining <= 0f);
 		}
 
@@ -125,6 +121,15 @@ namespace PlayerManagement {
 		private IEnumerator ResetIsDashing (float duration) {
 			yield return new WaitForSeconds (duration);
 			isDashing = false;
+		}
+
+		private void OnEnable () {
+			stateController = GetComponent<PlayerStateController> ();
+			stateController.OnAddDebuffEvent += AddDebuff;
+		}
+
+		private void OnDisable () {
+			stateController.OnAddDebuffEvent -= AddDebuff;
 		}
 	}
 }
