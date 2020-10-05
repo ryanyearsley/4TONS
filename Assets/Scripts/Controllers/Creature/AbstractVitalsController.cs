@@ -30,7 +30,7 @@ public abstract class AbstractVitalsController : MonoBehaviour, IVital
         go.transform.localPosition = new Vector3(0, 1.25f, 0);
         overheadUI = go.GetComponent<OverheadVitalsBarUI>();
         overheadUI.InitializeUI();
-        animator = go.transform.parent.GetComponent<Animator>();
+        animator = transform.parent.GetComponent<Animator>();
     }
 
     public virtual void RegisterVital()

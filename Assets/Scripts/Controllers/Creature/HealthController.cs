@@ -70,7 +70,7 @@ public class HealthController : AbstractVitalsController, IDamageable
 
     public void Respawn()
     {    
-        transform.position = resetPosition;
+        transform.parent.position = resetPosition;
         ResetVitals();
     }
 
