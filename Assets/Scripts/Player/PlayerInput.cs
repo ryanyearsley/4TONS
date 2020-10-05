@@ -4,7 +4,7 @@ using UnityEngine;
 using Rewired;
 
 namespace PlayerManagement {
-	[RequireComponent (typeof (Player))]
+	[RequireComponent (typeof (Player), typeof (SpellController))]
 	public class PlayerInput : MonoBehaviour {
 
         [SerializeField]
@@ -14,7 +14,9 @@ namespace PlayerManagement {
 		public float joystickCursorDistance = 4f;
 
 		private Player player;
-		private Rewired.Player controller;
+		private SpellController spellController;
+		private PlayerStateController stateController;
+		private Rewired.Player rewiredController;
 		private new Camera camera;
 		private Transform cursor;
         private float cursorSmoothTime = 0.1f;
@@ -44,12 +46,14 @@ namespace PlayerManagement {
 
 		private void Start () {
             InitializePlayer(0);
+			spellController = GetComponent<SpellController> ();
+			stateController = GetComponent<PlayerStateController> ();
 		}
 
         private void InitializePlayer(int playerIndex) {
             player = GetComponent<Player>();
             this.playerIndex = playerIndex;
-            controller = ReInput.players.GetPlayer(playerIndex);
+            rewiredController = ReInput.players.GetPlayer(playerIndex);
             camera = Camera.main;
 
             if (cursorPrefab != null)
@@ -61,20 +65,32 @@ namespace PlayerManagement {
         }
 
 		private void Update () {
-			Vector2 directionalInput = new Vector2 (controller.GetAxisRaw ("MoveHorizontal"), controller.GetAxisRaw ("MoveVertical"));
+			Vector2 directionalInput = new Vector2 (rewiredController.GetAxisRaw ("MoveHorizontal"), rewiredController.GetAxisRaw ("MoveVertical"));
 			player.SetDirectionalInput (directionalInput, CursorDirection);
 
-			if (controller.GetButtonDown ("Dash")) {
+			if (rewiredController.GetButtonDown ("Dash")) {
 				player.OnDashInputDown ();
 			}
 
 			UpdateCursorPosition ();
+			SpellInput ();
+		}
 
+		private void SpellInput () {
+			for (int spellIndex = 0; spellIndex < 4; spellIndex++) {
+				string buttonName = "Spell" + spellIndex;
+				if (rewiredController.GetButton (buttonName))
+					spellController.OnSpellButton (spellIndex);
+				if (rewiredController.GetButtonDown (buttonName))
+					spellController.OnSpellButtonDown (spellIndex);
+				if (rewiredController.GetButtonUp (buttonName))
+					spellController.OnSpellButtonUp (spellIndex);
+			}
 		}
 
 		private void UpdateCursorPosition () {
-			Vector2 joystickInput = new Vector2 (controller.GetAxisRaw ("AimHorizontal"), controller.GetAxisRaw ("AimVertical"));
-			Vector2 mouseDelta = new Vector2 (controller.GetAxis ("MouseX"), controller.GetAxis ("MouseY"));
+			Vector2 joystickInput = new Vector2 (rewiredController.GetAxisRaw ("AimHorizontal"), rewiredController.GetAxisRaw ("AimVertical"));
+			Vector2 mouseDelta = new Vector2 (rewiredController.GetAxis ("MouseX"), rewiredController.GetAxis ("MouseY"));
 
 			if (usingMouseControls) {
 				if (joystickInput != Vector2.zero) {
@@ -92,6 +108,8 @@ namespace PlayerManagement {
 				MouseCursorMovement (mouseDelta);
 			else
 				JoystickCursorMovement (joystickInput);
+
+			stateController.SetCursorPosition (cursor.position);
 		}
 
 		private void MouseCursorMovement (Vector2 mouseDelta) {
