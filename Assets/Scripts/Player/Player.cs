@@ -40,31 +40,32 @@ namespace PlayerManagement {
 			debuffs = new List<DebuffInfo> ();
 		}
 
-		private void FixedUpdate () {
+		private void Update () {
 			if (isDead)
 				return;
+
+			if (Input.GetKeyDown (KeyCode.E))
+				AddDebuff (new DebuffInfo (5f, 0.5f, true));
 
 			CalculateSpeedMultipliers ();
 
 			if (!canWalk)
-				return;
+				directionalInput = Vector2.zero;
 
 			CalculateVelocity ();
 
-			movementController.Move (velocity * Time.fixedDeltaTime, directionalInput);
+			movementController.Move (velocity);
 
-			if (animator != null) {
-				if (directionalInput != Vector2.zero && movementController.collisions.moveAmountOld != Vector2.zero) {
-					animator.SetBool ("isWalking", true);
-				} else {
-					animator.SetBool ("isWalking", false);
-				}
+			if (directionalInput != Vector2.zero && speedMultiplier != 0f) {
+				animator.SetBool ("isWalking", true);
+			} else {
+				animator.SetBool ("isWalking", false);
 			}
 		}
 
 		public void SetDirectionalInput (Vector2 input, Vector2 cursorDirection) {
 			directionalInput = input;
-			if (sprite != null && !isDashing)
+			if (!isDashing)
 				sprite.flipX = (Mathf.Sign (cursorDirection.x) == -1);
 		}
 
@@ -73,22 +74,17 @@ namespace PlayerManagement {
 				isDashing = true;
 				StartCoroutine (ResetIsDashing (dashDuration));
 
-				if (sprite != null)
-					sprite.flipX = (Mathf.Sign (movementController.collisions.faceDirectionX) == -1);
-
-				if (animator != null)
-					animator.SetTrigger ("rollDodge");
+				sprite.flipX = (Mathf.Sign (movementController.faceDirection) == -1);
+				animator.SetTrigger ("rollDodge");
 			}
 		}
 
 		public void AddImpulseForce (Vector2 direction, float force) {
 			velocity = direction.normalized * force;
-			if (animator != null) {
-				animator.SetTrigger ("hit");
-				if (sprite != null)
-					sprite.flipX = (Mathf.Sign (direction.x) == 1);
-			}
+			animator.SetTrigger ("hit");
+			sprite.flipX = (Mathf.Sign (direction.x) == 1);
 		}
+		
 
 		public void AddDebuff (DebuffInfo debuffInfo) {
 			debuffs.Add (debuffInfo);
@@ -105,16 +101,17 @@ namespace PlayerManagement {
 					canCast = false;
 
 				speedMultiplier += debuffs[i].speedMultiplier - 1f;
-				debuffs[i].timeRemaining -= Time.fixedDeltaTime;
+				speedMultiplier = Mathf.Clamp (speedMultiplier, 0f, float.MaxValue);
+				debuffs[i].timeRemaining -= Time.deltaTime;
 			}
 
 			debuffs.RemoveAll (debuff => debuff.timeRemaining <= 0f);
 		}
 
 		private void CalculateVelocity () {
-			Vector2 normalizedInput = directionalInput;
-			if (normalizedInput.sqrMagnitude > 1f)
-				normalizedInput = normalizedInput.normalized;
+			Vector2 normalizedInput = (directionalInput.sqrMagnitude > 1f)
+				? directionalInput.normalized
+				: directionalInput;
 
 			Vector2 targetVelocity = normalizedInput * (moveSpeed * speedMultiplier * velocityScaling);
 
