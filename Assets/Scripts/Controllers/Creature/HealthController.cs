@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HealthController : AbstractVitalsController, IDamageable
 {
-
+    [SerializeField]
     private int lives;
     private Vector3 resetPosition;
 

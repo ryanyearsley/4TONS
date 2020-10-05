@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 4015237876805548268}
   - component: {fileID: 758453721}
   - component: {fileID: 1232360370}
+  - component: {fileID: 1232360371}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -50,6 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68822db9a0de1b2488518884b8a5395e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerIndex: 0
   cursorPrefab: {fileID: 294513640660443360, guid: d932af68a1036c64281be587c170aadb, type: 3}
   joystickCursorDistance: 4
 --- !u!114 &987805954785869851
@@ -152,12 +154,29 @@ MonoBehaviour:
   m_GameObject: {fileID: 987805954785869853}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3511cb9360d483446b3eac51605ae21e, type: 3}
+  m_Script: {fileID: 11500000, guid: 5ba4856fe6bef0b43bd566d665241feb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 100
-  maxMana: 100
-  overheadCanvas: {fileID: 8151796856760074609, guid: be8ef5ab34bb86c4c801aa951d8796e8, type: 3}
+  currentValue: 0
+  maxValue: 100
+  overheadUIPrefab: {fileID: 2080469752280838136, guid: 1d61ee0787bec5244aa0424348880e31, type: 3}
+  manaRegenPerSec: 5
+--- !u!114 &1232360371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 987805954785869853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 993fb23e845eba74a985a4ae2e9f37f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentValue: 0
+  maxValue: 100
+  overheadUIPrefab: {fileID: 7782048835682223337, guid: 037e243a971b6ea4ba37db3da18c5341, type: 3}
+  lives: 5
 --- !u!1 &8027632338894685187
 GameObject:
   m_ObjectHideFlags: 0
