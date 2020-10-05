@@ -5,8 +5,8 @@ using UnityEngine;
 [RequireComponent (typeof (BoxCollider2D))]
 public class RaycastController : MonoBehaviour {
 
-	protected const float SKIN_WIDTH = 0.025f;
-	private const float DISTANCE_BETWEEN_RAYS = 0.075f;
+	protected const float SKIN_WIDTH = 0.015f;
+	private const float DISTANCE_BETWEEN_RAYS = 0.05f;
 
 	[Header ("Raycast Controller")]
 	public LayerMask collisionMask;
@@ -36,7 +36,6 @@ public class RaycastController : MonoBehaviour {
 		raycastOrigins.bottomRight = new Vector2 (bounds.max.x, bounds.min.y);
 		raycastOrigins.topLeft = new Vector2 (bounds.min.x, bounds.max.y);
 		raycastOrigins.topRight = new Vector2 (bounds.max.x, bounds.max.y);
-		raycastOrigins.center = bounds.center;
 	}
 
 	protected void CalculateRaySpacing () {
@@ -59,6 +58,5 @@ public class RaycastController : MonoBehaviour {
 	protected struct RaycastOrigins {
 		public Vector2 topLeft, topRight;
 		public Vector2 bottomLeft, bottomRight;
-		public Vector2 center;
 	}
 }
