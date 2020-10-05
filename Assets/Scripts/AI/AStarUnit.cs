@@ -27,11 +27,15 @@ public class AStarUnit : MonoBehaviour {
 		controller = GetComponent<MovementController> ();
 	}
 
+	private void Start () {
+		StartCoroutine (UpdatePath ());
+	}
+
 	protected void GoToPosition (Vector2 position) {
 		if (target == null)
 			target = new GameObject ("A_Target").transform;
-		target.position = position;
 		StopCoroutine (UpdatePath ());
+		target.position = position;
 		StartCoroutine (UpdatePath ());
 	}
 
@@ -42,8 +46,8 @@ public class AStarUnit : MonoBehaviour {
 
 	public void OnPathFound (Vector3 [] waypoints, bool pathSuccessful) {
 		if (pathSuccessful) {
-			path = new Path (waypoints, transform.position, turnDistance, 0.5f);
 			StopCoroutine ("FollowPath");
+			path = new Path (waypoints, transform.position, turnDistance, 0.5f);
 			StartCoroutine ("FollowPath");
 		}
 	}
@@ -86,7 +90,7 @@ public class AStarUnit : MonoBehaviour {
 			if (followingPath) {
 				Vector3 targetLookDirection = (path.lookPoints [pathIndex] - transform.position).SetZ (0).normalized;
 				lookDirection = Vector3.Slerp (lookDirection, targetLookDirection, Time.deltaTime * turnSpeed);
-				controller.Move (lookDirection.XY () * Time.deltaTime * (speed * velocityMultiplier));
+				controller.Move (lookDirection.XY () * (speed * velocityMultiplier));
 			}
 
 			yield return null;
