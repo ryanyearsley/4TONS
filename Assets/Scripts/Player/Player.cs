@@ -19,22 +19,45 @@ namespace PlayerManagement {
 
 		private Vector2 velocity;
 		private Vector2 velocitySmoothing;
+<<<<<<< HEAD
 
         private MovementController movementController;
 
         private AnimationController animationController;
         private Animator animator;
+=======
+		private float speedMultiplier;
+
+		private MovementController movementController;
+		private Animator animator;
+
+        private AnimationController animationController;
+>>>>>>> 31f7d58... Fixed merge conflicts
 
 		private Vector2 directionalInput;
 
+		private bool isDead;
+		private bool canWalk = true;
+		private bool canCast = true;
 		private bool isDashing;
+
+		private List<DebuffInfo> debuffs;
 
 		private void Start () {
 			movementController = GetComponent<MovementController> ();
 			animator = GetComponent<Animator> ();
+			debuffs = new List<DebuffInfo> ();
 		}
 
 		private void FixedUpdate () {
+			if (isDead)
+				return;
+
+			CalculateSpeedMultipliers ();
+
+			if (!canWalk)
+				return;
+
 			CalculateVelocity ();
 
 			movementController.Move (velocity * Time.fixedDeltaTime, directionalInput);
@@ -76,12 +99,33 @@ namespace PlayerManagement {
 			}
 		}
 
+		public void AddDebuff (DebuffInfo debuffInfo) {
+			debuffs.Add (debuffInfo);
+		}
+
+		private void CalculateSpeedMultipliers () {
+			canWalk = true;
+			canCast = true;
+			speedMultiplier = 1f;
+			for (int i = 0; i < debuffs.Count; i++) {
+				if (debuffs[i].speedMultiplier == 0)
+					canWalk = false;
+				if (!debuffs[i].canCast)
+					canCast = false;
+
+				speedMultiplier += debuffs[i].speedMultiplier - 1f;
+				debuffs[i].timeRemaining -= Time.fixedDeltaTime;
+			}
+
+			debuffs.RemoveAll (debuff => debuff.timeRemaining <= 0f);
+		}
+
 		private void CalculateVelocity () {
 			Vector2 normalizedInput = directionalInput;
 			if (normalizedInput.sqrMagnitude > 1f)
 				normalizedInput = normalizedInput.normalized;
 
-			Vector2 targetVelocity = normalizedInput * (moveSpeed * velocityScaling);
+			Vector2 targetVelocity = normalizedInput * (moveSpeed * speedMultiplier * velocityScaling);
 
 			if (isDashing) {
 				targetVelocity *= dashSpeedMultiplier;
@@ -94,5 +138,18 @@ namespace PlayerManagement {
 			yield return new WaitForSeconds (duration);
 			isDashing = false;
 		}
+	}
+}
+
+public class DebuffInfo {
+
+	public float timeRemaining;
+	public float speedMultiplier;
+	public bool canCast;
+
+	public DebuffInfo (float timeRemaining, float speedMultiplier, bool canCast) {
+		this.timeRemaining = timeRemaining;
+		this.speedMultiplier = speedMultiplier;
+		this.canCast = canCast;
 	}
 }
