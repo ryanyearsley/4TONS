@@ -2,7 +2,7 @@ public interface IPoolable {
 
     void SetupObject ();
 
-    void ResetObject ();
+    void ReuseObject ();
 
     void Destroy ();
 

@@ -46,7 +46,7 @@ public class PoolManager : MonoBehaviour {
 	}
 
 	// Reuse a gameobject and places it in the desired position
-	public GameObject ReuseObject (GameObject prefab, Vector3 position, Quaternion rotation) {
+	public GameObject ReuseObject (GameObject prefab, Vector3 position, Quaternion rotation, string tag) {
 		int poolKey = prefab.GetInstanceID ();
 
 		if (poolDictionary.ContainsKey (poolKey)) {
@@ -55,11 +55,11 @@ public class PoolManager : MonoBehaviour {
 			ObjectInstance objectToReuse = poolDictionary [poolKey].Dequeue ();
 			poolDictionary [poolKey].Enqueue (objectToReuse);
 
-			objectToReuse.Reuse (position, rotation);
+			objectToReuse.Reuse (position, rotation, tag);
 			return objectToReuse.gameObject;
 		} else {
 			CreatePool (prefab, defaultPoolSize);
-			return ReuseObject (prefab, position, rotation);
+			return ReuseObject (prefab, position, rotation, tag);
 		}
 	}
 
@@ -84,16 +84,17 @@ public class PoolManager : MonoBehaviour {
 		}
 
 		// Method called when an ObjectInstance is being reused
-		public void Reuse (Vector3 position, Quaternion rotation) {
+		public void Reuse (Vector3 position, Quaternion rotation, string tag) {
 
 			// Reset the object as specified within it's own class and the PoolObject class
 			if (hasPoolObjectComponent) {
-				poolObjectScript.ResetObject ();
+				poolObjectScript.ReuseObject();
 			}
 
 			// Move to desired position then set it active
 			gameObject.transform.position = position;
 			gameObject.transform.rotation = rotation;
+            gameObject.tag = tag;
 			gameObject.SetActive (true);
 		}
 
