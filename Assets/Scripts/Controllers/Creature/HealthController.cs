@@ -8,11 +8,8 @@ public class HealthController : AbstractVitalsController, IDamageable
     private int lives;
     private Vector3 resetPosition;
 
-    private OverheadVitalsBarUI overheadUI;
-
     public override void InitializeVital()
     {
-
         base.InitializeVital();
         resetPosition = transform.position;
     }
