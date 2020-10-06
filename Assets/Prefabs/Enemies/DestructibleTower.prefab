@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1437759067048154611}
   - component: {fileID: 1437759067048154610}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Graphics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,9 +94,9 @@ GameObject:
   - component: {fileID: 1437759067715673212}
   - component: {fileID: 1437759067715673213}
   - component: {fileID: 6919865517578632041}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: DestructibleTower
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -166,7 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 813133c31b2a4b64ca251f46f384b7ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 0}
+  projectilePrefab: {fileID: 5217744383755033205, guid: d0696218cb7c9a347a4f3819e87ab403, type: 3}
   target: {fileID: 0}
   lookAtPivot: {fileID: 1437759068866366376}
 --- !u!1 &1437759068866366377
@@ -178,7 +178,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1437759068866366376}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: LookAt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
