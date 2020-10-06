@@ -41,7 +41,11 @@ public class PlayerStateController : MonoBehaviour {
 		playerPositions.staffPosition = position;
 	}
 
-	public void OnDeath () {
+    private void Start()
+    {
+        playerPositions = new PlayerPositions();
+    }
+    public void OnDeath () {
 		if (isDead)
 			return;
 
@@ -91,4 +95,5 @@ public class PlayerPositions {
 	public Vector2 cursorPosition;
 	public Vector2 feetPosition;
 	public Vector2 staffPosition;
+
 }
