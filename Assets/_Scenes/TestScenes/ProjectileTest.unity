@@ -1743,25 +1743,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 987805954785869850, guid: 486e4b01e0e7b2445bd6d505c707b29f, type: 3}
-      propertyPath: collisionMask.m_Bits
-      value: 4096
-      objectReference: {fileID: 0}
     - target: {fileID: 987805954785869853, guid: 486e4b01e0e7b2445bd6d505c707b29f, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 987805954785869853, guid: 486e4b01e0e7b2445bd6d505c707b29f, type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 1834588740247351674, guid: 486e4b01e0e7b2445bd6d505c707b29f, type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1834588740247351674, guid: 486e4b01e0e7b2445bd6d505c707b29f, type: 3}
-      propertyPath: m_TagString
-      value: Player1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 486e4b01e0e7b2445bd6d505c707b29f, type: 3}
