@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using System.Text.RegularExpressions;
 
@@ -12,7 +13,7 @@ public class LevelFactory
     public static int[,] DeserializeLevelFile(TextAsset csv)
     {
         
-        string[] rows = Regex.Split(csv.text, LINE_SPLIT_RE); 
+        string[] rows = Regex.Split(csv.text, LINE_SPLIT_RE).Where(s => !string.IsNullOrEmpty(s)).ToArray();
         int rowCount = rows.Length;
         Debug.Log("rowCount: " + rowCount);
         int columnCount = rows[0].Split(","[0]).Length;

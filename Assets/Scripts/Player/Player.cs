@@ -6,6 +6,7 @@ namespace PlayerManagement {
 	[RequireComponent (typeof (MovementController), typeof (PlayerStateController))]
 
 	public class Player : MonoBehaviour {
+
 		public float moveSpeed = 6f;
 		[Tooltip ("Scaling amount used to adjust the speeds on different axis.")]
 		public Vector2 velocityScaling = new Vector2 (1f, 1f);
@@ -17,7 +18,8 @@ namespace PlayerManagement {
 
 		public SpriteRenderer sprite;
 
-		private Vector2 velocity;
+        private Vector3 spawnPosition;
+        private Vector2 velocity;
 		private Vector2 velocitySmoothing;
 		private float speedMultiplier = 1f;
 
@@ -31,6 +33,7 @@ namespace PlayerManagement {
 		private List<DebuffInfo> debuffs;
 
 		private void Start () {
+            spawnPosition = transform.position;
 			movementController = GetComponent<MovementController> ();
 			debuffs = new List<DebuffInfo> ();
 		}
@@ -40,9 +43,6 @@ namespace PlayerManagement {
 				return;
 
 			CalculateSpeedMultipliers ();
-
-			if (Input.GetKeyDown (KeyCode.E))
-				stateController.AddDebuff (new DebuffInfo (5f, 0.5f, false));
 
 			if (!stateController.canWalk)
 				directionalInput = Vector2.zero;
@@ -84,6 +84,11 @@ namespace PlayerManagement {
 			if (!stateController.isDead)
 				debuffs.Add (debuffInfo);
 		}
+        
+        public void OnRespawn()
+        {
+            transform.position = spawnPosition;
+        }
 
 		private void CalculateSpeedMultipliers () {
 			bool canWalk = true;
@@ -126,11 +131,13 @@ namespace PlayerManagement {
 		private void OnEnable () {
 			stateController = GetComponent<PlayerStateController> ();
 			stateController.OnAddDebuffEvent += AddDebuff;
+            stateController.OnRespawnEvent += OnRespawn;
 		}
 
 		private void OnDisable () {
 			stateController.OnAddDebuffEvent -= AddDebuff;
-		}
+            stateController.OnRespawnEvent -= OnRespawn;
+        }
 	}
 }
 
