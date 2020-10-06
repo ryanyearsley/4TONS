@@ -12,5 +12,5 @@ public interface IDamageable {
 
     void ApplyDamage(float damage);
     void Heal(float healAmount);
-    void Die();
+    void OnDeath();
 }

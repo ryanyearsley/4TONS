@@ -6,12 +6,21 @@ public class HealthController : AbstractVitalsController, IDamageable
 {
     [SerializeField]
     private int lives;
-    private Vector3 resetPosition;
 
     public override void InitializeVital()
     {
         base.InitializeVital();
-        resetPosition = transform.position;
+    }
+
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        stateController.OnDeathEvent += OnDeath;
+    }
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+        stateController.OnDeathEvent -= OnDeath;
     }
 
     public override void RegisterVital()
@@ -33,10 +42,10 @@ public class HealthController : AbstractVitalsController, IDamageable
         Debug.Log("Controller applying dmg");
         currentValue = Mathf.Clamp(currentValue -= damage, 0, maxValue);
         UpdateVitalsBar();
-        animator.SetTrigger("hit");
+        stateController.OnHit(Vector2.zero);
         if (currentValue <= 0)
         {
-            Die();
+            stateController.OnDeath();
         }
     }
 
@@ -46,37 +55,24 @@ public class HealthController : AbstractVitalsController, IDamageable
         UpdateVitalsBar();
     }
 
-    public void Die()
+    public void OnDeath()
     {
         StartCoroutine(DieRoutine());
     }
 
     private IEnumerator DieRoutine()
     {
-        animator.SetTrigger("die");
         lives--;
-        Debug.Log("Creature Died. Lives remaining: " + lives);
        
-        yield return new WaitForSeconds(1f);
         if (lives <= 0)
         {
-            Destroy(this.gameObject);
+            Debug.Log("No more lives. Get fucked! ");
         }
         else
         {
-            Respawn();
+            Debug.Log("Creature Died. Lives remaining: " + lives);
+            yield return new WaitForSeconds(1f);
+            stateController.OnRespawn();
         }
-    }
-
-    public void Respawn()
-    {    
-        transform.parent.position = resetPosition;
-        ResetVitals();
-    }
-
-    protected override void ResetVitals()
-    {
-        base.ResetVitals();
-        animator.Rebind();
     }
 }

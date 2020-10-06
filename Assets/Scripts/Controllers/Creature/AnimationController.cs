@@ -14,7 +14,8 @@ public class AnimationController : MonoBehaviour {
     }
 
     public void OnDeath () {
-        animator.SetTrigger ("die");
+        animator.SetBool("isDead", true);
+        //animator.SetTrigger ("die");
     }
 
     public void OnRespawn () {
@@ -22,6 +23,7 @@ public class AnimationController : MonoBehaviour {
     }
 
     public void OnDash () {
+        if (!stateController.isDead)
         animator.SetTrigger ("rollDodge");
     }
 
@@ -37,8 +39,11 @@ public class AnimationController : MonoBehaviour {
     }
 
     public void OnHit (Vector2 direction) {
-        playerSprite.flipX = (Mathf.Sign (direction.x) > 0);
-        animator.SetTrigger ("hit");
+        if (!stateController.isDead)
+        {
+            playerSprite.flipX = (Mathf.Sign(direction.x) > 0);
+            animator.SetTrigger("hit");
+        }
     }
 
     private void OnEnable () {
