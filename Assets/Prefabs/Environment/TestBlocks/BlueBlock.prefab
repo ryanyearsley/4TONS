@@ -93,6 +93,7 @@ GameObject:
   - component: {fileID: 2275547113676620017}
   - component: {fileID: 2275547113676620016}
   - component: {fileID: 2275547113676620018}
+  - component: {fileID: 8016599950985504988}
   m_Layer: 9
   m_Name: BlueBlock
   m_TagString: Untagged
@@ -156,3 +157,16 @@ PolygonCollider2D:
       - {x: -0.49961656, y: 0.0047683716}
       - {x: -0.006857276, y: -0.26037502}
       - {x: 0.4915042, y: 0.022549987}
+--- !u!114 &8016599950985504988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2275547113676620015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ca40da8e2e676e4fbc3b6296468e8ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 2275547113388836133}
