@@ -7,13 +7,13 @@ public class DestructibleTowerController : MonoBehaviour
     [SerializeField]
     private GameObject projectilePrefab;
 
-    [SerializeField]
     private Transform target;
     [SerializeField]
     private Transform lookAtPivot;
 
     private void Start()
     {
+        target = GameObject.FindGameObjectWithTag("Player1").transform;
         PoolManager.instance.CreatePool(projectilePrefab, 10);
         StartCoroutine(IntermittentProjectileFire());
     }
