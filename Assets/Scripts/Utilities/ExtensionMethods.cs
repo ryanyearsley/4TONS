@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public static class ExtensionMethods {
@@ -10,6 +11,10 @@ public static class ExtensionMethods {
 
 	public static Vector2 XY (this Vector3 v3) {
 		return new Vector2 (v3.x, v3.y);
+	}
+
+	public static Vector2Int XY (this Vector3Int v3) {
+		return new Vector2Int (v3.x, v3.y);
 	}
 
 	public static Vector3 SetZ (this Vector3 v3, float value) {
