@@ -18,6 +18,7 @@ public class ProjectileObject : SpellObject
         if (other.tag != this.tag)
         {
             VitalsManager.Instance.ApplyDamage(other.gameObject.GetInstanceID(), spellObjectData.damage);
+            Destroy();
         }
     }
 
