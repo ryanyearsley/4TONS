@@ -5,18 +5,21 @@ using UnityEngine;
 [CreateAssetMenu ( menuName = "Scriptable Object/Tileset")]
 public class TilesetData : ScriptableObject, IEnumerable<GameObject> {
 
-	[SerializeField]
 	public List<GameObject> tilePrefabs;
+	public List<GameObject> setPiecePrefabs;
 
 	public GameObject this [int index] {
 		get {
-			return tilePrefabs [index];
+			if (index < tilePrefabs.Count)
+				return tilePrefabs [index];
+			else
+				return setPiecePrefabs [index - tilePrefabs.Count];
 		}
 	}
 
 	public int Count {
 		get {
-			return tilePrefabs.Count;
+			return tilePrefabs.Count + setPiecePrefabs.Count;
 		}
 	}
 
