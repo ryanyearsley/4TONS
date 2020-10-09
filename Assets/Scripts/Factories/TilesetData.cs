@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu ( menuName = "Scriptable Object/Tileset")]
+[CreateAssetMenu (fileName = "New Tileset", menuName = "ScriptableObjects/Tileset Data")]
 public class TilesetData : ScriptableObject, IEnumerable<GameObject> {
 
 	public List<GameObject> tilePrefabs;
