@@ -5,16 +5,28 @@ using UnityEngine;
 public class SpellController : MonoBehaviour {
 
 	private PlayerStateController stateController;
+    private ManaController manaController;
 	private bool canCast;
 
-	public void OnSpellButton (int spellIndex) {
-		if (!canCast)
-			return;
+    AbstractSpell[] spells;
 
-		PlayerPositions positions = stateController.playerPositions;
-	}
+    public void OnSpellButtonDown(int spellIndex)
+    {
+        if (!canCast)
+            return;
 
-	public void OnSpellButtonDown (int spellIndex) {
+        PlayerPositions positions = stateController.playerPositions;
+        AbstractSpell spell = spells[spellIndex];
+        if (spell.onCooldown && 
+            manaController.SubtractManaCost(spell.manaCost))
+        {
+            spell.CastSpell();
+            stateController.AddDebuff(new DebuffInfo(0.5f, 0.5f, false));
+        }
+    }
+
+    public void OnSpellButton (int spellIndex) {
+        //channel spell
 		if (!canCast)
 			return;
 
