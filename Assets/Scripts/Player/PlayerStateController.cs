@@ -29,22 +29,6 @@ public class PlayerStateController : MonoBehaviour {
 
 	public event Action<DebuffInfo> OnAddDebuffEvent;
 
-	public void SetFeetPosition (Vector2 position) {
-		playerPositions.feetPosition = position;
-	}
-
-	public void SetCursorPosition (Vector2 position) {
-		playerPositions.cursorPosition = position;
-	}
-
-	public void SetStaffPosition (Vector2 position) {
-		playerPositions.staffPosition = position;
-	}
-
-    private void Start()
-    {
-        playerPositions = new PlayerPositions();
-    }
     public void OnDeath () {
 		if (isDead)
 			return;
@@ -89,11 +73,8 @@ public class PlayerStateController : MonoBehaviour {
 	public void AddDebuff (DebuffInfo debuffInfo) {
 		OnAddDebuffEvent?.Invoke (debuffInfo);
 	}
-}
 
-public class PlayerPositions {
-	public Vector2 cursorPosition;
-	public Vector2 feetPosition;
-	public Vector2 staffPosition;
-
+	public void SetPlayerPositions (Transform cursorTransform, Transform feetTransform, Transform staffTransform) {
+		playerPositions = new PlayerPositions (cursorTransform, feetTransform, staffTransform);
+	}
 }
