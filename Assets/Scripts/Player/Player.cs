@@ -18,12 +18,12 @@ namespace PlayerManagement {
 
 		public SpriteRenderer sprite;
 
-        private Vector3 spawnPosition;
-        private Vector2 velocity;
+		private Vector3 spawnPosition;
+		private Vector2 velocity;
 		private Vector2 velocitySmoothing;
 		private float speedMultiplier = 1f;
 
-        private MovementController movementController;
+		private MovementController movementController;
 		private PlayerStateController stateController;
 
 		private Vector2 directionalInput;
@@ -33,7 +33,7 @@ namespace PlayerManagement {
 		private List<DebuffInfo> debuffs;
 
 		private void Start () {
-            spawnPosition = transform.position;
+			spawnPosition = transform.position;
 			movementController = GetComponent<MovementController> ();
 			debuffs = new List<DebuffInfo> ();
 		}
@@ -48,10 +48,10 @@ namespace PlayerManagement {
 				directionalInput = Vector2.zero;
 
 			CalculateVelocity ();
+		 
 
 			movementController.Move (velocity);
 
-			stateController.SetFeetPosition (transform.position);
 			stateController.SetVelocity (
 				(!stateController.canWalk)
 				? Vector2.zero
@@ -78,31 +78,30 @@ namespace PlayerManagement {
 			stateController.SetFaceDirection ((int)Mathf.Sign (direction.x));
 			stateController.OnHit (direction);
 		}
-		
+
 
 		public void AddDebuff (DebuffInfo debuffInfo) {
 			if (!stateController.isDead)
 				debuffs.Add (debuffInfo);
 		}
-        
-        public void OnRespawn()
-        {
-            transform.position = spawnPosition;
-        }
+
+		public void OnRespawn () {
+			transform.position = spawnPosition;
+		}
 
 		private void CalculateSpeedMultipliers () {
 			bool canWalk = true;
 			bool canCast = true;
 			speedMultiplier = 1f;
 			for (int i = 0; i < debuffs.Count; i++) {
-				if (debuffs[i].speedMultiplier == 0)
+				if (debuffs [i].speedMultiplier == 0)
 					canWalk = false;
-				if (!debuffs[i].canCast)
+				if (!debuffs [i].canCast)
 					canCast = false;
 
-				speedMultiplier += debuffs[i].speedMultiplier - 1f;
+				speedMultiplier += debuffs [i].speedMultiplier - 1f;
 				speedMultiplier = Mathf.Clamp (speedMultiplier, 0f, float.MaxValue);
-				debuffs[i].timeRemaining -= Time.deltaTime;
+				debuffs [i].timeRemaining -= Time.deltaTime;
 			}
 			stateController.SetCanWalk (canWalk);
 			stateController.SetCanCast (canCast);
@@ -131,13 +130,13 @@ namespace PlayerManagement {
 		private void OnEnable () {
 			stateController = GetComponent<PlayerStateController> ();
 			stateController.OnAddDebuffEvent += AddDebuff;
-            stateController.OnRespawnEvent += OnRespawn;
+			stateController.OnRespawnEvent += OnRespawn;
 		}
 
 		private void OnDisable () {
 			stateController.OnAddDebuffEvent -= AddDebuff;
-            stateController.OnRespawnEvent -= OnRespawn;
-        }
+			stateController.OnRespawnEvent -= OnRespawn;
+		}
 	}
 }
 
