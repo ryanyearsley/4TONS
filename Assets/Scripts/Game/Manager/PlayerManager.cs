@@ -1,4 +1,5 @@
 ﻿using Rewired;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,7 +12,8 @@ public class PlayerManager : MonoBehaviour {
 		Instance = this;
 	}
 	#endregion
-	public Dictionary<int, Player> currentPlayers = new Dictionary<int, Player>();
+	[SerializeField]
+	public List<Player> currentPlayers = new List<Player>();
 
 	private void Awake () {
 		InitializeSingleton ();
@@ -25,7 +27,7 @@ public class PlayerManager : MonoBehaviour {
 	}
 
 	public void AddPlayer(Player player) {
-		currentPlayers.Add (player.playerIndex, player);
+		currentPlayers.Add (player);
 	}
 	public void ConfirmPlayerWizardSelection(int playerIndex, WizardSaveData data) {
 		if (currentPlayers.Count >= playerIndex) {
@@ -33,9 +35,9 @@ public class PlayerManager : MonoBehaviour {
 			currentPlayers [playerIndex].isReady = true;
 		}
 	}
-}
+} 
 
-
+[Serializable]
 public class Player {
 	public int playerIndex;
 	public int controllerIndex;
