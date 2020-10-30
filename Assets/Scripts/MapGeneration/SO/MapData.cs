@@ -23,6 +23,9 @@ public class MapData : ScriptableObject {
 	[Header ("Randomization Settings", order = 1)]
 	[Space (15, order = 2)]
 	public int smoothingIterations = 5;
+	public int playerCount = 2;
+	public int enemyCount = 10;
+	public int itemCount = 10;
 	[ConditionalHide ("useCustomSeed")]
 	public string seed;
 	public bool useCustomSeed;
