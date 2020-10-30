@@ -20,8 +20,6 @@ public class PlayerSpellGemController : MonoBehaviour
 {
     private Rewired.Player controller;
 
-    private SpellGem currentSpellGem;
-
     private StaffData staffData;
 
     void Start() {
