@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ProjectileObject : SpellObject
+public class ProjectileObject : AbstractSpellObject
 {
     [SerializeField]
     private float moveSpeed;
