@@ -104,7 +104,7 @@ namespace PlayerManagement {
 				debuffs [i].timeRemaining -= Time.deltaTime;
 			}
 			stateController.SetCanWalk (canWalk);
-			stateController.SetCanCast (canCast);
+			stateController.SetCanAttack (canCast);
 			debuffs.RemoveAll (debuff => debuff.timeRemaining <= 0f);
 		}
 

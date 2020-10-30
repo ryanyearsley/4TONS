@@ -65,11 +65,11 @@ public class SpellController : MonoBehaviour {
 
 	private void OnEnable () {
 		stateController = GetComponent<PlayerStateController> ();
-		stateController.OnSetCanCastEvent += SetCanCast;
+		stateController.OnSetCanAttackEvent += SetCanCast;
 	}
 
 	private void OnDisable () {
-		stateController.OnSetCanCastEvent -= SetCanCast;
+		stateController.OnSetCanAttackEvent -= SetCanCast;
 	}
 
 	public void AddSpellGemToInteractable (SpellGemPickup spellGemPickup) {
