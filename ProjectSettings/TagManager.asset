@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - Player1
+  - PlayerFeet
   layers:
   - Default
   - TransparentFX
@@ -22,7 +23,7 @@ TagManager:
   - FeetObstacles
   - ProjectileObstacles
   - Walkable
-  - 
+  - Interactable
   - 
   - 
   - 
@@ -43,9 +44,18 @@ TagManager:
   - name: background
     uniqueID: 4187497257
     locked: 0
+  - name: Floor
+    uniqueID: 315505895
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
   - name: foreground
     uniqueID: 135937107
+    locked: 0
+  - name: WorldSpaceUI
+    uniqueID: 4159384631
+    locked: 0
+  - name: CanvasUI
+    uniqueID: 3353835085
     locked: 0
