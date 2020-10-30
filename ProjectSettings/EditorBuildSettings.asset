@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/_Scenes/Game/GoG1_Mid.unity
+    guid: b75efa6f403941b4290bb6c29bac6969
   m_configObjects: {}
