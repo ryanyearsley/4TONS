@@ -1,18 +1,20 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
-public class MapFactory : MonoBehaviour {
+public class MapGenerator : MonoBehaviour {
 
 	public MapData mapData;
+	public SpawnPoints spawnPoints;
 
 	[Header ("Gizmos")]
 	public bool drawGizmos;
 
 	private int[,] map;
 
-	private void Start () {
+	private void Awake () {
 		GenerateMap ();
 	}
 
@@ -23,6 +25,7 @@ public class MapFactory : MonoBehaviour {
 
 	private void GenerateMap () {
 		map = new int [mapData.mapSize.x, mapData.mapSize.y];
+		spawnPoints = new SpawnPoints ();
 		RandomFillMap ();
 
 		for (int i = 0; i < mapData.smoothingIterations; i++) {
@@ -43,7 +46,16 @@ public class MapFactory : MonoBehaviour {
 			}
 		}
 
+		spawnPoints.playerSpawnPoints = GenerateSpawnPoints (mapData.playerCount, 101);
+		spawnPoints.enemySpawnPoints = GenerateSpawnPoints (mapData.enemyCount, 102);
+		spawnPoints.itemSpawnPoints = GenerateSpawnPoints (mapData.itemCount, 103);
+
 		LevelFactory.BuildLevel (map, mapData.tileset.tilePrefabs.ToArray ());
+	}
+	private float CalculateSpawnPointProbability (Vector2 gridSize, float fillRate, int spawnCount) {
+		float probability = new float();
+
+		return probability;
 	}
 
 	private void ProcessMap () {
@@ -308,7 +320,6 @@ public class MapFactory : MonoBehaviour {
 			mapData.seed = System.DateTime.Now.Ticks.ToString ();
 
 		System.Random pseudoRandom = new System.Random (mapData.seed.GetHashCode ());
-
 		for (int x = 0; x < mapData.mapSize.x; x++) {
 			for (int y = 0; y < mapData.mapSize.y; y++) {
 				if (x == 0 || x == mapData.mapSize.x - 1 || y == 0 || y == mapData.mapSize.y - 1) {
@@ -320,12 +331,30 @@ public class MapFactory : MonoBehaviour {
 		}
 	}
 
+	private List<Vector2Int> GenerateSpawnPoints (int spawnCount, int spawnIndex) {
+		List<Vector2Int> spawnPointCoords = new List<Vector2Int>();
+		for (int i = 0; i < spawnCount; i++) {
+			bool spawnPointAdded = false;
+			while (spawnPointAdded == false) {
+				int randomX = UnityEngine.Random.Range (1, mapData.mapSize.x - 1);
+				int randomY = UnityEngine.Random.Range (1, mapData.mapSize.y - 1);
+				if (map [randomX, randomY] == 0) {//valid empty slot. 
+					spawnPointCoords.Add (new Vector2Int (randomX, randomY));
+					map [randomX, randomY] = spawnIndex;
+					spawnPointAdded = true;
+				}
+			}
+		}
+		return spawnPointCoords;
+	}
+
 	private void OnDrawGizmos () {
 		if (map != null && drawGizmos) {
 			for (int x = 0; x < mapData.mapSize.x; x++) {
 				for (int y = 0; y < mapData.mapSize.y; y++) {
-					Gizmos.color = (map [x, y] == 1) ? Color.black : Color.white;
 					Vector3 position = new Vector3 (-mapData.mapSize.x / 2 + x + 0.5f, -mapData.mapSize.y / 2 + y + 0.5f, 0);
+					int tileIndex = map[x, y];
+					Gizmos.color = (map [x, y] == 1) ? Color.black : Color.white;
 					Gizmos.DrawCube (position, Vector3.one);
 				}
 			}
