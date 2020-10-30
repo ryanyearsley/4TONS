@@ -48,7 +48,7 @@ public class AnimationController : MonoBehaviour {
     }
 
     private void OnEnable () {
-        stateController = GetComponent<PlayerStateController> ();
+        stateController = transform.parent.GetComponent<PlayerStateController> ();
         stateController.OnDeathEvent += OnDeath;
         stateController.OnRespawnEvent += OnRespawn;
         stateController.OnDashEvent += OnDash;
