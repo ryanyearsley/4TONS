@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7150dc5072870b429cf1b59e1e27331, type: 3}
+  m_Name: DarkSchoolData
+  m_EditorClassIdentifier: 
+  school: 1
+  description: Suck the life from your enemies, summoning a horde of zombies and
+    tentacles.
+  wizardSelectIcon: {fileID: 21300000, guid: 137d634ce3c652244a1b0533beeb1488, type: 3}
+  icon: {fileID: 21300000, guid: 137d634ce3c652244a1b0533beeb1488, type: 3}
+  spells:
+  - {fileID: 11400000, guid: 1a68247417a975341908fa4dd7e31866, type: 2}
+  - {fileID: 11400000, guid: 60d26b1df3d71c546b80d0577d24d01b, type: 2}
+  - {fileID: 11400000, guid: ff64f62b94697a94184b8c1f9d17c6ce, type: 2}
+  - {fileID: 11400000, guid: 3f85feccf8afc1649aec28286c12a4fe, type: 2}
+  - {fileID: 11400000, guid: 6e3bf02a47166f042b4659cc89bf6618, type: 2}
+  - {fileID: 11400000, guid: e3ef5e144cca0eb4bb67d1bbf91c281a, type: 2}
