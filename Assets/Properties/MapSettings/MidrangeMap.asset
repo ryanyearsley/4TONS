@@ -20,5 +20,8 @@ MonoBehaviour:
   minimumIslandSize: 6
   passageRadius: 2
   smoothingIterations: 2
-  seed: 637377979151857637
+  playerCount: 2
+  enemyCount: 10
+  itemCount: 10
+  seed: 637396748629835404
   useCustomSeed: 0
