@@ -6,10 +6,10 @@ using UnityEngine;
 
 public class Pathfinding : MonoBehaviour {
 
-	private Grid grid;
+	private GridManager grid;
 
 	private void Awake () {
-		grid = GetComponent<Grid> ();
+		grid = GetComponent<GridManager> ();
 	}
 
 	public void FindPath (PathRequest request, Action<PathResult> callback) {
