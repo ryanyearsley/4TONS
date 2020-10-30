@@ -8,8 +8,6 @@ public enum MainMenuScreen {
 	WELCOME, WIZARD_SELECT, LEVEL_SELECT, OPTIONS
 } 
 public class MainMenuManager : MonoBehaviour {
-	[SerializeField]
-	private GameObject playerMenuCursorPrefab;
 	public MainMenuScreen currentMainMenuScreen { get; private set; }
 	public event Action<MainMenuScreen> OnMenuScreenChangeEvent;
 	public event Action<Player> OnPlayerJoinEvent;
@@ -37,8 +35,6 @@ public class MainMenuManager : MonoBehaviour {
 		player.playerIndex = PlayerManager.Instance.currentPlayers.Count;
 		player.controllerIndex = controllerIndex;
 		PlayerManager.Instance.AddPlayer (player);
-		GameObject go = Instantiate (playerMenuCursorPrefab);
-		PlayerMenuCursorController cursorController = go.GetComponent<PlayerMenuCursorController>();
 		return player;
 	}
 	public void ConfirmPlayerWizardSelection(int playerIndex, WizardSaveData selectedWizard) {
