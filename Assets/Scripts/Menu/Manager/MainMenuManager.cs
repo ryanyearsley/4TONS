@@ -39,13 +39,13 @@ public class MainMenuManager : MonoBehaviour {
 	}
 	public void ConfirmPlayerWizardSelection(int playerIndex, WizardSaveData selectedWizard) {
 		PlayerManager.Instance.ConfirmPlayerWizardSelection (playerIndex, selectedWizard);
-		bool waitingForPlayers = false;
-		foreach (Player player in PlayerManager.Instance.currentPlayers.Values) {
+		bool isEveryoneReady = true;
+		foreach (Player player in PlayerManager.Instance.currentPlayers) {
 			if (!player.isReady) {
-				waitingForPlayers = true;
+				isEveryoneReady = false;
 			}
 		}
-		if (waitingForPlayers == false) {
+		if (isEveryoneReady == true) {
 			ChangeMenuScreen (MainMenuScreen.LEVEL_SELECT);
 		}
 	}
