@@ -32,13 +32,17 @@ public class LevelFactory {
         int yLength = levelData.GetLength(1);
         int xLength = levelData.GetLength(0);
         Transform parent = new GameObject ("MapParent").transform;
+        Grid grid = parent.gameObject.AddComponent<Grid> ();
+        grid.cellLayout = GridLayout.CellLayout.Isometric;
+        grid.cellSize = new Vector3 (1f, 0.5f, 1f);
         for (int y = 0; y < levelData.GetLength (1); y++) {
             for (int x = 0; x < levelData.GetLength (0); x++) {
                 int tilePrefabIndex = levelData[x, y];
-                if (tilePrefabIndex != 0) {
+                if (tilePrefabIndex != 0 && tilePrefabIndex < 100) {
                     GameObject.Instantiate (
-                        blockSet [tilePrefabIndex - 1],
-                        IsometricCoordinateUtils.TranslateCartToIso (new Vector2 (x, y)),
+                        blockSet [tilePrefabIndex - 1], 
+                        grid.GetCellCenterLocal (new Vector3Int (x, y, 0)),
+                        //IsometricCoordinateUtils.TranslateCartToIso (new Vector2 (x, y)),
                         Quaternion.identity,
                         parent);
                 }
