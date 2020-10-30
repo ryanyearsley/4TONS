@@ -38,7 +38,7 @@ public class LevelBuilderManager : MonoBehaviour {
 			for (int i = 0; i < tileset.Count; i++) {
 				GameObject ui = Instantiate (tileUIPrefab, scrollViewContents);
 				SpriteRenderer tileSR = tileset[i].GetComponent<TileObject> ().spriteRenderer;
-				ui.GetComponent<TileUI> ().Initialize (i, tileSR.sprite, tileSR.color);
+				ui.GetComponent<TilePaletteButtonUI> ().Initialize (i, tileSR.sprite, tileSR.color);
 			}
 		}
 		currentTile = tileset [0];
