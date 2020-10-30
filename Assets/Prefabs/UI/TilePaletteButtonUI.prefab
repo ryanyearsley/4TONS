@@ -120,8 +120,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: TileUIObject, Assembly-CSharp
+      - m_Target: {fileID: 5384652511579916823}
+        m_TargetAssemblyTypeName: TilePaletteButtonUI, Assembly-CSharp
         m_MethodName: OnButtonDown
         m_Mode: 1
         m_Arguments:
@@ -259,7 +259,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f71599664ef3aaa43a2e5bdbcd520998, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileImage: {fileID: 5347720945033136356}
+  tileImage: {fileID: 5347720945424105473}
 --- !u!1 &5347720945424105599
 GameObject:
   m_ObjectHideFlags: 0
