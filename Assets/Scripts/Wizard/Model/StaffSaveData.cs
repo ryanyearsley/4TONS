@@ -1,10 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-[System.Serializable]
-public class StaffSaveData
-{
+﻿using System;
+[Serializable]
+public class StaffSaveData {
+	[NonSerialized]
+	public StaffData staffData;
 	public string staffPath;
-	public SpellGemSaveData[] equippedSpellgemSaveData;
+	
+	public SpellSaveData[] equippedSpellgemSaveData;
 }
