@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+
 [Serializable]
 public class StaffSaveData {
-	[NonSerialized]
+
 	public StaffData staffData;
 	public string staffPath;
-	
-	public SpellSaveData[] equippedSpellgemSaveData;
+	public List<SpellSaveData> equippedSpellsSaveData;
 }
