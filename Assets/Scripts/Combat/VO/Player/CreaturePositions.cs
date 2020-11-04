@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class CreaturePositions {
 
-	public Transform cursorTransform;
+	public Transform targetTransform;
 	public Transform feetTransform;
-	public Transform staffTransform;
+	public Transform staffAimTransform;
 
-	public CreaturePositions (Transform cursorTransform, Transform feetTransform, Transform staffTransform) {
-		this.cursorTransform = cursorTransform;
+	public CreaturePositions (Transform targetTransform, Transform feetTransform, Transform staffAimTransform) {
+		this.targetTransform = targetTransform;
 		this.feetTransform = feetTransform;
-		this.staffTransform = staffTransform;
+		this.staffAimTransform = staffAimTransform;
 	}
 }

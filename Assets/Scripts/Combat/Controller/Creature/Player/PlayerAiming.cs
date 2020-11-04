@@ -39,7 +39,7 @@ public class PlayerAiming : MonoBehaviour {
 		Transform staffAimTransform = CreateStaffAimObject(player.currentWizard.primaryStaffSaveData.staffData);
 		Transform staffPivot = staffAimTransform.parent;
 		stateController = GetComponent<PlayerStateController> ();
-		stateController.SetCreaturePositions (targetTransform, staffAimTransform, transform);
+		stateController.SetCreaturePositions (targetTransform, transform, staffAimTransform);
 		mainCamera = Camera.main;
 	}
 

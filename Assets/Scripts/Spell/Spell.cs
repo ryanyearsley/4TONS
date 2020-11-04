@@ -30,10 +30,10 @@ public abstract class Spell : MonoBehaviour
         PlayerStateController stateController = transform.root.GetComponent<PlayerStateController>();
         switch (spellCastLocation) {
             case SpellCastLocation.Staff:
-                spellCastTransform = stateController.creaturePositions.staffTransform;
+                spellCastTransform = stateController.creaturePositions.staffAimTransform;
                 break;
             case SpellCastLocation.Cursor:
-                spellCastTransform = stateController.creaturePositions.cursorTransform;
+                spellCastTransform = stateController.creaturePositions.targetTransform;
                 break;
             case SpellCastLocation.Player:
                 spellCastTransform = stateController.creaturePositions.feetTransform;
