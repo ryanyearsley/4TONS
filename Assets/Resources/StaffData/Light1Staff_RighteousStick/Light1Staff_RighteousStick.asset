@@ -10,8 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 17291e44b9a128d4e8ba5dcc9e189fa8, type: 3}
-  m_Name: LightStaff1_RighteousStick
+  m_Name: Light1Staff_RighteousStick
   m_EditorClassIdentifier: 
-  staffName: 
+  staffName: Soothing Stick
   description: 
-  staffFile: {fileID: 0}
+  staffSprite: {fileID: 21300000, guid: 31ecbf512ca851945bcea8282a0483e9, type: 3}
+  staffFile: {fileID: 4900000, guid: 4f7f25026dc51a0418042c882f863593, type: 3}
