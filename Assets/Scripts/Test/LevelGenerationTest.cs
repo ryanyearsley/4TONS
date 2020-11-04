@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent (typeof (Grid))]
 public class LevelGenerationTest : MonoBehaviour
 {
     [SerializeField]
@@ -13,9 +14,15 @@ public class LevelGenerationTest : MonoBehaviour
     [SerializeField]
     private int[,] levelData;
 
-    void Start()
+
+    private Grid grid;
+
+	private void Awake () {
+        grid = GetComponent<Grid> ();
+	}
+	void Start()
     {
         levelData = LevelFactory.DeserializeLevelFile(levelDataCsv);
-        LevelFactory.BuildLevel(levelData, blockSet);   
+        LevelFactory.BuildLevel(levelData, blockSet, grid);   
     }
 }

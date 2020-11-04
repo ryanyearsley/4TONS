@@ -4,26 +4,43 @@ using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 
+[RequireComponent(typeof(Grid))]
 public class MapGenerator : MonoBehaviour {
-
+	#region Singleton
+	public static MapGenerator instance;
+	void SingletonInitialization () {
+		if (instance == null) {
+			instance = this;
+		} else if (instance != this) {
+			Destroy (gameObject);
+		}
+	}
+	#endregion
 	public MapData mapData;
 	public SpawnPoints spawnPoints;
+
+	public Grid grid;
 
 	[Header ("Gizmos")]
 	public bool drawGizmos;
 
+	[SerializeField]
 	private int[,] map;
 
-	private void Awake () {
-		GenerateMap ();
+	void Awake () {
+		grid = GetComponent<Grid> ();
+		SingletonInitialization ();
 	}
 
 	private void Update () {
-		if (Input.GetMouseButtonDown (0))
-			GenerateMap ();
+		//if (Input.GetMouseButtonDown (0))
+			//GenerateMap ();
 	}
 
-	private void GenerateMap () {
+	public void PlaceObjectOnGrid(Transform objectTransform, Vector2Int cartCoordinate) {
+		objectTransform.position = grid.CellToWorld ((Vector3Int)cartCoordinate);
+	}
+	public void GenerateMap () {
 		map = new int [mapData.mapSize.x, mapData.mapSize.y];
 		spawnPoints = new SpawnPoints ();
 		RandomFillMap ();
@@ -50,14 +67,8 @@ public class MapGenerator : MonoBehaviour {
 		spawnPoints.enemySpawnPoints = GenerateSpawnPoints (mapData.enemyCount, 102);
 		spawnPoints.itemSpawnPoints = GenerateSpawnPoints (mapData.itemCount, 103);
 
-		LevelFactory.BuildLevel (map, mapData.tileset.tilePrefabs.ToArray ());
+		LevelFactory.BuildLevel (map, mapData.tileset.tilePrefabs.ToArray (), grid);
 	}
-	private float CalculateSpawnPointProbability (Vector2 gridSize, float fillRate, int spawnCount) {
-		float probability = new float();
-
-		return probability;
-	}
-
 	private void ProcessMap () {
 		List<List<Coord>> wallRegions = GetRegions (1);
 

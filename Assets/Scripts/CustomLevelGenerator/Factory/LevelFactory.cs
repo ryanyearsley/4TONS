@@ -28,11 +28,10 @@ public class LevelFactory {
         return output;
     }
 
-    public static void BuildLevel (int [,] levelData, GameObject [] blockSet) {
+    public static void BuildLevel (int [,] levelData, GameObject [] blockSet, Grid grid) {
         int yLength = levelData.GetLength(1);
         int xLength = levelData.GetLength(0);
-        Transform parent = new GameObject ("MapParent").transform;
-        Grid grid = parent.gameObject.AddComponent<Grid> ();
+        Transform parent = grid.transform;
         grid.cellLayout = GridLayout.CellLayout.Isometric;
         grid.cellSize = new Vector3 (1f, 0.5f, 1f);
         for (int y = 0; y < levelData.GetLength (1); y++) {
