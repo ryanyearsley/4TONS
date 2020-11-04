@@ -14,5 +14,6 @@ public class SpellObjectData : ScriptableObject
     public float lifeTime;
     public float damage;
     public float manaDamage;
+    public float casterHealthHealAmount;
     public DamageType damageType;
 }
