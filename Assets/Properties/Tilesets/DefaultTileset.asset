@@ -13,9 +13,5 @@ MonoBehaviour:
   m_Name: DefaultTileset
   m_EditorClassIdentifier: 
   tilePrefabs:
-  - {fileID: 8888793517184798844, guid: 4dd9b82407f90e141a02a03eb84cbfcf, type: 3}
-  - {fileID: 2275547113676620015, guid: 1946142c0fe11ae4d867686541cdc8d7, type: 3}
-  - {fileID: 2275547113676620015, guid: 6af0c8cc679ca164c976604a05226387, type: 3}
-  - {fileID: 2275547113676620015, guid: 16bdd0ffc2033c941a79d999f8411a16, type: 3}
-  - {fileID: 2275547113676620015, guid: eaf831b5e370e634381e3b00d9b34213, type: 3}
+  - {fileID: 11400000, guid: 23d4f699a7d099941bc526f4c3eb6070, type: 2}
   setPiecePrefabs: []
