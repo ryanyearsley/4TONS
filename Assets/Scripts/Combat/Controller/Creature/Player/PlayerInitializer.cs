@@ -15,6 +15,7 @@ public class PlayerInitializer : MonoBehaviour
 		playerAiming = GetComponent<PlayerAiming> ();
 		animationController = GetComponentInChildren<AnimationController> ();
 		playerInputController = GetComponent<PlayerInputController> ();
+		playerPuzzleController = GetComponentInChildren<PlayerPuzzleController> ();
 
 	}
 
@@ -25,6 +26,7 @@ public class PlayerInitializer : MonoBehaviour
 		playerAiming.InitializeComponent (player);
 		animationController.InitializeComponent (player);
 		playerInputController.InitializePlayerComponent (player);
+		playerPuzzleController.InitializeComponent (player);
 	}
 
 }

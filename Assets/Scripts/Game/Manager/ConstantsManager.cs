@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class ConstantsManager : MonoBehaviour {
 
@@ -16,9 +17,8 @@ public class ConstantsManager : MonoBehaviour {
 	public Vector2Int pixelPerfectReferenceResolutionFar;
 
 	//STAFF AND PUZZLE PREFABS
-	public GameObject staffPrefab;//physical staff attached to player, displays staff sprite
 	public GameObject inventoryPuzzleUIPrefab;
-	public GameObject staffTilePrefab;
+	public Tile staffTile;
 	public GameObject spellGemPickupPrefab;
 	public GameObject spellGemUIPrefab;
 

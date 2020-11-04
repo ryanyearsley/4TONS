@@ -65,7 +65,6 @@ public class AbstractStateController : MonoBehaviour {
 	}
 
 	public virtual void SetVelocity (Vector2 velocity) {
-		Debug.Log ("SetVelocity: " + velocity.ToString ());
 		this.velocity = velocity;
 		OnSetVelocityEvent?.Invoke (velocity);
 	}

@@ -19,11 +19,11 @@ public class SpellController : MonoBehaviour {
 
 	private void Awake () {
 		manaController = GetComponentInChildren<ManaController> ();
-		GameObject spellGemCanvasGo = Instantiate (ConstantsManager.instance.inventoryPuzzleUIPrefab);
-		spellGemCanvasGo.transform.parent = this.transform;
-		spellGemCanvasGo.transform.localPosition = Vector3.up * 2.5f;
-		puzzleUI = spellGemCanvasGo.GetComponent<PuzzleUI> ();
-		spellGemCanvasGo.SetActive (false);
+		GameObject puzzleUIGo = Instantiate (ConstantsManager.instance.inventoryPuzzleUIPrefab);
+		puzzleUIGo.transform.parent = this.transform;
+		puzzleUIGo.transform.localPosition = Vector3.up * 1.5f;
+		puzzleUI = puzzleUIGo.GetComponent<PuzzleUI> ();
+		puzzleUIGo.SetActive (false);
 	}
 
 	public void UpdateSpellAim() {
@@ -65,7 +65,7 @@ public class SpellController : MonoBehaviour {
 	}
 
 	private void OnEnable () {
-		stateController = GetComponent<PlayerStateController> ();
+		stateController = GetComponentInParent<PlayerStateController> ();
 		stateController.OnSetCanAttackEvent += SetCanCast;
 	}
 
