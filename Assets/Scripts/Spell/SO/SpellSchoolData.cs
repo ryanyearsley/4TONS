@@ -9,6 +9,8 @@ public class SpellSchoolData : ScriptableObject
 	public string description;
 	public Sprite wizardSelectIcon;
 	public Sprite portrait;
+	public RuntimeAnimatorController animatorController;
+	public StaffData staff;
 	public List<SpellData> spells;
 }
 public enum SpellSchool {
