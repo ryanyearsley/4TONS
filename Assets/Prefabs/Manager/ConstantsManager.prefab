@@ -49,11 +49,10 @@ MonoBehaviour:
   spellSchools:
   - {fileID: 11400000, guid: 16a7aee84221cf944b3bc8802b8d5ba3, type: 2}
   - {fileID: 11400000, guid: 3c0c6ec45b52c8f438a33661902dea92, type: 2}
-  pixelPerfectReferenceResolutionClose: {x: 0, y: 0}
-  pixelPerfectReferenceResolutionMid: {x: 0, y: 0}
-  pixelPerfectReferenceResolutionFar: {x: 0, y: 0}
-  staffPrefab: {fileID: 9157059787610861381, guid: 1352a67a97c30fd49b4b857a13dad88c, type: 3}
-  inventoryPuzzleUIPrefab: {fileID: 3402411419913516727, guid: 58273dda3a193e043891bbc118ca3efc, type: 3}
-  staffTilePrefab: {fileID: 3628311494532685603, guid: f6e92e841ced08d4c9262a1d5203c54c, type: 3}
+  pixelPerfectReferenceResolutionClose: {x: 320, y: 180}
+  pixelPerfectReferenceResolutionMid: {x: 320, y: 180}
+  pixelPerfectReferenceResolutionFar: {x: 320, y: 180}
+  inventoryPuzzleUIPrefab: {fileID: 118650557019254783, guid: 051321e734cbe98408f46c9e44f15764, type: 3}
+  staffTile: {fileID: 11400000, guid: b4c6b12a214a7744ea78a5573676c646, type: 2}
   spellGemPickupPrefab: {fileID: 4770684225902127743, guid: 50474e70e84cdf640b3b08f9b8b51d6b, type: 3}
   spellGemUIPrefab: {fileID: 3736764071619496437, guid: caa8575b570f7064fa9976b4e192f64d, type: 3}
