@@ -7,6 +7,7 @@ using UnityEngine;
 [CustomEditor (typeof (TilesetData))]
 public class TilesetDataEditor : Editor {
 
+	/*
 	private SerializedProperty tilePrefabs;
 	private SerializedProperty setPiecePrefabs;
 	private ReorderableList tileList;
@@ -143,4 +144,5 @@ public class TilesetDataEditor : Editor {
 		list.index = index;
 		var element = list.serializedProperty.GetArrayElementAtIndex (index);
 	}
+	*/
 }
