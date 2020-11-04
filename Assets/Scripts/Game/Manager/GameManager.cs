@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour {
 		foreach (Player player in PlayerManager.Instance.currentPlayers) {
 			Vector2Int spawnCoordinate = MapGenerator.instance.spawnPoints.playerSpawnPoints[player.playerIndex];
 			GameObject playerObject = Instantiate(ConstantsManager.instance.playerWizardTemplatePrefab);
+			playerObject.name = "Player" + player.playerIndex + "_" + player.currentWizard.wizardName;
 			playerObject.GetComponent<PlayerInitializer> ().InitializePlayer (player);
 			MapGenerator.instance.PlaceObjectOnGrid (playerObject.transform, spawnCoordinate);
 			if (PlayerManager.Instance.currentPlayers.Count == 1) {
