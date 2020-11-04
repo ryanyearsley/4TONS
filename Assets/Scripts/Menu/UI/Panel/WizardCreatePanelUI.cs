@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections.Generic;
 
 public class WizardCreatePanelUI : MonoBehaviour
 {
@@ -34,7 +35,15 @@ public class WizardCreatePanelUI : MonoBehaviour
 	public WizardSaveData FinalizeWizard () {
 		WizardSaveData wizard = new WizardSaveData();
 		wizard.wizardName = wizardNameInputField.text;
+		wizard.spellSchoolData = currentSchool;
+		Debug.Log (Application.persistentDataPath + AssetDatabase.GetAssetPath (currentSchool));
 		wizard.spellSchoolDataPath = AssetDatabase.GetAssetPath (currentSchool);
+		wizard.primaryStaffSaveData = new StaffSaveData();
+		wizard.primaryStaffSaveData.staffData = currentSchool.staff;
+
+		wizard.secondaryStaffSaveData = new StaffSaveData ();
+		wizard.inventorySaveData = new List<SpellSaveData> ();
+		wizard.primaryStaffSaveData.staffPath = AssetDatabase.GetAssetPath(currentSchool.staff);
 		return wizard;
 	}
 }
