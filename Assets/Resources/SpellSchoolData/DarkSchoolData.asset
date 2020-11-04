@@ -16,7 +16,9 @@ MonoBehaviour:
   description: Suck the life from your enemies, summoning a horde of zombies and
     tentacles.
   wizardSelectIcon: {fileID: 21300000, guid: 137d634ce3c652244a1b0533beeb1488, type: 3}
-  icon: {fileID: 21300000, guid: 137d634ce3c652244a1b0533beeb1488, type: 3}
+  portrait: {fileID: 21300000, guid: 1624b8ed24c4dfa41997fb2fd6141052, type: 3}
+  animatorController: {fileID: 0}
+  staff: {fileID: 11400000, guid: 595edcabdfd2dfb49b144a4cb967839a, type: 2}
   spells:
   - {fileID: 11400000, guid: 1a68247417a975341908fa4dd7e31866, type: 2}
   - {fileID: 11400000, guid: 60d26b1df3d71c546b80d0577d24d01b, type: 2}

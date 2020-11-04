@@ -16,5 +16,11 @@ MonoBehaviour:
   description: Cast a protective barrier around yourself, protecting you from incoming
     projectiles
   icon: {fileID: 21300000, guid: d3ba7a92abdb01240879f6d79fea3600, type: 3}
-  spellGemSprite: {fileID: 0}
+  spellGemSprite: {fileID: 21300000, guid: 25d12c5d43b172c478a871f7385151b7, type: 3}
   spellObjectData: {fileID: 11400000, guid: fb9712e9bac58b94ca5e5297ed82900b, type: 2}
+  coordinates:
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
