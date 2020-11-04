@@ -10,8 +10,5 @@ public class StaffAimObject : MonoBehaviour
 
 	public void InitializeStaffAimObject (Sprite sprite) {
 		spriteRenderer.sprite = sprite;
-		staffTipTransform = new GameObject ("StaffTip").transform;
-		staffTipTransform.parent = this.transform;
-		staffTipTransform.localPosition = Vector3.up * 0.75f;
 	}
 }
