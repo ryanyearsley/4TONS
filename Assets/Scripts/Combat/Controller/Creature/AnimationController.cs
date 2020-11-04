@@ -2,16 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent (typeof (SpriteRenderer), typeof (Animator))]
 public class AnimationController : MonoBehaviour {
 
-    private SpriteRenderer playerSprite;
-
     private PlayerStateController stateController;
+
+    private SpriteRenderer playerSprite;
     private Animator animator;
 
-    private void Start () {
+    private void Awake () {
         playerSprite = GetComponent<SpriteRenderer> ();
         animator = GetComponent<Animator> ();
+    }
+    public void InitializeComponent (Player player) {
+        Debug.Log ("Initializing Animation Controller");
+        animator.runtimeAnimatorController = player.currentWizard.spellSchoolData.animatorController;
     }
 
     public void OnDeath () {
@@ -19,7 +24,7 @@ public class AnimationController : MonoBehaviour {
         //animator.SetTrigger ("die");
     }
 
-    public void OnRespawn () {
+    public void OnRespawn (Vector3 spawnPosition) {
         animator.Rebind ();
     }
 
@@ -39,10 +44,10 @@ public class AnimationController : MonoBehaviour {
             animator.SetBool ("isWalking", true);
     }
 
-    public void OnHit (Vector2 direction) {
+    public void OnHit (OnHitInfo onHitInfo) {
         if (!stateController.isDead)
         {
-            playerSprite.flipX = (Mathf.Sign(direction.x) > 0);
+            playerSprite.flipX = (Mathf.Sign(onHitInfo.direction.x) > 0);
             animator.SetTrigger("hit");
         }
     }

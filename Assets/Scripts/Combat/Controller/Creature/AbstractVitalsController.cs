@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class AbstractVitalsController : MonoBehaviour, IVital
 {
 
-    protected PlayerStateController stateController;
+    protected AbstractStateController stateController;
 
     [SerializeField]
     protected float currentValue;
@@ -22,12 +22,11 @@ public abstract class AbstractVitalsController : MonoBehaviour, IVital
 
     protected virtual void OnEnable()
     {
-        stateController = GetComponentInParent<PlayerStateController>();
+        stateController = GetComponentInParent<AbstractStateController> ();
         stateController.OnRespawnEvent += OnRespawn;
     }
     protected virtual void OnDisable()
     {
-        stateController = GetComponentInParent<PlayerStateController>();
         stateController.OnRespawnEvent -= OnRespawn;
     }
 
@@ -62,7 +61,7 @@ public abstract class AbstractVitalsController : MonoBehaviour, IVital
         overheadUI.updateVitalsBar(currentValue / maxValue);
     }
 
-    public void OnRespawn()
+    public void OnRespawn(Vector3 spawnPosition)
     {
         currentValue = maxValue;
         overheadUI.updateVitalsBar(currentValue / maxValue);

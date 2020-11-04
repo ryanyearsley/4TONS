@@ -9,14 +9,12 @@ namespace PlayerManagement {
 
 		public float moveSpeed = 6f;
 		[Tooltip ("Scaling amount used to adjust the speeds on different axis.")]
-		public Vector2 velocityScaling = new Vector2 (1f, 1f);
+		public Vector2 velocityScaling = new Vector2 (1f, 0.5f);
 		[Range (0.01f, 0.9f)]
 		public float acceleration = 0.1f;
 		public float dashSpeedMultiplier = 4f;
 		[Tooltip ("In seconds.")]
 		[Range (0.01f, 1f)] public float dashDuration = 0.2f;
-
-		public SpriteRenderer sprite;
 
 		private Vector3 spawnPosition;
 		private Vector2 velocity;
@@ -48,8 +46,6 @@ namespace PlayerManagement {
 				directionalInput = Vector2.zero;
 
 			CalculateVelocity ();
-		 
-
 			movementController.Move (velocity);
 
 			stateController.SetVelocity (
@@ -76,7 +72,7 @@ namespace PlayerManagement {
 		public void AddImpulseForce (Vector2 direction, float force) {
 			velocity = direction.normalized * force;
 			stateController.SetFaceDirection ((int)Mathf.Sign (direction.x));
-			stateController.OnHit (direction);
+			stateController.OnHit (new OnHitInfo(stateController.Health, direction, stateController.Health));
 		}
 
 
@@ -85,7 +81,7 @@ namespace PlayerManagement {
 				debuffs.Add (debuffInfo);
 		}
 
-		public void OnRespawn () {
+		public void OnRespawn (Vector3 spawnPosition) {
 			transform.position = spawnPosition;
 		}
 
@@ -137,18 +133,5 @@ namespace PlayerManagement {
 			stateController.OnAddDebuffEvent -= AddDebuff;
 			stateController.OnRespawnEvent -= OnRespawn;
 		}
-	}
-}
-
-public class DebuffInfo {
-
-	public float timeRemaining;
-	public float speedMultiplier;
-	public bool canCast;
-
-	public DebuffInfo (float timeRemaining, float speedMultiplier, bool canCast) {
-		this.timeRemaining = timeRemaining;
-		this.speedMultiplier = speedMultiplier;
-		this.canCast = canCast;
 	}
 }

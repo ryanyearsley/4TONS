@@ -7,6 +7,8 @@ public class HealthController : AbstractVitalsController, IDamageable
     [SerializeField]
     private int lives;
 
+    private Vector3 previousSpawnPosition;
+
     public override void InitializeVital()
     {
         base.InitializeVital();
@@ -15,6 +17,7 @@ public class HealthController : AbstractVitalsController, IDamageable
     protected override void OnEnable()
     {
         base.OnEnable();
+        stateController.OnRespawnEvent += OnRespawn;
         stateController.OnDeathEvent += OnDeath;
     }
     protected override void OnDisable()
@@ -42,7 +45,8 @@ public class HealthController : AbstractVitalsController, IDamageable
         Debug.Log("Controller applying dmg");
         currentValue = Mathf.Clamp(currentValue -= damage, 0, maxValue);
         UpdateVitalsBar();
-        stateController.OnHit(Vector2.zero);
+
+        stateController.OnHit (new OnHitInfo (damage, Vector2.zero, currentValue));
         if (currentValue <= 0)
         {
             stateController.OnDeath();
@@ -53,6 +57,11 @@ public class HealthController : AbstractVitalsController, IDamageable
     {
         currentValue = Mathf.Clamp(currentValue += healAmount, 0, maxValue);
         UpdateVitalsBar();
+    }
+
+    public void OnSpawn() {
+        transform.position = previousSpawnPosition;
+
     }
 
     public void OnDeath()
@@ -72,7 +81,7 @@ public class HealthController : AbstractVitalsController, IDamageable
         {
             Debug.Log("Creature Died. Lives remaining: " + lives);
             yield return new WaitForSeconds(1f);
-            stateController.OnRespawn();
+
         }
     }
 }

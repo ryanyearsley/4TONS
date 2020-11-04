@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class SpellController : MonoBehaviour {
 
-	[SerializeField]
-	private StaffData staffData;
-
 	private PlayerStateController stateController;
 	private ManaController manaController;
 	private bool canCast;
@@ -29,12 +26,16 @@ public class SpellController : MonoBehaviour {
 		spellGemCanvasGo.SetActive (false);
 	}
 
+	public void UpdateSpellAim() {
+
+	}
+
 	public void OnSpellButtonDown (int spellIndex) {
 		if (!canCast || spells.Length - 1 < spellIndex)
 			return;
 
 		Debug.Log ("Spell down: " + spellIndex);
-		PlayerPositions positions = stateController.playerPositions;
+		CreaturePositions positions = stateController.creaturePositions;
 		Spell spell = spells[spellIndex];
 		if (!spell.onCooldown &&
 			manaController.SubtractManaCost (spell.manaCost)) {
@@ -49,14 +50,14 @@ public class SpellController : MonoBehaviour {
 		if (!canCast)
 			return;
 
-		PlayerPositions positions = stateController.playerPositions;
+		CreaturePositions positions = stateController.creaturePositions;
 	}
 
 	public void OnSpellButtonUp (int spellIndex) {
 		if (!canCast)
 			return;
 
-		PlayerPositions positions = stateController.playerPositions;
+		CreaturePositions positions = stateController.creaturePositions;
 	}
 
 	public void SetCanCast (bool canCast) {

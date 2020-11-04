@@ -8,9 +8,17 @@ using UnityEngine;
 //Tracks player state
 public class AbstractStateController : MonoBehaviour {
 
+	[SerializeField]
+	public float Health { get; private set; }
+
+	public CreaturePositions creaturePositions { get; private set; }
+	public void SetCreaturePositions (Transform targetTransform, Transform feetTransform, Transform staffTransform) {
+		creaturePositions = new CreaturePositions (targetTransform, feetTransform, staffTransform);
+	}
+
 	public bool isDead { get; private set; }
 	public event Action OnDeathEvent;
-	public event Action OnRespawnEvent;
+	public event Action<Vector3> OnRespawnEvent;
 
 	public bool canWalk { get; private set; }
 	public event Action<bool> OnSetCanWalkEvent;
@@ -24,7 +32,7 @@ public class AbstractStateController : MonoBehaviour {
 	public Vector2 velocity { get; private set; }
 	public event Action<Vector2> OnSetVelocityEvent;
 
-	public event Action<Vector2> OnHitEvent;
+	public event Action<OnHitInfo> OnHitEvent;
 
 	public event Action<DebuffInfo> OnAddDebuffEvent;
 
@@ -36,9 +44,9 @@ public class AbstractStateController : MonoBehaviour {
 		OnDeathEvent?.Invoke ();
 	}
 
-	public virtual void OnRespawn () {
+	public virtual void OnRespawn (Vector3 spawnPosition) {
 		isDead = false;
-		OnRespawnEvent?.Invoke ();
+		OnRespawnEvent?.Invoke (spawnPosition);
 	}
 
 	public virtual void SetCanWalk (bool canWalk) {
@@ -57,12 +65,14 @@ public class AbstractStateController : MonoBehaviour {
 	}
 
 	public virtual void SetVelocity (Vector2 velocity) {
+		Debug.Log ("SetVelocity: " + velocity.ToString ());
 		this.velocity = velocity;
 		OnSetVelocityEvent?.Invoke (velocity);
 	}
 
-	public virtual void OnHit (Vector2 direction) {
-		OnHitEvent?.Invoke (direction);
+	public virtual void OnHit (OnHitInfo onHitInfo) {
+		Health = onHitInfo.healthRemaining;
+		OnHitEvent?.Invoke (onHitInfo);
 	}
 
 	public virtual void AddDebuff (DebuffInfo debuffInfo) {
