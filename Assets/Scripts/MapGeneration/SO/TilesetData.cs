@@ -1,14 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 [CreateAssetMenu (fileName = "New Tileset", menuName = "ScriptableObjects/Tileset Data")]
-public class TilesetData : ScriptableObject, IEnumerable<GameObject> {
+public class TilesetData : ScriptableObject, IEnumerable<Tile> {
 
-	public List<GameObject> tilePrefabs;
-	public List<GameObject> setPiecePrefabs;
+	public List<Tile> tilePrefabs;
+	public List<Tile> setPiecePrefabs;
 
-	public GameObject this [int index] {
+	public Tile this [int index] {
 		get {
 			if (index < tilePrefabs.Count)
 				return tilePrefabs [index];
@@ -23,7 +24,7 @@ public class TilesetData : ScriptableObject, IEnumerable<GameObject> {
 		}
 	}
 
-	public IEnumerator<GameObject> GetEnumerator () {
+	public IEnumerator<Tile> GetEnumerator () {
 		return tilePrefabs.GetEnumerator ();
 	}
 

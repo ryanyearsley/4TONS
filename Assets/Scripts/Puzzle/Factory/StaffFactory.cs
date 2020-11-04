@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 using System.Text.RegularExpressions;
 
 //processes CSV files
@@ -29,18 +30,15 @@ public class StaffFactory
         Debug.Log ("Staff file successfully processed.");
         return output;
     }
-    public static GameObject BuildStaff (int [,] staffData, GameObject tile, Vector3 origin, UnityEngine.Grid grid) {
+    public static GameObject BuildStaff (int [,] staffData, Tilemap tilemap, Tile tile) {
         int yLength = staffData.GetLength(1);
         int xLength = staffData.GetLength(0);
-        Transform parent = new GameObject ("StaffParent").transform;
+        Transform parent = tilemap.transform;
         for (int y = 0; y < staffData.GetLength (1); y++) {
             for (int x = 0; x < staffData.GetLength (0); x++) {
                 int tilePrefabIndex = staffData[x, y];
                 if (tilePrefabIndex != 0) {
-                    GameObject.Instantiate (
-                        tile, origin + grid.GetCellCenterLocal(new Vector3Int(x, y, 0)),
-                        Quaternion.identity,
-                        parent);
+                    tilemap.SetTile (new Vector3Int (x, y, 0), tile);
                 } 
 
             }

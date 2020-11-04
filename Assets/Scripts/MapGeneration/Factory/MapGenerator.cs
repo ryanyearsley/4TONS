@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 [RequireComponent(typeof(Grid))]
 public class MapGenerator : MonoBehaviour {
@@ -19,7 +20,8 @@ public class MapGenerator : MonoBehaviour {
 	public MapData mapData;
 	public SpawnPoints spawnPoints;
 
-	public Grid grid;
+	[SerializeField]
+	private Tilemap tilemap;
 
 	[Header ("Gizmos")]
 	public bool drawGizmos;
@@ -28,7 +30,6 @@ public class MapGenerator : MonoBehaviour {
 	private int[,] map;
 
 	void Awake () {
-		grid = GetComponent<Grid> ();
 		SingletonInitialization ();
 	}
 
@@ -38,9 +39,11 @@ public class MapGenerator : MonoBehaviour {
 	}
 
 	public void PlaceObjectOnGrid(Transform objectTransform, Vector2Int cartCoordinate) {
-		objectTransform.position = grid.CellToWorld ((Vector3Int)cartCoordinate);
+		Debug.Log ("Placing " + objectTransform.gameObject.name + " on battlefield at coord: " + cartCoordinate.ToString());
+		objectTransform.position = tilemap.CellToWorld ((Vector3Int)cartCoordinate);
 	}
 	public void GenerateMap () {
+		Debug.Log ("Generating map");
 		map = new int [mapData.mapSize.x, mapData.mapSize.y];
 		spawnPoints = new SpawnPoints ();
 		RandomFillMap ();
@@ -67,7 +70,7 @@ public class MapGenerator : MonoBehaviour {
 		spawnPoints.enemySpawnPoints = GenerateSpawnPoints (mapData.enemyCount, 102);
 		spawnPoints.itemSpawnPoints = GenerateSpawnPoints (mapData.itemCount, 103);
 
-		LevelFactory.BuildLevel (map, mapData.tileset.tilePrefabs.ToArray (), grid);
+		LevelFactory.BuildLevel (map, mapData.tileset.tilePrefabs.ToArray (), tilemap);
 	}
 	private void ProcessMap () {
 		List<List<Coord>> wallRegions = GetRegions (1);

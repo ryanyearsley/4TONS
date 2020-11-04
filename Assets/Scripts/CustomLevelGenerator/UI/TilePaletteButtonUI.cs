@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class TilePaletteButtonUI : MonoBehaviour {
-
+	/*
 	public Image tileImage;
 
 	private int tileIndex;
@@ -19,4 +19,5 @@ public class TilePaletteButtonUI : MonoBehaviour {
 	public void OnButtonDown () {
 		LevelBuilderManager.instance.OnSelectTile (tileIndex);
 	}
+	*/
 }

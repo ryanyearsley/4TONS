@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class LevelBuilderManager : MonoBehaviour {
 
+	/*
 	public static LevelBuilderManager instance;
 
 	public GameObject selectedIndicator;
@@ -90,4 +91,5 @@ public class LevelBuilderManager : MonoBehaviour {
 		Gizmos.DrawLine (topCorner, rightCorner);
 		Gizmos.DrawLine (rightCorner, bottomCorner);
 	}
+	*/
 }
