@@ -15,10 +15,13 @@ public class PlayerManager : MonoBehaviour {
 	[SerializeField]
 	public List<Player> currentPlayers = new List<Player>();
 
+	public PrebuildWizardData defaultWizardData;
+
 	private void Awake () {
 		InitializeSingleton ();
 		DontDestroyOnLoad(this.gameObject);
 	}
+	
 	private void Start () {
 
 	}

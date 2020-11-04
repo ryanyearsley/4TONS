@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using UnityEditor;
 using UnityEngine;
 
 public class SaveManager : MonoBehaviour {
@@ -11,6 +12,7 @@ public class SaveManager : MonoBehaviour {
 	private SaveData saveData;
 	protected string savePath;
 	public SaveData defaultData;
+	public PrebuildWizardData defaultWizardData;
 
 	private void Awake () {
 		if (instance == null) {
@@ -22,8 +24,8 @@ public class SaveManager : MonoBehaviour {
 		CreatePersistentDataDirectories ();
 	}
 
-	public void CreatePersistentDataDirectories() {
-		if (!Directory.Exists(Application.persistentDataPath + "/wizards")) {
+	public void CreatePersistentDataDirectories () {
+		if (!Directory.Exists (Application.persistentDataPath + "/wizards")) {
 			Directory.CreateDirectory (Application.persistentDataPath + "/wizards");
 		}
 	}
@@ -45,7 +47,7 @@ public class SaveManager : MonoBehaviour {
 		if (File.Exists (savePath)) {
 			BinaryFormatter bf = new BinaryFormatter ();
 			FileStream file = File.Open (savePath, FileMode.Open);
-			saveData = (SaveData) bf.Deserialize (file);
+			saveData = (SaveData)bf.Deserialize (file);
 			file.Close ();
 			return saveData;
 		} else {
@@ -73,9 +75,25 @@ public class SaveManager : MonoBehaviour {
 		foreach (String wizardFilePath in wizardFilePaths) {
 			String json = File.ReadAllText (wizardFilePath);
 			WizardSaveData wizard = JsonUtility.FromJson<WizardSaveData>(json);
+			ExtractWizardResources (wizard);
 			wizards.Add (wizard);
 		}
 		return wizards;
+	}
+
+	public void ExtractWizardResources (WizardSaveData wizardSaveData) {
+		wizardSaveData.spellSchoolData = (SpellSchoolData) AssetDatabase.LoadAssetAtPath(wizardSaveData.spellSchoolDataPath, typeof (SpellSchoolData));
+		wizardSaveData.primaryStaffSaveData.staffData = (StaffData) AssetDatabase.LoadAssetAtPath (wizardSaveData.primaryStaffSaveData.staffPath, typeof (StaffData));
+		
+		foreach (SpellSaveData spellSaveData in wizardSaveData.primaryStaffSaveData.equippedSpellsSaveData) {
+			spellSaveData.spellData = (SpellData)AssetDatabase.LoadAssetAtPath (spellSaveData.spellDataPath, typeof (SpellData));
+		}
+		foreach (SpellSaveData spellSaveData in wizardSaveData.secondaryStaffSaveData.equippedSpellsSaveData) {
+			spellSaveData.spellData = (SpellData)AssetDatabase.LoadAssetAtPath (spellSaveData.spellDataPath, typeof (SpellData));
+		}
+		foreach (SpellSaveData spellSaveData in wizardSaveData.inventorySaveData) {
+			spellSaveData.spellData = (SpellData)AssetDatabase.LoadAssetAtPath (spellSaveData.spellDataPath, typeof (SpellData));
+		}
 	}
 	public void DeleteAllWizardData() {
 		string wizardDirectory = Application.persistentDataPath + "/wizards/";
@@ -94,5 +112,4 @@ public class SaveData {
 	[Range (0f, 1f)] public float masterVolume;
 	[Range (0f, 1f)] public float musicVolume;
 	[Range (0f, 1f)] public float soundEffectsVolume;
-	public List<WizardSaveData> wizards;
 }

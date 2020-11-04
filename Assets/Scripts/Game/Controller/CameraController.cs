@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.Experimental.Rendering.Universal;
 
 namespace PlayerManagement {
-
 	public enum CameraState {
 		STATIC, DYNAMIC
 	}
@@ -12,6 +11,16 @@ namespace PlayerManagement {
 		CLOSE, MID, FAR
 	}
 	public class CameraController : MonoBehaviour {
+		#region Singleton
+		public static CameraController instance;
+		void SingletonInitialization () {
+			if (instance == null) {
+				instance = this;
+			} else if (instance != this) {
+				Destroy (gameObject);
+			}
+		}
+		#endregion
 
 		[SerializeField]
 		private CameraState cameraState;
@@ -24,7 +33,7 @@ namespace PlayerManagement {
 		public Vector3 staticCameraOriginPosition;
 		//dynamic variables
 		public MovementController target;
-		private PlayerInputController playerInput;
+		private PlayerAiming playerAiming;
 		private FocusArea focusArea;
 		public float lookAheadDistance;
 		public float lookSmoothTime;
@@ -33,6 +42,9 @@ namespace PlayerManagement {
 		private Vector2 currentLookAhead;
 		private Vector2 smoothLookVelocity;
 
+		private void Awake () {
+			SingletonInitialization ();
+		}
 		private void Start () {
 			pixelPerfectCamera = GetComponent<PixelPerfectCamera> ();
 			switch (cameraState) {
@@ -64,7 +76,7 @@ namespace PlayerManagement {
 			cameraState = CameraState.STATIC;
 			if (target != null) {
 				target = null;
-				playerInput = null;
+				playerAiming = null;
 			}
 		}
 
@@ -74,7 +86,7 @@ namespace PlayerManagement {
 			if (focusTarget != null) {
 				target = focusTarget;
 				focusArea = new FocusArea (target.collider.bounds, focusAreaSize);
-				playerInput = target.GetComponent<PlayerInputController> ();
+				playerAiming = target.GetComponent<PlayerAiming> ();
 			}
 		}
 
@@ -98,12 +110,12 @@ namespace PlayerManagement {
 		}
 
 		private void CalculateCursorLookAhead () {
-			if (playerInput == null)
+			if (playerAiming == null)
 				return;
 
-			Vector2 direction = playerInput.CursorDirection;
-			float cursorDistance = Mathf.Clamp(playerInput.CursorDistance, 0f, playerInput.joystickCursorDistance);
-			cursorDistance = cursorDistance.MapValue (0f, playerInput.joystickCursorDistance, 0f, 1f);
+			Vector2 direction = playerAiming.CursorDirection;
+			float cursorDistance = Mathf.Clamp(playerAiming.CursorDistance, 0f, playerAiming.joystickCursorDistance);
+			cursorDistance = cursorDistance.MapValue (0f, playerAiming.joystickCursorDistance, 0f, 1f);
 
 			Vector2 targetLookAhead = direction * lookAheadDistance * cursorDistance;
 			currentLookAhead = Vector2.SmoothDamp (currentLookAhead, targetLookAhead, ref smoothLookVelocity, lookSmoothTime);

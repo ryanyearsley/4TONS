@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class ConstantsManager : MonoBehaviour {
 
-	public GameObject playerWizardPrefab;
+	//PLAYER CREATION PREFABS
+	public GameObject playerWizardTemplatePrefab;
+	public GameObject staffTemplatePrefab;
+	public GameObject cursorTemplatePrefab;
 
 	public List<SpellSchoolData> spellSchools = new List<SpellSchoolData>();
 
