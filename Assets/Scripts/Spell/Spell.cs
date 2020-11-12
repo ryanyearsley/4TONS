@@ -10,25 +10,20 @@ public enum SpellCastLocation
 public abstract class Spell : MonoBehaviour
 {
     //static
-    public int manaCost;
-    public float coolDown;
-    public SpellCastLocation spellCastLocation;
-    public Transform spellCastTransform;
-    public GameObject spellObject;
-    [SerializeField]
-    private int poolSize;
+    public SpellData spellData; 
 
     //dynamic
     public bool onCooldown;
+
+    protected Transform spellCastTransform;
     protected float cdTimer;
 
 
     private void Start()
     {
-        Debug.Log ("Start Spell");
-        PoolManager.instance.CreatePool(spellObject, poolSize);
+        PoolManager.instance.CreatePool(spellData.spellObject, spellData.poolSize);
         PlayerStateController stateController = transform.root.GetComponent<PlayerStateController>();
-        switch (spellCastLocation) {
+        switch (spellData.spellCastLocation) {
             case SpellCastLocation.Staff:
                 spellCastTransform = stateController.creaturePositions.staffAimTransform;
                 break;
@@ -43,7 +38,6 @@ public abstract class Spell : MonoBehaviour
     }
     private void Update()
     {
-
         if (onCooldown)
         {
             cdTimer -= Time.deltaTime;
@@ -59,7 +53,7 @@ public abstract class Spell : MonoBehaviour
         Debug.Log ("Casting Spell");
         if (!onCooldown )
         onCooldown = true;
-        cdTimer = coolDown;
+        cdTimer = spellData.coolDown;
     }
 
     public virtual void ChannelSpell()
