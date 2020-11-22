@@ -521,6 +521,78 @@ MonoBehaviour:
       _behaviorId: 0
       _userAssignable: 1
       _categoryId: 3
+    - _id: 30
+      _name: TogglePuzzle
+      _type: 1
+      _descriptiveName: TogglePuzzle
+      _positiveDescriptiveName: 
+      _negativeDescriptiveName: 
+      _behaviorId: 0
+      _userAssignable: 1
+      _categoryId: 4
+    - _id: 31
+      _name: Confirm
+      _type: 1
+      _descriptiveName: Confirm
+      _positiveDescriptiveName: 
+      _negativeDescriptiveName: 
+      _behaviorId: 0
+      _userAssignable: 1
+      _categoryId: 2
+    - _id: 32
+      _name: PickUpSpellGem
+      _type: 1
+      _descriptiveName: PickUpSpellGem
+      _positiveDescriptiveName: 
+      _negativeDescriptiveName: 
+      _behaviorId: 0
+      _userAssignable: 1
+      _categoryId: 4
+    - _id: 33
+      _name: RotateSpellGem
+      _type: 1
+      _descriptiveName: RotateSpellGem
+      _positiveDescriptiveName: 
+      _negativeDescriptiveName: 
+      _behaviorId: 0
+      _userAssignable: 1
+      _categoryId: 4
+    - _id: 34
+      _name: GrabSpellGem
+      _type: 1
+      _descriptiveName: GrabSpellGem
+      _positiveDescriptiveName: 
+      _negativeDescriptiveName: 
+      _behaviorId: 0
+      _userAssignable: 1
+      _categoryId: 4
+    - _id: 35
+      _name: FlipSpellGem
+      _type: 1
+      _descriptiveName: FlipSpellGem
+      _positiveDescriptiveName: 
+      _negativeDescriptiveName: 
+      _behaviorId: 0
+      _userAssignable: 1
+      _categoryId: 4
+    - _id: 36
+      _name: BindSpellGem
+      _type: 1
+      _descriptiveName: BindSpellGem
+      _positiveDescriptiveName: 
+      _negativeDescriptiveName: 
+      _behaviorId: 0
+      _userAssignable: 1
+      _categoryId: 4
+    - _id: 37
+      _name: DropSpellGem
+      _type: 1
+      _descriptiveName: DropSpellGem
+      _positiveDescriptiveName: 
+      _negativeDescriptiveName: 
+      _behaviorId: 0
+      _userAssignable: 1
+      _categoryId: 4
     actionCategories:
     - _name: Default
       _descriptiveName: Default
@@ -532,8 +604,8 @@ MonoBehaviour:
       _tag: 
       _id: 1
       _userAssignable: 1
-    - _name: InGameControls
-      _descriptiveName: InGameControls
+    - _name: CombatControls
+      _descriptiveName: CombatControls
       _tag: 
       _id: 2
       _userAssignable: 1
@@ -542,6 +614,11 @@ MonoBehaviour:
       _tag: 
       _id: 3
       _userAssignable: 1
+    - _name: PuzzleControls
+      _descriptiveName: PuzzleControls
+      _tag: 
+      _id: 4
+      _userAssignable: 1
     actionCategoryMap:
       list:
       - categoryId: 0
@@ -549,9 +626,11 @@ MonoBehaviour:
       - categoryId: 1
         actionIds: 0b0000000c000000040000000500000006000000
       - categoryId: 2
-        actionIds: 07000000080000000a000000090000000e000000110000001200000013000000140000001500000016000000
+        actionIds: 07000000080000000a000000090000000e0000001100000012000000130000001400000015000000160000001f000000
       - categoryId: 3
         actionIds: 1700000018000000190000001a0000001b0000001c0000001d000000
+      - categoryId: 4
+        actionIds: 2000000021000000220000001e000000230000002400000025000000
     inputBehaviors:
     - _id: 0
       _name: Default
@@ -1065,8 +1144,8 @@ MonoBehaviour:
         _elementIdentifierId: -1
         _axisRange: 0
         _invert: 0
-        _axisContribution: 0
-        _keyboardKeyCode: 119
+        _axisContribution: 1
+        _keyboardKeyCode: 115
         _modifierKey1: 0
         _modifierKey2: 0
         _modifierKey3: 0
@@ -1076,8 +1155,8 @@ MonoBehaviour:
         _elementIdentifierId: -1
         _axisRange: 0
         _invert: 0
-        _axisContribution: 1
-        _keyboardKeyCode: 115
+        _axisContribution: 0
+        _keyboardKeyCode: 119
         _modifierKey1: 0
         _modifierKey2: 0
         _modifierKey3: 0
@@ -1133,6 +1212,72 @@ MonoBehaviour:
         _invert: 0
         _axisContribution: 0
         _keyboardKeyCode: 113
+        _modifierKey1: 0
+        _modifierKey2: 0
+        _modifierKey3: 0
+      - _actionCategoryId: 0
+        _actionId: 30
+        _elementType: 1
+        _elementIdentifierId: -1
+        _axisRange: 0
+        _invert: 0
+        _axisContribution: 0
+        _keyboardKeyCode: 116
+        _modifierKey1: 0
+        _modifierKey2: 0
+        _modifierKey3: 0
+      - _actionCategoryId: 0
+        _actionId: 34
+        _elementType: 1
+        _elementIdentifierId: -1
+        _axisRange: 0
+        _invert: 0
+        _axisContribution: 0
+        _keyboardKeyCode: 103
+        _modifierKey1: 0
+        _modifierKey2: 0
+        _modifierKey3: 0
+      - _actionCategoryId: 0
+        _actionId: 33
+        _elementType: 1
+        _elementIdentifierId: -1
+        _axisRange: 0
+        _invert: 0
+        _axisContribution: 0
+        _keyboardKeyCode: 114
+        _modifierKey1: 0
+        _modifierKey2: 0
+        _modifierKey3: 0
+      - _actionCategoryId: 0
+        _actionId: 35
+        _elementType: 1
+        _elementIdentifierId: -1
+        _axisRange: 0
+        _invert: 0
+        _axisContribution: 0
+        _keyboardKeyCode: 102
+        _modifierKey1: 0
+        _modifierKey2: 0
+        _modifierKey3: 0
+      - _actionCategoryId: 0
+        _actionId: 32
+        _elementType: 1
+        _elementIdentifierId: -1
+        _axisRange: 0
+        _invert: 0
+        _axisContribution: 0
+        _keyboardKeyCode: 98
+        _modifierKey1: 0
+        _modifierKey2: 0
+        _modifierKey3: 0
+      - _actionCategoryId: 0
+        _actionId: 37
+        _elementType: 1
+        _elementIdentifierId: -1
+        _axisRange: 0
+        _invert: 0
+        _axisContribution: 0
+        _keyboardKeyCode: 118
         _modifierKey1: 0
         _modifierKey2: 0
         _modifierKey3: 0
@@ -1335,8 +1480,8 @@ MonoBehaviour:
     controllerMapLayoutManagerRuleSets: []
     controllerMapEnablerRuleSets: []
     playerIdCounter: 8
-    actionIdCounter: 30
-    actionCategoryIdCounter: 4
+    actionIdCounter: 38
+    actionCategoryIdCounter: 5
     inputBehaviorIdCounter: 1
     mapCategoryIdCounter: 4
     joystickLayoutIdCounter: 4
