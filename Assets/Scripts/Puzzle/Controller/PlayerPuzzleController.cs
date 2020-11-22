@@ -104,7 +104,7 @@ public class PlayerPuzzleController : MonoBehaviour {
 		puzzleGroupingDictionary.Add (PuzzleCursorRegion.STAFF, staffDetails);
 		//Validate 
 
-		puzzleUI.InitializePuzzleUI (inventoryDetails, staffDetails);
+		puzzleUI.InitializePuzzleUI (player.currentWizard, inventoryDetails, staffDetails);
 		LoadPlayerSpellGemEntities (player.currentWizard.primaryStaffSaveData.puzzleSaveDataDictionary, staffDetails);
 		LoadPlayerSpellGemEntities (player.currentWizard.inventorySaveDataDictionary, inventoryDetails);
 	}
@@ -242,7 +242,7 @@ public class PlayerPuzzleController : MonoBehaviour {
 			case (PlayerState.PUZZLE_MOVING_SPELLGEM): {
 					//Save Data is not assigned to any puzzle grouping in this state.
 					if (movingSpellSaveData != null) {
-						DropSpellGemToWorld (highlightedSpellSaveData);
+						DropSpellGemToWorld (movingSpellSaveData);
 						playerStateController.OnChangeState (PlayerState.PUZZLE_BROWSING);
 					}
 					break;
