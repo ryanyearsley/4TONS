@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class SpellGemPickup : MonoBehaviour
 {
-    [SerializeField]
-    private SpellData spellData;
+    public SpellData spellData;
 
     private SpriteRenderer spriteRenderer;
 
@@ -17,14 +16,21 @@ public class SpellGemPickup : MonoBehaviour
         }
 	}
 
+    public void InitializeSpellGemPickUp (SpellData spellData) {
+        this.spellData = spellData;
+        if (spellData != null) {
+            spriteRenderer.sprite = spellData.icon;
+        }
+    }
+
 	private void OnTriggerEnter2D (Collider2D other) {
         if (other.tag == "Player") {
-            other.transform.root.GetComponent<SpellController> ().AddSpellGemToInteractable (this);
+            other.transform.root.GetComponent<PlayerPuzzleController> ().AddSpellGemToInteractable (this);
         }
     }
     private void OnTriggerExit2D (Collider2D other) {
         if (other.tag == "Player") {
-            other.transform.root.GetComponent<SpellController> ().RemoveSpellGemFromInteractable (this);
+            other.transform.root.GetComponent<PlayerPuzzleController> ().RemoveSpellGemFromInteractable (this);
 		}
     }
 }

@@ -15,7 +15,6 @@ public class AnimationController : MonoBehaviour {
         animator = GetComponent<Animator> ();
     }
     public void InitializeComponent (Player player) {
-        Debug.Log ("Initializing Animation Controller");
         animator.runtimeAnimatorController = player.currentWizard.spellSchoolData.animatorController;
     }
 
@@ -28,9 +27,18 @@ public class AnimationController : MonoBehaviour {
         animator.Rebind ();
     }
 
-    public void OnDash () {
+    public void OnDash (DashInfo dashInfo) {
+        StartCoroutine (DashRoutine (dashInfo));
+    }
+
+    private IEnumerator DashRoutine (DashInfo dashInfo) {
         if (!stateController.isDead)
-        animator.SetTrigger ("rollDodge");
+            animator.SetTrigger ("rollDodge");
+        playerSprite.color = new Color (1, 1, 1, 0.5f);
+        yield return new WaitForSeconds (dashInfo.invulnerableTime);
+        playerSprite.color = new Color (1, 1, 1, 1);
+
+
     }
 
     public void OnSetFaceDirection (int faceDirection) {
@@ -52,6 +60,11 @@ public class AnimationController : MonoBehaviour {
         }
     }
 
+    public void OnCastSpell(SpellData spellData) {
+        if (!stateController.isDead) {
+        }
+    }
+
     private void OnEnable () {
         stateController = transform.parent.GetComponent<PlayerStateController> ();
         stateController.OnDeathEvent += OnDeath;
@@ -60,6 +73,7 @@ public class AnimationController : MonoBehaviour {
         stateController.OnSetFaceDirEvent += OnSetFaceDirection;
         stateController.OnSetVelocityEvent += OnSetVelocity;
         stateController.OnHitEvent += OnHit;
+        stateController.OnCastSpellEvent += OnCastSpell;
     }
 
     private void OnDisable () {
@@ -69,5 +83,6 @@ public class AnimationController : MonoBehaviour {
         stateController.OnSetFaceDirEvent -= OnSetFaceDirection;
         stateController.OnSetVelocityEvent -= OnSetVelocity;
         stateController.OnHitEvent -= OnHit;
+        stateController.OnCastSpellEvent -= OnCastSpell;
     }
 }

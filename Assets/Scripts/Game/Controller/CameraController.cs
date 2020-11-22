@@ -33,7 +33,7 @@ namespace PlayerManagement {
 		public Vector3 staticCameraOriginPosition;
 		//dynamic variables
 		public MovementController target;
-		private PlayerAiming playerAiming;
+		private PlayerAimingController playerAiming;
 		private FocusArea focusArea;
 		public float lookAheadDistance;
 		public float lookSmoothTime;
@@ -86,7 +86,7 @@ namespace PlayerManagement {
 			if (focusTarget != null) {
 				target = focusTarget;
 				focusArea = new FocusArea (target.collider.bounds, focusAreaSize);
-				playerAiming = target.GetComponent<PlayerAiming> ();
+				playerAiming = target.GetComponent<PlayerAimingController> ();
 			}
 		}
 

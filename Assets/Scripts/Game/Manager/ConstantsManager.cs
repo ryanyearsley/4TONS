@@ -5,23 +5,27 @@ using UnityEngine.Tilemaps;
 
 public class ConstantsManager : MonoBehaviour {
 
-	//PLAYER CREATION PREFABS
-	public GameObject playerWizardTemplatePrefab;
-	public GameObject staffTemplatePrefab;
-	public GameObject cursorTemplatePrefab;
-
-	public List<SpellSchoolData> spellSchools = new List<SpellSchoolData>();
-
+	//Camera details
 	public Vector2Int pixelPerfectReferenceResolutionClose;
 	public Vector2Int pixelPerfectReferenceResolutionMid;
 	public Vector2Int pixelPerfectReferenceResolutionFar;
 
+	//PLAYER CREATION PREFABS
+	public GameObject playerWizardTemplatePrefab;
+	public GameObject staffTemplatePrefab;
+	public GameObject cursorTemplatePrefab;
+	public GameObject InteractButtonPrefab;
+
+	public List<SpellSchoolData> spellSchools = new List<SpellSchoolData>();
+
 	//STAFF AND PUZZLE PREFABS
-	public GameObject inventoryPuzzleUIPrefab;
+	public GameObject puzzleUIPrefab;
 	public Tile staffTile;
 	public GameObject spellGemPickupPrefab;
 	public GameObject spellGemUIPrefab;
 
+	[SerializeField]
+	private Vector2Int defaultInventorySize;
 	// Singleton Pattern to access this script with ease
 	#region Singleton
 	public static ConstantsManager instance;

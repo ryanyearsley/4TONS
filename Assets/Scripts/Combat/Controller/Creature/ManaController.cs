@@ -6,7 +6,10 @@ public class ManaController : AbstractVitalsController, IHasMana
 {
     [SerializeField]
     private float manaRegenPerSec;
-
+    public override void InitializeVital () {
+        base.InitializeVital ();
+        StartCoroutine (RegenerateManaPerSecondRoutine ());
+    }
 
     public override void RegisterVital()
     {
@@ -54,6 +57,12 @@ public class ManaController : AbstractVitalsController, IHasMana
     {
         currentValue = Mathf.Clamp(currentValue += manaRegenPerSec, 0, maxValue);
         UpdateVitalsBar();
+    }
+    IEnumerator RegenerateManaPerSecondRoutine () {
+        for (int i = 0; i >= 0; i++) {
+            RegenerateManaPerSecond ();
+            yield return new WaitForSeconds (1);
+        }
     }
     public void RegenerateMana(float manaRegenAmount)
     {

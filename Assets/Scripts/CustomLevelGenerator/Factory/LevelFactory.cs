@@ -32,15 +32,24 @@ public class LevelFactory {
     public static void BuildLevel (int [,] levelData, Tile[] tileSet, Tilemap tilemap) {
         int yLength = levelData.GetLength(1);
         int xLength = levelData.GetLength(0);
-        Transform parent = tilemap.transform;
+        Transform parent = tilemap.transform.parent;
+        GameObject tilemapObject = tilemap.transform.gameObject;
         for (int y = 0; y < levelData.GetLength (1); y++) {
             for (int x = 0; x < levelData.GetLength (0); x++) {
                 int tilePrefabIndex = levelData[x, y];
                 if (tilePrefabIndex != 0 && tilePrefabIndex < 100) {
                     tilemap.SetTile (new Vector3Int (x, y, 0), tileSet [tilePrefabIndex - 1]);
                 }
-
             }
         }
+        GameObject wallColliderGo = GameObject.Instantiate (tilemapObject);
+        TilemapRenderer wallTilemap = wallColliderGo.GetComponent<TilemapRenderer> ();
+        wallTilemap.forceRenderingOff = true;
+        TilemapCollider2D wallTmCollider = wallColliderGo.GetComponent<TilemapCollider2D> ();
+        wallTmCollider.offset = new Vector2 (0f, 0.5f);
+        wallColliderGo.transform.parent = tilemapObject.transform.parent;
+        wallColliderGo.transform.localPosition = Vector3.zero;
+        wallColliderGo.gameObject.layer = 13;
+
     }
 }

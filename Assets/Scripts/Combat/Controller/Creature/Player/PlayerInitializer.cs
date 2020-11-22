@@ -5,28 +5,29 @@ using UnityEngine;
 
 public class PlayerInitializer : MonoBehaviour
 {
-
-	private PlayerAiming playerAiming;
+	private PlayerStateController playerStateController;
+	private PlayerAimingController playerAimingController;
 	private PlayerInputController playerInputController;
 	private AnimationController animationController;
 	private PlayerPuzzleController playerPuzzleController;
+	private PlayerSpellController spellController;
 
 	private void Awake () {
-		playerAiming = GetComponent<PlayerAiming> ();
+		playerStateController = GetComponent<PlayerStateController> ();
+		playerAimingController = GetComponent<PlayerAimingController> ();
 		animationController = GetComponentInChildren<AnimationController> ();
 		playerInputController = GetComponent<PlayerInputController> ();
-		playerPuzzleController = GetComponentInChildren<PlayerPuzzleController> ();
-
-	}
-
-	private void Start () {
+		playerPuzzleController = GetComponent<PlayerPuzzleController> ();
+		spellController = GetComponent<PlayerSpellController> ();
 	}
 
 	public void InitializePlayer (Player player) {
-		playerAiming.InitializeComponent (player);
+		playerAimingController.InitializeComponent (player);
 		animationController.InitializeComponent (player);
-		playerInputController.InitializePlayerComponent (player);
+		playerInputController.InitializeComponent (player);
 		playerPuzzleController.InitializeComponent (player);
+		playerStateController.OnChangeState (PlayerState.COMBAT);
+		//Spell controller initialized through puzzle controller (serves as validation step)
 	}
 
 }

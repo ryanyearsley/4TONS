@@ -22,7 +22,7 @@ public abstract class Spell : MonoBehaviour
     private void Start()
     {
         PoolManager.instance.CreatePool(spellData.spellObject, spellData.poolSize);
-        PlayerStateController stateController = transform.root.GetComponent<PlayerStateController>();
+        PlayerStateController stateController = GetComponentInParent<PlayerStateController>();
         switch (spellData.spellCastLocation) {
             case SpellCastLocation.Staff:
                 spellCastTransform = stateController.creaturePositions.staffAimTransform;

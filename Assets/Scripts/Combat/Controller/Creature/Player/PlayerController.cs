@@ -65,7 +65,7 @@ namespace PlayerManagement {
 				isDashing = true;
 				StartCoroutine (ResetIsDashing (dashDuration));
 				stateController.SetFaceDirection ((int)Mathf.Sign (movementController.faceDirection));
-				stateController.OnDash ();
+				//stateController.OnDash ();
 			}
 		}
 

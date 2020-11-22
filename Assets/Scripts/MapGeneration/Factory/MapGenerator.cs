@@ -39,11 +39,9 @@ public class MapGenerator : MonoBehaviour {
 	}
 
 	public void PlaceObjectOnGrid(Transform objectTransform, Vector2Int cartCoordinate) {
-		Debug.Log ("Placing " + objectTransform.gameObject.name + " on battlefield at coord: " + cartCoordinate.ToString());
 		objectTransform.position = tilemap.CellToWorld ((Vector3Int)cartCoordinate);
 	}
 	public void GenerateMap () {
-		Debug.Log ("Generating map");
 		map = new int [mapData.mapSize.x, mapData.mapSize.y];
 		spawnPoints = new SpawnPoints ();
 		RandomFillMap ();

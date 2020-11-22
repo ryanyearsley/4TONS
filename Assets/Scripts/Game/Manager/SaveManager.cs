@@ -85,13 +85,13 @@ public class SaveManager : MonoBehaviour {
 		wizardSaveData.spellSchoolData = (SpellSchoolData) AssetDatabase.LoadAssetAtPath(wizardSaveData.spellSchoolDataPath, typeof (SpellSchoolData));
 		wizardSaveData.primaryStaffSaveData.staffData = (StaffData) AssetDatabase.LoadAssetAtPath (wizardSaveData.primaryStaffSaveData.staffPath, typeof (StaffData));
 		
-		foreach (SpellSaveData spellSaveData in wizardSaveData.primaryStaffSaveData.equippedSpellsSaveData) {
+		foreach (SpellSaveData spellSaveData in wizardSaveData.primaryStaffSaveData.puzzleSaveDataDictionary.Values) {
 			spellSaveData.spellData = (SpellData)AssetDatabase.LoadAssetAtPath (spellSaveData.spellDataPath, typeof (SpellData));
 		}
-		foreach (SpellSaveData spellSaveData in wizardSaveData.secondaryStaffSaveData.equippedSpellsSaveData) {
+		foreach (SpellSaveData spellSaveData in wizardSaveData.secondaryStaffSaveData.puzzleSaveDataDictionary.Values) {
 			spellSaveData.spellData = (SpellData)AssetDatabase.LoadAssetAtPath (spellSaveData.spellDataPath, typeof (SpellData));
 		}
-		foreach (SpellSaveData spellSaveData in wizardSaveData.inventorySaveData) {
+		foreach (SpellSaveData spellSaveData in wizardSaveData.inventorySaveDataDictionary.Values) {
 			spellSaveData.spellData = (SpellData)AssetDatabase.LoadAssetAtPath (spellSaveData.spellDataPath, typeof (SpellData));
 		}
 	}

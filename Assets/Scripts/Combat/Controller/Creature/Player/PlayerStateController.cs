@@ -5,19 +5,42 @@ using UnityEngine;
 
 public class PlayerStateController : AbstractStateController {
 
+	[SerializeField]
 	public PlayerState currentPlayerState { get; private set; }
+	public PuzzleSaveDataDictionary currentStaffDictionary;
 
+	public event Action<PlayerState> OnChangeStateEvent;
+	public event Action<DashInfo> OnDashEvent;
+	public event Action<PuzzleGroupingDetails, SpellSaveData> OnBindSpellGemEvent;
+	public event Action<PuzzleGroupingDetails, SpellSaveData> OnUnbindSpellGemEvent;
+	public event Action<int, Spell> OnUpdateSpellBindingEvent;
+	public event Action<SpellData> OnCastSpellEvent;
+	public void OnChangeState (PlayerState playerState) {
+		currentPlayerState = playerState;
+		OnChangeStateEvent?.Invoke(playerState);
+	}
 
-	public event Action OnDashEvent;
+	public void OnDash (DashInfo dashInfo) {
+		OnDashEvent?.Invoke (dashInfo);
+	}
+	public void OnBindSpellGem (PuzzleGroupingDetails details, SpellSaveData spellSaveData) {
+		OnBindSpellGemEvent?.Invoke (details, spellSaveData);
+	}
 
+	public void OnUnbindSpellGem (PuzzleGroupingDetails details, SpellSaveData spellSaveData) {
+		OnUnbindSpellGemEvent?.Invoke (details, spellSaveData);
+	}
 
-
-	public void OnDash () {
-		OnDashEvent?.Invoke ();
+	public void OnUpdateSpellBinding (int spellIndex, Spell spell) {
+		OnUpdateSpellBindingEvent?.Invoke (spellIndex, spell);
+	}
+	public void OnCastSpell (SpellData spellData) {
+		OnCastSpellEvent?.Invoke (spellData);
 	}
 
 }
 
+[SerializeField]
 public enum PlayerState {
-	COMBAT, PUZZLE, DEAD
+	COMBAT, PUZZLE_BROWSING, PUZZLE_MOVING_SPELLGEM, DEAD
 }

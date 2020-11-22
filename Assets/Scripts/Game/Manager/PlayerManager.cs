@@ -38,6 +38,7 @@ public class PlayerManager : MonoBehaviour {
 			currentPlayers [playerIndex].isReady = true;
 		}
 	}
+
 } 
 
 [Serializable]
@@ -46,4 +47,5 @@ public class Player {
 	public int controllerIndex;
 	public bool isReady;
 	public WizardSaveData currentWizard;
+	public PlayerStateController currentPlayerStateController;
 }

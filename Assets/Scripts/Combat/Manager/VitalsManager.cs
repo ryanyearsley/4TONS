@@ -14,11 +14,16 @@ public class VitalsManager : MonoBehaviour
         Instance = this;
     }
 
+    public VitalsEntity GetObjectByID(int objectId) {
+        if (vitalsObjects.ContainsKey (objectId)) {
+            return vitalsObjects [objectId];
+        } else return null;
+	}
+
     public void DeregisterVitalsObject(int objectId)
     {
         vitalsObjects.Remove(objectId);
     }
-
     public void ApplyDamage(int objectId, float damage)
     {
         if (vitalsObjects.ContainsKey(objectId) && vitalsObjects[objectId].iDamageable != null)

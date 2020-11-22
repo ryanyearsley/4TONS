@@ -4,12 +4,11 @@ using UnityEngine;
 using Rewired;
 
 namespace PlayerManagement {
-	[RequireComponent (typeof (PlayerMovementController), typeof (PlayerAiming),
-		typeof (SpellController))]
+	[RequireComponent (typeof (PlayerMovementController), typeof (PlayerAimingController))]
 	public class PlayerInputController : MonoBehaviour {
 
-        [SerializeField]
-        private int controllerIndex;
+		[SerializeField]
+		private int controllerIndex;
 		private Rewired.Player rewiredController;
 
 		[SerializeField]
@@ -18,18 +17,20 @@ namespace PlayerManagement {
 		private Vector2 mouseDelta;
 
 		private PlayerMovementController playerMovementController;
-		private PlayerAiming playerAiming;
-		private SpellController spellController;
-		private PlayerStateController stateController;
+		private PlayerAimingController playerAimingController;
+		private PlayerStateController playerStateController;
+		private PlayerSpellController playerSpellController;
+		private PlayerPuzzleController playerPuzzleController;
 
 
 		private bool usingMouseControls;
 
 		private void Awake () {
-			playerAiming = GetComponent<PlayerAiming> ();
-			spellController = GetComponent<SpellController> ();
-			stateController = GetComponent<PlayerStateController> ();
+			playerAimingController = GetComponent<PlayerAimingController> ();
+			playerStateController = GetComponent<PlayerStateController> ();
 			playerMovementController = GetComponent<PlayerMovementController> ();
+			playerSpellController = GetComponentInChildren<PlayerSpellController> ();
+			playerPuzzleController = GetComponentInChildren<PlayerPuzzleController> ();
 		}
 		private void Start () {
 
@@ -40,24 +41,25 @@ namespace PlayerManagement {
 			this.controllerIndex = controllerIndex;
 			rewiredController = ReInput.players.GetPlayer (controllerIndex);
 		}
-		public void InitializePlayerComponent(Player player) {
-            this.controllerIndex = player.controllerIndex;
+		public void InitializeComponent (Player player) {
+			this.controllerIndex = player.controllerIndex;
 			rewiredController = ReInput.players.GetPlayer (controllerIndex);
 		}
 		private void Update () {
-			
-			MovementInput ();
 			AimingInput ();
+			MovementInput ();
+			PuzzleInput ();
 			SpellInput ();
 		}
 
 		private void MovementInput () {
 			Vector2 directionalInput = new Vector2 (rewiredController.GetAxisRaw ("MoveHorizontal"), rewiredController.GetAxisRaw ("MoveVertical"));
-			
+
 			if (rewiredController.GetButtonDown ("Dash")) {
+				Debug.Log ("dash input detected");
 				playerMovementController.OnDashInputDown ();
 			}
-			playerMovementController.UpdateMovementInput (directionalInput, playerAiming.CursorDirection);
+			playerMovementController.UpdateMovementInput (directionalInput, playerAimingController.CursorDirection);
 
 		}
 		private void AimingInput () {
@@ -73,43 +75,45 @@ namespace PlayerManagement {
 				}
 			}
 			if (usingMouseControls)
-				playerAiming.MouseAimingUpdate (mouseDelta);
+				playerAimingController.MouseAimingUpdate (mouseDelta);
 			else
-				playerAiming.JoystickAimingUpdate (joystickInput);
+				playerAimingController.JoystickAimingUpdate (joystickInput);
 
 		}
 		private void SpellInput () {
 			for (int spellIndex = 0; spellIndex < 4; spellIndex++) {
 				string buttonName = "Spell" + spellIndex;
 				if (rewiredController.GetButton (buttonName))
-					spellController.OnSpellButton (spellIndex);
+					playerSpellController.OnSpellButton (spellIndex);
 
 				if (rewiredController.GetButtonDown (buttonName)) {
 					Debug.Log ($"Get button down {spellIndex}");
-					spellController.OnSpellButtonDown (spellIndex);
+					playerSpellController.OnSpellButtonDown (spellIndex);
+					playerPuzzleController.OnSpellBindingButtonDown (playerStateController.currentPlayerState, spellIndex);
 				}
 				if (rewiredController.GetButtonUp (buttonName))
-					spellController.OnSpellButtonUp (spellIndex);
+					playerSpellController.OnSpellButtonUp (spellIndex);
 			}
-		}
-		private void PuzzleInput() {
-			if (rewiredController.GetButtonDown("TogglePuzzle")) {
 
+		}
+		private void PuzzleInput () {
+			playerPuzzleController.PuzzleUpdate (playerStateController.currentPlayerState);
+
+			if (rewiredController.GetButtonDown ("TogglePuzzle")) {
+				playerPuzzleController.OnTogglePuzzleMenuButtonDown (playerStateController.currentPlayerState);
 			}
-			Vector2 spellMovementDir = new Vector2();
-			if (rewiredController.GetButtonDown("UIUp")) {
-				spellMovementDir += Vector2.up;
+			if (rewiredController.GetButtonDown ("PickUpSpellGem")) {
+				playerPuzzleController.OnPickUpSpellGemButtonDown (playerStateController.currentPlayerState);
 			}
-			if (rewiredController.GetButtonDown ("UIDown")) {
-				spellMovementDir += Vector2.down;
+			if (rewiredController.GetButtonDown ("DropSpellGem")) {
+				playerPuzzleController.OnDropSpellGemButtonDown (playerStateController.currentPlayerState);
 			}
-			if (rewiredController.GetButtonDown ("UILeft")) {
-				spellMovementDir += Vector2.left;
+			if (rewiredController.GetButtonDown ("GrabSpellGem")) {
+				playerPuzzleController.OnGrabSpellGemButtonDown (playerStateController.currentPlayerState);
 			}
-			if (rewiredController.GetButtonDown ("UIRight")) {
-				spellMovementDir += Vector2.right;
+			if (rewiredController.GetButtonDown ("RotateSpellGem")) {
+				playerPuzzleController.OnRotateSpellGemButtonDown (playerStateController.currentPlayerState);
 			}
-			
 		}
 	}
 }

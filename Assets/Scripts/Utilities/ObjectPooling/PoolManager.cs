@@ -87,15 +87,16 @@ public class PoolManager : MonoBehaviour {
 		public void Reuse (Vector3 position, Quaternion rotation, string tag) {
 
 			// Reset the object as specified within it's own class and the PoolObject class
-			if (hasPoolObjectComponent) {
-				poolObjectScript.ReuseObject();
-			}
-
+			
 			// Move to desired position then set it active
 			gameObject.transform.position = position;
 			gameObject.transform.rotation = rotation;
             gameObject.tag = tag;
 			gameObject.SetActive (true);
+			Debug.Log ("object activated: " + gameObject.name);
+			if (hasPoolObjectComponent) {
+				poolObjectScript.ReuseObject ();
+			}
 		}
 
 		// Set the parent of the Object to help group objects properly

@@ -7,7 +7,7 @@ namespace PlayerManagement {
 	public class MovementController : MonoBehaviour {
 
 		[SerializeField]
-		private float moveSpeed = 4f;
+		protected float moveSpeed = 4f;
 		[Tooltip ("Scaling amount used to adjust the speeds on different axis.")]
 		public Vector2 isometricScaling = new Vector2 (1f, 0.5f);
 		[Range (0.01f, 0.9f)]
@@ -60,7 +60,7 @@ namespace PlayerManagement {
 				? direction.normalized
 				: direction;
 
-			Vector2 targetVelocity = normalizedInput * (moveSpeed * debuffSpeedMultiplier * isometricScaling);
+			Vector2 targetVelocity = normalizedInput * AggregateMovementModifiers();
 			Vector2 smoothedVelocity = Vector2.SmoothDamp (velocity, targetVelocity, ref velocitySmoothing, acceleration);
 
 			stateController.SetVelocity (
@@ -68,9 +68,12 @@ namespace PlayerManagement {
 				? Vector2.zero
 				: smoothedVelocity * debuffSpeedMultiplier);
 			return smoothedVelocity;
-
-
 		}
+
+		protected virtual Vector2 AggregateMovementModifiers() {
+			return moveSpeed * debuffSpeedMultiplier * isometricScaling;
+		}
+
 		protected float CalculateSpeedMultipliers () {
 			bool canWalk = true;
 			bool canCast = true;

@@ -42,7 +42,7 @@ public class WizardCreatePanelUI : MonoBehaviour
 		wizard.primaryStaffSaveData.staffData = currentSchool.staff;
 
 		wizard.secondaryStaffSaveData = new StaffSaveData ();
-		wizard.inventorySaveData = new List<SpellSaveData> ();
+		wizard.inventorySaveDataDictionary = new PuzzleSaveDataDictionary ();
 		wizard.primaryStaffSaveData.staffPath = AssetDatabase.GetAssetPath(currentSchool.staff);
 		return wizard;
 	}

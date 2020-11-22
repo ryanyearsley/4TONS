@@ -10,7 +10,7 @@ public class ProjectileSpell : Spell
     {
         base.CastSpell();
 
-        PoolManager.instance.ReuseObject (spellObject, spellCastTransform.position, spellCastTransform.rotation, this.tag);
+        PoolManager.instance.ReuseObject (spellData.spellObject, spellCastTransform.position, spellCastTransform.rotation, this.tag);
         
     }
 }

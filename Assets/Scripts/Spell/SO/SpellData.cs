@@ -8,6 +8,9 @@ public class SpellData : ScriptableObject
 {
 	//Informational
 	public string spellName;
+
+	//Every spell has a code. EXAMPLE: Lightning bolt: 101 (LIGHT:1) + (SPELL UNLOCK TIER: 01)
+	public int spellCode;
 	public string description;
 	//visual
 	public Sprite icon;
@@ -25,6 +28,6 @@ public class SpellData : ScriptableObject
 
 	public SpellObjectData spellObjectData;
 	//puzzle
-	public Vector3Int[] coordinates;
+	public Vector2Int[] coordinates;
 
 }
