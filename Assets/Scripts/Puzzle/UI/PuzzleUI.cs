@@ -23,11 +23,14 @@ public class PuzzleUI : MonoBehaviour {
 	private TMP_Text highlightedSpellNameText;
 	[SerializeField]
 	private TMP_Text highlightedSpellDescriptionText;
+	[SerializeField]
+	private TMP_Text staffNameText;
 
 	[SerializeField]
 	private SpriteRenderer[] spellBindSprites;
 
-	public void InitializePuzzleUI (PuzzleGroupingDetails inventoryDetails, PuzzleGroupingDetails staffDetails) {
+	public void InitializePuzzleUI (WizardSaveData wizardSaveData, PuzzleGroupingDetails inventoryDetails, PuzzleGroupingDetails staffDetails) {
+		staffNameText.text = wizardSaveData.primaryStaffSaveData.staffData.staffName;
 		PuzzleFactory.BuildInventoryUI (inventoryDetails.map, inventoryDetails.groupingOrigin, puzzleTilemap, ConstantsManager.instance.staffTile);
 		PuzzleFactory.BuildStaffUI (staffDetails.map, staffDetails.groupingOrigin, puzzleTilemap, ConstantsManager.instance.staffTile);
 		for (int i = 0; i < spellBindSprites.Length; i++) {
@@ -79,7 +82,7 @@ public class PuzzleUI : MonoBehaviour {
 			GameObject spellGemEntityGo = Instantiate (ConstantsManager.instance.spellGemUIPrefab);
 			spellGemEntityGo.name = "SpellGem_" + spellSaveData.spellData.spellName;
 			spellGemEntity = spellGemEntityGo.GetComponent<SpellGemEntity> ();
-			spellGemEntity.InitializeSpellGemUI (spellSaveData.spellData.spellGemSprite);
+			spellGemEntity.InitializeSpellGemUI (spellSaveData.spellData);
 			spellSaveData.spellGemEntity = spellGemEntity;
 		}
 		spellGemEntity.gameObject.transform.parent = details.gemParentTransform;

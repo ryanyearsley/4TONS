@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 
 public class ConstantsManager : MonoBehaviour {
-
 	//Camera details
 	public Vector2Int pixelPerfectReferenceResolutionClose;
 	public Vector2Int pixelPerfectReferenceResolutionMid;
@@ -17,6 +16,7 @@ public class ConstantsManager : MonoBehaviour {
 	public GameObject InteractButtonPrefab;
 
 	public List<SpellSchoolData> spellSchools = new List<SpellSchoolData>();
+	public Dictionary<SpellSchool, SpellSchoolData> spellSchoolDictionary = new Dictionary<SpellSchool, SpellSchoolData>();
 
 	//STAFF AND PUZZLE PREFABS
 	public GameObject puzzleUIPrefab;
@@ -39,5 +39,8 @@ public class ConstantsManager : MonoBehaviour {
 	#endregion
 	void Awake () {
 		SingletonInitialization ();
+		foreach (SpellSchoolData spellSchoolData in spellSchools) {
+			spellSchoolDictionary.Add (spellSchoolData.spellSchool, spellSchoolData);
+		}
 	}
 }

@@ -5,7 +5,8 @@ using UnityEngine;
 [CreateAssetMenu (fileName = "Data", menuName = "ScriptableObjects/Wizardry/Spell School Data", order = 2)]
 public class SpellSchoolData : ScriptableObject
 {
-	public SpellSchool school;
+	public SpellSchool spellSchool;
+	public Color schoolGemColor;
 	public string description;
 	public Sprite wizardSelectIcon;
 	public Sprite portrait;

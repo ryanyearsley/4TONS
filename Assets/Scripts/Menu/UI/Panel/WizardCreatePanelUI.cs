@@ -23,7 +23,7 @@ public class WizardCreatePanelUI : MonoBehaviour
 
 	public void DisplayWizardInfo (SpellSchoolData schoolData) {
 		currentSchool = schoolData;
-		schoolNameText.text = currentSchool.school.ToString ();
+		schoolNameText.text = currentSchool.spellSchool.ToString ();
 		wizardDescriptionText.text = currentSchool.description;
 		wizardSelectImage.sprite = currentSchool.wizardSelectIcon;
 	}

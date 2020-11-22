@@ -8,7 +8,7 @@ public class SpellData : ScriptableObject
 {
 	//Informational
 	public string spellName;
-
+	public SpellSchool spellSchool;
 	//Every spell has a code. EXAMPLE: Lightning bolt: 101 (LIGHT:1) + (SPELL UNLOCK TIER: 01)
 	public int spellCode;
 	public string description;
