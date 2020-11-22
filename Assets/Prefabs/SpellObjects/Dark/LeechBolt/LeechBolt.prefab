@@ -151,7 +151,7 @@ MonoBehaviour:
   spellObjectData: {fileID: 11400000, guid: fb9712e9bac58b94ca5e5297ed82900b, type: 2}
   isAlive: 0
   lifeTimer: 0
-  moveSpeed: 5
+  moveSpeed: 10
 --- !u!58 &353378772722788452
 CircleCollider2D:
   m_ObjectHideFlags: 0

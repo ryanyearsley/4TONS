@@ -43,16 +43,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd71a8127044cbd46b5b6e9367f2a1f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerWizardTemplatePrefab: {fileID: 987805954785869853, guid: 486e4b01e0e7b2445bd6d505c707b29f, type: 3}
+  pixelPerfectReferenceResolutionClose: {x: 320, y: 180}
+  pixelPerfectReferenceResolutionMid: {x: 640, y: 360}
+  pixelPerfectReferenceResolutionFar: {x: 640, y: 360}
+  playerWizardTemplatePrefab: {fileID: 567635596869537506, guid: 486e4b01e0e7b2445bd6d505c707b29f, type: 3}
   staffTemplatePrefab: {fileID: 9157059787610861381, guid: 1352a67a97c30fd49b4b857a13dad88c, type: 3}
   cursorTemplatePrefab: {fileID: 294513640660443360, guid: d932af68a1036c64281be587c170aadb, type: 3}
+  InteractButtonPrefab: {fileID: 453085026686650475, guid: 313bf64aa5dfb90448569f4a4664d2cd, type: 3}
   spellSchools:
   - {fileID: 11400000, guid: 16a7aee84221cf944b3bc8802b8d5ba3, type: 2}
   - {fileID: 11400000, guid: 3c0c6ec45b52c8f438a33661902dea92, type: 2}
-  pixelPerfectReferenceResolutionClose: {x: 320, y: 180}
-  pixelPerfectReferenceResolutionMid: {x: 320, y: 180}
-  pixelPerfectReferenceResolutionFar: {x: 320, y: 180}
-  inventoryPuzzleUIPrefab: {fileID: 118650557019254783, guid: 051321e734cbe98408f46c9e44f15764, type: 3}
+  puzzleUIPrefab: {fileID: 362433280101898927, guid: 29a14492407a0e442aa5ee8b2640c46f, type: 3}
   staffTile: {fileID: 11400000, guid: b4c6b12a214a7744ea78a5573676c646, type: 2}
   spellGemPickupPrefab: {fileID: 4770684225902127743, guid: 50474e70e84cdf640b3b08f9b8b51d6b, type: 3}
   spellGemUIPrefab: {fileID: 3736764071619496437, guid: caa8575b570f7064fa9976b4e192f64d, type: 3}
+  defaultInventorySize: {x: 0, y: 0}
