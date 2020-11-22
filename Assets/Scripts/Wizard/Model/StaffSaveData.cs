@@ -6,5 +6,5 @@ public class StaffSaveData {
 
 	public StaffData staffData;
 	public string staffPath;
-	public List<SpellSaveData> equippedSpellsSaveData;
+	public PuzzleSaveDataDictionary puzzleSaveDataDictionary;
 }

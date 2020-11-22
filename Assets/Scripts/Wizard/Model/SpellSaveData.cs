@@ -6,4 +6,14 @@ public class SpellSaveData {
     public string spellDataPath;
     public Vector2Int spellGemOriginCoordinate;
     public int spellGemRotation;
+    public int spellIndex;
+
+    //[System.NonSerialized]
+    public Vector2Int[] currentCoordinates;
+
+    [System.NonSerialized]
+    public Spell spellCast;
+
+    [System.NonSerialized]
+    public SpellGemEntity spellGemEntity;
 }

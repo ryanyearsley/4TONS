@@ -8,5 +8,5 @@ public class WizardSaveData {
 	public string spellSchoolDataPath;
 	public StaffSaveData primaryStaffSaveData;
 	public StaffSaveData secondaryStaffSaveData;
-	public List<SpellSaveData> inventorySaveData = new List<SpellSaveData>();
+	public PuzzleSaveDataDictionary inventorySaveDataDictionary;
 }
