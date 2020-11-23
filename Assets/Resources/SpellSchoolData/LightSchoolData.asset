@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7150dc5072870b429cf1b59e1e27331, type: 3}
   m_Name: LightSchoolData
   m_EditorClassIdentifier: 
-  school: 0
+  spellSchool: 0
+  schoolGemColor: {r: 0.75289667, g: 0.7735849, b: 0.13501246, a: 1}
   description: Smite your foes with the righteous light, and bring solstice to those
     you call friends.
   wizardSelectIcon: {fileID: 21300000, guid: 736294f5bfc4954489c654230618ca3c, type: 3}

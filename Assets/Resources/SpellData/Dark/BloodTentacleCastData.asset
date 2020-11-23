@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: BloodTentacleCastData
   m_EditorClassIdentifier: 
   spellName: Blood Tentacles
+  spellSchool: 1
   spellCode: 202
   description: Sprout blood tentacles at target location, returning health to caster.
   icon: {fileID: 21300000, guid: 0402e56ed291d4e40a91d3e2b6f8699b, type: 3}
