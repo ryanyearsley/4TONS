@@ -6,6 +6,8 @@ using UnityEngine;
 public class PlayerStateController : AbstractStateController {
 
 	[SerializeField]
+
+	public Player currentPlayer;
 	public PlayerState currentPlayerState { get; private set; }
 	public PuzzleSaveDataDictionary currentStaffDictionary;
 
@@ -15,6 +17,12 @@ public class PlayerStateController : AbstractStateController {
 	public event Action<PuzzleGroupingDetails, SpellSaveData> OnUnbindSpellGemEvent;
 	public event Action<int, Spell> OnUpdateSpellBindingEvent;
 	public event Action<SpellData> OnCastSpellEvent;
+
+	public void InitializeComponent(Player player) {
+		currentPlayer = player;
+		OnChangeState (PlayerState.COMBAT);
+	}
+
 	public void OnChangeState (PlayerState playerState) {
 		currentPlayerState = playerState;
 		OnChangeStateEvent?.Invoke(playerState);

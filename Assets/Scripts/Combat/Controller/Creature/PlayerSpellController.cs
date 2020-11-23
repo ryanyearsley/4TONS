@@ -34,6 +34,7 @@ public class PlayerSpellController : MonoBehaviour {
 
 	public void OnUnbindSpellGem (PuzzleGroupingDetails details, SpellSaveData spellSaveData) {
 		if (details.puzzleType == PuzzleGroupingType.EQUIPPED_STAFF) {
+			spellSaveData.spellCast.spellUI = null;
 			playerStateController.OnUpdateSpellBinding (spellSaveData.spellIndex, null);
 		}
 		spellSaveData.spellCast.transform.parent = PoolManager.instance.transform;
@@ -59,7 +60,14 @@ public class PlayerSpellController : MonoBehaviour {
 		}
 	}
 	private void OnUpdateSpellBinding (int spellIndex, Spell spell) {
-			spellBindings [spellIndex] = spell;
+		spellBindings [spellIndex] = spell;
+		if (spell == null) {
+			UIManager.Instance.playerUIs [playerStateController.currentPlayer.playerIndex].spellUIs [spellIndex].UnbindSpellUI ();
+		}
+		if (spellBindings [spellIndex] != null) {
+			spellBindings [spellIndex].spellUI = UIManager.Instance.playerUIs [playerStateController.currentPlayer.playerIndex].spellUIs [spellIndex];
+			spellBindings [spellIndex].spellUI.InitializeSpellUI (spell.spellData);
+		}
 	}
 
 	private int AutoAssignBinding() {
@@ -75,7 +83,6 @@ public class PlayerSpellController : MonoBehaviour {
 	public void OnSpellButtonDown (int spellIndex) {
 		if (!canCast || spellBindings[spellIndex] == null)
 			return;
-
 		Debug.Log ("Spell down: " + spellIndex);
 		CreaturePositions positions = playerStateController.creaturePositions;
 		Spell spell = spellBindings[spellIndex];

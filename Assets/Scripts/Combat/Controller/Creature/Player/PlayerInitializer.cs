@@ -26,7 +26,7 @@ public class PlayerInitializer : MonoBehaviour
 		animationController.InitializeComponent (player);
 		playerInputController.InitializeComponent (player);
 		playerPuzzleController.InitializeComponent (player);
-		playerStateController.OnChangeState (PlayerState.COMBAT);
+		playerStateController.InitializeComponent (player);
 		//Spell controller initialized through puzzle controller (serves as validation step)
 	}
 

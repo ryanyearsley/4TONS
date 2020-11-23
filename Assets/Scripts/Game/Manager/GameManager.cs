@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour {
 			player.currentPlayerStateController = playerObject.GetComponent<PlayerStateController> ();
 			playerObject.GetComponent<PlayerInitializer> ().InitializePlayer (player);
 			MapGenerator.instance.PlaceObjectOnGrid (playerObject.transform, spawnCoordinate);
-			//TODO: Decouple Camera/MovementController, perhaps move to StateController.
+			UIManager.Instance.playerUIs [player.playerIndex].InitializePlayerUI (player);
 			if (PlayerManager.Instance.currentPlayers.Count == 1) {
 				PlayerManagement.CameraController.instance.SetCameraDynamic (playerObject.GetComponent<PlayerMovementController> ());
 			}

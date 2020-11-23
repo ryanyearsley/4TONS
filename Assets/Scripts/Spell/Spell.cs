@@ -17,8 +17,7 @@ public abstract class Spell : MonoBehaviour
 
     protected Transform spellCastTransform;
     protected float cdTimer;
-
-
+    public SpellUI spellUI;
     private void Start()
     {
         PoolManager.instance.CreatePool(spellData.spellObject, spellData.poolSize);
@@ -38,22 +37,25 @@ public abstract class Spell : MonoBehaviour
     }
     private void Update()
     {
-        if (onCooldown)
-        {
-            cdTimer -= Time.deltaTime;
-            if (cdTimer <= 0)
+        if (onCooldown) {
+            spellUI.UpdateSpellUICooldown (cdTimer/spellData.coolDown, cdTimer);
+            cdTimer += Time.deltaTime;
+            if (cdTimer >= spellData.coolDown) {
                 onCooldown = false;
+                spellUI.ActivateSpellUI ();
+            }
         }
     }
 
 
     public virtual void CastSpell()
     {
-
         Debug.Log ("Casting Spell");
-        if (!onCooldown )
-        onCooldown = true;
-        cdTimer = spellData.coolDown;
+        if (!onCooldown) {
+            onCooldown = true;
+            cdTimer = 0;
+            spellUI.GreyOutSpellUI ();
+        }
     }
 
     public virtual void ChannelSpell()
