@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2922971767227484440}
   - component: {fileID: 2245192601765553197}
   - component: {fileID: 6728380124618956393}
+  - component: {fileID: 585964973}
   m_Layer: 8
   m_Name: DummyAI
   m_TagString: Player
@@ -67,6 +68,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eebad2dcb27988043b7af1b65d440543, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 0
+  isometricScaling: {x: 1, y: 0.5}
+  acceleration: 0.1
 --- !u!61 &1341477367693980138
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -144,6 +148,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!114 &585964973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1341477367693980137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13d07d7b797155c44872edbbdda9eec8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8092801210520090103
 GameObject:
   m_ObjectHideFlags: 0

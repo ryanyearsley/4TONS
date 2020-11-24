@@ -25,10 +25,20 @@ public class AStarUnit : MonoBehaviour {
 
 	protected virtual void Awake () {
 		controller = GetComponent<MovementController> ();
+		StartCoroutine (FindPlayerAfterLoad());
 	}
 
+	private IEnumerator FindPlayerAfterLoad() {
+		Debug.Log ("wait for a sec...");
+		yield return new WaitForSeconds (1);
+		if (target == null) {
+			Debug.Log ("Finding player target.");
+			target = FindObjectOfType<PlayerStateController>().transform;
+		}
+	}
 	private void Start () {
 		StartCoroutine (UpdatePath ());
+		
 	}
 
 	protected void GoToPosition (Vector2 position) {
@@ -53,7 +63,7 @@ public class AStarUnit : MonoBehaviour {
 	}
 
 	private IEnumerator UpdatePath () {
-
+		yield return new WaitForSeconds (1);
 		if (Time.timeSinceLevelLoad < 0.3f)
 			yield return new WaitForSeconds (0.3f);
 		PathRequestManager.RequestPath (new PathRequest (transform.position, target.position, OnPathFound));

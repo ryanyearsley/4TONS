@@ -23,22 +23,22 @@ public class GridManager : MonoBehaviour {
 	private int penaltyMax = int.MinValue;
 
 	private void Awake () {
-		InitializeGrid ();
+		StartCoroutine(InitializeGrid ());
 	}
 
-	public void InitializeGrid () {
+	private IEnumerator InitializeGrid() {
+		yield return new WaitForSeconds (0.5f); 
 		nodeDiameter = nodeRadius * 2;
 		gridSizeX = Mathf.RoundToInt (gridWorldSize.x / nodeDiameter);
 		gridSizeY = Mathf.RoundToInt (gridWorldSize.y / nodeDiameter);
 
 		foreach (TerrainType region in walkableRegions) {
 			walkableMask.value |= region.terrainMask.value;
-			walkableRegionsDictionary.Add ((int) Mathf.Log (region.terrainMask.value, 2), region.terrainPenalty);
+			walkableRegionsDictionary.Add ((int)Mathf.Log (region.terrainMask.value, 2), region.terrainPenalty);
 		}
 
 		CreateGrid ();
 	}
-
 	public int MaxSize {
 		get {
 			return gridSizeX * gridSizeY;

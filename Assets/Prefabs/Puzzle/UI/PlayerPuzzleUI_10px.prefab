@@ -119,8 +119,8 @@ MonoBehaviour:
   spellBindSprites:
   - {fileID: 7922187524046823942}
   - {fileID: 4230631802983143215}
-  - {fileID: 150492810483554220}
   - {fileID: 6823584047933154020}
+  - {fileID: 150492810483554220}
 --- !u!210 &8444464670145012147
 SortingGroup:
   m_ObjectHideFlags: 0
@@ -1087,6 +1087,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2609470962106383216}
     m_Modifications:
+    - target: {fileID: 658752560545938261, guid: 517bd7e2be4a4fc419e63b618cc8e17f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1115634417951331512, guid: 517bd7e2be4a4fc419e63b618cc8e17f, type: 3}
       propertyPath: m_SortingLayerID
       value: 135937107
@@ -1159,12 +1163,24 @@ PrefabInstance:
       propertyPath: m_SortingLayer
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5074519447493638504, guid: 517bd7e2be4a4fc419e63b618cc8e17f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5527419442909691618, guid: 517bd7e2be4a4fc419e63b618cc8e17f, type: 3}
       propertyPath: m_SortingLayerID
       value: 135937107
       objectReference: {fileID: 0}
     - target: {fileID: 5527419442909691618, guid: 517bd7e2be4a4fc419e63b618cc8e17f, type: 3}
       propertyPath: m_SortingLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6486181501450762771, guid: 517bd7e2be4a4fc419e63b618cc8e17f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8519440394969274912, guid: 517bd7e2be4a4fc419e63b618cc8e17f, type: 3}
+      propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9220602019540925952, guid: 517bd7e2be4a4fc419e63b618cc8e17f, type: 3}
