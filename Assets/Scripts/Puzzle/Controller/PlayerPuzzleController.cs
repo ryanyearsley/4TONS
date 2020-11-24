@@ -17,6 +17,7 @@ public enum PuzzleCursorRegion {
 	DISABLED, INVENTORY, STAFF, OUTSIDE_BOUNDS
 }
 public class PlayerPuzzleController : MonoBehaviour {
+
 	private PlayerStateController playerStateController;
 
 	[SerializeField]
@@ -177,7 +178,7 @@ public class PlayerPuzzleController : MonoBehaviour {
 					//return spellgem to previous position
 					PuzzleGroupingDetails details = puzzleGroupingDictionary[revertRegion];
 					if (revertRegion == PuzzleCursorRegion.OUTSIDE_BOUNDS) {
-
+						DropSpellGemToWorld (movingSpellSaveData);
 					}
 					if (movingSpellSaveData != null && PuzzleUtility.CheckSpellFitmentEligibility (details, movingSpellSaveData)) {
 						playerStateController.OnBindSpellGem (details, movingSpellSaveData);
@@ -189,6 +190,14 @@ public class PlayerPuzzleController : MonoBehaviour {
 	}
 	public void OnGrabSpellGemButtonDown (PlayerState playerState) {
 		switch (playerState) {
+			case (PlayerState.COMBAT): {
+					if (interactableSpellGemPickups.Count == 1) {
+						PickUpSpellGem (interactableSpellGemPickups [0]);
+					} else if (interactableSpellGemPickups.Count > 1) {
+						PickUpSpellGem (CalculateClosestSpellGem ());
+					}
+					break;
+				}
 			case (PlayerState.PUZZLE_BROWSING): {
 					Debug.Log ("move spellgem button down while browsing puzzle.");
 					if (highlightedSpellSaveData != null && puzzleGroupingDictionary.ContainsKey (currentPuzzleCursorRegion)) {
@@ -332,13 +341,15 @@ public class PlayerPuzzleController : MonoBehaviour {
 				puzzleUI.ClearHighlightedSpellGemInformation ();
 			} else if (highlightedTileInfo.spellSaveData == null) {
 				highlightedSpellSaveData = null;
+				playerStateController.OnChangeState (PlayerState.PUZZLE_BROWSING);
 				puzzleUI.ClearHighlightedSpellGemInformation ();
 			} else if (highlightedSpellSaveData != highlightedTileInfo.spellSaveData) {
 				highlightedSpellSaveData = highlightedTileInfo.spellSaveData;
-				puzzleUI.UpdateHighlightedSpellGemInformation (highlightedTileInfo.spellSaveData.spellData);
+				puzzleUI.UpdateHighlightedSpellGemInformation (highlightedSpellSaveData.spellData);
 			}
 		}
 	}
+
 	public void OnChangePuzzleCursorRegion (PuzzleCursorRegion puzzleCursorRegion) {
 		currentPuzzleCursorRegion = puzzleCursorRegion;
 	}

@@ -102,9 +102,6 @@ namespace PlayerManagement {
 			if (rewiredController.GetButtonDown ("TogglePuzzle")) {
 				playerPuzzleController.OnTogglePuzzleMenuButtonDown (playerStateController.currentPlayerState);
 			}
-			if (rewiredController.GetButtonDown ("PickUpSpellGem")) {
-				playerPuzzleController.OnPickUpSpellGemButtonDown (playerStateController.currentPlayerState);
-			}
 			if (rewiredController.GetButtonDown ("DropSpellGem")) {
 				playerPuzzleController.OnDropSpellGemButtonDown (playerStateController.currentPlayerState);
 			}
