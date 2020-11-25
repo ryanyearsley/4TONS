@@ -80,6 +80,108 @@ TextureImporter:
   - first:
       213: -3283920910868400913
     second: WoL_Death_3
+  - first:
+      213: 1336948338577825233
+    second: WoL_SpriteSheet_0
+  - first:
+      213: 2184150818177183957
+    second: WoL_SpriteSheet_1
+  - first:
+      213: -1742072307485396115
+    second: WoL_SpriteSheet_2
+  - first:
+      213: -1244112550463413915
+    second: WoL_SpriteSheet_3
+  - first:
+      213: 601483555757205702
+    second: WoL_SpriteSheet_4
+  - first:
+      213: -2811021842975694365
+    second: WoL_SpriteSheet_5
+  - first:
+      213: -3888265007151181865
+    second: WoL_SpriteSheet_6
+  - first:
+      213: -3307663791173581412
+    second: WoL_SpriteSheet_7
+  - first:
+      213: 3653133510205381292
+    second: WoL_SpriteSheet_8
+  - first:
+      213: -1877279246090224842
+    second: WoL_SpriteSheet_9
+  - first:
+      213: 4919877749717537485
+    second: WoL_SpriteSheet_10
+  - first:
+      213: -686793852579685611
+    second: WoL_SpriteSheet_11
+  - first:
+      213: -7862913756764103234
+    second: WoL_SpriteSheet_12
+  - first:
+      213: 1010139538301172350
+    second: WoL_SpriteSheet_13
+  - first:
+      213: 7990505047511730497
+    second: WoL_SpriteSheet_14
+  - first:
+      213: 4720635697284957884
+    second: WoL_SpriteSheet_15
+  - first:
+      213: 1198600438911881673
+    second: WoL_SpriteSheet_16
+  - first:
+      213: -8800469541479045557
+    second: WoL_SpriteSheet_17
+  - first:
+      213: 7720709474337782400
+    second: WoL_SpriteSheet_18
+  - first:
+      213: -3099585772777469910
+    second: WoL_SpriteSheet_19
+  - first:
+      213: -5623489375458234394
+    second: WoL_SpriteSheet_20
+  - first:
+      213: 6242081357392541836
+    second: WoL_SpriteSheet_21
+  - first:
+      213: 4793264067565216303
+    second: WoL_SpriteSheet_22
+  - first:
+      213: 3865280471196371671
+    second: WoL_SpriteSheet_23
+  - first:
+      213: 6371828344325864223
+    second: WoL_SpriteSheet_24
+  - first:
+      213: -3657713246689071426
+    second: WoL_SpriteSheet_25
+  - first:
+      213: 3030653182869166071
+    second: WoL_Run1
+  - first:
+      213: -3982570638891655853
+    second: WoL_Run2
+  - first:
+      213: -7515120466022086812
+    second: WoL_Run3
+  - first:
+      213: -4212919012763893998
+    second: WoL_Run4
+  - first:
+      213: 7691610323598649893
+    second: WoL_Run5
+  - first:
+      213: -4495664382910579005
+    second: WoL_Run6
+  - first:
+      213: -2463054125973398998
+    second: WoL_Run7
+  - first:
+      213: -8084940840195511747
+    second: WoL_SpriteSheet_33
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -732,6 +834,174 @@ TextureImporter:
       bones: []
       spriteID: fe4363d945b2d62d0800000000000000
       internalID: -3283920910868400913
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoL_Run1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f7d252430b0f0a20800000000000000
+      internalID: 3030653182869166071
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoL_Run2
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 35d56ffba111bb8c0800000000000000
+      internalID: -3982570638891655853
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoL_Run3
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4674c72c0cde4b790800000000000000
+      internalID: -7515120466022086812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoL_Run4
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21ff7b89a74b885c0800000000000000
+      internalID: -4212919012763893998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoL_Run5
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52a23d066d61eba60800000000000000
+      internalID: 7691610323598649893
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoL_Run6
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ce3d3310113c91c0800000000000000
+      internalID: -4495664382910579005
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoL_Run7
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2a9bce725971ddd0800000000000000
+      internalID: -2463054125973398998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoL_SpriteSheet_33
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 17
+        width: 4
+        height: 1
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d3a291644258ccf80800000000000000
+      internalID: -8084940840195511747
       vertices: []
       indices: 
       edges: []
