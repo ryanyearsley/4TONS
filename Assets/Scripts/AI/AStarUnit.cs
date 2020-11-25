@@ -29,8 +29,7 @@ public class AStarUnit : MonoBehaviour {
 	}
 
 	private IEnumerator FindPlayerAfterLoad() {
-		Debug.Log ("wait for a sec...");
-		yield return new WaitForSeconds (1);
+		yield return new WaitForSeconds (0.2f);
 		if (target == null) {
 			Debug.Log ("Finding player target.");
 			target = FindObjectOfType<PlayerStateController>().transform;
@@ -55,6 +54,7 @@ public class AStarUnit : MonoBehaviour {
 	}
 
 	public void OnPathFound (Vector3 [] waypoints, bool pathSuccessful) {
+		Debug.Log ("on path found");
 		if (pathSuccessful) {
 			StopCoroutine ("FollowPath");
 			path = new Path (waypoints, transform.position, turnDistance, 0.5f);
@@ -63,9 +63,9 @@ public class AStarUnit : MonoBehaviour {
 	}
 
 	private IEnumerator UpdatePath () {
-		yield return new WaitForSeconds (1);
-		if (Time.timeSinceLevelLoad < 0.3f)
-			yield return new WaitForSeconds (0.3f);
+		Debug.Log ("updating path");
+		if (Time.timeSinceLevelLoad < 1f)
+			yield return new WaitForSeconds (1.1f);
 		PathRequestManager.RequestPath (new PathRequest (transform.position, target.position, OnPathFound));
 
 		float sqrMoveThreshold = PATH_UPDATE_MOVE_THRESHOLD * PATH_UPDATE_MOVE_THRESHOLD;
@@ -81,7 +81,7 @@ public class AStarUnit : MonoBehaviour {
 	}
 
 	private IEnumerator FollowPath () {
-
+		Debug.Log ("following path");
 		followingPath = true;
 		int pathIndex = 0;
 		lookDirection = (path.lookPoints [0] - transform.position).SetZ (0).normalized;
