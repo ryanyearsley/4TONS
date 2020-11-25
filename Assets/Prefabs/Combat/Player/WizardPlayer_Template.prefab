@@ -112,6 +112,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 024463f615dda4b48b25c59d3cfeccac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentPlayer:
+    playerIndex: 0
+    controllerIndex: 0
+    isReady: 0
+    currentWizard:
+      wizardName: 
+      spellSchoolData: {fileID: 0}
+      spellSchoolDataPath: 
+      primaryStaffSaveData:
+        staffData: {fileID: 0}
+        staffPath: 
+        puzzleSaveDataDictionary:
+          m_keys: []
+          m_values: []
+      secondaryStaffSaveData:
+        staffData: {fileID: 0}
+        staffPath: 
+        puzzleSaveDataDictionary:
+          m_keys: []
+          m_values: []
+      inventorySaveDataDictionary:
+        m_keys: []
+        m_values: []
+    currentPlayerStateController: {fileID: 0}
+  currentStaffDictionary:
+    m_keys: []
+    m_values: []
 --- !u!114 &6992629878258500324
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,11 +226,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e9b9d1443e1d8a4e8116f519a9321b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spells:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  spellBindings:
+    m_keys: 
+    m_values: []
 --- !u!1 &6173087236800696740
 GameObject:
   m_ObjectHideFlags: 0
@@ -305,8 +330,8 @@ GameObject:
   m_Component:
   - component: {fileID: 121732723773868714}
   - component: {fileID: 1674884358717887335}
-  - component: {fileID: 4298460861068023267}
   - component: {fileID: 5024693287887791866}
+  - component: {fileID: 2438937986773480316}
   m_Layer: 8
   m_Name: Graphics
   m_TagString: Untagged
@@ -379,18 +404,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4298460861068023267
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7291926812983036668}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7333cd5fde8942c49925ff00997133f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!95 &5024693287887791866
 Animator:
   serializedVersion: 3
@@ -410,3 +423,15 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &2438937986773480316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7291926812983036668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa339c5181d291d4da8e0117500c7b6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
