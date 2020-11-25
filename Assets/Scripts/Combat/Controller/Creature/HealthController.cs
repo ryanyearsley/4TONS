@@ -75,7 +75,7 @@ public class HealthController : AbstractVitalsController, IDamageable
        
         if (lives <= 0)
         {
-            Debug.Log("No more lives. Get fucked! ");
+            Debug.Log("No more lives. stay ded!");
         }
         else
         {
