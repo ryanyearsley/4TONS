@@ -22,7 +22,7 @@ public class PoolManager : MonoBehaviour {
 	}
 
 	// Create a pool of gameobjects and add them to a dictionary
-	public void CreatePool (GameObject prefab, int poolSize) {
+	public void CreatePoolGeneric (GameObject prefab, int poolSize) {
 		int poolKey = prefab.GetInstanceID (); // GetInstanceID is a unique ID for every game object
 		Transform poolHolder;
 		if (!poolDictionary.ContainsKey (poolKey)) {
@@ -46,7 +46,7 @@ public class PoolManager : MonoBehaviour {
 	}
 
 	// Reuse a gameobject and places it in the desired position
-	public GameObject ReuseObject (GameObject prefab, Vector3 position, Quaternion rotation, string tag) {
+	public GameObject ReuseObject (GameObject prefab, Vector3 position, Quaternion rotation) {
 		int poolKey = prefab.GetInstanceID ();
 
 		if (poolDictionary.ContainsKey (poolKey)) {
@@ -55,53 +55,29 @@ public class PoolManager : MonoBehaviour {
 			ObjectInstance objectToReuse = poolDictionary [poolKey].Dequeue ();
 			poolDictionary [poolKey].Enqueue (objectToReuse);
 
-			objectToReuse.Reuse (position, rotation, tag);
+			objectToReuse.Reuse (position, rotation);
 			return objectToReuse.gameObject;
 		} else {
-			CreatePool (prefab, defaultPoolSize);
-			return ReuseObject (prefab, position, rotation, tag);
+			CreatePoolGeneric (prefab, defaultPoolSize);
+			return ReuseObject (prefab, position, rotation);
 		}
 	}
 
-	// Custom GameObject class to keep track of the objects transform and other values
-	public class ObjectInstance {
-		public GameObject gameObject;
-		private Transform transform;
+	public GameObject ReuseObject (GameObject prefab, Vector3 position, Quaternion rotation, VitalsEntity vitalsEntity) {
+		int poolKey = prefab.GetInstanceID ();
 
-		private bool hasPoolObjectComponent;
-        private IPoolable poolObjectScript;
+		if (poolDictionary.ContainsKey (poolKey)) {
 
-		public ObjectInstance (GameObject objectInstance) {
-			gameObject = objectInstance;
-			transform = gameObject.transform;
-			gameObject.SetActive (false);
+			// Dequeue then requeue the object then call the Objects Reuse function
+			ObjectInstance objectToReuse = poolDictionary [poolKey].Dequeue ();
+			poolDictionary [poolKey].Enqueue (objectToReuse);
 
-			// Keep track if any of the objects scripts inherit the PoolObject script
-            if (gameObject.GetComponent<IPoolable> () != null) {
-				hasPoolObjectComponent = true;
-                poolObjectScript = gameObject.GetComponent<IPoolable> ();
-			}
-		}
-
-		// Method called when an ObjectInstance is being reused
-		public void Reuse (Vector3 position, Quaternion rotation, string tag) {
-
-			// Reset the object as specified within it's own class and the PoolObject class
-			
-			// Move to desired position then set it active
-			gameObject.transform.position = position;
-			gameObject.transform.rotation = rotation;
-            gameObject.tag = tag;
-			gameObject.SetActive (true);
-			Debug.Log ("object activated: " + gameObject.name);
-			if (hasPoolObjectComponent) {
-				poolObjectScript.ReuseObject ();
-			}
-		}
-
-		// Set the parent of the Object to help group objects properly
-		public void SetParent (Transform parent) {
-			transform.parent = parent;
+			objectToReuse.ReuseSpellObject (position, rotation, vitalsEntity);
+			return objectToReuse.gameObject;
+		} else {
+			CreatePoolGeneric (prefab, defaultPoolSize);
+			return ReuseObject (prefab, position, rotation, vitalsEntity);
 		}
 	}
+
 }

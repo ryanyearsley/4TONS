@@ -1,6 +1,7 @@
+using UnityEngine;
 public interface IPoolable {
 
-    void SetupObject ();
+    void SetupObject (Transform parentTransform);
 
     void ReuseObject ();
 
