@@ -30,7 +30,6 @@ public class PathRequestManager : MonoBehaviour {
 	}
 
 	public static void RequestPath (PathRequest request) {
-		Debug.Log ("dummy AI requesting path... Path start:" + request.pathStart + ", Path end: " + request.pathEnd);
 		ThreadStart threadStart = delegate {
 			instance.pathfinding.FindPath (request, instance.FinishedProcessingPath);
 		};

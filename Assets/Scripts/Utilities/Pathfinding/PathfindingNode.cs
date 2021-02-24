@@ -1,8 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 
-public class Node : IHeapItem<Node> {
+[Serializable]
+public class PathfindingNode : IHeapItem<PathfindingNode> {
 
 	public bool walkable;
 	public Vector3 worldPosition;
@@ -12,10 +12,10 @@ public class Node : IHeapItem<Node> {
 
 	public int gCost;
 	public int hCost;
-	public Node parent;
+	public PathfindingNode parent;
 	int heapIndex;
 
-	public Node (bool _walkable, Vector3 _worldPosition, int _gridX, int _gridY, int _penalty) {
+	public PathfindingNode (bool _walkable, Vector3 _worldPosition, int _gridX, int _gridY, int _penalty) {
 		walkable = _walkable;
 		worldPosition = _worldPosition;
 		gridX = _gridX;
@@ -38,7 +38,7 @@ public class Node : IHeapItem<Node> {
 		}
 	}
 
-	public int CompareTo (Node nodeToCompare) {
+	public int CompareTo (PathfindingNode nodeToCompare) {
 		int compare = fCost.CompareTo (nodeToCompare.fCost);
 		if (compare == 0) {
 			compare = hCost.CompareTo (nodeToCompare.hCost);
