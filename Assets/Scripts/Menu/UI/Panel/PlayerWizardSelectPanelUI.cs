@@ -1,6 +1,9 @@
 ﻿
 using UnityEngine;
 
+
+//CURRENTLY NOT IN USE! 
+//This panel is to be used for a hybrid character creation/selection screen for multiplayer.
 public enum WizardSelectPhase {
 	SELECT, CREATE_NEW, READY
 }
@@ -18,12 +21,12 @@ public class PlayerWizardSelectPanelUI : MonoBehaviour {
 	private GameObject readyPanel;
 
 	private WizardCreatePanelUI wizardCreatePanelUI;
-	private SelectLoadedWizardsPanelUI existingWizardPanelUI;
+	private WizardSelectPlayerPanelUI existingWizardPanelUI;
 
 	private void Start () {
 	}
 	public void InitializePanel(int index) {
-		existingWizardPanelUI = selectWizardPanel.GetComponent<SelectLoadedWizardsPanelUI> ();
+		existingWizardPanelUI = selectWizardPanel.GetComponent<WizardSelectPlayerPanelUI> ();
 		wizardCreatePanelUI = createNewWizardPanel.GetComponent<WizardCreatePanelUI> ();
 		playerIndex = index;
 		ChangeWizardSelectPhase (0);
@@ -36,7 +39,6 @@ public class PlayerWizardSelectPanelUI : MonoBehaviour {
 		switch (currentWizardSelectPhase) {
 			case WizardSelectPhase.SELECT:
 				selectWizardPanel.SetActive (true); 
-				existingWizardPanelUI.PopulateLoadedWizardButtons ();
 				break;
 			case WizardSelectPhase.CREATE_NEW:
 				createNewWizardPanel.SetActive (true);

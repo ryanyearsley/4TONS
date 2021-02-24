@@ -2,15 +2,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Rewired;
+
 
 public enum MainMenuScreen {
-	WELCOME, WIZARD_SELECT, LEVEL_SELECT, OPTIONS
-} 
+	WELCOME, GAMETYPE_SELECT, GAUNTLET_CREATE, WIZARD_SELECT, SETTINGS
+}
+
 public class MainMenuManager : MonoBehaviour {
 	public MainMenuScreen currentMainMenuScreen { get; private set; }
 	public event Action<MainMenuScreen> OnMenuScreenChangeEvent;
 	public event Action<Player> OnPlayerJoinEvent;
+	public event Action<WizardSaveData> OnWizardDeleteEvent;
 
 	#region Singleton
 	public static MainMenuManager Instance { get; private set; }
@@ -21,32 +23,49 @@ public class MainMenuManager : MonoBehaviour {
 	private void Awake () {
 		InitializeSingleton ();
 	}
+
+	IEnumerator Start () {
+		yield return new WaitForSeconds (0.05f);
+		if (PlayerManager.instance.currentPlayers.Count > 0) {
+			Debug.Log ("more than zero players active. Going to gametype select screen.");
+			ChangeMenuScreen (MainMenuScreen.GAMETYPE_SELECT);
+		} else {
+			ChangeMenuScreen (MainMenuScreen.WELCOME);
+		}
+	}
 	public void ChangeMenuScreen(MainMenuScreen screen) {
 		currentMainMenuScreen = screen;
 		OnMenuScreenChangeEvent?.Invoke (screen);
 	}
 	public void OnPlayerJoin(int controllerIndex) {
-		Player player = CreateAndRegisterPlayer (controllerIndex);
-		OnPlayerJoinEvent?.Invoke (player);
+		if (currentMainMenuScreen == MainMenuScreen.WELCOME) {
+			Player player = CreateAndRegisterPlayer (controllerIndex);
+			MainMenuManager.Instance.ChangeMenuScreen (MainMenuScreen.GAMETYPE_SELECT);
+			OnPlayerJoinEvent?.Invoke (player);
+		}
+	}
+
+	public void OnWizardDelete(WizardSaveData wizardSaveData) {
+		OnWizardDeleteEvent?.Invoke (wizardSaveData);
 	}
 
 	public Player CreateAndRegisterPlayer (int controllerIndex) {
 		Player player = new Player();
-		player.playerIndex = PlayerManager.Instance.currentPlayers.Count;
+		player.playerIndex = PlayerManager.instance.currentPlayers.Count;
 		player.controllerIndex = controllerIndex;
-		PlayerManager.Instance.AddPlayer (player);
+		PlayerManager.instance.AddPlayer (player);
 		return player;
 	}
-	public void ConfirmPlayerWizardSelection(int playerIndex, WizardSaveData selectedWizard) {
-		PlayerManager.Instance.ConfirmPlayerWizardSelection (playerIndex, selectedWizard);
+	public void ConfirmPlayerWizardSelection(WizardSaveData selectedWizard) {
+		PlayerManager.instance.ConfirmPlayerWizardSelection (0, selectedWizard);
 		bool isEveryoneReady = true;
-		foreach (Player player in PlayerManager.Instance.currentPlayers) {
+		foreach (Player player in PlayerManager.instance.currentPlayers) {
 			if (!player.isReady) {
 				isEveryoneReady = false;
 			}
 		}
 		if (isEveryoneReady == true) {
-			ChangeMenuScreen (MainMenuScreen.LEVEL_SELECT);
+			ChangeMenuScreen (MainMenuScreen.GAMETYPE_SELECT);
 		}
 	}
 }

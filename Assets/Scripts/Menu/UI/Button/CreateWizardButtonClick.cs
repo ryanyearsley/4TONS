@@ -1,25 +1,21 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class CreateWizardButtonClick : AbstractButton {
+public class CreateWizardButtonClick : AbstractButtonClick {
 
-	private PlayerWizardSelectPanelUI playerWizardSelectPanelUI;
 	private WizardCreatePanelUI wizardCreatePanelUI;
 
 	protected override void Awake () {
 		base.Awake ();
-		playerWizardSelectPanelUI = GetComponentInParent<PlayerWizardSelectPanelUI> ();
 		wizardCreatePanelUI = GetComponentInParent<WizardCreatePanelUI> ();
 	}
 	protected override void OnClick () {
-		Debug.Log ("Confirmation button clicked, saving wizard");
 		if (wizardCreatePanelUI.isValidWizard ()) {
+			Debug.Log ("Confirmation button clicked, saving wizard");
 			WizardSaveData createdWizard = wizardCreatePanelUI.FinalizeWizard();
-			SaveManager.instance.SaveNewWizardDataJSON (createdWizard);
-			int playerIndex = playerWizardSelectPanelUI.playerIndex;
-			MainMenuManager.Instance.ConfirmPlayerWizardSelection (playerIndex, createdWizard);
-			playerWizardSelectPanelUI.ChangeWizardSelectPhase (2);
+			Debug.Log ("Created wizard name: " + createdWizard.wizardName);
+			MainMenuManager.Instance.ConfirmPlayerWizardSelection (createdWizard);
+			SceneManager.LoadScene (1);
 		} else {
 			Debug.Log ("Cannot confirm: no name entered.");
 		}

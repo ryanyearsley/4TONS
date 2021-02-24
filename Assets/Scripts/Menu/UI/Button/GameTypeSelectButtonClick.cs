@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LevelSelectButtonClick : AbstractButton {
-
+public class GameTypeSelectButtonClick : AbstractButtonClick { 
+	
 	[SerializeField]
-	private int sceneIndex;
+	private MainMenuScreen gameTypeScreen;
 	protected override void OnClick () {
-		SceneManager.LoadScene (sceneIndex);
+		MainMenuManager.Instance.ChangeMenuScreen(gameTypeScreen);
 	}
 
 }

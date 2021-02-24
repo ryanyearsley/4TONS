@@ -2,12 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-/*
- * When button is clicked,
- * Takes info/state of ChooseWizardButtonUI and sends to manager
- * */
-public class SelectWizardButtonClick : AbstractButtonClick {
-
+public class DeleteWizardButton : AbstractButtonClick
+{
 	private LoadedWizardSelectionUI loadedWizardButtonUI;
 
 	protected override void Awake () {
@@ -17,11 +13,12 @@ public class SelectWizardButtonClick : AbstractButtonClick {
 	}
 	protected override void OnClick () {
 		if (loadedWizardButtonUI.wizardSaveData != null) {
-			Debug.Log ("Confirmation button clicked, saving wizard");
+			Debug.Log ("delete button clicked, Deleting wizard");
 			WizardSaveData selectedWizard = loadedWizardButtonUI.wizardSaveData;
-			MainMenuManager.Instance.ConfirmPlayerWizardSelection (selectedWizard);
+			SaveManager.instance.DeleteWizardData (selectedWizard.wizardName);
+			MainMenuManager.Instance.OnWizardDelete (selectedWizard);
 		} else {
-			Debug.Log ("Wizard Selection Unsuccessful: No wizard assigned to button.");
+			Debug.Log ("Wizard Delete Unsuccessful: No wizard assigned to button.");
 		}
 	}
 }

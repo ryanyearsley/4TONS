@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEditor;
 
-public class LoadedWizardButtonUI : MonoBehaviour
+public class LoadedWizardSelectionUI : MonoBehaviour
 {
     [SerializeField]
     private TextMeshProUGUI nameText;
@@ -15,23 +15,16 @@ public class LoadedWizardButtonUI : MonoBehaviour
     public void DisplayWizardUI (WizardSaveData wizardData) {
         Debug.Log ("displaying " + wizardData.wizardName);
         nameText.text = wizardData.wizardName;
-        SpellSchoolData spellSchoolData =  (SpellSchoolData) AssetDatabase.LoadAssetAtPath (
-            wizardData.spellSchoolDataPath, typeof(SpellSchoolData));
-		wizardPortrait.sprite = spellSchoolData.wizardSelectIcon;
+        wizardPortrait.sprite = wizardData.spellSchoolData.wizardSelectIcon;
         wizardPortrait.color = Color.white;
         wizardSaveData = wizardData;
     }
     public void BlankOutFields() {
-        nameText.text = "CREATE NEW";
+        nameText.text = " - - - - ";
         wizardPortrait.sprite = null;
         wizardPortrait.color = new Color (0, 0, 0, 0);
         wizardSaveData = null;
     }
     
-    public bool IsVacant () {
-        if (wizardSaveData == null) {
-            return true;
-        } else return false;
-	}
 
 }
