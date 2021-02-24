@@ -5,8 +5,8 @@ using UnityEngine;
 [CreateAssetMenu (fileName = "New Map Data", menuName = "ScriptableObjects/Map Data")]
 public class MapData : ScriptableObject {
 
-	public TilesetData tileset;
-
+	public TextAsset mapFile;//optional. if not present, a level will be generated.
+	public bool isGenerated = true;
 	[Space (10, order = 0)]
 	[Header ("Map Settings", order = 1)]
 	[Space (15, order = 2)]
@@ -24,8 +24,11 @@ public class MapData : ScriptableObject {
 	[Space (15, order = 2)]
 	public int smoothingIterations = 5;
 	public int playerCount = 2;
-	public int enemyCount = 10;
-	public int itemCount = 10;
+	public GameObject floorPrefab;
+	public CreatureSpawnInfo playerSpawnInfo;
+	public CreatureSpawnInfo[] enemySpawnInfos;
+	public CreatureSpawnInfo[] setPieceSpawnInfos;
+	public SpellGemSpawnInfo [] spellGemSpawnInfos;
 	[ConditionalHide ("useCustomSeed")]
 	public string seed;
 	public bool useCustomSeed;
