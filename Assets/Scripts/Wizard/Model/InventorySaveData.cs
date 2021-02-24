@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 
 [Serializable]
-public class StaffSaveData {
+public class InventorySaveData {
 
-	public StaffData staffData;
-	public string staffPath;
+	public InventoryData inventoryData;
+	public string inventoryPath;
 	public PuzzleSaveDataDictionary puzzleSaveDataDictionary;
 }
