@@ -1,0 +1,694 @@
+fileFormatVersion: 2
+guid: 06ee52cc5af71474890793da0321adb6
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -552023041232363156
+    second: DarkPortal_Closed_Idle
+  - first:
+      213: -2295679675236178982
+    second: DarkPortal_Opening1
+  - first:
+      213: 9081443542024046841
+    second: DarkPortal_Opening2
+  - first:
+      213: -325643522369391889
+    second: DarkPortal_Opening3
+  - first:
+      213: -5029491373409813801
+    second: DarkPortal_Opening4
+  - first:
+      213: 1159509668664895875
+    second: DarkPortal_Opening5
+  - first:
+      213: -4950993227299131578
+    second: DarkPortal_Opening6
+  - first:
+      213: 5290995563925002937
+    second: DarkPortal_Opening7
+  - first:
+      213: 9159618136801820012
+    second: DarkPortal_Opening8
+  - first:
+      213: -8886453972314763743
+    second: DarkPortal_OpenLoop1
+  - first:
+      213: 1797752881804713340
+    second: DarkPortal_OpenLoop2
+  - first:
+      213: -1592313912881541793
+    second: DarkPortal_OpenLoop3
+  - first:
+      213: 703848529077753814
+    second: DarkPortal_OpenLoop4
+  - first:
+      213: 6990462531238501368
+    second: DarkPortal_OpenLoop5
+  - first:
+      213: -124932396411179096
+    second: DarkPortal_OpenLoop6
+  - first:
+      213: 1903236908229139990
+    second: DarkPortal_OpenLoop7
+  - first:
+      213: -7828612326467664812
+    second: DarkPortal_SpriteSheet_16
+  - first:
+      213: -6403883905475292106
+    second: DarkPortal_SpriteSheet_17
+  - first:
+      213: 1727026870893305001
+    second: DarkPortal_SpriteSheet_18
+  - first:
+      213: -1666272965330147365
+    second: DarkPortal_SpriteSheet_0
+  - first:
+      213: 8001545956205730573
+    second: DarkPortal_SpriteSheet_1
+  - first:
+      213: -7761077123177209548
+    second: DarkPortal_SpriteSheet_2
+  - first:
+      213: 4253953801166551805
+    second: DarkPortal_SpriteSheet_3
+  - first:
+      213: 917963410235077470
+    second: DarkPortal_SpriteSheet_4
+  - first:
+      213: 1894621591648017215
+    second: DarkPortal_SpriteSheet_5
+  - first:
+      213: 2925136593520436959
+    second: DarkPortal_SpriteSheet_6
+  - first:
+      213: -8138569859098435566
+    second: DarkPortal_SpriteSheet_7
+  - first:
+      213: 2309810766334876596
+    second: DarkPortal_SpriteSheet_8
+  - first:
+      213: 2716377487706059199
+    second: DarkPortal_SpriteSheet_9
+  - first:
+      213: 5733027185666741339
+    second: DarkPortal_SpriteSheet_10
+  - first:
+      213: 4223694373039397312
+    second: DarkPortal_SpriteSheet_11
+  - first:
+      213: 766999167368589221
+    second: DarkPortal_SpriteSheet_12
+  - first:
+      213: -4705228618314314268
+    second: DarkPortal_SpriteSheet_13
+  - first:
+      213: 541295666617472404
+    second: DarkPortal_SpriteSheet_14
+  - first:
+      213: -2073764869301102963
+    second: DarkPortal_SpriteSheet_15
+  - first:
+      213: 496352469989516508
+    second: DarkPortal_SpriteSheet_19
+  - first:
+      213: 4050308638088881424
+    second: DarkPortal_SpriteSheet_20
+  - first:
+      213: 1763853117798715678
+    second: DarkPortal_SpriteSheet_21
+  - first:
+      213: -3922798962387375832
+    second: DarkPortal_SpriteSheet_22
+  - first:
+      213: -7437324907128196686
+    second: DarkPortal_SpriteSheet_23
+  - first:
+      213: -5702357376174346341
+    second: DarkPortal_SpriteSheet_24
+  - first:
+      213: -6815068347141143269
+    second: DarkPortal_SpriteSheet_25
+  - first:
+      213: -5741110599019395833
+    second: DarkPortal_SpriteSheet_26
+  - first:
+      213: -4472951272923261327
+    second: DarkPortal_SpriteSheet_27
+  - first:
+      213: -5277436967817864064
+    second: DarkPortal_SpriteSheet_28
+  - first:
+      213: 1352222884686126576
+    second: DarkPortal_SpriteSheet_29
+  - first:
+      213: -6101496411885514563
+    second: DarkPortal_SpriteSheet_30
+  - first:
+      213: 1536352823877838696
+    second: DarkPortal_SpriteSheet_31
+  - first:
+      213: -175981559241047397
+    second: DarkPortal_SpriteSheet_32
+  - first:
+      213: -8265945050680287252
+    second: DarkPortal_SpriteSheet_33
+  - first:
+      213: 8636569010494322331
+    second: DarkPortal_SpriteSheet_34
+  - first:
+      213: -894836940053350738
+    second: DarkPortal_SpriteSheet_35
+  - first:
+      213: -3460188884340391617
+    second: DarkPortal_SpriteSheet_36
+  - first:
+      213: -3787360523975255576
+    second: DarkPortal_SpriteSheet_37
+  - first:
+      213: 2382499627817086767
+    second: DarkPortal_SpriteSheet_38
+  - first:
+      213: 8594149012036644862
+    second: DarkPortal_SpriteSheet_39
+  - first:
+      213: 5933043307303833783
+    second: DarkPortal_SpriteSheet_40
+  - first:
+      213: 6551849497147113863
+    second: DarkPortal_SpriteSheet_41
+  - first:
+      213: 7365574596625615109
+    second: DarkPortal_SpriteSheet_42
+  - first:
+      213: 4564242295464851353
+    second: DarkPortal_SpriteSheet_43
+  - first:
+      213: 6458149583596855439
+    second: DarkPortal_SpriteSheet_44
+  - first:
+      213: 6227061511623551245
+    second: DarkPortal_SpriteSheet_45
+  - first:
+      213: 7497192570137777809
+    second: DarkPortal_SpriteSheet_46
+  - first:
+      213: 6033415022198575589
+    second: DarkPortal_SpriteSheet_47
+  - first:
+      213: -5295258381035738823
+    second: DarkPortal_SpriteSheet_48
+  - first:
+      213: 8479880236015052853
+    second: DarkPortal_SpriteSheet_49
+  - first:
+      213: -6793413559566385287
+    second: DarkPortal_SpriteSheet_50
+  - first:
+      213: 603618143589456848
+    second: DarkPortal_SpriteSheet_51
+  - first:
+      213: 3862724317817372758
+    second: DarkPortal_SpriteSheet_52
+  - first:
+      213: 7659915206603407090
+    second: DarkPortal_SpriteSheet_53
+  - first:
+      213: 5898792452805203196
+    second: DarkPortal_SpriteSheet_54
+  - first:
+      213: -6129042452018739039
+    second: DarkPortal_SpriteSheet_55
+  - first:
+      213: 7784491065385768363
+    second: DarkPortal_SpriteSheet_56
+  - first:
+      213: -6166261737171751612
+    second: DarkPortal_SpriteSheet_57
+  - first:
+      213: 1039531079730602694
+    second: DarkPortal_SpriteSheet_58
+  - first:
+      213: 4808811526405668527
+    second: DarkPortal_SpriteSheet_59
+  - first:
+      213: -5302969548742348335
+    second: DarkPortal_SpriteSheet_60
+  - first:
+      213: 7836544335256222986
+    second: DarkPortal_SpriteSheet_61
+  - first:
+      213: -7969865037378326957
+    second: DarkPortal_SpriteSheet_62
+  - first:
+      213: -1902151087000260383
+    second: DarkPortal_SpriteSheet_63
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 512
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 512
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 512
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: DarkPortal_Closed_Idle
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 384
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.23}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c61a38ff7f1d658f0800000000000000
+      internalID: -552023041232363156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DarkPortal_Opening1
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 384
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.23}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad3a6779f7b1420e0800000000000000
+      internalID: -2295679675236178982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DarkPortal_Opening2
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 384
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.23}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f8cb1239c4c70e70800000000000000
+      internalID: 9081443542024046841
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DarkPortal_Opening3
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 384
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.23}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe2f3c511f41b7bf0800000000000000
+      internalID: -325643522369391889
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DarkPortal_Opening4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.23}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7da34074e38a33ab0800000000000000
+      internalID: -5029491373409813801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DarkPortal_Opening5
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 256
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.23}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 389e66a76e7671010800000000000000
+      internalID: 1159509668664895875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DarkPortal_Opening6
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 256
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.23}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64f687924e98a4bb0800000000000000
+      internalID: -4950993227299131578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DarkPortal_Opening7
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 256
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.23}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9badae7be646d6940800000000000000
+      internalID: 5290995563925002937
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DarkPortal_Opening8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.23}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6d3c4a6a208d1f70800000000000000
+      internalID: 9159618136801820012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DarkPortal_OpenLoop1
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.23}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 12ec153d139fca480800000000000000
+      internalID: -8886453972314763743
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DarkPortal_OpenLoop2
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 128
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.23}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7d97e998b6e2f810800000000000000
+      internalID: 1797752881804713340
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DarkPortal_OpenLoop3
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 128
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.23}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f5d88c3cee6f6e9e0800000000000000
+      internalID: -1592313912881541793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DarkPortal_OpenLoop4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.23}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d75c5f028294c900800000000000000
+      internalID: 703848529077753814
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DarkPortal_OpenLoop5
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.23}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8fb162692ac130160800000000000000
+      internalID: 6990462531238501368
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DarkPortal_OpenLoop6
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.23}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8af29fab5a6244ef0800000000000000
+      internalID: -124932396411179096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DarkPortal_OpenLoop7
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.23}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 61e196e52e7a96a10800000000000000
+      internalID: 1903236908229139990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
