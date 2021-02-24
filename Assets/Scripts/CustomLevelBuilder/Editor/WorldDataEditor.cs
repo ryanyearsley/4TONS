@@ -4,7 +4,7 @@ using UnityEditor;
 using UnityEditorInternal;
 using UnityEngine;
 
-[CustomEditor (typeof (TilesetData))]
+[CustomEditor (typeof (WorldData))]
 public class TilesetDataEditor : Editor {
 
 	/*
