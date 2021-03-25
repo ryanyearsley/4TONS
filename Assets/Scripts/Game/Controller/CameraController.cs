@@ -21,7 +21,7 @@ namespace PlayerManagement {
 		}
 		#endregion
 
-
+		private Transform trans;
 		//Camera details
 		public Vector2Int pixelPerfectReferenceResolutionClose;
 		public Vector2Int pixelPerfectReferenceResolutionMid;
@@ -38,6 +38,7 @@ namespace PlayerManagement {
 		public Vector3 staticCameraOriginPosition;
 		//dynamic variables
 		public MovementComponent target;
+		public Transform targetTransform;
 		private PlayerAimingComponent playerAiming;
 		[SerializeField]
 		private FocusArea focusArea;
@@ -48,12 +49,15 @@ namespace PlayerManagement {
 		private Vector2 currentLookAhead;
 		private Vector2 smoothLookVelocity;
 
+		public float moveSmoothTime;
+		public Vector2 smoothMoveVelocity;
 		private Vector3 boundPosition;
 		private float boundSmooth;
 		public Vector3 minValues, maxValues;
 
 		private void Awake () {
 			SingletonInitialization ();
+			trans = GetComponent<Transform> ();
 			pixelPerfectCamera = GetComponent<PixelPerfectCamera> ();
 		}
 		private void Start () {
@@ -70,7 +74,7 @@ namespace PlayerManagement {
 			SetCameraZoom (cameraZoom);
 		}
 
-		private void FixedUpdate () {
+		private void LateUpdate () {
 			if (cameraState.Equals (CameraState.DYNAMIC)) {
 				focusArea.Update (target.feetCollider.bounds);
 
@@ -79,22 +83,26 @@ namespace PlayerManagement {
 
 				focusPosition += currentLookAhead;
 
-				transform.position = focusPosition.ToVector3WithZ (-10);
+				trans.position = PixelPerfectSmoothDamp(focusPosition).ToVector3WithZ (-10);
+				
 			} else if (cameraState.Equals (CameraState.RIGID_FOLLOW)) {
-				transform.position = target.transform.position + Vector3.back * 10f + Vector3.up * 1f;
+				trans.position = target.transform.position + Vector3.back * 10f + Vector3.up * 1f;
 			}
 		}
 
-		private Vector2 PixelPerfectClamp(Vector2 moveVector) {
+		private Vector2 PixelPerfectSmoothDamp(Vector2 desiredPosition) {
+			Vector2 smoothDampedPosition = Vector2.SmoothDamp (trans.position, desiredPosition, ref smoothMoveVelocity, moveSmoothTime);
+
 			Vector2 vectorInPixels = new Vector2(
-				Mathf.RoundToInt (moveVector.x * 32),
-				Mathf.RoundToInt(moveVector.y * 32));
+				Mathf.RoundToInt (smoothDampedPosition.x * 32),
+				Mathf.RoundToInt(smoothDampedPosition.y * 32));
 			return vectorInPixels / 32;
 		}
-		public void SetCameraStatic (Vector3 targetPosition)  {
+		public void SetCameraStatic (Vector3 targetPosition) {
 			cameraState = CameraState.STATIC;
 			if (target != null) {
 				target = null;
+				targetTransform = null;
 				playerAiming = null;
 			}
 		}
@@ -102,6 +110,7 @@ namespace PlayerManagement {
 			cameraState = CameraState.RIGID_FOLLOW;
 			if (focusTarget != null) {
 				target = focusTarget;
+				targetTransform = focusTarget.GetComponent<Transform> ();
 				focusArea = new FocusArea (target.feetCollider.bounds, focusAreaSize);
 				playerAiming = target.GetComponent<PlayerAimingComponent> ();
 			}
@@ -114,6 +123,7 @@ namespace PlayerManagement {
 			cameraState = CameraState.DYNAMIC;
 			if (focusTarget != null) {
 				target = focusTarget;
+				targetTransform = focusTarget.GetComponent<Transform> ();
 				focusArea = new FocusArea (target.feetCollider.bounds, focusAreaSize);
 				playerAiming = target.GetComponent<PlayerAimingComponent> ();
 			}

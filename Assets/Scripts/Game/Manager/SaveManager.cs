@@ -170,7 +170,7 @@ public class SaveManager : MonoBehaviour {
 		}*/
 
 	public void DeleteWizardData (string wizardName) {
-		string wizardFilePath = Application.persistentDataPath + "/wizards/" + wizardName + ".json";
+		string wizardFilePath = Application.persistentDataPath + "/infamous_wizards/" + wizardName + ".json";
 		if (File.Exists (wizardFilePath)) {
 			File.Delete (wizardFilePath);
 		}
@@ -178,7 +178,7 @@ public class SaveManager : MonoBehaviour {
 	}
 
 	public void DeleteAllWizardData () {
-		string wizardDirectory = Application.persistentDataPath + "/wizards/";
+		string wizardDirectory = Application.persistentDataPath + "/infamous_wizards/";
 		String[] wizardFileNames = Directory.GetFiles (wizardDirectory);
 		List<WizardSaveData> wizards = new List<WizardSaveData>();
 		foreach (String wizardFileName in wizardFileNames) {
