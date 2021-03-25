@@ -79,19 +79,11 @@ namespace PlayerManagement {
 
 				focusPosition += currentLookAhead;
 
-				transform.position = focusPosition.ToVector3WithZ(-10);
+				transform.position = focusPosition.ToVector3WithZ (-10);
 			} else if (cameraState.Equals (CameraState.RIGID_FOLLOW)) {
 				transform.position = target.transform.position + Vector3.back * 10f + Vector3.up * 1f;
 			}
 		}
-		private Vector3 CalculateBoundedPosition () {
-			boundPosition = new Vector3 (
-				Mathf.Clamp (tax, minValues.x, maxValues.x),
-				Mathf.Clamp (desiredCameraPosition.y, minValues.y, maxValues.y),
-				0);
-			return Vector3.Lerp(transform.position, desiredCameraPosition)
-		}
-				
 
 		private Vector2 PixelPerfectClamp(Vector2 moveVector) {
 			Vector2 vectorInPixels = new Vector2(
