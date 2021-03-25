@@ -19,6 +19,8 @@ public class LevelManager : MonoBehaviour, IGameManager {
 	}
 	#endregion
 
+	private MapDetails currentLevelDetails;
+
 	[SerializeField]
 	private WorldData worldData;
 	[SerializeField]
@@ -137,7 +139,7 @@ public class LevelManager : MonoBehaviour, IGameManager {
 				generatingMapDetails = new MapDetails (worldData, nextMapData, floorIndex, MapUtility.ConvertMapToTileInfo (map), null);
 			}
 			mapDetailDictionary.Add (floorIndex, generatingMapDetails);
-
+			currentLevelDetails = generatingMapDetails;
 		}
 	}
 
@@ -395,17 +397,23 @@ public class LevelManager : MonoBehaviour, IGameManager {
 
 	void OnDrawGizmos () {
 		if (nodes != null && displayGridGizmos) {
-			Gizmos.color = Color.red;
-			Gizmos.DrawCube (Vector3.zero, Vector3.one * nodeRadius * 2);
 
 			Vector3 gridPosition = grid.GetCellCenterWorld(Vector3Int.one);
+
 			Gizmos.DrawCube (gridPosition, Vector3.one * nodeRadius * 2);
 			for (int x = 0; x < nodes.GetLength (0); x++) {
 				for (int y = 0; y < nodes.GetLength (1); y++) {
 					PathfindingNode node = nodes[x, y];
 					//Debug.Log (" map coord: " + new Vector2Int(x, y) + ", world position: " + node.worldPosition);
-					Gizmos.color = (node.walkable) ? Color.white : Color.red;
-					Gizmos.DrawCube (node.worldPosition, Vector3.one * (nodeRadius * 2));
+					if (currentLevelDetails.mapTileInfo [x,y].isSpawnConflict) {
+						Debug.Log ("level manager gizmo: spawn conflict at tile");
+						Gizmos.color = Color.red;
+						Gizmos.DrawCube (node.worldPosition, Vector3.one * (nodeRadius * 2));
+					}
+					else {
+						Gizmos.color = (node.walkable) ? Color.white : Color.black;
+						Gizmos.DrawCube (node.worldPosition, Vector3.one * (nodeRadius * 2));
+					}
 				}
 			}
 		}

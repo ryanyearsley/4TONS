@@ -416,7 +416,7 @@ public class MapGenerator : MonoBehaviour {
 		int yLength = mapTileInfo.GetLength(1);
 		for (int x = 0; x < xLength; x++) {
 			for (int y = 0; y < yLength; y++) {
-				if (x == 0 || x == xLength || y == 0 || y == yLength) {
+				if (x == 0 || x == xLength - 1 || y == 0 || y == yLength - 1) {
 					mapTileInfo [x, y].isSpawnConflict = true;
 				} 
 			}

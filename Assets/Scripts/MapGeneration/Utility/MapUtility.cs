@@ -100,11 +100,7 @@ public class MapUtility {
 				output [x, y].mapCoordinate = new Vector2Int (x, y);
 				int mapValue = map[x, y];
 				output [x, y].value = mapValue;
-				if (mapValue == 0) {
-					output [x, y].isSpawnConflict = false;
-				} else {
-					output [x, y].isSpawnConflict = true;
-				}
+				output [x, y].isSpawnConflict = false;
 			}
 		}
 		return output;
