@@ -19,7 +19,6 @@ GameObject:
   - component: {fileID: 4678892179684475737}
   - component: {fileID: 5362272777965028150}
   - component: {fileID: 2590648063254366489}
-  - component: {fileID: 1687591858}
   - component: {fileID: 4963906346621890448}
   m_Layer: 11
   m_Name: WizardPlayer_Template
@@ -264,17 +263,6 @@ MonoBehaviour:
   spellBindings:
     m_keys: 
     m_values: []
---- !u!210 &1687591858
-SortingGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3151322532891022119}
-  m_Enabled: 1
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
 --- !u!61 &4963906346621890448
 BoxCollider2D:
   m_ObjectHideFlags: 0

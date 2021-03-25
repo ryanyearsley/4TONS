@@ -2687,17 +2687,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3151322532891022119, guid: 7acbfccd59708564c83e4b3321f098de, type: 3}
   m_PrefabInstance: {fileID: 3196177724233396922}
   m_PrefabAsset: {fileID: 0}
---- !u!210 &1687591858
-SortingGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1687591845}
-  m_Enabled: 1
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
 --- !u!1 &1696060643
 GameObject:
   m_ObjectHideFlags: 0

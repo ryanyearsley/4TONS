@@ -72,7 +72,7 @@ namespace PlayerManagement {
 
 		private void FixedUpdate () {
 			if (cameraState.Equals (CameraState.DYNAMIC)) {
-				//focusArea.Update (target.feetCollider.bounds);
+				focusArea.Update (target.feetCollider.bounds);
 
 				Vector2 focusPosition = focusArea.center;
 				currentLookAhead = CalculateCursorLookAhead ();
