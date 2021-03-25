@@ -1,9 +1,12 @@
 using UnityEngine;
 public interface IPoolable {
 
-    void SetupObject (Transform parentTransform);
+    //Called at pool creation
+    void SetupObject ();
 
+    //called on every object re-use (even the first)
     void ReuseObject ();
+
 
     void Destroy ();
 

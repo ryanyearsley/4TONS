@@ -7,5 +7,5 @@ public class SpawnObjectData : ScriptableObject
 	public int id;
 	public int poolSize;
 	public int clearance;
-	public GameObject spawnObject;
+	public GameObject spawnObjectPrefab;
 }

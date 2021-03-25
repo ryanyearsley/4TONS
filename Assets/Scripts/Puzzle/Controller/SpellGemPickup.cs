@@ -2,35 +2,39 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpellGemPickup : MonoBehaviour
-{
-    public SpellData spellData;
+public class SpellGemPickup : PoolObject {
+	public SpellData spellData;
 
-    private SpriteRenderer spriteRenderer;
+	private SpriteRenderer spriteRenderer;
+	private SpriteRenderer backgroundSpriteRenderer;
 
-	void Awake () {
+	private Sprite backgroundSprite;
+	private Sprite highlightedSprite;
 
-        spriteRenderer = GetComponent<SpriteRenderer> ();
-		if (spellData != null) {
-            spriteRenderer.sprite = spellData.icon;
-        }
+	public override void SetupObject () {
+		spriteRenderer = GetComponent<SpriteRenderer> ();
+		backgroundSpriteRenderer = GetComponentInChildren<SpriteRenderer> ();
 	}
 
-    public void InitializeSpellGemPickUp (SpellData spellData) {
-        this.spellData = spellData;
-        if (spellData != null) {
-            spriteRenderer.sprite = spellData.icon;
-        }
-    }
+	public void ReuseSpellGemPickUp (SpellData spellData) {
+		this.spellData = spellData;
+
+		backgroundSprite = backgroundSpriteRenderer.sprite;
+		highlightedSprite = spellData.puzzlePieceData.puzzlePieceSprite;
+		spriteRenderer.sprite = spellData.icon;
+		backgroundSpriteRenderer.color = spellData.spellSchoolData.schoolGemColor;
+	}
 
 	private void OnTriggerEnter2D (Collider2D other) {
-        if (other.tag == "Player") {
-            other.transform.root.GetComponent<PlayerPuzzleController> ().AddSpellGemToInteractable (this);
-        }
-    }
-    private void OnTriggerExit2D (Collider2D other) {
-        if (other.tag == "Player") {
-            other.transform.root.GetComponent<PlayerPuzzleController> ().RemoveSpellGemFromInteractable (this);
+		if (other.tag == "Player1") {
+			other.transform.GetComponentInParent<PlayerPuzzleComponent> ().AddSpellGemToInteractable (this);
+			backgroundSpriteRenderer.sprite = highlightedSprite;
 		}
-    }
+	}
+	private void OnTriggerExit2D (Collider2D other) {
+		if (other.tag == "Player1") {
+			other.transform.GetComponentInParent<PlayerPuzzleComponent> ().RemoveSpellGemFromInteractable (this);
+			backgroundSpriteRenderer.sprite = backgroundSprite;
+		}
+	}
 }

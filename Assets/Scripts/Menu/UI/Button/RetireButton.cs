@@ -6,11 +6,8 @@ public class RetireButton : AbstractButtonClick
 {
 	protected override void OnClick () {
 		Player playerOne = PlayerManager.instance.currentPlayers[0];
-		SaveManager.instance.SaveNewWizardDataJSON (playerOne.currentWizard);
-		playerOne.currentWizard = null;
-		playerOne.currentPlayerStateController = null;
-		playerOne.isReady = false;
-		playerOne.isAlive = false;
-		SceneManager.LoadScene (0);
+		SaveManager.instance.SaveInfamousWizard (playerOne.wizardSaveData);
+		playerOne.SetPlayerWizardFree ();
+		SceneManager.LoadScene (0);//move to gauntlet hub
 	}
 }

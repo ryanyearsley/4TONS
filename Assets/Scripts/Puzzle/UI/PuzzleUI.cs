@@ -14,6 +14,9 @@ using System.Collections;
 
 public class PuzzleUI : MonoBehaviour {
 
+
+	[SerializeField]
+	public Tile staffTile;
 	[SerializeField]
 	private Tilemap puzzleTilemap;
 	[SerializeField]
@@ -26,16 +29,11 @@ public class PuzzleUI : MonoBehaviour {
 	[SerializeField]
 	private TMP_Text staffNameText;
 
-	[SerializeField]
-	private SpriteRenderer[] spellBindSprites;
 
 	public void InitializePuzzleUI (WizardSaveData wizardSaveData, PuzzleGroupingDetails inventoryDetails, PuzzleGroupingDetails staffDetails) {
-		staffNameText.text = wizardSaveData.primaryStaffSaveData.staffData.staffName;
-		PuzzleFactory.BuildInventoryUI (inventoryDetails.map, inventoryDetails.groupingOrigin, puzzleTilemap, ConstantsManager.instance.staffTile);
-		PuzzleFactory.BuildStaffUI (staffDetails.map, staffDetails.groupingOrigin, puzzleTilemap, ConstantsManager.instance.staffTile);
-		for (int i = 0; i < spellBindSprites.Length; i++) {
-			UpdateBindingUI (i, false);
-		}
+		staffNameText.text = wizardSaveData.primaryStaffSaveData.puzzleData.puzzleName;
+		PuzzleFactory.BuildInventoryUI (inventoryDetails.map, inventoryDetails.groupingOrigin, puzzleTilemap, staffTile);
+		PuzzleFactory.BuildStaffUI (staffDetails.map, staffDetails.groupingOrigin, puzzleTilemap, staffTile);
 	}
 
 
@@ -87,7 +85,6 @@ public class PuzzleUI : MonoBehaviour {
 		}
 		spellGemEntity.gameObject.transform.parent = details.gemParentTransform;
 		Vector3Int spellGemCoordinate = new Vector3Int (details.groupingOrigin.x + spellSaveData.spellGemOriginCoordinate.x, details.groupingOrigin.y + spellSaveData.spellGemOriginCoordinate.y, 0);
-		Debug.Log ("Spell gem coordinate: " + spellGemCoordinate.ToString ());
 		Vector3 cellLocalPosition = puzzleTilemap.GetCellCenterLocal (spellGemCoordinate);
 		spellGemEntity.transform.localPosition = cellLocalPosition;
 		RotateSpellGemEntity (spellSaveData.spellGemEntity, spellSaveData.spellGemRotation * 90);
@@ -105,22 +102,5 @@ public class PuzzleUI : MonoBehaviour {
 	public void ClearHighlightedSpellGemInformation () {
 		highlightedSpellNameText.text = "";
 		highlightedSpellDescriptionText.text = "";
-	}
-
-	public void UpdateBindingUI (int spellIndex, bool isOccupied) {
-		Debug.Log ("Updating binding UI. Index: " + spellIndex + ", occupied: " + isOccupied);
-		if (isOccupied) {
-			SetSpellBindOccupied (spellIndex);
-		} else {
-			SetSpellBindVacant (spellIndex);
-		}
-	}
-
-
-	public void SetSpellBindOccupied (int index) {
-		spellBindSprites [index].color = Color.red;
-	}
-	public void SetSpellBindVacant (int index) {
-		spellBindSprites [index].color = Color.green;
 	}
 }

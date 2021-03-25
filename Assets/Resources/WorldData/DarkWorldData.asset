@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68618dbd50d979f4196b1d65060aed79, type: 3}
+  m_Name: DarkWorldData
+  m_EditorClassIdentifier: 
+  schoolIndexStart: 2000
+  spellSchool: 1
+  background: {fileID: 3464685617041972085, guid: 175f170ab1b56cd46873f2c24a2cf126, type: 3}
+  spellSchoolData: {fileID: 11400000, guid: 3c0c6ec45b52c8f438a33661902dea92, type: 2}
+  playerData: {fileID: 11400000, guid: 7505292d04f3608419afaf178b6440b3, type: 2}
+  spellGemPickUpData: {fileID: 11400000, guid: c5abe41b66335894d94c02f288c77685, type: 2}
+  enemyDatas:
+  - {fileID: 11400000, guid: 217ed99b20a5ef84483df537037326ca, type: 2}
+  tileset:
+  - {fileID: 11400000, guid: 9c640f3eec23a9c4ca9ffe73cb5fb7a0, type: 2}
+  - {fileID: 11400000, guid: 23d4f699a7d099941bc526f4c3eb6070, type: 2}
+  spellGemPickUpSpawnInfo: {fileID: 0}
+  playerSpawnSetpieceSpawnInfo:
+    spawnCount: 1
+    setPieceData: {fileID: 11400000, guid: d23a93a1f17a101429c5cb7656bf714d, type: 2}
+  nextLevelPortalSpawnInfo:
+    spawnCount: 1
+    setPieceData: {fileID: 11400000, guid: be2d74a77f5fcc24790ae2dd3c9e8e4c, type: 2}
+  setPieceDatas: []
+  mapDatas:
+  - {fileID: 11400000, guid: b40da825b5c53af4d90898a3024186f9, type: 2}
+  - {fileID: 11400000, guid: 314f990d10f536c488dc286ab2f0ca52, type: 2}
+  - {fileID: 11400000, guid: 3badeba3683fe974181889a1439f8046, type: 2}
+  - {fileID: 11400000, guid: 93b7beeb83e64684eb57a8d9a096b6f3, type: 2}

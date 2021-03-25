@@ -1203,7 +1203,6 @@ namespace Rewired.Integration.UnityUI {
 
         private void SetupRewiredVars() {
             if(!Rewired.ReInput.isReady) return;
-
             // Set up Rewired vars
 
             // Set up actions

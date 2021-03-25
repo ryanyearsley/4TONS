@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static class IsometricCoordinateUtils
 {
-
+    static Vector2 isometricScaling = new Vector2 (1f, 0.5f);
 
     //*************************** GENERAL ******************************
 
@@ -73,5 +73,9 @@ public static class IsometricCoordinateUtils
         {
             blockLocalPosition[i] = TranslateCartToIso(cartCoord[i]);
         }
+    }
+
+    public static float IsoDistanceBetweenPoints(Transform pointA, Transform pointB) {
+        return Vector2.Distance (pointA.position * isometricScaling, pointB.position * isometricScaling);
     }
 }

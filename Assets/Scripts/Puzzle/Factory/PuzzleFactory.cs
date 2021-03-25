@@ -10,7 +10,7 @@ using System.Text.RegularExpressions;
 public class PuzzleFactory
 {
     static string LINE_SPLIT_RE = @"\r\n|\n\r|\n|\r";
-	public static PuzzleTileInfo [,] DeserializeStaffFile (TextAsset csv) {
+	public static PuzzleTileInfo [,] DeserializePuzzleFile (TextAsset csv) {
 
         string[] rows = Regex.Split(csv.text, LINE_SPLIT_RE).Where(s => !string.IsNullOrEmpty(s)).ToArray();
         int rowCount = rows.Length;

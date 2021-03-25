@@ -9,6 +9,9 @@ public enum SpellCastLocation
 
 public abstract class Spell : MonoBehaviour
 {
+
+    protected PlayerObject stateController;
+
     //static
     public SpellData spellData; 
 
@@ -18,10 +21,10 @@ public abstract class Spell : MonoBehaviour
     protected Transform spellCastTransform;
     protected float cdTimer;
     public SpellUI spellUI;
-    private void Start()
-    {
-        PoolManager.instance.CreatePool(spellData.spellObject, spellData.poolSize);
-        PlayerStateController stateController = GetComponentInParent<PlayerStateController>();
+
+	private void Start() {
+        stateController = GetComponentInParent<PlayerObject> ();
+        PoolManager.instance.CreateSpellObjectPool(spellData.spellObject, spellData.poolSize);
         switch (spellData.spellCastLocation) {
             case SpellCastLocation.Staff:
                 spellCastTransform = stateController.creaturePositions.staffAimTransform;
@@ -38,7 +41,8 @@ public abstract class Spell : MonoBehaviour
     private void Update()
     {
         if (onCooldown) {
-            spellUI.UpdateSpellUICooldown (cdTimer/spellData.coolDown, cdTimer);
+            float percentage = cdTimer/spellData.coolDown;
+            spellUI.UpdateSpellUICooldown (percentage, cdTimer * percentage);
             cdTimer += Time.deltaTime;
             if (cdTimer >= spellData.coolDown) {
                 onCooldown = false;
@@ -47,15 +51,17 @@ public abstract class Spell : MonoBehaviour
         }
     }
 
+    public virtual bool isCastEligible () {
+        if (onCooldown)
+            return false;
+        return true;
+    }
 
     public virtual void CastSpell()
     {
-        Debug.Log ("Casting Spell");
-        if (!onCooldown) {
             onCooldown = true;
             cdTimer = 0;
             spellUI.GreyOutSpellUI ();
-        }
     }
 
     public virtual void ChannelSpell()

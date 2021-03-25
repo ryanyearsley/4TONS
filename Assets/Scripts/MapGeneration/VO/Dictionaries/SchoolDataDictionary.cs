@@ -1,6 +1,6 @@
 ﻿using System;
 
 [Serializable]
-public class SchoolDataDictionary : SerializableDictionary<SpellSchool, SpellSchoolData> {
+public class SchoolDataDictionary : SerializableDictionary<int, SpellSchoolData> {
 
 }

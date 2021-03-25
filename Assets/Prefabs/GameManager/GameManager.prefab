@@ -43,3 +43,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18e404d037e5ec145bc5e9ab6e0318a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameContext:
+    worldData: {fileID: 11400000, guid: be56f9576645b884b8533de0c890200f, type: 2}
+    gameType: 0
+  gameState:
+    currentFloorIndex: 0
+    totalFloors: 0
+    totalKills: 0
+  floorTransitionTime: 1

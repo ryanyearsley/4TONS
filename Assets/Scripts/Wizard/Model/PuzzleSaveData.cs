@@ -4,7 +4,7 @@ using System.Collections.Generic;
 [Serializable]
 public class PuzzleSaveData {
 	public PuzzleData puzzleData;
-	public string puzzlePath;
+	public int puzzleDataIndex;
 	public PuzzleSaveDataDictionary puzzleSaveDataDictionary;
 
 	public PuzzleSaveData(PuzzleData puzzleData, PuzzleSaveDataDictionary dictionary) {

@@ -19,7 +19,7 @@ public class WizardCreatePanelUI : MonoBehaviour
 	SpellSchoolData currentSchool;
 
 	private void Start () {
-		DisplayWizardInfo (ConstantsManager.instance.schoolDataDictionary[SpellSchool.Dark]);
+		DisplayWizardInfo (ConstantsManager.instance.spellSchools[0]);
 		SelectRandomName();
 	}
 
@@ -41,9 +41,9 @@ public class WizardCreatePanelUI : MonoBehaviour
 
 	}
 	public bool isValidWizard () {
-		if (wizardNameInputField.text == "" || currentSchool == null)
+		if (wizardNameInputField.text == "" || currentSchool == null || !SaveManager.instance.isWizardNameAvailable (wizardNameInputField.text))
 			return false;
-		return true;
+		else return true;
 	}
 	public WizardSaveData FinalizeWizard () {
 		WizardSaveData newWizard = currentSchool.defaultWizard.wizardSaveData.Clone ();

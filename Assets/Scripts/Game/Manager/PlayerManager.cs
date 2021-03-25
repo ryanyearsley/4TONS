@@ -7,34 +7,42 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour {
 	#region Singleton
-	public static PlayerManager Instance { get; private set; }
+	public static PlayerManager instance { get; private set; }
 	private void InitializeSingleton () {
-		Instance = this;
+		if (instance == null) {
+			instance = this;
+		} else if (instance != this) {
+			Destroy (gameObject);
+		}
 	}
 	#endregion
+
+	//toggle this on/off for testing within a scene.
+	public bool startFromCombatScene;
+	public PrebuildWizardData defaultWizardData;
 	[SerializeField]
 	public List<Player> currentPlayers = new List<Player>();
-
-	public PrebuildWizardData defaultWizardData;
 
 	private void Awake () {
 		InitializeSingleton ();
 		DontDestroyOnLoad(this.gameObject);
+		if (currentPlayers.Count == 0 && startFromCombatScene) {
+			Player testPlayer = new Player();
+			testPlayer.playerIndex = 0;
+			testPlayer.controllerIndex = 0;
+			testPlayer.isAlive = true;
+			testPlayer.wizardSaveData = defaultWizardData.wizardSaveData.Clone();
+			currentPlayers.Add (testPlayer);
+		}
 	}
 	
-	private void Start () {
-
-	}
-	private void Update () {
-
-	}
-
 	public void AddPlayer(Player player) {
+		if (currentPlayers.Contains (player)) return;
 		currentPlayers.Add (player);
 	}
-	public void ConfirmPlayerWizardSelection(int playerIndex, WizardSaveData data) {
+	public void ConfirmPlayerWizardSelection(int playerIndex, WizardSaveData wizardSaveDataClone) {
 		if (currentPlayers.Count >= playerIndex) {
-			currentPlayers [playerIndex].currentWizard = data;
+			currentPlayers [playerIndex].wizardSaveData = wizardSaveDataClone;
 			currentPlayers [playerIndex].isReady = true;
 		}
 	}
@@ -46,6 +54,14 @@ public class Player {
 	public int playerIndex;
 	public int controllerIndex;
 	public bool isReady;
-	public WizardSaveData currentWizard;
-	public PlayerStateController currentPlayerStateController;
+	public bool isAlive;
+	public WizardSaveData wizardSaveData;
+	public PlayerObject currentPlayerObject;
+
+	public void SetPlayerWizardFree() {
+		wizardSaveData = null;
+		currentPlayerObject = null;
+		isReady = false;
+		isAlive = false;
+	}
 }

@@ -14,8 +14,8 @@ public class SpellGemEntity : MonoBehaviour {
 	}
 	public void InitializeSpellGemUI (SpellData spellData) {
 		this.spellData = spellData;
-		spriteRenderer.sprite = spellData.spellGemSprite;
-		defaultColor = ConstantsManager.instance.spellSchoolDictionary [spellData.spellSchool].schoolGemColor;
+		spriteRenderer.sprite = spellData.puzzlePieceData.puzzlePieceSprite;
+		defaultColor = spellData.spellSchoolData.schoolGemColor;
 		spriteRenderer.color = defaultColor;
 	}
 	public void SetErrorColor() {

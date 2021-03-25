@@ -7,6 +7,9 @@ TagManager:
   - Enemy
   - Player1
   - PlayerFeet
+  - Player2
+  - Environment
+  - PickUp
   layers:
   - Default
   - TransparentFX
@@ -24,8 +27,8 @@ TagManager:
   - ProjectileObstacles
   - Walkable
   - Interactable
-  - 
-  - 
+  - AoE
+  - Sensor
   - 
   - 
   - 

@@ -32,7 +32,7 @@ public class PuzzleUtility {
 	}
 	public static bool CheckSpellFitmentEligibility (PuzzleGroupingDetails details, SpellSaveData spellSaveData) {
 		bool canEquip = true;
-		spellSaveData.currentCoordinates = RotateCoordinates (spellSaveData.spellData.coordinates, spellSaveData.spellGemRotation);
+		spellSaveData.currentCoordinates = RotateCoordinates (spellSaveData.spellData.puzzlePieceData.coordinates, spellSaveData.spellGemRotation);
 		Vector2Int centerPoint = spellSaveData.spellGemOriginCoordinate;
 		foreach (Vector2Int spellGemCoordinate in spellSaveData.currentCoordinates) {
 			Vector2Int relativePosition = centerPoint + spellGemCoordinate;
@@ -52,10 +52,11 @@ public class PuzzleUtility {
 		return canEquip;
 	}
 	public static void AddSpellGemToPuzzle (PuzzleGroupingDetails details, SpellSaveData spellSaveData) {
-		spellSaveData.currentCoordinates = RotateCoordinates (spellSaveData.spellData.coordinates, spellSaveData.spellGemRotation);
-
-		if (!details.puzzleSaveDataDictionary.ContainsKey (spellSaveData.spellGemOriginCoordinate))
+		spellSaveData.currentCoordinates = RotateCoordinates (spellSaveData.spellData.puzzlePieceData.coordinates, spellSaveData.spellGemRotation);
+		if (!details.puzzleSaveDataDictionary.ContainsKey (spellSaveData.spellGemOriginCoordinate)) {
+			Debug.Log ("spellgem coordinate is not registered, adding to dictionary.");
 			details.puzzleSaveDataDictionary.Add (spellSaveData.spellGemOriginCoordinate, spellSaveData);
+		}
 		Vector2Int spellGemCenterPoint = spellSaveData.spellGemOriginCoordinate;
 		foreach (Vector2Int spellGemCoordinate in spellSaveData.currentCoordinates) {
 			Vector2Int relativePosition = spellGemCenterPoint + spellGemCoordinate;
@@ -63,13 +64,13 @@ public class PuzzleUtility {
 			puzzleTileInfo.spellSaveData = spellSaveData;
 			//1 == open tile. (0 = no tile)
 			if (puzzleTileInfo.value == 1) {
-				puzzleTileInfo.value = spellSaveData.spellData.spellCode;
+				puzzleTileInfo.value = spellSaveData.spellData.id;
 			}
 		}
 	}
 
 	public static void RemoveSpellGemFromPuzzle (PuzzleGroupingDetails details, SpellSaveData spellSaveData) {
-		spellSaveData.currentCoordinates = RotateCoordinates (spellSaveData.spellData.coordinates, spellSaveData.spellGemRotation);
+		spellSaveData.currentCoordinates = RotateCoordinates (spellSaveData.spellData.puzzlePieceData.coordinates, spellSaveData.spellGemRotation);
 
 		details.puzzleSaveDataDictionary.Remove (spellSaveData.spellGemOriginCoordinate);
 		Vector2Int spellGemCenterPoint = spellSaveData.spellGemOriginCoordinate;
@@ -77,7 +78,7 @@ public class PuzzleUtility {
 			Vector2Int relativePosition = spellGemCenterPoint + spellGemCoordinate;
 			PuzzleTileInfo puzzleTileInfo = details.map [relativePosition.x, relativePosition.y];
 			//1 == open tile. (0 = no tile)
-			if (puzzleTileInfo.value == spellSaveData.spellData.spellCode) {
+			if (puzzleTileInfo.value == spellSaveData.spellData.id) {
 				puzzleTileInfo.value = 1;
 				puzzleTileInfo.spellSaveData = null;
 			}

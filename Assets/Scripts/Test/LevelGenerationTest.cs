@@ -22,7 +22,7 @@ public class LevelGenerationTest : MonoBehaviour
 	}
 	void Start()
     {
-        levelData = LevelFactory.DeserializeLevelFile(levelDataCsv);
+        //levelData = LevelFactory.DeserializeLevelFile(levelDataCsv);
         //LevelFactory.BuildLevel(levelData, blockSet, grid);   
     }
 }

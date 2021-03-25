@@ -21,7 +21,15 @@ MonoBehaviour:
   passageRadius: 2
   smoothingIterations: 2
   playerCount: 2
-  enemyCount: 10
-  itemCount: 10
-  seed: 637396748629835404
+  enemySpawnInfos:
+  - enemyCount: 6
+    enemyObject: {fileID: 7860194017546195122, guid: 1e5c10a980123e84197287697f1b1537, type: 3}
+  spellGemSpawnInfos:
+  - dropPercentage: 90
+    spellData: {fileID: 11400000, guid: 2d3465d624cf7c743abbbaf28fec6fc3, type: 2}
+  - dropPercentage: 20
+    spellData: {fileID: 11400000, guid: f8a09e2fb222c62489690f14902cef0d, type: 2}
+  setpieces:
+  - {fileID: 7681443459082228421, guid: b850d95e42006a449a0cc0dd13e1cccc, type: 3}
+  seed: 637427437689393475
   useCustomSeed: 0

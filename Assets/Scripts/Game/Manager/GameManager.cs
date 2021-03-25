@@ -1,29 +1,147 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/* Calls to...
- * MapGenerator (Builds level based on map data)
- * ConstantsManager (to build playerObject)
- * PlayerManager (takes currentPlayers for spawning playerObjects)
- */
+//Manages basic game loop and events.
+public enum GameState {
+	LOADING, COMBAT, PAUSE, GAME_OVER, LEVEL_COMPLETE, GAME_COMPLETE
+}
 public class GameManager : MonoBehaviour {
 
+	#region Singleton
+	public static GameManager instance;
+	void SingletonInitialization () {
+		if (instance == null) {
+			instance = this;
+		} else if (instance != this) {
+			Destroy (gameObject);
+		}
+	}
+	#endregion
+
+	//static variables (world data)
+	public GameContext gameContext;
+	protected GameState currentGameState;
+
+	//game loop
+	public event Action<int> loadLevelEvent;//generates map and creates objects.
+	public event Action<int> beginLevelEvent;//enables players/enemies/objects
+	public event Action<int> levelCompleteEvent;//Portal Open
+	public event Action<int> levelEndEvent;//Portal enter, clean up
+
+	//win/loss condition events
+	public event Action gameCompleteEvent;//player tower complete
+	public event Action<int> gameOverEvent;//player loss event (death)
+	
+	//other
+	public event Action onPauseEvent;//player pause button event
+
+	//Pause stuff
+	public bool isPaused = false;
+	protected GameState unpauseResumeGameState;
+	
+
+	public event Action<GameState> UIChangeEvent;
+
+	private bool levelLoaded;
+	public void SetLevelLoaded () {
+		Debug.Log ("level loaded. Begin game!");
+		levelLoaded = true;
+	}
+	private void Awake () {
+		SingletonInitialization ();
+	}
 	private void Start () {
-		MapGenerator.instance.GenerateMap ();
-		foreach (Player player in PlayerManager.Instance.currentPlayers) {
-			Vector2Int spawnCoordinate = MapGenerator.instance.spawnPoints.playerSpawnPoints[player.playerIndex];
-			GameObject playerObject = Instantiate(ConstantsManager.instance.playerWizardTemplatePrefab);
-			playerObject.name = "Player" + player.playerIndex + "_" + player.currentWizard.wizardName;
-			player.currentPlayerStateController = playerObject.GetComponent<PlayerStateController> ();
-			playerObject.GetComponent<PlayerInitializer> ().InitializePlayer (player);
-			MapGenerator.instance.PlaceObjectOnGrid (playerObject.transform, spawnCoordinate);
-			UIManager.Instance.playerUIs [player.playerIndex].InitializePlayerUI (player);
-			if (PlayerManager.Instance.currentPlayers.Count == 1) {
-				PlayerManagement.CameraController.instance.SetCameraDynamic (playerObject.GetComponent<PlayerMovementController> ());
-			}
+		StartCoroutine (BeginGameRoutine ());
+	}
+	
+	private IEnumerator BeginGameRoutine() {
+
+		//waits for subscribers.
+		yield return new WaitForSeconds (0.5f);
+		StartCoroutine(LoadLevelRoutine (0));
+	}
+
+
+	private void ChangeGameState (GameState newGameState) { 
+		if (currentGameState != newGameState) {
+			currentGameState = newGameState;
+			UIChangeEvent?.Invoke (currentGameState);
+		}
+	}
+	public void LoadLevel (int levelIndex) {
+
+		StartCoroutine (LoadLevelRoutine (levelIndex));
+	}
+
+	private IEnumerator LoadLevelRoutine (int levelIndex) {
+		ChangeGameState (GameState.LOADING);
+		Debug.Log ("loading level... ");
+		loadLevelEvent?.Invoke (levelIndex);
+		levelLoaded = false;
+		while (levelLoaded == false) {
+			yield return new WaitForSeconds (0.1f);
+			//load level is toggled to true by LevelManager once everything is configured.
+			Debug.Log ("waiting for load level...");
+		}
+		Debug.Log ("level loaded! beginning level");
+		BeginLevel (levelIndex);
+	}
+
+	public void BeginLevel (int levelIndex) {
+		Debug.Log ("Begin Level");
+		ChangeGameState (GameState.COMBAT);
+		beginLevelEvent?.Invoke (levelIndex);
+	}
+
+	public void GameOver (int levelLost) {
+		ChangeGameState (GameState.GAME_OVER);
+		gameOverEvent?.Invoke (levelLost);
+	}
+
+	public void LevelObjectiveComplete (int levelComplete) {
+		ChangeGameState (GameState.LEVEL_COMPLETE);
+		levelCompleteEvent?.Invoke (levelComplete);
+	}
+	public void LevelEnd (int levelEnded) {
+		ChangeGameState (GameState.LOADING);
+		levelEndEvent?.Invoke (levelEnded);
+	}
+	public void GameComplete () {
+		ChangeGameState (GameState.GAME_COMPLETE);
+		gameCompleteEvent?.Invoke ();
+	}
+
+
+
+	public void ReportPlayerDeath (Player player) {
+		player.isAlive = false;
+		player.currentPlayerObject = null;
+
+		bool gameOver = true;
+		foreach (Player currentPlayer in PlayerManager.instance.currentPlayers) {
+			if (currentPlayer.isAlive)
+				gameOver = false;
+		}
+		if (gameOver) {
+			gameOverEvent?.Invoke (1);
+			UIChangeEvent?.Invoke (GameState.GAME_OVER);
 		}
 	}
 
+
+	public void OnPause() {
+		if (!isPaused) {
+			Time.timeScale = 0;
+			unpauseResumeGameState = currentGameState;
+			UIChangeEvent?.Invoke (GameState.PAUSE);
+			isPaused = true;
+		} else {
+			Time.timeScale = 1;
+			UIChangeEvent?.Invoke (unpauseResumeGameState);
+			isPaused = false;
+		}
+	}
 
 }

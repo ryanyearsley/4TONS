@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb6323e28d81e284a967b1ea2d1e4622, type: 3}
+  m_Name: ZombieData
+  m_EditorClassIdentifier: 
+  id: 2300
+  poolSize: 20
+  clearance: 1
+  spawnObjectPrefab: {fileID: 3125169596821539825, guid: d5487051237bc0c468fa6ed0a17c65cc, type: 3}
+  creatureName: Zombie
+  health: 40
+  resourceMax: 0
+  movementSpeed: 4.5

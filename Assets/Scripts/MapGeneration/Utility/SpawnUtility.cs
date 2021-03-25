@@ -54,7 +54,6 @@ public class SpawnUtility
 		SpellData spellData = spellGemSpawnInfo.spellData;
 		bool spawnPointAdded = false;
 		int roll = UnityEngine.Random.Range (0, 100);
-		Debug.Log ("rolling... " + roll + ", needed under " + spellGemSpawnInfo.dropPercentage);
 		if (roll < spellGemSpawnInfo.dropPercentage)
 			while (spawnPointAdded == false) {
 				int randomX = UnityEngine.Random.Range (1, details.mapData.mapSize.x - 1);

@@ -7,14 +7,15 @@ using UnityEngine.Rendering;
 public class SpellData : ScriptableObject
 {
 	//Informational
+	public int instanceID;
 	public string spellName;
 	public SpellSchool spellSchool;
+	public SpellSchoolData spellSchoolData;
 	//Every spell has a code. EXAMPLE: Lightning bolt: 101 (LIGHT:1) + (SPELL UNLOCK TIER: 01)
-	public int spellCode;
+	public int id;
 	public string description;
 	//visual
 	public Sprite icon;
-	public Sprite spellGemSprite;
 	//combat
 	public GameObject castObject;
 	public int manaCost;
@@ -27,7 +28,6 @@ public class SpellData : ScriptableObject
 	public int poolSize;
 
 	public SpellObjectData spellObjectData;
-	//puzzle
-	public Vector2Int[] coordinates;
+	public PuzzlePieceData puzzlePieceData;
 
 }

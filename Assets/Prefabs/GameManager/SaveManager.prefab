@@ -47,4 +47,4 @@ MonoBehaviour:
     masterVolume: 0
     musicVolume: 0
     soundEffectsVolume: 0
-    wizards: []
+  defaultWizardData: {fileID: 11400000, guid: 9e545858471f15548a4435312d54557f, type: 2}

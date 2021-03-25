@@ -3,10 +3,7 @@ using System.Collections;
 
 public class PoolObject : MonoBehaviour, IPoolable {
 
-	private Transform poolParent;
-
-	public virtual void SetupObject (Transform parentTransform) {
-		poolParent = parentTransform;
+	public virtual void SetupObject () {
 	}
 
 	//Virtual Reset function so it can be overriden in classes with specific needs
@@ -34,6 +31,5 @@ public class PoolObject : MonoBehaviour, IPoolable {
 	}
 
 	public virtual void TerminateObjectFunctions () {
-		transform.parent = poolParent;
 	}
 }

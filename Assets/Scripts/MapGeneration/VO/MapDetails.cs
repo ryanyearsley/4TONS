@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 [Serializable]
 public class MapDetails
@@ -8,6 +9,7 @@ public class MapDetails
     public int floorIndex;
     public bool stageComplete;
     public Vector2Int floorOrigin;
+    public Tilemap floorTilemap;
 
     //coordinates on grid (think world space)
     public CoordinateBounds gridBounds;
@@ -18,8 +20,7 @@ public class MapDetails
     public MapTileInfo[,] mapTileInfo;
     public MapSpawnPoints spawnPoints;
 
-
-    public List<AIStateController> remainingEnemies = new List<AIStateController>();
+    public List<GauntletObjectiveComponent> remainingEnemies = new List<GauntletObjectiveComponent>();
     public int totalEnemiesCount;
 
     public MapDetails (WorldData worldData, MapData mapData, int floorIndex, MapTileInfo [,] mapTileInfo, MapSpawnPoints spawnPoints) {

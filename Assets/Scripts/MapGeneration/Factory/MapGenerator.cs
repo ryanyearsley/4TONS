@@ -42,13 +42,13 @@ public class MapGenerator : MonoBehaviour {
 		}
 
 		ProcessMap ();
-
-		//map = GenerateMapBorder ();
-		//Now that the series of 1s and 0s 
-		//that define the basic shape of our map has been generated...
-		//convert to MapTileInfo (game context on every tile)
+/*
+		map = GenerateMapBorder ();
+		Now that the series of 1s and 0s
+		that define the basic shape of our map has been generated...
+		convert to MapTileInfo (game context on every tile)*/
 		mapTileInfo = MapUtility.ConvertMapToTileInfo(map);
-
+		GenerateMapBorder (mapTileInfo);
 		spawnPoints = new MapSpawnPoints ();
 		Vector2Int floorOrigin = floorIndex * Vector2Int.one * 80;
 		MapDetails details = new MapDetails(worldData, mapData, floorIndex,  mapTileInfo, spawnPoints);
@@ -411,19 +411,16 @@ public class MapGenerator : MonoBehaviour {
 			}
 		}
 	}
-	private int[,] GenerateMapBorder() {
-		int[,] borderedMap = new int[mapData.mapSize.x + mapData.borderSize * 2, mapData.mapSize.y + mapData.borderSize * 2];
-		for (int x = 0; x < borderedMap.GetLength (0); x++) {
-			for (int y = 0; y < borderedMap.GetLength (1); y++) {
-				if (x >= mapData.borderSize && x < mapData.mapSize.x + mapData.borderSize && y >= mapData.borderSize && y < mapData.mapSize.y + mapData.borderSize) {
-					borderedMap [x, y] = map [x - mapData.borderSize, y - mapData.borderSize];
-
-				} else {
-					borderedMap [x, y] = 1;
-				}
+	private void GenerateMapBorder(MapTileInfo[,] mapTileInfo) {
+		int xLength = mapTileInfo.GetLength(0);
+		int yLength = mapTileInfo.GetLength(1);
+		for (int x = 0; x < xLength; x++) {
+			for (int y = 0; y < yLength; y++) {
+				if (x == 0 || x == xLength || y == 0 || y == yLength) {
+					mapTileInfo [x, y].isSpawnConflict = true;
+				} 
 			}
 		}
-		return borderedMap;
 	}
 
 	#endregion

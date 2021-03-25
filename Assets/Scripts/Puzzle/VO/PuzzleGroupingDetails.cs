@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,7 +7,7 @@ public enum PuzzleGroupingType {
 }
 
 //Represents an inventory or staff "grouping" of spellgems and tile information.
-[SerializeField]
+[Serializable]
 public class PuzzleGroupingDetails {
 
     public PuzzleGroupingType puzzleType;

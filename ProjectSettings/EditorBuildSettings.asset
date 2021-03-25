@@ -5,10 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/_Scenes/Game/GoG1_Mid.unity
-    guid: b75efa6f403941b4290bb6c29bac6969
+    path: Assets/_Scenes/MainMenu.unity
+    guid: d677f45177b1dfd4aa322736e87d5063
+  - enabled: 1
+    path: Assets/_Scenes/Game/Gauntlet/Gauntlet_Dark.unity
+    guid: 20899d66f76103540a0af7459c448eb7
   m_configObjects: {}

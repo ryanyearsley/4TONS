@@ -116,7 +116,7 @@ GameObject:
   - component: {fileID: -7285497471155706187}
   m_Layer: 9
   m_Name: LeechBolt
-  m_TagString: Enemy
+  m_TagString: Player1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -152,6 +152,11 @@ MonoBehaviour:
   isAlive: 0
   lifeTimer: 0
   moveSpeed: 10
+  hitboxRadius: 0.15
+  environmentMask:
+    serializedVersion: 2
+    m_Bits: 4096
+  debrisObject: {fileID: 5273009326846120377, guid: defd0a297a2fc5c4e8787c3d191318cf, type: 3}
 --- !u!58 &353378772722788452
 CircleCollider2D:
   m_ObjectHideFlags: 0

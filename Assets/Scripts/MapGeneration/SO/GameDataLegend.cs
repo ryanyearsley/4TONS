@@ -38,6 +38,9 @@ public class GameDataLegend : ScriptableObject {
 	public int SPELLGEM_BLOCK_SPAWN_INDEX_START = 400;
 	public int STAFF_SPAWN_INDEX_START = 500;
 	//600-999 reserved for additional mechanics
+	//Wizard Data indexing
+	public int PUZZLEDATA_INDEX_START = 600;
+
 
 	public SetPieceData spellGemPickUpObjectData;
 

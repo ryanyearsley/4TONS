@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a701196f12370941a9b69b34871811b, type: 3}
+  m_Name: PentagramCastData
+  m_EditorClassIdentifier: 
+  spellName: Blood Tentacles
+  spellSchool: 1
+  spellSchoolData: {fileID: 11400000, guid: 3c0c6ec45b52c8f438a33661902dea92, type: 2}
+  id: 2401
+  description: Sprout blood tentacles at target location, returning health to caster.
+  icon: {fileID: 21300000, guid: 08dddac117afb9e419e46b50406250da, type: 3}
+  castObject: {fileID: 576230467533564272, guid: 98f292d68d234834fb24bc31fa4beb80, type: 3}
+  manaCost: 20
+  castTime: 0.5
+  castSpeedReduction: 0.2
+  coolDown: 10
+  spellCastLocation: 1
+  spellObject: {fileID: 1513952481011264, guid: 86858cff9d5cd0e4b808f8a77ce2e6a3, type: 3}
+  poolSize: 5
+  spellObjectData: {fileID: 11400000, guid: 8bd865135b0bf2c4bb27042dcd29ab44, type: 2}
+  puzzlePieceData: {fileID: 11400000, guid: 41ad1d79c8f01534c989bdba233ef123, type: 2}

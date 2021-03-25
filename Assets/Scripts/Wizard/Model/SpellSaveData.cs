@@ -3,7 +3,7 @@ using UnityEngine;
 [Serializable]
 public class SpellSaveData {
     public SpellData spellData;
-    public string spellDataPath;
+    public int spellDataIndex;
     public Vector2Int spellGemOriginCoordinate;
     public int spellGemRotation;
     public int spellIndex;
@@ -16,4 +16,15 @@ public class SpellSaveData {
 
     [System.NonSerialized]
     public SpellGemEntity spellGemEntity;
+
+    public SpellSaveData Clone() {
+        SpellSaveData spellSaveData = new SpellSaveData();
+        spellSaveData.spellData = spellData;
+        spellSaveData.spellDataIndex = spellDataIndex;
+        spellSaveData.spellGemOriginCoordinate = spellGemOriginCoordinate;
+        spellSaveData.spellGemRotation = spellGemRotation;
+        spellSaveData.spellIndex = spellIndex;
+        spellSaveData.currentCoordinates = (Vector2Int[]) currentCoordinates.Clone ();
+        return spellSaveData;
+	}
 }

@@ -36,7 +36,6 @@ public class MapUtility {
 	 * 
 	 */
 	public static void ClearSpawnPointArea (MapTileInfo [,] map, SpawnPoint spawnPoint) {
-		Debug.Log ("Clearing spawnpoint area");
 		SpawnObjectData spawnObjectData = spawnPoint.spawnObjectData;
 		Vector2Int startingPoint = spawnPoint.spawnCoordinate - new Vector2Int (spawnObjectData.clearance, spawnObjectData.clearance);
 		int clearDiameter = 1 + (spawnPoint.spawnObjectData.clearance * 2);
@@ -44,7 +43,7 @@ public class MapUtility {
 			for (int y = 0; y <= clearDiameter; y++) {
 				Vector2Int coordinate = new Vector2Int(startingPoint.x + x, startingPoint.y + y);
 
-				map [coordinate.x, coordinate.y].value = -spawnObjectData.id;
+				map [coordinate.x, coordinate.y].value = 0;
 				map [coordinate.x, coordinate.y].isSpawnConflict = true;
 			}
 		}
