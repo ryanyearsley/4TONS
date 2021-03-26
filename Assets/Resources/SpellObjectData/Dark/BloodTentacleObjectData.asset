@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BloodTentacleObjectData
   m_EditorClassIdentifier: 
   lifeTime: 12
-  damage: 7
+  damage: 5
   manaDamage: 0
   enemySpeedReduction: 0.7
   casterHealthHealAmount: 0

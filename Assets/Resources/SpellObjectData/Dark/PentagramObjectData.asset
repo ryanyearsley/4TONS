@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: PentagramObjectData
   m_EditorClassIdentifier: 
   lifeTime: 5
-  damage: 50
+  damage: 15
   manaDamage: 0
   enemySpeedReduction: 0.5
-  casterHealthHealAmount: 0
+  casterHealthHealAmount: 5
   casterManaRegenAmount: 0
   casterSpeedIncrease: 1
   damageType: 3
