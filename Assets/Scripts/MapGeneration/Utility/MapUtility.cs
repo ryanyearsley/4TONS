@@ -39,8 +39,8 @@ public class MapUtility {
 		SpawnObjectData spawnObjectData = spawnPoint.spawnObjectData;
 		Vector2Int startingPoint = spawnPoint.spawnCoordinate - new Vector2Int (spawnObjectData.clearance, spawnObjectData.clearance);
 		int clearDiameter = 1 + (spawnPoint.spawnObjectData.clearance * 2);
-		for (int x = 0; x <= clearDiameter; x++) {
-			for (int y = 0; y <= clearDiameter; y++) {
+		for (int x = 0; x < clearDiameter; x++) {
+			for (int y = 0; y < clearDiameter; y++) {
 				Vector2Int coordinate = new Vector2Int(startingPoint.x + x, startingPoint.y + y);
 
 				map [coordinate.x, coordinate.y].value = 0;
