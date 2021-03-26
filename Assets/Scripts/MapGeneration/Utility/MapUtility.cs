@@ -51,12 +51,11 @@ public class MapUtility {
 	}
 
 	public static void ClearSpellGemSpawnPointArea (MapTileInfo [,] map, SpellGemSpawnPoint spawnPoint) {
-		Debug.Log ("Clearing spawnpoint area");
 		SpawnObjectData spawnObjectData = spawnPoint.spawnObjectData;
 		Vector2Int startingPoint = spawnPoint.spawnCoordinate - new Vector2Int (spawnObjectData.clearance, spawnObjectData.clearance);
 		int clearDiameter = 1 + (spawnPoint.spawnObjectData.clearance * 2);
-		for (int x = 0; x <= clearDiameter; x++) {
-			for (int y = 0; y <= clearDiameter; y++) {
+		for (int x = 0; x < clearDiameter; x++) {
+			for (int y = 0; y < clearDiameter; y++) {
 				map [startingPoint.x + x, startingPoint.y + y].value = -spawnPoint.spellData.id;
 				map [startingPoint.x + x, startingPoint.y + y].isSpawnConflict = true;
 			}
