@@ -133,6 +133,7 @@ MonoBehaviour:
   currentValue: 0
   maxValue: 100
   overheadUIPrefab: {fileID: 7782048835682223337, guid: 037e243a971b6ea4ba37db3da18c5341, type: 3}
+  bloodPoolPrefab: {fileID: 8449888385662570083, guid: 5cb53da2784d0634eb2d6632f137effe, type: 3}
 --- !u!114 &5339795052219122617
 MonoBehaviour:
   m_ObjectHideFlags: 0

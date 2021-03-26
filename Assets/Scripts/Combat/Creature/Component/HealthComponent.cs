@@ -5,13 +5,19 @@ using UnityEngine;
 
 public class HealthComponent : VitalsComponent {
 
+	public GameObject bloodPoolPrefab;
 	public override void SetUpComponent (GameObject rootObject) {
 		Debug.Log ("Health component setup");
 		base.SetUpComponent (rootObject);
 		maxValue = creatureObject.creatureData.health;
+		PoolManager.instance.CreateObjectPool (bloodPoolPrefab, 2);
 	}
 
-	public float GetHealth () {
+	public override void OnDeath () {
+		PoolManager.instance.ReuseObject (bloodPoolPrefab, transform.position, Quaternion.identity);
+		base.OnDeath ();
+	}
+		public float GetHealth () {
 		return currentValue;
 	}
 
