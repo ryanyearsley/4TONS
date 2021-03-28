@@ -5,6 +5,9 @@ using System;
 public class SpellUI : MonoBehaviour
 {
 	[SerializeField]
+	private string defaultBindingString;
+
+	[SerializeField]
 	private Image spellIcon;
 	private Sprite emptySpellbindSprite;
 	[SerializeField]
@@ -15,7 +18,7 @@ public class SpellUI : MonoBehaviour
 		emptySpellbindSprite = spellIcon.sprite;
 		spellIcon.sprite = spellData.icon;
 		spellIcon.fillAmount = 1;
-		spellBindingDefault = spellBindingText.text;
+		spellBindingDefault = defaultBindingString;
 	}
 
 	public void GreyOutSpellUI() {

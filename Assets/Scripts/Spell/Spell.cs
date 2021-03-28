@@ -41,10 +41,10 @@ public abstract class Spell : MonoBehaviour
     private void Update()
     {
         if (onCooldown) {
-            float percentage = cdTimer/spellData.coolDown;
-            spellUI.UpdateSpellUICooldown (percentage, cdTimer * percentage);
-            cdTimer += Time.deltaTime;
-            if (cdTimer >= spellData.coolDown) {
+            float fillPercentage = 1 - cdTimer/spellData.coolDown;
+            spellUI.UpdateSpellUICooldown (fillPercentage, cdTimer);
+            cdTimer -= Time.deltaTime;
+            if (cdTimer <= 0) {
                 onCooldown = false;
                 spellUI.ActivateSpellUI ();
             }
@@ -60,7 +60,7 @@ public abstract class Spell : MonoBehaviour
     public virtual void CastSpell()
     {
             onCooldown = true;
-            cdTimer = 0;
+            cdTimer = spellData.coolDown;
             spellUI.GreyOutSpellUI ();
     }
 
