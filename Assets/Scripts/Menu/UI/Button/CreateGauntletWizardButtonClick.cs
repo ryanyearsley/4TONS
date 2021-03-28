@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class CreateWizardButtonClick : AbstractButtonClick {
+public class CreateGauntletWizardButtonClick : AbstractButtonClick {
 
 	private WizardCreatePanelUI wizardCreatePanelUI;
 

@@ -4,13 +4,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public enum MainMenuScreen {
-	WELCOME, GAMETYPE_SELECT, GAUNTLET_CREATE, WIZARD_SELECT, SETTINGS
+public enum MenuScreen {
+	WELCOME, MAIN_MENU, GAUNTLET_CREATE, WIZARD_SELECT, SETTINGS, TUTORIAL, CONTROLS
 }
 
 public class MainMenuManager : MonoBehaviour {
-	public MainMenuScreen currentMainMenuScreen { get; private set; }
-	public event Action<MainMenuScreen> OnMenuScreenChangeEvent;
+	public MenuScreen currentMainMenuScreen { get; private set; }
+	public event Action<MenuScreen> OnMenuScreenChangeEvent;
 	public event Action<Player> OnPlayerJoinEvent;
 	public event Action<WizardSaveData> OnWizardDeleteEvent;
 
@@ -28,19 +28,19 @@ public class MainMenuManager : MonoBehaviour {
 		yield return new WaitForSeconds (0.05f);
 		if (PlayerManager.instance.currentPlayers.Count > 0) {
 			Debug.Log ("more than zero players active. Going to gametype select screen.");
-			ChangeMenuScreen (MainMenuScreen.GAMETYPE_SELECT);
+			ChangeMenuScreen (MenuScreen.MAIN_MENU);
 		} else {
-			ChangeMenuScreen (MainMenuScreen.WELCOME);
+			ChangeMenuScreen (MenuScreen.WELCOME);
 		}
 	}
-	public void ChangeMenuScreen(MainMenuScreen screen) {
+	public void ChangeMenuScreen(MenuScreen screen) {
 		currentMainMenuScreen = screen;
 		OnMenuScreenChangeEvent?.Invoke (screen);
 	}
 	public void OnPlayerJoin(int controllerIndex) {
-		if (currentMainMenuScreen == MainMenuScreen.WELCOME) {
+		if (currentMainMenuScreen == MenuScreen.WELCOME) {
 			Player player = CreateAndRegisterPlayer (controllerIndex);
-			MainMenuManager.Instance.ChangeMenuScreen (MainMenuScreen.GAMETYPE_SELECT);
+			MainMenuManager.Instance.ChangeMenuScreen (MenuScreen.MAIN_MENU);
 			OnPlayerJoinEvent?.Invoke (player);
 		}
 	}
@@ -65,7 +65,7 @@ public class MainMenuManager : MonoBehaviour {
 			}
 		}
 		if (isEveryoneReady == true) {
-			ChangeMenuScreen (MainMenuScreen.GAMETYPE_SELECT);
+			ChangeMenuScreen (MenuScreen.MAIN_MENU);
 		}
 	}
 }

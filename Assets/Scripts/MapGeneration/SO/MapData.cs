@@ -27,7 +27,7 @@ public class MapData : ScriptableObject {
 	public GameObject floorPrefab;
 	public CreatureSpawnInfo playerSpawnInfo;
 	public CreatureSpawnInfo[] enemySpawnInfos;
-	public CreatureSpawnInfo[] setPieceSpawnInfos;
+	public SetPieceSpawnInfo[] setPieceSpawnInfos;
 	public SpellGemSpawnInfo [] spellGemSpawnInfos;
 	[ConditionalHide ("useCustomSeed")]
 	public string seed;

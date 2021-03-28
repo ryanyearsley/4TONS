@@ -32,8 +32,8 @@ public class SpawnUtility
 		for (int i = 0; i < setPieceSpawnInfo.spawnCount; i++) {
 			bool spawnPointAdded = false;
 			while (spawnPointAdded == false) {
-				int randomX = UnityEngine.Random.Range (1, details.mapData.mapSize.x - 1);
-				int randomY = UnityEngine.Random.Range (1, details.mapData.mapSize.y - 1);
+				int randomX = UnityEngine.Random.Range (5, details.mapData.mapSize.x - 5);
+				int randomY = UnityEngine.Random.Range (5, details.mapData.mapSize.y - 5);
 
 				if (details.mapTileInfo [randomX, randomY].value == 0) {
 					if (MapUtility.CheckSpawnPointEligibility (details, new Vector2Int (randomX, randomY), setPieceData.clearance)) {

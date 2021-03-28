@@ -8,7 +8,7 @@ public class AbstractScreenUI : MonoBehaviour
 	private GameObject screenObject;
 
 	[SerializeField]
-	public List<MainMenuScreen> screenActiveStates;
+	public List<MenuScreen> screenActiveStates;
 
 
 	protected virtual void Start () {
@@ -19,7 +19,7 @@ public class AbstractScreenUI : MonoBehaviour
 
 	}
 
-	protected virtual void OnScreenChange (MainMenuScreen mainMenuScreen) {
+	protected virtual void OnScreenChange (MenuScreen mainMenuScreen) {
 		if (screenActiveStates.Contains (mainMenuScreen)) {
 			screenObject.SetActive (true);
 		} else {

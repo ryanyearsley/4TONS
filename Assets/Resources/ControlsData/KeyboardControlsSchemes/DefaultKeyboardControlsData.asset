@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6811acd34dd7f33439e49287a8cdf6a4, type: 3}
+  m_Name: DefaultKeyboardControlsData
+  m_EditorClassIdentifier: 
+  controlData:
+    moveControl:
+      controlColor: {r: 0.67058825, g: 0.19215688, b: 0.19215688, a: 1}
+      action: Move
+      actionDescription: 
+      controlString: WASD
+    aimControl:
+      controlColor: {r: 0.37254903, g: 0.80392164, b: 0.8941177, a: 1}
+      action: Aim
+      actionDescription: 
+      controlString: Mouse X + Y
+    dodgeControl:
+      controlColor: {r: 0.67058825, g: 0.19215688, b: 0.19215688, a: 1}
+      action: Dodge
+      actionDescription: 
+      controlString: SPACE
+    pauseControl:
+      controlColor: {r: 0.67058825, g: 0.19215688, b: 0.19215688, a: 1}
+      action: Pause
+      actionDescription: 
+      controlString: ESC
+    spell1Control:
+      controlColor: {r: 0.46274513, g: 0.2509804, b: 0.5411765, a: 1}
+      action: Spell #1
+      actionDescription: 
+      controlString: LMB
+    spell2Control:
+      controlColor: {r: 0.46274513, g: 0.2509804, b: 0.5411765, a: 1}
+      action: Spell #2
+      actionDescription: 
+      controlString: RMB
+    spell3Control:
+      controlColor: {r: 0.46274513, g: 0.2509804, b: 0.5411765, a: 1}
+      action: Spell #3
+      actionDescription: 
+      controlString: Q
+    spell4Control:
+      controlColor: {r: 0.46274513, g: 0.2509804, b: 0.5411765, a: 1}
+      action: Spell #4
+      actionDescription: 
+      controlString: E
+    grabControl:
+      controlColor: {r: 0.20784315, g: 0.5803922, b: 0.43137258, a: 1}
+      action: Grab
+      actionDescription: 
+      controlString: G
+    toggleControl:
+      controlColor: {r: 0.9843138, g: 0.9490197, b: 0.20392159, a: 1}
+      action: Toggle
+      actionDescription: 
+      controlString: T
+    rotateControl:
+      controlColor: {r: 0.28627452, g: 0.42352945, b: 0.8117648, a: 1}
+      action: Rotate
+      actionDescription: 
+      controlString: R
+    flipControl:
+      controlColor: {r: 0.9215687, g: 0.48627454, b: 0.18039216, a: 1}
+      action: Flip
+      actionDescription: 
+      controlString: F

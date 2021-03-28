@@ -17,7 +17,7 @@ public class WizardSelectScreenUI : AbstractScreenUI
 	}
 
 
-	protected override void OnScreenChange (MainMenuScreen mainMenuScreen) {
+	protected override void OnScreenChange (MenuScreen mainMenuScreen) {
 		base.OnScreenChange (mainMenuScreen);
 		if (screenActiveStates.Contains (mainMenuScreen)) {
 			UpdateWizardSelectPanels ();
