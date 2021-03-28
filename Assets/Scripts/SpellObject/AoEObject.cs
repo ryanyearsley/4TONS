@@ -7,7 +7,7 @@ public class AoEObject : SpellObject {
 	List<VitalsEntity> inAreaAllies = new List<VitalsEntity>();
 
 	//Default: 10x a second
-	private float tickInterval = 0.5f;
+	private float tickInterval = 0.25f;
 
 	public override void ReuseSpellObject (VitalsEntity vitalsEntity) {
 		base.ReuseSpellObject (vitalsEntity);
@@ -62,10 +62,10 @@ public class AoEObject : SpellObject {
 		if (vitals != null) {
 			if (vitals != casterVitalsEntity) {
 				inAreaTargets.Add (vitals);
-				EnemyTick (vitals);
+				//EnemyTick (vitals);
 			} else {
 				inAreaAllies.Add (vitals);
-				AlliedTick (vitals);
+				//AlliedTick (vitals);
 			}
 		}
 
