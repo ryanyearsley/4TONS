@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 58488e2f9c5dea246823146dae462bde, type: 3}
-  m_Name: DarkPortalData
+  m_Name: DarkCryptData
   m_EditorClassIdentifier: 
-  id: 2013
-  poolSize: 2
-  clearance: 2
-  spawnObjectPrefab: {fileID: 7681443459082228421, guid: b850d95e42006a449a0cc0dd13e1cccc, type: 3}
+  id: 2200
+  poolSize: 5
+  clearance: 3
+  spawnObjectPrefab: {fileID: 4767748298142753111, guid: 3d5c16c674666d340b0af798c4283663, type: 3}

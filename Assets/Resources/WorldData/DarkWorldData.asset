@@ -23,14 +23,15 @@ MonoBehaviour:
   tileset:
   - {fileID: 11400000, guid: 9c640f3eec23a9c4ca9ffe73cb5fb7a0, type: 2}
   - {fileID: 11400000, guid: 23d4f699a7d099941bc526f4c3eb6070, type: 2}
-  spellGemPickUpSpawnInfo: {fileID: 0}
+  spellGemPickUpSpawnInfo: {fileID: 11400000, guid: c5abe41b66335894d94c02f288c77685, type: 2}
   playerSpawnSetpieceSpawnInfo:
     spawnCount: 1
     setPieceData: {fileID: 11400000, guid: d23a93a1f17a101429c5cb7656bf714d, type: 2}
   nextLevelPortalSpawnInfo:
     spawnCount: 1
     setPieceData: {fileID: 11400000, guid: be2d74a77f5fcc24790ae2dd3c9e8e4c, type: 2}
-  setPieceDatas: []
+  setPieceDatas:
+  - {fileID: 11400000, guid: bd2fadacf2e57264b9856ebe92851d36, type: 2}
   mapDatas:
   - {fileID: 11400000, guid: b40da825b5c53af4d90898a3024186f9, type: 2}
   - {fileID: 11400000, guid: 314f990d10f536c488dc286ab2f0ca52, type: 2}

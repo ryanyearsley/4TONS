@@ -61,6 +61,9 @@ public class MapGenerator : MonoBehaviour {
 		foreach (SpellGemSpawnInfo spellGemSpawnInfo in mapData.spellGemSpawnInfos) {
 			spawnPoints.spellGemSpawnPoints.AddRange (SpawnUtility.GenerateSpellGemSpawnPoints (details, spellGemSpawnInfo));
 		}
+		foreach (SetPieceSpawnInfo setPieceSpawnInfo in mapData.setPieceSpawnInfos) {
+			spawnPoints.setPieceSpawnPoints.AddRange(SpawnUtility.GenerateSetPieceSpawnPoints (details, setPieceSpawnInfo));
+		}
 
 		int towerBasicBlockIndex = worldData.schoolIndexStart + gameDataLegend.TILE_INDEX_START + 1;
 		MapUtility.ConvertValueInTileInfo (details, 1, towerBasicBlockIndex);
@@ -417,6 +420,7 @@ public class MapGenerator : MonoBehaviour {
 		for (int x = 0; x < xLength; x++) {
 			for (int y = 0; y < yLength; y++) {
 				if (x == 0 || x == xLength - 1 || y == 0 || y == yLength - 1) {
+					mapTileInfo [x, y].value = 1;
 					mapTileInfo [x, y].isSpawnConflict = true;
 				} 
 			}
