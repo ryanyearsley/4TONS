@@ -14,6 +14,9 @@ TextureImporter:
   - first:
       213: -8620962673215260627
     second: BloodPool_SpriteSheet_3
+  - first:
+      213: -6783251027749366673
+    second: BloodPool_SpriteSheet_4
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -182,6 +185,27 @@ TextureImporter:
       bones: []
       spriteID: d283a11ef103c5880800000000000000
       internalID: -8620962673215260627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BloodPool_SpriteSheet_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f6412b4212d0dd1a0800000000000000
+      internalID: -6783251027749366673
       vertices: []
       indices: 
       edges: []
