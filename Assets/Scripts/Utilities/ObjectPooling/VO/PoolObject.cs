@@ -3,6 +3,10 @@ using System.Collections;
 
 public class PoolObject : MonoBehaviour, IPoolable {
 
+	protected GameObject go;
+	void Awake() {
+		go = gameObject;
+	}
 	public virtual void SetupObject () {
 	}
 

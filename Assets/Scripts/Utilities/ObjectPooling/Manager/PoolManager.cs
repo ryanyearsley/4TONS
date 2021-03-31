@@ -105,15 +105,13 @@ public class PoolManager : MonoBehaviour {
 	// Reuse a gameobject and places it in the desired position
 	public GameObject ReuseObject (GameObject prefab, Vector3 position, Quaternion rotation) {
 		int poolKey = prefab.GetInstanceID ();
-
 		if (poolDictionary.ContainsKey (poolKey)) {
-
 			// Dequeue then requeue the object then call the Objects Reuse function
 			ObjectInstance objectToReuse = poolDictionary [poolKey].Dequeue ();
 			poolDictionary [poolKey].Enqueue (objectToReuse);
 
 			objectToReuse.Reuse (position, rotation);
-			return objectToReuse.gameObject;
+			return objectToReuse.go;
 		} else {
 			CreateObjectPool (prefab, defaultPoolSize);
 			return ReuseObject (prefab, position, rotation);
@@ -128,7 +126,7 @@ public class PoolManager : MonoBehaviour {
 			CreatureObjectInstance objectToReuse = creatureDictionary [poolKey].Dequeue ();
 			creatureDictionary [poolKey].Enqueue (objectToReuse);
 			objectToReuse.Reuse (position);
-			return objectToReuse.gameObject;
+			return objectToReuse.go;
 		} else {
 			CreateCreaturePool (prefab, defaultPoolSize);
 			return ReuseCreatureObject (prefab, position);
@@ -140,7 +138,7 @@ public class PoolManager : MonoBehaviour {
 			playerObjectPool.Enqueue (objectToReuse);
 
 			objectToReuse.Reuse (position, player);
-			return objectToReuse.gameObject;
+			return objectToReuse.go;
 	}
 	public GameObject ReuseSpellObject (GameObject prefab, Vector3 position, Quaternion rotation, VitalsEntity vitalsEntity) {
 		int poolKey = prefab.GetInstanceID ();
@@ -148,11 +146,11 @@ public class PoolManager : MonoBehaviour {
 		if (spellObjectDictionary.ContainsKey (poolKey)) {
 
 			// Dequeue then requeue the object then call the Objects Reuse function
-			SpellObjectInstance objectToReuse = spellObjectDictionary [poolKey].Dequeue ();
-			spellObjectDictionary [poolKey].Enqueue (objectToReuse);
+			SpellObjectInstance spellObjectInstance = spellObjectDictionary [poolKey].Dequeue ();
+			spellObjectDictionary [poolKey].Enqueue (spellObjectInstance);
 
-			objectToReuse.Reuse (position, rotation, vitalsEntity);
-			return objectToReuse.gameObject;
+			spellObjectInstance.Reuse (position, rotation, vitalsEntity);
+			return spellObjectInstance.go;
 		} else {
 			CreateSpellObjectPool (prefab, defaultPoolSize);
 			return ReuseSpellObject (prefab, position, rotation, vitalsEntity);
