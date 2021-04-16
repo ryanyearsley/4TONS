@@ -12,7 +12,7 @@ public class CreateGauntletWizardButtonClick : AbstractButtonClick {
 	protected override void OnClick () {
 		if (wizardCreatePanelUI.isValidWizard ()) {
 			Debug.Log ("Confirmation button clicked, saving wizard");
-			WizardSaveData createdWizard = wizardCreatePanelUI.FinalizeWizard();
+			WizardSaveData createdWizard = wizardCreatePanelUI.FinalizeWizardCreate();
 			Debug.Log ("Created wizard name: " + createdWizard.wizardName);
 			MainMenuManager.Instance.ConfirmPlayerWizardSelection (createdWizard);
 			SceneManager.LoadScene (1);

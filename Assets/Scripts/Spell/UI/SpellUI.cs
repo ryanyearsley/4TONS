@@ -14,11 +14,14 @@ public class SpellUI : MonoBehaviour
 	private Text spellBindingText;
 	private string spellBindingDefault;
 
-	public void InitializeSpellUI(SpellData spellData) {
+	private void Awake () {
 		emptySpellbindSprite = spellIcon.sprite;
-		spellIcon.sprite = spellData.icon;
 		spellIcon.fillAmount = 1;
 		spellBindingDefault = defaultBindingString;
+	}
+
+	public void InitializeSpellUI(SpellData spellData) {
+		spellIcon.sprite = spellData.icon;
 	}
 
 	public void GreyOutSpellUI() {
@@ -30,13 +33,17 @@ public class SpellUI : MonoBehaviour
 		spellBindingText.text = spellBindingDefault;
 	}
 
-	public void UnbindSpellUI() {
+	public void ClearSpellBinding() {
 		spellIcon.color = new Color (1, 1, 1, 1);
 		spellIcon.sprite = emptySpellbindSprite;
+		spellBindingText.text = spellBindingDefault;
 	}
 
 	public void UpdateSpellUICooldown(float fillPercentage, float cooldownRemaining) {
 		spellIcon.fillAmount = fillPercentage;
 		spellBindingText.text = Math.Round (cooldownRemaining, 1).ToString();
+		if (cooldownRemaining <= 0) {
+			ActivateSpellUI ();
+		}
 	}
 }

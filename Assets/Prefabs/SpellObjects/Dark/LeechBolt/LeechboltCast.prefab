@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 576230467533564270}
   m_Layer: 11
   m_Name: LeechboltCast
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45,3 +45,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spellData: {fileID: 11400000, guid: f8a09e2fb222c62489690f14902cef0d, type: 2}
   onCooldown: 0
+  spellUI: {fileID: 0}

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6998417985193740608}
   - component: {fileID: 3445943968809672274}
+  - component: {fileID: 338719542131416028}
   m_Layer: 9
   m_Name: DebrisObject(Leechbolt)
   m_TagString: Untagged
@@ -46,6 +47,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isAlive: 0
   lifeTime: 10
+--- !u!210 &338719542131416028
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5273009326846120377}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
 --- !u!1 &6541770513240288271
 GameObject:
   m_ObjectHideFlags: 0
@@ -72,7 +84,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6541770513240288271}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6998417985193740608}
@@ -118,8 +130,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -5732873331667706613, guid: 4fd29fc707b21c54bab80f66dc50b5dc, type: 3}
-  m_Color: {r: 0.24497463, g: 0.1718138, b: 0.3679245, a: 1}
+  m_Sprite: {fileID: 4272121556339305024, guid: 4fd29fc707b21c54bab80f66dc50b5dc, type: 3}
+  m_Color: {r: 0.5107168, g: 0.20825918, b: 0.6792453, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

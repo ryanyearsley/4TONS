@@ -537,54 +537,54 @@ MonoBehaviour:
       _userAssignable: 1
       _categoryId: 2
     - _id: 32
-      _name: PickUpSpellGem
+      _name: PickUpItem
       _type: 1
-      _descriptiveName: PickUpSpellGem
+      _descriptiveName: PickUpItem
       _positiveDescriptiveName: 
       _negativeDescriptiveName: 
       _behaviorId: 0
       _userAssignable: 1
       _categoryId: 4
     - _id: 33
-      _name: RotateSpellGem
+      _name: RotateItem
       _type: 1
-      _descriptiveName: RotateSpellGem
+      _descriptiveName: RotateItem
       _positiveDescriptiveName: 
       _negativeDescriptiveName: 
       _behaviorId: 0
       _userAssignable: 1
       _categoryId: 4
     - _id: 34
-      _name: GrabSpellGem
+      _name: GrabItem
       _type: 1
-      _descriptiveName: GrabSpellGem
+      _descriptiveName: GrabItem
       _positiveDescriptiveName: 
       _negativeDescriptiveName: 
       _behaviorId: 0
       _userAssignable: 1
       _categoryId: 4
     - _id: 35
-      _name: FlipSpellGem
+      _name: FlipItem
       _type: 1
-      _descriptiveName: FlipSpellGem
+      _descriptiveName: FlipItem
       _positiveDescriptiveName: 
       _negativeDescriptiveName: 
       _behaviorId: 0
       _userAssignable: 1
       _categoryId: 4
     - _id: 36
-      _name: BindSpellGem
+      _name: BindItem
       _type: 1
-      _descriptiveName: BindSpellGem
+      _descriptiveName: BindItem
       _positiveDescriptiveName: 
       _negativeDescriptiveName: 
       _behaviorId: 0
       _userAssignable: 1
       _categoryId: 4
     - _id: 37
-      _name: DropSpellGem
+      _name: DropItem
       _type: 1
-      _descriptiveName: DropSpellGem
+      _descriptiveName: DropItem
       _positiveDescriptiveName: 
       _negativeDescriptiveName: 
       _behaviorId: 0
@@ -594,6 +594,42 @@ MonoBehaviour:
       _name: Pause
       _type: 1
       _descriptiveName: Pause
+      _positiveDescriptiveName: 
+      _negativeDescriptiveName: 
+      _behaviorId: 0
+      _userAssignable: 1
+      _categoryId: 2
+    - _id: 41
+      _name: SwitchToPrimaryStaff
+      _type: 1
+      _descriptiveName: SwitchToPrimaryStaff
+      _positiveDescriptiveName: 
+      _negativeDescriptiveName: 
+      _behaviorId: 0
+      _userAssignable: 1
+      _categoryId: 2
+    - _id: 42
+      _name: SwitchToSecondaryStaff
+      _type: 1
+      _descriptiveName: SwitchToSecondaryStaff
+      _positiveDescriptiveName: 
+      _negativeDescriptiveName: 
+      _behaviorId: 0
+      _userAssignable: 1
+      _categoryId: 2
+    - _id: 43
+      _name: SwitchToAlternateStaff
+      _type: 1
+      _descriptiveName: SwitchToAlternateStaff
+      _positiveDescriptiveName: 
+      _negativeDescriptiveName: 
+      _behaviorId: 0
+      _userAssignable: 1
+      _categoryId: 2
+    - _id: 44
+      _name: DropCurrentStaff
+      _type: 1
+      _descriptiveName: DropCurrentStaff
       _positiveDescriptiveName: 
       _negativeDescriptiveName: 
       _behaviorId: 0
@@ -632,7 +668,7 @@ MonoBehaviour:
       - categoryId: 1
         actionIds: 0b0000000c000000040000000500000006000000
       - categoryId: 2
-        actionIds: 07000000080000000a000000090000000e0000001100000012000000130000001400000015000000160000001f00000026000000
+        actionIds: 07000000080000000a000000090000000e0000001100000012000000130000001400000015000000160000001f00000026000000290000002a0000002b0000002c000000
       - categoryId: 3
         actionIds: 1700000018000000190000001a0000001b0000001c0000001d000000
       - categoryId: 4
@@ -1222,7 +1258,7 @@ MonoBehaviour:
         _modifierKey2: 0
         _modifierKey3: 0
       - _actionCategoryId: 0
-        _actionId: 32
+        _actionId: 36
         _elementType: 1
         _elementIdentifierId: -1
         _axisRange: 0
@@ -1251,6 +1287,50 @@ MonoBehaviour:
         _invert: 0
         _axisContribution: 0
         _keyboardKeyCode: 112
+        _modifierKey1: 0
+        _modifierKey2: 0
+        _modifierKey3: 0
+      - _actionCategoryId: 0
+        _actionId: 41
+        _elementType: 1
+        _elementIdentifierId: -1
+        _axisRange: 0
+        _invert: 0
+        _axisContribution: 0
+        _keyboardKeyCode: 49
+        _modifierKey1: 0
+        _modifierKey2: 0
+        _modifierKey3: 0
+      - _actionCategoryId: 0
+        _actionId: 42
+        _elementType: 1
+        _elementIdentifierId: -1
+        _axisRange: 0
+        _invert: 0
+        _axisContribution: 0
+        _keyboardKeyCode: 50
+        _modifierKey1: 0
+        _modifierKey2: 0
+        _modifierKey3: 0
+      - _actionCategoryId: 0
+        _actionId: 43
+        _elementType: 1
+        _elementIdentifierId: -1
+        _axisRange: 0
+        _invert: 0
+        _axisContribution: 0
+        _keyboardKeyCode: 304
+        _modifierKey1: 0
+        _modifierKey2: 0
+        _modifierKey3: 0
+      - _actionCategoryId: 0
+        _actionId: 44
+        _elementType: 1
+        _elementIdentifierId: -1
+        _axisRange: 0
+        _invert: 0
+        _axisContribution: 0
+        _keyboardKeyCode: 121
         _modifierKey1: 0
         _modifierKey2: 0
         _modifierKey3: 0
@@ -1493,7 +1573,7 @@ MonoBehaviour:
     controllerMapLayoutManagerRuleSets: []
     controllerMapEnablerRuleSets: []
     playerIdCounter: 8
-    actionIdCounter: 39
+    actionIdCounter: 45
     actionCategoryIdCounter: 5
     inputBehaviorIdCounter: 1
     mapCategoryIdCounter: 4

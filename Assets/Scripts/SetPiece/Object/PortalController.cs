@@ -24,10 +24,10 @@ public class PortalController : PoolObject {
 	}
 
 	public override void ReuseObject() {
+		base.ReuseObject ();
 		SubscribeToEvents ();
 		useCounter++;
 		opened = false;
-		Debug.Log ("Portal Controller Re-use. ID:" + GetInstanceID() + ", use counter: " + useCounter);
 		animator.SetTrigger ("close");
 		portalCollider.enabled = false;
 	}

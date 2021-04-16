@@ -161,7 +161,7 @@ namespace PlayerManagement {
 			return Vector2.SmoothDamp (currentLookAhead, targetLookAhead, ref smoothLookVelocity, lookSmoothTime);
 		}
 
-		private void OnDrawGizmos () {
+		private void OnDrawGizmosSelected () {
 			Gizmos.color = new Color (1f, 0f, 0f, 0.5f);
 			Gizmos.DrawCube (focusArea.center, focusAreaSize);
 		}

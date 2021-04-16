@@ -1,15 +1,17 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using System;
 
+[Serializable]
 public struct CoordinateBounds
 {
+	public Vector2Int dimensions;
 	public Vector2Int minCoord;
 	public Vector2Int maxCoord;
 
-	public CoordinateBounds (Vector2Int minCoord, Vector2Int maxCoord) {
+	public CoordinateBounds (Vector2Int minCoord, Vector2Int dimensions) {
 		this.minCoord = minCoord;
-		this.maxCoord = maxCoord;
+		this.dimensions = dimensions;
+		this.maxCoord = minCoord + dimensions;
 	}
 	public override string ToString() {
 		string output = "Min coord: " + minCoord.ToString() + ", Max Coord: " + maxCoord.ToString();

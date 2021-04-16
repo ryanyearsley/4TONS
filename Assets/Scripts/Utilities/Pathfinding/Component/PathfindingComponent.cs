@@ -182,7 +182,7 @@ public class PathfindingComponent : BabyBrainsComponent  {
 		unstuckDirection = Vector3.zero;
 	}
 	#endregion
-	public virtual void OnDrawGizmos () {
+	public virtual void OnDrawGizmosSelected () {
 		if (path != null && drawGizmos)
 			path.DrawWithGizmos ();
 

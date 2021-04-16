@@ -27,39 +27,15 @@ public class PuzzleFactory
         }
         return output;
     }
-
-    public static PuzzleTileInfo [,] GenerateEmptyInventory(Vector2Int size) {
-        PuzzleTileInfo[,] output = new PuzzleTileInfo[size.x, size.y];
-        int xLength = output.GetLength (0);
-        int yLength = output.GetLength (1);
-        for (int y = 0; y < yLength; y++) {
-            for (int x = 0; x < xLength; x++) {
-                output [x, y] = new PuzzleTileInfo ();
-                output [x, y].value = 1;
-                output [x, y].mapCoordinate = new Vector2Int (x, y)
-;            }
-        }
-        return output;
-    }
-    public static void BuildInventoryUI (PuzzleTileInfo [,] inventoryData, Vector2Int origin, Tilemap tilemap, Tile tile) {
-        for (int y = 0; y < inventoryData.GetLength (1); y++) {
-            for (int x = 0; x < inventoryData.GetLength (0); x++) {
-                int tilePrefabIndex = inventoryData[x, y].value;
-                if (tilePrefabIndex == 1) {
-                    tilemap.SetTile (new Vector3Int (origin.x + x, origin.y + y, 0), tile);
-                }
-
-            }
-        }
-    }
-    public static void BuildStaffUI (PuzzleTileInfo [,] staffData, Vector2Int origin, Tilemap tilemap, Tile tile) {
+    public static void BuildPuzzleTilemap (PuzzleTileInfo [,] staffData, Tilemap tilemap) {
+        Tile tile = ConstantsManager.instance.puzzleTile;
         for (int y = 0; y < staffData.GetLength (1); y++) {
             for (int x = 0; x < staffData.GetLength (0); x++) {
                 int tilePrefabIndex = staffData[x, y].value;
-                if (tilePrefabIndex != 0) {
-                    tilemap.SetTile (new Vector3Int (origin.x + x, origin.y + y, 0), tile);
+                if (tilePrefabIndex == 1) {
+                    Debug.Log("PuzzleFactory: Setting tile");
+                    tilemap.SetTile (new Vector3Int (x, y, 0), tile);
                 } 
-
             }
         }
     }

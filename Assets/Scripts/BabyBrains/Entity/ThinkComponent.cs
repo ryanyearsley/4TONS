@@ -30,6 +30,7 @@ public class ThinkComponent : BabyBrainsComponent {
 	private List<BabyBrainsBehaviour> invalidatedBehaviours = new List<BabyBrainsBehaviour>();
 	private List<BabyBrainsBehaviour> onCooldownBehaviours = new List<BabyBrainsBehaviour>();
 
+	public LayerMask layerMask;
 
 
 	#region BabyBrainsComponent Callbacks
@@ -112,11 +113,24 @@ public class ThinkComponent : BabyBrainsComponent {
 	private void GatherSensoryInfo () {
 		sensoryInfo.currentHealth = babyBrainsObject.vitalsEntity.health.GetHealth ();
 		if (sensoryInfo.targetVitals.trans != null) {
-			sensoryInfo.distanceToTarget = IsometricCoordinateUtils.IsoDistanceBetweenPoints (sensoryInfo.trans, sensoryInfo.targetVitals.trans);
+			sensoryInfo.isoDistanceToTarget = IsometricCoordinateUtils.IsoDistanceBetweenPoints (sensoryInfo.trans, sensoryInfo.targetVitals.trans);
+			sensoryInfo.rawDistanceToTarget = IsometricCoordinateUtils.RawDistanceBetweenPoints (sensoryInfo.trans, sensoryInfo.targetVitals.trans);
 			sensoryInfo.lookTransform.right = sensoryInfo.targetVitals.trans.position - sensoryInfo.trans.position;
+			sensoryInfo.targetWithinLoS = CalculateWithinLoS (sensoryInfo.lookTransform, sensoryInfo.targetVitals.trans);
 		} else {
+			sensoryInfo.isoDistanceToTarget = 100;
+			sensoryInfo.rawDistanceToTarget = 100;
 			sensoryInfo.lookTransform.right = Vector3.right;
+			sensoryInfo.targetWithinLoS = false;
 		}
+
+	}
+	private bool CalculateWithinLoS (Transform lookTransform, Transform targetTrans) {
+		RaycastHit2D hit = Physics2D.Raycast(lookTransform.position, lookTransform.TransformDirection(Vector3.right), sensoryInfo.rawDistanceToTarget, layerMask);
+		if (hit.collider != null && sensoryInfo.targetVitals.trans == hit.collider.transform.parent) {
+			return true;
+		} else return false;
+
 	}
 	private void ResetInvalidatedBehaviours () {
 		for (int i = invalidatedBehaviours.Count - 1; i >= 0; i--) {

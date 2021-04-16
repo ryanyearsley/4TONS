@@ -9,6 +9,9 @@ public class PuzzleData : ScriptableObject
 	public string puzzleName;
 	public string description;
 	public Sprite puzzleSprite;
+	public Sprite puzzleIcon;
 	public TextAsset puzzleFile;
+	public PuzzleType puzzleType;
+	public SpellGemSaveDataDictionary defaultSpellGemDictionary;
 
 }

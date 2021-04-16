@@ -712,7 +712,7 @@ Canvas:
   m_GameObject: {fileID: 7046919624631408275}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 0}
   m_PlaneDistance: 1
   m_PixelPerfect: 1
@@ -763,6 +763,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &7046919624631408276
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1333,4 +1334,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e947253b7961f5b4a9543e5b8fd4f41c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  panelActiveStates: 020000000300000004000000
+  panelActiveStates: 020000000300000005000000

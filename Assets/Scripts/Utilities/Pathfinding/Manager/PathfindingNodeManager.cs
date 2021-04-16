@@ -178,7 +178,7 @@ public class PathfindingNodeManager : MonoBehaviour, IGameManager {
 		}
 	}
 
-	void OnDrawGizmos () {
+	void OnDrawGizmosSelected () {
 		if (nodes != null && displayGridGizmos) {
 			Gizmos.color = Color.red;
 			Gizmos.DrawCube (Vector3.zero, Vector3.one * nodeRadius * 2);

@@ -12,7 +12,7 @@ public class SpellGemEntity : MonoBehaviour {
 		spriteRenderer = GetComponent<SpriteRenderer> ();
 
 	}
-	public void InitializeSpellGemUI (SpellData spellData) {
+	public void InitializeSpellGemEntity (SpellData spellData) {
 		this.spellData = spellData;
 		spriteRenderer.sprite = spellData.puzzlePieceData.puzzlePieceSprite;
 		defaultColor = spellData.spellSchoolData.schoolGemColor;

@@ -20,7 +20,7 @@ MonoBehaviour:
   description: Sprout blood tentacles at target location, returning health to caster.
   icon: {fileID: 21300000, guid: 0402e56ed291d4e40a91d3e2b6f8699b, type: 3}
   castObject: {fileID: 576230467533564272, guid: 0355ab2125460014f8a0e0fb81a05a54, type: 3}
-  manaCost: 10
+  manaCost: 7
   castTime: 0.25
   castSpeedReduction: 0.6
   coolDown: 3

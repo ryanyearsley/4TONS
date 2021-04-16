@@ -12,7 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d592d1a076b38154ebaf5ba54f5f581b, type: 3}
   m_Name: Inventory1
   m_EditorClassIdentifier: 
+  id: 0
   puzzleName: Basic Inventory
   description: 
   puzzleSprite: {fileID: 21300000, guid: 6bb6c88a91bd07c4bb0799513e7b6214, type: 3}
+  puzzleIcon: {fileID: 0}
   puzzleFile: {fileID: 4900000, guid: 766cff294edbf274685f71ba97a648d1, type: 3}
+  puzzleType: 1
+  defaultSpellGemDictionary:
+    m_keys: []
+    m_values: []

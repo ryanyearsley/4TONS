@@ -234,6 +234,7 @@ MonoBehaviour:
   currentValue: 0
   maxValue: 40
   overheadUIPrefab: {fileID: 7782048835682223337, guid: 8193f6f1c4045454c83ebf5c54b378f7, type: 3}
+  isPlayer: 0
   bloodPoolPrefab: {fileID: 8449888385662570083, guid: 5cb53da2784d0634eb2d6632f137effe, type: 3}
 --- !u!114 &2917393211416801301
 MonoBehaviour:
@@ -302,6 +303,7 @@ MonoBehaviour:
       resource: {fileID: 0}
       movement: {fileID: 0}
     lookTransform: {fileID: 0}
+    targetWithinLoS: 0
     targetPositionTransform: {fileID: 0}
     targetVitals:
       creatureData: {fileID: 0}
@@ -318,10 +320,14 @@ MonoBehaviour:
     currentAbilityTimer: 0
     currentHealth: 0
     currentResource: 0
-    distanceToTarget: 0
+    isoDistanceToTarget: 0
+    rawDistanceToTarget: 0
   Paused: 0
   thinkInterval: 0.3
   isThinking: 0
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 4352
 --- !u!114 &3125169596821539830
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -364,7 +370,7 @@ GameObject:
   - component: {fileID: 4162231771138124561}
   - component: {fileID: 4162231771138124562}
   m_Layer: 10
-  m_Name: BodyHitBox
+  m_Name: ZombieBodyHitBox
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -397,7 +403,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.44}
+  m_Offset: {x: 0, y: 0.5047226}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -408,7 +414,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.42, y: 1}
+  m_Size: {x: 0.43, y: 0.82055473}
   m_EdgeRadius: 0
 --- !u!1 &5299699290457804783
 GameObject:

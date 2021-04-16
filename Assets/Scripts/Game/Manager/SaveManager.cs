@@ -10,7 +10,6 @@ public class SaveManager : MonoBehaviour {
 	private bool initialized;
 	public static SaveManager instance;
 
-	private ObjectRegistry objectRegistry;
 	private SaveData saveData;
 	protected string savePath;
 	public SaveData defaultData;
@@ -96,19 +95,19 @@ public class SaveManager : MonoBehaviour {
 		wizardSaveData.spellSchoolDataIndex = wizardSaveData.spellSchoolData.schoolIndexStart;
 
 		wizardSaveData.primaryStaffSaveData.puzzleDataIndex = wizardSaveData.primaryStaffSaveData.puzzleData.id;
-		foreach (SpellSaveData spellSaveData in wizardSaveData.primaryStaffSaveData.puzzleSaveDataDictionary.Values) {
+		foreach (SpellGemSaveData spellSaveData in wizardSaveData.primaryStaffSaveData.spellGemSaveDataDictionary.Values) {
 			spellSaveData.spellDataIndex = spellSaveData.spellData.id;
 		}
 
 		if (wizardSaveData.secondaryStaffSaveData.puzzleData != null) {
 			wizardSaveData.secondaryStaffSaveData.puzzleDataIndex = wizardSaveData.secondaryStaffSaveData.puzzleData.id;
-			foreach (SpellSaveData spellSaveData in wizardSaveData.secondaryStaffSaveData.puzzleSaveDataDictionary.Values) {
+			foreach (SpellGemSaveData spellSaveData in wizardSaveData.secondaryStaffSaveData.spellGemSaveDataDictionary.Values) {
 				spellSaveData.spellDataIndex = spellSaveData.spellData.id;
 			}
 		}
 
 		wizardSaveData.inventorySaveData.puzzleDataIndex = wizardSaveData.inventorySaveData.puzzleData.id;
-		foreach (SpellSaveData spellSaveData in wizardSaveData.inventorySaveData.puzzleSaveDataDictionary.Values) {
+		foreach (SpellGemSaveData spellSaveData in wizardSaveData.inventorySaveData.spellGemSaveDataDictionary.Values) {
 			spellSaveData.spellDataIndex = spellSaveData.spellData.id;
 		}
 	}
@@ -137,19 +136,19 @@ public class SaveManager : MonoBehaviour {
 	}
 
 	public void OnAfterLoad (WizardSaveData wizardSaveData) {
-
+		//gets SO data objects by id.
 		wizardSaveData.spellSchoolData = ConstantsManager.instance.GetSpellSchoolData (wizardSaveData.spellSchoolDataIndex);
 		wizardSaveData.primaryStaffSaveData.puzzleData = ConstantsManager.instance.GetPuzzleData (wizardSaveData.primaryStaffSaveData.puzzleDataIndex);
 		wizardSaveData.secondaryStaffSaveData.puzzleData = ConstantsManager.instance.GetPuzzleData (wizardSaveData.secondaryStaffSaveData.puzzleDataIndex);
 		wizardSaveData.inventorySaveData.puzzleData = ConstantsManager.instance.GetPuzzleData (wizardSaveData.inventorySaveData.puzzleDataIndex);
 
-		foreach (SpellSaveData spellSaveData in wizardSaveData.primaryStaffSaveData.puzzleSaveDataDictionary.Values) {
+		foreach (SpellGemSaveData spellSaveData in wizardSaveData.primaryStaffSaveData.spellGemSaveDataDictionary.Values) {
 			spellSaveData.spellData = ConstantsManager.instance.GetSpellData (spellSaveData.spellDataIndex);
 		}
-		foreach (SpellSaveData spellSaveData in wizardSaveData.secondaryStaffSaveData.puzzleSaveDataDictionary.Values) {
+		foreach (SpellGemSaveData spellSaveData in wizardSaveData.secondaryStaffSaveData.spellGemSaveDataDictionary.Values) {
 			spellSaveData.spellData = ConstantsManager.instance.GetSpellData (spellSaveData.spellDataIndex);
 		}
-		foreach (SpellSaveData spellSaveData in wizardSaveData.inventorySaveData.puzzleSaveDataDictionary.Values) {
+		foreach (SpellGemSaveData spellSaveData in wizardSaveData.inventorySaveData.spellGemSaveDataDictionary.Values) {
 			spellSaveData.spellData = ConstantsManager.instance.GetSpellData (spellSaveData.spellDataIndex);
 		}
 	}

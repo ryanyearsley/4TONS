@@ -20,7 +20,6 @@ public class LevelManager : MonoBehaviour, IGameManager {
 	#endregion
 
 	private MapDetails currentLevelDetails;
-
 	[SerializeField]
 	private WorldData worldData;
 	[SerializeField]
@@ -218,7 +217,7 @@ public class LevelManager : MonoBehaviour, IGameManager {
 			Vector3 spellGemSpawnPosition = ConvertIsoCoordToScene(spellGemSpawnPoint.spawnCoordinate + currentMapDetails.floorOrigin);
 			GameObject spellGemGo = PoolManager.instance.ReuseObject(ConstantsManager.instance.spellGemPickupPrefab, spellGemSpawnPosition, Quaternion.identity);
 			spellGemGo.transform.position = spellGemSpawnPosition;
-			SpellGemPickup spellGemPickUp = spellGemGo.GetComponent<SpellGemPickup>();
+			SpellGemPickUp spellGemPickUp = spellGemGo.GetComponent<SpellGemPickUp>();
 			spellGemPickUp.ReuseSpellGemPickUp (spellGemSpawnPoint.spellData);
 			spellGemCount++;
 		}
@@ -395,7 +394,7 @@ public class LevelManager : MonoBehaviour, IGameManager {
 		return randomWalkableNode.worldPosition;
 	}
 
-	void OnDrawGizmos () {
+	void OnDrawGizmosSelected () {
 		if (nodes != null && displayGridGizmos) {
 
 			Vector3 gridPosition = grid.GetCellCenterWorld(Vector3Int.one);

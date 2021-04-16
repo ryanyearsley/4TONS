@@ -1,6 +1,6 @@
 ﻿using UnityEditor;
 
-[CustomPropertyDrawer (typeof (ActivePuzzleDictionary))]
+[CustomPropertyDrawer (typeof (PuzzleDataDictionary))]
 public class ActivePuzzleDictionaryPropertyDrawer :
 SerializableDictionaryPropertyDrawer { }
 

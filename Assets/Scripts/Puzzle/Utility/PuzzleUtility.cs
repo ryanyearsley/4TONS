@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PuzzleUtility {
+//static methods for any transaction movements on spell gems.
+public static class PuzzleUtility {
 
 
-	public static PuzzleTileInfo CheckMapValue (PuzzleGroupingDetails details, Vector2Int gridCoord) {
-		Vector2Int mapCell = gridCoord - details.groupingOrigin;
-		if (details.mapBounds.isWithinBounds (mapCell)) {
-			return details.map [mapCell.x, mapCell.y];
+	public static PuzzleTileInfo CheckMapValue (PuzzleGameData puzzleGameData, Vector2Int mapCoord) {
+		if (puzzleGameData.mapBounds.isWithinBounds (mapCoord)) {
+			return puzzleGameData.map [mapCoord.x, mapCoord.y];
 		} else return null;
 	}
 
@@ -30,19 +30,22 @@ public class PuzzleUtility {
 
 		return outputCoordinates;
 	}
-	public static bool CheckSpellFitmentEligibility (PuzzleGroupingDetails details, SpellSaveData spellSaveData) {
+	public static bool CheckSpellFitmentEligibility (PuzzleGameData puzzleGameData, SpellGemGameData spellGameData) {
 		bool canEquip = true;
-		spellSaveData.currentCoordinates = RotateCoordinates (spellSaveData.spellData.puzzlePieceData.coordinates, spellSaveData.spellGemRotation);
-		Vector2Int centerPoint = spellSaveData.spellGemOriginCoordinate;
-		foreach (Vector2Int spellGemCoordinate in spellSaveData.currentCoordinates) {
+		spellGameData.currentCoordinates = RotateCoordinates (spellGameData.spellData.puzzlePieceData.coordinates, spellGameData.spellGemRotation);
+		Vector2Int centerPoint = spellGameData.spellGemOriginCoordinate;
+		if (puzzleGameData.puzzleData.puzzleType != PuzzleType.INVENTORY) {
+			//add logic for verifying there is vacancy for a spell binding on a staff.
+		}
+		foreach (Vector2Int spellGemCoordinate in spellGameData.currentCoordinates) {
 			Vector2Int relativePosition = centerPoint + spellGemCoordinate;
-			if (!details.mapBounds.isWithinBounds (relativePosition)) {
-				Debug.Log ("Invalid placement. coordinate outside of puzzle bounds. Spell name: " + spellSaveData.spellData.spellName + ", Coord: " + relativePosition + ", bounds: " + details.mapBounds.ToString ());
+			if (!puzzleGameData.mapBounds.isWithinBounds (relativePosition)) {
+				Debug.Log ("Invalid placement. coordinate outside of puzzle bounds. Spell name: " + spellGameData.spellData.spellName + ", Coord: " + relativePosition + ", bounds: " + puzzleGameData.mapBounds.ToString ());
 				canEquip = false;
-			} else if (details.map [relativePosition.x, relativePosition.y].value == 0) {
+			} else if (puzzleGameData.map [relativePosition.x, relativePosition.y].value == 0) {
 				Debug.Log ("Invalid placement. No tile.");
 				canEquip = false;
-			} else if (details.map [relativePosition.x, relativePosition.y].value != 1) {
+			} else if (puzzleGameData.map [relativePosition.x, relativePosition.y].value != 1) {
 				Debug.Log ("Invalid placement. tile occupied");
 				canEquip = false;
 			}
@@ -51,38 +54,47 @@ public class PuzzleUtility {
 		}
 		return canEquip;
 	}
-	public static void AddSpellGemToPuzzle (PuzzleGroupingDetails details, SpellSaveData spellSaveData) {
-		spellSaveData.currentCoordinates = RotateCoordinates (spellSaveData.spellData.puzzlePieceData.coordinates, spellSaveData.spellGemRotation);
-		if (!details.puzzleSaveDataDictionary.ContainsKey (spellSaveData.spellGemOriginCoordinate)) {
+	public static void AddSpellGemToPuzzle (PuzzleGameData puzzleGameData, SpellGemGameData spellGemGameData) {
+		spellGemGameData.currentCoordinates = RotateCoordinates (spellGemGameData.spellData.puzzlePieceData.coordinates, spellGemGameData.spellGemRotation);
+		if (!puzzleGameData.spellGemGameDataDictionary.ContainsKey (spellGemGameData.spellGemOriginCoordinate)) {
 			Debug.Log ("spellgem coordinate is not registered, adding to dictionary.");
-			details.puzzleSaveDataDictionary.Add (spellSaveData.spellGemOriginCoordinate, spellSaveData);
+			puzzleGameData.spellGemGameDataDictionary.Add (spellGemGameData.spellGemOriginCoordinate, spellGemGameData);
 		}
-		Vector2Int spellGemCenterPoint = spellSaveData.spellGemOriginCoordinate;
-		foreach (Vector2Int spellGemCoordinate in spellSaveData.currentCoordinates) {
+		Vector2Int spellGemCenterPoint = spellGemGameData.spellGemOriginCoordinate;
+		foreach (Vector2Int spellGemCoordinate in spellGemGameData.currentCoordinates) {
 			Vector2Int relativePosition = spellGemCenterPoint + spellGemCoordinate;
-			PuzzleTileInfo puzzleTileInfo = details.map [relativePosition.x, relativePosition.y];
-			puzzleTileInfo.spellSaveData = spellSaveData;
+			PuzzleTileInfo puzzleTileInfo = puzzleGameData.map [relativePosition.x, relativePosition.y];
+			puzzleTileInfo.spellGemGameData = spellGemGameData;
 			//1 == open tile. (0 = no tile)
 			if (puzzleTileInfo.value == 1) {
-				puzzleTileInfo.value = spellSaveData.spellData.id;
+				puzzleTileInfo.value = spellGemGameData.spellData.id;
 			}
 		}
 	}
 
-	public static void RemoveSpellGemFromPuzzle (PuzzleGroupingDetails details, SpellSaveData spellSaveData) {
-		spellSaveData.currentCoordinates = RotateCoordinates (spellSaveData.spellData.puzzlePieceData.coordinates, spellSaveData.spellGemRotation);
+	public static void RemoveSpellGemFromPuzzle (PuzzleGameData puzzleGameData, SpellGemGameData spellGemGameData) {
+		spellGemGameData.currentCoordinates = RotateCoordinates (spellGemGameData.spellData.puzzlePieceData.coordinates, spellGemGameData.spellGemRotation);
 
-		details.puzzleSaveDataDictionary.Remove (spellSaveData.spellGemOriginCoordinate);
-		Vector2Int spellGemCenterPoint = spellSaveData.spellGemOriginCoordinate;
-		foreach (Vector2Int spellGemCoordinate in spellSaveData.currentCoordinates) {
+		puzzleGameData.spellGemGameDataDictionary.Remove (spellGemGameData.spellGemOriginCoordinate);
+		Vector2Int spellGemCenterPoint = spellGemGameData.spellGemOriginCoordinate;
+		foreach (Vector2Int spellGemCoordinate in spellGemGameData.currentCoordinates) {
 			Vector2Int relativePosition = spellGemCenterPoint + spellGemCoordinate;
-			PuzzleTileInfo puzzleTileInfo = details.map [relativePosition.x, relativePosition.y];
+			PuzzleTileInfo puzzleTileInfo = puzzleGameData.map [relativePosition.x, relativePosition.y];
 			//1 == open tile. (0 = no tile)
-			if (puzzleTileInfo.value == spellSaveData.spellData.id) {
+			if (puzzleTileInfo.value == spellGemGameData.spellData.id) {
 				puzzleTileInfo.value = 1;
-				puzzleTileInfo.spellSaveData = null;
+				puzzleTileInfo.spellGemGameData = null;
 			}
 		}
 	}
 
+	public static int CalculateSpellBind(SpellBindingDictionary spellBindingDictionary) {
+
+			for (int i = 0; i < spellBindingDictionary.Count; i++) {
+				if (spellBindingDictionary [i] == null) {
+					return i;
+				}
+			}
+			return 10;
+	}
 }

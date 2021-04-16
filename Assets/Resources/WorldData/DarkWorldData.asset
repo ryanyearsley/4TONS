@@ -20,6 +20,7 @@ MonoBehaviour:
   spellGemPickUpData: {fileID: 11400000, guid: c5abe41b66335894d94c02f288c77685, type: 2}
   enemyDatas:
   - {fileID: 11400000, guid: 217ed99b20a5ef84483df537037326ca, type: 2}
+  - {fileID: 11400000, guid: f2a858c595dc31d4ab6153d8278630c9, type: 2}
   tileset:
   - {fileID: 11400000, guid: 9c640f3eec23a9c4ca9ffe73cb5fb7a0, type: 2}
   - {fileID: 11400000, guid: 23d4f699a7d099941bc526f4c3eb6070, type: 2}

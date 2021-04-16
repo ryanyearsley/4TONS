@@ -11,6 +11,7 @@ public class PlayerSpawnController : PoolObject {
 	}
 
 	public override void ReuseObject () {
+		base.ReuseObject ();
 		GameManager.instance.beginLevelEvent += OnBeginLevel;
 	}
 	public override void TerminateObjectFunctions () {

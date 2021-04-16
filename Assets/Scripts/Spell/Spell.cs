@@ -10,7 +10,7 @@ public enum SpellCastLocation
 public abstract class Spell : MonoBehaviour
 {
 
-    protected PlayerObject stateController;
+    protected PlayerObject playerObject;
 
     //static
     public SpellData spellData; 
@@ -23,33 +23,44 @@ public abstract class Spell : MonoBehaviour
     public SpellUI spellUI;
 
 	private void Start() {
-        stateController = GetComponentInParent<PlayerObject> ();
-        PoolManager.instance.CreateSpellObjectPool(spellData.spellObject, spellData.poolSize);
+        PoolManager.instance.CreateSpellObjectPool (spellData.spellObject, spellData.poolSize);
+    }
+
+    public void ConfigureSpellToPlayer(PlayerObject playerObject) {
+        this.playerObject = playerObject;
+        transform.parent = playerObject.transform;
         switch (spellData.spellCastLocation) {
             case SpellCastLocation.Staff:
-                spellCastTransform = stateController.creaturePositions.staffAimTransform;
+                spellCastTransform = playerObject.creaturePositions.staffAimTransform;
                 break;
             case SpellCastLocation.Cursor:
-                spellCastTransform = stateController.creaturePositions.targetTransform;
+                spellCastTransform = playerObject.creaturePositions.targetTransform;
                 break;
             case SpellCastLocation.Player:
-                spellCastTransform = stateController.creaturePositions.feetTransform;
+                spellCastTransform = playerObject.creaturePositions.feetTransform;
                 break;
-
         }
     }
+
     private void Update()
     {
         if (onCooldown) {
-            float fillPercentage = 1 - cdTimer/spellData.coolDown;
-            spellUI.UpdateSpellUICooldown (fillPercentage, cdTimer);
             cdTimer -= Time.deltaTime;
+
             if (cdTimer <= 0) {
                 onCooldown = false;
-                spellUI.ActivateSpellUI ();
+            }
+
+            if (spellUI != null) {
+                float fillPercentage = 1 - cdTimer/spellData.coolDown;
+                spellUI.UpdateSpellUICooldown (fillPercentage, cdTimer);
             }
         }
     }
+
+    public void OnBindSpell() {
+
+	}
 
     public virtual bool isCastEligible () {
         if (onCooldown)

@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class HealthComponent : VitalsComponent {
 
+	public bool isPlayer = false;
 	public GameObject bloodPoolPrefab;
 	public override void SetUpComponent (GameObject rootObject) {
 		Debug.Log ("Health component setup");

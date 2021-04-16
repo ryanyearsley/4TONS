@@ -11,4 +11,10 @@ public class StaffAimObject : MonoBehaviour
 	public void InitializeStaffAimObject (Sprite sprite) {
 		spriteRenderer.sprite = sprite;
 	}
+	public void OnEquipStaff (PuzzleGameData puzzleGameData) {
+		spriteRenderer.sprite = puzzleGameData.puzzleData.puzzleSprite;
+	}
+	public void OnDropStaff () {
+		spriteRenderer.sprite = null;
+	}
 }

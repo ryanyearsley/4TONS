@@ -19,13 +19,13 @@ MonoBehaviour:
   id: 2400
   description: Hurl a lecherous leech at your enemy, stealing their mana and health.
   icon: {fileID: 21300000, guid: b12ef7c5da09ffb4c8e4151c64fed96b, type: 3}
-  castObject: {fileID: 576230467533564272, guid: f32051077d456fd498eec8a992f83391, type: 3}
-  manaCost: 6
+  castObject: {fileID: 576230467533564272, guid: 8877f64b001a48749a94d481e84c9244, type: 3}
+  manaCost: 4
   castTime: 0.2
   castSpeedReduction: 0.6
   coolDown: 0.3
   spellCastLocation: 0
-  spellObject: {fileID: 5217744383755033205, guid: d0696218cb7c9a347a4f3819e87ab403, type: 3}
+  spellObject: {fileID: 5217744383755033205, guid: 67aaafef65d8da9478a594303489a970, type: 3}
   poolSize: 10
   spellObjectData: {fileID: 11400000, guid: fb9712e9bac58b94ca5e5297ed82900b, type: 2}
   puzzlePieceData: {fileID: 11400000, guid: 314e4bdbd8a40cc42bf1923e1d56a8c3, type: 2}

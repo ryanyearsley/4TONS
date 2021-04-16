@@ -27,9 +27,7 @@ public class PlayerManager : MonoBehaviour {
 		InitializeSingleton ();
 		DontDestroyOnLoad(this.gameObject);
 		if (currentPlayers.Count == 0 && startFromCombatScene) {
-			Player testPlayer = new Player();
-			testPlayer.playerIndex = 0;
-			testPlayer.controllerIndex = 0;
+			Player testPlayer = new Player(0, 0);
 			testPlayer.isAlive = true;
 			testPlayer.wizardSaveData = defaultWizardData.wizardSaveData.Clone();
 			currentPlayers.Add (testPlayer);
@@ -54,11 +52,19 @@ public class Player {
 	public int playerIndex;
 	public int controllerIndex;
 	public bool isReady;
+
 	public bool isAlive;
 	public WizardSaveData wizardSaveData;
 	public PlayerObject currentPlayerObject;
 
-	public void SetPlayerWizardFree() {
+	public Player (int playerIndex, int controllerIndex) {
+		this.playerIndex = playerIndex;
+		this.controllerIndex = controllerIndex;
+		isReady = false;
+		isAlive = false;
+	}
+
+	public void SetPlayerWizardNull() {
 		wizardSaveData = null;
 		currentPlayerObject = null;
 		isReady = false;

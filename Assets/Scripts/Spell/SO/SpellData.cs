@@ -7,7 +7,6 @@ using UnityEngine.Rendering;
 public class SpellData : ScriptableObject
 {
 	//Informational
-	public int instanceID;
 	public string spellName;
 	public SpellSchool spellSchool;
 	public SpellSchoolData spellSchoolData;

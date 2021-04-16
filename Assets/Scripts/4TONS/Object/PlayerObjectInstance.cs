@@ -23,10 +23,10 @@ public class PlayerObjectInstance : ObjectInstance
 		// Reset the object as specified within it's own class and the PoolObject class
 
 		// Move to desired position then set it active
-		gameObject.transform.position = position;
-		gameObject.transform.rotation = Quaternion.identity;
-		gameObject.transform.parent = null;
-		gameObject.SetActive (true);
+		go.transform.position = position;
+		go.transform.rotation = Quaternion.identity;
+		go.transform.parent = null;
+		go.SetActive (true);
 
 		if (playerObject != null) {
 			playerObject.ReusePlayerObject (player);

@@ -50,9 +50,7 @@ public class MainMenuManager : MonoBehaviour {
 	}
 
 	public Player CreateAndRegisterPlayer (int controllerIndex) {
-		Player player = new Player();
-		player.playerIndex = PlayerManager.instance.currentPlayers.Count;
-		player.controllerIndex = controllerIndex;
+		Player player = new Player(PlayerManager.instance.currentPlayers.Count, controllerIndex);
 		PlayerManager.instance.AddPlayer (player);
 		return player;
 	}

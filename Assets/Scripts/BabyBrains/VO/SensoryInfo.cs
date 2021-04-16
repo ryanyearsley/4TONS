@@ -12,6 +12,7 @@ public class SensoryInfo {
 
 	//looking at enemy or point of interest.
 	public Transform lookTransform;
+	public bool targetWithinLoS;
 	public Transform targetPositionTransform;
 	public VitalsEntity targetVitals = null;
 	public List<VitalsEntity> potentialTargetVitals;
@@ -26,6 +27,7 @@ public class SensoryInfo {
 	public float currentResource;
 
 	//calculated
-	public float distanceToTarget;
+	public float isoDistanceToTarget;
+	public float rawDistanceToTarget;
 
 }

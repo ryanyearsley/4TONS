@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Linq;
 using UnityEngine;
 
 public class ProjectileObject : SpellObject {
@@ -7,57 +6,65 @@ public class ProjectileObject : SpellObject {
 	private float moveSpeed;
 
 	[SerializeField]
-	private float hitboxRadius = 0.15f;
-
-	private Transform trans;
-	private Animator animator;
+	private Collider2D groundColl;
 
 	[SerializeField]
-	private LayerMask environmentMask;
+	private ContactFilter2D contactFilter = new ContactFilter2D();
+
 	[SerializeField]
 	private GameObject debrisObject;
-
-
+	private Collider2D[] overlappingColliders = new Collider2D[16];
 	void Awake () {
-		PoolManager.instance.CreateObjectPool (debrisObject, 3);
+		if (debrisObject != null)
+			PoolManager.instance.CreateObjectPool (debrisObject, 3);
 		trans = transform;
-		animator = GetComponentInChildren<Animator> ();
 	}
+
 	public virtual void FixedUpdate () {
 
-		transform.Translate (Vector2.right * moveSpeed * Time.fixedDeltaTime);
+		if (isAlive) {
+			transform.Translate (Vector2.right * moveSpeed * Time.fixedDeltaTime);
 
-		Vector3 projectedEnvironmentColliderPosition = new Vector3 (trans.position.x, trans.position.y - 0.25f, 0);
-		if (Physics2D.OverlapCircle (projectedEnvironmentColliderPosition, hitboxRadius, environmentMask)) {
-			PoolManager.instance.ReuseObject (debrisObject, this.transform.position, Quaternion.identity);
-			Destroy ();
+			Vector3 projectedEnvironmentColliderPosition = new Vector3 (trans.position.x, trans.position.y - 0.18f, 0);
+			groundColl.transform.position = projectedEnvironmentColliderPosition;
+			if (Physics2D.OverlapCollider (groundColl, contactFilter, overlappingColliders) > 0) {
+				if (debrisObject != null) {
+					Debug.Log ("projectile ground overlap collider reusing debris object");
+					PoolManager.instance.ReuseObject (debrisObject, groundColl.transform.position, Quaternion.identity);
+				}
+				Destroy ();
+			}
 		}
 
 	}
 	private void OnTriggerEnter2D (Collider2D other) {
 		int id = other.transform.parent.GetInstanceID();
-		Debug.Log ("projectile collided with " + id + ", object name: " + other.gameObject.name);
-		if (other.tag != this.tag) {
-			VitalsEntity hitTargetEntity = VitalsManager.Instance.GetVitalsEntitybyID(id);
-			if (hitTargetEntity != null) {
+		Debug.Log (this.tag + " tagged projectile collided other object. name: " + other.gameObject.name);
+		if (isAlive) {
+			if (other.tag != this.tag) {
+				VitalsEntity hitTargetEntity = VitalsManager.Instance.GetVitalsEntitybyID(id);
+				if (hitTargetEntity != null && hitTargetEntity != casterVitalsEntity) {
 
-				Debug.Log ("projectile hit valid target. ID:" + id);
-				if (hitTargetEntity.health != null )
-					hitTargetEntity.health.ApplyDamage (spellObjectData.damage);
+					Debug.Log ("projectile hit valid target. ID:" + id);
+					if (hitTargetEntity.health != null)
+						hitTargetEntity.health.ApplyDamage (spellObjectData.damage);
 
-				if (hitTargetEntity.resource != null)
-					hitTargetEntity.resource.ApplyResourceDamage (spellObjectData.manaDamage);
+					if (hitTargetEntity.resource != null)
+						hitTargetEntity.resource.ApplyResourceDamage (spellObjectData.manaDamage);
 
-				if (casterVitalsEntity.health != null)
-					casterVitalsEntity.health.Heal (spellObjectData.casterHealthHealAmount);
+					if (casterVitalsEntity.health != null)
+						casterVitalsEntity.health.Heal (spellObjectData.casterHealthHealAmount);
 
-				if (casterVitalsEntity.resource != null)
-					casterVitalsEntity.resource.RegenerateMana (spellObjectData.casterManaRegenAmount);
+					if (casterVitalsEntity.resource != null)
+						casterVitalsEntity.resource.RegenerateMana (spellObjectData.casterManaRegenAmount);
 
+				}
+				if (debrisObject != null) {
+					Debug.Log ("projectile reusing debris object");
+					PoolManager.instance.ReuseObject (debrisObject, groundColl.transform.position, Quaternion.identity);
+				}
+				Destroy ();
 			}
-
-			PoolManager.instance.ReuseObject (debrisObject, this.transform.position, Quaternion.identity);
-			Destroy ();
 		}
 
 	}

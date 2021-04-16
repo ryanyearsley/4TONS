@@ -17,7 +17,7 @@ public class PuzzlePieceValidator : MonoBehaviour
 		spriteRenderer.sprite = currentPuzzlePiece.puzzlePieceSprite;
 	}
 
-	private void OnDrawGizmos() {
+	private void OnDrawGizmosSelected () {
 		spriteRenderer.sprite = currentPuzzlePiece.puzzlePieceSprite;
 		for (int i = 0; i < currentPuzzlePiece.coordinates.Length; i++) {
 			Vector2 coord = currentPuzzlePiece.coordinates [i] * puzzleScale;

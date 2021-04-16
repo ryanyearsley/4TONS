@@ -17,7 +17,9 @@ public class ConstantsManager : MonoBehaviour {
 	//STAFF AND PUZZLE PREFABS
 	public GameObject spellGemPickupPrefab;
 	public GameObject spellGemUIPrefab;
-
+	public GameObject staffPickupPrefab;
+	public GameObject puzzleEntityPrefab;
+	public Tile puzzleTile;
 
 	public RandomNameData randomWizardNames;
 
@@ -64,6 +66,10 @@ public class ConstantsManager : MonoBehaviour {
 			}
 			for (int i = 0; i < worldData.setPieceDatas.Count; i++) {
 				worldData.setPieceDatas [i].id = schoolIndexStart + legend.MULTI_TILE_SETPIECE_INDEX_START + i;
+			}
+
+			for (int i = 0; i < worldData.spellSchoolData.schoolStaffs.Length; i++) {
+				worldData.spellSchoolData.schoolStaffs [i].id = schoolIndexStart + legend.PUZZLEDATA_INDEX_START + i + 1;//+1 to offset from startingStaff
 			}
 		}
 	}

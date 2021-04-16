@@ -14,7 +14,6 @@ public class SpellSchoolData : ScriptableObject
 	public Sprite portrait;
 	public RuntimeAnimatorController animatorController;
 	public PrebuildWizardData defaultWizard;
-	public PuzzleData startingStaff;
 	public PuzzleData[] schoolStaffs;
 	public List<SpellData> spells;
 }

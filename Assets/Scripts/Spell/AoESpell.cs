@@ -19,11 +19,11 @@ public class AoESpell : Spell {
 			base.CastSpell ();
 			PoolManager.instance.ReuseSpellObject (spellData.spellObject, 
 				new Vector3 (spellCastTransform.position.x, spellCastTransform.position.y, 0f), 
-				Quaternion.identity, stateController.vitalsEntity);
+				Quaternion.identity, playerObject.vitalsEntity);
 	}
 
 
-	public void OnDrawGizmos () {
+	public void OnDrawGizmosSelected () {
 		Debug.DrawRay (spellCastTransform.position, spellCastTransform.TransformDirection (Vector3.forward * 20), Color.yellow);
 
 	}

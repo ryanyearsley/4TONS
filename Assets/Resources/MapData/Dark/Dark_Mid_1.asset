@@ -27,17 +27,19 @@ MonoBehaviour:
     spawnCount: 1
     spawnObjectData: {fileID: 11400000, guid: 7505292d04f3608419afaf178b6440b3, type: 2}
   enemySpawnInfos:
-  - spawnCount: 5
+  - spawnCount: 4
     spawnObjectData: {fileID: 11400000, guid: 217ed99b20a5ef84483df537037326ca, type: 2}
+  - spawnCount: 2
+    spawnObjectData: {fileID: 11400000, guid: f2a858c595dc31d4ab6153d8278630c9, type: 2}
   setPieceSpawnInfos:
   - spawnCount: 3
     setPieceData: {fileID: 11400000, guid: bd2fadacf2e57264b9856ebe92851d36, type: 2}
   spellGemSpawnInfos:
-  - dropPercentage: 100
+  - dropPercentage: 80
     spellData: {fileID: 11400000, guid: 2d3465d624cf7c743abbbaf28fec6fc3, type: 2}
-  - dropPercentage: 30
+  - dropPercentage: 20
     spellData: {fileID: 11400000, guid: f8a09e2fb222c62489690f14902cef0d, type: 2}
   - dropPercentage: 100
-    spellData: {fileID: 11400000, guid: 50f771dfc4c331543aa4398e546ec730, type: 2}
-  seed: 637525443237975345
+    spellData: {fileID: 11400000, guid: 3b716e754480f0c48a677ce4c4d2bf3b, type: 2}
+  seed: 637540926095530362
   useCustomSeed: 0

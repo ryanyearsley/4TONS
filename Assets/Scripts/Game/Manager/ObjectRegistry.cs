@@ -12,7 +12,7 @@ public class ObjectRegistry {
 	public ActiveObjectDictionary activeSetpieceDictionary = new ActiveObjectDictionary();
 	public ActiveObjectDictionary activeCreatureDictionary = new ActiveObjectDictionary();
 	public ActiveSpellDictionary activeSpellDictionary = new ActiveSpellDictionary();
-	public ActivePuzzleDictionary activePuzzleDictionary = new ActivePuzzleDictionary();
+	public PuzzleDataDictionary activePuzzleDictionary = new PuzzleDataDictionary();
 	public ObjectRegistry (SpellSchoolData[] spellSchoolDatas, GameDataLegend legend) {
 		
 			foreach (SpellSchoolData schoolData in spellSchoolDatas){
@@ -58,7 +58,6 @@ public class ObjectRegistry {
 		}
 	}
 	private void RegisterPuzzles (SpellSchoolData spellSchoolData) {
-		activePuzzleDictionary.Add (spellSchoolData.startingStaff.id, spellSchoolData.startingStaff);
 		for (int i = 0; i < spellSchoolData.schoolStaffs.Length; i++) {
 			PuzzleData puzzleData = spellSchoolData.schoolStaffs[i];
 			activePuzzleDictionary.Add (puzzleData.id, puzzleData);

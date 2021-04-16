@@ -430,7 +430,7 @@ public class MapGenerator : MonoBehaviour {
 	#endregion
 	
 
-	private void OnDrawGizmos () {
+	private void OnDrawGizmosSelected () {
 		if (map != null && drawGizmos) {
 			for (int x = 0; x < mapData.mapSize.x; x++) {
 				for (int y = 0; y < mapData.mapSize.y; y++) {

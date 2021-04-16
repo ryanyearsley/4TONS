@@ -96,6 +96,14 @@ public class PlayerAimingComponent : PlayerComponent {
 		}
 		cursorController.OnChangeState (playerState);
 	}
+
+	public override void OnEquipStaff (PuzzleKey region, PuzzleGameData puzzleGameData) {
+		staffAimObject.OnEquipStaff (puzzleGameData);
+	}
+	public override void OnDropStaff (PuzzleKey region, PuzzleGameData puzzleGameData) {
+		staffAimObject.OnDropStaff ();
+	}
+
 	#endregion
 
 	public void MouseAimingUpdate (Vector2 mouseDelta) {

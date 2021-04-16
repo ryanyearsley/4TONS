@@ -19,6 +19,7 @@ public class DebrisObject : PoolObject
     }
 
     public override void ReuseObject () {
+        base.ReuseObject ();
         lifeTimer = 0;
         isAlive = true;
     }
@@ -35,9 +36,6 @@ public class DebrisObject : PoolObject
 
     private void OnDisable () {
         TerminateObjectFunctions ();
-    }
-    public override void TerminateObjectFunctions () {
-        isAlive = false;
     }
 
 }

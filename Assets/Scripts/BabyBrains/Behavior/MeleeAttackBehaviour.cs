@@ -10,7 +10,7 @@ public class MeleeAttackBehaviour : BabyBrainsBehaviour {
 	private float attackDamage;
 
 	public override bool Valid (SensoryInfo sensoryInfo) {
-		if (sensoryInfo.targetVitals.trans != null && sensoryInfo.distanceToTarget < attackDistance)
+		if (sensoryInfo.targetVitals.trans != null && sensoryInfo.isoDistanceToTarget < attackDistance)
 			return true;
 		else return false;
 	}

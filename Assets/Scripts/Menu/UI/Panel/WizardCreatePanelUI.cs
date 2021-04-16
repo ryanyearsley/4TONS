@@ -45,7 +45,7 @@ public class WizardCreatePanelUI : MonoBehaviour
 			return false;
 		else return true;
 	}
-	public WizardSaveData FinalizeWizard () {
+	public WizardSaveData FinalizeWizardCreate () {
 		WizardSaveData newWizard = currentSchool.defaultWizard.wizardSaveData.Clone ();
 		newWizard.wizardName = wizardNameInputField.text;
 		return newWizard;
