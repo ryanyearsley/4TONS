@@ -26,6 +26,7 @@ public abstract class Spell : MonoBehaviour
         PoolManager.instance.CreateSpellObjectPool (spellData.spellObject, spellData.poolSize);
     }
 
+
     public void ConfigureSpellToPlayer(PlayerObject playerObject) {
         this.playerObject = playerObject;
         transform.parent = playerObject.transform;

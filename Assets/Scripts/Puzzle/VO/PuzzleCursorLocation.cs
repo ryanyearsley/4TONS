@@ -3,11 +3,11 @@ using System;
 [Serializable]
 public class PuzzleCursorLocation
 {
-	public PuzzleKey puzzleRegion;
+	public PuzzleKey puzzleKey;
 	public Vector3Int coordinate;
 
-	public PuzzleCursorLocation (PuzzleKey region, Vector3Int coord) {
-		puzzleRegion = region;
+	public PuzzleCursorLocation (PuzzleKey key, Vector3Int coord) {
+		puzzleKey = key;
 		coordinate = coord;
 	}
 }

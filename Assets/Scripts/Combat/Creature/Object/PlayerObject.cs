@@ -48,7 +48,6 @@ public class PlayerObject : CreatureObject {
 		this.player = player;
 		playerUI = UIManager.Instance.playerUIs [player.playerIndex];
 		wizardGameData = WizardGameDataMapper.MapWizardSaveToGameData (player.wizardSaveData);
-		OnChangePlayerState (PlayerState.COMBAT); 
 		ReusePlayerComponents(player);
 	}
 

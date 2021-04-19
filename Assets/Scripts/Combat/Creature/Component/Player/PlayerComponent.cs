@@ -43,7 +43,6 @@ public class PlayerComponent : CreatureComponent, IPlayerComponent
 		playerObject.UnbindSpellGemEvent -= OnUnbindSpellGem;
 
 	}
-
 	public virtual void OnChangePlayerState(PlayerState playerState) {
 
 	}

@@ -20,7 +20,7 @@ public class SpellUI : MonoBehaviour
 		spellBindingDefault = defaultBindingString;
 	}
 
-	public void InitializeSpellUI(SpellData spellData) {
+	public void SetSpellUIToSpell(SpellData spellData) {
 		spellIcon.sprite = spellData.icon;
 	}
 

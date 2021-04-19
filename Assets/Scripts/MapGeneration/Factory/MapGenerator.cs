@@ -42,12 +42,12 @@ public class MapGenerator : MonoBehaviour {
 		}
 
 		ProcessMap ();
-/*
-		map = GenerateMapBorder ();
-		Now that the series of 1s and 0s
-		that define the basic shape of our map has been generated...
-		convert to MapTileInfo (game context on every tile)*/
-		mapTileInfo = MapUtility.ConvertMapToTileInfo(map);
+		/*
+				map = GenerateMapBorder ();
+				Now that the series of 1s and 0s
+				that define the basic shape of our map has been generated...
+				convert to MapTileInfo (game context on every tile)*/
+		mapTileInfo = MapUtility.ConvertMapToTileInfo (map);
 		GenerateMapBorder (mapTileInfo);
 		spawnPoints = new MapSpawnPoints ();
 		Vector2Int floorOrigin = floorIndex * Vector2Int.one * 80;
@@ -60,6 +60,10 @@ public class MapGenerator : MonoBehaviour {
 		}
 		foreach (SpellGemSpawnInfo spellGemSpawnInfo in mapData.spellGemSpawnInfos) {
 			spawnPoints.spellGemSpawnPoints.AddRange (SpawnUtility.GenerateSpellGemSpawnPoints (details, spellGemSpawnInfo));
+		}
+		foreach (StaffSpawnInfo staffSpawnInfo in mapData.staffSpawnInfos) {
+			spawnPoints.staffSpawnPoints.AddRange (SpawnUtility.GenerateStaffSpawnPoints (details, staffSpawnInfo));
+
 		}
 		foreach (SetPieceSpawnInfo setPieceSpawnInfo in mapData.setPieceSpawnInfos) {
 			spawnPoints.setPieceSpawnPoints.AddRange(SpawnUtility.GenerateSetPieceSpawnPoints (details, setPieceSpawnInfo));

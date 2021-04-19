@@ -28,7 +28,6 @@ public class WizardSaveData : ICloneable {
 		return wizard;
 	}
 
-
 	object ICloneable.Clone () {
 		return Clone ();
 	}

@@ -16,107 +16,161 @@ using System.Collections;
 //(think animatorComponent of the puzzle mechanic)
 public class PlayerPuzzleUIComponent : PlayerComponent {
 
-	[SerializeField]
-	private GameObject worldSpaceUIObject;
-	[SerializeField]
-	private Vector2Int inventoryOrigin = new Vector2Int(-11, 0);
-	[SerializeField]
-	private Vector2Int inventoryBoundSize = new Vector2Int (9, 6);
-	[SerializeField]
-	private Vector2Int staffOrigin = new Vector2Int(2, 0);
-	[SerializeField]
-	private Vector2Int staffBoundSize =  new Vector2Int (7, 7);
-
-	private CoordinateBounds inventoryBounds;
-	private CoordinateBounds staffBounds;
-
-	[SerializeField]
-	public Tile staffTile;
-
-	[SerializeField]
-	public Grid grid;
+	private PuzzleUI puzzleUI;
+	private CursorController cursorController;
 
 	[SerializeField]
 	private Transform highlightedBlockTransform;
-	public Transform uncommitedSpellGemParentTransform;
 
 	//CANVAS ELEMENTS
-	[SerializeField]
-	private TMP_Text highlightedSpellNameText;
-	[SerializeField]
-	private SpriteRenderer equippedStaffSprite;
-	[SerializeField]
-	private TMP_Text equippedStaffNameText;
 
+	public SpriteRenderer puzzleIconSprite;
+	public TMP_Text puzzleNameText;
 
+	private SpellGemEntity currentErrorFlashSpellGemEntity;
+	private bool isErrorFlashing = false;
 
-	private PuzzleKey activeStaffRegion = PuzzleKey.PRIMARY_STAFF;
+	private PuzzleKey activeStaffKey = PuzzleKey.PRIMARY_STAFF;
 
-
-	public void DisablePuzzleUI() {
-		worldSpaceUIObject.SetActive (false);
-	}
-	public void EnablePuzzleUI () {
-		worldSpaceUIObject.SetActive (true);
-	}
 
 	public override void SetUpComponent (GameObject rootObject) {
 		base.SetUpComponent (rootObject);
-		grid = GetComponentInChildren<Grid> ();
-		inventoryBounds = new CoordinateBounds (inventoryOrigin, inventoryBoundSize);
-		staffBounds = new CoordinateBounds (staffOrigin, staffBoundSize);
-		ClearHighlightedSpellGemInformation ();
+		puzzleUI = GetComponent<PuzzleUI> ();
+		puzzleUI.SetUpPuzzleUI ();
+	}
+	public override void ReusePlayerComponent (Player player) {
+		Debug.Log ("PlayerPuzzleUIComponent: Reusing Player Component");
+		LoadPuzzleEntities (playerObject.wizardGameData);
+
+		puzzleUI.DisablePuzzleUI ();
 	}
 
-	public override void OnEquipStaff (PuzzleKey region, PuzzleGameData puzzleGameData) {
-		activeStaffRegion = region;
-		UpdateStaffInfo (puzzleGameData.puzzleData);
-		equippedStaffSprite.sprite = puzzleGameData.puzzleData.puzzleSprite;
-		equippedStaffNameText.text = puzzleGameData.puzzleData.puzzleName;
-
+	public override void OnSpawn(Vector3 spawnPosition) {
+		cursorController = playerObject.creaturePositions.targetTransform.GetComponent<CursorController> ();
 	}
-	public void ClearGridChildren() {
-		foreach (Transform child in grid.gameObject.transform) {
-			GameObject.Destroy (child.gameObject);
+	public void LoadPuzzleEntities (WizardGameData wizardGameData) {
+		if (wizardGameData.puzzleGameDataDictionary.ContainsKey (PuzzleKey.INVENTORY)) {
+			PuzzleGameData inventoryGameData = wizardGameData.puzzleGameDataDictionary[PuzzleKey.INVENTORY];
+			Debug.Log ("PuzzleComponent: Creating Staff PuzzleEntity.");
+			inventoryGameData.puzzleEntity = puzzleUI.AddPuzzleEntityToPuzzleUI (PuzzleKey.INVENTORY, inventoryGameData);
+			LoadSpellGemEntities (inventoryGameData);
+		}
+		if (wizardGameData.puzzleGameDataDictionary.ContainsKey (PuzzleKey.PRIMARY_STAFF)) {
+			PuzzleGameData primaryStaffGameData = wizardGameData.puzzleGameDataDictionary[PuzzleKey.PRIMARY_STAFF];
+			primaryStaffGameData.puzzleEntity = puzzleUI.AddPuzzleEntityToPuzzleUI (PuzzleKey.PRIMARY_STAFF, primaryStaffGameData);
+			LoadSpellGemEntities (primaryStaffGameData);
+		}
+
+		if (wizardGameData.puzzleGameDataDictionary.ContainsKey (PuzzleKey.SECONDARY_STAFF)) {
+			PuzzleGameData secondaryStaffGameData = wizardGameData.puzzleGameDataDictionary[PuzzleKey.SECONDARY_STAFF];
+			secondaryStaffGameData.puzzleEntity = puzzleUI.AddPuzzleEntityToPuzzleUI (PuzzleKey.SECONDARY_STAFF, secondaryStaffGameData);
+			LoadSpellGemEntities (secondaryStaffGameData);
 		}
 	}
-	public PuzzleCursorLocation CalculatePuzzleCursorLocation (Vector3 cursorPosition) {
 
-		Vector3Int gridCoord = grid.WorldToCell(cursorPosition);
-		highlightedBlockTransform.localPosition = grid.GetCellCenterLocal ((Vector3Int)gridCoord);
+	private void LoadSpellGemEntities (PuzzleGameData puzzleGameData) {
+		Debug.Log ("Loading player spellgem entities");
+		foreach (SpellGemGameData spellGemGameData in puzzleGameData.spellGemGameDataDictionary.Values) {
 
-		if (staffBounds.isWithinBounds (gridCoord.XY ()))
-			return new PuzzleCursorLocation (activeStaffRegion, gridCoord - (Vector3Int)staffBounds.minCoord);
-		else if (inventoryBounds.isWithinBounds (gridCoord.XY ()))
-			return new PuzzleCursorLocation (PuzzleKey.INVENTORY, gridCoord - (Vector3Int)inventoryBounds.minCoord);
-		else
-			return new PuzzleCursorLocation (PuzzleKey.OUTSIDE_BOUNDS, Vector3Int.zero);
+			Debug.Log ("Adding entity for " + spellGemGameData.spellData.spellName);
+			spellGemGameData.spellGemEntity = puzzleUI.AddSpellGemToPuzzleUI (puzzleGameData.puzzleEntity, spellGemGameData);
+		}
 	}
+
+
+	#region PlayerComponent Events
+	public override void OnChangePlayerState (PlayerState playerState) {
+		Debug.Log ("player puzzle OnChangePlayerState event");
+		switch (playerState) {
+			case (PlayerState.DEAD): {
+					puzzleUI.DisablePuzzleUI ();
+					InterruptFlashRoutine ();
+					break;
+				}
+			case (PlayerState.COMBAT): {
+					puzzleUI.DisablePuzzleUI ();
+					InterruptFlashRoutine ();
+					break;
+				}
+			case (PlayerState.PUZZLE_BROWSING): {
+					puzzleUI.EnablePuzzleUI ();
+					puzzleUI.UpdateActiveRegion (playerObject.wizardGameData.currentStaffKey);
+					break;
+				}
+			case (PlayerState.PUZZLE_MOVING_SPELLGEM): {
+					puzzleUI.EnablePuzzleUI ();
+					break;
+				}
+		}
+	}
+
+	public override void OnEquipStaff (PuzzleKey key, PuzzleGameData puzzleGameData) {
+		activeStaffKey = key;
+		UpdateStaffInfo (puzzleGameData);
+		puzzleUI.UpdateActiveRegion (key);
+	}
+
+
+	public override void OnPickUpStaff (PuzzleKey key, PuzzleGameData puzzleGameData) {
+		puzzleUI.AddPuzzleEntityToPuzzleUI (key, puzzleGameData);
+	}
+
+	public override void OnDropStaff (PuzzleKey region, PuzzleGameData puzzleGameData) {
+		base.OnDropStaff (region, puzzleGameData);
+
+	}
+	public override void OnPickUpSpellGem (SpellGemGameData spellGemGameData) {
+
+		UpdateHighlightedSpellGemInformation (spellGemGameData.spellData);
+		spellGemGameData.spellGemEntity = puzzleUI.AddSpellGemToPuzzleUIUncommited (spellGemGameData);
+		spellGemGameData.spellGemEntity.SetMovingColor ();
+		currentErrorFlashSpellGemEntity = spellGemGameData.spellGemEntity;
+	}
+	public override void OnBindSpellGem (PuzzleGameData puzzleGameData, SpellGemGameData spellGemGameData) {
+
+		SpellGemEntity spellGemEntity = puzzleUI.AddSpellGemToPuzzleUI (puzzleGameData.puzzleEntity, spellGemGameData);
+		InterruptFlashRoutine ();
+		spellGemGameData.spellGemEntity = spellGemEntity;
+		spellGemGameData.spellGemEntity.SetNormalColor ();
+	}
+	public override void OnUnbindSpellGem (PuzzleGameData puzzleGameData, SpellGemGameData spellGemGameData) {
+		puzzleUI.MoveSpellGemToUncommited (spellGemGameData);
+		spellGemGameData.spellGemEntity.SetMovingColor ();
+	}
+	#endregion
 	public Vector2Int RoundCursorLocationToNearestPuzzleSlot (Vector3 cursorPosition) {
-		Vector3Int cursorHighlightedCellPosition = grid.WorldToCell (cursorPosition);
-		highlightedBlockTransform.localPosition = grid.GetCellCenterLocal (cursorHighlightedCellPosition);
+		Vector3Int cursorHighlightedCellPosition = puzzleUI.grid.WorldToCell (cursorPosition);
+		highlightedBlockTransform.localPosition = puzzleUI.grid.GetCellCenterLocal (cursorHighlightedCellPosition);
 		return cursorHighlightedCellPosition.XY ();
 	}
 	public void RoundSpellGemEntityLocationToNearestTile (SpellGemEntity spellGemEntity, Vector2Int highlightedGridCellCoordinate) {
-		spellGemEntity.transform.localPosition = grid.GetCellCenterLocal ((Vector3Int)highlightedGridCellCoordinate);
+		spellGemEntity.transform.localPosition = puzzleUI.grid.GetCellCenterLocal ((Vector3Int)highlightedGridCellCoordinate);
 	}
 	//creates a new SpellGemEntity if necessary. otherwise re-uses the old one.
 
 	public void RotateSpellGemEntity (SpellGemEntity spellGemEntity, int rotation) {
 		spellGemEntity.transform.rotation = Quaternion.Euler (0, 0, rotation);
-
 	}
 
 	public void ErrorFlashSpellGemEntity (SpellGemEntity spellGemEntity) {
+		currentErrorFlashSpellGemEntity = spellGemEntity;
 		StartCoroutine (ErrorFlashRoutine (spellGemEntity));
 	}
 
-	private IEnumerator ErrorFlashRoutine (SpellGemEntity spellGemEntity) {
+	private void InterruptFlashRoutine () {
+		if (isErrorFlashing) {
+			StopCoroutine (ErrorFlashRoutine (currentErrorFlashSpellGemEntity));
+			currentErrorFlashSpellGemEntity.SetNormalColor ();
+			isErrorFlashing = false;
+		}
+	}
+	public IEnumerator ErrorFlashRoutine (SpellGemEntity spellGemEntity) {
+		isErrorFlashing = true;
 		float errorFlashTimer = 0.5f;
 		bool isRed = false;
 		while (errorFlashTimer > 0f) {
 			if (isRed) {
-				spellGemEntity.SetNormalColor ();
+				spellGemEntity.SetMovingColor ();
 				isRed = false;
 			} else {
 				spellGemEntity.SetErrorColor ();
@@ -126,92 +180,27 @@ public class PlayerPuzzleUIComponent : PlayerComponent {
 			errorFlashTimer -= 0.1f;
 		}
 		if (isRed == true) {
-			spellGemEntity.SetNormalColor ();
+			spellGemEntity.SetMovingColor ();
 		}
+		isErrorFlashing = false;
 	}
-
-	//called by either OnInit or OnEquip
-	public PuzzleEntity AddPuzzleEntityToPuzzleUI (PuzzleKey region, PuzzleGameData puzzleGameData) {
-		PuzzleEntity puzzleEntity = puzzleGameData.puzzleEntity;
-		if (puzzleEntity == null) {
-			Debug.Log ("PuzzleUI: " + region + " PuzzleEntity missing from PuzzleGameData. Creating PuzzleEntity.");
-			GameObject puzzleEntityGo = Instantiate (ConstantsManager.instance.puzzleEntityPrefab);
-			puzzleEntity = puzzleEntityGo.GetComponent<PuzzleEntity> ();
-			puzzleEntity.SetUpPuzzleEntity (puzzleGameData);
-		}
-
-
-		Vector2Int originCoordinate = Vector2Int.zero;
-		if (region == PuzzleKey.INVENTORY)
-			originCoordinate = inventoryBounds.minCoord;
-		else
-			originCoordinate = staffBounds.minCoord;
-
-		puzzleEntity.SetPuzzleEntityGridParent (grid, originCoordinate);
-
-		puzzleEntity.puzzleObjectTrans.parent = grid.transform;
-		Debug.Log ("PuzzleUI: childed staff to puzzleUI");
-		return puzzleEntity;
+	public PuzzleCursorLocation CalculatePuzzleCursorLocation (Vector3 cursorPosition) {
+		return puzzleUI.CalculatePuzzleCursorLocation (cursorPosition);
 	}
-
-	public SpellGemEntity AddSpellGemToPuzzleUI (PuzzleEntity puzzleEntity, SpellGemGameData spellGemGameData) {
-		SpellGemEntity spellGemEntity = spellGemGameData.spellGemEntity;
-		if (spellGemGameData.spellGemEntity == null) {
-			GameObject spellGemEntityGo = Instantiate (ConstantsManager.instance.spellGemUIPrefab);
-			spellGemEntityGo.name = "SpellGem_" + spellGemGameData.spellData.spellName;
-			spellGemEntity = spellGemEntityGo.GetComponent<SpellGemEntity> ();
-			spellGemEntity.InitializeSpellGemEntity (spellGemGameData.spellData);
-			spellGemGameData.spellGemEntity = spellGemEntity;
-		}
-		spellGemEntity.gameObject.transform.parent = puzzleEntity.tilemap.transform;
-		Vector3Int spellGemCoordinate = new Vector3Int (spellGemGameData.spellGemOriginCoordinate.x, spellGemGameData.spellGemOriginCoordinate.y, 0);
-		Vector3 cellLocalPosition = puzzleEntity.tilemap.GetCellCenterLocal (spellGemCoordinate);
-		spellGemEntity.transform.localPosition = cellLocalPosition ;
-		RotateSpellGemEntity (spellGemGameData.spellGemEntity, spellGemGameData.spellGemRotation * 90);
-		return spellGemEntity;
-	}
-	public SpellGemEntity AddSpellGemToPuzzleUIUncommited (SpellGemGameData spellGemGameData) {
-		SpellGemEntity spellGemEntity = spellGemGameData.spellGemEntity;
-		if (spellGemGameData.spellGemEntity == null) {
-			GameObject spellGemEntityGo = Instantiate (ConstantsManager.instance.spellGemUIPrefab);
-			spellGemEntityGo.name = "SpellGem_" + spellGemGameData.spellData.spellName;
-			spellGemEntity = spellGemEntityGo.GetComponent<SpellGemEntity> ();
-			spellGemEntity.InitializeSpellGemEntity (spellGemGameData.spellData);
-			spellGemGameData.spellGemEntity = spellGemEntity;
-		}
-		spellGemEntity.gameObject.transform.parent = uncommitedSpellGemParentTransform;
-		Vector3Int spellGemCoordinate = new Vector3Int (spellGemGameData.spellGemOriginCoordinate.x, spellGemGameData.spellGemOriginCoordinate.y, 0);
-		Vector3 cellLocalPosition = grid.GetCellCenterLocal (spellGemCoordinate);
-		spellGemEntity.transform.localPosition = cellLocalPosition;
-		RotateSpellGemEntity (spellGemGameData.spellGemEntity, spellGemGameData.spellGemRotation * 90);
-		return spellGemEntity;
-	}
-
-	public SpellGemEntity MoveSpellGemToUncommited (SpellGemGameData spellGameData) {
-		spellGameData.spellGemEntity.transform.parent = uncommitedSpellGemParentTransform;
-		spellGameData.spellCast.transform.parent = uncommitedSpellGemParentTransform;
-		return spellGameData.spellGemEntity;
-	}
-
-	public void UpdateHighlightedSpellGemInformation (SpellData spellData) {
-		highlightedSpellNameText.text = spellData.spellName;
+ 	public void UpdateHighlightedSpellGemInformation (SpellData spellData) {
+		cursorController.UpdateToolTipText (spellData.spellName);
 	}
 	public void ClearHighlightedSpellGemInformation () {
-		highlightedSpellNameText.text = "";
+		cursorController.ClearToolTip ();
 	}
 
-	public void UpdateStaffInfo(PuzzleData puzzleData) {
-
-		equippedStaffSprite.sprite = puzzleData.puzzleSprite;
-		equippedStaffNameText.text = puzzleData.puzzleName;
+	public void UpdateStaffInfo (PuzzleGameData puzzleGameData) {
+		puzzleIconSprite.sprite = puzzleGameData.puzzleData.puzzleSprite;
+		puzzleNameText.text = puzzleGameData.puzzleData.puzzleName;
 	}
 
-	public void ClearStaffInfo() {
-		equippedStaffSprite.sprite = null;
-		equippedStaffNameText.text = "UNARMED";
+	public void ClearStaffInfo () {
+		puzzleIconSprite.sprite = null;
+		puzzleNameText.text = "";
 	}
-	/*
-		private void OnDrawGizmosSelected () {
-			Gizmos.DrawCube
-		}*/
 }

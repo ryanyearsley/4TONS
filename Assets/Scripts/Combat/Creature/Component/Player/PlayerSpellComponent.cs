@@ -19,19 +19,46 @@ public class PlayerSpellComponent : PlayerComponent {
 
 	public override void OnSpawn (Vector3 spawnPosition) {
 		base.OnSpawn (spawnPosition);
+		LoadSpellCastEntites (playerObject.wizardGameData);
 		playerObject.SetCanAttack (true);
+	}
+	public void LoadSpellCastEntites (WizardGameData wizardGameData) {
+		if (wizardGameData.puzzleGameDataDictionary.ContainsKey (PuzzleKey.INVENTORY)) {
+			PuzzleGameData inventoryGameData = wizardGameData.puzzleGameDataDictionary[PuzzleKey.INVENTORY];
+			Debug.Log ("PuzzleComponent: Creating Staff PuzzleEntity.");
+			LoadSpellCast (inventoryGameData);
+		}
+		if (wizardGameData.puzzleGameDataDictionary.ContainsKey (PuzzleKey.PRIMARY_STAFF)) {
+			PuzzleGameData primaryStaffGameData = wizardGameData.puzzleGameDataDictionary[PuzzleKey.PRIMARY_STAFF];
+			LoadSpellCast (primaryStaffGameData);
+		}
+
+		if (wizardGameData.puzzleGameDataDictionary.ContainsKey (PuzzleKey.SECONDARY_STAFF)) {
+			PuzzleGameData secondaryStaffGameData = wizardGameData.puzzleGameDataDictionary[PuzzleKey.SECONDARY_STAFF];
+			LoadSpellCast (secondaryStaffGameData);
+		}
+
+	}
+
+	private void LoadSpellCast(PuzzleGameData puzzleGameData) {
+		foreach (SpellGemGameData spellGemGameData in puzzleGameData.spellGemGameDataDictionary.Values) {
+			OnBindSpellGem (puzzleGameData, spellGemGameData);
+		}
 	}
 
 	public override void OnPickUpStaff (PuzzleKey region, PuzzleGameData puzzleGameData) {
 		currentSpellBindingDictionary = puzzleGameData.spellBindingDictionary;
 		playerObject.playerUI.OnPickUpStaff (region, puzzleGameData);
+		foreach (SpellGemGameData spellGemGameData in puzzleGameData.spellGemGameDataDictionary.Values) {
+			spellGemGameData.spellCast.ConfigureSpellToPlayer (playerObject);
+		}
 	}
 
 	public override void OnEquipStaff (PuzzleKey region, PuzzleGameData puzzleGameData) {
 		playerObject.playerUI.OnEquipStaff (region);
 		if (currentSpellBindingDictionary != null) {
 			foreach (int key in currentSpellBindingDictionary.Keys) {
-				if (currentSpellBindingDictionary[key] != null) {
+				if (currentSpellBindingDictionary [key] != null) {
 					currentSpellBindingDictionary [key].spellUI = null;//dirty ass un-equip
 				}
 			}
@@ -40,7 +67,7 @@ public class PlayerSpellComponent : PlayerComponent {
 		for (int i = 0; i < puzzleGameData.spellBindingDictionary.Count; i++) {
 			if (puzzleGameData.spellBindingDictionary [i] != null) {
 				puzzleGameData.spellBindingDictionary [i].spellUI = playerObject.playerUI.spellUIs [i];
-				playerObject.playerUI.spellUIs [i].InitializeSpellUI (puzzleGameData.spellBindingDictionary [i].spellData);
+				playerObject.playerUI.spellUIs [i].SetSpellUIToSpell (puzzleGameData.spellBindingDictionary [i].spellData);
 			} else {
 				playerObject.playerUI.spellUIs [i].ClearSpellBinding ();
 			}
@@ -70,11 +97,11 @@ public class PlayerSpellComponent : PlayerComponent {
 			puzzleGameData.spellBindingDictionary [spellGemGameData.spellBindIndex] = spellGemGameData.spellCast;
 			if (puzzleGameData.puzzleKey == playerObject.wizardGameData.currentStaffKey) {
 				spellGemGameData.spellCast.spellUI = UIManager.Instance.playerUIs [playerObject.player.playerIndex].spellUIs [spellGemGameData.spellBindIndex];
-				spellGemGameData.spellCast.spellUI.InitializeSpellUI (spellGemGameData.spellData);
+				spellGemGameData.spellCast.spellUI.SetSpellUIToSpell (spellGemGameData.spellData);
 			}
 		}
 		spellGemGameData.spellCast.ConfigureSpellToPlayer (playerObject);
-		spellGemGameData.spellCast.tag = this.tag;
+		spellGemGameData.spellCast.tag = puzzleGameData.puzzleEntity.tag;
 	}
 
 	public override void OnUnbindSpellGem (PuzzleGameData puzzleGameData, SpellGemGameData spellSaveData) {

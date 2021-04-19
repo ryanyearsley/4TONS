@@ -29,6 +29,7 @@ public class MapData : ScriptableObject {
 	public CreatureSpawnInfo[] enemySpawnInfos;
 	public SetPieceSpawnInfo[] setPieceSpawnInfos;
 	public SpellGemSpawnInfo [] spellGemSpawnInfos;
+	public StaffSpawnInfo [] staffSpawnInfos;
 	[ConditionalHide ("useCustomSeed")]
 	public string seed;
 	public bool useCustomSeed;

@@ -35,11 +35,14 @@ MonoBehaviour:
   - spawnCount: 3
     setPieceData: {fileID: 11400000, guid: bd2fadacf2e57264b9856ebe92851d36, type: 2}
   spellGemSpawnInfos:
-  - dropPercentage: 80
+  - dropPercentage: 50
     spellData: {fileID: 11400000, guid: 2d3465d624cf7c743abbbaf28fec6fc3, type: 2}
-  - dropPercentage: 20
+  - dropPercentage: 10
     spellData: {fileID: 11400000, guid: f8a09e2fb222c62489690f14902cef0d, type: 2}
-  - dropPercentage: 100
+  - dropPercentage: 30
     spellData: {fileID: 11400000, guid: 3b716e754480f0c48a677ce4c4d2bf3b, type: 2}
-  seed: 637540926095530362
+  - dropPercentage: 5
+    spellData: {fileID: 11400000, guid: 50f771dfc4c331543aa4398e546ec730, type: 2}
+  staffSpawnInfos: []
+  seed: 637543890725682591
   useCustomSeed: 0

@@ -71,6 +71,29 @@ public class SpawnUtility
 			}
 		return spawnPoints;
 	}
+
+	public static List<StaffSpawnPoint> GenerateStaffSpawnPoints (MapDetails details, StaffSpawnInfo staffSpawnInfo) {
+		List<StaffSpawnPoint> spawnPoints = new List<StaffSpawnPoint>();
+		PuzzleData puzzleData = staffSpawnInfo.puzzleData;
+		bool spawnPointAdded = false;
+		int roll = UnityEngine.Random.Range (0, 100);
+		if (roll < staffSpawnInfo.dropPercentage)
+			while (spawnPointAdded == false) {
+				int randomX = UnityEngine.Random.Range (1, details.mapData.mapSize.x - 1);
+				int randomY = UnityEngine.Random.Range (1, details.mapData.mapSize.y - 1);
+
+				if (details.mapTileInfo [randomX, randomY].value == 0) {
+					if (MapUtility.CheckSpawnPointEligibility (details, new Vector2Int (randomX, randomY), 1)) {
+						StaffSpawnPoint spawnPoint = new StaffSpawnPoint (new Vector2Int (randomX, randomY), details.worldData.staffPickUpData, puzzleData);
+						MapUtility.ClearStaffSpawnPointArea (details.mapTileInfo, spawnPoint);
+						spawnPoints.Add (spawnPoint);
+						details.mapTileInfo [randomX, randomY].value = puzzleData.id;
+						spawnPointAdded = true;
+					}
+				}
+			}
+		return spawnPoints;
+	}
 	#endregion
 
 }

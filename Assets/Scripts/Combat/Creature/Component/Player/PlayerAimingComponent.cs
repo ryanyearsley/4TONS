@@ -11,7 +11,7 @@ public class PlayerAimingComponent : PlayerComponent {
 
 	private CursorController cursorController;
 	private StaffAimObject staffAimObject;
-	private Transform staffTipTransform;
+	[SerializeField]
 	private Transform aimingPivotTransform;
 	private Transform cursorTransform;
 
@@ -26,17 +26,18 @@ public class PlayerAimingComponent : PlayerComponent {
 
 	public override void SetUpComponent (GameObject rootObject) {
 		base.SetUpComponent (rootObject);
+		CreateCursor();
+		CreateStaffAimObject();
+		playerObject.SetCreaturePositions (cursorTransform, transform, staffAimObject.staffTipTransform);
 		mainCamera = Camera.main;
 	}
 	//TODO: Destroy cursor/staff after death.
 	public override void ReusePlayerComponent (Player player) {
 		base.ReusePlayerComponent (player);
-		Transform targetTransform = CreateCursor(player);
-		Transform staffAimTransform = CreateStaffAimObject(player.wizardSaveData.primaryStaffSaveData.puzzleData);
-		Transform staffPivot = staffAimTransform.parent;
-		playerObject.SetCreaturePositions (targetTransform, transform, staffAimTransform);
+		cursorController.InitializeComponent (player);
+		staffAimObject.InitializeStaffAimObject (player.wizardSaveData.primaryStaffSaveData.puzzleData.puzzleSprite);
 	}
-	private Transform CreateCursor (Player player) {
+	private Transform CreateCursor () {
 		GameObject go = new GameObject("AimingPivot");
 		aimingPivotTransform = go.transform;
 		aimingPivotTransform.parent = transform;
@@ -48,15 +49,13 @@ public class PlayerAimingComponent : PlayerComponent {
 
 		cursorController = cursorTransform.GetComponent<CursorController> ();
 		cursorController.SetCursorCenter (aimingPivotTransform);
-		cursorController.InitializeComponent (player);
 		return cursorTransform;
 	}
 
-	private Transform CreateStaffAimObject (PuzzleData puzzleData) {
+	private Transform CreateStaffAimObject () {
 		GameObject staffObject = Instantiate(staffPrefab);
 		staffObject.transform.parent = aimingPivotTransform;
 		staffAimObject = staffObject.GetComponent<StaffAimObject> ();
-		staffAimObject.InitializeStaffAimObject (puzzleData.puzzleSprite);
 		staffObject.transform.localPosition = Vector3.zero;
 		return staffAimObject.staffTipTransform;
 	}
@@ -78,11 +77,13 @@ public class PlayerAimingComponent : PlayerComponent {
 				return 0;
 		}
 	}
+
 	#endregion
 	#region Player Events
 
 
 	public override void OnChangePlayerState (PlayerState playerState) {
+		cursorController.OnChangeState (playerState);
 		switch (playerState) {
 			case (PlayerState.COMBAT): {
 					staffAimObject.gameObject.SetActive (true);
@@ -94,7 +95,6 @@ public class PlayerAimingComponent : PlayerComponent {
 					break;
 				}
 		}
-		cursorController.OnChangeState (playerState);
 	}
 
 	public override void OnEquipStaff (PuzzleKey region, PuzzleGameData puzzleGameData) {
@@ -107,12 +107,14 @@ public class PlayerAimingComponent : PlayerComponent {
 	#endregion
 
 	public void MouseAimingUpdate (Vector2 mouseDelta) {
+
 		cursorTransform.parent = mainCamera.transform;
 		Bounds screenBounds = mainCamera.OrthographicBounds ();
 		float x = Mathf.Clamp (cursorTransform.position.x + mouseDelta.x * 0.0125f, screenBounds.min.x, screenBounds.max.x);
 		float y = Mathf.Clamp (cursorTransform.position.y + mouseDelta.y * 0.0125f, screenBounds.min.y, screenBounds.max.y);
 		cursorTransform.position = new Vector3 (x, y, -9f);
 		float angle = Mathf.Atan2 (CursorDirection.y, CursorDirection.x) * Mathf.Rad2Deg;
+		cursorController.UpdateToolTipOrientation ();
 		AimStaffRaw ();
 	}
 	public void JoystickAimingUpdate (Vector2 input) {

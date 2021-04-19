@@ -16,15 +16,16 @@ public class PuzzleGameData
 
 	public SpellBindingDictionary spellBindingDictionary = new SpellBindingDictionary();
 
-	public PuzzleGameData (PuzzleData puzzleData, PuzzleKey key) {
+	public PuzzleGameData (PuzzleData puzzleData, PuzzleKey key, SpellGemSaveDataDictionary spellGemSaveDataDictionary) {
 		this.puzzleData = puzzleData;
 		this.puzzleKey = key;
 		map = PuzzleFactory.DeserializePuzzleFile (puzzleData.puzzleFile);
-		mapBounds = new CoordinateBounds (Vector2Int.zero, new Vector2Int( map.GetLength(0) - 1, map.GetLength(1) - 1));
+		mapBounds = new CoordinateBounds (Vector2Int.zero, new Vector2Int (map.GetLength (0) - 1, map.GetLength (1) - 1));
 		if (puzzleData.puzzleType != PuzzleType.INVENTORY) {
 			for (int i = 0; i <= 3; i++)
 				spellBindingDictionary.Add (i, null);
 		}
+		WizardGameDataMapper.ValidateAndMapGemData (this, spellGemSaveDataDictionary);
 		//puzzle entity added from playerPuzzleUIComponent.
 	}
 

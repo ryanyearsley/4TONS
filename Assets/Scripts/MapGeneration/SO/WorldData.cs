@@ -18,10 +18,10 @@ public class WorldData : ScriptableObject, IEnumerable<Tile> {
 	public SpellSchoolData spellSchoolData;
 	public CreatureData playerData;
 	public SpawnObjectData spellGemPickUpData;
+	public SpawnObjectData staffPickUpData;
 	public List<CreatureData> enemyDatas;
 
 	public List<Tile> tileset;
-	public SetPieceData spellGemPickUpSpawnInfo;
 	public SetPieceSpawnInfo playerSpawnSetpieceSpawnInfo;
 	public SetPieceSpawnInfo nextLevelPortalSpawnInfo;
 	public List<SetPieceData> setPieceDatas;

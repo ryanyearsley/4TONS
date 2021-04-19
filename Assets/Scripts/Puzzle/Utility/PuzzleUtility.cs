@@ -56,13 +56,10 @@ public static class PuzzleUtility {
 	}
 	public static void AddSpellGemToPuzzle (PuzzleGameData puzzleGameData, SpellGemGameData spellGemGameData) {
 		spellGemGameData.currentCoordinates = RotateCoordinates (spellGemGameData.spellData.puzzlePieceData.coordinates, spellGemGameData.spellGemRotation);
-		if (!puzzleGameData.spellGemGameDataDictionary.ContainsKey (spellGemGameData.spellGemOriginCoordinate)) {
-			Debug.Log ("spellgem coordinate is not registered, adding to dictionary.");
-			puzzleGameData.spellGemGameDataDictionary.Add (spellGemGameData.spellGemOriginCoordinate, spellGemGameData);
-		}
+		puzzleGameData.spellGemGameDataDictionary.Add (spellGemGameData.spellGemOriginCoordinate, spellGemGameData);
 		Vector2Int spellGemCenterPoint = spellGemGameData.spellGemOriginCoordinate;
-		foreach (Vector2Int spellGemCoordinate in spellGemGameData.currentCoordinates) {
-			Vector2Int relativePosition = spellGemCenterPoint + spellGemCoordinate;
+		foreach (Vector2Int coord in spellGemGameData.currentCoordinates) {
+			Vector2Int relativePosition = spellGemCenterPoint + coord;
 			PuzzleTileInfo puzzleTileInfo = puzzleGameData.map [relativePosition.x, relativePosition.y];
 			puzzleTileInfo.spellGemGameData = spellGemGameData;
 			//1 == open tile. (0 = no tile)

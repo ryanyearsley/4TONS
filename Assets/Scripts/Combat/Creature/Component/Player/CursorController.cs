@@ -1,10 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using TMPro;
 using UnityEngine;
 
 public class CursorController : MonoBehaviour {
 
-	PlayerObject playerStateController;
+
+	PlayerObject playerObject;
 
 	[SerializeField]
 	private Sprite combatCursor;
@@ -17,24 +17,27 @@ public class CursorController : MonoBehaviour {
 	private SpriteRenderer spriteRenderer;
 	private Transform cursorCenter;
 
+	[SerializeField]
+	private TMP_Text tooltipText;
+
+	private bool pointingRight;
+
 	private void Awake () {
 		spriteRenderer = GetComponentInChildren<SpriteRenderer> ();
+		ClearToolTip ();
 	}
 
 	public void InitializeComponent (Player player) {
-		playerStateController = player.currentPlayerObject;
+		playerObject = player.currentPlayerObject;
 		spriteRenderer.color = player.wizardSaveData.spellSchoolData.schoolGemColor;
-		playerStateController.OnChangePlayerStateEvent += OnChangeState;
-	}
-
-	private void OnDisable () {
-		playerStateController.OnChangePlayerStateEvent -= OnChangeState;
 	}
 
 	public void OnChangeState (PlayerState playerState) {
+		Debug.Log ("CursorController: Changing player state to " + playerState);
 		switch (playerState) {
 			case (PlayerState.COMBAT): {
-					spriteRenderer.sprite = combatCursor; 
+					spriteRenderer.sprite = combatCursor;
+					ClearToolTip ();
 					break;
 				}
 			case (PlayerState.PUZZLE_BROWSING): {
@@ -59,5 +62,35 @@ public class CursorController : MonoBehaviour {
 
 	public void SetCursorCenter (Transform cursorCenter) {
 		this.cursorCenter = cursorCenter;
+	}
+
+	public void UpdateToolTipText(string text) {
+		tooltipText.text = text;
+	}
+	public void UpdateToolTipOrientation () {
+		if (transform.position.x > playerObject.transform.position.x) {
+			SetToolTipPointingRight ();
+		} else  {
+			SetToolTipPointingLeft ();
+		}
+	}
+	private void SetToolTipPointingRight() {
+		if (!pointingRight) {
+			pointingRight = true;
+			Debug.Log ("CursorController: Displaying ToolTip Pointing Right");
+			tooltipText.rectTransform.localEulerAngles = new Vector3 (0, 0, 0);
+			tooltipText.alignment = TextAlignmentOptions.MidlineRight;
+		}
+	}
+	private void SetToolTipPointingLeft () {
+		if (pointingRight) {
+			pointingRight = false;
+			Debug.Log ("CursorController: Displaying ToolTip Pointing Left");
+			tooltipText.rectTransform.localEulerAngles = new Vector3 (0, 0, 180);
+			tooltipText.alignment = TextAlignmentOptions.MidlineLeft;
+		}
+	}
+	public void ClearToolTip () {
+		tooltipText.text = "";
 	}
 }

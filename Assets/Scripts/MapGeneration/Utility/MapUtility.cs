@@ -62,6 +62,18 @@ public class MapUtility {
 		}
 		map [spawnPoint.spawnCoordinate.x, spawnPoint.spawnCoordinate.y].value = spawnPoint.spellData.id;
 	}
+	public static void ClearStaffSpawnPointArea (MapTileInfo [,] map, StaffSpawnPoint spawnPoint) {
+		SpawnObjectData spawnObjectData = spawnPoint.spawnObjectData;
+		Vector2Int startingPoint = spawnPoint.spawnCoordinate - new Vector2Int (spawnObjectData.clearance, spawnObjectData.clearance);
+		int clearDiameter = 1 + (spawnPoint.spawnObjectData.clearance * 2);
+		for (int x = 0; x < clearDiameter; x++) {
+			for (int y = 0; y < clearDiameter; y++) {
+				map [startingPoint.x + x, startingPoint.y + y].value = -spawnPoint.puzzleData.id;
+				map [startingPoint.x + x, startingPoint.y + y].isSpawnConflict = true;
+			}
+		}
+		map [spawnPoint.spawnCoordinate.x, spawnPoint.spawnCoordinate.y].value = spawnPoint.puzzleData.id;
+	}
 
 	public static Vector2Int CalculateLevelOrigin (MapDetails currentMapDetails, MapDetails nextMapDetails) {
 		Vector2Int buffer = new Vector2Int(5, 5);

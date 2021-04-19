@@ -11,25 +11,36 @@ public class StaffPickUp : PickUpObject {
 	[SerializeField]
 	private Vector2Int tilemapOrigin;
 
+	private PuzzleUI puzzleUI;
+
 	public PuzzleGameData puzzleGameData;
 
 	public override void SetupObject () {
 		grid = GetComponent<Grid> ();
+		puzzleUI = GetComponentInChildren<PuzzleUI> ();
+		puzzleUI.SetUpPuzzleUI ();
 	}
 
 	public void ReuseStaffPickUp (PuzzleData puzzleData) {
-		this.puzzleGameData = new PuzzleGameData (puzzleData, PuzzleKey.PICK_UP); //initializes data
+		puzzleGameData = new PuzzleGameData (puzzleData, PuzzleKey.PICK_UP, puzzleData.defaultSpellGemDictionary); //initializes data
+		puzzleGameData.puzzleEntity = puzzleUI.AddPuzzleEntityToPuzzleUI (PuzzleKey.PICK_UP, puzzleGameData);
+		foreach (SpellGemGameData spellGemGameData in puzzleGameData.spellGemGameDataDictionary.Values) {
+			puzzleUI.AddSpellGemToPuzzleUI (puzzleGameData.puzzleEntity, spellGemGameData);
+			SpellCastUtility.LoadSpellCastEntity (puzzleGameData, spellGemGameData);
+		}
 		staffSprite.sprite = puzzleGameData.puzzleData.puzzleSprite;
-		AddPuzzleEntityToPickUp (puzzleGameData);
+		puzzleUI.DisablePuzzleUI ();
+		//AddPuzzleEntityToPickUp (puzzleGameData);
 	}
 
 	public void ReuseStaffPickUpPlayerDrop (PuzzleGameData puzzleGameData) {
 		this.puzzleGameData = puzzleGameData;
 		puzzleGameData.puzzleKey = PuzzleKey.PICK_UP;
-		staffSprite.sprite = puzzleGameData.puzzleData.puzzleIcon;
-		AddPuzzleEntityToPickUp (puzzleGameData);
+		puzzleGameData.puzzleEntity = puzzleUI.AddPuzzleEntityToPuzzleUI (puzzleGameData.puzzleKey, puzzleGameData);
+		staffSprite.sprite = puzzleGameData.puzzleData.puzzleSprite;
+		//AddPuzzleEntityToPickUp (puzzleGameData);
 	}
-
+/*
 	public void AddPuzzleEntityToPickUp (PuzzleGameData puzzleGameData) {
 		PuzzleEntity puzzleEntity = puzzleGameData.puzzleEntity;
 		if (puzzleEntity == null) {
@@ -38,12 +49,14 @@ public class StaffPickUp : PickUpObject {
 			puzzleEntity.SetUpPuzzleEntity (puzzleGameData);
 		}
 		puzzleEntity.SetPuzzleEntityGridParent (grid, tilemapOrigin);
-	}
+	}*/
 
 	protected override void HighlightPickUp () {
+		puzzleUI.EnablePuzzleUI ();
 		puzzleGameData.puzzleEntity.tilemap.gameObject.SetActive (true);
 	}
 	protected override void UnhighlightPickUp () {
+		puzzleUI.DisablePuzzleUI ();
 		puzzleGameData.puzzleEntity.tilemap.gameObject.SetActive (false);
 	}
 

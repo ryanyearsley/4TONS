@@ -84,6 +84,7 @@ public class LevelManager : MonoBehaviour, IGameManager {
 			PoolManager.instance.CreateCreaturePool (enemyData.spawnObjectPrefab, enemyData.poolSize);
 		}
 		PoolManager.instance.CreateObjectPool (ConstantsManager.instance.spellGemPickupPrefab, 15);
+		PoolManager.instance.CreateObjectPool (ConstantsManager.instance.staffPickupPrefab, 15);
 	}
 
 	#endregion
@@ -111,6 +112,7 @@ public class LevelManager : MonoBehaviour, IGameManager {
 
 		yield return new WaitForSeconds (0.5f);
 		SpawnSpellGems (levelIndex);
+		SpawnStaffs (levelIndex);
 		yield return new WaitForSeconds (0.5f);
 		SpawnEnemies (levelIndex);
 		yield return new WaitForSeconds (0.5f);
@@ -222,6 +224,20 @@ public class LevelManager : MonoBehaviour, IGameManager {
 			spellGemCount++;
 		}
 	}
+	public void SpawnStaffs (int floorIndex) {
+
+		MapDetails currentMapDetails = mapDetailDictionary[floorIndex];
+
+		foreach (StaffSpawnPoint staffSpawnPoint in currentMapDetails.spawnPoints.staffSpawnPoints) {
+			Vector3 staffSpawnPosition = ConvertIsoCoordToScene(staffSpawnPoint.spawnCoordinate + currentMapDetails.floorOrigin);
+			GameObject staffPickUpGO = PoolManager.instance.ReuseObject(ConstantsManager.instance.staffPickupPrefab, staffSpawnPosition, Quaternion.identity);
+			staffPickUpGO.transform.position = staffSpawnPosition;
+			StaffPickUp staffPickUp = staffPickUpGO.GetComponent<StaffPickUp>();
+			staffPickUp.SetupObject ();
+			staffPickUp.ReuseStaffPickUp (staffSpawnPoint.puzzleData);
+		}
+	}
+
 
 	#endregion
 
