@@ -8,7 +8,7 @@ using UnityEngine;
 public class MapSpawnPoints {
 
 	public SpawnPoint playerSpawnSetPiecePoint;
-	public SpawnPoint nextPortalSpawnPoint;
+	public SpawnPoint portalSpawnPoint;
 	public List <SpawnPoint> playerSpawnPoints = new List<SpawnPoint>();
 	public List <SpawnPoint> enemySpawnPoints = new List<SpawnPoint>();
 	public List<SpellGemSpawnPoint> spellGemSpawnPoints = new List<SpellGemSpawnPoint>();

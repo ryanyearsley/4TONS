@@ -40,34 +40,35 @@ public class PlayerSpellComponent : PlayerComponent {
 
 	}
 
-	private void LoadSpellCast(PuzzleGameData puzzleGameData) {
+	private void LoadSpellCast (PuzzleGameData puzzleGameData) {
 		foreach (SpellGemGameData spellGemGameData in puzzleGameData.spellGemGameDataDictionary.Values) {
-			OnBindSpellGem (puzzleGameData, spellGemGameData);
+			OnBindSpellGem (puzzleGameData, spellGemGameData, PuzzleBindType.MANUAL);
 		}
 	}
 
 	public override void OnPickUpStaff (PuzzleKey region, PuzzleGameData puzzleGameData) {
-		currentSpellBindingDictionary = puzzleGameData.spellBindingDictionary;
 		playerObject.playerUI.OnPickUpStaff (region, puzzleGameData);
 		foreach (SpellGemGameData spellGemGameData in puzzleGameData.spellGemGameDataDictionary.Values) {
 			spellGemGameData.spellCast.ConfigureSpellToPlayer (playerObject);
 		}
 	}
 
-	public override void OnEquipStaff (PuzzleKey region, PuzzleGameData puzzleGameData) {
+	public override void OnEquipStaff (PuzzleKey region, PuzzleGameData puzzleGameData, StaffEquipType equipType) {
 		playerObject.playerUI.OnEquipStaff (region);
 		if (currentSpellBindingDictionary != null) {
-			foreach (int key in currentSpellBindingDictionary.Keys) {
-				if (currentSpellBindingDictionary [key] != null) {
-					currentSpellBindingDictionary [key].spellUI = null;//dirty ass un-equip
+			for (int i = 0; i < currentSpellBindingDictionary.Count; i++) {
+				if (currentSpellBindingDictionary [i] != null) {
+					currentSpellBindingDictionary [i].spellUI = null;
 				}
 			}
 		}
+
 		currentSpellBindingDictionary = puzzleGameData.spellBindingDictionary;
-		for (int i = 0; i < puzzleGameData.spellBindingDictionary.Count; i++) {
-			if (puzzleGameData.spellBindingDictionary [i] != null) {
-				puzzleGameData.spellBindingDictionary [i].spellUI = playerObject.playerUI.spellUIs [i];
-				playerObject.playerUI.spellUIs [i].SetSpellUIToSpell (puzzleGameData.spellBindingDictionary [i].spellData);
+		for (int i = 0; i < currentSpellBindingDictionary.Count; i++) {
+			if (currentSpellBindingDictionary [i] != null) {
+				Debug.Log ("PlayerSpellComponent: OnEquipStaff " + puzzleGameData.puzzleData.puzzleName + " CurrentSpellBindingDictionary " + i + " not null. setting up spell UI.");
+				currentSpellBindingDictionary [i].spellUI = playerObject.playerUI.spellUIs [i];
+				playerObject.playerUI.spellUIs [i].SetSpellUIToSpell (currentSpellBindingDictionary [i].spellData);
 			} else {
 				playerObject.playerUI.spellUIs [i].ClearSpellBinding ();
 			}
@@ -76,7 +77,6 @@ public class PlayerSpellComponent : PlayerComponent {
 	}
 
 	public override void OnDropStaff (PuzzleKey region, PuzzleGameData puzzleGameData) {
-		playerObject.playerUI.OnDropStaff (region);
 
 		if (puzzleGameData.spellBindingDictionary == currentSpellBindingDictionary) {
 			currentSpellBindingDictionary = null;
@@ -85,8 +85,10 @@ public class PlayerSpellComponent : PlayerComponent {
 		for (int i = 0; i < playerObject.playerUI.spellUIs.Length; i++) {
 			playerObject.playerUI.spellUIs [i].ClearSpellBinding ();
 		}
+
+		playerObject.playerUI.OnDropStaff (region);
 	}
-	public override void OnBindSpellGem (PuzzleGameData puzzleGameData, SpellGemGameData spellGemGameData) {
+	public override void OnBindSpellGem (PuzzleGameData puzzleGameData, SpellGemGameData spellGemGameData, PuzzleBindType bindType) {
 		Debug.Log ("PlayerSpell On BindSpellGem");
 		if (spellGemGameData.spellCast == null) {
 			spellGemGameData.spellCast = Instantiate (spellGemGameData.spellData.castObject).GetComponent<Spell> ();
@@ -104,7 +106,7 @@ public class PlayerSpellComponent : PlayerComponent {
 		spellGemGameData.spellCast.tag = puzzleGameData.puzzleEntity.tag;
 	}
 
-	public override void OnUnbindSpellGem (PuzzleGameData puzzleGameData, SpellGemGameData spellSaveData) {
+	public override void OnUnbindSpellGem (PuzzleGameData puzzleGameData, SpellGemGameData spellSaveData, PuzzleUnbindType unbindType) {
 		if (puzzleGameData.puzzleKey == playerObject.wizardGameData.currentStaffKey) {
 			spellSaveData.spellCast.spellUI.ClearSpellBinding ();
 			spellSaveData.spellCast.spellUI = null;
@@ -117,24 +119,27 @@ public class PlayerSpellComponent : PlayerComponent {
 
 	//Used on reuse of a player object, as well as when switching weapons.
 	public void OnSpellButtonDown (int spellIndex) {
-		if (!playerObject.canAttack || currentSpellBindingDictionary == null || currentSpellBindingDictionary [spellIndex] == null)
+		if (currentSpellBindingDictionary == null || currentSpellBindingDictionary [spellIndex] == null)
 			return;
-		Spell spell = currentSpellBindingDictionary [spellIndex];
-		if (!spell.onCooldown &&
-			spell.isCastEligible () &&
-			manaController.SubtractResourceCost (spell.spellData.manaCost)) {
-			spell.CastSpell ();
-			playerObject.OnAttack (new AttackInfo (spell.spellData.castTime, spell.spellData.castSpeedReduction));
-			playerObject.AddSpeedEffect (new SpeedAlteringEffect (spell.spellData.castSpeedReduction, spell.spellData.castTime, false));
+		else {
+			Spell spell = currentSpellBindingDictionary [spellIndex];
+			spell.SpellButtonDown ();
 		}
 	}
 	public void OnSpellButton (int spellIndex) {
 		//channel spell
-		if (!!playerObject.canAttack)
-			return;
+		if (currentSpellBindingDictionary == null || currentSpellBindingDictionary [spellIndex] == null)
+		return;
+
+		Spell spell = currentSpellBindingDictionary [spellIndex];
+		spell.SpellButtonHold ();
 	}
 	public void OnSpellButtonUp (int spellIndex) {
-		if (!playerObject.canAttack)
+		if (currentSpellBindingDictionary == null || currentSpellBindingDictionary [spellIndex] == null)
 			return;
+
+		Spell spell = currentSpellBindingDictionary [spellIndex];
+		spell.SpellButtonUp ();
+
 	}
 }

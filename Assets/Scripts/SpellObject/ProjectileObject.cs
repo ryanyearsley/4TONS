@@ -2,6 +2,8 @@
 using UnityEngine;
 
 public class ProjectileObject : SpellObject {
+
+	private bool isMoving;
 	[SerializeField]
 	private float moveSpeed;
 
@@ -20,12 +22,20 @@ public class ProjectileObject : SpellObject {
 		trans = transform;
 	}
 
+
+	public override void ReuseSpellObject (VitalsEntity vitalsEntity) {
+		base.ReuseSpellObject (vitalsEntity);
+
+	}
+
+
+
 	public virtual void FixedUpdate () {
 
 		if (isAlive) {
 			transform.Translate (Vector2.right * moveSpeed * Time.fixedDeltaTime);
 
-			Vector3 projectedEnvironmentColliderPosition = new Vector3 (trans.position.x, trans.position.y - 0.18f, 0);
+			Vector3 projectedEnvironmentColliderPosition = new Vector3 (trans.position.x, trans.position.y - 0.3125f, 0);
 			groundColl.transform.position = projectedEnvironmentColliderPosition;
 			if (Physics2D.OverlapCollider (groundColl, contactFilter, overlappingColliders) > 0) {
 				if (debrisObject != null) {
@@ -35,12 +45,12 @@ public class ProjectileObject : SpellObject {
 				Destroy ();
 			}
 		}
-
 	}
 	private void OnTriggerEnter2D (Collider2D other) {
 		int id = other.transform.parent.GetInstanceID();
 		Debug.Log (this.tag + " tagged projectile collided other object. name: " + other.gameObject.name);
 		if (isAlive) {
+
 			if (other.tag != this.tag) {
 				VitalsEntity hitTargetEntity = VitalsManager.Instance.GetVitalsEntitybyID(id);
 				if (hitTargetEntity != null && hitTargetEntity != casterVitalsEntity) {

@@ -15,7 +15,7 @@ MonoBehaviour:
   schoolIndexStart: 2000
   spellSchool: 1
   worldData: {fileID: 11400000, guid: be56f9576645b884b8533de0c890200f, type: 2}
-  schoolGemColor: {r: 0.46849418, g: 0.31118724, b: 0.5943396, a: 1}
+  schoolGemColor: {r: 0.60843325, g: 0.47686014, b: 0.7169812, a: 1}
   description: Suck the life from your enemies, summoning a horde of zombies and
     tentacles.
   wizardSelectIcon: {fileID: 21300000, guid: 137d634ce3c652244a1b0533beeb1488, type: 3}

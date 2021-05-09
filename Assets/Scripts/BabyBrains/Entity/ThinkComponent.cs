@@ -92,7 +92,8 @@ public class ThinkComponent : BabyBrainsComponent {
 	#region Think Routines
 	//THINK ROUTINE is responsible for validating behaviours on an interval.
 	public IEnumerator ThinkRoutine () {
-
+		//grace period for player
+		yield return new WaitForSeconds (1.5f);
 		while (isThinking) {
 			Think ();
 			yield return new WaitForSeconds (thinkInterval);

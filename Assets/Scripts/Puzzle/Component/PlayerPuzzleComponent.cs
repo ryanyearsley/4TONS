@@ -16,6 +16,13 @@ This class...
 public enum PuzzleBindType {
 	AUTOMATIC, MANUAL
 }
+public enum PuzzleUnbindType {
+	TO_HAND, TO_FLOOR
+}
+
+public enum StaffEquipType {
+	AUTO_EQUIP, PICK_UP, MANUAL_SWAP, QUICK_SWAP, DROPPED_OTHER
+}
 public enum PuzzleKey {
 	DISABLED, INVENTORY, PRIMARY_STAFF, SECONDARY_STAFF, OUTSIDE_BOUNDS, PICK_UP, NO_WEAPON
 }
@@ -61,11 +68,10 @@ public class PlayerPuzzleComponent : PlayerComponent {
 
 		if (wizardGameData.puzzleGameDataDictionary.ContainsKey (PuzzleKey.PRIMARY_STAFF)) {
 			PuzzleGameData primaryStaffGameData = wizardGameData.puzzleGameDataDictionary[PuzzleKey.PRIMARY_STAFF];
-			playerObject.EquipStaff (PuzzleKey.PRIMARY_STAFF, primaryStaffGameData);
-		}
-		else if (wizardGameData.puzzleGameDataDictionary.ContainsKey (PuzzleKey.SECONDARY_STAFF)) {
+			playerObject.EquipStaff (PuzzleKey.PRIMARY_STAFF, primaryStaffGameData, StaffEquipType.AUTO_EQUIP);
+		} else if (wizardGameData.puzzleGameDataDictionary.ContainsKey (PuzzleKey.SECONDARY_STAFF)) {
 			PuzzleGameData secondaryStaffGameData = wizardGameData.puzzleGameDataDictionary[PuzzleKey.SECONDARY_STAFF];
-			playerObject.EquipStaff (PuzzleKey.SECONDARY_STAFF, secondaryStaffGameData);
+			playerObject.EquipStaff (PuzzleKey.SECONDARY_STAFF, secondaryStaffGameData, StaffEquipType.AUTO_EQUIP);
 		}
 	}
 	#endregion
@@ -79,50 +85,51 @@ public class PlayerPuzzleComponent : PlayerComponent {
 		puzzleGameData.puzzleKey = key;
 		wizardGameData.puzzleGameDataDictionary.Add (key, puzzleGameData);
 	}
-
-	public override void OnEquipStaff (PuzzleKey key, PuzzleGameData puzzleGameData) {
-	}
-
 	public override void OnDropStaff (PuzzleKey region, PuzzleGameData puzzleGameData) {
 		DropStaffToWorld (puzzleGameData);
-
-		PuzzleGameData otherStaffPuzzleData = null;
-		foreach (KeyValuePair<PuzzleKey, PuzzleGameData> kvp in wizardGameData.puzzleGameDataDictionary) {
-			if (kvp.Value.puzzleData.puzzleType != PuzzleType.INVENTORY) {
-				otherStaffPuzzleData = kvp.Value;
-			}
-			// do something with entry.Value or entry.Key
-		}
-
-		if (otherStaffPuzzleData != null) {
-			playerObject.EquipStaff (otherStaffPuzzleData.puzzleKey, otherStaffPuzzleData);
-		} else {
-			wizardGameData.currentStaffKey = PuzzleKey.NO_WEAPON;
-		}
-
 	}
 
 	public override void OnPickUpSpellGem (SpellGemGameData spellGemGameData) {
 		movingSpellGemGameData = spellGemGameData;
+		highlightedSpellGemGameData = spellGemGameData;
+		playerObject.movingSpellGemData = movingSpellGemGameData;
+		playerObject.highlightedSpellGemData = highlightedSpellGemGameData;
 		revertInfo = new SpellGemRevertInfo (PuzzleKey.OUTSIDE_BOUNDS, movingSpellGemGameData);
 		playerObject.OnChangePlayerState (PlayerState.PUZZLE_MOVING_SPELLGEM);
 	}
 
-	public override void OnBindSpellGem (PuzzleGameData puzzleGameData, SpellGemGameData spellGemGameData) {
+	public override void OnBindSpellGem (PuzzleGameData puzzleGameData, SpellGemGameData spellGemGameData, PuzzleBindType bindType) {
 		Debug.Log ("player puzzle OnBindSpellGem event");
 		//update model
 		PuzzleUtility.AddSpellGemToPuzzle (puzzleGameData, spellGemGameData);
 		//update state
 		movingSpellGemGameData = null;
 		revertInfo = null;
+		playerObject.highlightedSpellGemData = null;
+		playerObject.movingSpellGemData = null;
 	}
-	public override void OnUnbindSpellGem (PuzzleGameData puzzleGameData, SpellGemGameData spellGemGameData) {
+	public override void OnUnbindSpellGem (PuzzleGameData puzzleGameData, SpellGemGameData spellGemGameData, PuzzleUnbindType unbindType) {
 		//update model
 		PuzzleUtility.RemoveSpellGemFromPuzzle (puzzleGameData, spellGemGameData);
 		//update state
+		highlightedSpellGemGameData = spellGemGameData;
 		movingSpellGemGameData = spellGemGameData;
+		playerObject.highlightedSpellGemData = highlightedSpellGemGameData;
+		playerObject.movingSpellGemData = movingSpellGemGameData;
 		revertInfo = new SpellGemRevertInfo (puzzleGameData.puzzleKey, spellGemGameData);
+	}
 
+	public override void OnRotateSpellGem (SpellGemGameData spellGemGameData, int rotateIndex) {
+
+		movingSpellGemGameData.spellGemRotation = rotateIndex;
+		spellGemGameData.spellGemEntity.Rotate (movingSpellGemGameData.spellGemRotation * 90);
+
+	}
+
+	public override void OnDropSpellGem (SpellGemGameData spellGemGameData) {
+		DropSpellGemToWorld (spellGemGameData);
+		highlightedSpellGemGameData = null;
+		movingSpellGemGameData = null;
 	}
 	#endregion
 	#region Puzzle Input Events
@@ -146,17 +153,19 @@ public class PlayerPuzzleComponent : PlayerComponent {
 		}
 	}
 	private void RevertCurrentSpellGemMovement () {
+		playerPuzzleUI.InterruptFlashRoutine ();
 		if (movingSpellGemGameData != null) {
 			movingSpellGemGameData.spellGemOriginCoordinate = revertInfo.spellGemOriginCoordinate;
 			movingSpellGemGameData.spellGemRotation = revertInfo.spellGemRotation;
 			movingSpellGemGameData.spellBindIndex = revertInfo.spellBindIndex;
+			movingSpellGemGameData.spellGemEntity.SetNormalColor ();
 
 			if (revertInfo.puzzleKey == PuzzleKey.OUTSIDE_BOUNDS) {
 				DropSpellGemToWorld (movingSpellGemGameData);
 			} else {
 				PuzzleGameData puzzleGameData = playerObject.wizardGameData.puzzleGameDataDictionary[revertInfo.puzzleKey];
 				if (movingSpellGemGameData != null && PuzzleUtility.CheckSpellFitmentEligibility (puzzleGameData, movingSpellGemGameData)) {
-					playerObject.BindSpellGem (puzzleGameData, movingSpellGemGameData);
+					playerObject.BindSpellGem (puzzleGameData, movingSpellGemGameData, PuzzleBindType.MANUAL);
 				}
 			}
 		}
@@ -168,17 +177,21 @@ public class PlayerPuzzleComponent : PlayerComponent {
 		switch (playerState) {
 			case (PlayerState.PUZZLE_BROWSING): {
 					if (highlightedSpellGemGameData != null && wizardGameData.puzzleGameDataDictionary.ContainsKey (highlightedCursorLocation.puzzleKey)) {
-						playerObject.OnUnbindSpellGem (wizardGameData.puzzleGameDataDictionary [highlightedCursorLocation.puzzleKey], highlightedSpellGemGameData);
+						playerObject.OnUnbindSpellGem (wizardGameData.puzzleGameDataDictionary [highlightedCursorLocation.puzzleKey], highlightedSpellGemGameData, PuzzleUnbindType.TO_HAND);
 						playerObject.OnChangePlayerState (PlayerState.PUZZLE_MOVING_SPELLGEM);
 					}
 					break;
 				}
+		}
+	}
+
+	public void OnBindButtonDown (PlayerState playerState) {
+		Debug.Log ("PlayerPuzzleComponent: OnBindButtonDown.");
+		switch (playerState) {
 			case (PlayerState.PUZZLE_MOVING_SPELLGEM): {
 
-					Debug.Log ("PlayerPuzzleComponent: OnGrabButtonDown, and Moving SpellGem.");
 					if (movingSpellGemGameData != null && wizardGameData.puzzleGameDataDictionary.ContainsKey (highlightedCursorLocation.puzzleKey)) {
 
-						Debug.Log ("PlayerPuzzleComponent: OnGrabButtonDown, GameData contains cursor key.");
 						PuzzleGameData puzzleGameData = wizardGameData.puzzleGameDataDictionary[highlightedCursorLocation.puzzleKey];
 						movingSpellGemGameData.spellGemOriginCoordinate = (Vector2Int)highlightedCursorLocation.coordinate;
 
@@ -204,9 +217,8 @@ public class PlayerPuzzleComponent : PlayerComponent {
 				return;//manual spell binding fail.
 			}
 		}
-
 		if (PuzzleUtility.CheckSpellFitmentEligibility (puzzleGameData, spellGemGameData)) {
-			playerObject.BindSpellGem (puzzleGameData, spellGemGameData);
+			playerObject.BindSpellGem (puzzleGameData, spellGemGameData, bindingType);
 		} else {
 			playerPuzzleUI.ErrorFlashSpellGemEntity (spellGemGameData.spellGemEntity);
 		}
@@ -214,12 +226,13 @@ public class PlayerPuzzleComponent : PlayerComponent {
 	public void OnRotateSpellGemButtonDown (PlayerState playerState) {
 		switch (playerState) {
 			case (PlayerState.PUZZLE_MOVING_SPELLGEM): {
+					int rotateIndex = 0;
 					if (movingSpellGemGameData.spellGemRotation >= 3) {
-						movingSpellGemGameData.spellGemRotation = 0;
+						rotateIndex = 0;
 					} else {
-						movingSpellGemGameData.spellGemRotation++;
+						rotateIndex = movingSpellGemGameData.spellGemRotation + 1;
 					}
-					movingSpellGemGameData.spellGemEntity.Rotate(movingSpellGemGameData.spellGemRotation * 90);
+					playerObject.RotateSpellGem (movingSpellGemGameData, rotateIndex);
 					break;
 				}
 		}
@@ -233,13 +246,11 @@ public class PlayerPuzzleComponent : PlayerComponent {
 				}
 			case (PlayerState.PUZZLE_BROWSING): {
 					if (highlightedSpellGemGameData != null) {
+						SpellGemGameData droppingGemGameData = highlightedSpellGemGameData;
 						//Save Data is assigned to a puzzle grouping.
-						playerObject.OnUnbindSpellGem (wizardGameData.puzzleGameDataDictionary [highlightedCursorLocation.puzzleKey], highlightedSpellGemGameData);
-						DropSpellGemToWorld (highlightedSpellGemGameData);
+						playerObject.OnUnbindSpellGem (wizardGameData.puzzleGameDataDictionary [highlightedCursorLocation.puzzleKey], droppingGemGameData, PuzzleUnbindType.TO_FLOOR);
+						playerObject.DropSpellGem (droppingGemGameData);
 						playerObject.OnChangePlayerState (PlayerState.PUZZLE_BROWSING);
-					} else if (highlightedCursorLocation.puzzleKey != PuzzleKey.OUTSIDE_BOUNDS
-						  && wizardGameData.puzzleGameDataDictionary.ContainsKey (wizardGameData.currentStaffKey)) {
-						playerObject.DropStaff (wizardGameData.currentStaffKey);
 					}
 					break;
 				}
@@ -247,7 +258,6 @@ public class PlayerPuzzleComponent : PlayerComponent {
 					//Save Data is not assigned to any puzzle grouping in this state.
 					if (movingSpellGemGameData != null) {
 						playerObject.DropSpellGem (movingSpellGemGameData);
-						DropSpellGemToWorld (movingSpellGemGameData);
 						playerObject.OnChangePlayerState (PlayerState.PUZZLE_BROWSING);
 					}
 					break;
@@ -257,17 +267,25 @@ public class PlayerPuzzleComponent : PlayerComponent {
 
 	public void OnSwitchToPrimaryStaffButtonDown () {
 		if (wizardGameData.currentStaffKey != PuzzleKey.PRIMARY_STAFF && wizardGameData.puzzleGameDataDictionary.ContainsKey (PuzzleKey.PRIMARY_STAFF)) {
-			playerObject.EquipStaff (PuzzleKey.PRIMARY_STAFF, wizardGameData.puzzleGameDataDictionary [PuzzleKey.PRIMARY_STAFF]);
+			playerObject.EquipStaff (PuzzleKey.PRIMARY_STAFF, wizardGameData.puzzleGameDataDictionary [PuzzleKey.PRIMARY_STAFF], StaffEquipType.MANUAL_SWAP);
 		}
 	}
 	public void OnSwitchToSecondaryStaffButtonDown () {
 		if (wizardGameData.currentStaffKey != PuzzleKey.SECONDARY_STAFF && wizardGameData.puzzleGameDataDictionary.ContainsKey (PuzzleKey.SECONDARY_STAFF)) {
-			playerObject.EquipStaff (PuzzleKey.SECONDARY_STAFF, wizardGameData.puzzleGameDataDictionary [PuzzleKey.SECONDARY_STAFF]);
+			playerObject.EquipStaff (PuzzleKey.SECONDARY_STAFF, wizardGameData.puzzleGameDataDictionary [PuzzleKey.SECONDARY_STAFF], StaffEquipType.MANUAL_SWAP);
 		}
 	}
 
-	public void OnSwitchToOtherStaffButtonDown () {
-
+	public void OnSwitchToAlternateStaffButtonDown () {
+		if (wizardGameData.currentStaffKey == PuzzleKey.SECONDARY_STAFF) {
+			if (wizardGameData.puzzleGameDataDictionary.ContainsKey (PuzzleKey.PRIMARY_STAFF)) {
+				playerObject.EquipStaff (PuzzleKey.PRIMARY_STAFF, wizardGameData.puzzleGameDataDictionary [PuzzleKey.PRIMARY_STAFF], StaffEquipType.QUICK_SWAP);
+			}
+		} else if (wizardGameData.currentStaffKey == PuzzleKey.PRIMARY_STAFF) {
+			if (wizardGameData.puzzleGameDataDictionary.ContainsKey (PuzzleKey.SECONDARY_STAFF)) {
+				playerObject.EquipStaff (PuzzleKey.SECONDARY_STAFF, wizardGameData.puzzleGameDataDictionary [PuzzleKey.SECONDARY_STAFF], StaffEquipType.QUICK_SWAP);
+			}
+		}
 	}
 	private void DropStaffToWorld (PuzzleGameData puzzleGameData) {
 		GameObject pickupGo = PoolManager.instance.ReuseObject(ConstantsManager.instance.staffPickupPrefab, transform.position, Quaternion.identity);
@@ -279,14 +297,13 @@ public class PlayerPuzzleComponent : PlayerComponent {
 	}
 
 	private void DropSpellGemToWorld (SpellGemGameData spellGemGameData) {
+		playerPuzzleUI.InterruptFlashRoutine ();
 		if (spellGemGameData.spellGemEntity != null)
 			Destroy (spellGemGameData.spellGemEntity.gameObject);
 		GameObject pickupGo = PoolManager.instance.ReuseObject(ConstantsManager.instance.spellGemPickupPrefab, transform.position, Quaternion.identity);
 		pickupGo.transform.position = this.transform.position;
 		SpellGemPickUp spellGemPickUp = pickupGo.GetComponent<SpellGemPickUp> ();
 		spellGemPickUp.ReuseSpellGemPickUp (spellGemGameData.spellData);
-		highlightedSpellGemGameData = null;
-		movingSpellGemGameData = null;
 	}
 	public void OnSpellBindingButtonDown (PlayerState playerState, int spellIndex) {
 		switch (playerState) {
@@ -314,7 +331,6 @@ public class PlayerPuzzleComponent : PlayerComponent {
 					break;
 				}
 			case (PlayerState.PUZZLE_MOVING_SPELLGEM): {
-					
 					playerPuzzleUI.RoundSpellGemEntityLocationToNearestTile (movingSpellGemGameData.spellGemEntity, currentGridCoord);
 					break;
 				}
@@ -332,15 +348,20 @@ public class PlayerPuzzleComponent : PlayerComponent {
 			currentGridCoord = playerPuzzleUI.RoundCursorLocationToNearestPuzzleSlot (cursorPosition);
 		}
 	}
+
+	public void OnUpdateCursorLocation () {
+	}
 	private void UpdateBrowsingTileCheck () {
 		if (wizardGameData.puzzleGameDataDictionary.ContainsKey (highlightedCursorLocation.puzzleKey)) {
 			UpdateHighlightedTileInfo (PuzzleUtility.CheckMapValue (wizardGameData.puzzleGameDataDictionary [highlightedCursorLocation.puzzleKey], highlightedCursorLocation.coordinate.XY ()));
 		} else {
 			highlightedTileInfo = null;
 			highlightedSpellGemGameData = null;
+			playerObject.highlightedSpellGemData = null;
 			playerPuzzleUI.ClearHighlightedSpellGemInformation ();
 		}
 	}
+
 	#endregion
 
 
@@ -354,7 +375,7 @@ public class PlayerPuzzleComponent : PlayerComponent {
 				playerPuzzleUI.ClearHighlightedSpellGemInformation ();
 			} else if (highlightedSpellGemGameData != highlightedTileInfo.spellGemGameData) {
 				highlightedSpellGemGameData = highlightedTileInfo.spellGemGameData;
-				playerPuzzleUI.UpdateHighlightedSpellGemInformation(highlightedSpellGemGameData.spellData);
+				playerPuzzleUI.UpdateHighlightedSpellGemInformation (highlightedSpellGemGameData.spellData);
 			}
 		}
 	}

@@ -168,7 +168,7 @@ MonoBehaviour:
   _finished: 0
   castSpeedPenaltyMultiplier: 0.8
   minAttackDistance: 1
-  maxAttackDistance: 4
+  maxAttackDistance: 6
   rangedProjectilePrefab: {fileID: 5349493896159913635, guid: 56b9d9601666caf47993ad9a7cfb928a, type: 3}
 --- !u!114 &7609567823447493170
 MonoBehaviour:

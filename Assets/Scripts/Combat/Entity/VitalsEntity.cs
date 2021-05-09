@@ -19,7 +19,7 @@ public class VitalsEntity {
 
     public VitalsEntity(GameObject go) {
         trans = go.transform;
-        creatureObject = go.GetComponent<CreatureObject>();
+        creatureObject = go.GetComponent<CreatureObject> ();
         colliders = go.GetComponentsInChildren<Collider2D> ();
         tag = go.tag;
         if (go.TryGetComponent<HealthComponent> (out HealthComponent healthController)) {

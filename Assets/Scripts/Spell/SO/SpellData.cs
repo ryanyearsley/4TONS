@@ -22,9 +22,14 @@ public class SpellData : ScriptableObject
 	public float castSpeedReduction;
 	public float coolDown;
 	public SpellCastLocation spellCastLocation;
+	public AudioClip spellCastSound;
+	public AudioClip spellChannelSound;
+	public AudioClip spellEndSound;
 	public GameObject spellObject;
 	[SerializeField]
 	public int poolSize;
+
+	public Sprite spellPreviewSprite;
 
 	public SpellObjectData spellObjectData;
 	public PuzzlePieceData puzzlePieceData;

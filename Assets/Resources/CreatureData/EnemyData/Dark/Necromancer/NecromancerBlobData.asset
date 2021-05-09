@@ -20,3 +20,23 @@ MonoBehaviour:
   casterManaRegenAmount: 6
   casterSpeedIncrease: 0
   damageType: 3
+  spellObjectSound:
+    clipName: Necrobolt
+    singleClip: {fileID: 8300000, guid: 3684e6bd76aad5f49a2a9f40c648a79d, type: 3}
+    randomize: 0
+    randomClips: []
+    volume: 1
+    pitch: 1
+    mixerGroup: {fileID: -5956560085541731318, guid: 004a37a2c22918345b123859e614950a, type: 2}
+    loop: 0
+    playOnAwake: 0
+  spellObjectDestroySound:
+    clipName: 
+    singleClip: {fileID: 8300000, guid: 3201b5421bdcbd847ae8c9ce09084287, type: 3}
+    randomize: 0
+    randomClips: []
+    volume: 1
+    pitch: 0.8
+    mixerGroup: {fileID: -5956560085541731318, guid: 004a37a2c22918345b123859e614950a, type: 2}
+    loop: 0
+    playOnAwake: 0

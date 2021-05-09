@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b34ada221c297b94490fe91b847673cd, type: 3}
+  m_Name: TutorialMapData
+  m_EditorClassIdentifier: 
+  customMapData: {fileID: 11400000, guid: fcb1a38049372244bab61894de91c1cd, type: 2}
+  mapFile: {fileID: 0}
+  isGenerated: 0
+  mapSize: {x: 60, y: 80}
+  randomFillPercent: 45
+  borderSize: 5
+  minimumRoomSize: 50
+  minimumIslandSize: 50
+  passageRadius: 2
+  smoothingIterations: 5
+  playerCount: 2
+  floorPrefab: {fileID: 0}
+  playerSpawnInfo:
+    spawnCount: 1
+    spawnObjectData: {fileID: 11400000, guid: 7505292d04f3608419afaf178b6440b3, type: 2}
+  enemySpawnInfos: []
+  setPieceSpawnInfos: []
+  spellGemSpawnInfos: []
+  staffSpawnInfos: []
+  seed: 
+  useCustomSeed: 0

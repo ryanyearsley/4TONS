@@ -24,7 +24,11 @@ MonoBehaviour:
   castSpeedReduction: 0.2
   coolDown: 10
   spellCastLocation: 1
-  spellObject: {fileID: 1513952481011264, guid: 86858cff9d5cd0e4b808f8a77ce2e6a3, type: 3}
+  spellCastSound: {fileID: 0}
+  spellChannelSound: {fileID: 0}
+  spellEndSound: {fileID: 0}
+  spellObject: {fileID: 7184398735751379231, guid: 98e5cee9fa4d94a41ad6e8d6ce7ffb81, type: 3}
   poolSize: 5
+  spellPreviewSprite: {fileID: 0}
   spellObjectData: {fileID: 11400000, guid: 8bd865135b0bf2c4bb27042dcd29ab44, type: 2}
   puzzlePieceData: {fileID: 11400000, guid: 41ad1d79c8f01534c989bdba233ef123, type: 2}

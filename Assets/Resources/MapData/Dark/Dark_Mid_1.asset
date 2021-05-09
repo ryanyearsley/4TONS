@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b34ada221c297b94490fe91b847673cd, type: 3}
   m_Name: Dark_Mid_1
   m_EditorClassIdentifier: 
+  customMapData: {fileID: 0}
   mapFile: {fileID: 0}
   isGenerated: 1
   mapSize: {x: 56, y: 56}
@@ -35,14 +36,14 @@ MonoBehaviour:
   - spawnCount: 3
     setPieceData: {fileID: 11400000, guid: bd2fadacf2e57264b9856ebe92851d36, type: 2}
   spellGemSpawnInfos:
-  - dropPercentage: 50
+  - dropPercentage: 40
     spellData: {fileID: 11400000, guid: 2d3465d624cf7c743abbbaf28fec6fc3, type: 2}
   - dropPercentage: 10
     spellData: {fileID: 11400000, guid: f8a09e2fb222c62489690f14902cef0d, type: 2}
   - dropPercentage: 30
     spellData: {fileID: 11400000, guid: 3b716e754480f0c48a677ce4c4d2bf3b, type: 2}
-  - dropPercentage: 5
+  - dropPercentage: 100
     spellData: {fileID: 11400000, guid: 50f771dfc4c331543aa4398e546ec730, type: 2}
   staffSpawnInfos: []
-  seed: 637543890725682591
+  seed: 637559884587904742
   useCustomSeed: 0

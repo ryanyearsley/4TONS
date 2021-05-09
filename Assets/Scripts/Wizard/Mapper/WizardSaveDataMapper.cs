@@ -8,8 +8,16 @@ public class WizardSaveDataMapper
 
 		WizardSaveData wizardSaveData = new WizardSaveData();
 		wizardSaveData.wizardName = wizardGameData.wizardName;
-		wizardSaveData.spellSchoolDataIndex = wizardGameData.spellSchoolData.schoolIndexStart;
-		wizardSaveData.inventorySaveData = new PuzzleSaveData ();
+		wizardSaveData.spellSchoolData = wizardGameData.spellSchoolData;
+		if (wizardGameData.puzzleGameDataDictionary.ContainsKey(PuzzleKey.INVENTORY)) {
+			wizardSaveData.inventorySaveData = (wizardGameData.puzzleGameDataDictionary [PuzzleKey.INVENTORY].MapToSaveData());
+		}
+		if (wizardGameData.puzzleGameDataDictionary.ContainsKey (PuzzleKey.PRIMARY_STAFF)) {
+			wizardSaveData.primaryStaffSaveData = (wizardGameData.puzzleGameDataDictionary [PuzzleKey.PRIMARY_STAFF].MapToSaveData ());
+		}
+		if (wizardGameData.puzzleGameDataDictionary.ContainsKey (PuzzleKey.SECONDARY_STAFF)) {
+			wizardSaveData.secondaryStaffSaveData = (wizardGameData.puzzleGameDataDictionary [PuzzleKey.SECONDARY_STAFF].MapToSaveData ());
+		}
 		return wizardSaveData;
 	}
 }

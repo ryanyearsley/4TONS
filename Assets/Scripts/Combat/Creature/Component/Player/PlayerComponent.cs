@@ -20,6 +20,7 @@ public class PlayerComponent : CreatureComponent, IPlayerComponent
 	public override void SubscribeToCreatureEvents () {
 		base.SubscribeToCreatureEvents ();
 		playerObject.OnChangePlayerStateEvent += OnChangePlayerState;
+		playerObject.setAimingModeEvent += OnSetAimingMode;
 		playerObject.OnDashEvent += OnDash;
 		playerObject.PickUpStaffEvent += OnPickUpStaff;
 		playerObject.EquipStaffEvent += OnEquipStaff;
@@ -28,11 +29,13 @@ public class PlayerComponent : CreatureComponent, IPlayerComponent
 		playerObject.DropSpellGemEvent += OnDropSpellGem;
 		playerObject.BindSpellGemEvent += OnBindSpellGem;
 		playerObject.UnbindSpellGemEvent += OnUnbindSpellGem;
+		playerObject.RotateSpellGemEvent += OnRotateSpellGem;
 	}
 
 	public override void UnsubscribeFromCreatureEvents () {
 		base.UnsubscribeFromCreatureEvents ();
 		playerObject.OnChangePlayerStateEvent -= OnChangePlayerState;
+		playerObject.setAimingModeEvent -= OnSetAimingMode;
 		playerObject.OnDashEvent -= OnDash;
 		playerObject.PickUpStaffEvent -= OnPickUpStaff;
 		playerObject.EquipStaffEvent -= OnEquipStaff;
@@ -41,9 +44,14 @@ public class PlayerComponent : CreatureComponent, IPlayerComponent
 		playerObject.DropSpellGemEvent -= OnDropSpellGem;
 		playerObject.BindSpellGemEvent -= OnBindSpellGem;
 		playerObject.UnbindSpellGemEvent -= OnUnbindSpellGem;
+		playerObject.UnbindSpellGemEvent -= OnUnbindSpellGem;
+		playerObject.RotateSpellGemEvent -= OnRotateSpellGem;
 
 	}
 	public virtual void OnChangePlayerState(PlayerState playerState) {
+
+	}
+	public virtual void OnSetAimingMode(AimingMode aimingMode) {
 
 	}
 	public virtual void OnDash(DashInfo dashInfo) {
@@ -55,7 +63,7 @@ public class PlayerComponent : CreatureComponent, IPlayerComponent
 	public virtual void OnDropStaff (PuzzleKey region, PuzzleGameData puzzleGameData) {
 
 	}
-	public virtual void OnEquipStaff(PuzzleKey region, PuzzleGameData puzzleGameData) {
+	public virtual void OnEquipStaff(PuzzleKey region, PuzzleGameData puzzleGameData, StaffEquipType equipType) {
 
 	}
 
@@ -65,13 +73,18 @@ public class PlayerComponent : CreatureComponent, IPlayerComponent
 	public virtual void OnDropSpellGem(SpellGemGameData spellGemGameData) {
 
 	}
+	public virtual void OnRotateSpellGem (SpellGemGameData spellGemGameData, int rotateIndex) {
 
-	public virtual void OnBindSpellGem (PuzzleGameData puzzleGameData, SpellGemGameData spellGameData) {
+	}
+
+	public virtual void OnBindSpellGem (PuzzleGameData puzzleGameData, SpellGemGameData spellGameData, PuzzleBindType bindType) {
 
 	}
 
-	public virtual void OnUnbindSpellGem (PuzzleGameData puzzleGameData, SpellGemGameData spellGameData) {
+	public virtual void OnUnbindSpellGem (PuzzleGameData puzzleGameData, SpellGemGameData spellGameData, PuzzleUnbindType unbindType) {
 
 	}
+
+
 	#endregion
 }

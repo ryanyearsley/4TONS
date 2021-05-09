@@ -8,6 +8,7 @@ public class SubMenuSelectButtonClick : AbstractButtonClick {
 	[SerializeField]
 	private MenuScreen menuScreen;
 	protected override void OnClick () {
+		AudioManager.instance.PlaySound ("Confirm");
 		MainMenuManager.Instance.ChangeMenuScreen(menuScreen);
 	}
 

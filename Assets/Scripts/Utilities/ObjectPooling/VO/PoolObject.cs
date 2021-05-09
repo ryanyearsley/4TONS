@@ -14,12 +14,10 @@ public class PoolObject : MonoBehaviour, IPoolable {
 	public virtual void ReuseObject() {
 	}
 
-	public virtual void Destroy ()
-    {
-        TerminateObjectFunctions();
-        gameObject.SetActive (false);
+	public virtual void Destroy () {
+		TerminateObjectFunctions ();
+		gameObject.SetActive (false);
     }
-
 	public virtual void Destroy (float time) {
 		if (time <= 0) {
 			TerminateObjectFunctions ();

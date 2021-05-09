@@ -19,7 +19,7 @@ MonoBehaviour:
       actionDescription: 
       controlString: WASD
     aimControl:
-      controlColor: {r: 0.37254903, g: 0.80392164, b: 0.8941177, a: 1}
+      controlColor: {r: 0.67058825, g: 0.19215688, b: 0.19215688, a: 1}
       action: Aim
       actionDescription: 
       controlString: Mouse X + Y
@@ -59,17 +59,32 @@ MonoBehaviour:
       actionDescription: 
       controlString: G
     toggleControl:
-      controlColor: {r: 0.9843138, g: 0.9490197, b: 0.20392159, a: 1}
+      controlColor: {r: 0.20784315, g: 0.5803922, b: 0.43137258, a: 1}
       action: Toggle
       actionDescription: 
-      controlString: T
+      controlString: 
     rotateControl:
-      controlColor: {r: 0.28627452, g: 0.42352945, b: 0.8117648, a: 1}
+      controlColor: {r: 0.20784315, g: 0.5803922, b: 0.43137258, a: 1}
       action: Rotate
       actionDescription: 
       controlString: R
-    flipControl:
-      controlColor: {r: 0.9215687, g: 0.48627454, b: 0.18039216, a: 1}
-      action: Flip
+    dropControl:
+      controlColor: {r: 0.20784315, g: 0.5803922, b: 0.43137258, a: 1}
+      action: Drop
       actionDescription: 
-      controlString: F
+      controlString: Z
+    primaryWeaponControl:
+      controlColor: {r: 0.67058825, g: 0.19215687, b: 0.19215687, a: 0}
+      action: Equip Primary Weapon
+      actionDescription: 
+      controlString: 1
+    secondaryWeaponControl:
+      controlColor: {r: 0.67058825, g: 0.19215688, b: 0.19215688, a: 0}
+      action: Equip Secondary Weapon
+      actionDescription: 
+      controlString: 2
+    quickSwapControl:
+      controlColor: {r: 0.67058825, g: 0.19215688, b: 0.19215688, a: 0}
+      action: Quick Swap Weapon
+      actionDescription: 
+      controlString: SHIFT

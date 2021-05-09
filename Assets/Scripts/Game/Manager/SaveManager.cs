@@ -94,12 +94,13 @@ public class SaveManager : MonoBehaviour {
 	public void OnBeforeSave (WizardSaveData wizardSaveData) {
 		wizardSaveData.spellSchoolDataIndex = wizardSaveData.spellSchoolData.schoolIndexStart;
 
-		wizardSaveData.primaryStaffSaveData.puzzleDataIndex = wizardSaveData.primaryStaffSaveData.puzzleData.id;
-		foreach (SpellGemSaveData spellSaveData in wizardSaveData.primaryStaffSaveData.spellGemSaveDataDictionary.Values) {
-			spellSaveData.spellDataIndex = spellSaveData.spellData.id;
+		if (wizardSaveData.primaryStaffSaveData != null) {
+			wizardSaveData.primaryStaffSaveData.puzzleDataIndex = wizardSaveData.primaryStaffSaveData.puzzleData.id;
+			foreach (SpellGemSaveData spellSaveData in wizardSaveData.primaryStaffSaveData.spellGemSaveDataDictionary.Values) {
+				spellSaveData.spellDataIndex = spellSaveData.spellData.id;
+			}
 		}
-
-		if (wizardSaveData.secondaryStaffSaveData.puzzleData != null) {
+		if (wizardSaveData.secondaryStaffSaveData != null) {
 			wizardSaveData.secondaryStaffSaveData.puzzleDataIndex = wizardSaveData.secondaryStaffSaveData.puzzleData.id;
 			foreach (SpellGemSaveData spellSaveData in wizardSaveData.secondaryStaffSaveData.spellGemSaveDataDictionary.Values) {
 				spellSaveData.spellDataIndex = spellSaveData.spellData.id;

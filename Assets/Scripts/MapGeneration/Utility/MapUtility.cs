@@ -1,10 +1,28 @@
 ﻿using System.Text.RegularExpressions;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class MapUtility {
 
 	static string LINE_SPLIT_RE = @"\r\n|\n\r|\n|\r";
+
+	public static int[,] Generate2DArrayFromTilemap(Tilemap tilemap, CoordinateBounds mapBounds) {
+		
+		int[,] output = new int[mapBounds.dimensions.x, mapBounds.dimensions.y];
+		int tileCount = 0;
+		for (int i = 0; i <= mapBounds.dimensions.x - 1; i++) {
+			for (int j = 0; j <= mapBounds.dimensions.y - 1; j++) {
+				if (tilemap.GetTile (new Vector3Int (i, j, 0)) != null) {
+					output [i, j] = 1;
+				} else
+					output [i, j] = 0;
+
+				tileCount++;
+			}
+		}
+		return output;
+	}
 
 
 	//CREATURE SPAWN LOGIC
@@ -89,7 +107,7 @@ public class MapUtility {
 			largerDimension = currentFloorHighestCoordinate.y;
 
 		//LOCAL (To their own level) COORDINATES
-		Vector2Int currentFloorPortalCoordinate = currentMapDetails.spawnPoints.nextPortalSpawnPoint.spawnCoordinate;
+		Vector2Int currentFloorPortalCoordinate = currentMapDetails.spawnPoints.portalSpawnPoint.spawnCoordinate;
 		Vector2Int nextSpawnCoordinate = nextMapDetails.spawnPoints.playerSpawnPoints[0].spawnCoordinate;
 
 		Vector2Int projectedWorldPlayerSpawnCoordinate =

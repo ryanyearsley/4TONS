@@ -8,8 +8,7 @@ public class ProjectileSpell : Spell
 
     public override void CastSpell()
     {
-        base.CastSpell();
-
+        base.CastSpell ();
         PoolManager.instance.ReuseSpellObject (spellData.spellObject, spellCastTransform.position, spellCastTransform.rotation, playerObject.vitalsEntity);
         
     }

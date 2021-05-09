@@ -20,7 +20,6 @@ namespace PlayerManagement {
 		private PlayerSpellComponent playerSpellController;
 		private PlayerPuzzleComponent playerPuzzleController;
 		private PlayerInteractComponent playerInteractComponent;
-		private bool usingMouseControls;
 
 		private bool canReadActionInput;
 		public override void SetUpComponent (GameObject rootObject) {
@@ -65,39 +64,55 @@ namespace PlayerManagement {
 		private void AimingInput () {
 			joystickInput = new Vector2 (rewiredController.GetAxisRaw ("AimHorizontal"), rewiredController.GetAxisRaw ("AimVertical"));
 			mouseDelta = new Vector2 (rewiredController.GetAxis ("MouseX"), rewiredController.GetAxis ("MouseY"));
-			if (usingMouseControls) {
+			if (playerObject.usingMouseControls) {
 				if (joystickInput != Vector2.zero) {
-					usingMouseControls = false;
+					playerObject.SetUsingMouseControls (false);
 				}
 			} else {
 				if (mouseDelta != Vector2.zero) {
-					usingMouseControls = true;
+					playerObject.SetUsingMouseControls (true);
 				}
 			}
-			if (usingMouseControls)
+
+			if (rewiredController.GetButtonDown ("ToggleAimingMode")) {
+				playerAimingController.ToggleSmartCursorModeButtonDown ();
+			}
+			if (playerObject.usingMouseControls)
 				playerAimingController.MouseAimingUpdate (mouseDelta);
 			else
 				playerAimingController.JoystickAimingUpdate (joystickInput);
 
 		}
 		private void SpellInput () {
-			for (int spellIndex = 0; spellIndex < 4; spellIndex++) {
-				string buttonName = "Spell" + spellIndex;
-				if (rewiredController.GetButton (buttonName))
-					playerSpellController.OnSpellButton (spellIndex);
-
-				if (rewiredController.GetButtonDown (buttonName)) {
-					playerSpellController.OnSpellButtonDown (spellIndex);
-					playerPuzzleController.OnSpellBindingButtonDown (playerObject.currentPlayerState, spellIndex);
+			if (playerObject.currentPlayerState == PlayerState.COMBAT) {
+				for (int spellIndex = 0; spellIndex <= 3; spellIndex++) {
+					string buttonName = "Spell" + spellIndex;
+					if (rewiredController.GetButton (buttonName))
+						playerSpellController.OnSpellButton (spellIndex);
+					if (rewiredController.GetButtonDown (buttonName)) {
+						playerSpellController.OnSpellButtonDown (spellIndex);
+					}
+					if (rewiredController.GetButtonUp (buttonName)) {
+						playerSpellController.OnSpellButtonUp (spellIndex);
+					}
 				}
-				if (rewiredController.GetButtonUp (buttonName))
-					playerSpellController.OnSpellButtonUp (spellIndex);
 			}
-
 		}
 		private void PuzzleInput () {
 			playerPuzzleController.PuzzleUpdate (playerObject.currentPlayerState);
 
+			if (rewiredController.GetButtonDown ("AutoBindItem")) {
+				playerPuzzleController.OnBindButtonDown (playerObject.currentPlayerState);
+			}
+
+			if (playerObject.currentPlayerState == PlayerState.PUZZLE_MOVING_SPELLGEM) {
+				for (int spellIndex = 0; spellIndex <= 3; spellIndex++) {
+					string buttonName = "Spell" + spellIndex;
+					if (rewiredController.GetButtonDown (buttonName)) {
+						playerPuzzleController.OnSpellBindingButtonDown (playerObject.currentPlayerState, spellIndex);
+					}
+				}
+			}
 			if (rewiredController.GetButtonDown ("TogglePuzzle")) {
 				Debug.Log ("toggle puzzle button down.");
 				playerPuzzleController.OnTogglePuzzleMenuButtonDown (playerObject.currentPlayerState);
@@ -117,12 +132,12 @@ namespace PlayerManagement {
 			if (rewiredController.GetButtonDown ("SwitchToSecondaryStaff")) {
 				playerPuzzleController.OnSwitchToSecondaryStaffButtonDown ();
 			}
-			if (rewiredController.GetButtonDown ("SwapToOtherStaff")) {
+			if (rewiredController.GetButtonDown ("SwitchToAlternateStaff")) {
 				playerPuzzleController.OnSwitchToSecondaryStaffButtonDown ();
 			}
 		}
 
-		private void InteractInput() {
+		private void InteractInput () {
 
 			if (rewiredController.GetButtonDown ("GrabItem")) {
 				playerInteractComponent.OnGrabButtonDown ();

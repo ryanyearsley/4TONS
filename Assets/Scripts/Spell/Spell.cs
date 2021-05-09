@@ -20,12 +20,16 @@ public abstract class Spell : MonoBehaviour
 
     protected Transform spellCastTransform;
     protected float cdTimer;
-    public SpellUI spellUI;
+    public SpellUI spellUI; 
 
-	private void Start() {
-        PoolManager.instance.CreateSpellObjectPool (spellData.spellObject, spellData.poolSize);
+	void Start() {
+        SetUpSpell ();
     }
 
+
+    public virtual void SetUpSpell () {
+        PoolManager.instance.CreateSpellObjectPool (spellData.spellObject, spellData.poolSize);
+    }
 
     public void ConfigureSpellToPlayer(PlayerObject playerObject) {
         this.playerObject = playerObject;
@@ -64,24 +68,42 @@ public abstract class Spell : MonoBehaviour
 	}
 
     public virtual bool isCastEligible () {
-        if (onCooldown)
+        if (onCooldown || !playerObject.canAttack || !playerObject.vitalsEntity.resource.HasEnoughMana (spellData.manaCost))
             return false;
         return true;
     }
 
-    public virtual void CastSpell()
+    public virtual void SpellButtonDown()
     {
-            onCooldown = true;
-            cdTimer = spellData.coolDown;
-            spellUI.GreyOutSpellUI ();
+       if (isCastEligible()) {
+            CastSpell ();
+		}
+            
     }
-
-    public virtual void ChannelSpell()
-    {
-
-    }
-    public virtual void EndSpell()
+    public virtual void SpellButtonHold ()
     {
 
     }
+    public virtual void SpellButtonUp ()
+    {
+
+    }
+
+
+    public virtual void CastSpell () {
+        playerObject.vitalsEntity.resource.SubtractResourceCost (spellData.manaCost);
+        cdTimer = spellData.coolDown;
+        spellUI.GreyOutSpellUI ();
+        onCooldown = true;
+        playerObject.OnAttack (new AttackInfo (spellData.castTime, spellData.castSpeedReduction, spellData));
+        playerObject.AddSpeedEffect (new SpeedAlteringEffect (spellData.castSpeedReduction, spellData.castTime, false));
+
+    }
+    public virtual void ChannelSpell () {
+
+	}
+    public virtual void EndSpell() {
+
+	}
+
 }

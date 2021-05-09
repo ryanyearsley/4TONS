@@ -23,6 +23,10 @@ public class ConstantsManager : MonoBehaviour {
 
 	public RandomNameData randomWizardNames;
 
+	public Color validProjectedAoEColor;
+	public Color invalidProjectedAoEColor;
+
+
 	// Singleton Pattern to access this script with ease
 	#region Singleton
 	public static ConstantsManager instance;

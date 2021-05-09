@@ -5,7 +5,8 @@ using UnityEngine;
 public interface IHasResource
 {
     void ApplyResourceDamage(float manaDamage);
-    bool SubtractResourceCost(float manaCost);
+    bool HasEnoughMana (float manaCost);
+    void SubtractResourceCost(float manaCost);
     void RegenerateMana(float manaRegenAmount);
     void RegenerateResourcePerSecond();
 }

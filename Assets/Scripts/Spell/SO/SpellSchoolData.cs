@@ -16,6 +16,9 @@ public class SpellSchoolData : ScriptableObject
 	public PrebuildWizardData defaultWizard;
 	public PuzzleData[] schoolStaffs;
 	public List<SpellData> spells;
+
+	public AudioClip hitSound;
+	public AudioClip attackSound;
 }
 public enum SpellSchool {
 	Light, Dark, Fire, Ice

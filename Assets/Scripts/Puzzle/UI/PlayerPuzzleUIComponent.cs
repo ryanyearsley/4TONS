@@ -83,28 +83,30 @@ public class PlayerPuzzleUIComponent : PlayerComponent {
 		Debug.Log ("player puzzle OnChangePlayerState event");
 		switch (playerState) {
 			case (PlayerState.DEAD): {
-					puzzleUI.DisablePuzzleUI ();
 					InterruptFlashRoutine ();
+					puzzleUI.DisablePuzzleUI ();
 					break;
 				}
 			case (PlayerState.COMBAT): {
-					puzzleUI.DisablePuzzleUI ();
 					InterruptFlashRoutine ();
+					puzzleUI.DisablePuzzleUI ();
 					break;
 				}
 			case (PlayerState.PUZZLE_BROWSING): {
 					puzzleUI.EnablePuzzleUI ();
+					InterruptFlashRoutine ();
 					puzzleUI.UpdateActiveRegion (playerObject.wizardGameData.currentStaffKey);
 					break;
 				}
 			case (PlayerState.PUZZLE_MOVING_SPELLGEM): {
 					puzzleUI.EnablePuzzleUI ();
+					puzzleUI.UpdateActiveRegion (playerObject.wizardGameData.currentStaffKey);
 					break;
 				}
 		}
 	}
 
-	public override void OnEquipStaff (PuzzleKey key, PuzzleGameData puzzleGameData) {
+	public override void OnEquipStaff (PuzzleKey key, PuzzleGameData puzzleGameData, StaffEquipType equipType) {
 		activeStaffKey = key;
 		UpdateStaffInfo (puzzleGameData);
 		puzzleUI.UpdateActiveRegion (key);
@@ -126,16 +128,23 @@ public class PlayerPuzzleUIComponent : PlayerComponent {
 		spellGemGameData.spellGemEntity.SetMovingColor ();
 		currentErrorFlashSpellGemEntity = spellGemGameData.spellGemEntity;
 	}
-	public override void OnBindSpellGem (PuzzleGameData puzzleGameData, SpellGemGameData spellGemGameData) {
+	public override void OnBindSpellGem (PuzzleGameData puzzleGameData, SpellGemGameData spellGemGameData, PuzzleBindType bindType) {
 
-		SpellGemEntity spellGemEntity = puzzleUI.AddSpellGemToPuzzleUI (puzzleGameData.puzzleEntity, spellGemGameData);
 		InterruptFlashRoutine ();
+		SpellGemEntity spellGemEntity = puzzleUI.AddSpellGemToPuzzleUI (puzzleGameData.puzzleEntity, spellGemGameData);
 		spellGemGameData.spellGemEntity = spellGemEntity;
 		spellGemGameData.spellGemEntity.SetNormalColor ();
 	}
-	public override void OnUnbindSpellGem (PuzzleGameData puzzleGameData, SpellGemGameData spellGemGameData) {
+	public override void OnUnbindSpellGem (PuzzleGameData puzzleGameData, SpellGemGameData spellGemGameData, PuzzleUnbindType unbindType) {
+		InterruptFlashRoutine ();
 		puzzleUI.MoveSpellGemToUncommited (spellGemGameData);
 		spellGemGameData.spellGemEntity.SetMovingColor ();
+	}
+
+	public override void OnRotateSpellGem (SpellGemGameData spellGemGameData, int rotateIndex) {
+
+		spellGemGameData.spellGemEntity.Rotate (rotateIndex * 90);
+
 	}
 	#endregion
 	public Vector2Int RoundCursorLocationToNearestPuzzleSlot (Vector3 cursorPosition) {
@@ -154,13 +163,14 @@ public class PlayerPuzzleUIComponent : PlayerComponent {
 
 	public void ErrorFlashSpellGemEntity (SpellGemEntity spellGemEntity) {
 		currentErrorFlashSpellGemEntity = spellGemEntity;
-		StartCoroutine (ErrorFlashRoutine (spellGemEntity));
+		StartCoroutine (ErrorFlashRoutine (currentErrorFlashSpellGemEntity));
 	}
 
-	private void InterruptFlashRoutine () {
+	public void InterruptFlashRoutine () {
 		if (isErrorFlashing) {
-			StopCoroutine (ErrorFlashRoutine (currentErrorFlashSpellGemEntity));
-			currentErrorFlashSpellGemEntity.SetNormalColor ();
+			Debug.Log ("Stopping error flash coroutine!");
+			StopAllCoroutines();
+			currentErrorFlashSpellGemEntity.SetMovingColor ();
 			isErrorFlashing = false;
 		}
 	}
@@ -169,19 +179,20 @@ public class PlayerPuzzleUIComponent : PlayerComponent {
 		float errorFlashTimer = 0.5f;
 		bool isRed = false;
 		while (errorFlashTimer > 0f) {
-			if (isRed) {
-				spellGemEntity.SetMovingColor ();
-				isRed = false;
-			} else {
-				spellGemEntity.SetErrorColor ();
-				isRed = true;
+			if (isErrorFlashing) {
+				if (isRed) {
+					spellGemEntity.SetMovingColor ();
+					isRed = false;
+				} else {
+					spellGemEntity.SetErrorColor ();
+					isRed = true;
+				}
 			}
 			yield return new WaitForSeconds (0.1f);
 			errorFlashTimer -= 0.1f;
 		}
-		if (isRed == true) {
-			spellGemEntity.SetMovingColor ();
-		}
+
+		spellGemEntity.SetMovingColor ();
 		isErrorFlashing = false;
 	}
 	public PuzzleCursorLocation CalculatePuzzleCursorLocation (Vector3 cursorPosition) {

@@ -13,9 +13,13 @@ public class AbstractScreenUI : MonoBehaviour
 
 	protected virtual void Start () {
 		screenObject = transform.GetChild (0).gameObject;
-		//InitializePanel (GameManager.instance.gameContext);
+		if (screenActiveStates.Contains (MenuScreen.WELCOME)) {
+			screenObject.SetActive (true);
+		} else {
+
+			screenObject.SetActive (false);
+		}
 		MainMenuManager.Instance.OnMenuScreenChangeEvent += OnScreenChange;
-		screenObject.SetActive (false);
 
 	}
 

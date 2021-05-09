@@ -21,19 +21,21 @@ public class ResourceComponent : VitalsComponent, IHasResource
         UpdateVitalsBar();
     }
 
-    public bool SubtractResourceCost(float resourceCost)
+    public bool HasEnoughMana(float resourceCost) {
+        if (currentValue > resourceCost) {
+            return true;
+        } else return false;
+    }
+    public void SubtractResourceCost(float resourceCost)
     {
         if (currentValue > resourceCost)
         {
             currentValue = Mathf.Clamp(currentValue -= resourceCost, 0, maxValue);
             UpdateVitalsBar();
-            //since we could reduce mana,
-            return true;
         }
         else
         {
-            //since we couldn't...
-            return false;
+            //invalid operation.
         }
     }
     public void RegenerateResourcePerSecond()

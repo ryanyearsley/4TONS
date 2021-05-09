@@ -19,7 +19,6 @@ public class Sound {
 
 	public bool loop = false;
 	public bool playOnAwake = false;
-
 	public void SetSource (AudioSource _source) {
 
 		source = _source;
@@ -48,7 +47,7 @@ public class Sound {
 		if (randomClips.Length > 0) {
 			source.PlayOneShot (randomClips [Random.Range (0, randomClips.Length)]);
 		} else {
-			source.Play ();
+			source.PlayOneShot (singleClip);
 		}
 	}
 
@@ -59,11 +58,13 @@ public class Sound {
 
 public class AudioManager : MonoBehaviour {
 
-	public static AudioManager instance;
-
 	public Sound[] sounds;
 
-	private void Awake () {
+	public Dictionary<string, Sound> soundDictionary = new Dictionary<string, Sound>();
+
+
+	public static AudioManager instance;
+	protected virtual void Awake () {
 
 		if (instance == null)
 			instance = this;
@@ -71,36 +72,33 @@ public class AudioManager : MonoBehaviour {
 			Destroy (gameObject);
 	}
 
-	private void Start () {
+	protected virtual void Start () {
 
 		for (int i = 0; i < sounds.Length; i++) {
-			GameObject _go = new GameObject ("Sound_" + i + "_" + sounds [i].clipName);
-			_go.transform.SetParent (this.transform);
-			sounds [i].SetSource (_go.AddComponent<AudioSource> ());
+			RegisterStound (sounds [i]);
 		}
 
-		PlaySound ("Background");
+	}
+
+	public void RegisterStound (Sound sound) {
+
+		if (!soundDictionary.ContainsKey (sound.clipName)) {
+			GameObject _go = new GameObject ("Sound_" + sound.clipName);
+			_go.transform.SetParent (this.transform);
+			sound.SetSource (_go.AddComponent<AudioSource> ());
+			soundDictionary.Add (sound.clipName, sound);
+			Debug.Log ("AudioManager: Spell Registered. Clip name: " + sound.clipName);
+		}
 	}
 
 	public void PlaySound (string _name) {
-		for (int i = 0; i < sounds.Length; i++) {
-			if (sounds [i].clipName == _name) {
-				sounds [i].Play ();
-				return;
-			}
+		if (soundDictionary.ContainsKey (_name)) {
+			soundDictionary [_name].Play ();
 		}
 	}
-
-	public void PlaySound (string _name, float volume) {
-
-	}
-
 	public void StopSound (string _name) {
-		for (int i = 0; i < sounds.Length; i++) {
-			if (sounds [i].clipName == _name) {
-				sounds [i].Stop ();
-				return;
-			}
+		if (soundDictionary.ContainsKey (_name)) {
+			soundDictionary [_name].Stop ();
 		}
 	}
 }

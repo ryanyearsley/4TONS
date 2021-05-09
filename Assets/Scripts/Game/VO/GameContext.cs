@@ -9,5 +9,5 @@ public class GameContext
 	public GameType gameType;
 }
 public enum GameType {
-	GAUNTLET, TOWER_DEFENSE, DUEL
+	GAUNTLET, TOWER_DEFENSE, DUEL, TUTORIAL
 }

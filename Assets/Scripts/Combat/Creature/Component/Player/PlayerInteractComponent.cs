@@ -33,7 +33,7 @@ public class PlayerInteractComponent : PlayerComponent {
 	}
 
 	public void OnGrabButtonDown () {
-		if (playerObject.currentPlayerState == PlayerState.COMBAT) {
+		if (playerObject.currentPlayerState == PlayerState.COMBAT || playerObject.currentPlayerState == PlayerState.PUZZLE_BROWSING) {
 			if (interactablePickUps.Count == 0) {
 				return;//No pick ups in range.
 			} else {
@@ -51,6 +51,8 @@ public class PlayerInteractComponent : PlayerComponent {
 					PickUpStaff (closestObject.GetComponent<StaffPickUp> ());
 				}
 			}
+		} else if (playerObject.currentPlayerState == PlayerState.PUZZLE_BROWSING) {
+
 		}
 	}
 

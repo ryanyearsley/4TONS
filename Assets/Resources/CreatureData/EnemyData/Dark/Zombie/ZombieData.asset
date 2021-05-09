@@ -17,6 +17,12 @@ MonoBehaviour:
   clearance: 1
   spawnObjectPrefab: {fileID: 3125169596821539825, guid: d5487051237bc0c468fa6ed0a17c65cc, type: 3}
   creatureName: Zombie
-  health: 40
+  health: 36
   resourceMax: 0
   movementSpeed: 4.5
+  clipsPackage:
+    attackSound: {fileID: 0}
+    gruntSound: {fileID: 8300000, guid: 5217f967a802b2e42a46c1ec752811fd, type: 3}
+    deathSound: {fileID: 8300000, guid: d8b13e890607ecd4d807cbed7f2dffc9, type: 3}
+    happySound: {fileID: 0}
+    sadSound: {fileID: 0}

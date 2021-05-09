@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using TMPro;
 using System;
 using System.Collections.Generic;
+using System.Collections;
 
 public class WizardCreatePanelUI : MonoBehaviour
 {
@@ -16,6 +17,9 @@ public class WizardCreatePanelUI : MonoBehaviour
 	private TMP_InputField wizardNameInputField;
 	[SerializeField]
 	private Image wizardSelectImage;
+	[SerializeField]
+	private TextMeshProUGUI errorMessageText;
+
 	SpellSchoolData currentSchool;
 
 	private void Start () {
@@ -41,9 +45,31 @@ public class WizardCreatePanelUI : MonoBehaviour
 
 	}
 	public bool isValidWizard () {
-		if (wizardNameInputField.text == "" || currentSchool == null || !SaveManager.instance.isWizardNameAvailable (wizardNameInputField.text))
+		StopAllCoroutines ();
+		errorMessageText.text = String.Empty;
+		if (currentSchool == null) {
+			AudioManager.instance.PlaySound ("Error");
+			StartCoroutine (DisplayWizardCreateErrorMessage ("Choose a wizard."));
 			return false;
+		}
+		else if (!SaveManager.instance.isWizardNameAvailable (wizardNameInputField.text)) {
+
+			AudioManager.instance.PlaySound ("Error");
+			StartCoroutine (DisplayWizardCreateErrorMessage ("That name is taken."));
+
+			return false;
+		} 
+		else if (wizardNameInputField.text == "") {
+			AudioManager.instance.PlaySound ("Error");
+			StartCoroutine (DisplayWizardCreateErrorMessage ("Enter a name."));
+			return false;
+		}
 		else return true;
+	}
+	public IEnumerator DisplayWizardCreateErrorMessage(string message) {
+		errorMessageText.text = message;
+		yield return new WaitForSeconds (5);
+		errorMessageText.text = String.Empty;
 	}
 	public WizardSaveData FinalizeWizardCreate () {
 		WizardSaveData newWizard = currentSchool.defaultWizard.wizardSaveData.Clone ();

@@ -1,7 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 
+[Serializable]
 public class SpawnPoint {
 	public Vector2Int spawnCoordinate;
 	public SpawnObjectData spawnObjectData;

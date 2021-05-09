@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Dark_Floor
   m_EditorClassIdentifier: 
   m_Sprite: {fileID: 21300000, guid: 256f0b4a1d72f3c4bbdfd8d6a1c31518, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.85098046, g: 0.85098046, b: 0.85098046, a: 1}
   m_Transform:
     e00: 1
     e01: 0

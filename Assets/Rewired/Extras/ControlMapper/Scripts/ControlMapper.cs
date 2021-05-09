@@ -2489,10 +2489,15 @@ namespace Rewired.UI.ControlMapper
 
             for(int i = 0; i < _mappingSets.Length; i++) {
                 MappingSet set = _mappingSets[i];
-                if(set == null) continue;
-                InputMapCategory cat = ReInput.mapping.GetMapCategory(set.mapCategoryId);
-                if(cat == null) continue; // invalid map category id
-
+                if (set == null) {
+                    Debug.Log ("Rewired.ControlMapper: Set is null, not creating button.");
+                    continue;
+                }
+                InputMapCategory cat = ReInput.mapping.GetMapCategory(set.mapCategoryId); // invalid map category id
+                if (cat == null) {
+                    Debug.Log ("Rewired.ControlMapper: Category is null, not creating button.");
+                    continue;
+                }
                 GameObject instance = UI.ControlMapper.UITools.InstantiateGUIObject<ButtonInfo>(prefabs.button, references.mapCategoriesGroup.content, cat.name + "Button");
                 GUIButton button = new GUIButton(instance);
                 button.SetLabel(_language.GetMapCategoryName(cat.id));

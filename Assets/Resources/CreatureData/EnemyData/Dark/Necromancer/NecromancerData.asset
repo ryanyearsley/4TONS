@@ -17,6 +17,12 @@ MonoBehaviour:
   clearance: 2
   spawnObjectPrefab: {fileID: 8036647390902012779, guid: c045fa55be8674649beb4b0b6ead0d50, type: 3}
   creatureName: Necromancer
-  health: 70
+  health: 48
   resourceMax: 50
   movementSpeed: 3.5
+  clipsPackage:
+    attackSound: {fileID: 0}
+    gruntSound: {fileID: 8300000, guid: ce61a3d1947e6ea449253fbf94480805, type: 3}
+    deathSound: {fileID: 8300000, guid: 381af8f28ea46694284e87a9fb864ce1, type: 3}
+    happySound: {fileID: 0}
+    sadSound: {fileID: 0}

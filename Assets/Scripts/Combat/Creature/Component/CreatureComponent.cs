@@ -30,6 +30,7 @@ public class CreatureComponent : MonoBehaviour, ICreatureComponent
 	//game events
 
 	public virtual void OnBeginLevel (int levelIndex) {
+
 	}
 	public virtual void OnLevelEnd (int levelIndex) {
 		UnsubscribeFromGameEvents ();

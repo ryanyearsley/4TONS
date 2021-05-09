@@ -18,7 +18,7 @@ public class LevelManager : MonoBehaviour, IGameManager {
 		}
 	}
 	#endregion
-
+	public bool displayCustomSpawnGizmos;
 	private MapDetails currentLevelDetails;
 	[SerializeField]
 	private WorldData worldData;
@@ -43,6 +43,7 @@ public class LevelManager : MonoBehaviour, IGameManager {
 	private LayerMask walkableMask;
 	private Dictionary<int, int> walkableRegionsDictionary = new Dictionary<int, int> ();
 
+	[SerializeField]
 	private Grid grid;
 	private MapDetails pathfindingMapDetails;
 	public PathfindingNode[,] nodes;
@@ -78,7 +79,7 @@ public class LevelManager : MonoBehaviour, IGameManager {
 		PoolManager.instance.CreateObjectPool (worldData.nextLevelPortalSpawnInfo.setPieceData.spawnObjectPrefab, worldData.nextLevelPortalSpawnInfo.setPieceData.poolSize);
 		//player pools
 		PoolManager.instance.CreatePlayerPool (ConstantsManager.instance.playerWizardTemplatePrefab, 4);
-		
+
 		//creature pools
 		foreach (CreatureData enemyData in worldData.enemyDatas) {
 			PoolManager.instance.CreateCreaturePool (enemyData.spawnObjectPrefab, enemyData.poolSize);
@@ -94,16 +95,20 @@ public class LevelManager : MonoBehaviour, IGameManager {
 	public void OnLoadLevel (int levelIndex) {
 		StartCoroutine (LoadLevelRoutine (levelIndex));
 	}
-	public void OnLevelEnd(int levelIndex) {
+	public void OnLevelEnd (int levelIndex) {
 
 	}
 	#endregion
 	#region public utility methods
 
-	public IEnumerator LoadLevelRoutine(int levelIndex) {
+	public IEnumerator LoadLevelRoutine (int levelIndex) {
 		GenerateMapDetails (worldData, levelIndex);
 		yield return new WaitForSeconds (0.5f);
-		BuildFloor (levelIndex);
+		if (currentLevelDetails.mapData.isGenerated)
+			BuildFloor (levelIndex);
+		else {
+			GenerateFloorNodes (currentLevelDetails);
+		}
 		yield return new WaitForSeconds (0.5f);
 		if (levelIndex == 0)
 			CreatePlayerObjects ();
@@ -135,9 +140,12 @@ public class LevelManager : MonoBehaviour, IGameManager {
 			MapDetails generatingMapDetails = null;
 			if (nextMapData.isGenerated) {
 				generatingMapDetails = MapGenerator.instance.GenerateMap (worldData, legend, floorIndex);
-			} else if (nextMapData.mapFile != null) {
-				int[,] map = MapUtility.DeserializeLevelFile (nextMapData.mapFile);
-				generatingMapDetails = new MapDetails (worldData, nextMapData, floorIndex, MapUtility.ConvertMapToTileInfo (map), null);
+			} else if (nextMapData.customMapData != null) {
+				int[,] map = MapUtility.Generate2DArrayFromTilemap(tilemap, 
+					new CoordinateBounds(Vector2Int.zero, Vector2Int.one * 56));
+				generatingMapDetails = new MapDetails (worldData, nextMapData, floorIndex, MapUtility.ConvertMapToTileInfo (map), nextMapData.customMapData.mapSpawnPoints);
+
+				GenerateFloorNodes (generatingMapDetails);
 			}
 			mapDetailDictionary.Add (floorIndex, generatingMapDetails);
 			currentLevelDetails = generatingMapDetails;
@@ -153,7 +161,8 @@ public class LevelManager : MonoBehaviour, IGameManager {
 			int xLength = mapTileInfo.GetLength(0);
 			Vector2Int origin = buildingMapDetails.floorOrigin;
 			Vector3 floorPrefabSpawnPosition = tilemap.GetCellCenterWorld((Vector3Int)origin);
-			Instantiate (buildingMapDetails.mapData.floorPrefab, floorPrefabSpawnPosition, Quaternion.identity); ;
+			if (buildingMapDetails.mapData.floorPrefab != null)
+				Instantiate (buildingMapDetails.mapData.floorPrefab, floorPrefabSpawnPosition, Quaternion.identity); ;
 			Transform parent = tilemap.transform.parent;
 			GameObject tilemapObject = tilemap.transform.gameObject;
 			for (int y = 0; y < mapTileInfo.GetLength (1); y++) {
@@ -165,7 +174,7 @@ public class LevelManager : MonoBehaviour, IGameManager {
 					} else if (objectRegistry.activeSetpieceDictionary.ContainsKey (tileValue)) {
 						Vector3 position = tilemap.GetCellCenterWorld (new Vector3Int (x + origin.x, y + origin.y, 0));
 						PoolManager.instance.ReuseObject (objectRegistry.activeSetpieceDictionary [tileValue].spawnObjectPrefab, position, Quaternion.identity);
-						
+
 					}
 				}
 			}
@@ -176,6 +185,7 @@ public class LevelManager : MonoBehaviour, IGameManager {
 
 	//NOTE: Players are only spawned on first stage. They are relocated to following stages.
 	public void CreatePlayerObjects () {
+		Debug.Log ("creating player objects");
 		MapDetails currentMapDetails = mapDetailDictionary[0];
 		foreach (Player player in PlayerManager.instance.currentPlayers) {
 			Vector2Int spawnCoordinate = currentMapDetails.spawnPoints.playerSpawnPoints[player.playerIndex].spawnCoordinate;
@@ -205,7 +215,7 @@ public class LevelManager : MonoBehaviour, IGameManager {
 		foreach (SpawnPoint spawnPoint in currentMapDetails.spawnPoints.enemySpawnPoints) {
 			Vector3 enemySpawnPosition = ConvertIsoCoordToScene(spawnPoint.spawnCoordinate + currentMapDetails.floorOrigin);
 			GameObject enemyObject = PoolManager.instance.ReuseCreatureObject(spawnPoint.spawnObjectData.spawnObjectPrefab, enemySpawnPosition);
-			currentMapDetails.remainingEnemies.Add (enemyObject.GetComponent<GauntletObjectiveComponent>());
+			currentMapDetails.remainingEnemies.Add (enemyObject.GetComponent<GauntletObjectiveComponent> ());
 		}
 		currentMapDetails.totalEnemiesCount = currentMapDetails.remainingEnemies.Count;
 	}
@@ -410,6 +420,35 @@ public class LevelManager : MonoBehaviour, IGameManager {
 		return randomWalkableNode.worldPosition;
 	}
 
+	[ExecuteInEditMode]
+	private void OnDrawGizmos () {
+		Debug.Log ("LevelManager: Displaying custom spawn gizmos");
+		if (displayCustomSpawnGizmos) {
+			foreach (MapData mapData in worldData.mapDatas)
+				if (mapData.customMapData != null) {
+					Gizmos.color = Color.cyan;
+					Debug.Log ("LevelManager: Drawing Spawn Gizmo at " + mapData.customMapData.mapSpawnPoints.playerSpawnPoints [0].spawnCoordinate);
+					Gizmos.DrawSphere (grid.GetCellCenterWorld ((Vector3Int)
+						mapData.customMapData.mapSpawnPoints.playerSpawnPoints [0].spawnCoordinate), 0.3f);
+					Gizmos.color = Color.blue;
+					foreach (SpellGemSpawnPoint spellGemSpawnPoint in mapData.customMapData.mapSpawnPoints.spellGemSpawnPoints) {
+						Gizmos.DrawSphere (grid.GetCellCenterWorld ((Vector3Int)
+					spellGemSpawnPoint.spawnCoordinate), 0.3f);
+					}
+					Gizmos.color = Color.green;
+					foreach (StaffSpawnPoint staffSpawnPoint in mapData.customMapData.mapSpawnPoints.staffSpawnPoints) {
+						Gizmos.DrawSphere (grid.GetCellCenterWorld ((Vector3Int)
+					staffSpawnPoint.spawnCoordinate), 0.3f);
+					}
+					Gizmos.color = Color.red;
+					foreach (SpawnPoint enemySpawnPoint in mapData.customMapData.mapSpawnPoints.enemySpawnPoints) {
+						Gizmos.DrawSphere (grid.GetCellCenterWorld ((Vector3Int)
+					enemySpawnPoint.spawnCoordinate), 0.3f);
+					}
+				}
+		}
+	}
+	/*
 	void OnDrawGizmosSelected () {
 		if (nodes != null && displayGridGizmos) {
 
@@ -433,6 +472,7 @@ public class LevelManager : MonoBehaviour, IGameManager {
 			}
 		}
 	}
+	*/
 	#endregion
 }
 

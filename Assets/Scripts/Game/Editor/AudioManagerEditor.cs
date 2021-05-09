@@ -6,7 +6,7 @@ using UnityEngine.Audio;
 
 [CustomEditor (typeof (AudioManager))]
 public class AudioManagerEditor : Editor {
-
+    /*
     private AudioManager audioManager;
     private SerializedObject property;
     private SerializedProperty soundList;
@@ -27,7 +27,7 @@ public class AudioManagerEditor : Editor {
     public override void OnInspectorGUI () {
         property.Update ();
 
-        for (int i = 0; i < soundList.arraySize; i++) {
+        for (int i = soundList.arraySize - 1; i >= 0; i--) {
             SerializedProperty sound = soundList.GetArrayElementAtIndex(i);
             SerializedProperty clipName = sound.FindPropertyRelative ("clipName");
 
@@ -94,11 +94,13 @@ public class AudioManagerEditor : Editor {
                 if (GUILayout.Button ("Remove This Clip")) {
                     soundList.DeleteArrayElementAtIndex (i);
                     soundFoldoutDictionary.Remove (i);
+                    EditorGUILayout.EndVertical ();
                 }
             }
 
-            if (soundFoldoutDictionary[i])
+            if (soundFoldoutDictionary.ContainsKey(i) && soundFoldoutDictionary[i])
                 EditorGUILayout.EndVertical ();
+
             EditorGUILayout.EndFoldoutHeaderGroup ();
         }
 
@@ -109,4 +111,5 @@ public class AudioManagerEditor : Editor {
 
         property.ApplyModifiedProperties ();
     }
+    */
 }

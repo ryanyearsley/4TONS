@@ -462,7 +462,7 @@ namespace Rewired.UI.ControlMapper
                     return new MappingSet(
                         0, // Default
                         ActionListMode.ActionCategory,
-                        new int[1] { 0 }, // Default
+                        new int[1] {0}, // Default
                         new int[0] // No individual actions
                     );
                 }

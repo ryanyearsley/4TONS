@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu (fileName = "New Map Data", menuName = "ScriptableObjects/Map Data")]
 public class MapData : ScriptableObject {
 
+	public CustomMapData customMapData;
 	public TextAsset mapFile;//optional. if not present, a level will be generated.
 	public bool isGenerated = true;
 	[Space (10, order = 0)]

@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a701196f12370941a9b69b34871811b, type: 3}
   m_Name: LeechBoltCastData
   m_EditorClassIdentifier: 
-  instanceID: 0
   spellName: LeechBolt
   spellSchool: 1
   spellSchoolData: {fileID: 11400000, guid: 3c0c6ec45b52c8f438a33661902dea92, type: 2}
@@ -23,8 +22,11 @@ MonoBehaviour:
   manaCost: 4
   castTime: 0.2
   castSpeedReduction: 0.6
-  coolDown: 0.3
+  coolDown: 0.15
   spellCastLocation: 0
+  spellCastSound: {fileID: 8300000, guid: f1215d77d46258e46a99226c1cea673f, type: 3}
+  spellChannelSound: {fileID: 0}
+  spellEndSound: {fileID: 0}
   spellObject: {fileID: 5217744383755033205, guid: 67aaafef65d8da9478a594303489a970, type: 3}
   poolSize: 10
   spellObjectData: {fileID: 11400000, guid: fb9712e9bac58b94ca5e5297ed82900b, type: 2}

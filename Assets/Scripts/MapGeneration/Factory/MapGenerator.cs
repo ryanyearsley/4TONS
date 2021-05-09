@@ -54,7 +54,7 @@ public class MapGenerator : MonoBehaviour {
 		MapDetails details = new MapDetails(worldData, mapData, floorIndex,  mapTileInfo, spawnPoints);
 		spawnPoints.playerSpawnPoints = SpawnUtility.GenerateCreatureSpawnPoints (details, mapData.playerSpawnInfo);
 		spawnPoints.playerSpawnSetPiecePoint = new SpawnPoint (spawnPoints.playerSpawnPoints [0].spawnCoordinate - Vector2Int.one, worldData.playerSpawnSetpieceSpawnInfo.setPieceData);
-		spawnPoints.nextPortalSpawnPoint = SpawnUtility.GenerateSetPieceSpawnPoints (details, worldData.nextLevelPortalSpawnInfo) [0];
+		spawnPoints.portalSpawnPoint = SpawnUtility.GenerateSetPieceSpawnPoints (details, worldData.nextLevelPortalSpawnInfo) [0];
 		foreach (CreatureSpawnInfo enemySpawnInfo in mapData.enemySpawnInfos) {
 			spawnPoints.enemySpawnPoints.AddRange (SpawnUtility.GenerateCreatureSpawnPoints (details, enemySpawnInfo));
 		}

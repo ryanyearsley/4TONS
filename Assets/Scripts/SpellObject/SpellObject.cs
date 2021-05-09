@@ -18,6 +18,11 @@ public class SpellObject : PoolObject, ISpellObject {
     public override void SetupObject () {
         base.SetupObject ();
         trans = this.transform;
+        if (spellObjectData.spellObjectSound != null) 
+            AudioManager.instance.RegisterStound (spellObjectData.spellObjectSound);
+        if (spellObjectData.spellObjectDestroySound != null)
+            AudioManager.instance.RegisterStound (spellObjectData.spellObjectDestroySound);
+
     }
 
     public virtual void SetSpellObjectTag(VitalsEntity vitalsEntity) {
@@ -30,6 +35,7 @@ public class SpellObject : PoolObject, ISpellObject {
 
     public virtual void ReuseSpellObject (VitalsEntity vitalsEntity) {
         casterVitalsEntity = vitalsEntity;
+        AudioManager.instance.PlaySound (spellObjectData.spellObjectSound.clipName);
         lifeTimer = 0;
         isAlive = true;
     }
@@ -37,6 +43,12 @@ public class SpellObject : PoolObject, ISpellObject {
         isAlive = false;
         casterVitalsEntity = null;
         this.tag = "Untagged";
+
+        //source.Stop ();
+        if (spellObjectData.spellObjectDestroySound != null) {
+            Debug.Log ("SpellObject: Playing object destroy sound.");
+            AudioManager.instance.PlaySound (spellObjectData.spellObjectDestroySound.clipName);
+        }
 
     }
     public virtual void Update () {

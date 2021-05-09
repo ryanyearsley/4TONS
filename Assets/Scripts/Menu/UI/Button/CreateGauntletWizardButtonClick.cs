@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class CreateGauntletWizardButtonClick : AbstractButtonClick {
 
@@ -15,7 +14,8 @@ public class CreateGauntletWizardButtonClick : AbstractButtonClick {
 			WizardSaveData createdWizard = wizardCreatePanelUI.FinalizeWizardCreate();
 			Debug.Log ("Created wizard name: " + createdWizard.wizardName);
 			MainMenuManager.Instance.ConfirmPlayerWizardSelection (createdWizard);
-			SceneManager.LoadScene (1);
+			MainMenuManager.Instance.LoadScene (2);
+			AudioManager.instance.PlaySound ("Confirm");
 		} else {
 			Debug.Log ("Cannot confirm: no name entered.");
 		}

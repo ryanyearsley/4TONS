@@ -86,7 +86,7 @@ public class VitalsManager : MonoBehaviour {
 		if (vitalsDictionary.ContainsKey (objectId)) {
 			VitalsEntity vitalsEntity = vitalsDictionary [objectId];
 			if (vitalsEntity.resource != null)
-				return vitalsEntity.resource.SubtractResourceCost (manaCost);
+				vitalsEntity.resource.SubtractResourceCost (manaCost);
 		}
 		return false;
 	}

@@ -23,10 +23,13 @@ public class PlayerJoinInputPollManager : MonoBehaviour {
 			}
 		}
 
+		Debug.Log ("PlayerJoinInputPollManager: Total input count: " + unassignedControllers.Count);
+
 	}
 
 	void Update () {
 		for (int i = unassignedControllers.Count - 1; i >= 0; i--) {
+			Debug.Log ("PlayerJoinInputPollManager: Checking Input " + i  + ". ");
 			if (unassignedControllers [i].GetAnyButtonDown ()) {
 				Debug.Log ("Input detected. Player joining.");
 				MainMenuManager.Instance.OnPlayerJoin (unassignedControllers [i].id);

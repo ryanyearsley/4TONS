@@ -56,6 +56,6 @@ public class ControlsScreenUI : AbstractScreenUI {
 		togglePuzzleControlUI.DisplayControlUI (controlData.toggleControl);
 		rotateSpellGemControlUI.DisplayControlUI (controlData.rotateControl);
 		grabSpellGemControlUI.DisplayControlUI (controlData.grabControl);
-		flipSpellGemControlUI.DisplayControlUI (controlData.flipControl);
+		flipSpellGemControlUI.DisplayControlUI (controlData.dropControl);
 	}
 }

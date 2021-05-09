@@ -8,8 +8,11 @@ public class AbstractPanelUI : MonoBehaviour {
 	[SerializeField]
 	public List<GameState> panelActiveStates;
 
-	protected virtual void Start () {
+	public virtual void Start () {
 		InitializePanel ();
+	}
+	public virtual void SubscribeToEvents() {
+
 	}
 	protected virtual void InitializePanel () {
 		panelObject = transform.GetChild (0).gameObject;

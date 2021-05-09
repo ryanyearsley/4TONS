@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+using UnityEngine.SceneManagement;
 
 public enum MenuScreen {
-	WELCOME, MAIN_MENU, GAUNTLET_CREATE, WIZARD_SELECT, SETTINGS, TUTORIAL, CONTROLS
+	WELCOME, MAIN_MENU, GAUNTLET_CREATE, WIZARD_SELECT, SETTINGS, TUTORIAL, CONTROLS, CREDITS, FADE_TO_BLACK
 }
 
 public class MainMenuManager : MonoBehaviour {
@@ -25,7 +25,7 @@ public class MainMenuManager : MonoBehaviour {
 	}
 
 	IEnumerator Start () {
-		yield return new WaitForSeconds (0.05f);
+		yield return new WaitForSeconds (0.3f);
 		if (PlayerManager.instance.currentPlayers.Count > 0) {
 			Debug.Log ("more than zero players active. Going to gametype select screen.");
 			ChangeMenuScreen (MenuScreen.MAIN_MENU);
@@ -40,7 +40,7 @@ public class MainMenuManager : MonoBehaviour {
 	public void OnPlayerJoin(int controllerIndex) {
 		if (currentMainMenuScreen == MenuScreen.WELCOME) {
 			Player player = CreateAndRegisterPlayer (controllerIndex);
-			MainMenuManager.Instance.ChangeMenuScreen (MenuScreen.MAIN_MENU);
+			ChangeMenuScreen (MenuScreen.MAIN_MENU);
 			OnPlayerJoinEvent?.Invoke (player);
 		}
 	}
@@ -65,5 +65,14 @@ public class MainMenuManager : MonoBehaviour {
 		if (isEveryoneReady == true) {
 			ChangeMenuScreen (MenuScreen.MAIN_MENU);
 		}
+	}
+
+	public void LoadScene(int sceneIndex) {
+		StartCoroutine (LoadSceneRoutine (sceneIndex));
+	}
+	public IEnumerator LoadSceneRoutine(int sceneIndex) {
+		ChangeMenuScreen (MenuScreen.FADE_TO_BLACK);
+		yield return new WaitForSeconds (1f);
+		SceneManager.LoadScene (sceneIndex);
 	}
 }

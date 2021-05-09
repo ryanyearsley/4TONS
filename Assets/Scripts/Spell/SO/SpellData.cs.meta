@@ -3,7 +3,16 @@ guid: 0a701196f12370941a9b69b34871811b
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - spellSchoolData: {instanceID: 0}
+  - icon: {instanceID: 0}
+  - castObject: {instanceID: 0}
+  - spellCastSound: {fileID: 8300000, guid: f1215d77d46258e46a99226c1cea673f, type: 3}
+  - spellChannelSound: {instanceID: 0}
+  - spellEndSound: {instanceID: 0}
+  - spellObject: {instanceID: 0}
+  - spellObjectData: {instanceID: 0}
+  - puzzlePieceData: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

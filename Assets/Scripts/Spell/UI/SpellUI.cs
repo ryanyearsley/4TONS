@@ -22,6 +22,7 @@ public class SpellUI : MonoBehaviour
 
 	public void SetSpellUIToSpell(SpellData spellData) {
 		spellIcon.sprite = spellData.icon;
+		spellIcon.fillAmount = 1;
 	}
 
 	public void GreyOutSpellUI() {
@@ -35,6 +36,7 @@ public class SpellUI : MonoBehaviour
 
 	public void ClearSpellBinding() {
 		spellIcon.color = new Color (1, 1, 1, 1);
+		spellIcon.fillAmount = 1;
 		spellIcon.sprite = emptySpellbindSprite;
 		spellBindingText.text = spellBindingDefault;
 	}

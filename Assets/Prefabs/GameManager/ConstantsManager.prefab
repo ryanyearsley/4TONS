@@ -72,3 +72,5 @@ MonoBehaviour:
   puzzleEntityPrefab: {fileID: 1521480063981950361, guid: 3e10f28399dea22418a2c6e61d0522af, type: 3}
   puzzleTile: {fileID: 11400000, guid: b4c6b12a214a7744ea78a5573676c646, type: 2}
   randomWizardNames: {fileID: 11400000, guid: 660b8bb0a2792ea468e012a6085ff2e0, type: 2}
+  validProjectedAoEColor: {r: 1, g: 1, b: 1, a: 0.46666667}
+  invalidProjectedAoEColor: {r: 0.8018868, g: 0.11725702, b: 0.11725702, a: 0.3882353}

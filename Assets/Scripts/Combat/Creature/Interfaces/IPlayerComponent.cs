@@ -7,6 +7,6 @@ public interface IPlayerComponent {
 	void OnChangePlayerState (PlayerState playerState);
 	void OnDash (DashInfo dashInfo);
 
-	void OnBindSpellGem (PuzzleGameData puzzleGameData, SpellGemGameData spellGemGameData);
-	void OnUnbindSpellGem (PuzzleGameData puzzleGameData, SpellGemGameData spellGemGameData);
+	void OnBindSpellGem (PuzzleGameData puzzleGameData, SpellGemGameData spellGemGameData,PuzzleBindType bindType);
+	void OnUnbindSpellGem (PuzzleGameData puzzleGameData, SpellGemGameData spellGemGameData, PuzzleUnbindType unbindType);
 }

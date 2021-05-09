@@ -16,5 +16,9 @@ public class ControlData
     public Control grabControl;
     public Control toggleControl;
     public Control rotateControl;
-    public Control flipControl;
+    public Control dropControl;
+
+    public Control primaryWeaponControl;
+    public Control secondaryWeaponControl;
+    public Control quickSwapControl;
 }

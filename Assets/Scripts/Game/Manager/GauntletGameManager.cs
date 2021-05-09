@@ -9,7 +9,6 @@ using UnityEngine;
 
 [Serializable]
 public class TowerProgress {
-
 	public int totalKills;
 	public int currentLevelIndex;
 	public int finalLevelIndex;
@@ -50,8 +49,6 @@ public class GauntletGameManager : MonoBehaviour {
 		InitializeManager ();
 	}
 
-	private void OnEnable () {
-	}
 	public void InitializeManager () {
 		towerProgress = new TowerProgress (GameManager.instance.gameContext.worldData.mapDatas.Length - 1);
 		GameManager.instance.beginLevelEvent += OnBeginLevel;
