@@ -30,7 +30,7 @@ public class WizardSelectScreenUI : AbstractScreenUI
 	}
 
 	private void UpdateWizardSelectPanels() {
-		List<WizardSaveData> wizardSaveDatas = SaveManager.instance.infamousWizardSaveDatas;
+		List<WizardSaveData> wizardSaveDatas = WizardSaveDataManager.instance.infamousWizardSaveDatas;
 
 		Debug.Log ("updating wizard select panels. wizard count: " + wizardSaveDatas.Count);
 		foreach (WizardSelectPlayerPanelUI panel in wizardSelectPlayerPanels) {

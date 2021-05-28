@@ -5,14 +5,18 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public enum MenuScreen {
-	WELCOME, MAIN_MENU, GAUNTLET_CREATE, WIZARD_SELECT, SETTINGS, TUTORIAL, CONTROLS, CREDITS, FADE_TO_BLACK
+	WELCOME, MAIN_MENU, GAUNTLET_CREATE, WIZARD_SELECT, SETTINGS, TUTORIAL, CONTROLS, CREDITS, BLANK
 }
 
 public class MainMenuManager : MonoBehaviour {
-	public MenuScreen currentMainMenuScreen { get; private set; }
+	public MenuScreen currentMainMenuScreen  { get; private set; }
 	public event Action<MenuScreen> OnMenuScreenChangeEvent;
 	public event Action<Player> OnPlayerJoinEvent;
 	public event Action<WizardSaveData> OnWizardDeleteEvent;
+
+
+	[SerializeField]
+	private Animator transitionAnimator;
 
 	#region Singleton
 	public static MainMenuManager Instance { get; private set; }
@@ -24,8 +28,17 @@ public class MainMenuManager : MonoBehaviour {
 		InitializeSingleton ();
 	}
 
-	IEnumerator Start () {
+	void Start () {
+		Debug.Log ("MainMenuManager: Start");
+		StartCoroutine (StartRoutine ());
+	}
+
+	public IEnumerator StartRoutine() {
+		Time.timeScale = 1;
+		Debug.Log ("MainMenuManager: Start routine begin.");
 		yield return new WaitForSeconds (0.3f);
+		Debug.Log ("MainMenuManager: Animator Fade In.");
+		transitionAnimator.SetTrigger ("FadeIn");
 		if (PlayerManager.instance.currentPlayers.Count > 0) {
 			Debug.Log ("more than zero players active. Going to gametype select screen.");
 			ChangeMenuScreen (MenuScreen.MAIN_MENU);
@@ -36,6 +49,12 @@ public class MainMenuManager : MonoBehaviour {
 	public void ChangeMenuScreen(MenuScreen screen) {
 		currentMainMenuScreen = screen;
 		OnMenuScreenChangeEvent?.Invoke (screen);
+	}
+
+	public void PlayerCancel() {
+		AudioManager.instance.PlaySound ("Back");
+		if (currentMainMenuScreen != MenuScreen.MAIN_MENU)
+			ChangeMenuScreen (MenuScreen.MAIN_MENU);
 	}
 	public void OnPlayerJoin(int controllerIndex) {
 		if (currentMainMenuScreen == MenuScreen.WELCOME) {
@@ -63,7 +82,7 @@ public class MainMenuManager : MonoBehaviour {
 			}
 		}
 		if (isEveryoneReady == true) {
-			ChangeMenuScreen (MenuScreen.MAIN_MENU);
+			ChangeMenuScreen (MenuScreen.BLANK);
 		}
 	}
 
@@ -71,7 +90,7 @@ public class MainMenuManager : MonoBehaviour {
 		StartCoroutine (LoadSceneRoutine (sceneIndex));
 	}
 	public IEnumerator LoadSceneRoutine(int sceneIndex) {
-		ChangeMenuScreen (MenuScreen.FADE_TO_BLACK);
+		transitionAnimator.SetTrigger ("FadeOut");
 		yield return new WaitForSeconds (1f);
 		SceneManager.LoadScene (sceneIndex);
 	}

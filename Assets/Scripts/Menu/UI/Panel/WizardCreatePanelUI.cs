@@ -52,7 +52,7 @@ public class WizardCreatePanelUI : MonoBehaviour
 			StartCoroutine (DisplayWizardCreateErrorMessage ("Choose a wizard."));
 			return false;
 		}
-		else if (!SaveManager.instance.isWizardNameAvailable (wizardNameInputField.text)) {
+		else if (!WizardSaveDataManager.instance.isWizardNameAvailable (wizardNameInputField.text)) {
 
 			AudioManager.instance.PlaySound ("Error");
 			StartCoroutine (DisplayWizardCreateErrorMessage ("That name is taken."));
@@ -68,7 +68,7 @@ public class WizardCreatePanelUI : MonoBehaviour
 	}
 	public IEnumerator DisplayWizardCreateErrorMessage(string message) {
 		errorMessageText.text = message;
-		yield return new WaitForSeconds (5);
+		yield return new WaitForSeconds (3);
 		errorMessageText.text = String.Empty;
 	}
 	public WizardSaveData FinalizeWizardCreate () {

@@ -4,9 +4,12 @@ using UnityEngine;
 using Rewired;
 
 //Polls for player input and calls PlayerJoin Event
-public class PlayerJoinInputPollManager : MonoBehaviour {
+public class MenuPlayerInputManager : MonoBehaviour {
 
 	public List<Rewired.Player> unassignedControllers = new List<Rewired.Player>();
+
+	public List<Rewired.Player> activeControllers = new List<Rewired.Player>();
+
 
 	private void Awake () {
 		PlayerManager playerManager = PlayerManager.instance;
@@ -29,11 +32,19 @@ public class PlayerJoinInputPollManager : MonoBehaviour {
 
 	void Update () {
 		for (int i = unassignedControllers.Count - 1; i >= 0; i--) {
-			Debug.Log ("PlayerJoinInputPollManager: Checking Input " + i  + ". ");
+			Debug.Log ("PlayerJoinInputPollManager: Checking Input " + i + ". ");
 			if (unassignedControllers [i].GetAnyButtonDown ()) {
 				Debug.Log ("Input detected. Player joining.");
 				MainMenuManager.Instance.OnPlayerJoin (unassignedControllers [i].id);
+				activeControllers.Add (unassignedControllers [i]);
 				unassignedControllers.RemoveAt (i);
+			}
+		}
+
+		for (int i = 0; i < activeControllers.Count; i++) {
+			if (activeControllers [i].GetButtonUp("UICancel")) {
+				Debug.Log ("Cancel input detected. returning to previous screen.");
+				MainMenuManager.Instance.PlayerCancel ();
 			}
 		}
 	}

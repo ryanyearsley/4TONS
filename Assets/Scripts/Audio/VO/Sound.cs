@@ -1,11 +1,13 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
+
 [System.Serializable]
 public class Sound {
 
+	[SerializeField]
 	private AudioSource source;
 
 	public string clipName;
@@ -53,52 +55,5 @@ public class Sound {
 
 	public void Stop () {
 		source.Stop ();
-	}
-}
-
-public class AudioManager : MonoBehaviour {
-
-	public Sound[] sounds;
-
-	public Dictionary<string, Sound> soundDictionary = new Dictionary<string, Sound>();
-
-
-	public static AudioManager instance;
-	protected virtual void Awake () {
-
-		if (instance == null)
-			instance = this;
-		else if (instance != this)
-			Destroy (gameObject);
-	}
-
-	protected virtual void Start () {
-
-		for (int i = 0; i < sounds.Length; i++) {
-			RegisterStound (sounds [i]);
-		}
-
-	}
-
-	public void RegisterStound (Sound sound) {
-
-		if (!soundDictionary.ContainsKey (sound.clipName)) {
-			GameObject _go = new GameObject ("Sound_" + sound.clipName);
-			_go.transform.SetParent (this.transform);
-			sound.SetSource (_go.AddComponent<AudioSource> ());
-			soundDictionary.Add (sound.clipName, sound);
-			Debug.Log ("AudioManager: Spell Registered. Clip name: " + sound.clipName);
-		}
-	}
-
-	public void PlaySound (string _name) {
-		if (soundDictionary.ContainsKey (_name)) {
-			soundDictionary [_name].Play ();
-		}
-	}
-	public void StopSound (string _name) {
-		if (soundDictionary.ContainsKey (_name)) {
-			soundDictionary [_name].Stop ();
-		}
 	}
 }

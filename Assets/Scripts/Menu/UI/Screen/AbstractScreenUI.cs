@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class AbstractScreenUI : MonoBehaviour
 {
-	private GameObject screenObject;
+	protected GameObject screenObject;
 
 	[SerializeField]
 	public List<MenuScreen> screenActiveStates;
@@ -13,13 +13,9 @@ public class AbstractScreenUI : MonoBehaviour
 
 	protected virtual void Start () {
 		screenObject = transform.GetChild (0).gameObject;
-		if (screenActiveStates.Contains (MenuScreen.WELCOME)) {
-			screenObject.SetActive (true);
-		} else {
-
-			screenObject.SetActive (false);
-		}
+		screenObject.SetActive (true);
 		MainMenuManager.Instance.OnMenuScreenChangeEvent += OnScreenChange;
+		screenObject.SetActive (false);
 
 	}
 

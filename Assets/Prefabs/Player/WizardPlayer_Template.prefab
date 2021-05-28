@@ -447,7 +447,7 @@ AudioSource:
   m_GameObject: {fileID: 2566749087012144025}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -7302680629657921355, guid: 004a37a2c22918345b123859e614950a, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -674,6 +674,9 @@ MonoBehaviour:
       m_values: []
     currentStaffKey: 2
   defaultWizardSaveData: {fileID: 11400000, guid: 613b492791ce64a4aa24446d97820805, type: 2}
+  usingMouseControls: 0
+  smartCursor: 0
+  currentAimingMode: 0
   highlightedSpellGemData:
     spellData: {fileID: 0}
     spellGemOriginCoordinate: {x: 0, y: 0}

@@ -38,6 +38,12 @@ public class PlayerManager : MonoBehaviour {
 		if (currentPlayers.Contains (player)) return;
 		currentPlayers.Add (player);
 	}
+
+	public void RemovePlayer (Player player) {
+		if (currentPlayers.Contains (player)) {
+			currentPlayers.Remove (player);
+		}
+	}
 	public void ConfirmPlayerWizardSelection(int playerIndex, WizardSaveData wizardSaveDataClone) {
 		if (currentPlayers.Count >= playerIndex) {
 			currentPlayers [playerIndex].wizardSaveData = wizardSaveDataClone;

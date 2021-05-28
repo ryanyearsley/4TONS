@@ -19,9 +19,9 @@ public class SpellObject : PoolObject, ISpellObject {
         base.SetupObject ();
         trans = this.transform;
         if (spellObjectData.spellObjectSound != null) 
-            AudioManager.instance.RegisterStound (spellObjectData.spellObjectSound);
+            AudioManager.instance.RegisterSound (spellObjectData.spellObjectSound);
         if (spellObjectData.spellObjectDestroySound != null)
-            AudioManager.instance.RegisterStound (spellObjectData.spellObjectDestroySound);
+            AudioManager.instance.RegisterSound (spellObjectData.spellObjectDestroySound);
 
     }
 

@@ -4,15 +4,13 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Audio;
 
-public class SaveManager : MonoBehaviour {
+public class WizardSaveDataManager : MonoBehaviour {
 
 	private bool initialized;
-	public static SaveManager instance;
+	public static WizardSaveDataManager instance;
 
-	private SaveData saveData;
-	protected string savePath;
-	public SaveData defaultData;
 	public PrebuildWizardData defaultWizardData;
 
 	public List<WizardSaveData> infamousWizardSaveDatas;
@@ -27,11 +25,11 @@ public class SaveManager : MonoBehaviour {
 		}
 		DontDestroyOnLoad (this.gameObject);
 		CreatePersistentDataDirectories ();
+		infamousWizardSaveDatas = LoadInfamousWizardSavesJSON ();
 	}
 
 	private void Start () {
-		saveData = LoadDataFromDisk ();
-		infamousWizardSaveDatas = LoadInfamousWizardSavesJSON ();
+
 	}
 	private void OnLevelWasLoaded (int level) {
 		infamousWizardSaveDatas = LoadInfamousWizardSavesJSON ();
@@ -45,32 +43,6 @@ public class SaveManager : MonoBehaviour {
 			Directory.CreateDirectory (Application.persistentDataPath + "/infamous_wizards");
 		}
 	}
-
-	public SaveData GetSaveData () {
-		return saveData;
-	}
-	public void SaveDataToDisk (SaveData data) {
-		saveData = data;
-		savePath = Application.persistentDataPath + "/save.dat";
-		BinaryFormatter bf = new BinaryFormatter ();
-		FileStream file = File.Create (savePath);
-		bf.Serialize (file, saveData);
-		file.Close ();
-	}
-
-	public SaveData LoadDataFromDisk () {
-		savePath = Application.persistentDataPath + "/save.dat";
-		if (File.Exists (savePath)) {
-			BinaryFormatter bf = new BinaryFormatter ();
-			FileStream file = File.Open (savePath, FileMode.Open);
-			saveData = (SaveData)bf.Deserialize (file);
-			file.Close ();
-			return saveData;
-		} else {
-			return defaultData;
-		}
-	}
-
 	public void SaveInfamousWizard (WizardSaveData wizardSaveData) {
 		String directoryPath = Application.persistentDataPath + "/infamous_wizards/";
 		SaveWizardJSON (wizardSaveData, directoryPath);
@@ -81,7 +53,7 @@ public class SaveManager : MonoBehaviour {
 	}
 
 	private void SaveWizardJSON (WizardSaveData wizardSaveData, string directoryPath) {
-		OnBeforeSave (wizardSaveData);
+		OnBeforeWizardSave (wizardSaveData);
 		string wizardSavePath = directoryPath + wizardSaveData.wizardName + ".json";
 		if (File.Exists (wizardSavePath)) {
 			Debug.Log ("Save failed: Wizard already exists with this name.");
@@ -91,7 +63,7 @@ public class SaveManager : MonoBehaviour {
 			File.WriteAllText (wizardSavePath, json);
 		}
 	}
-	public void OnBeforeSave (WizardSaveData wizardSaveData) {
+	public void OnBeforeWizardSave (WizardSaveData wizardSaveData) {
 		wizardSaveData.spellSchoolDataIndex = wizardSaveData.spellSchoolData.schoolIndexStart;
 
 		if (wizardSaveData.primaryStaffSaveData != null) {
@@ -187,11 +159,3 @@ public class SaveManager : MonoBehaviour {
 	}
 }
 
-
-
-[System.Serializable]
-public class SaveData {
-	[Range (0f, 1f)] public float masterVolume;
-	[Range (0f, 1f)] public float musicVolume;
-	[Range (0f, 1f)] public float soundEffectsVolume;
-}
