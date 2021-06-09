@@ -13,16 +13,18 @@ public class ObjectRegistry {
 	public ActiveObjectDictionary activeCreatureDictionary = new ActiveObjectDictionary();
 	public ActiveSpellDictionary activeSpellDictionary = new ActiveSpellDictionary();
 	public PuzzleDataDictionary activePuzzleDictionary = new PuzzleDataDictionary();
-	public ObjectRegistry (SpellSchoolData[] spellSchoolDatas, GameDataLegend legend) {
-		
-			foreach (SpellSchoolData schoolData in spellSchoolDatas){
+	public ObjectRegistry (SpellSchoolData [] spellSchoolDatas, WorldData [] worlds, GameDataLegend legend) {
+
+		foreach (SpellSchoolData schoolData in spellSchoolDatas) {
 			schoolDataDictionary.Add (schoolData.schoolIndexStart, schoolData);
-			WorldData worldData = schoolData.worldData;
+			RegisterSpells (schoolData);
+			RegisterPuzzles (schoolData);
+		}
+
+		foreach (WorldData worldData in worlds) {
 			RegisterTiles (worldData, legend);
 			RegisterEnemies (worldData, legend);
 			RegisterSetPieces (worldData);
-			RegisterSpells (worldData.spellSchoolData);
-			RegisterPuzzles (worldData.spellSchoolData);
 		}
 	}
 
@@ -43,11 +45,18 @@ public class ObjectRegistry {
 		}
 	}
 	private void RegisterSetPieces (WorldData worldData) {
-		activeSetpieceDictionary.Add (worldData.playerSpawnSetpieceSpawnInfo.setPieceData.id, worldData.playerSpawnSetpieceSpawnInfo.setPieceData);
-		activeSetpieceDictionary.Add (worldData.nextLevelPortalSpawnInfo.setPieceData.id, worldData.nextLevelPortalSpawnInfo.setPieceData);
+		if (!activeSetpieceDictionary.ContainsKey (worldData.playerSpawnSetpieceSpawnInfo.setPieceData.id)) {
+			activeSetpieceDictionary.Add (worldData.playerSpawnSetpieceSpawnInfo.setPieceData.id, worldData.playerSpawnSetpieceSpawnInfo.setPieceData);
+		}
+		if (!activeSetpieceDictionary.ContainsKey (worldData.nextLevelPortalSpawnInfo.setPieceData.id)) {
+			activeSetpieceDictionary.Add (worldData.nextLevelPortalSpawnInfo.setPieceData.id, worldData.nextLevelPortalSpawnInfo.setPieceData);
+		}
+
 		for (int i = 0; i < worldData.setPieceDatas.Count; i++) {
 			SetPieceData setPieceData = worldData.setPieceDatas[i];
-			activeSetpieceDictionary.Add (setPieceData.id, setPieceData);
+			if (!activeSetpieceDictionary.ContainsKey (setPieceData.id)) {
+				activeSetpieceDictionary.Add (setPieceData.id, setPieceData);
+			}
 		}
 	}
 
@@ -58,10 +67,11 @@ public class ObjectRegistry {
 		}
 	}
 	private void RegisterPuzzles (SpellSchoolData spellSchoolData) {
-		for (int i = 0; i < spellSchoolData.schoolStaffs.Length; i++) {
-			PuzzleData puzzleData = spellSchoolData.schoolStaffs[i];
+		for (int i = 0; i < spellSchoolData.staffs.Length; i++) {
+			PuzzleData puzzleData = spellSchoolData.staffs[i];
 			activePuzzleDictionary.Add (puzzleData.id, puzzleData);
 		}
 	}
+
 	#endregion
 }

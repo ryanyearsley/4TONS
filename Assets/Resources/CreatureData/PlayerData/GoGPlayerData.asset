@@ -13,14 +13,16 @@ MonoBehaviour:
   m_Name: GoGPlayerData
   m_EditorClassIdentifier: Assembly-CSharp::CreatureData
   id: 2001
-  poolSize: 2
+  poolSize: 4
   clearance: 1
   spawnObjectPrefab: {fileID: 3151322532891022119, guid: 7acbfccd59708564c83e4b3321f098de, type: 3}
-  creatureName: WoD
-  health: 100
-  resourceMax: 100
+  creatureName: 
+  maxHealth: 100
+  maxResource: 100
   movementSpeed: 6
-  clipsPackage:
+  creatureAudio:
     attackSound: {fileID: 0}
-    gruntSound: {fileID: 8300000, guid: 69097252889f3f1409f802395420aa04, type: 3}
-    deathSound: {fileID: 8300000, guid: 62b834941063fac438a170997cf1fe1d, type: 3}
+    gruntSound: {fileID: 0}
+    deathSound: {fileID: 0}
+    happySound: {fileID: 0}
+    sadSound: {fileID: 0}

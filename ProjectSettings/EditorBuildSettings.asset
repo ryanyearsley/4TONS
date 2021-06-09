@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/_Scenes/Game/Tutorial/Tutorial_1.unity
     guid: 56302b0d21148a046a2f2a00f2a4d0e0
   - enabled: 1
-    path: Assets/_Scenes/Game/Gauntlet/Gauntlet_Dark.unity
+    path: Assets/_Scenes/Game/Gauntlet/Gauntlet_Hub.unity
     guid: 20899d66f76103540a0af7459c448eb7
+  - enabled: 1
+    path: Assets/_Scenes/Game/Gauntlet/Gauntlet_Dark.unity
+    guid: f0691db1d5c75784abf0855a5e83e568
   m_configObjects: {}

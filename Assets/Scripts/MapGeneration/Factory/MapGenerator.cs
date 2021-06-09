@@ -16,8 +16,8 @@ public class MapGenerator : MonoBehaviour {
 		}
 	}
 	#endregion
-	public WorldData worldData;
-	public MapData mapData;
+	private WorldData worldData;
+	private MapData currentMapData;
 	public MapSpawnPoints spawnPoints;
 
 	[Header ("Gizmos")]
@@ -34,10 +34,10 @@ public class MapGenerator : MonoBehaviour {
 
 	public MapDetails GenerateMap (WorldData worldData, GameDataLegend gameDataLegend, int floorIndex) {
 		this.worldData = worldData;
-		this.mapData = worldData.mapDatas [floorIndex];
-		map = new int [mapData.mapSize.x, mapData.mapSize.y];
+		this.currentMapData = worldData.mapDatas [floorIndex];
+		map = new int [currentMapData.mapGenerationData.mapSize.x, currentMapData.mapGenerationData.mapSize.y];
 		RandomFillMap ();
-		for (int i = 0; i < mapData.smoothingIterations; i++) {
+		for (int i = 0; i < currentMapData.mapGenerationData.smoothingIterations; i++) {
 			SmoothMap ();
 		}
 
@@ -51,21 +51,20 @@ public class MapGenerator : MonoBehaviour {
 		GenerateMapBorder (mapTileInfo);
 		spawnPoints = new MapSpawnPoints ();
 		Vector2Int floorOrigin = floorIndex * Vector2Int.one * 80;
-		MapDetails details = new MapDetails(worldData, mapData, floorIndex,  mapTileInfo, spawnPoints);
-		spawnPoints.playerSpawnPoints = SpawnUtility.GenerateCreatureSpawnPoints (details, mapData.playerSpawnInfo);
+		MapDetails details = new MapDetails(worldData, currentMapData, floorIndex,  mapTileInfo, spawnPoints);
+		spawnPoints.playerSpawnPoints = SpawnUtility.GenerateCreatureSpawnPoints (details, worldData.playerSpawnInfo);
 		spawnPoints.playerSpawnSetPiecePoint = new SpawnPoint (spawnPoints.playerSpawnPoints [0].spawnCoordinate - Vector2Int.one, worldData.playerSpawnSetpieceSpawnInfo.setPieceData);
 		spawnPoints.portalSpawnPoint = SpawnUtility.GenerateSetPieceSpawnPoints (details, worldData.nextLevelPortalSpawnInfo) [0];
-		foreach (CreatureSpawnInfo enemySpawnInfo in mapData.enemySpawnInfos) {
+		foreach (CreatureSpawnInfo enemySpawnInfo in currentMapData.enemySpawnInfos) {
 			spawnPoints.enemySpawnPoints.AddRange (SpawnUtility.GenerateCreatureSpawnPoints (details, enemySpawnInfo));
 		}
-		foreach (SpellGemSpawnInfo spellGemSpawnInfo in mapData.spellGemSpawnInfos) {
+		foreach (SpellGemSpawnInfo spellGemSpawnInfo in currentMapData.spellGemSpawnInfos) {
 			spawnPoints.spellGemSpawnPoints.AddRange (SpawnUtility.GenerateSpellGemSpawnPoints (details, spellGemSpawnInfo));
 		}
-		foreach (StaffSpawnInfo staffSpawnInfo in mapData.staffSpawnInfos) {
+		foreach (StaffSpawnInfo staffSpawnInfo in currentMapData.staffSpawnInfos) {
 			spawnPoints.staffSpawnPoints.AddRange (SpawnUtility.GenerateStaffSpawnPoints (details, staffSpawnInfo));
-
 		}
-		foreach (SetPieceSpawnInfo setPieceSpawnInfo in mapData.setPieceSpawnInfos) {
+		foreach (SetPieceSpawnInfo setPieceSpawnInfo in currentMapData.setPieceSpawnInfos) {
 			spawnPoints.setPieceSpawnPoints.AddRange(SpawnUtility.GenerateSetPieceSpawnPoints (details, setPieceSpawnInfo));
 		}
 
@@ -150,7 +149,7 @@ public class MapGenerator : MonoBehaviour {
 		List<List<Coord>> wallRegions = GetRegions (1);
 
 		foreach (List<Coord> wallRegion in wallRegions) {
-			if (wallRegion.Count < mapData.minimumIslandSize) {
+			if (wallRegion.Count < currentMapData.mapGenerationData.minimumIslandSize) {
 				foreach (Coord tile in wallRegion) {
 					map [tile.tileX, tile.tileY] = 0;
 				}
@@ -161,7 +160,7 @@ public class MapGenerator : MonoBehaviour {
 		List<Room> survivingRooms = new List<Room> ();
 
 		foreach (List<Coord> roomRegion in roomRegions) {
-			if (roomRegion.Count < mapData.minimumRoomSize) {
+			if (roomRegion.Count < currentMapData.mapGenerationData.minimumRoomSize) {
 				foreach (Coord tile in roomRegion) {
 					map [tile.tileX, tile.tileY] = 1;
 				}
@@ -249,7 +248,7 @@ public class MapGenerator : MonoBehaviour {
 
 		List<Coord> line = GetLine (tileA, tileB);
 		foreach (Coord c in line) {
-			DrawCircle (c, mapData.passageRadius);
+			DrawCircle (c, currentMapData.mapGenerationData.passageRadius);
 		}
 	}
 
@@ -316,17 +315,17 @@ public class MapGenerator : MonoBehaviour {
 
 	private Vector3 CoordToWorldPoint (Coord tile) {
 		return new Vector3 (
-			-mapData.mapSize.x / 2 + 0.5f + tile.tileX,
+			-currentMapData.mapGenerationData.mapSize.x / 2 + 0.5f + tile.tileX,
 			2,
-			-mapData.mapSize.y / 2 + 0.5f + tile.tileY);
+			-currentMapData.mapGenerationData.mapSize.y / 2 + 0.5f + tile.tileY);
 	}
 
 	private List<List<Coord>> GetRegions (int tileType) {
 		List<List<Coord>> regions = new List<List<Coord>> ();
-		int [,] mapFlags = new int [mapData.mapSize.x, mapData.mapSize.y];
+		int [,] mapFlags = new int [currentMapData.mapGenerationData.mapSize.x, currentMapData.mapGenerationData.mapSize.y];
 
-		for (int x = 0; x < mapData.mapSize.x; x++) {
-			for (int y = 0; y < mapData.mapSize.y; y++) {
+		for (int x = 0; x < currentMapData.mapGenerationData.mapSize.x; x++) {
+			for (int y = 0; y < currentMapData.mapGenerationData.mapSize.y; y++) {
 				if (mapFlags [x, y] == 0 && map [x, y] == tileType) {
 					List<Coord> newRegion = GetRegionTiles (x,y);
 					regions.Add (newRegion);
@@ -343,7 +342,7 @@ public class MapGenerator : MonoBehaviour {
 
 	private List<Coord> GetRegionTiles (int startX, int startY) {
 		List<Coord> tiles = new List<Coord> ();
-		int[,] mapFlags = new int[mapData.mapSize.x, mapData.mapSize.y];
+		int[,] mapFlags = new int[currentMapData.mapGenerationData.mapSize.x, currentMapData.mapGenerationData.mapSize.y];
 		int tileType = map[startX, startY];
 
 		Queue<Coord> queue = new Queue<Coord> ();
@@ -370,12 +369,12 @@ public class MapGenerator : MonoBehaviour {
 	}
 
 	private bool IsInMapRange (int x, int y) {
-		return x >= 0 && x < mapData.mapSize.x && y >= 0 && y < mapData.mapSize.y;
+		return x >= 0 && x < currentMapData.mapGenerationData.mapSize.x && y >= 0 && y < currentMapData.mapGenerationData.mapSize.y;
 	}
 
 	private void SmoothMap () {
-		for (int x = 0; x < mapData.mapSize.x; x++) {
-			for (int y = 0; y < mapData.mapSize.y; y++) {
+		for (int x = 0; x < currentMapData.mapGenerationData.mapSize.x; x++) {
+			for (int y = 0; y < currentMapData.mapGenerationData.mapSize.y; y++) {
 				int neighborWallTiles = GetSurroundingWallCount (x,y);
 
 				if (neighborWallTiles > 4)
@@ -404,16 +403,16 @@ public class MapGenerator : MonoBehaviour {
 	}
 
 	private void RandomFillMap () {
-		if (!mapData.useCustomSeed)
-			mapData.seed = System.DateTime.Now.Ticks.ToString ();
+		if (!currentMapData.useCustomSeed)
+			currentMapData.seed = System.DateTime.Now.Ticks.ToString ();
 
-		System.Random pseudoRandom = new System.Random (mapData.seed.GetHashCode ());
-		for (int x = 0; x < mapData.mapSize.x; x++) {
-			for (int y = 0; y < mapData.mapSize.y; y++) {
-				if (x == 0 || x == mapData.mapSize.x - 1 || y == 0 || y == mapData.mapSize.y - 1) {
+		System.Random pseudoRandom = new System.Random (currentMapData.seed.GetHashCode ());
+		for (int x = 0; x < currentMapData.mapGenerationData.mapSize.x; x++) {
+			for (int y = 0; y < currentMapData.mapGenerationData.mapSize.y; y++) {
+				if (x == 0 || x == currentMapData.mapGenerationData.mapSize.x - 1 || y == 0 || y == currentMapData.mapGenerationData.mapSize.y - 1) {
 					map [x, y] = 1;
 				} else {
-					map [x, y] = (pseudoRandom.Next (0, 100) < mapData.randomFillPercent) ? 1 : 0;
+					map [x, y] = (pseudoRandom.Next (0, 100) < currentMapData.mapGenerationData.randomFillPercent) ? 1 : 0;
 				}
 			}
 		}
@@ -436,9 +435,9 @@ public class MapGenerator : MonoBehaviour {
 
 	private void OnDrawGizmosSelected () {
 		if (map != null && drawGizmos) {
-			for (int x = 0; x < mapData.mapSize.x; x++) {
-				for (int y = 0; y < mapData.mapSize.y; y++) {
-					Vector3 position = new Vector3 (-mapData.mapSize.x / 2 + x + 0.5f, -mapData.mapSize.y / 2 + y + 0.5f, 0);
+			for (int x = 0; x < currentMapData.mapGenerationData.mapSize.x; x++) {
+				for (int y = 0; y < currentMapData.mapGenerationData.mapSize.y; y++) {
+					Vector3 position = new Vector3 (-currentMapData.mapGenerationData.mapSize.x / 2 + x + 0.5f, -currentMapData.mapGenerationData.mapSize.y / 2 + y + 0.5f, 0);
 					int tileIndex = map[x, y];
 					Gizmos.color = (map [x, y] == 1) ? Color.black : Color.white;
 					Gizmos.DrawCube (position, Vector3.one);

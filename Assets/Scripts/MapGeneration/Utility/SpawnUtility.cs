@@ -10,8 +10,8 @@ public class SpawnUtility
 		for (int i = 0; i < creatureSpawnInfo.spawnCount; i++) {
 			bool spawnPointAdded = false;
 			while (spawnPointAdded == false) {
-				int randomX = Random.Range (1, details.mapData.mapSize.x - 1);
-				int randomY = Random.Range (1, details.mapData.mapSize.y - 1);
+				int randomX = Random.Range (1, details.mapData.mapGenerationData.mapSize.x - 1);
+				int randomY = Random.Range (1, details.mapData.mapGenerationData.mapSize.y - 1);
 
 				if (details.mapTileInfo [randomX, randomY].value == 0) {
 					if (MapUtility.CheckSpawnPointEligibility (details, new Vector2Int (randomX, randomY), spawnObjectData.clearance)) {
@@ -32,8 +32,8 @@ public class SpawnUtility
 		for (int i = 0; i < setPieceSpawnInfo.spawnCount; i++) {
 			bool spawnPointAdded = false;
 			while (spawnPointAdded == false) {
-				int randomX = UnityEngine.Random.Range (5, details.mapData.mapSize.x - 5);
-				int randomY = UnityEngine.Random.Range (5, details.mapData.mapSize.y - 5);
+				int randomX = UnityEngine.Random.Range (5, details.mapData.mapGenerationData.mapSize.x - 5);
+				int randomY = UnityEngine.Random.Range (5, details.mapData.mapGenerationData.mapSize.y - 5);
 
 				if (details.mapTileInfo [randomX, randomY].value == 0) {
 					if (MapUtility.CheckSpawnPointEligibility (details, new Vector2Int (randomX, randomY), setPieceData.clearance)) {
@@ -56,12 +56,12 @@ public class SpawnUtility
 		int roll = UnityEngine.Random.Range (0, 100);
 		if (roll < spellGemSpawnInfo.dropPercentage)
 			while (spawnPointAdded == false) {
-				int randomX = UnityEngine.Random.Range (1, details.mapData.mapSize.x - 1);
-				int randomY = UnityEngine.Random.Range (1, details.mapData.mapSize.y - 1);
+				int randomX = UnityEngine.Random.Range (1, details.mapData.mapGenerationData.mapSize.x - 1);
+				int randomY = UnityEngine.Random.Range (1, details.mapData.mapGenerationData.mapSize.y - 1);
 
 				if (details.mapTileInfo [randomX, randomY].value == 0) {
 					if (MapUtility.CheckSpawnPointEligibility (details, new Vector2Int (randomX, randomY), 1)) {
-						SpellGemSpawnPoint spawnPoint = new SpellGemSpawnPoint (new Vector2Int (randomX, randomY), details.worldData.spellGemPickUpData, spellData);
+						SpellGemSpawnPoint spawnPoint = new SpellGemSpawnPoint (new Vector2Int (randomX, randomY), ConstantsManager.instance.spellGemPickUpData, spellData);
 						MapUtility.ClearSpellGemSpawnPointArea (details.mapTileInfo, spawnPoint);
 						spawnPoints.Add (spawnPoint);
 						details.mapTileInfo [randomX, randomY].value = spellData.id;
@@ -79,12 +79,12 @@ public class SpawnUtility
 		int roll = UnityEngine.Random.Range (0, 100);
 		if (roll < staffSpawnInfo.dropPercentage)
 			while (spawnPointAdded == false) {
-				int randomX = UnityEngine.Random.Range (1, details.mapData.mapSize.x - 1);
-				int randomY = UnityEngine.Random.Range (1, details.mapData.mapSize.y - 1);
+				int randomX = UnityEngine.Random.Range (1, details.mapData.mapGenerationData.mapSize.x - 1);
+				int randomY = UnityEngine.Random.Range (1, details.mapData.mapGenerationData.mapSize.y - 1);
 
 				if (details.mapTileInfo [randomX, randomY].value == 0) {
 					if (MapUtility.CheckSpawnPointEligibility (details, new Vector2Int (randomX, randomY), 1)) {
-						StaffSpawnPoint spawnPoint = new StaffSpawnPoint (new Vector2Int (randomX, randomY), details.worldData.staffPickUpData, puzzleData);
+						StaffSpawnPoint spawnPoint = new StaffSpawnPoint (new Vector2Int (randomX, randomY), ConstantsManager.instance.staffPickUpData, puzzleData);
 						MapUtility.ClearStaffSpawnPointArea (details.mapTileInfo, spawnPoint);
 						spawnPoints.Add (spawnPoint);
 						details.mapTileInfo [randomX, randomY].value = puzzleData.id;

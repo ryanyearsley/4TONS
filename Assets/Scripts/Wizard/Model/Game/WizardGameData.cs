@@ -12,5 +12,4 @@ public class WizardGameData {
 
 	//in-game only
 	public PuzzleKey currentStaffKey = PuzzleKey.PRIMARY_STAFF;
-
 }

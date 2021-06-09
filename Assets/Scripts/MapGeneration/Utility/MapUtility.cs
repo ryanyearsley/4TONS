@@ -98,7 +98,7 @@ public class MapUtility {
 
 		//WORLD COORDINATES
 		Vector2Int currentFloorOrigin = currentMapDetails.floorOrigin;
-		Vector2Int currentFloorHighestCoordinate = currentFloorOrigin + currentMapDetails.mapData.mapSize;
+		Vector2Int currentFloorHighestCoordinate = currentFloorOrigin + currentMapDetails.mapData.mapGenerationData.mapSize;
 
 		int largerDimension = 0;
 		if (currentFloorHighestCoordinate.x > largerDimension)
@@ -135,8 +135,8 @@ public class MapUtility {
 		return output;
 	}
 	public static void ConvertValueInTileInfo (MapDetails details, int replacingValue, int newValue) {
-		for (int x = 0; x < details.mapData.mapSize.x; x++) {
-			for (int y = 0; y < details.mapData.mapSize.y; y++) {
+		for (int x = 0; x < details.mapData.mapGenerationData.mapSize.x; x++) {
+			for (int y = 0; y < details.mapData.mapGenerationData.mapSize.y; y++) {
 				if (details.mapTileInfo [x, y].value == replacingValue) {
 					details.mapTileInfo [x, y].value = newValue;
 				}

@@ -39,8 +39,8 @@ public class WizardCreatePanelUI : MonoBehaviour
 
 		//on-screen...
 		schoolNameText.text = currentSchool.spellSchool.ToString ();
-		wizardDescriptionText.text = currentSchool.description;
-		wizardSelectImage.sprite = currentSchool.wizardSelectIcon;
+		wizardDescriptionText.text = currentSchool.schoolDescription;
+		wizardSelectImage.sprite = currentSchool.wizardData.wizardSelectIcon;
 
 
 	}
@@ -72,7 +72,7 @@ public class WizardCreatePanelUI : MonoBehaviour
 		errorMessageText.text = String.Empty;
 	}
 	public WizardSaveData FinalizeWizardCreate () {
-		WizardSaveData newWizard = currentSchool.defaultWizard.wizardSaveData.Clone ();
+		WizardSaveData newWizard = currentSchool.wizardPrebuildData.wizardSaveData.Clone ();
 		newWizard.wizardName = wizardNameInputField.text;
 		return newWizard;
 	}

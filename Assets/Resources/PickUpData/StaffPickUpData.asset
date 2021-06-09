@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: StaffPickUpData
   m_EditorClassIdentifier: 
   id: 5
-  poolSize: 10
+  poolSize: 8
   clearance: 2
   spawnObjectPrefab: {fileID: 1151805290240904215, guid: ced607ed9d8206040b98da8c2df8d81b, type: 3}

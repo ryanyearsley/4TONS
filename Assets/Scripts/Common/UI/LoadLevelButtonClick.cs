@@ -1,13 +1,10 @@
 using UnityEngine.SceneManagement;
+using NERDSTORM;
 
 public class LoadLevelButtonClick : AbstractButtonClick {
 	public int sceneIndex;
 	protected override void OnClick () {
-		if (MainMenuManager.Instance != null) {
-			MainMenuManager.Instance.LoadScene (sceneIndex);
+			NerdstormSceneManager.instance.LoadSceneByIndex (sceneIndex);
 
-		} else {
-			SceneManager.LoadScene (sceneIndex);
-		}
 	}
 }

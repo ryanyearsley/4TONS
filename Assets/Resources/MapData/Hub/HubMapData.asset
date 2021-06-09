@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b34ada221c297b94490fe91b847673cd, type: 3}
+  m_Name: HubMapData
+  m_EditorClassIdentifier: 
+  customMapData: {fileID: 0}
+  mapGenerationData: {fileID: 11400000, guid: 06ccb3e789cc56946a9ea232aa12a697, type: 2}
+  floorPrefab: {fileID: 8472839727403202167, guid: 4ea040c5f20c4b547ad30734fde7c6bd, type: 3}
+  enemySpawnInfos: []
+  setPieceSpawnInfos:
+  - spawnCount: 1
+    setPieceData: {fileID: 11400000, guid: b73802c99c386d94cafbe5130da24257, type: 2}
+  spellGemSpawnInfos: []
+  staffSpawnInfos: []
+  seed: 637582329182223248
+  useCustomSeed: 0

@@ -17,6 +17,12 @@ MonoBehaviour:
   clearance: 1
   spawnObjectPrefab: {fileID: 3151322532891022119, guid: d8965ae7fc9917d4595ad341fdc46252, type: 3}
   creatureName: WoD
-  health: 100
-  resourceMax: 100
+  maxHealth: 100
+  maxResource: 100
   movementSpeed: 6
+  creatureAudio:
+    attackSound: {fileID: 0}
+    gruntSound: {fileID: 0}
+    deathSound: {fileID: 0}
+    happySound: {fileID: 0}
+    sadSound: {fileID: 0}

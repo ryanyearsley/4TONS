@@ -23,7 +23,7 @@ public class SpellGemPickUp : PickUpObject {
 		backgroundSprite = backgroundSpriteRenderer.sprite;
 		highlightedSprite = spellData.puzzlePieceData.puzzlePieceSprite;
 		spriteRenderer.sprite = spellData.icon;
-		backgroundSpriteRenderer.color = spellData.spellSchoolData.schoolGemColor;
+		backgroundSpriteRenderer.color = spellData.spellSchoolData.schoolColor;
 	}
 	protected override void HighlightPickUp () {
 		backgroundSpriteRenderer.sprite = highlightedSprite;

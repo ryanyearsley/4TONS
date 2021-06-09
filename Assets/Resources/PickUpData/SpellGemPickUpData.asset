@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58488e2f9c5dea246823146dae462bde, type: 3}
   m_Name: SpellGemPickUpData
   m_EditorClassIdentifier: 
-  id: 5
+  id: 6
   poolSize: 10
   clearance: 1
   spawnObjectPrefab: {fileID: 4770684225902127743, guid: 50474e70e84cdf640b3b08f9b8b51d6b, type: 3}

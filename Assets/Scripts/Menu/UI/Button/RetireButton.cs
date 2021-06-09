@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using NERDSTORM;
 
 public class RetireButton : AbstractButtonClick
 {
@@ -10,6 +10,6 @@ public class RetireButton : AbstractButtonClick
 		WizardSaveDataManager.instance.SaveInfamousWizard (wizardSaveData);
 		playerOne.SetPlayerWizardNull ();
 		playerOne.currentPlayerObject = null;
-		SceneManager.LoadScene (0);//move to gauntlet hub
+		NerdstormSceneManager.instance.LoadMenu();
 	}
 }

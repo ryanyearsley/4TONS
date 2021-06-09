@@ -11,7 +11,7 @@ public class WizardSaveDataManager : MonoBehaviour {
 	private bool initialized;
 	public static WizardSaveDataManager instance;
 
-	public PrebuildWizardData defaultWizardData;
+	public WizardData defaultWizardData;
 
 	public List<WizardSaveData> infamousWizardSaveDatas;
 
@@ -25,16 +25,11 @@ public class WizardSaveDataManager : MonoBehaviour {
 		}
 		DontDestroyOnLoad (this.gameObject);
 		CreatePersistentDataDirectories ();
-		infamousWizardSaveDatas = LoadInfamousWizardSavesJSON ();
 	}
 
 	private void Start () {
-
-	}
-	private void OnLevelWasLoaded (int level) {
 		infamousWizardSaveDatas = LoadInfamousWizardSavesJSON ();
 	}
-
 	public void CreatePersistentDataDirectories () {
 		if (!Directory.Exists (Application.persistentDataPath + "/gauntlet_wizards")) {
 			Directory.CreateDirectory (Application.persistentDataPath + "/gauntlet_wizards");

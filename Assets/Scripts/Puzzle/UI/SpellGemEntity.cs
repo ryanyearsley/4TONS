@@ -20,7 +20,7 @@ public class SpellGemEntity : MonoBehaviour {
 	public void InitializeSpellGemEntity (SpellData spellData) {
 		this.spellData = spellData;
 		spriteRenderer.sprite = spellData.puzzlePieceData.puzzlePieceSprite;
-		defaultColor = spellData.spellSchoolData.schoolGemColor;
+		defaultColor = spellData.spellSchoolData.schoolColor;
 		movingColor = new Color (defaultColor.r, defaultColor.g, defaultColor.b, 0.75f);
 		spriteRenderer.color = defaultColor;
 	}

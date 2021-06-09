@@ -7,7 +7,6 @@ using UnityEngine.Audio;
 [System.Serializable]
 public class Sound {
 
-	[SerializeField]
 	private AudioSource source;
 
 	public string clipName;

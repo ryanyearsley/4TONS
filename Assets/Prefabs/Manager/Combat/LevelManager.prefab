@@ -1,0 +1,165 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1008629454225054135
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1008629454225054129}
+  - component: {fileID: 1008629454225054128}
+  - component: {fileID: 1008629454225054131}
+  - component: {fileID: 1144261544982930871}
+  - component: {fileID: 3105340450840886505}
+  - component: {fileID: 3105340450840886504}
+  - component: {fileID: 3105340450840886507}
+  m_Layer: 0
+  m_Name: LevelManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1008629454225054129
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1008629454225054135}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!156049354 &1008629454225054128
+Grid:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1008629454225054135}
+  m_Enabled: 1
+  m_CellSize: {x: 1, y: 0.5, z: 0}
+  m_CellGap: {x: 0, y: 0, z: 0}
+  m_CellLayout: 3
+  m_CellSwizzle: 0
+--- !u!114 &1008629454225054131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1008629454225054135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aaf756fd6f2abbe48997632a1390a76b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  displayCustomSpawnGizmos: 0
+  worldData: {fileID: 11400000, guid: f5b2782667c81ef40991aea7de47c306, type: 2}
+  legend: {fileID: 11400000, guid: c010a8f7a8af9e64e98ba2fd0211c2e1, type: 2}
+  objectRegistry:
+    schoolDataDictionary:
+      m_keys: 
+      m_values: []
+    activeTileDictionary:
+      m_keys: 
+      m_values: []
+    activeSetpieceDictionary:
+      m_keys: 
+      m_values: []
+    activeCreatureDictionary:
+      m_keys: 
+      m_values: []
+    activeSpellDictionary:
+      m_keys: 
+      m_values: []
+    activePuzzleDictionary:
+      m_keys: 
+      m_values: []
+  tilemap: {fileID: 0}
+  displayGridGizmos: 0
+  unwalkableMask:
+    serializedVersion: 2
+    m_Bits: 4096
+  nodeRadius: 0.1
+  walkableRegions: []
+  obstacleProximityPenalty: 20
+  grid: {fileID: 1008629454225054128}
+--- !u!114 &1144261544982930871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1008629454225054135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bcd05b07a85dc340885ffb788500773, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  worldData: {fileID: 11400000, guid: be56f9576645b884b8533de0c890200f, type: 2}
+  mapData: {fileID: 11400000, guid: b40da825b5c53af4d90898a3024186f9, type: 2}
+  spawnPoints:
+    playerSpawnSetPiecePoint:
+      spawnCoordinate: {x: 0, y: 0}
+      spawnObjectData: {fileID: 0}
+      value: 0
+    portalSpawnPoint:
+      spawnCoordinate: {x: 0, y: 0}
+      spawnObjectData: {fileID: 0}
+      value: 0
+    playerSpawnPoints: []
+    enemySpawnPoints: []
+    spellGemSpawnPoints: []
+    staffSpawnPoints: []
+    setPieceSpawnPoints: []
+  drawGizmos: 0
+--- !u!114 &3105340450840886505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1008629454225054135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bb3c2dae57021748a734f3254646a7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3105340450840886504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1008629454225054135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76798ec21a186d54ba441a7712685a54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  displayGridGizmos: 0
+  unwalkableMask:
+    serializedVersion: 2
+    m_Bits: 0
+  nodeRadius: 0
+  walkableRegions: []
+  obstacleProximityPenalty: 10
+--- !u!114 &3105340450840886507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1008629454225054135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e44d406b26a5a9849ada89de23eb4074, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

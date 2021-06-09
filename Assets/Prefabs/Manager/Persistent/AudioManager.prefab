@@ -1,0 +1,191 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &9208858513810747360
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9208858513810747366}
+  - component: {fileID: 9208858513810747361}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9208858513810747366
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9208858513810747360}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -8.94105, y: 10.064007, z: -5.7603993}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9208858513810747361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9208858513810747360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d444568e817b73409c91fcd0b8698fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentSettings:
+    masterVolume: 0
+    musicVolume: 0
+    sfxVolume: 0
+  mixer: {fileID: 24100000, guid: 004a37a2c22918345b123859e614950a, type: 2}
+  sounds:
+  - clipName: Confirm
+    singleClip: {fileID: 8300000, guid: 412a4402665c14e4184f46433dc14e10, type: 3}
+    randomize: 0
+    randomClips: []
+    volume: 1
+    pitch: 1
+    mixerGroup: {fileID: -6668247425034516320, guid: 004a37a2c22918345b123859e614950a, type: 2}
+    loop: 0
+    playOnAwake: 0
+  - clipName: Randomize
+    singleClip: {fileID: 8300000, guid: 47e9512eb88fb3f49bfec0fb00d825dd, type: 3}
+    randomize: 0
+    randomClips: []
+    volume: 1
+    pitch: 1
+    mixerGroup: {fileID: -6668247425034516320, guid: 004a37a2c22918345b123859e614950a, type: 2}
+    loop: 0
+    playOnAwake: 0
+  - clipName: Cancel/Back
+    singleClip: {fileID: 8300000, guid: c4d60879b00328649ad18ea7a16eafb3, type: 3}
+    randomize: 0
+    randomClips: []
+    volume: 1
+    pitch: 1
+    mixerGroup: {fileID: -6668247425034516320, guid: 004a37a2c22918345b123859e614950a, type: 2}
+    loop: 0
+    playOnAwake: 0
+  - clipName: GemPickUp
+    singleClip: {fileID: 8300000, guid: 573b0a593fe1b174da6d982c37ed937a, type: 3}
+    randomize: 0
+    randomClips: []
+    volume: 1
+    pitch: 1
+    mixerGroup: {fileID: 3572843815671908921, guid: 004a37a2c22918345b123859e614950a, type: 2}
+    loop: 0
+    playOnAwake: 0
+  - clipName: GemDrop
+    singleClip: {fileID: 8300000, guid: 61f3111a95f1e8d42bc9dcf8887ee779, type: 3}
+    randomize: 0
+    randomClips: []
+    volume: 1
+    pitch: 1
+    mixerGroup: {fileID: 3572843815671908921, guid: 004a37a2c22918345b123859e614950a, type: 2}
+    loop: 0
+    playOnAwake: 0
+  - clipName: GemBind
+    singleClip: {fileID: 8300000, guid: eb1d47a3d8023134f95a213b153e6496, type: 3}
+    randomize: 0
+    randomClips: []
+    volume: 1
+    pitch: 1
+    mixerGroup: {fileID: 3572843815671908921, guid: 004a37a2c22918345b123859e614950a, type: 2}
+    loop: 0
+    playOnAwake: 0
+  - clipName: StaffPickUp
+    singleClip: {fileID: 8300000, guid: 2497b70533a731c44beebf8f48e27391, type: 3}
+    randomize: 0
+    randomClips: []
+    volume: 1
+    pitch: 1
+    mixerGroup: {fileID: 3572843815671908921, guid: 004a37a2c22918345b123859e614950a, type: 2}
+    loop: 0
+    playOnAwake: 0
+  - clipName: StaffDrop
+    singleClip: {fileID: 8300000, guid: 56c12fb4f944dfc479a4c8bf8c4d38e7, type: 3}
+    randomize: 0
+    randomClips: []
+    volume: 1
+    pitch: 1
+    mixerGroup: {fileID: 3572843815671908921, guid: 004a37a2c22918345b123859e614950a, type: 2}
+    loop: 0
+    playOnAwake: 0
+  - clipName: GemUnbind
+    singleClip: {fileID: 8300000, guid: ab8028ed9ff1bf9499c4c281793b706b, type: 3}
+    randomize: 0
+    randomClips: []
+    volume: 1
+    pitch: 1
+    mixerGroup: {fileID: 3572843815671908921, guid: 004a37a2c22918345b123859e614950a, type: 2}
+    loop: 0
+    playOnAwake: 0
+  - clipName: GemRotate
+    singleClip: {fileID: 8300000, guid: d067ce9ce87281b4ca91f68b757358c3, type: 3}
+    randomize: 0
+    randomClips: []
+    volume: 1
+    pitch: 1
+    mixerGroup: {fileID: 3572843815671908921, guid: 004a37a2c22918345b123859e614950a, type: 2}
+    loop: 0
+    playOnAwake: 0
+  - clipName: StaffSwitch
+    singleClip: {fileID: 8300000, guid: 56520ca359465b64085d652d47cb0054, type: 3}
+    randomize: 0
+    randomClips: []
+    volume: 1
+    pitch: 1
+    mixerGroup: {fileID: 3572843815671908921, guid: 004a37a2c22918345b123859e614950a, type: 2}
+    loop: 0
+    playOnAwake: 0
+  - clipName: RollDodge
+    singleClip: {fileID: 8300000, guid: 390002133cfeb9b44b140917cac67899, type: 3}
+    randomize: 0
+    randomClips: []
+    volume: 1
+    pitch: 1
+    mixerGroup: {fileID: -5956560085541731318, guid: 004a37a2c22918345b123859e614950a, type: 2}
+    loop: 0
+    playOnAwake: 0
+  - clipName: TogglePuzzleOn
+    singleClip: {fileID: 8300000, guid: f9edb158b4e80b94dbbd5ba2f2f75e47, type: 3}
+    randomize: 0
+    randomClips: []
+    volume: 1
+    pitch: 1
+    mixerGroup: {fileID: 3572843815671908921, guid: 004a37a2c22918345b123859e614950a, type: 2}
+    loop: 0
+    playOnAwake: 0
+  - clipName: TogglePuzzleOff
+    singleClip: {fileID: 8300000, guid: 3a6761ee45261974c96ea3a9318669d5, type: 3}
+    randomize: 0
+    randomClips: []
+    volume: 1
+    pitch: 1
+    mixerGroup: {fileID: 3572843815671908921, guid: 004a37a2c22918345b123859e614950a, type: 2}
+    loop: 0
+    playOnAwake: 0
+  musicTracks:
+  - {fileID: 8300000, guid: aabca97a1e5668f489352f0e98013272, type: 3}
+  - {fileID: 8300000, guid: 1f66ada932831e4408be8fa55063062f, type: 3}
+  - {fileID: 8300000, guid: 7b498416b689656408a2a62a8dca006a, type: 3}
+  musicSound:
+    clipName: Music
+    singleClip: {fileID: 8300000, guid: aabca97a1e5668f489352f0e98013272, type: 3}
+    randomize: 0
+    randomClips: []
+    volume: 1
+    pitch: 1
+    mixerGroup: {fileID: -2677633204197684785, guid: 004a37a2c22918345b123859e614950a, type: 2}
+    loop: 0
+    playOnAwake: 0

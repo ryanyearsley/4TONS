@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spellName: 
   spellSchool: 0
-  spellSchoolData: {fileID: 0}
+  spellSchoolData: {fileID: 11400000, guid: 96174b60ed687704a95fd4f57c8a288e, type: 2}
   id: 0
   description: 
   icon: {fileID: 0}
@@ -24,7 +24,11 @@ MonoBehaviour:
   castSpeedReduction: 0
   coolDown: 0
   spellCastLocation: 0
+  spellCastSound: {fileID: 0}
+  spellChannelSound: {fileID: 0}
+  spellEndSound: {fileID: 0}
   spellObject: {fileID: 0}
   poolSize: 0
+  spellPreviewSprite: {fileID: 0}
   spellObjectData: {fileID: 0}
   puzzlePieceData: {fileID: 0}

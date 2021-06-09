@@ -1,0 +1,79 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8884175212134057154
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8884175212134057155}
+  - component: {fileID: 8884175212134057212}
+  m_Layer: 0
+  m_Name: ConstantsManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8884175212134057155
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8884175212134057154}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.50683475, y: -0.11561732, z: -28.25614}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8884175212134057212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8884175212134057154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd71a8127044cbd46b5b6e9367f2a1f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  legend: {fileID: 11400000, guid: c010a8f7a8af9e64e98ba2fd0211c2e1, type: 2}
+  spellSchools:
+  - {fileID: 11400000, guid: 96174b60ed687704a95fd4f57c8a288e, type: 2}
+  worlds:
+  - {fileID: 11400000, guid: f5b2782667c81ef40991aea7de47c306, type: 2}
+  - {fileID: 11400000, guid: be56f9576645b884b8533de0c890200f, type: 2}
+  objectRegistry:
+    schoolDataDictionary:
+      m_keys: 
+      m_values: []
+    activeTileDictionary:
+      m_keys: 
+      m_values: []
+    activeSetpieceDictionary:
+      m_keys: 
+      m_values: []
+    activeCreatureDictionary:
+      m_keys: 
+      m_values: []
+    activeSpellDictionary:
+      m_keys: 
+      m_values: []
+    activePuzzleDictionary:
+      m_keys: 
+      m_values: []
+  playerWizardTemplatePrefab: {fileID: 3151322532891022119, guid: 7acbfccd59708564c83e4b3321f098de, type: 3}
+  spellGemPickupPrefab: {fileID: 4770684225902127743, guid: 50474e70e84cdf640b3b08f9b8b51d6b, type: 3}
+  spellGemUIPrefab: {fileID: 3736764071619496437, guid: caa8575b570f7064fa9976b4e192f64d, type: 3}
+  staffPickupPrefab: {fileID: 1151805290240904215, guid: ced607ed9d8206040b98da8c2df8d81b, type: 3}
+  puzzleEntityPrefab: {fileID: 1521480063981950361, guid: 3e10f28399dea22418a2c6e61d0522af, type: 3}
+  puzzleTile: {fileID: 11400000, guid: b4c6b12a214a7744ea78a5573676c646, type: 2}
+  randomWizardNames: {fileID: 11400000, guid: 660b8bb0a2792ea468e012a6085ff2e0, type: 2}
+  validProjectedAoEColor: {r: 1, g: 1, b: 1, a: 0.46666667}
+  invalidProjectedAoEColor: {r: 0.8018868, g: 0.11725702, b: 0.11725702, a: 0.3882353}

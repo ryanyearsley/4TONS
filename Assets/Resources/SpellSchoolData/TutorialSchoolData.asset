@@ -14,17 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   schoolIndexStart: 2000
   spellSchool: 1
-  worldData: {fileID: 11400000, guid: be56f9576645b884b8533de0c890200f, type: 2}
-  schoolGemColor: {r: 0.46849418, g: 0.31118724, b: 0.5943396, a: 1}
-  description: Suck the life from your enemies, summoning a horde of zombies and
-    tentacles.
-  wizardSelectIcon: {fileID: 21300000, guid: 137d634ce3c652244a1b0533beeb1488, type: 3}
-  portrait: {fileID: 21300000, guid: 1624b8ed24c4dfa41997fb2fd6141052, type: 3}
-  animatorController: {fileID: 22100000, guid: 53842169d2e3b774db5dfbffcebf4c93, type: 2}
-  defaultWizard: {fileID: 11400000, guid: cc57fad5e80e99d4fabd98aa66058347, type: 2}
-  schoolStaffs:
-  - {fileID: 11400000, guid: 595edcabdfd2dfb49b144a4cb967839a, type: 2}
-  - {fileID: 11400000, guid: 8b1caf4a6f0803d4684d1c6a7f14c690, type: 2}
+  schoolDescription: 
+  wizardData: {fileID: 11400000, guid: 613b492791ce64a4aa24446d97820805, type: 2}
+  wizardPrebuildData: {fileID: 11400000, guid: 8a83a3e68eb495d47a9515e7faaf375d, type: 2}
+  schoolColor: {r: 0, g: 0, b: 0, a: 0}
+  staffs: []
   spells:
   - {fileID: 11400000, guid: f8a09e2fb222c62489690f14902cef0d, type: 2}
   - {fileID: 11400000, guid: 2d3465d624cf7c743abbbaf28fec6fc3, type: 2}

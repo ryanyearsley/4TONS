@@ -13,15 +13,13 @@ using UnityEngine.Tilemaps;
 public class WorldData : ScriptableObject, IEnumerable<Tile> {
 
 	public int schoolIndexStart;
-	public SpellSchool spellSchool;
+	public Zone zone;
 	public Sprite background;
-	public SpellSchoolData spellSchoolData;
-	public CreatureData playerData;
-	public SpawnObjectData spellGemPickUpData;
-	public SpawnObjectData staffPickUpData;
+	public CreatureData playerCreatureData;
 	public List<CreatureData> enemyDatas;
 
 	public List<Tile> tileset;
+	public CreatureSpawnInfo playerSpawnInfo;
 	public SetPieceSpawnInfo playerSpawnSetpieceSpawnInfo;
 	public SetPieceSpawnInfo nextLevelPortalSpawnInfo;
 	public List<SetPieceData> setPieceDatas;

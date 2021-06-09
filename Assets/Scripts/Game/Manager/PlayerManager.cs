@@ -2,10 +2,11 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 
-public class PlayerManager : MonoBehaviour {
+public class PlayerManager : PersistentManager {
 	#region Singleton
 	public static PlayerManager instance { get; private set; }
 	private void InitializeSingleton () {
@@ -19,13 +20,13 @@ public class PlayerManager : MonoBehaviour {
 
 	//toggle this on/off for testing within a scene.
 	public bool startFromCombatScene;
-	public PrebuildWizardData defaultWizardData;
+	public WizardPrebuildData defaultWizardData;
 	[SerializeField]
 	public List<Player> currentPlayers = new List<Player>();
 
-	private void Awake () {
+	protected override void Awake () {
+		base.Awake ();
 		InitializeSingleton ();
-		DontDestroyOnLoad(this.gameObject);
 		if (currentPlayers.Count == 0 && startFromCombatScene) {
 			Player testPlayer = new Player(0, 0);
 			testPlayer.isAlive = true;
@@ -33,7 +34,9 @@ public class PlayerManager : MonoBehaviour {
 			currentPlayers.Add (testPlayer);
 		}
 	}
-	
+	public override void SceneLoaded (Scene scene, LoadSceneMode loadSceneMode) {
+		
+	}
 	public void AddPlayer(Player player) {
 		if (currentPlayers.Contains (player)) return;
 		currentPlayers.Add (player);
@@ -77,3 +80,4 @@ public class Player {
 		isAlive = false;
 	}
 }
+
