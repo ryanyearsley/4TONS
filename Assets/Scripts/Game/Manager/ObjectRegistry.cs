@@ -31,14 +31,13 @@ public class ObjectRegistry {
 	#region dictionary setup
 
 	private void RegisterTiles (WorldData worldData, GameDataLegend legend) {
-		int indexStart = worldData.schoolIndexStart + legend.TILE_INDEX_START;
-		for (int i = 0; i < worldData.tileset.Count; i++) {
-			int index = indexStart + i;
-			activeTileDictionary.Add (index, worldData.tileset [i]);
+		for (int i = 0; i < worldData.tiles.Count; i++) {
+			int id = worldData.tiles[i].id;
+			if (!activeTileDictionary.ContainsKey(id))
+			activeTileDictionary.Add (id, worldData.tiles[i].tile);
 		}
 	}
 	private void RegisterEnemies (WorldData worldData, GameDataLegend legend) {
-		int enemyIndexStart = worldData.schoolIndexStart + legend.ENEMY_SPAWN_INDEX_START;
 		for (int i = 0; i < worldData.enemyDatas.Count; i++) {
 			CreatureData enemyData = worldData.enemyDatas[i];
 			activeCreatureDictionary.Add (enemyData.id, enemyData);

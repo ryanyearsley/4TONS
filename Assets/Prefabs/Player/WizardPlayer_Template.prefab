@@ -646,6 +646,8 @@ MonoBehaviour:
       wizardName: 
       spellSchoolData: {fileID: 0}
       spellSchoolDataIndex: 0
+      wizardData: {fileID: 0}
+      wizardDataIndex: 0
       primaryStaffSaveData:
         puzzleData: {fileID: 0}
         puzzleDataIndex: 0
@@ -664,6 +666,7 @@ MonoBehaviour:
         spellGemSaveDataDictionary:
           m_keys: []
           m_values: []
+      towerProgress: []
     currentPlayerObject: {fileID: 0}
   playerUI: {fileID: 0}
   wizardGameData:
@@ -673,7 +676,7 @@ MonoBehaviour:
       m_keys: 
       m_values: []
     currentStaffKey: 2
-  defaultWizardSaveData: {fileID: 11400000, guid: 613b492791ce64a4aa24446d97820805, type: 2}
+  defaultWizardPrebuildData: {fileID: 11400000, guid: 9a95e018017ba854eb1e309c8555e624, type: 2}
   usingMouseControls: 0
   smartCursor: 0
   currentAimingMode: 0

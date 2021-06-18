@@ -15,4 +15,5 @@ MonoBehaviour:
   id: 2013
   poolSize: 2
   clearance: 2
+  school: 1
   spawnObjectPrefab: {fileID: 7681443459082228421, guid: b850d95e42006a449a0cc0dd13e1cccc, type: 3}

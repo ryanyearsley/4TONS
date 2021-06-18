@@ -236,6 +236,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1521986983222496143, guid: 1cfa0d7504ca2204380ff2f790103f47, type: 3}
+      propertyPath: defaultWizardData
+      value: 
+      objectReference: {fileID: 11400000, guid: 8a83a3e68eb495d47a9515e7faaf375d, type: 2}
+    - target: {fileID: 1521986983222496143, guid: 1cfa0d7504ca2204380ff2f790103f47, type: 3}
       propertyPath: startFromCombatScene
       value: 0
       objectReference: {fileID: 0}
@@ -363,6 +367,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8884175212134057212, guid: 9fee5ac39cf1ab540bf0c8e15f70c5da, type: 3}
+      propertyPath: staffPickUpData
+      value: 
+      objectReference: {fileID: 11400000, guid: 068e24aab08d0fc4ab1b20cd58920012, type: 2}
+    - target: {fileID: 8884175212134057212, guid: 9fee5ac39cf1ab540bf0c8e15f70c5da, type: 3}
+      propertyPath: worlds.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884175212134057212, guid: 9fee5ac39cf1ab540bf0c8e15f70c5da, type: 3}
+      propertyPath: spellGemPickUpData
+      value: 
+      objectReference: {fileID: 11400000, guid: c5abe41b66335894d94c02f288c77685, type: 2}
+    - target: {fileID: 8884175212134057212, guid: 9fee5ac39cf1ab540bf0c8e15f70c5da, type: 3}
+      propertyPath: worlds.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 5c8f5e60297e7e94a9c99b9598ac17f8, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9fee5ac39cf1ab540bf0c8e15f70c5da, type: 3}
 --- !u!4 &1176582185763508938 stripped

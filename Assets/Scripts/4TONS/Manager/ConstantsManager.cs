@@ -84,8 +84,19 @@ public class ConstantsManager : PersistentManager {
 		foreach (WorldData worldData in worlds) {
 			int zoneIndexStart = zoneIndexStartDictionary [worldData.zone];
 			worldData.schoolIndexStart = zoneIndexStart;
-			worldData.playerSpawnSetpieceSpawnInfo.setPieceData.id = zoneIndexStart + legend.PLAYER_ONE_SPAWN_INDEX;
-			worldData.nextLevelPortalSpawnInfo.setPieceData.id = zoneIndexStart + legend.NEXT_LEVEL_PORTAL_INDEX;
+			if (worldData.playerSpawnSetpieceSpawnInfo.setPieceData.school == worldData.school) {
+				worldData.playerSpawnSetpieceSpawnInfo.setPieceData.id = zoneIndexStart + legend.PLAYER_ONE_SPAWN_INDEX;
+			}
+			if (worldData.nextLevelPortalSpawnInfo.setPieceData.school == worldData.school) {
+				worldData.nextLevelPortalSpawnInfo.setPieceData.id = zoneIndexStart + legend.NEXT_LEVEL_PORTAL_INDEX;
+			}
+
+			for (int i = 0; i < worldData.tiles.Count; i++) {
+				TileData tileData = worldData.tiles[i];
+				if (tileData.zone == worldData.zone) {
+					tileData.id = zoneIndexStart + legend.TILE_INDEX_START + i;
+				}
+			}
 
 			for (int i = 0; i < worldData.enemyDatas.Count; i++) {
 				worldData.enemyDatas [i].id = zoneIndexStart + legend.ENEMY_SPAWN_INDEX_START + i;

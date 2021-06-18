@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: HubWorldData
   m_EditorClassIdentifier: 
   schoolIndexStart: 5000
+  school: 4
   zone: 6
   background: {fileID: 21300000, guid: 0eae138116f906047a7ac918aa7953ff, type: 3}
   playerCreatureData: {fileID: 11400000, guid: 7505292d04f3608419afaf178b6440b3, type: 2}
@@ -20,6 +21,9 @@ MonoBehaviour:
   tileset:
   - {fileID: 11400000, guid: 3ff61461b4d3c0f4c8d73d0003c3cf0e, type: 2}
   - {fileID: 11400000, guid: 41a7c7afea2bd6e41953c6039a9a6f26, type: 2}
+  tiles:
+  - {fileID: 11400000, guid: e69f9e1b6f882af449d38b85efecdadd, type: 2}
+  - {fileID: 11400000, guid: 7b70c493828e485469f2720e0e2d1162, type: 2}
   playerSpawnInfo:
     spawnCount: 1
     spawnObjectData: {fileID: 11400000, guid: 7505292d04f3608419afaf178b6440b3, type: 2}

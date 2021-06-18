@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58488e2f9c5dea246823146dae462bde, type: 3}
   m_Name: DarkCryptData
   m_EditorClassIdentifier: 
-  id: 2200
+  id: 6200
   poolSize: 5
   clearance: 3
+  school: 1
   spawnObjectPrefab: {fileID: 4767748298142753111, guid: 3d5c16c674666d340b0af798c4283663, type: 3}

@@ -241,7 +241,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   _defaultToCenter: 1
-  _pointerSpeed: 1
+  _pointerSpeed: 1.5
   _useHardwarePointerPosition: 0
   _clampToMovementArea: 1
   _movementArea:

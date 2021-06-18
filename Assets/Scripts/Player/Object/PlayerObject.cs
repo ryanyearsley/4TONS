@@ -59,7 +59,7 @@ public class PlayerObject : CreatureObject {
 	public void ReusePlayerObject (Player player) {
 		this.player = player;
 		playerUI = UIManager.Instance.playerUIs [player.playerIndex];
-		if (player.wizardSaveData != null) {
+		if (player.wizardSaveData.spellSchoolData != null) {
 			wizardGameData = WizardGameDataMapper.MapWizardSaveToGameData (player.wizardSaveData);
 		} else {
 			Debug.Log ("PlayerObject: No save data found on player. Cloning defaults.");
