@@ -208,12 +208,10 @@ public class ThinkComponent : BabyBrainsComponent {
 
 	private BabyBrainsBehaviour PreviewBestValid (AIPriorityQueue pq) {
 
-		Debug.Log ("PreviewBestValid start");
 		while (!pq.isEmpty ()) {
 			//choose a new behaviour to begin execution.
 			BabyBrainsBehaviour topBehaviour = pq.Pop();
 			if (topBehaviour.Valid (sensoryInfo)) {
-
 				Debug.Log ("PreviewBestValid: Valid behaviour found! Behaviour: " + topBehaviour.behaviourData.behaviourName);
 				return topBehaviour;
 			} else {

@@ -7,7 +7,6 @@ public abstract class VitalsComponent : CreatureComponent {
 
     [SerializeField]
     protected float currentValue;
-    [SerializeField]
     protected float maxValue;
 
     public GameObject overheadUIPrefab;

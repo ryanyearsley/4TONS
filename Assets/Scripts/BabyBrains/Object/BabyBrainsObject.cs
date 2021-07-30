@@ -1,12 +1,6 @@
 ﻿using System;
 using UnityEngine;
 public class BabyBrainsObject : CreatureObject {
-	/*Basic state machine management/flow for enemy AI
-	1. Polls for enemy targets within x range (IDLE)
-	2. Once within pursuit range, pursues target on foot (PURSUIT)
-	3. Once iwthin attack range, attacks target at Y interval (ATTACK)
-	4. Dies (DEAD)
-	 */
 
 	public ThinkComponent thinkComponent;
 	BabyBrainsComponent[] babyBrainsComponents;

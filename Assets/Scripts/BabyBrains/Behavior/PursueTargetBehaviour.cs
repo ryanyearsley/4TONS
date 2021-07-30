@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PursueTargetBehaviour : BabyBrainsBehaviour
-{
+public class PursueTargetBehaviour : BabyBrainsBehaviour {
 	[SerializeField]
 	private float aggroDistance;
 	[SerializeField]
@@ -15,12 +14,15 @@ public class PursueTargetBehaviour : BabyBrainsBehaviour
 		aStarUnit = GetComponentInParent<PathfindingComponent> ();
 	}
 	public override bool Valid (SensoryInfo sensoryInfo) {
-		if (sensoryInfo.targetVitals.trans != null && sensoryInfo.isoDistanceToTarget < aggroDistance && aStarUnit.canFollow) {
+		if (sensoryInfo.targetVitals.trans != null
+			&& !sensoryInfo.targetVitals.creatureObject.isDead
+			&& sensoryInfo.isoDistanceToTarget < aggroDistance
+			&& aStarUnit.canFollow) {
 			return true;
 		} else return false;
 	}
 
-	public override void OnTaskStart(SensoryInfo sensoryInfo) {
+	public override void OnTaskStart (SensoryInfo sensoryInfo) {
 		Debug.Log ("Executing pursue target");
 		_finished = false;
 		cdTimer = Cooldown;
@@ -28,7 +30,9 @@ public class PursueTargetBehaviour : BabyBrainsBehaviour
 	}
 	public override void UpdateBehaviour (SensoryInfo sensoryInfo, float interval) {
 		Debug.Log ("Updating pursue target");
-		if (sensoryInfo.isoDistanceToTarget > breakAggroDistance || !aStarUnit.followingPath) {
+		if (sensoryInfo.isoDistanceToTarget > breakAggroDistance
+			|| !aStarUnit.followingPath
+			|| sensoryInfo.targetVitals.creatureObject.isDead) {
 			_finished = true;
 		}
 	}

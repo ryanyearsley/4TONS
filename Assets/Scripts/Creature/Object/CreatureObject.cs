@@ -98,6 +98,13 @@ public class CreatureObject : PoolObject {
 
 	public virtual void OnAttack (AttackInfo attackInfo) {
 		OnAttackEvent?.Invoke (attackInfo);
+		StartCoroutine (AttackRoutine (attackInfo));
+	}
+
+	public IEnumerator AttackRoutine(AttackInfo attackInfo) {
+		SetCanAttack (false);
+		yield return new WaitForSeconds (attackInfo.attackTime);
+		SetCanAttack (true);
 	}
 	public virtual void OnHit (HitInfo onHitInfo) {
 		OnHitEvent?.Invoke (onHitInfo);
