@@ -69,6 +69,8 @@ MonoBehaviour:
       m_keys: 
       m_values: []
   playerWizardTemplatePrefab: {fileID: 3151322532891022119, guid: 7acbfccd59708564c83e4b3321f098de, type: 3}
+  spellGemPickUpData: {fileID: 11400000, guid: c5abe41b66335894d94c02f288c77685, type: 2}
+  staffPickUpData: {fileID: 11400000, guid: 068e24aab08d0fc4ab1b20cd58920012, type: 2}
   spellGemPickupPrefab: {fileID: 4770684225902127743, guid: 50474e70e84cdf640b3b08f9b8b51d6b, type: 3}
   spellGemUIPrefab: {fileID: 3736764071619496437, guid: caa8575b570f7064fa9976b4e192f64d, type: 3}
   staffPickupPrefab: {fileID: 1151805290240904215, guid: ced607ed9d8206040b98da8c2df8d81b, type: 3}

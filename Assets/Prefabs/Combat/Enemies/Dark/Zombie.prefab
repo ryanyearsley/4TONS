@@ -148,7 +148,7 @@ GameObject:
   - component: {fileID: 3125169596821539830}
   - component: {fileID: 2127811143}
   m_Layer: 11
-  m_Name: BabyBrainsZombie
+  m_Name: Zombie
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

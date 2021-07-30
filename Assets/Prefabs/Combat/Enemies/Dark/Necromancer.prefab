@@ -244,7 +244,7 @@ GameObject:
   - component: {fileID: 8036647390902012780}
   - component: {fileID: 4961063570847371997}
   m_Layer: 11
-  m_Name: BabyBrainsNecromancer
+  m_Name: Necromancer
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
