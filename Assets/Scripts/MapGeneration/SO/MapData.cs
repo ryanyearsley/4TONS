@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu (fileName = "New Map Data", menuName = "ScriptableObjects/Map Data")]
+[CreateAssetMenu (fileName = "New Map Data", menuName = "ScriptableObjects/Map Generation/Map Data")]
 public class MapData : ScriptableObject {
 
 	//looks at which ever is present and acts accordingly.
@@ -10,10 +10,17 @@ public class MapData : ScriptableObject {
 	public MapGenerationData mapGenerationData;
 
 	public GameObject floorPrefab;//one-piece floor object spawned at 0, 0 (includes front fascia) 
-	public CreatureSpawnInfo[] enemySpawnInfos;
+	
 	public SetPieceSpawnInfo[] setPieceSpawnInfos;
-	public SpellGemSpawnInfo [] spellGemSpawnInfos;
+	public CreatureSpawnInfo[] enemySpawnInfos;
+
+	public SpellGemSpawnInfo[] spellGemSpawnInfos;
 	public StaffSpawnInfo [] staffSpawnInfos;
+
+	[MinMaxSlider(0, 100)]
+	public Vector2Int floorRollRange;
+
+
 	[ConditionalHide ("useCustomSeed")]
 	public string seed;
 	public bool useCustomSeed;

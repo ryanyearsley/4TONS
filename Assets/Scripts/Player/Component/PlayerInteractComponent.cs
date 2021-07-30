@@ -49,7 +49,7 @@ public class PlayerInteractComponent : PlayerComponent {
 					PickUpSpellGem (closestObject.GetComponent<SpellGemPickUp> ());
 				} else if (closestObject is StaffPickUp) {
 					PickUpStaff (closestObject.GetComponent<StaffPickUp> ());
-				}
+				} 
 			}
 		} else if (playerObject.currentPlayerState == PlayerState.PUZZLE_BROWSING) {
 

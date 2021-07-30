@@ -31,11 +31,21 @@ public class ObjectRegistry {
 	#region dictionary setup
 
 	private void RegisterTiles (WorldData worldData, GameDataLegend legend) {
-		for (int i = 0; i < worldData.tiles.Count; i++) {
-			int id = worldData.tiles[i].id;
-			if (!activeTileDictionary.ContainsKey(id))
-			activeTileDictionary.Add (id, worldData.tiles[i].tile);
+
+		activeTileDictionary.Add (worldData.floorTile.id, worldData.floorTile.tile);
+		activeTileDictionary.Add (worldData.baseTile.id, worldData.baseTile.tile);
+		activeTileDictionary.Add (worldData.borderTile.id, worldData.borderTile.tile);
+		for (int i = 0; i < worldData.baseDecorTiles.Count; i++) {
+			int id = worldData.baseDecorTiles[i].id;
+			if (!activeTileDictionary.ContainsKey (id))
+				activeTileDictionary.Add (id, worldData.baseDecorTiles [i].tile);
 		}
+		for (int i = 0; i < worldData.topDecorTiles.Count; i++) {
+			int id = worldData.topDecorTiles[i].id;
+			if (!activeTileDictionary.ContainsKey (id))
+				activeTileDictionary.Add (id, worldData.topDecorTiles [i].tile);
+		}
+
 	}
 	private void RegisterEnemies (WorldData worldData, GameDataLegend legend) {
 		for (int i = 0; i < worldData.enemyDatas.Count; i++) {

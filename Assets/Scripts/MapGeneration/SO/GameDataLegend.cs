@@ -17,32 +17,24 @@ public class GameDataLegend : ScriptableObject {
 	//5000-10000 reserved for additional schools
 
 	//All of these numbers are offset by 1000 based on which world is in play.
-	//For example....  1100 would represent light world (between 1000 and 1999) single-tile setpiece (x100)
+	//For example....  1100 would represent light world (between 1000 and 1999) base-tile (+100)
 
 	//world-specific
-	//1-100 allocated to key objective setpieces only)
-	//Example: a generic spawn would be 1
-	//But....  a dark spawn would be 2001 (dark = 2000, + 1)
-	public int PLAYER_ONE_SPAWN_INDEX = 1;
-	//Example: a generic portal would be 13
-	//But....  a dark portal would be 2013 (dark = 2000, + 13)
-	public int NEXT_LEVEL_PORTAL_INDEX = 13;
 	//and so on
 
-	public int TILE_INDEX_START = 100;
-	//Example: generic single-tile setpiece would be 100-199
-	//But....  a dark portal would be 2100-2199 (dark = 2000, + 100, + setpiece index)
-	//2100 = dark empty tile
-	//2101 = dark basic block
+	public int TILE_INDEX_START = 100;  
+	public int FLOOR_TILE_INDEX_START = 0; //2100
+	public int BASE_TILE_INDEX_START = 1; //2101
+	public int BORDER_TILE_INDEX_START = 2; //2102
+	public int BASE_DECOR_TILE_INDEX_START = 3; //2103 - 2149
+	public int TOP_DECOR_TILE_INDEX_START = 50; //2150 - 2199
 	public int SETPIECE_INDEX_START = 200;
 	public int ENEMY_SPAWN_INDEX_START = 300;
 	public int SPELL_INDEX_START = 400;
 	public int STAFF_INDEX_START = 500;
-	//600-999 reserved for additional mechanics
-}
+	public int OBJECTIVE_INDEX_START = 600;
 
-public class IndexGroup {
-	public Zone zone;
-	public SpellSchool school;
-	public int indexStart;
+	public int PLAYER_ONE_SPAWN_INDEX = 1;
+	public int NEXT_LEVEL_PORTAL_INDEX = 2;
+	//600-999 reserved for additional mechanics
 }

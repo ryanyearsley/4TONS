@@ -115,7 +115,7 @@ namespace PlayerManagement {
 				playerAiming = target.GetComponent<PlayerAimingComponent> ();
 			}
 
-			SetCameraZoom (CameraZoom.CLOSE);
+			SetCameraZoom (CameraZoom.MID);
 		}
 
 

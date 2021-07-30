@@ -24,9 +24,7 @@ public class PlayerAimingComponent : PlayerComponent {
 
 	private CursorController cursorController;
 	private StaffAimObject staffAimObject;
-	[SerializeField]
 	private Transform aimingPivotTransform;
-	[SerializeField]
 	private Transform cursorPivotTransform;
 	private Transform cursorTransform;
 
@@ -62,7 +60,7 @@ public class PlayerAimingComponent : PlayerComponent {
 	private void CreateCursor () {
 		GameObject aimingPivotGo = new GameObject("AimingPivot");
 		aimingPivotTransform = aimingPivotGo.transform;
-		aimingPivotTransform.parent = transform;
+		aimingPivotTransform.parent = transform.GetComponentInChildren<AnimationComponent>().transform.parent;
 		aimingPivotTransform.localPosition = new Vector3 (0, 0.325f, 0);
 
 

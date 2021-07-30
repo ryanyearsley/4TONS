@@ -9,20 +9,19 @@ using TMPro;
 public class HubPortalObject : PoolObject {
 
 	public SpellSchool school;
-
 	public PortalStatus portalStatus;
-
-	private Animator animator;
-	private CircleCollider2D portalCollider;
+	private Collider2D portalCollider;
 	[SerializeField]
 	private TextMeshProUGUI towerStatusText;
+
+	[SerializeField]
+	private GameObject spriteObject;
 
 	private void Awake () {
 	}
 
 	public override void SetupObject () {
-		animator = GetComponentInChildren<Animator> ();
-		portalCollider = GetComponent<CircleCollider2D> ();
+		portalCollider = GetComponent<Collider2D> ();
 		portalCollider.enabled = false;
 		portalStatus = PortalStatus.DISABLED;
 		base.SetupObject ();
@@ -41,21 +40,21 @@ public class HubPortalObject : PoolObject {
 
 	private void SetPortalOpen() {
 		portalStatus = PortalStatus.OPEN;
-		animator.SetTrigger ("open");
 		towerStatusText.text = "OPEN";
 		portalCollider.enabled = true;
+		spriteObject.SetActive (true);
 	}
 	private void SetPortalClosed () {
 		portalStatus = PortalStatus.CLOSED;
-		animator.SetTrigger ("close");
 		towerStatusText.text = "CLOSED";
 		portalCollider.enabled = false;
+		spriteObject.SetActive (false);
 	}
 	private void SetPortalComplete () {
 		portalStatus = PortalStatus.COMPLETE;
-		animator.SetTrigger ("complete");
 		towerStatusText.text = "COMPLETED";
 		portalCollider.enabled = false;
+		spriteObject.SetActive (false);
 	}
 	public override void TerminateObjectFunctions () {
 		portalStatus = PortalStatus.DISABLED;

@@ -16,7 +16,6 @@ public class MapGenerator : MonoBehaviour {
 		}
 	}
 	#endregion
-	private WorldData worldData;
 	private MapData currentMapData;
 	public MapSpawnPoints spawnPoints;
 
@@ -33,43 +32,59 @@ public class MapGenerator : MonoBehaviour {
 	}
 
 	public MapDetails GenerateMap (WorldData worldData, GameDataLegend gameDataLegend, int floorIndex) {
-		this.worldData = worldData;
 		this.currentMapData = worldData.mapDatas [floorIndex];
 		map = new int [currentMapData.mapGenerationData.mapSize.x, currentMapData.mapGenerationData.mapSize.y];
+		
+		//GENERATE BASE
 		RandomFillMap ();
 		for (int i = 0; i < currentMapData.mapGenerationData.smoothingIterations; i++) {
 			SmoothMap ();
 		}
 
 		ProcessMap ();
-		/*
-				map = GenerateMapBorder ();
-				Now that the series of 1s and 0s
-				that define the basic shape of our map has been generated...
-				convert to MapTileInfo (game context on every tile)*/
 		mapTileInfo = MapUtility.ConvertMapToTileInfo (map);
 		GenerateMapBorder (mapTileInfo);
-		spawnPoints = new MapSpawnPoints ();
-		Vector2Int floorOrigin = floorIndex * Vector2Int.one * 80;
 		MapDetails details = new MapDetails(worldData, currentMapData, floorIndex,  mapTileInfo, spawnPoints);
+
+		//CONVERT TO WORLD SKIN
+		MapUtility.ConvertValueInTileInfo (details, 0, worldData.floorTile);
+		MapUtility.ConvertValueInTileInfo (details, 1, worldData.baseTile);
+		MapUtility.ConvertValueInTileInfo (details, 2, worldData.borderTile);
+
+		//GENERATE LARGE SETPIECES 
+		foreach (SetPieceSpawnInfo setPieceSpawnInfo in currentMapData.setPieceSpawnInfos) {
+			spawnPoints.setPieceSpawnPoints.AddRange (SpawnUtility.GenerateSetPieceSpawnPoints (details, setPieceSpawnInfo));
+		}
+		//GENERATE CORE OBJECTIVE SPAWN POINTS
 		spawnPoints.playerSpawnPoints = SpawnUtility.GenerateCreatureSpawnPoints (details, worldData.playerSpawnInfo);
 		spawnPoints.playerSpawnSetPiecePoint = new SpawnPoint (spawnPoints.playerSpawnPoints [0].spawnCoordinate - Vector2Int.one, worldData.playerSpawnSetpieceSpawnInfo.setPieceData);
 		spawnPoints.portalSpawnPoint = SpawnUtility.GenerateSetPieceSpawnPoints (details, worldData.nextLevelPortalSpawnInfo) [0];
+
+
 		foreach (CreatureSpawnInfo enemySpawnInfo in currentMapData.enemySpawnInfos) {
 			spawnPoints.enemySpawnPoints.AddRange (SpawnUtility.GenerateCreatureSpawnPoints (details, enemySpawnInfo));
 		}
-		foreach (SpellGemSpawnInfo spellGemSpawnInfo in currentMapData.spellGemSpawnInfos) {
-			spawnPoints.spellGemSpawnPoints.AddRange (SpawnUtility.GenerateSpellGemSpawnPoints (details, spellGemSpawnInfo));
+
+		//GENERATE PICK-UPS
+		Vector2Int floorRollRange = currentMapData.floorRollRange;
+		int playerRoll = UnityEngine.Random.Range (floorRollRange.x, floorRollRange.y);
+		List<SpellData> spawningSpellGems = worldData.lootTableData.RollForGems (playerRoll);
+		foreach (SpellData spellData in spawningSpellGems) {
+			spawnPoints.spellGemSpawnPoints.AddRange (SpawnUtility.GenerateSpellGemSpawnPoints (details, spellData));
 		}
 		foreach (StaffSpawnInfo staffSpawnInfo in currentMapData.staffSpawnInfos) {
 			spawnPoints.staffSpawnPoints.AddRange (SpawnUtility.GenerateStaffSpawnPoints (details, staffSpawnInfo));
 		}
-		foreach (SetPieceSpawnInfo setPieceSpawnInfo in currentMapData.setPieceSpawnInfos) {
-			spawnPoints.setPieceSpawnPoints.AddRange(SpawnUtility.GenerateSetPieceSpawnPoints (details, setPieceSpawnInfo));
-		}
 
-		int towerBasicBlockIndex = worldData.schoolIndexStart + gameDataLegend.TILE_INDEX_START + 1;
-		MapUtility.ConvertValueInTileInfo (details, 1, towerBasicBlockIndex);
+		/*
+		foreach (TileSpawnInfo baseDecorInfo in currentMapData.baseDecorSpawnInfos) {
+			SpawnUtility.GenerateTileSetpieces (details, baseDecorInfo);
+		}
+		foreach (TileSpawnInfo topDecorInfo in currentMapData.topDecorSpawnInfos) {
+			SpawnUtility.GenerateTopDecorTiles (details, topDecorInfo);
+		}
+		*/
+		
 
 		return details;
 	}
@@ -146,6 +161,7 @@ public class MapGenerator : MonoBehaviour {
 	#endregion
 	#region Map Generation Logic
 	private void ProcessMap () {
+
 		List<List<Coord>> wallRegions = GetRegions (1);
 
 		foreach (List<Coord> wallRegion in wallRegions) {
@@ -423,7 +439,7 @@ public class MapGenerator : MonoBehaviour {
 		for (int x = 0; x < xLength; x++) {
 			for (int y = 0; y < yLength; y++) {
 				if (x == 0 || x == xLength - 1 || y == 0 || y == yLength - 1) {
-					mapTileInfo [x, y].value = 1;
+					mapTileInfo [x, y].value = 2;
 					mapTileInfo [x, y].isSpawnConflict = true;
 				} 
 			}

@@ -43,6 +43,23 @@ public class MapUtility {
 		}
 		return canSpawn;
 	}
+	public static bool CheckDecorPlacementEligibility (MapDetails details, Vector2Int spawnCoordinate, int clearance) {
+		Vector2Int startingPoint = spawnCoordinate - new Vector2Int (clearance, clearance);
+		int width = 1 + (clearance * 2);
+		bool canSpawn = true;
+		for (int x = 0; x < width; x++) {
+			for (int y = 0; y < width; y++) {
+				Vector2Int coordinate = new Vector2Int(startingPoint.x + x, startingPoint.y + y);
+				if (!details.mapBounds.isWithinBounds (coordinate)) {
+					return false;
+				}
+				MapTileInfo mapTile = details.mapTileInfo[coordinate.x, coordinate.y];
+				if (mapTile.value != 0 && mapTile.value != 1)
+					return false;
+			}
+		}
+		return canSpawn;
+	}
 
 
 	//Clears all tiles AROUND a spawnpoint. for example:
@@ -66,6 +83,21 @@ public class MapUtility {
 			}
 		}
 		map [spawnPoint.spawnCoordinate.x, spawnPoint.spawnCoordinate.y].value = spawnObjectData.id;
+	}
+
+
+	public static void ClearDecorArea (MapTileInfo [,] map, int id, Vector2Int coord, int clearance) {
+		int clearDiameter = 1 + (clearance * 2);
+		Vector2Int startingPoint = coord - new Vector2Int (clearance, clearance);
+		for (int x = 0; x < clearDiameter; x++) {
+			for (int y = 0; y < clearDiameter; y++) {
+				Vector2Int coordinate = new Vector2Int(startingPoint.x + x, startingPoint.y + y);
+				MapTileInfo tileInfo = map [coordinate.x, coordinate.y];
+				tileInfo.value = 0;
+				tileInfo.isSpawnConflict = true;
+			}
+		}
+		map [coord.x, coord.y].value = id;
 	}
 
 	public static void ClearSpellGemSpawnPointArea (MapTileInfo [,] map, SpellGemSpawnPoint spawnPoint) {
@@ -125,28 +157,35 @@ public class MapUtility {
 		MapTileInfo[,] output = new MapTileInfo[xLength, yLength];
 		for (int y = 0; y < yLength; y++) {
 			for (int x = 0; x < xLength; x++) {
-				output [x, y] = new MapTileInfo ();
-				output [x, y].mapCoordinate = new Vector2Int (x, y);
+				MapTileInfo tileInfo = new MapTileInfo ();
+				output [x, y] = tileInfo;
+				tileInfo.mapCoordinate = new Vector2Int (x, y);
 				int mapValue = map[x, y];
-				output [x, y].value = mapValue;
-				output [x, y].isSpawnConflict = false;
+				tileInfo.value = mapValue;
+				if (mapValue == 0) {
+					tileInfo.walkable = true;
+					tileInfo.tileLayer = TileLayer.FLOOR;
+				} else if (mapValue == 1) {
+					tileInfo.walkable = false;
+					tileInfo.tileLayer = TileLayer.BASE;
+				}
 			}
 		}
 		return output;
 	}
-	public static void ConvertValueInTileInfo (MapDetails details, int replacingValue, int newValue) {
+	public static void ConvertValueInTileInfo (MapDetails details, int replacingValue, TileData tileData
+		) {
 		for (int x = 0; x < details.mapData.mapGenerationData.mapSize.x; x++) {
 			for (int y = 0; y < details.mapData.mapGenerationData.mapSize.y; y++) {
 				if (details.mapTileInfo [x, y].value == replacingValue) {
-					details.mapTileInfo [x, y].value = newValue;
+					details.mapTileInfo [x, y].value = tileData.id;
+					details.mapTileInfo [x, y].tileLayer = tileData.layer;
 				}
 			}
 		}
 	}
 	#endregion
 	public static int [,] DeserializeLevelFile (TextAsset csv) {
-
-
 		string[] rows = Regex.Split(csv.text, LINE_SPLIT_RE).Where(s => !string.IsNullOrEmpty(s)).ToArray();
 		int rowCount = rows.Length;
 		Debug.Log ("rowCount: " + rowCount);

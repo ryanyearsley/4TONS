@@ -85,17 +85,35 @@ public class ConstantsManager : PersistentManager {
 			int zoneIndexStart = zoneIndexStartDictionary [worldData.zone];
 			worldData.schoolIndexStart = zoneIndexStart;
 			if (worldData.playerSpawnSetpieceSpawnInfo.setPieceData.school == worldData.school) {
-				worldData.playerSpawnSetpieceSpawnInfo.setPieceData.id = zoneIndexStart + legend.PLAYER_ONE_SPAWN_INDEX;
+				worldData.playerSpawnSetpieceSpawnInfo.setPieceData.id = zoneIndexStart + legend.OBJECTIVE_INDEX_START + legend.PLAYER_ONE_SPAWN_INDEX;
 			}
 			if (worldData.nextLevelPortalSpawnInfo.setPieceData.school == worldData.school) {
-				worldData.nextLevelPortalSpawnInfo.setPieceData.id = zoneIndexStart + legend.NEXT_LEVEL_PORTAL_INDEX;
+				worldData.nextLevelPortalSpawnInfo.setPieceData.id = zoneIndexStart + legend.OBJECTIVE_INDEX_START + legend.NEXT_LEVEL_PORTAL_INDEX;
+			}
+			worldData.floorTile.zone = worldData.zone;
+			worldData.floorTile.id = zoneIndexStart + legend.TILE_INDEX_START + legend.FLOOR_TILE_INDEX_START;
+			worldData.floorTile.layer = TileLayer.FLOOR;
+
+			worldData.baseTile.zone = worldData.zone;
+			worldData.baseTile.id = zoneIndexStart + legend.TILE_INDEX_START + legend.BASE_TILE_INDEX_START;
+			worldData.baseTile.layer = TileLayer.BASE;
+
+			worldData.borderTile.zone = worldData.zone;
+			worldData.borderTile.id = zoneIndexStart + legend.TILE_INDEX_START + legend.BORDER_TILE_INDEX_START;
+			worldData.borderTile.layer = TileLayer.BASE;
+
+			for (int i = 0; i < worldData.baseDecorTiles.Count; i++) {
+				TileData tileData = worldData.baseDecorTiles[i];
+				tileData.zone = worldData.zone;
+				tileData.id = zoneIndexStart + legend.TILE_INDEX_START + legend.BASE_DECOR_TILE_INDEX_START + i;
+				tileData.layer = TileLayer.BASE;
 			}
 
-			for (int i = 0; i < worldData.tiles.Count; i++) {
-				TileData tileData = worldData.tiles[i];
-				if (tileData.zone == worldData.zone) {
-					tileData.id = zoneIndexStart + legend.TILE_INDEX_START + i;
-				}
+			for (int i = 0; i < worldData.topDecorTiles.Count; i++) {
+				TileData tileData = worldData.topDecorTiles[i];
+				tileData.zone = worldData.zone;
+				tileData.id = zoneIndexStart + legend.TILE_INDEX_START + legend.TOP_DECOR_TILE_INDEX_START + i;
+				tileData.layer = TileLayer.TOP;
 			}
 
 			for (int i = 0; i < worldData.enemyDatas.Count; i++) {
@@ -123,7 +141,7 @@ public class ConstantsManager : PersistentManager {
 		} else return null;
 	}
 
-	
+
 }
 public enum Zone {
 	Light, Dark, Fire, Ice, Generic, Tutorial, Hub

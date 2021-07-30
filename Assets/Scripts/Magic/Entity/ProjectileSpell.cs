@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ProjectileSpell : Spell
 {
+    [SerializeField]
+    private bool isAutomatic = false;
 
 
     public override void CastSpell()

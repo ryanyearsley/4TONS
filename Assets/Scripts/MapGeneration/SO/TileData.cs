@@ -1,12 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-[CreateAssetMenu (fileName = "Data", menuName = "ScriptableObjects/Environment/Tile Data", order = 3)]
-public class TileData : ScriptableObject
-{
-	public int id;
-	public Zone zone;
+[Serializable]
+public class TileData {
 	public Tile tile;
+	public int id;
+	[NonSerialized]
+	public Zone zone;
+	[NonSerialized]
+	public TileLayer layer;
 }

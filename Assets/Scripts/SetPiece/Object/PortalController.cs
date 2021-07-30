@@ -6,8 +6,6 @@ using UnityEngine;
 public class PortalController : PoolObject {
 	private Animator animator;
 
-	private int useCounter;
-
 	private CircleCollider2D portalCollider;
 	[SerializeField]
 	private bool opened;
@@ -18,7 +16,6 @@ public class PortalController : PoolObject {
 		animator = GetComponentInChildren<Animator> ();
 		portalCollider = GetComponent<CircleCollider2D> ();
 		portalCollider.enabled = false;
-		useCounter = 0;
 		opened = false;
 		base.SetupObject ();
 	}
@@ -26,7 +23,6 @@ public class PortalController : PoolObject {
 	public override void ReuseObject() {
 		base.ReuseObject ();
 		SubscribeToEvents ();
-		useCounter++;
 		opened = false;
 		animator.SetTrigger ("close");
 		portalCollider.enabled = false;
@@ -37,6 +33,7 @@ public class PortalController : PoolObject {
 	}
 	private void UnsubscribeFromEvents () {
 		GameManager.instance.levelCompleteEvent -= OnLevelComplete;
+		GameManager.instance.levelEndEvent -= OnLevelEnd;
 	}
 	public void OnLevelComplete(int floorIndex) {
 		opened = true;

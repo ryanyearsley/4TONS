@@ -129,7 +129,7 @@ public class PlayerSpellComponent : PlayerComponent {
 	public void OnSpellButton (int spellIndex) {
 		//channel spell
 		if (currentSpellBindingDictionary == null || currentSpellBindingDictionary [spellIndex] == null)
-		return;
+			return;
 
 		Spell spell = currentSpellBindingDictionary [spellIndex];
 		spell.SpellButtonHold ();

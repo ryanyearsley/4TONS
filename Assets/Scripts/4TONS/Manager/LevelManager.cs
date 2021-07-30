@@ -26,7 +26,14 @@ public class LevelManager : MonoBehaviour, IGameManager {
 	private ObjectRegistry objectRegistry;
 
 	[SerializeField]
-	private Tilemap tilemap;
+	private Tilemap floorTilemap;
+
+	[SerializeField]
+	private Tilemap baseTilemap;
+
+	[SerializeField]
+	private Tilemap topTilemap;
+
 
 	//int = levelIndex
 	private Dictionary<int, MapDetails> mapDetailDictionary = new Dictionary<int, MapDetails>();
@@ -76,7 +83,7 @@ public class LevelManager : MonoBehaviour, IGameManager {
 		PoolManager.instance.CreateObjectPool (worldData.playerSpawnSetpieceSpawnInfo.setPieceData.spawnObjectPrefab, worldData.playerSpawnSetpieceSpawnInfo.setPieceData.poolSize);
 		PoolManager.instance.CreateObjectPool (worldData.nextLevelPortalSpawnInfo.setPieceData.spawnObjectPrefab, worldData.nextLevelPortalSpawnInfo.setPieceData.poolSize);
 		//player pools
-		PoolManager.instance.CreatePlayerPool (worldData.playerCreatureData.spawnObjectPrefab, 4);
+		PoolManager.instance.CreatePlayerPool (worldData.playerCreatureData.spawnObjectPrefab, PlayerManager.instance.currentPlayers.Count);
 
 		//creature pools
 		foreach (CreatureData enemyData in worldData.enemyDatas) {
@@ -103,7 +110,7 @@ public class LevelManager : MonoBehaviour, IGameManager {
 		GenerateMapDetails (worldData, levelIndex);
 		yield return new WaitForSeconds (0.5f);
 		if (currentLevelDetails.mapData.mapGenerationData != null)
-			BuildFloor (levelIndex);
+			BuildLevel (levelIndex);
 		else {
 			GenerateFloorNodes (currentLevelDetails);
 		}
@@ -124,13 +131,22 @@ public class LevelManager : MonoBehaviour, IGameManager {
 
 	}
 
+
+	public IEnumerator LevelBuildFailRoutine () {
+		yield return new WaitForSeconds (10f);
+		if (GameManager.instance.GetLevelLoaded() == false) {
+			
+		}
+
+	}
+
 	public MapDetails GetMapDetails (int currentFloorIndex) {
 		if (mapDetailDictionary.ContainsKey (currentFloorIndex)) {
 			return mapDetailDictionary [currentFloorIndex];
 		} else return null;
 	}
 	public Vector3 ConvertIsoCoordToScene (Vector2Int cartCoordinate) {
-		return tilemap.GetCellCenterWorld ((Vector3Int)cartCoordinate);
+		return baseTilemap.GetCellCenterWorld ((Vector3Int)cartCoordinate);
 	}
 	public void GenerateMapDetails (WorldData worldData, int floorIndex) {
 		if (floorIndex < worldData.mapDatas.Length) {
@@ -139,7 +155,7 @@ public class LevelManager : MonoBehaviour, IGameManager {
 			if (nextMapData.mapGenerationData != null) {
 				generatingMapDetails = MapGenerator.instance.GenerateMap (worldData, legend, floorIndex);
 			} else if (nextMapData.customMapData != null) {
-				int[,] map = MapUtility.Generate2DArrayFromTilemap(tilemap, 
+				int[,] map = MapUtility.Generate2DArrayFromTilemap(baseTilemap,
 					new CoordinateBounds(Vector2Int.zero, Vector2Int.one * 56));
 				generatingMapDetails = new MapDetails (worldData, nextMapData, floorIndex, MapUtility.ConvertMapToTileInfo (map), nextMapData.customMapData.mapSpawnPoints);
 
@@ -149,36 +165,51 @@ public class LevelManager : MonoBehaviour, IGameManager {
 			currentLevelDetails = generatingMapDetails;
 		}
 	}
+	//BuildFloor
+	//BuildBase
+	//BuildSetpieces
 
-	public void BuildFloor (int floorIndex) {
+
+	public void BuildLevel (int floorIndex) {
 		if (mapDetailDictionary.ContainsKey (floorIndex)) {
 			MapDetails buildingMapDetails = mapDetailDictionary[floorIndex];
-			Tile[] tileSet = worldData.tileset.ToArray ();
 			MapTileInfo[,] mapTileInfo = buildingMapDetails.mapTileInfo;
 			int yLength = mapTileInfo.GetLength(1);
 			int xLength = mapTileInfo.GetLength(0);
 			Vector2Int origin = buildingMapDetails.floorOrigin;
-			Vector3 floorPrefabSpawnPosition = tilemap.GetCellCenterWorld((Vector3Int)origin);
+			Vector3 floorPrefabSpawnPosition = baseTilemap.GetCellCenterWorld((Vector3Int)origin);
 			if (buildingMapDetails.mapData.floorPrefab != null)
 				Instantiate (buildingMapDetails.mapData.floorPrefab, floorPrefabSpawnPosition, Quaternion.identity); ;
-			Transform parent = tilemap.transform.parent;
-			GameObject tilemapObject = tilemap.transform.gameObject;
-			for (int y = 0; y < mapTileInfo.GetLength (1); y++) {
-				for (int x = 0; x < mapTileInfo.GetLength (0); x++) {
-					int tileValue = mapTileInfo[x, y].value;
+			Transform parent = baseTilemap.transform.parent;
+			GameObject tilemapObject = baseTilemap.transform.gameObject;
+
+			for (int y = 0; y < yLength; y++) {
+				for (int x = 0; x < xLength; x++) {
+					MapTileInfo tileInfo = mapTileInfo[x, y];
+					int tileValue = tileInfo.value;
 					if (objectRegistry.activeTileDictionary.ContainsKey (tileValue)) {
-						Debug.Log ("LevelManager: Setting Tile on TileMap to " + tileValue);
-						tilemap.SetTile (new Vector3Int (x + origin.x, y + origin.y, 0), objectRegistry.activeTileDictionary [tileValue]);
-						buildingMapDetails.mapTileInfo [x, y].walkable = false;
-					} else if (objectRegistry.activeSetpieceDictionary.ContainsKey (tileValue)) {
-						Vector3 position = tilemap.GetCellCenterWorld (new Vector3Int (x + origin.x, y + origin.y, 0));
-						PoolManager.instance.ReuseObject (objectRegistry.activeSetpieceDictionary [tileValue].spawnObjectPrefab, position, Quaternion.identity);
+						if (tileInfo.tileLayer == TileLayer.FLOOR) {
+							floorTilemap.SetTile (new Vector3Int (x + origin.x, y + origin.y, 0), objectRegistry.activeTileDictionary [tileValue]);
+							mapTileInfo [x, y].walkable = true;
+						} else if (tileInfo.tileLayer == TileLayer.BASE) {
+							baseTilemap.SetTile (new Vector3Int (x + origin.x, y + origin.y, 0), objectRegistry.activeTileDictionary [tileValue]);
+							mapTileInfo [x, y].walkable = false;
+						} else if (tileInfo.tileLayer == TileLayer.TOP) {
+							floorTilemap.SetTile (new Vector3Int (x + origin.x, y + origin.y, 0), worldData.floorTile.tile);
+							baseTilemap.SetTile (new Vector3Int (x + origin.x, y + origin.y, 0), worldData.baseTile.tile);
+							topTilemap.SetTile (new Vector3Int (x + origin.x, y + origin.y, 0), objectRegistry.activeTileDictionary [tileValue]);
+							mapTileInfo [x, y].walkable = false;
+						}
+					} else {
+						floorTilemap.SetTile (new Vector3Int (x + origin.x, y + origin.y, 0), worldData.floorTile.tile);
+						mapTileInfo [x, y].walkable = true;
 					}
 				}
 			}
 			GenerateFloorNodes (buildingMapDetails);
 		}
 	}
+
 
 
 	//NOTE: Players are only spawned on first stage. They are relocated to following stages.
@@ -205,6 +236,15 @@ public class LevelManager : MonoBehaviour, IGameManager {
 			Vector3 spawnPosition = ConvertIsoCoordToScene(spawnCoordinate);
 			player.currentPlayerObject.transform.position = spawnPosition;
 			player.isAlive = true;
+		}
+	}
+
+	public void BuildSetpieces (int floorIndex) {
+		MapDetails currentMapDetails = mapDetailDictionary[floorIndex];
+
+		foreach (SpawnPoint spawnPoint in currentMapDetails.spawnPoints.setPieceSpawnPoints) {
+			Vector3 setpiecePosition = ConvertIsoCoordToScene(spawnPoint.spawnCoordinate + currentMapDetails.floorOrigin);
+			PoolManager.instance.ReuseObject(spawnPoint.spawnObjectData.spawnObjectPrefab, setpiecePosition, Quaternion.identity);
 		}
 	}
 	public void SpawnEnemies (int floorIndex) {
@@ -446,7 +486,7 @@ public class LevelManager : MonoBehaviour, IGameManager {
 				}
 		}
 	}
-	
+
 	void OnDrawGizmosSelected () {
 		if (nodes != null && displayGridGizmos) {
 
@@ -457,12 +497,11 @@ public class LevelManager : MonoBehaviour, IGameManager {
 				for (int y = 0; y < nodes.GetLength (1); y++) {
 					PathfindingNode node = nodes[x, y];
 					//Debug.Log (" map coord: " + new Vector2Int(x, y) + ", world position: " + node.worldPosition);
-					if (currentLevelDetails.mapTileInfo [x,y].isSpawnConflict) {
+					if (currentLevelDetails.mapTileInfo [x, y].isSpawnConflict) {
 						Debug.Log ("level manager gizmo: spawn conflict at tile");
 						Gizmos.color = Color.red;
 						Gizmos.DrawCube (node.worldPosition, Vector3.one * (nodeRadius * 2));
-					}
-					else {
+					} else {
 						Gizmos.color = (node.walkable) ? Color.white : Color.black;
 						Gizmos.DrawCube (node.worldPosition, Vector3.one * (nodeRadius * 2));
 					}
@@ -470,7 +509,7 @@ public class LevelManager : MonoBehaviour, IGameManager {
 			}
 		}
 	}
-	
+
 	#endregion
 }
 

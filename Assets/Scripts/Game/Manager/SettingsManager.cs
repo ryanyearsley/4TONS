@@ -28,6 +28,7 @@ public class SettingsManager : MonoBehaviour {
 			Destroy (gameObject);
 		}
 		DontDestroyOnLoad (this.gameObject);
+		Application.targetFrameRate = 300;
 		settingsData = LoadSettingsDataFromDisk ();
 	}
 

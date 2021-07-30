@@ -49,6 +49,10 @@ public class GameManager : MonoBehaviour {
 		Debug.Log ("level loaded. Begin game!");
 		levelLoaded = true;
 	}
+
+	public bool GetLevelLoaded() {
+		return levelLoaded;
+	}
 	private void Awake () {
 		SingletonInitialization ();
 	}

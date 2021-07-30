@@ -46,20 +46,14 @@ namespace PlayerManagement {
 				InteractInput ();
 			}
 			PauseInput ();
-		}
-
-		private void FixedUpdate () {
-			MovementInput ();
-		}
-
-		private void MovementInput () {
-			Vector2 directionalInput = new Vector2 (rewiredController.GetAxisRaw ("MoveHorizontal"), rewiredController.GetAxisRaw ("MoveVertical"));
-
 			if (rewiredController.GetButtonDown ("Dash")) {
 				playerMovementController.OnDashInputDown ();
 			}
-			playerMovementController.UpdateMovementInput (directionalInput, playerAimingController.CursorDirection);
+		}
 
+		private void FixedUpdate () {
+			Vector2 directionalInput = new Vector2 (rewiredController.GetAxisRaw ("MoveHorizontal"), rewiredController.GetAxisRaw ("MoveVertical"));
+			playerMovementController.UpdateMovementInput (directionalInput, playerAimingController.CursorDirection);
 		}
 		private void AimingInput () {
 			joystickInput = new Vector2 (rewiredController.GetAxisRaw ("AimHorizontal"), rewiredController.GetAxisRaw ("AimVertical"));
