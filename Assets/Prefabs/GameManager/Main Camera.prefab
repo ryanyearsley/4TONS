@@ -62,7 +62,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 3.11875
+  orthographic size: 5.625
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -103,7 +103,7 @@ MonoBehaviour:
   m_RequiresOpaqueTextureOption: 2
   m_CameraType: 0
   m_Cameras: []
-  m_RendererIndex: -1
+  m_RendererIndex: 0
   m_VolumeLayerMask:
     serializedVersion: 2
     m_Bits: 1
@@ -132,9 +132,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pixelPerfectReferenceResolutionClose: {x: 320, y: 180}
   pixelPerfectReferenceResolutionMid: {x: 640, y: 360}
-  pixelPerfectReferenceResolutionFar: {x: 640, y: 360}
+  pixelPerfectReferenceResolutionFar: {x: 1280, y: 720}
   cameraState: 0
-  cameraZoom: 0
+  cameraZoom: 1
   staticCameraOriginPosition: {x: 0, y: 0, z: 0}
   target: {fileID: 0}
   targetTransform: {fileID: 0}
@@ -146,8 +146,8 @@ MonoBehaviour:
     bottom: 0
   lookAheadDistance: 1
   lookSmoothTime: 0.5
-  focusAreaSize: {x: 2, y: 1.3}
-  moveSmoothTime: 0
+  focusAreaSize: {x: 0.5, y: 0.25}
+  moveSmoothTime: 0.2
   smoothMoveVelocity: {x: 0, y: 0}
   minValues: {x: 0, y: 0, z: 0}
   maxValues: {x: 0, y: 0, z: 0}
