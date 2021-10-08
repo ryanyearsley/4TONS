@@ -18,13 +18,12 @@ public class HealthComponent : VitalsComponent {
 		PoolManager.instance.ReuseObject (bloodPoolPrefab, transform.position, Quaternion.identity);
 		base.OnDeath ();
 	}
-	public float GetHealth () {
-		return currentValue;
-	}
 
 	public void ApplyDamage (float damage) {
 		if (!creatureObject.isDead) {
-			currentValue = Mathf.Clamp (currentValue -= damage, 0, maxValue);
+			float realValue = currentValue - damage;
+			Debug.Log ("creature receiving " + damage + " damage. current HP: " + currentValue + ", projected value: " + realValue);
+			currentValue = Mathf.Clamp (realValue, 0, maxValue);
 			UpdateVitalsBar ();
 			if (currentValue > 0) {
 				creatureObject.OnHit (new HitInfo (damage, Vector2.zero, currentValue));

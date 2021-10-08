@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a701196f12370941a9b69b34871811b, type: 3}
+  m_Name: FlamethrowSpellData
+  m_EditorClassIdentifier: 
+  spellName: Flamethrow
+  spellSchool: 2
+  spellSchoolData: {fileID: 11400000, guid: 4e7855788b47e6242848d147b41e03ae, type: 2}
+  id: 5400
+  description: Spray fire in front of yourself, incinerating everything.
+  icon: {fileID: 21300000, guid: f5a39483171970f4b86613b39c725d07, type: 3}
+  castObject: {fileID: 576230467533564272, guid: 6c3174bc060b49749a68dfbfbe2cdcdd, type: 3}
+  manaCost: 0.5
+  castTime: 0.15
+  castSpeedReduction: 0.7
+  coolDown: 0.1
+  spellCastLocation: 0
+  spellCastSound:
+    clipName: asvgqawr
+    singleClip: {fileID: 0}
+    randomize: 0
+    randomClips: []
+    volume: 1
+    pitch: 1
+    mixerGroup: {fileID: -7302680629657921355, guid: 004a37a2c22918345b123859e614950a, type: 2}
+    loop: 0
+    playOnAwake: 0
+  spellEndSound: {fileID: 0}
+  spellObject: {fileID: 5217744383755033205, guid: 4572ffb841d6f93438a593d20c3f17d8, type: 3}
+  poolSize: 30
+  puzzlePieceData: {fileID: 11400000, guid: c1b0d655888bbb442998fc5c3c462602, type: 2}

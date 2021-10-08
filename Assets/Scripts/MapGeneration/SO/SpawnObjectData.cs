@@ -6,7 +6,7 @@ public class SpawnObjectData : ScriptableObject
 {
 	public int id;
 	public int poolSize;
-	public int clearance;
+	public int outerClearance;
 	public SpellSchool school;
 	public GameObject spawnObjectPrefab;
 }

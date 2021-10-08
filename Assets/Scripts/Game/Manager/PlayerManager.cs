@@ -18,8 +18,6 @@ public class PlayerManager : PersistentManager {
 	}
 	#endregion
 
-	//toggle this on/off for testing within a scene.
-	public bool startFromCombatScene;
 	public WizardPrebuildData defaultWizardData;
 	[SerializeField]
 	public List<Player> currentPlayers = new List<Player>();
@@ -27,7 +25,7 @@ public class PlayerManager : PersistentManager {
 	protected override void Awake () {
 		base.Awake ();
 		InitializeSingleton ();
-		if (currentPlayers.Count == 0 && startFromCombatScene) {
+		if (currentPlayers.Count == 0) {
 			Player testPlayer = new Player(0, 0);
 			testPlayer.isAlive = true;
 			testPlayer.wizardSaveData = defaultWizardData.wizardSaveData.Clone();

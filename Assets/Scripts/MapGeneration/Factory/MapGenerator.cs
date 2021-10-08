@@ -16,6 +16,8 @@ public class MapGenerator : MonoBehaviour {
 		}
 	}
 	#endregion
+	private ZoneData zoneData;
+	private ObjectiveData objectiveData;
 	private MapData currentMapData;
 	public MapSpawnPoints spawnPoints;
 
@@ -31,63 +33,70 @@ public class MapGenerator : MonoBehaviour {
 		SingletonInitialization ();
 	}
 
-	public MapDetails GenerateMap (WorldData worldData, GameDataLegend gameDataLegend, int floorIndex) {
-		this.currentMapData = worldData.mapDatas [floorIndex];
+	public MapDetails GenerateMap (ZoneData zoneData, ObjectiveData objectiveData, int floorIndex) {
+		this.zoneData = zoneData;
+		this.objectiveData = objectiveData;
+		this.currentMapData = zoneData.mapDatas [floorIndex];
 		map = new int [currentMapData.mapGenerationData.mapSize.x, currentMapData.mapGenerationData.mapSize.y];
-		
-		//GENERATE BASE
 		RandomFillMap ();
 		for (int i = 0; i < currentMapData.mapGenerationData.smoothingIterations; i++) {
 			SmoothMap ();
 		}
-
 		ProcessMap ();
-		mapTileInfo = MapUtility.ConvertMapToTileInfo (map);
+
+		mapTileInfo = MapConversionUtility.ConvertMapToTileInfo (map);
 		GenerateMapBorder (mapTileInfo);
-		MapDetails details = new MapDetails(worldData, currentMapData, floorIndex,  mapTileInfo, spawnPoints);
 
-		//CONVERT TO WORLD SKIN
-		MapUtility.ConvertValueInTileInfo (details, 0, worldData.floorTile);
-		MapUtility.ConvertValueInTileInfo (details, 1, worldData.baseTile);
-		MapUtility.ConvertValueInTileInfo (details, 2, worldData.borderTile);
+		spawnPoints = new MapSpawnPoints ();
+		Vector2Int floorOrigin = floorIndex * Vector2Int.one * 80;
+		MapDetails details = new MapDetails(zoneData, currentMapData, floorIndex,  mapTileInfo, spawnPoints);
 
-		//GENERATE LARGE SETPIECES 
-		foreach (SetPieceSpawnInfo setPieceSpawnInfo in currentMapData.setPieceSpawnInfos) {
-			spawnPoints.setPieceSpawnPoints.AddRange (SpawnUtility.GenerateSetPieceSpawnPoints (details, setPieceSpawnInfo));
+		int playerCount = 1;
+		if (PlayerManager.instance != null) {
+			playerCount = PlayerManager.instance.currentPlayers.Count;
 		}
-		//GENERATE CORE OBJECTIVE SPAWN POINTS
-		spawnPoints.playerSpawnPoints = SpawnUtility.GenerateCreatureSpawnPoints (details, worldData.playerSpawnInfo);
-		spawnPoints.playerSpawnSetPiecePoint = new SpawnPoint (spawnPoints.playerSpawnPoints [0].spawnCoordinate - Vector2Int.one, worldData.playerSpawnSetpieceSpawnInfo.setPieceData);
-		spawnPoints.portalSpawnPoint = SpawnUtility.GenerateSetPieceSpawnPoints (details, worldData.nextLevelPortalSpawnInfo) [0];
+
+
+		spawnPoints.playerSpawnPoints = SpawnUtility.GenerateCreatureSpawnPoints (details, ConstantsManager.instance.playerCreatureData, playerCount);
+
+		foreach (SetPieceSpawnInfo objectiveSpawnInfo in objectiveData.objectiveSpawnInfos) {
+			spawnPoints.objectiveSpawnPoints.AddRange(SpawnUtility.GenerateSetPieceSpawnPoints (details, objectiveSpawnInfo.setPieceData, objectiveSpawnInfo.spawnCount));
+		}
 
 
 		foreach (CreatureSpawnInfo enemySpawnInfo in currentMapData.enemySpawnInfos) {
-			spawnPoints.enemySpawnPoints.AddRange (SpawnUtility.GenerateCreatureSpawnPoints (details, enemySpawnInfo));
+			if (enemySpawnInfo.spawnCountRange.y != 0)
+				spawnPoints.enemySpawnPoints.AddRange (SpawnUtility.GenerateCreatureSpawnPoints (details, enemySpawnInfo.creatureData, enemySpawnInfo.GetSpawnCountWithinRange()));
 		}
-
+		
 		//GENERATE PICK-UPS
 		Vector2Int floorRollRange = currentMapData.floorRollRange;
-		int playerRoll = UnityEngine.Random.Range (floorRollRange.x, floorRollRange.y);
-		List<SpellData> spawningSpellGems = worldData.lootTableData.RollForGems (playerRoll);
+
+		int playerGemRoll = UnityEngine.Random.Range (floorRollRange.x, floorRollRange.y);
+		List<SpellData> spawningSpellGems = zoneData.lootTableData.RollForGems (playerGemRoll);
 		foreach (SpellData spellData in spawningSpellGems) {
 			spawnPoints.spellGemSpawnPoints.AddRange (SpawnUtility.GenerateSpellGemSpawnPoints (details, spellData));
 		}
-		foreach (StaffSpawnInfo staffSpawnInfo in currentMapData.staffSpawnInfos) {
-			spawnPoints.staffSpawnPoints.AddRange (SpawnUtility.GenerateStaffSpawnPoints (details, staffSpawnInfo));
+
+		int playerStaffRoll = UnityEngine.Random.Range (floorRollRange.x, floorRollRange.y);
+		List<PuzzleData> spawningStaves = zoneData.lootTableData.RollForStaves (playerStaffRoll);
+		foreach (PuzzleData staffPuzzleData in spawningStaves) {
+			spawnPoints.staffSpawnPoints.AddRange (SpawnUtility.GenerateStaffSpawnPoints (details, staffPuzzleData));
 		}
 
-		/*
-		foreach (TileSpawnInfo baseDecorInfo in currentMapData.baseDecorSpawnInfos) {
-			SpawnUtility.GenerateTileSetpieces (details, baseDecorInfo);
-		}
-		foreach (TileSpawnInfo topDecorInfo in currentMapData.topDecorSpawnInfos) {
-			SpawnUtility.GenerateTopDecorTiles (details, topDecorInfo);
-		}
-		*/
-		
+		//CONVERT TO WORLD SKIN
+		if (zoneData.largeSetpieceDatas.Count > 0)
+			SpawnUtility.GenerateRandomLargeSetpieceSpawnPoints (details);
+		MapGenerationUtility.GenerateRandomSmallSetPieces (details);
+		List<MapTileInfo> floorTiles = MapConversionUtility.ConvertValueInTileInfo (details, 0, zoneData.primaryFloorTile);
+		List<MapTileInfo> baseTiles = MapConversionUtility.ConvertValueInTileInfo (details, 1, zoneData.baseTile);
+		List<MapTileInfo> borderTiles = MapConversionUtility.ConvertValueInTileInfo (details, 2, zoneData.borderTile);
 
+		MapGenerationUtility.GenerateRandomFloorDecor (details, floorTiles);
+		MapGenerationUtility.GenerateRandomTopDecor (details, baseTiles);
 		return details;
 	}
+
 
 	#region Map Generation VOs
 	public struct Coord {
@@ -161,27 +170,29 @@ public class MapGenerator : MonoBehaviour {
 	#endregion
 	#region Map Generation Logic
 	private void ProcessMap () {
+		List<List<Coord>> baseRegions = GetRegions (1);
 
-		List<List<Coord>> wallRegions = GetRegions (1);
-
-		foreach (List<Coord> wallRegion in wallRegions) {
-			if (wallRegion.Count < currentMapData.mapGenerationData.minimumIslandSize) {
-				foreach (Coord tile in wallRegion) {
+		//eliminates all clusters of base tiles that are smaller than the minimum island size.
+		foreach (List<Coord> baseRegion in baseRegions) {
+			if (baseRegion.Count < currentMapData.mapGenerationData.minimumIslandSize) {
+				foreach (Coord tile in baseRegion) {
 					map [tile.tileX, tile.tileY] = 0;
 				}
 			}
 		}
 
-		List<List<Coord>> roomRegions = GetRegions (0);
+		List<List<Coord>> floorRegions = GetRegions (0);
 		List<Room> survivingRooms = new List<Room> ();
 
-		foreach (List<Coord> roomRegion in roomRegions) {
-			if (roomRegion.Count < currentMapData.mapGenerationData.minimumRoomSize) {
-				foreach (Coord tile in roomRegion) {
+
+		//Eliminates all floor space that is smaller than the mininumRoomSize.
+		foreach (List<Coord> floorRegion in floorRegions) {
+			if (floorRegion.Count < currentMapData.mapGenerationData.minimumRoomSize) {
+				foreach (Coord tile in floorRegion) {
 					map [tile.tileX, tile.tileY] = 1;
 				}
 			} else {
-				survivingRooms.Add (new Room (roomRegion, map));
+				survivingRooms.Add (new Room (floorRegion, map));
 			}
 		}
 		survivingRooms.Sort ();
@@ -418,6 +429,9 @@ public class MapGenerator : MonoBehaviour {
 		return wallCount;
 	}
 
+	//MapData
+	//mapSize
+	//mapGenerationData
 	private void RandomFillMap () {
 		if (!currentMapData.useCustomSeed)
 			currentMapData.seed = System.DateTime.Now.Ticks.ToString ();
@@ -433,7 +447,7 @@ public class MapGenerator : MonoBehaviour {
 			}
 		}
 	}
-	private void GenerateMapBorder(MapTileInfo[,] mapTileInfo) {
+	private void GenerateMapBorder (MapTileInfo [,] mapTileInfo) {
 		int xLength = mapTileInfo.GetLength(0);
 		int yLength = mapTileInfo.GetLength(1);
 		for (int x = 0; x < xLength; x++) {
@@ -441,13 +455,13 @@ public class MapGenerator : MonoBehaviour {
 				if (x == 0 || x == xLength - 1 || y == 0 || y == yLength - 1) {
 					mapTileInfo [x, y].value = 2;
 					mapTileInfo [x, y].isSpawnConflict = true;
-				} 
+				}
 			}
 		}
 	}
 
 	#endregion
-	
+
 
 	private void OnDrawGizmosSelected () {
 		if (map != null && drawGizmos) {

@@ -7,7 +7,5 @@ public class TileData {
 	public Tile tile;
 	public int id;
 	[NonSerialized]
-	public Zone zone;
-	[NonSerialized]
 	public TileLayer layer;
 }

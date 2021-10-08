@@ -4,8 +4,8 @@ using UnityEditor;
 using UnityEditorInternal;
 using UnityEngine;
 
-[CustomEditor (typeof (WorldData))]
-public class TilesetDataEditor : Editor {
+[CustomEditor (typeof (ZoneData))]
+public class WorldDataEditor : Editor {
 
 	/*
 	private SerializedProperty tilePrefabs;

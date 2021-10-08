@@ -77,7 +77,6 @@ public class AnimationComponent : CreatureComponent {
         StopAllCoroutines ();
         sprite.color = new Color (1, 1, 1, 1);
         animator.Play (snapOutAnimID.hashId);
-
     }
     //interrupt to display another animation.
     public void InterruptCurrentAnimation () {
@@ -86,10 +85,14 @@ public class AnimationComponent : CreatureComponent {
     }
     //For everything outside of idle and walking
     public void PlayTimedAnimation (AnimationHashID animID, float animationTime) {
-        InterruptCurrentAnimation ();//
+        InterruptCurrentAnimation ();
         StartCoroutine (PlayTimedAnimationRoutine (animID, animationTime));
 	}
-
+    //Play animation until told otherwise.
+    public void PlayLoopingAnimation (AnimationHashID animID) {
+        InterruptCurrentAnimation ();
+        animator.Play (animID.hashId);
+    }
     public IEnumerator PlayTimedAnimationRoutine (AnimationHashID animID, float animationLength) {
         animator.Play (animID.hashId);
         Debug.Log ("playing animation " + animID + ". waiting for " + animationLength + " seconds.");

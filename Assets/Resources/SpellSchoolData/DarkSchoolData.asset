@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   schoolIndexStart: 2000
   spellSchool: 1
-  schoolDescription: Leech your life from your enemies and summon satanic destruction.
+  schoolDescription: Leech life from your enemies and perform satanic rituals.
   wizardData: {fileID: 11400000, guid: 613b492791ce64a4aa24446d97820805, type: 2}
   wizardPrebuildData: {fileID: 11400000, guid: 9a95e018017ba854eb1e309c8555e624, type: 2}
   schoolColor: {r: 0.5156656, g: 0.3448736, b: 0.5849056, a: 1}

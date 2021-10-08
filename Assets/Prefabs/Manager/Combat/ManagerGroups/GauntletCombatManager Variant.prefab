@@ -1,5 +1,29 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!66 &107735597
+CompositeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3495154457419275451}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_GeometryType: 0
+  m_GenerationType: 0
+  m_EdgeRadius: 0
+  m_ColliderPaths:
+  - m_Collider: {fileID: 8154608276751430013}
+    m_ColliderPaths: []
+  m_CompositePaths:
+    m_Paths: []
+  m_VertexDistance: 0.0005
+  m_OffsetDistance: 0.00005
 --- !u!1001 &663168994736922274
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11,6 +35,14 @@ PrefabInstance:
       propertyPath: tilemap
       value: 
       objectReference: {fileID: 6543905923310144742}
+    - target: {fileID: 6083243053177954383, guid: 4fd421e94e93ecf4bb2984fb5d16461f, type: 3}
+      propertyPath: gameContext.worldData
+      value: 
+      objectReference: {fileID: 11400000, guid: f5b2782667c81ef40991aea7de47c306, type: 2}
+    - target: {fileID: 6083243053177954383, guid: 4fd421e94e93ecf4bb2984fb5d16461f, type: 3}
+      propertyPath: gameContext.objectiveData
+      value: 
+      objectReference: {fileID: 11400000, guid: 6c34bc2037cecf54f8657acbf107672b, type: 2}
     - target: {fileID: 6083243054324172116, guid: 4fd421e94e93ecf4bb2984fb5d16461f, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -67,16 +99,31 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8655621247228604383, guid: 4fd421e94e93ecf4bb2984fb5d16461f, type: 3}
+      propertyPath: m_UsedByComposite
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 8253753248401326663, guid: 4fd421e94e93ecf4bb2984fb5d16461f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 4fd421e94e93ecf4bb2984fb5d16461f, type: 3}
 --- !u!4 &6726137022253243382 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6083243054324172116, guid: 4fd421e94e93ecf4bb2984fb5d16461f, type: 3}
   m_PrefabInstance: {fileID: 663168994736922274}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &3495154457419275451 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4158305534455415321, guid: 4fd421e94e93ecf4bb2984fb5d16461f, type: 3}
+  m_PrefabInstance: {fileID: 663168994736922274}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1839735485 &6543905923310144742 stripped
 Tilemap:
   m_CorrespondingSourceObject: {fileID: 6045118690949665348, guid: 4fd421e94e93ecf4bb2984fb5d16461f, type: 3}
+  m_PrefabInstance: {fileID: 663168994736922274}
+  m_PrefabAsset: {fileID: 0}
+--- !u!19719996 &8154608276751430013 stripped
+TilemapCollider2D:
+  m_CorrespondingSourceObject: {fileID: 8655621247228604383, guid: 4fd421e94e93ecf4bb2984fb5d16461f, type: 3}
   m_PrefabInstance: {fileID: 663168994736922274}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7661452042066783459

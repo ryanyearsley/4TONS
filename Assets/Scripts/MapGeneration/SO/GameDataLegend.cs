@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu (fileName = "Legend", menuName = "ScriptableObjects/Editor/World Data Legend", order = 2)]
+[CreateAssetMenu (fileName = "Legend", menuName = "ScriptableObjects/Game/Game Data Legend", order = 2)]
 
 public class GameDataLegend : ScriptableObject {
 
 	//school/zone index starts (grouped by 1000s)
 	public int GENERIC_INDEX_START = 0;
-	public int LIGHT_INDEX_START = 1000;
-	public int DARK_INDEX_START = 2000;
-	public int ICE_INDEX_START = 3000;
-	public int FIRE_INDEX_START = 4000;
-	public int HUB_INDEX_START = 5000;
+	public int HUB_INDEX_START = 1000;
+	public int LIGHT_INDEX_START = 2000;
+	public int NECRO_INDEX_START = 3000;
+	public int ICE_INDEX_START = 4000;
+	public int FIRE_INDEX_START = 5000;
 	public int TUTORIAL_INDEX_START = 6000;
 	//5000-10000 reserved for additional schools
 
@@ -26,7 +26,8 @@ public class GameDataLegend : ScriptableObject {
 	public int FLOOR_TILE_INDEX_START = 0; //2100
 	public int BASE_TILE_INDEX_START = 1; //2101
 	public int BORDER_TILE_INDEX_START = 2; //2102
-	public int BASE_DECOR_TILE_INDEX_START = 3; //2103 - 2149
+	public int BASE_DECOR_TILE_INDEX_START = 3; //2103 - 2124
+	public int FLOOR_DECOR_TILE_INDEX_START = 25; //2125 - 2149
 	public int TOP_DECOR_TILE_INDEX_START = 50; //2150 - 2199
 	public int SETPIECE_INDEX_START = 200;
 	public int ENEMY_SPAWN_INDEX_START = 300;

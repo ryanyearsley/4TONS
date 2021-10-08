@@ -12,11 +12,11 @@ public class PlayerAimingComponent : PlayerComponent {
 	[SerializeField]
 	private float mouseSensitivity = 0.0125f;
 	[SerializeField]
-	private float combatJoystickSensitivity = 0.35f;
+	private float combatJoystickSensitivity = 0.15f;
 	[SerializeField]
-	private float puzzleJoystickSensitivity = 0.15f;
+	private float puzzleJoystickSensitivity = 0.08f;
 
-	private float currentJoystickSensitivity = 0.35f;
+	private float currentJoystickSensitivity = 0.15f;
 	[SerializeField]
 	private GameObject cursorPrefab;
 	[SerializeField]
@@ -52,9 +52,12 @@ public class PlayerAimingComponent : PlayerComponent {
 		if (player.wizardSaveData.primaryStaffSaveData.puzzleData != null) {
 			staffAimObject.InitializeStaffAimObject (player.wizardSaveData.primaryStaffSaveData.puzzleData.puzzleSprite);
 		}
+		CameraController.instance.SetCameraRigidFollow (creatureObject.GetComponent<MovementComponent> ());
+
 	}
 	public override void OnSpawn (Vector3 spawnPosition) {
 		playerObject.SetSmartCursor (false);
+		currentJoystickSensitivity = combatJoystickSensitivity;
 		playerObject.SetAimingMode (AimingMode.CURSOR);
 	}
 	private void CreateCursor () {

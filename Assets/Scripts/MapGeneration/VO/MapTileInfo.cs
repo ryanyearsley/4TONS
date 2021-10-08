@@ -12,5 +12,5 @@ public class MapTileInfo
 }
 
 public enum TileLayer {
-	FLOOR, BASE, TOP
+	FLOOR, BASE, TOP, FLOOR_DECOR
 }

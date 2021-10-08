@@ -288,7 +288,7 @@ public class PlayerPuzzleComponent : PlayerComponent {
 		}
 	}
 	private void DropStaffToWorld (PuzzleGameData puzzleGameData) {
-		GameObject pickupGo = PoolManager.instance.ReuseObject(ConstantsManager.instance.staffPickupPrefab, transform.position, Quaternion.identity);
+		GameObject pickupGo = PoolManager.instance.ReuseObject(ConstantsManager.instance.staffPickUpData.spawnObjectPrefab, transform.position, Quaternion.identity);
 		StaffPickUp staffPickUp = pickupGo.GetComponent<StaffPickUp>();
 		wizardGameData.puzzleGameDataDictionary.Remove (puzzleGameData.puzzleKey);
 		if (puzzleGameData.puzzleEntity != null) {
@@ -300,7 +300,7 @@ public class PlayerPuzzleComponent : PlayerComponent {
 		playerPuzzleUI.InterruptFlashRoutine ();
 		if (spellGemGameData.spellGemEntity != null)
 			Destroy (spellGemGameData.spellGemEntity.gameObject);
-		GameObject pickupGo = PoolManager.instance.ReuseObject(ConstantsManager.instance.spellGemPickupPrefab, transform.position, Quaternion.identity);
+		GameObject pickupGo = PoolManager.instance.ReuseObject(ConstantsManager.instance.spellGemPickUpData.spawnObjectPrefab, transform.position, Quaternion.identity);
 		pickupGo.transform.position = this.transform.position;
 		SpellGemPickUp spellGemPickUp = pickupGo.GetComponent<SpellGemPickUp> ();
 		spellGemPickUp.ReuseSpellGemPickUp (spellGemGameData.spellData);

@@ -13,7 +13,7 @@ public class ObjectRegistry {
 	public ActiveObjectDictionary activeCreatureDictionary = new ActiveObjectDictionary();
 	public ActiveSpellDictionary activeSpellDictionary = new ActiveSpellDictionary();
 	public PuzzleDataDictionary activePuzzleDictionary = new PuzzleDataDictionary();
-	public ObjectRegistry (SpellSchoolData [] spellSchoolDatas, WorldData [] worlds, GameDataLegend legend) {
+	public ObjectRegistry (SpellSchoolData [] spellSchoolDatas, ZoneData [] zones, ObjectiveData[] objectives, GameDataLegend legend) {
 
 		foreach (SpellSchoolData schoolData in spellSchoolDatas) {
 			schoolDataDictionary.Add (schoolData.schoolIndexStart, schoolData);
@@ -21,48 +21,61 @@ public class ObjectRegistry {
 			RegisterPuzzles (schoolData);
 		}
 
-		foreach (WorldData worldData in worlds) {
-			RegisterTiles (worldData, legend);
-			RegisterEnemies (worldData, legend);
-			RegisterSetPieces (worldData);
+		foreach (ZoneData zoneData in zones) {
+			RegisterTiles (zoneData, legend);
+			RegisterEnemies (zoneData, legend);
+			RegisterSetPieces (zoneData);
+		}
+
+		foreach (ObjectiveData objectiveData in objectives) {
+			RegisterObjectivePieces (objectiveData);
 		}
 	}
 
 	#region dictionary setup
 
-	private void RegisterTiles (WorldData worldData, GameDataLegend legend) {
+	private void RegisterTiles (ZoneData zoneData, GameDataLegend legend) {
 
-		activeTileDictionary.Add (worldData.floorTile.id, worldData.floorTile.tile);
-		activeTileDictionary.Add (worldData.baseTile.id, worldData.baseTile.tile);
-		activeTileDictionary.Add (worldData.borderTile.id, worldData.borderTile.tile);
-		for (int i = 0; i < worldData.baseDecorTiles.Count; i++) {
-			int id = worldData.baseDecorTiles[i].id;
+		activeTileDictionary.Add (zoneData.primaryFloorTile.id, zoneData.primaryFloorTile.tile);
+		activeTileDictionary.Add (zoneData.secondaryFloorTile.id, zoneData.secondaryFloorTile.tile);
+		activeTileDictionary.Add (zoneData.underTile.id, zoneData.underTile.tile);
+		activeTileDictionary.Add (zoneData.baseTile.id, zoneData.baseTile.tile);
+		activeTileDictionary.Add (zoneData.borderTile.id, zoneData.borderTile.tile);
+		for (int i = 0; i < zoneData.baseDecorTiles.Count; i++) {
+			int id = zoneData.baseDecorTiles[i].id;
 			if (!activeTileDictionary.ContainsKey (id))
-				activeTileDictionary.Add (id, worldData.baseDecorTiles [i].tile);
+				activeTileDictionary.Add (id, zoneData.baseDecorTiles [i].tile);
 		}
-		for (int i = 0; i < worldData.topDecorTiles.Count; i++) {
-			int id = worldData.topDecorTiles[i].id;
+		for (int i = 0; i < zoneData.floorDecorTiles.Count; i++) {
+			int id = zoneData.floorDecorTiles[i].id;
 			if (!activeTileDictionary.ContainsKey (id))
-				activeTileDictionary.Add (id, worldData.topDecorTiles [i].tile);
+				activeTileDictionary.Add (id, zoneData.floorDecorTiles [i].tile);
+		}
+		for (int i = 0; i < zoneData.topDecorTiles.Count; i++) {
+			int id = zoneData.topDecorTiles[i].id;
+			if (!activeTileDictionary.ContainsKey (id))
+				activeTileDictionary.Add (id, zoneData.topDecorTiles [i].tile);
 		}
 
 	}
-	private void RegisterEnemies (WorldData worldData, GameDataLegend legend) {
+	private void RegisterEnemies (ZoneData worldData, GameDataLegend legend) {
 		for (int i = 0; i < worldData.enemyDatas.Count; i++) {
 			CreatureData enemyData = worldData.enemyDatas[i];
 			activeCreatureDictionary.Add (enemyData.id, enemyData);
 		}
 	}
-	private void RegisterSetPieces (WorldData worldData) {
-		if (!activeSetpieceDictionary.ContainsKey (worldData.playerSpawnSetpieceSpawnInfo.setPieceData.id)) {
-			activeSetpieceDictionary.Add (worldData.playerSpawnSetpieceSpawnInfo.setPieceData.id, worldData.playerSpawnSetpieceSpawnInfo.setPieceData);
+	private void RegisterSetPieces (ZoneData zoneData) {
+		for (int i = 0; i < zoneData.largeSetpieceDatas.Count; i++) {
+			SetPieceData setPieceData = zoneData.largeSetpieceDatas[i];
+			if (!activeSetpieceDictionary.ContainsKey (setPieceData.id)) {
+				activeSetpieceDictionary.Add (setPieceData.id, setPieceData);
+			}
 		}
-		if (!activeSetpieceDictionary.ContainsKey (worldData.nextLevelPortalSpawnInfo.setPieceData.id)) {
-			activeSetpieceDictionary.Add (worldData.nextLevelPortalSpawnInfo.setPieceData.id, worldData.nextLevelPortalSpawnInfo.setPieceData);
-		}
+	}
 
-		for (int i = 0; i < worldData.setPieceDatas.Count; i++) {
-			SetPieceData setPieceData = worldData.setPieceDatas[i];
+	private void RegisterObjectivePieces(ObjectiveData objectiveData) {
+		for (int i = 0; i < objectiveData.objectiveSpawnInfos.Length; i++) {
+			SetPieceData setPieceData = objectiveData.objectiveSpawnInfos[i].setPieceData;
 			if (!activeSetpieceDictionary.ContainsKey (setPieceData.id)) {
 				activeSetpieceDictionary.Add (setPieceData.id, setPieceData);
 			}

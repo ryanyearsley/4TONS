@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a701196f12370941a9b69b34871811b, type: 3}
+  m_Name: NapalmDeathSpellData
+  m_EditorClassIdentifier: 
+  spellName: Napalm Death
+  spellSchool: 2
+  spellSchoolData: {fileID: 11400000, guid: 4e7855788b47e6242848d147b41e03ae, type: 2}
+  id: 3400
+  description: Shoot a large bomb in target direction.
+  icon: {fileID: 21300000, guid: a6b0a0febe19c6146b09acc29020da71, type: 3}
+  castObject: {fileID: 576230467533564272, guid: acd6e8018a418d24996c8d097550f541, type: 3}
+  manaCost: 8
+  castTime: 0.25
+  castSpeedReduction: 0.5
+  coolDown: 4
+  spellCastLocation: 0
+  spellCastSound:
+    clipName: Nuke
+    singleClip: {fileID: 0}
+    randomize: 0
+    randomClips: []
+    volume: 1
+    pitch: 1
+    mixerGroup: {fileID: -7302680629657921355, guid: 004a37a2c22918345b123859e614950a, type: 2}
+    loop: 0
+    playOnAwake: 0
+  spellEndSound: {fileID: 0}
+  spellObject: {fileID: 5217744383755033205, guid: f76dfedefdc69fd44970d3db620c5017, type: 3}
+  poolSize: 4
+  puzzlePieceData: {fileID: 11400000, guid: 72d97e42f324a3745a0efd6490159de0, type: 2}

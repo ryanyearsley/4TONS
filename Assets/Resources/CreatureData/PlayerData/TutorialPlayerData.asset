@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CreatureData
   id: 2001
   poolSize: 2
-  clearance: 1
-  spawnObjectPrefab: {fileID: 3151322532891022119, guid: d8965ae7fc9917d4595ad341fdc46252, type: 3}
+  outerClearance: 1
+  school: 0
+  spawnObjectPrefab: {fileID: 3151322532891022119, guid: 28e6d1064bc229c4ab07c2e80570703b, type: 3}
   creatureName: WoD
   maxHealth: 100
   maxResource: 100

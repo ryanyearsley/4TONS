@@ -112,10 +112,13 @@ public class ThinkComponent : BabyBrainsComponent {
 	#region Think Cycle Private Methods
 
 	private void GatherSensoryInfo () {
-		sensoryInfo.currentHealth = babyBrainsObject.vitalsEntity.health.GetHealth ();
+		sensoryInfo.currentHealth = babyBrainsObject.vitalsEntity.health.GetValue ();
+		if (sensoryInfo.vitalsEntity.resource != null) {
+			sensoryInfo.currentResource = babyBrainsObject.vitalsEntity.resource.GetValue ();
+		}
 		if (sensoryInfo.targetVitals.trans != null) {
-			sensoryInfo.isoDistanceToTarget = IsometricCoordinateUtils.IsoDistanceBetweenPoints (sensoryInfo.trans, sensoryInfo.targetVitals.trans);
-			sensoryInfo.rawDistanceToTarget = IsometricCoordinateUtils.RawDistanceBetweenPoints (sensoryInfo.trans, sensoryInfo.targetVitals.trans);
+			sensoryInfo.isoDistanceToTarget = IsometricCoordinateUtilites.IsoDistanceBetweenPoints (sensoryInfo.trans.position, sensoryInfo.targetVitals.trans.position);
+			sensoryInfo.rawDistanceToTarget = IsometricCoordinateUtilites.RawDistanceBetweenPoints (sensoryInfo.trans, sensoryInfo.targetVitals.trans);
 			sensoryInfo.lookTransform.right = sensoryInfo.targetVitals.trans.position - sensoryInfo.trans.position;
 			sensoryInfo.targetWithinLoS = CalculateWithinLoS (sensoryInfo.lookTransform, sensoryInfo.targetVitals.trans);
 		} else {

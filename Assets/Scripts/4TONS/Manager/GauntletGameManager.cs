@@ -39,6 +39,8 @@ public class GauntletGameManager : MonoBehaviour {
 	[SerializeField]
 	private TowerProgress towerProgress;
 
+	private bool isPortalOpen;
+
 	public Action<EnemyDeathInfo> enemyDeathEvent;
 
 	private void Awake () {
@@ -55,6 +57,7 @@ public class GauntletGameManager : MonoBehaviour {
 	}
 
 	public void OnBeginLevel(int levelIndex) {
+		isPortalOpen = true;
 		Debug.Log ("gauntlet manager begin level: " + levelIndex);
 		towerProgress.currentMapDetails = LevelManager.instance.GetMapDetails (levelIndex);
 	}
@@ -76,10 +79,13 @@ public class GauntletGameManager : MonoBehaviour {
 	}
 
 	public void PortalEntered () {
-		StartCoroutine (PortalEntryRoutine ());
+		if (isPortalOpen) {
+			StartCoroutine (PortalEntryRoutine ());
+		}
 	}
 
 	public IEnumerator PortalEntryRoutine () {
+		isPortalOpen = false;
 		int nextLevelIndex = towerProgress.currentLevelIndex + 1;
 		//time for portal entry animation...
 		yield return new WaitForSeconds (0.5f);

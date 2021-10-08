@@ -138,5 +138,9 @@ public class CreatureObject : PoolObject {
 		OnSetVelocityEvent?.Invoke (velocity);
 	}
 
+	public float DistanceToTarget() {
+		return IsometricCoordinateUtilites.IsoDistanceBetweenPoints (creaturePositions.feetTransform.position, creaturePositions.targetTransform.position);
+	}
+
 	#endregion
 }

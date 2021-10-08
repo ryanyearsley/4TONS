@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class IsometricCoordinateUtils {
+public static class IsometricCoordinateUtilites {
 	static Vector2 isometricScaling = new Vector2 (1f, 0.5f);
 
 	//*************************** GENERAL ******************************
@@ -62,9 +62,8 @@ public static class IsometricCoordinateUtils {
 		}
 	}
 
-	public static float IsoDistanceBetweenPoints (Transform pointA, Transform pointB) {
-		return Vector2.Distance (pointA.position * isometricScaling, pointB.position * isometricScaling);
-
+	public static float IsoDistanceBetweenPoints (Vector3 pointA, Vector3 pointB) {
+		return Mathf.Sqrt (Mathf.Pow ((pointB.x - pointA.x), 2) + Mathf.Pow((2 * (pointB.y - pointA.y)), 2));
 
 	}
 	public static float RawDistanceBetweenPoints (Transform pointA, Transform pointB) {

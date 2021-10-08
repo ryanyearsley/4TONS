@@ -12,17 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7150dc5072870b429cf1b59e1e27331, type: 3}
   m_Name: LightSchoolData
   m_EditorClassIdentifier: 
-  schoolIndexStart: 0
+  schoolIndexStart: 2000
   spellSchool: 0
-  schoolDescription: 
-  wizardData: {fileID: 11400000, guid: 80dd040f25c1d8f498fc4b1e89241eed, type: 2}
-  wizardPrebuildData: {fileID: 0}
-  schoolColor: {r: 0, g: 0, b: 0, a: 0}
+  schoolDescription: Rain righteous fury on your enemies and serenity to those you
+    call friends.
+  wizardData: {fileID: 11400000, guid: 58f2c90e77e39d84d895d047a0105b29, type: 2}
+  wizardPrebuildData: {fileID: 11400000, guid: 132ef5b8fd6f41e4fba57e66f842fe30, type: 2}
+  schoolColor: {r: 0.8207547, g: 0.77889574, b: 0.096787095, a: 1}
   staffs: []
   spells:
-  - {fileID: 11400000, guid: ff64f62b94697a94184b8c1f9d17c6ce, type: 2}
-  - {fileID: 11400000, guid: 1a68247417a975341908fa4dd7e31866, type: 2}
-  - {fileID: 11400000, guid: ff64f62b94697a94184b8c1f9d17c6ce, type: 2}
-  - {fileID: 11400000, guid: 6e3bf02a47166f042b4659cc89bf6618, type: 2}
-  - {fileID: 11400000, guid: e3ef5e144cca0eb4bb67d1bbf91c281a, type: 2}
-  - {fileID: 11400000, guid: 60d26b1df3d71c546b80d0577d24d01b, type: 2}
+  - {fileID: 11400000, guid: 3e4c8f91a9e68be418b4c859bffba62e, type: 2}
+  - {fileID: 11400000, guid: 4aa338a38cb396f4080327d9aaf31198, type: 2}

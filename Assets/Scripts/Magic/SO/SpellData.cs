@@ -17,21 +17,22 @@ public class SpellData : ScriptableObject
 	public Sprite icon;
 	//combat
 	public GameObject castObject;
-	public int manaCost;
+	public float manaCost;
 	public float castTime;
 	public float castSpeedReduction;
 	public float coolDown;
+
+	public float damage;
+	public float snareSpeedReduction;
+	public float snareDuration;
 	public SpellCastLocation spellCastLocation;
-	public AudioClip spellCastSound;
-	public AudioClip spellChannelSound;
+	public Sound spellCastSound;
 	public AudioClip spellEndSound;
 	public GameObject spellObject;
+
 	[SerializeField]
 	public int poolSize;
 
-	public Sprite spellPreviewSprite;
-
-	public SpellObjectData spellObjectData;
 	public PuzzlePieceData puzzlePieceData;
 
 }

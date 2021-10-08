@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpellGemPickUp : PickUpObject {
+public class SpellGemPickUp : InteractableObject {
 	public SpellData spellData;
 	public Spell spellCast;
 
@@ -25,10 +25,10 @@ public class SpellGemPickUp : PickUpObject {
 		spriteRenderer.sprite = spellData.icon;
 		backgroundSpriteRenderer.color = spellData.spellSchoolData.schoolColor;
 	}
-	protected override void HighlightPickUp () {
+	protected override void HighlightInteractable () {
 		backgroundSpriteRenderer.sprite = highlightedSprite;
 	}
-	protected override void UnhighlightPickUp () {
+	protected override void UnhighlightInteractable () {
 		backgroundSpriteRenderer.sprite = backgroundSprite;
 	}
 }

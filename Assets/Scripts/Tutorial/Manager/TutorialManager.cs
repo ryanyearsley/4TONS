@@ -61,6 +61,8 @@ public class TutorialProgress {
 }
 public class TutorialManager : MonoBehaviour {
 
+	
+
 	public TutorialPhaseInfo[] tutorialPhaseInfos;
 	#region Singleton
 	public static TutorialManager instance;
@@ -105,6 +107,7 @@ public class TutorialManager : MonoBehaviour {
 
 	public void OnBeginLevel (int levelIndex) {
 		StartPhase (0);
+		PlayerManager.instance.currentPlayers [0].currentPlayerObject.gameObject.AddComponent<PlayerTutorialComponent> ();
 	}
 
 	public void StartPhase(int phaseIndex) {

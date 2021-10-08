@@ -91,8 +91,8 @@ MonoBehaviour:
   Cooldown: 0
   _started: 0
   _finished: 0
-  aggroDistance: 7
-  breakAggroDistance: 9
+  aggroDistance: 9
+  breakAggroDistance: 11
 --- !u!114 &7940440417784645156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -233,7 +233,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentValue: 0
-  maxValue: 40
   overheadUIPrefab: {fileID: 7782048835682223337, guid: 8193f6f1c4045454c83ebf5c54b378f7, type: 3}
   isPlayer: 0
   bloodPoolPrefab: {fileID: 8449888385662570083, guid: 5cb53da2784d0634eb2d6632f137effe, type: 3}
@@ -268,6 +267,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   creatureData: {fileID: 11400000, guid: 217ed99b20a5ef84483df537037326ca, type: 2}
   vitalsEntity:
+    factionTag: 
     creatureData: {fileID: 0}
     trans: {fileID: 0}
     creatureObject: {fileID: 0}
@@ -295,6 +295,7 @@ MonoBehaviour:
   sensoryInfo:
     trans: {fileID: 0}
     vitalsEntity:
+      factionTag: 
       creatureData: {fileID: 0}
       trans: {fileID: 0}
       creatureObject: {fileID: 0}
@@ -307,6 +308,7 @@ MonoBehaviour:
     targetWithinLoS: 0
     targetPositionTransform: {fileID: 0}
     targetVitals:
+      factionTag: 
       creatureData: {fileID: 0}
       trans: {fileID: 0}
       creatureObject: {fileID: 0}
@@ -543,9 +545,9 @@ GameObject:
   - component: {fileID: 8304442420477357563}
   - component: {fileID: 8444565465183934710}
   - component: {fileID: 3140353143688312119}
-  m_Layer: 11
+  m_Layer: 10
   m_Name: Audio
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

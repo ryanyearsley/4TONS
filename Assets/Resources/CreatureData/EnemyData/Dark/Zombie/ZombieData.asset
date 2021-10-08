@@ -12,17 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb6323e28d81e284a967b1ea2d1e4622, type: 3}
   m_Name: ZombieData
   m_EditorClassIdentifier: 
-  id: 2300
+  id: 3300
   poolSize: 20
-  clearance: 1
+  outerClearance: 1
+  school: 1
   spawnObjectPrefab: {fileID: 3125169596821539825, guid: d5487051237bc0c468fa6ed0a17c65cc, type: 3}
   creatureName: Zombie
   maxHealth: 40
   maxResource: 0
-  movementSpeed: 4.5
-  clipsPackage:
+  movementSpeed: 5
+  creatureAudio:
     attackSound: {fileID: 0}
-    gruntSound: {fileID: 8300000, guid: 5217f967a802b2e42a46c1ec752811fd, type: 3}
-    deathSound: {fileID: 8300000, guid: d8b13e890607ecd4d807cbed7f2dffc9, type: 3}
+    gruntSound: {fileID: 0}
+    deathSound: {fileID: 0}
     happySound: {fileID: 0}
     sadSound: {fileID: 0}

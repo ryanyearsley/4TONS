@@ -660,8 +660,109 @@ PrefabInstance:
       propertyPath: m_Name
       value: PersistentManager (DDOL)
       objectReference: {fileID: 0}
+    - target: {fileID: 1176582185763508981, guid: b2e1dda71eeadfe4b89a0257e8788b67, type: 3}
+      propertyPath: objectives.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1176582185763508981, guid: b2e1dda71eeadfe4b89a0257e8788b67, type: 3}
+      propertyPath: spellSchools.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1176582185763508981, guid: b2e1dda71eeadfe4b89a0257e8788b67, type: 3}
+      propertyPath: objectives.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 9f2e7a06adc48f14e8fbc38e1f6c201e, type: 2}
+    - target: {fileID: 1176582185763508981, guid: b2e1dda71eeadfe4b89a0257e8788b67, type: 3}
+      propertyPath: objectives.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 36969e680881df14f8949821d62921da, type: 2}
+    - target: {fileID: 1176582185763508981, guid: b2e1dda71eeadfe4b89a0257e8788b67, type: 3}
+      propertyPath: objectives.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 6c34bc2037cecf54f8657acbf107672b, type: 2}
+    - target: {fileID: 1176582185763508981, guid: b2e1dda71eeadfe4b89a0257e8788b67, type: 3}
+      propertyPath: spellSchools.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 16a7aee84221cf944b3bc8802b8d5ba3, type: 2}
+    - target: {fileID: 1176582185763508981, guid: b2e1dda71eeadfe4b89a0257e8788b67, type: 3}
+      propertyPath: spellSchools.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 96174b60ed687704a95fd4f57c8a288e, type: 2}
+    - target: {fileID: 1176582185763508981, guid: b2e1dda71eeadfe4b89a0257e8788b67, type: 3}
+      propertyPath: spellSchools.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 4e7855788b47e6242848d147b41e03ae, type: 2}
+    - target: {fileID: 1176582185763508981, guid: b2e1dda71eeadfe4b89a0257e8788b67, type: 3}
+      propertyPath: spellSchools.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: e959e5d57d37b3440be2be2b0edf7aa4, type: 2}
+    - target: {fileID: 5045547284166057415, guid: b2e1dda71eeadfe4b89a0257e8788b67, type: 3}
+      propertyPath: defaultWizardData
+      value: 
+      objectReference: {fileID: 11400000, guid: c0d3bd58560457c47b56a01e904ba362, type: 2}
+    - target: {fileID: 5045547284166057415, guid: b2e1dda71eeadfe4b89a0257e8788b67, type: 3}
+      propertyPath: startFromCombatScene
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b2e1dda71eeadfe4b89a0257e8788b67, type: 3}
+--- !u!1001 &242382186
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1084267642053696062, guid: cebf7cf9c8e824d4785cf6f500be5c84, type: 3}
+      propertyPath: m_Name
+      value: BubbleOfFortitudeCast
+      objectReference: {fileID: 0}
+    - target: {fileID: 1084267642053696063, guid: cebf7cf9c8e824d4785cf6f500be5c84, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1084267642053696063, guid: cebf7cf9c8e824d4785cf6f500be5c84, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1084267642053696063, guid: cebf7cf9c8e824d4785cf6f500be5c84, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1084267642053696063, guid: cebf7cf9c8e824d4785cf6f500be5c84, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1084267642053696063, guid: cebf7cf9c8e824d4785cf6f500be5c84, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1084267642053696063, guid: cebf7cf9c8e824d4785cf6f500be5c84, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1084267642053696063, guid: cebf7cf9c8e824d4785cf6f500be5c84, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1084267642053696063, guid: cebf7cf9c8e824d4785cf6f500be5c84, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1084267642053696063, guid: cebf7cf9c8e824d4785cf6f500be5c84, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1084267642053696063, guid: cebf7cf9c8e824d4785cf6f500be5c84, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1084267642053696063, guid: cebf7cf9c8e824d4785cf6f500be5c84, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: cebf7cf9c8e824d4785cf6f500be5c84, type: 3}
 --- !u!1 &246878510
 GameObject:
   m_ObjectHideFlags: 0
@@ -2576,7 +2677,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1583701276, guid: 192d6ed79cb25c342b26e0ebd313a237, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1583701276, guid: 192d6ed79cb25c342b26e0ebd313a237, type: 3}
       propertyPath: m_PixelSnapping
@@ -2592,8 +2693,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1818965529387775912, guid: 192d6ed79cb25c342b26e0ebd313a237, type: 3}
       propertyPath: moveSmoothTime
-      value: 0.2
+      value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1818965529387775912, guid: 192d6ed79cb25c342b26e0ebd313a237, type: 3}
+      propertyPath: focusAreaSize.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1818965529387775912, guid: 192d6ed79cb25c342b26e0ebd313a237, type: 3}
+      propertyPath: parallaxLayerPrefab
+      value: 
+      objectReference: {fileID: 3047672311191376325, guid: d0c35cbc7daf233489accd7e311eb89d, type: 3}
     - target: {fileID: 1818965529387775912, guid: 192d6ed79cb25c342b26e0ebd313a237, type: 3}
       propertyPath: pixelPerfectReferenceResolutionFar.x
       value: 1280

@@ -4,12 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Enemy
   - Player1
-  - PlayerFeet
   - Player2
+  - Enemy
   - Environment
-  - PickUp
+  - Barrier
   layers:
   - Default
   - TransparentFX
@@ -28,7 +27,7 @@ TagManager:
   - Walkable
   - Interactable
   - AoE
-  - Sensor
+  - Barrier
   - 
   - 
   - 

@@ -5,6 +5,7 @@ using UnityEngine;
 
 [Serializable]
 public class VitalsEntity {
+    public string factionTag;
     public CreatureData creatureData;
     public Transform trans;
     public CreatureObject creatureObject;

@@ -19,7 +19,7 @@ public class AcquireTargetBehaviour : BabyBrainsBehaviour
 		VitalsEntity closestEnemy = null;
 		float closestEnemydistance = acquireTargetDistance;
 		foreach (VitalsEntity vitalsEntity in sensoryInfo.potentialTargetVitals) {
-			float enemyDistance = IsometricCoordinateUtils.IsoDistanceBetweenPoints(sensoryInfo.trans, vitalsEntity.creatureObject.transform);
+			float enemyDistance = IsometricCoordinateUtilites.IsoDistanceBetweenPoints(sensoryInfo.trans.position, vitalsEntity.creatureObject.transform.position);
 			if (enemyDistance < closestEnemydistance) {
 				closestEnemy = vitalsEntity;
 				closestEnemydistance = enemyDistance;

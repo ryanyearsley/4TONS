@@ -33,6 +33,7 @@ public class VitalsManager : MonoBehaviour {
 		}
 		//register with faction
 		factionDictionary [entityTag].factionMemberEntities.Add (vitalsEntity);
+		vitalsEntity.factionTag = entityTag;
 	}
 
 	public List<VitalsEntity> AcquirePotentialTargets (VitalsEntity vitalsEntity) {
@@ -53,6 +54,19 @@ public class VitalsManager : MonoBehaviour {
 	public VitalsEntity GetVitalsEntitybyID (int objectId) {
 		if (vitalsDictionary.ContainsKey (objectId)) {
 			return vitalsDictionary [objectId];
+		} else return null;
+	}
+
+	public VitalsEntity GetVitalsEntityFromFeet (Collider2D collider) {
+		int id = collider.transform.GetInstanceID();
+		if (vitalsDictionary.ContainsKey (id)) {
+			return vitalsDictionary [id];
+		} else return null;
+	}
+	public VitalsEntity GetVitalsEntityFromHitBox (Collider2D collider) {
+		int id = collider.transform.parent.GetInstanceID();
+		if (vitalsDictionary.ContainsKey (id)) {
+			return vitalsDictionary [id];
 		} else return null;
 	}
 

@@ -25,7 +25,15 @@ public class PlayerObject : CreatureObject {
 	public PlayerState currentPlayerState { get; private set; }
 	//events (Player)
 	public event Action<PlayerState> OnChangePlayerStateEvent;
+
+	//events (Combat)
 	public event Action<DashInfo> OnDashEvent;
+	public event Action<Spell, SpellCastType> CastSpellEvent;
+	public event Action<Spell> EndSpellEvent;
+
+
+
+
 	//events (Puzzle)
 
 	public event Action<PuzzleKey, PuzzleGameData> PickUpStaffEvent;//floor to staff slot (calculated)
@@ -43,6 +51,7 @@ public class PlayerObject : CreatureObject {
 	public AimingMode currentAimingMode;
 	public event Action<AimingMode> setAimingModeEvent;
 
+	public Spell currentlyCastingSpell;
 	public SpellGemGameData highlightedSpellGemData;
 	public SpellGemGameData movingSpellGemData;
 
@@ -113,6 +122,25 @@ public class PlayerObject : CreatureObject {
 	public void OnDash (DashInfo dashInfo) {
 		OnDashEvent?.Invoke (dashInfo);
 	}
+	//COMBAT
+
+	public void OnCastSpell(Spell spell, SpellCastType spellCastType) {
+		SpellData spellData = spell.spellData;
+
+		vitalsEntity.resource.SubtractResourceCost (spellData.manaCost);
+		AudioManager.instance.PlaySound (spellData.spellCastSound.clipName);
+		CastSpellEvent?.Invoke (spell, spellCastType);
+		if (spellCastType == SpellCastType.CAST) {
+			OnAttack (new AttackInfo (spellData.castTime, spellData.castSpeedReduction, spellData));
+		}
+		AddSpeedEffect (new SpeedAlteringEffect (spellData.castSpeedReduction, spellData.castTime, false));
+	}
+	public void OnEndSpell (Spell spell) {
+		if (currentlyCastingSpell == spell) {
+			EndSpellEvent?.Invoke (spell);
+		}
+		currentlyCastingSpell = null;
+	}
 
 	//PUZZLE
 	//floor to puzzle region
@@ -146,7 +174,6 @@ public class PlayerObject : CreatureObject {
 
 	//select puzzle region
 	public void EquipStaff (PuzzleKey key, PuzzleGameData puzzleGameData, StaffEquipType equipType) {
-		
 		wizardGameData.currentStaffKey = key;
 		EquipStaffEvent?.Invoke (key, puzzleGameData, equipType);
 	}

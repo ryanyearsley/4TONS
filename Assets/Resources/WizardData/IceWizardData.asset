@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48eb5be7fe98956438c7ce906951b3f3, type: 3}
+  m_Name: IceWizardData
+  m_EditorClassIdentifier: 
+  schoolData: {fileID: 11400000, guid: e959e5d57d37b3440be2be2b0edf7aa4, type: 2}
+  wizardSelectIcon: {fileID: 21300000, guid: 89fa43e14f6f42d4db4ae47954e8eab4, type: 3}
+  portrait: {fileID: 21300000, guid: ddd2f1552df8cb44dbdcd918406bc1a4, type: 3}
+  spectralPreview: {fileID: 21300004, guid: 99defb7ce8b18c346a672c55ddabf84b, type: 3}
+  animatorController: {fileID: 22100000, guid: 53842169d2e3b774db5dfbffcebf4c93, type: 2}
+  gauntletStartData: {fileID: 11400000, guid: 9a95e018017ba854eb1e309c8555e624, type: 2}
+  spawnSetPieceData: {fileID: 11400000, guid: d23a93a1f17a101429c5cb7656bf714d, type: 2}

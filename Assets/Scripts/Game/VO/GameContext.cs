@@ -4,10 +4,6 @@
 [Serializable]
 public class GameContext 
 {
-	public WorldData worldData;
-	public GameDataLegend legend;
-	public GameType gameType;
-}
-public enum GameType {
-	GAUNTLET, TOWER_DEFENSE, DUEL, TUTORIAL
+	public ZoneData worldData;
+	public ObjectiveData objectiveData;
 }

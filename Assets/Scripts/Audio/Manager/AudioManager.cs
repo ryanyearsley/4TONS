@@ -63,7 +63,7 @@ public class AudioManager : PersistentManager {
 		mixer.SetFloat (SFX_VOLUME_PARAM, Mathf.Log10 (settingsData.sfxVolume) * DB_MULTIPLIER);
 	}
 	public void RegisterSound (Sound sound) {
-		if (!soundDictionary.ContainsKey (sound.clipName)) {
+		if (sound != null && !soundDictionary.ContainsKey (sound.clipName)) {
 			GameObject _go = new GameObject ("Sound_" + sound.clipName);
 			_go.transform.SetParent (this.transform);
 			sound.SetSource (_go.AddComponent<AudioSource> ());

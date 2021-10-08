@@ -26,6 +26,9 @@ public abstract class VitalsComponent : CreatureComponent {
         ResetVitals ();
     }
 
+    public float GetValue() {
+        return currentValue;
+	}
 	public override void OnSpawn (Vector3 spawnPosition) {
 		base.OnSpawn (spawnPosition);
         ResetVitals ();

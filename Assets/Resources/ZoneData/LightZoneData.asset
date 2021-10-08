@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68618dbd50d979f4196b1d65060aed79, type: 3}
+  m_Name: LightZoneData
+  m_EditorClassIdentifier: 
+  schoolIndexStart: 3000
+  school: 0
+  zone: 0
+  backgroundGroup:
+    backgroundColor: {r: 0.16470589, g: 0.058823533, b: 0.20392159, a: 1}
+    layerDatas:
+    - sprite: {fileID: 21300000, guid: 0eae138116f906047a7ac918aa7953ff, type: 3}
+      spriteOffset: {x: 0, y: 2}
+      distanceScaleX: 0.95
+      distanceScaleY: 1
+      opacity: 1
+  floorPrefab: {fileID: 8472839727403202167, guid: 4ea040c5f20c4b547ad30734fde7c6bd, type: 3}
+  primaryFloorTile:
+    tile: {fileID: 11400000, guid: 9c640f3eec23a9c4ca9ffe73cb5fb7a0, type: 2}
+    id: 3100
+  secondaryFloorTile:
+    tile: {fileID: 11400000, guid: 80234e5611152c248b6489e0b27e0985, type: 2}
+    id: 3101
+  underTile:
+    tile: {fileID: 11400000, guid: c7b029ea9ad3b3b45852db814accf25b, type: 2}
+    id: 3102
+  baseTile:
+    tile: {fileID: 11400000, guid: 2ba79e98920cfdd459a151fcbb312f3b, type: 2}
+    id: 3103
+  borderTile:
+    tile: {fileID: 11400000, guid: 2ba79e98920cfdd459a151fcbb312f3b, type: 2}
+    id: 3104
+  destructionDebrisObject: {fileID: 0}
+  floorDecorTiles: []
+  baseDecorTiles:
+  - tile: {fileID: 11400000, guid: 4cc56c15b3e0d054ca2d34ce812f74d8, type: 2}
+    id: 3105
+  - tile: {fileID: 11400000, guid: b2787c73647bcbd42be9c12e14bd02e3, type: 2}
+    id: 3106
+  - tile: {fileID: 11400000, guid: 5cc476767b63b024b8ab5e713278bfa5, type: 2}
+    id: 3107
+  topDecorTiles:
+  - tile: {fileID: 11400000, guid: 899e3315b9189044ea0fe289de8b025b, type: 2}
+    id: 3150
+  - tile: {fileID: 11400000, guid: 1a1bb6feb8f9b6c49a0f12422f71ba9b, type: 2}
+    id: 3151
+  - tile: {fileID: 11400000, guid: 5b005fb3f1d00ca4d9281bc13ccc7163, type: 2}
+    id: 3152
+  - tile: {fileID: 11400000, guid: bf93c9fcf9fb72e4884d0f0c35faf4fe, type: 2}
+    id: 3153
+  largeSetpieceDatas:
+  - {fileID: 11400000, guid: bd2fadacf2e57264b9856ebe92851d36, type: 2}
+  - {fileID: 11400000, guid: 00cb506ce2cf65f4bbb4a03f59676b53, type: 2}
+  enemyDatas:
+  - {fileID: 11400000, guid: 217ed99b20a5ef84483df537037326ca, type: 2}
+  - {fileID: 11400000, guid: f2a858c595dc31d4ab6153d8278630c9, type: 2}
+  lootTableData: {fileID: 11400000, guid: 30daa07b5559e1b478b90440b1bd2f29, type: 2}
+  mapDatas:
+  - {fileID: 11400000, guid: b40da825b5c53af4d90898a3024186f9, type: 2}
+  - {fileID: 11400000, guid: 314f990d10f536c488dc286ab2f0ca52, type: 2}
+  - {fileID: 11400000, guid: 3badeba3683fe974181889a1439f8046, type: 2}
+  - {fileID: 11400000, guid: 93b7beeb83e64684eb57a8d9a096b6f3, type: 2}

@@ -321,7 +321,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: add40a846e0f19843b631f05aeaed083, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  combatCursor: {fileID: 21300000, guid: 54fa2426f718de34dad1d0524ebbcef8, type: 3}
+  combatCursor: {fileID: 21300000, guid: 79b239795f5afa94aad8aef01b80bc0f, type: 3}
   puzzleBrowsingCursor: {fileID: 8671137299588997487, guid: d386c72071dc120429e1fa109462dd6d, type: 3}
   puzzleHoverCursor: {fileID: 6412447312875358497, guid: d386c72071dc120429e1fa109462dd6d, type: 3}
   puzzleHoldCursor: {fileID: -8144825653227725821, guid: d386c72071dc120429e1fa109462dd6d, type: 3}

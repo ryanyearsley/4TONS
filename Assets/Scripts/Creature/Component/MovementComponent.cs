@@ -98,10 +98,12 @@ public class MovementComponent : CreatureComponent {
 			if (!speedEffects [i].canAttack)
 				canAttack = false;
 
+			//speedEffectMultiplier -= speedEffects [i].speedMultiplier;
 			speedEffectMultiplier += speedEffects [i].speedMultiplier - 1f;
-			speedEffectMultiplier = Mathf.Clamp (speedEffectMultiplier, 0f, float.MaxValue);
 			speedEffects [i].timeRemaining -= Time.deltaTime;
 		}
+
+		speedEffectMultiplier = Mathf.Clamp (speedEffectMultiplier, 0f, 5f);
 		creatureObject.SetCanWalk (canWalk);
 		creatureObject.SetCanAttack (canAttack);
 		speedEffects.RemoveAll (debuff => debuff.timeRemaining <= 0f);

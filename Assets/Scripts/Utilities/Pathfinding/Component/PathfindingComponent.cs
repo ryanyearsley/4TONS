@@ -54,6 +54,8 @@ public class PathfindingComponent : BabyBrainsComponent  {
 	private void FixedUpdate () {
 		if (followingPath) {
 			moveController.MovementFixedUpdate (moveDirection.XY ());
+		} else {
+			moveController.MovementFixedUpdate (Vector3.zero);
 		}
 	}
 	#endregion
@@ -77,6 +79,7 @@ public class PathfindingComponent : BabyBrainsComponent  {
 		moveDirection = Vector3.zero;
 		StopAllCoroutines ();
 		followingPath = false;
+		IsStuck = false;
 		targetTransform = null;
 		path = null;
 	}

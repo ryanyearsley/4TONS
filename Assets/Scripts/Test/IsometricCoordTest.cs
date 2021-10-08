@@ -16,6 +16,6 @@ public class IsometricCoordTest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        coordinateText.text = IsometricCoordinateUtils.TranslateSceneToIso(trackingObject.transform.position).ToString();
+        coordinateText.text = IsometricCoordinateUtilites.TranslateSceneToIso(trackingObject.transform.position).ToString();
     }
 }

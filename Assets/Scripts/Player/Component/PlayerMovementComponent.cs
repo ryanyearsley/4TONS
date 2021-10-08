@@ -36,13 +36,11 @@ public class PlayerMovementComponent : PlayerComponent {
 	public override void OnChangePlayerState (PlayerState playerState) {
 		switch (playerState) {
 			case (PlayerState.COMBAT): {
-					PlayerManagement.CameraController.instance.SetCameraDynamic (movement);
 					movement.SetCreatureStateModifier (1);
 					break;
 				}
 			case (PlayerState.PUZZLE_BROWSING):
 			case (PlayerState.PUZZLE_MOVING_SPELLGEM): {
-					PlayerManagement.CameraController.instance.SetCameraRigidFollow (movement);
 					movement.SetCreatureStateModifier (0.2f);
 					break;
 				}

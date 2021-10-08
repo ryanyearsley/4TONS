@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a701196f12370941a9b69b34871811b, type: 3}
+  m_Name: BurnoutSpellData
+  m_EditorClassIdentifier: 
+  spellName: Burnout
+  spellSchool: 2
+  spellSchoolData: {fileID: 11400000, guid: 4e7855788b47e6242848d147b41e03ae, type: 2}
+  id: 5400
+  description: Gain a large speed boost and leave a wake of fire in your path.
+  icon: {fileID: 21300000, guid: e4b9631b3d3fa334db98d4cb33fc2ec0, type: 3}
+  castObject: {fileID: 576230467533564272, guid: 83aa70a01cc702e4d9c689c1f9879a93, type: 3}
+  manaCost: 5
+  castTime: 2
+  castSpeedReduction: 2.5
+  coolDown: 7
+  spellCastLocation: 2
+  spellCastSound:
+    clipName: asvgqawr
+    singleClip: {fileID: 0}
+    randomize: 0
+    randomClips: []
+    volume: 1
+    pitch: 1
+    mixerGroup: {fileID: -7302680629657921355, guid: 004a37a2c22918345b123859e614950a, type: 2}
+    loop: 0
+    playOnAwake: 0
+  spellEndSound: {fileID: 0}
+  spellObject: {fileID: 5217744383755033205, guid: c1901d2e5b75767449b31a5fb438854b, type: 3}
+  poolSize: 20
+  puzzlePieceData: {fileID: 11400000, guid: f33a2041706f69047899d8f810021454, type: 2}

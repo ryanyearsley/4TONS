@@ -9,13 +9,14 @@ public class MapDetails
     public int floorIndex;
     public bool stageComplete;
     public Vector2Int floorOrigin;
+    public Vector3 floorOriginPosition;
     public Tilemap floorTilemap;
 
     //coordinates on grid (think world space)
     public CoordinateBounds gridBounds;
     //coordinates on map (think local space)
     public CoordinateBounds mapBounds;
-    public WorldData worldData;
+    public ZoneData zoneData;
     public MapData mapData;
     public MapTileInfo[,] mapTileInfo;
     public MapSpawnPoints spawnPoints;
@@ -23,11 +24,12 @@ public class MapDetails
     public List<GauntletObjectiveComponent> remainingEnemies = new List<GauntletObjectiveComponent>();
     public int totalEnemiesCount;
 
-    public MapDetails (WorldData worldData, MapData mapData, int floorIndex, MapTileInfo [,] mapTileInfo, MapSpawnPoints spawnPoints) {
-        this.worldData = worldData;
+    public MapDetails (ZoneData worldData, MapData mapData, int floorIndex, MapTileInfo [,] mapTileInfo, MapSpawnPoints spawnPoints) {
+        this.zoneData = worldData;
         this.mapData = mapData;
         this.floorIndex = floorIndex;
         this.floorOrigin = floorIndex * Vector2Int.one * 80;
+        this.floorOriginPosition = IsometricCoordinateUtilites.TranslateIsoToScene (this.floorOrigin);
         this.mapTileInfo = mapTileInfo;
         this.spawnPoints = spawnPoints;
         GenerateBounds ();

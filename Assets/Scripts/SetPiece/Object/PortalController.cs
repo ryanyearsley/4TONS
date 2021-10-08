@@ -3,15 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //virtually the same as a spellobject, except there is no life timer on these.
-public class PortalController : PoolObject {
+public class PortalController : InteractableObject {
 	private Animator animator;
 
 	private CircleCollider2D portalCollider;
 	[SerializeField]
 	private bool opened;
-	private void Awake () {
-	}
-
 	public override void SetupObject () {
 		animator = GetComponentInChildren<Animator> ();
 		portalCollider = GetComponent<CircleCollider2D> ();
@@ -40,18 +37,17 @@ public class PortalController : PoolObject {
 		animator.SetTrigger ("open");
 		portalCollider.enabled = true;
 	}
-	
+
+	public override void InteractWithObject () {
+		GauntletGameManager.instance.PortalEntered ();
+		portalCollider.enabled = false;
+	}
+
 	public void OnLevelEnd(int floorIndex) {
 		Destroy ();
 	}
 	public override void TerminateObjectFunctions () {
 		opened = false;
 		UnsubscribeFromEvents ();
-	}
-	private void OnTriggerEnter2D (Collider2D collision) {
-		if (collision.tag == "Player1") {
-			GauntletGameManager.instance.PortalEntered ();
-			portalCollider.enabled = false;
-		}
 	}
 }

@@ -20,20 +20,23 @@ public class LevelManager : MonoBehaviour, IGameManager {
 	#endregion
 	public bool displayCustomSpawnGizmos;
 	private MapDetails currentLevelDetails;
-	private WorldData worldData;
-	private GameDataLegend legend;
+	private ZoneData zoneData;
+	private ObjectiveData objectiveData;
 	[SerializeField]
 	private ObjectRegistry objectRegistry;
 
 	[SerializeField]
-	private Tilemap floorTilemap;
-
-	[SerializeField]
 	private Tilemap baseTilemap;
-
+	[SerializeField]
+	private Tilemap baseHitboxTilemap;
+	[SerializeField]
+	private Tilemap floorTilemap;
+	[SerializeField]
+	private Tilemap floorDecorTilemap;
 	[SerializeField]
 	private Tilemap topTilemap;
 
+	private Tile baseHitboxTile;
 
 	//int = levelIndex
 	private Dictionary<int, MapDetails> mapDetailDictionary = new Dictionary<int, MapDetails>();
@@ -72,25 +75,28 @@ public class LevelManager : MonoBehaviour, IGameManager {
 	public void InitializeManager (GameContext gameContext) {
 		GameManager.instance.loadLevelEvent += OnLoadLevel;
 		GameManager.instance.levelEndEvent += OnLevelEnd;
-		this.worldData = gameContext.worldData;
-		this.legend = ConstantsManager.instance.legend;
-		CreateLevelPools (worldData);
-
+		this.zoneData = gameContext.worldData;
+		this.objectiveData = gameContext.objectiveData;
+		baseHitboxTile = ConstantsManager.instance.baseHitboxTile;
+		CreateLevelPools (zoneData, objectiveData);
+		BackgroundManager.instance.SetUpCameraBackground (zoneData.backgroundGroup);
 	}
-	private void CreateLevelPools (WorldData worldData) {
+	private void CreateLevelPools (ZoneData worldData, ObjectiveData objectivedata) {
 		//PoolManager.instance.CreatePoolGeneric (worldData.playerData.spawnObjectPrefab, worldData.playerData.poolSize);
 		//objective pools
-		PoolManager.instance.CreateObjectPool (worldData.playerSpawnSetpieceSpawnInfo.setPieceData.spawnObjectPrefab, worldData.playerSpawnSetpieceSpawnInfo.setPieceData.poolSize);
-		PoolManager.instance.CreateObjectPool (worldData.nextLevelPortalSpawnInfo.setPieceData.spawnObjectPrefab, worldData.nextLevelPortalSpawnInfo.setPieceData.poolSize);
+
+		foreach (SetPieceSpawnInfo objectiveSpawnInfo in objectiveData.objectiveSpawnInfos) {
+			PoolManager.instance.CreateObjectPool (objectiveSpawnInfo.setPieceData.spawnObjectPrefab, objectiveSpawnInfo.setPieceData.poolSize);
+		}
 		//player pools
-		PoolManager.instance.CreatePlayerPool (worldData.playerCreatureData.spawnObjectPrefab, PlayerManager.instance.currentPlayers.Count);
+		PoolManager.instance.CreatePlayerPool (objectiveData.playerObjectData.spawnObjectPrefab, 2);
 
 		//creature pools
 		foreach (CreatureData enemyData in worldData.enemyDatas) {
 			PoolManager.instance.CreateCreaturePool (enemyData.spawnObjectPrefab, enemyData.poolSize);
 		}
-		PoolManager.instance.CreateObjectPool (ConstantsManager.instance.spellGemPickupPrefab, 15);
-		PoolManager.instance.CreateObjectPool (ConstantsManager.instance.staffPickupPrefab, 15);
+		PoolManager.instance.CreateObjectPool (ConstantsManager.instance.spellGemPickUpData.spawnObjectPrefab, 30);
+		PoolManager.instance.CreateObjectPool (ConstantsManager.instance.staffPickUpData.spawnObjectPrefab, 15);
 	}
 
 	#endregion
@@ -107,10 +113,10 @@ public class LevelManager : MonoBehaviour, IGameManager {
 	#region public utility methods
 
 	public IEnumerator LoadLevelRoutine (int levelIndex) {
-		GenerateMapDetails (worldData, levelIndex);
+		GenerateMapDetails (zoneData, objectiveData, levelIndex);
 		yield return new WaitForSeconds (0.5f);
 		if (currentLevelDetails.mapData.mapGenerationData != null)
-			BuildLevel (levelIndex);
+			BuildFloor (levelIndex);
 		else {
 			GenerateFloorNodes (currentLevelDetails);
 		}
@@ -123,20 +129,13 @@ public class LevelManager : MonoBehaviour, IGameManager {
 		yield return new WaitForSeconds (0.5f);
 		SpawnSpellGems (levelIndex);
 		SpawnStaffs (levelIndex);
+		BuildSetpieces (levelIndex);
+		BuildObjectives (levelIndex);
 		yield return new WaitForSeconds (0.5f);
 		SpawnEnemies (levelIndex);
 		yield return new WaitForSeconds (0.5f);
 
 		GameManager.instance.SetLevelLoaded ();
-
-	}
-
-
-	public IEnumerator LevelBuildFailRoutine () {
-		yield return new WaitForSeconds (10f);
-		if (GameManager.instance.GetLevelLoaded() == false) {
-			
-		}
 
 	}
 
@@ -148,29 +147,26 @@ public class LevelManager : MonoBehaviour, IGameManager {
 	public Vector3 ConvertIsoCoordToScene (Vector2Int cartCoordinate) {
 		return baseTilemap.GetCellCenterWorld ((Vector3Int)cartCoordinate);
 	}
-	public void GenerateMapDetails (WorldData worldData, int floorIndex) {
-		if (floorIndex < worldData.mapDatas.Length) {
-			MapData nextMapData = worldData.mapDatas[floorIndex];
+	public void GenerateMapDetails (ZoneData zoneData, ObjectiveData objectiveData, int floorIndex) {
+		if (floorIndex < zoneData.mapDatas.Length) {
+			MapData nextMapData = zoneData.mapDatas[floorIndex];
 			MapDetails generatingMapDetails = null;
 			if (nextMapData.mapGenerationData != null) {
-				generatingMapDetails = MapGenerator.instance.GenerateMap (worldData, legend, floorIndex);
+				generatingMapDetails = MapGenerator.instance.GenerateMap (zoneData, objectiveData, floorIndex);
 			} else if (nextMapData.customMapData != null) {
-				int[,] map = MapUtility.Generate2DArrayFromTilemap(baseTilemap,
+				int[,] map = MapConversionUtility.Generate2DArrayFromTilemap(baseTilemap,
 					new CoordinateBounds(Vector2Int.zero, Vector2Int.one * 56));
-				generatingMapDetails = new MapDetails (worldData, nextMapData, floorIndex, MapUtility.ConvertMapToTileInfo (map), nextMapData.customMapData.mapSpawnPoints);
+				generatingMapDetails = new MapDetails (zoneData, nextMapData, floorIndex, MapConversionUtility.ConvertMapToTileInfo (map), nextMapData.customMapData.mapSpawnPoints);
 
 				GenerateFloorNodes (generatingMapDetails);
 			}
+			Debug.Log ("LevelManager: Adding floorIndex " + floorIndex);
 			mapDetailDictionary.Add (floorIndex, generatingMapDetails);
 			currentLevelDetails = generatingMapDetails;
 		}
 	}
-	//BuildFloor
-	//BuildBase
-	//BuildSetpieces
 
-
-	public void BuildLevel (int floorIndex) {
+	public void BuildFloor (int floorIndex) {
 		if (mapDetailDictionary.ContainsKey (floorIndex)) {
 			MapDetails buildingMapDetails = mapDetailDictionary[floorIndex];
 			MapTileInfo[,] mapTileInfo = buildingMapDetails.mapTileInfo;
@@ -178,41 +174,68 @@ public class LevelManager : MonoBehaviour, IGameManager {
 			int xLength = mapTileInfo.GetLength(0);
 			Vector2Int origin = buildingMapDetails.floorOrigin;
 			Vector3 floorPrefabSpawnPosition = baseTilemap.GetCellCenterWorld((Vector3Int)origin);
-			if (buildingMapDetails.mapData.floorPrefab != null)
-				Instantiate (buildingMapDetails.mapData.floorPrefab, floorPrefabSpawnPosition, Quaternion.identity); ;
+			if (zoneData.floorPrefab != null)
+				Instantiate (zoneData.floorPrefab, floorPrefabSpawnPosition, Quaternion.identity); ;
 			Transform parent = baseTilemap.transform.parent;
 			GameObject tilemapObject = baseTilemap.transform.gameObject;
-
-			for (int y = 0; y < yLength; y++) {
-				for (int x = 0; x < xLength; x++) {
+			for (int y = 0; y < mapTileInfo.GetLength (1); y++) {
+				for (int x = 0; x < mapTileInfo.GetLength (0); x++) {
 					MapTileInfo tileInfo = mapTileInfo[x, y];
 					int tileValue = tileInfo.value;
 					if (objectRegistry.activeTileDictionary.ContainsKey (tileValue)) {
 						if (tileInfo.tileLayer == TileLayer.FLOOR) {
 							floorTilemap.SetTile (new Vector3Int (x + origin.x, y + origin.y, 0), objectRegistry.activeTileDictionary [tileValue]);
 							mapTileInfo [x, y].walkable = true;
+						} else if (tileInfo.tileLayer == TileLayer.FLOOR_DECOR) {
+							floorTilemap.SetTile (new Vector3Int (x + origin.x, y + origin.y, 0), zoneData.primaryFloorTile.tile);
+							floorDecorTilemap.SetTile (new Vector3Int (x + origin.x, y + origin.y, 0), objectRegistry.activeTileDictionary [tileValue]);
+							mapTileInfo [x, y].walkable = true;
 						} else if (tileInfo.tileLayer == TileLayer.BASE) {
-							baseTilemap.SetTile (new Vector3Int (x + origin.x, y + origin.y, 0), objectRegistry.activeTileDictionary [tileValue]);
+							UpdateBaseTilemap(new Vector3Int (x +origin.x, y + origin.y, 0), objectRegistry.activeTileDictionary [tileValue]);
 							mapTileInfo [x, y].walkable = false;
 						} else if (tileInfo.tileLayer == TileLayer.TOP) {
-							floorTilemap.SetTile (new Vector3Int (x + origin.x, y + origin.y, 0), worldData.floorTile.tile);
-							baseTilemap.SetTile (new Vector3Int (x + origin.x, y + origin.y, 0), worldData.baseTile.tile);
+							UpdateBaseTilemap (new Vector3Int (x + origin.x, y + origin.y, 0), zoneData.baseTile.tile);
 							topTilemap.SetTile (new Vector3Int (x + origin.x, y + origin.y, 0), objectRegistry.activeTileDictionary [tileValue]);
 							mapTileInfo [x, y].walkable = false;
 						}
+					} else if (objectRegistry.activeSetpieceDictionary.ContainsKey (tileValue)) {
+						Vector3 position = baseTilemap.GetCellCenterWorld (new Vector3Int (x + origin.x, y + origin.y, 0));
+						PoolManager.instance.ReuseObject (objectRegistry.activeSetpieceDictionary [tileValue].spawnObjectPrefab, position, Quaternion.identity);
+						mapTileInfo [x, y].walkable = false;
 					} else {
-						floorTilemap.SetTile (new Vector3Int (x + origin.x, y + origin.y, 0), worldData.floorTile.tile);
-						mapTileInfo [x, y].walkable = true;
+						floorTilemap.SetTile (new Vector3Int (x + origin.x, y + origin.y, 0), zoneData.primaryFloorTile.tile);
+						tileInfo.walkable = true;
 					}
 				}
 			}
 			GenerateFloorNodes (buildingMapDetails);
 		}
 	}
-
+	public void UpdateBaseTilemap(Vector3Int coordinate, Tile tile) {
+		floorTilemap.SetTile (coordinate, zoneData.underTile.tile);
+		baseTilemap.SetTile (coordinate, tile);
+		baseHitboxTilemap.SetTile (coordinate, baseHitboxTile);
+	}
 
 
 	//NOTE: Players are only spawned on first stage. They are relocated to following stages.
+
+	public void BuildSetpieces (int floorIndex) {
+		MapDetails currentMapDetails = mapDetailDictionary[floorIndex];
+
+		foreach (SpawnPoint spawnPoint in currentMapDetails.spawnPoints.setPieceSpawnPoints) {
+			Vector3 setpiecePosition = ConvertIsoCoordToScene(spawnPoint.spawnCoordinate + currentMapDetails.floorOrigin);
+			PoolManager.instance.ReuseObject (spawnPoint.spawnObjectData.spawnObjectPrefab, setpiecePosition, Quaternion.identity);
+		}
+	}
+	public void BuildObjectives (int floorIndex) {
+		MapDetails currentMapDetails = mapDetailDictionary[floorIndex];
+
+		foreach (SpawnPoint spawnPoint in currentMapDetails.spawnPoints.objectiveSpawnPoints) {
+			Vector3 setpiecePosition = ConvertIsoCoordToScene(spawnPoint.spawnCoordinate + currentMapDetails.floorOrigin);
+			PoolManager.instance.ReuseObject (spawnPoint.spawnObjectData.spawnObjectPrefab, setpiecePosition, Quaternion.identity);
+		}
+	}
 	public void CreatePlayerObjects () {
 		Debug.Log ("creating player objects");
 		MapDetails currentMapDetails = mapDetailDictionary[0];
@@ -222,9 +245,6 @@ public class LevelManager : MonoBehaviour, IGameManager {
 			GameObject playerObject = PoolManager.instance.ReusePlayerObject(spawnPosition, player);
 			player.isAlive = true;
 			UIManager.Instance.playerUIs [player.playerIndex].InitializePlayerUI (player);
-			if (PlayerManager.instance.currentPlayers.Count == 1) {
-				PlayerManagement.CameraController.instance.SetCameraDynamic (playerObject.GetComponent<MovementComponent> ());
-			}
 		}
 	}
 
@@ -236,15 +256,6 @@ public class LevelManager : MonoBehaviour, IGameManager {
 			Vector3 spawnPosition = ConvertIsoCoordToScene(spawnCoordinate);
 			player.currentPlayerObject.transform.position = spawnPosition;
 			player.isAlive = true;
-		}
-	}
-
-	public void BuildSetpieces (int floorIndex) {
-		MapDetails currentMapDetails = mapDetailDictionary[floorIndex];
-
-		foreach (SpawnPoint spawnPoint in currentMapDetails.spawnPoints.setPieceSpawnPoints) {
-			Vector3 setpiecePosition = ConvertIsoCoordToScene(spawnPoint.spawnCoordinate + currentMapDetails.floorOrigin);
-			PoolManager.instance.ReuseObject(spawnPoint.spawnObjectData.spawnObjectPrefab, setpiecePosition, Quaternion.identity);
 		}
 	}
 	public void SpawnEnemies (int floorIndex) {
@@ -265,7 +276,7 @@ public class LevelManager : MonoBehaviour, IGameManager {
 
 		foreach (SpellGemSpawnPoint spellGemSpawnPoint in currentMapDetails.spawnPoints.spellGemSpawnPoints) {
 			Vector3 spellGemSpawnPosition = ConvertIsoCoordToScene(spellGemSpawnPoint.spawnCoordinate + currentMapDetails.floorOrigin);
-			GameObject spellGemGo = PoolManager.instance.ReuseObject(ConstantsManager.instance.spellGemPickupPrefab, spellGemSpawnPosition, Quaternion.identity);
+			GameObject spellGemGo = PoolManager.instance.ReuseObject(ConstantsManager.instance.spellGemPickUpData.spawnObjectPrefab, spellGemSpawnPosition, Quaternion.identity);
 			spellGemGo.transform.position = spellGemSpawnPosition;
 			SpellGemPickUp spellGemPickUp = spellGemGo.GetComponent<SpellGemPickUp>();
 			spellGemPickUp.ReuseSpellGemPickUp (spellGemSpawnPoint.spellData);
@@ -278,11 +289,38 @@ public class LevelManager : MonoBehaviour, IGameManager {
 
 		foreach (StaffSpawnPoint staffSpawnPoint in currentMapDetails.spawnPoints.staffSpawnPoints) {
 			Vector3 staffSpawnPosition = ConvertIsoCoordToScene(staffSpawnPoint.spawnCoordinate + currentMapDetails.floorOrigin);
-			GameObject staffPickUpGO = PoolManager.instance.ReuseObject(ConstantsManager.instance.staffPickupPrefab, staffSpawnPosition, Quaternion.identity);
+			GameObject staffPickUpGO = PoolManager.instance.ReuseObject(ConstantsManager.instance.staffPickUpData.spawnObjectPrefab, staffSpawnPosition, Quaternion.identity);
 			staffPickUpGO.transform.position = staffSpawnPosition;
 			StaffPickUp staffPickUp = staffPickUpGO.GetComponent<StaffPickUp>();
 			staffPickUp.SetupObject ();
 			staffPickUp.ReuseStaffPickUp (staffSpawnPoint.puzzleData);
+		}
+	}
+
+	public void DestroyEnvironment (Vector3 centerPosition, int radius) {
+		Vector3Int centerCoordinate = grid.WorldToCell(centerPosition) - ((Vector3Int)currentLevelDetails.floorOrigin);
+		for (int x = centerCoordinate.x - radius; x < centerCoordinate.x + radius; x++) {
+			for (int y = centerCoordinate.y - radius; y < centerCoordinate.y + radius; y++) {
+				Vector2Int mapCoordinate = new Vector2Int (x, y);
+				if (currentLevelDetails.mapBounds.isWithinBounds (mapCoordinate)) {
+					Vector3 coordinatePos = grid.GetCellCenterLocal ((Vector3Int)mapCoordinate);
+					MapTileInfo mapTileInfo = currentLevelDetails.mapTileInfo [x, y];
+					if (IsometricCoordinateUtilites.IsoDistanceBetweenPoints (centerPosition, coordinatePos) <= radius
+					&& mapTileInfo.tileLayer != TileLayer.FLOOR
+					&& mapTileInfo.value != zoneData.borderTile.id) {
+						Vector3Int coordinate = new Vector3Int (x + currentLevelDetails.floorOrigin.x, y + currentLevelDetails.floorOrigin.y, 0);
+						baseTilemap.SetTile (coordinate, null);
+						topTilemap.SetTile (coordinate, null);
+						mapTileInfo.tileLayer = TileLayer.FLOOR;
+						mapTileInfo.walkable = true;
+						if (zoneData.destructionDebrisObject != null)
+							PoolManager.instance.ReuseObject (zoneData.destructionDebrisObject, coordinatePos, Quaternion.identity);
+					}
+				}
+				else {
+					Debug.Log ("LevelManager: Attempting to destroy outside of bounds.");
+				}
+			}
 		}
 	}
 
@@ -325,7 +363,10 @@ public class LevelManager : MonoBehaviour, IGameManager {
 				Vector3 worldPoint = grid.GetCellCenterWorld(new Vector3Int(worldIsoCoordinate.x, worldIsoCoordinate.y, 0));
 
 				bool walkable = tile.walkable;
-				//bool walkable = !(Physics2D.OverlapCircle (worldPoint, nodeRadius, unwalkableMask));
+				if (Physics2D.OverlapCircle (worldPoint, nodeRadius, unwalkableMask) && walkable == true) {
+					tile.walkable = false;
+					walkable = false;
+				}
 
 				int movementPenalty = 0;
 
@@ -460,9 +501,8 @@ public class LevelManager : MonoBehaviour, IGameManager {
 
 	[ExecuteInEditMode]
 	private void OnDrawGizmos () {
-		Debug.Log ("LevelManager: Displaying custom spawn gizmos");
 		if (displayCustomSpawnGizmos) {
-			foreach (MapData mapData in worldData.mapDatas)
+			foreach (MapData mapData in zoneData.mapDatas)
 				if (mapData.customMapData != null) {
 					Gizmos.color = Color.cyan;
 					Debug.Log ("LevelManager: Drawing Spawn Gizmo at " + mapData.customMapData.mapSpawnPoints.playerSpawnPoints [0].spawnCoordinate);
@@ -497,14 +537,9 @@ public class LevelManager : MonoBehaviour, IGameManager {
 				for (int y = 0; y < nodes.GetLength (1); y++) {
 					PathfindingNode node = nodes[x, y];
 					//Debug.Log (" map coord: " + new Vector2Int(x, y) + ", world position: " + node.worldPosition);
-					if (currentLevelDetails.mapTileInfo [x, y].isSpawnConflict) {
-						Debug.Log ("level manager gizmo: spawn conflict at tile");
-						Gizmos.color = Color.red;
-						Gizmos.DrawCube (node.worldPosition, Vector3.one * (nodeRadius * 2));
-					} else {
-						Gizmos.color = (node.walkable) ? Color.white : Color.black;
-						Gizmos.DrawCube (node.worldPosition, Vector3.one * (nodeRadius * 2));
-					}
+
+					Gizmos.color = (node.walkable) ? Color.white : Color.black;
+					Gizmos.DrawCube (node.worldPosition, Vector3.one * (nodeRadius * 2));
 				}
 			}
 		}

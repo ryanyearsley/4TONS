@@ -9,7 +9,7 @@ public class PlayerInteractComponent : PlayerComponent {
 
 	//active list of spell gems within pick-up distance.
 	[SerializeField]
-	private List<PickUpObject> interactablePickUps = new List<PickUpObject>();
+	private List<InteractableObject> interactablePickUps = new List<InteractableObject>();
 
 	public override void SetUpComponent (GameObject rootObject) {
 		base.SetUpComponent (rootObject);
@@ -19,13 +19,13 @@ public class PlayerInteractComponent : PlayerComponent {
 		interactButton.SetActive (false);
 	}
 
-	public void AddItemToInteractable (PickUpObject pickUp) {
+	public void AddItemToInteractable (InteractableObject pickUp) {
 		interactablePickUps.Add (pickUp);
 		if (interactablePickUps.Count >= 1) {
 			interactButton.SetActive (true);
 		}
 	}
-	public void RemoveItemFromInteractable (PickUpObject pickUp) {
+	public void RemoveItemFromInteractable (InteractableObject pickUp) {
 		interactablePickUps.Remove (pickUp);
 		if (interactablePickUps.Count == 0) {
 			interactButton.SetActive (false);
@@ -37,7 +37,7 @@ public class PlayerInteractComponent : PlayerComponent {
 			if (interactablePickUps.Count == 0) {
 				return;//No pick ups in range.
 			} else {
-				PickUpObject closestObject = null;
+				InteractableObject closestObject = null;
 				if (interactablePickUps.Count == 1) {
 					closestObject = interactablePickUps [0];
 				} else if (interactablePickUps.Count > 1) {
@@ -49,7 +49,9 @@ public class PlayerInteractComponent : PlayerComponent {
 					PickUpSpellGem (closestObject.GetComponent<SpellGemPickUp> ());
 				} else if (closestObject is StaffPickUp) {
 					PickUpStaff (closestObject.GetComponent<StaffPickUp> ());
-				} 
+				} else {
+					closestObject.InteractWithObject ();
+				}
 			}
 		} else if (playerObject.currentPlayerState == PlayerState.PUZZLE_BROWSING) {
 
@@ -79,16 +81,16 @@ public class PlayerInteractComponent : PlayerComponent {
 		Debug.Log ("PlayerInteractComponent: staff pickup destroyed");
 	}
 
-	private PickUpObject CalculateClosestPickUp (List<PickUpObject> objectList) {
-		PickUpObject closestPickUp = null;
+	private InteractableObject CalculateClosestPickUp (List<InteractableObject> objectList) {
+		InteractableObject closestInteractable = null;
 		float closestDistance = 5;
-		foreach (PickUpObject pickUpObject in objectList) {
-			float distance = Vector2.Distance(pickUpObject.trans.position, transform.position);
-			if (closestPickUp == null || distance < closestDistance) {
-				closestPickUp = pickUpObject;
+		foreach (InteractableObject interactableObject in objectList) {
+			float distance = Vector2.Distance(interactableObject.trans.position, transform.position);
+			if (closestInteractable == null || distance < closestDistance) {
+				closestInteractable = interactableObject;
 				closestDistance = distance;
 			}
 		}
-		return closestPickUp;
+		return closestInteractable;
 	}
 }

@@ -10,9 +10,12 @@ public class PlayerAnimationComponent : PlayerComponent {
 
     readonly AnimationHashID dashAnimID = new AnimationHashID("Dash");
 
+    readonly AnimationHashID attackAnimID = new AnimationHashID("Attack");
+    readonly AnimationHashID channelAnimID = new AnimationHashID("Channel");
 
 
-	public override void SetUpComponent (GameObject rootObject) {
+
+    public override void SetUpComponent (GameObject rootObject) {
         base.SetUpComponent (rootObject);
         animationComponent = GetComponent<AnimationComponent> ();
         animator = GetComponent<Animator> ();
@@ -24,6 +27,17 @@ public class PlayerAnimationComponent : PlayerComponent {
 
     }
 
+    public override void OnCastSpell (Spell spell, SpellCastType spellCastType) {
+        if (spellCastType == SpellCastType.CAST)
+            animationComponent.PlayTimedAnimation (attackAnimID, spell.spellData.castTime);
+        else if (spellCastType == SpellCastType.CHANNEL) {
+            animationComponent.PlayLoopingAnimation (channelAnimID);
+        }
+    }
+
+    public override void OnEndSpell(Spell spell) {
+        animationComponent.StopCurrentAnimation ();
+    }
     public override void OnDash (DashInfo dashInfo) {
         animationComponent.PlayTimedAnimation (dashAnimID, dashInfo.animationTime);
         StartCoroutine (DashIFrameRoutine (dashInfo));

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu (fileName = "Data", menuName = "ScriptableObjects/Wizardry/Puzzle Data", order = 1)]
+[CreateAssetMenu (fileName = "Data", menuName = "ScriptableObjects/Puzzle/Puzzle Data")]
 public class PuzzleData : ScriptableObject
 {
 	public int id;

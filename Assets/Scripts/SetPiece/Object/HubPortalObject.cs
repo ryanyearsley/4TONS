@@ -6,7 +6,7 @@ using TMPro;
 
 
 //virtually the same as a spellobject, except there is no life timer on these.
-public class HubPortalObject : PoolObject {
+public class HubPortalObject : InteractableObject {
 
 	public SpellSchool school;
 	public PortalStatus portalStatus;
@@ -30,7 +30,7 @@ public class HubPortalObject : PoolObject {
 	public override void ReuseObject () {
 		base.ReuseObject ();
 		bool completed = PlayerManager.instance.currentPlayers [0].wizardSaveData.CheckIfPlayerCompleteTower (school);
-		
+
 		if (completed) {
 			SetPortalComplete ();
 		} else {
@@ -38,7 +38,12 @@ public class HubPortalObject : PoolObject {
 		}
 	}
 
-	private void SetPortalOpen() {
+	public override void InteractWithObject () {
+		GauntletHubGameManager.instance.TowerEntered (school);
+		portalCollider.enabled = false;
+	}
+
+	private void SetPortalOpen () {
 		portalStatus = PortalStatus.OPEN;
 		towerStatusText.text = "OPEN";
 		portalCollider.enabled = true;
@@ -59,12 +64,6 @@ public class HubPortalObject : PoolObject {
 	public override void TerminateObjectFunctions () {
 		portalStatus = PortalStatus.DISABLED;
 		portalCollider.enabled = false;
-	}
-	private void OnTriggerEnter2D (Collider2D collision) {
-		if (collision.tag == "Player1") {
-			GauntletHubGameManager.instance.TowerEntered (school);
-			portalCollider.enabled = false;
-		}
 	}
 }
 

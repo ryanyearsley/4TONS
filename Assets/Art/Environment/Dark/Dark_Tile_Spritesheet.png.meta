@@ -4,31 +4,43 @@ TextureImporter:
   internalIDToNameTable:
   - first:
       213: 3049643817936535592
-    second: Dark_Tile_Floor
+    second: Dark_Tile_Spritesheet_0
   - first:
       213: -234619703405358093
-    second: Dark_Tile_Base
+    second: Dark_Tile_Spritesheet_1
   - first:
       213: -8511283434847535817
-    second: Dark_Tile_Border
+    second: Dark_Tile_Spritesheet_2
   - first:
       213: 5426521963971414904
-    second: Dark_Tile_Tombstone_Small
+    second: Dark_Tile_Spritesheet_3
   - first:
       213: -1173671515250573732
-    second: Dark_Tile_Tombstone_Large
+    second: Dark_Tile_Spritesheet_4
   - first:
       213: 5243302109508369767
-    second: Dark_Decor_Jackolantern
+    second: Dark_Tile_Spritesheet_5
   - first:
       213: -4001802225143419680
-    second: Dark_Decor_SkullAndBones
+    second: Dark_Tile_Spritesheet_6
   - first:
       213: -4163500121350169993
-    second: Dark_Decor_Ribcage
+    second: Dark_Tile_Spritesheet_7
   - first:
       213: 2855284768758640252
-    second: Dark_Decor_Bones
+    second: Dark_Tile_Spritesheet_8
+  - first:
+      213: -1434340935157314847
+    second: Dark_Tile_Spritesheet_9
+  - first:
+      213: -4014321343544869367
+    second: Dark_Tile_Spritesheet_10
+  - first:
+      213: -7210355717797587828
+    second: Dark_Tile_Spritesheet_11
+  - first:
+      213: -2835632349186026403
+    second: Dark_Tile_Spritesheet_12
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -118,7 +130,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Dark_Tile_Floor
+      name: Dark_Tile_Spritesheet_0
       rect:
         serializedVersion: 2
         x: 0
@@ -126,7 +138,7 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -139,7 +151,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Dark_Tile_Base
+      name: Dark_Tile_Spritesheet_1
       rect:
         serializedVersion: 2
         x: 64
@@ -147,7 +159,7 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -160,7 +172,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Dark_Tile_Border
+      name: Dark_Tile_Spritesheet_2
       rect:
         serializedVersion: 2
         x: 128
@@ -168,7 +180,7 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -181,7 +193,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Dark_Tile_Tombstone_Small
+      name: Dark_Tile_Spritesheet_3
       rect:
         serializedVersion: 2
         x: 0
@@ -189,7 +201,7 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -202,7 +214,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Dark_Tile_Tombstone_Large
+      name: Dark_Tile_Spritesheet_4
       rect:
         serializedVersion: 2
         x: 64
@@ -210,7 +222,7 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -223,15 +235,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Dark_Decor_Jackolantern
+      name: Dark_Tile_Spritesheet_5
       rect:
         serializedVersion: 2
-        x: 0
-        y: 64
+        x: 128
+        y: 128
         width: 64
         height: 64
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -244,15 +256,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Dark_Decor_SkullAndBones
+      name: Dark_Tile_Spritesheet_6
       rect:
         serializedVersion: 2
-        x: 64
+        x: 0
         y: 64
         width: 64
         height: 64
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -265,15 +277,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Dark_Decor_Ribcage
+      name: Dark_Tile_Spritesheet_7
       rect:
         serializedVersion: 2
-        x: 128
+        x: 64
         y: 64
         width: 64
         height: 64
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -286,15 +298,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Dark_Decor_Bones
+      name: Dark_Tile_Spritesheet_8
       rect:
         serializedVersion: 2
-        x: 192
+        x: 128
         y: 64
         width: 64
         height: 64
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -302,6 +314,90 @@ TextureImporter:
       bones: []
       spriteID: c7e21768e5200a720800000000000000
       internalID: 2855284768758640252
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dark_Tile_Spritesheet_9
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 64
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.125}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ea8529d482381ce0800000000000000
+      internalID: -1434340935157314847
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dark_Tile_Spritesheet_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.125}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90e3dbfb1044a48c0800000000000000
+      internalID: -4014321343544869367
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dark_Tile_Spritesheet_11
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.125}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c84d7704dabafeb90800000000000000
+      internalID: -7210355717797587828
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dark_Tile_Spritesheet_12
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.125}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d541929f66fc5a8d0800000000000000
+      internalID: -2835632349186026403
       vertices: []
       indices: 
       edges: []

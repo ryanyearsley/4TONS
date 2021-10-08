@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class StaffPickUp : PickUpObject {
+public class StaffPickUp : InteractableObject {
 
 	private Grid grid;
 	[SerializeField]
@@ -51,11 +51,11 @@ public class StaffPickUp : PickUpObject {
 		puzzleEntity.SetPuzzleEntityGridParent (grid, tilemapOrigin);
 	}*/
 
-	protected override void HighlightPickUp () {
+	protected override void HighlightInteractable () {
 		puzzleUI.EnablePuzzleUI ();
 		puzzleGameData.puzzleEntity.tilemap.gameObject.SetActive (true);
 	}
-	protected override void UnhighlightPickUp () {
+	protected override void UnhighlightInteractable () {
 		puzzleUI.DisablePuzzleUI ();
 		puzzleGameData.puzzleEntity.tilemap.gameObject.SetActive (false);
 	}

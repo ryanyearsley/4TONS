@@ -7,31 +7,37 @@ public class ConstantsManager : PersistentManager {
 
 	public GameDataLegend legend;
 	public SpellSchoolData[] spellSchools;
-	public WorldData[] worlds;
+	public ZoneData[] zones;
+	public ObjectiveData[] objectives;
 
 	public ObjectRegistry objectRegistry;
 	//PLAYER CREATION PREFABS
-	public GameObject playerWizardTemplatePrefab;
+
+	//Whenever a player is spawned, this agnostic wizard prefab is used...
+	//It is then overwritten by player's WizardSaveData (assigned in PlayerManager).
+	public CreatureData playerCreatureData;
 
 
 
 	//STAFF AND PUZZLE PREFABS
 
+
+	//USED IN MAP GENERATION
 	public SpawnObjectData spellGemPickUpData;
 	public SpawnObjectData staffPickUpData;
-	public GameObject spellGemPickupPrefab;
-	public GameObject spellGemUIPrefab;
-	public GameObject staffPickupPrefab;
-	public GameObject puzzleEntityPrefab;
-	public Tile puzzleTile;
 
+	//USED IN PLAYER PICK-UP/DROP
+	public GameObject spellGemUIPrefab;
+	public GameObject puzzleEntityPrefab;
+
+	public Tile puzzleTile;
+	public Tile baseHitboxTile;
 	public RandomNameData randomWizardNames;
 
 	public Color validProjectedAoEColor;
 	public Color invalidProjectedAoEColor;
 
 
-	// Singleton Pattern to access this script with ease
 	#region Singleton
 	public static ConstantsManager instance;
 	void SingletonInitialization () {
@@ -46,14 +52,14 @@ public class ConstantsManager : PersistentManager {
 		base.Awake ();
 		SingletonInitialization ();
 		MapObjectIDsToLegend ();//sets indexes on all objects using the world data and legend.
-		objectRegistry = new ObjectRegistry (spellSchools, worlds, legend);//registers objects by their assigned ID into dictionaries.
+		objectRegistry = new ObjectRegistry (spellSchools, zones, objectives, legend);//registers objects by their assigned ID into dictionaries.
 	}
 
 	public void MapObjectIDsToLegend () {
 		Dictionary<SpellSchool, int> schoolIndexStartDictionary = new Dictionary<SpellSchool, int>();
 		schoolIndexStartDictionary.Add (SpellSchool.Generic, legend.GENERIC_INDEX_START);
 		schoolIndexStartDictionary.Add (SpellSchool.Light, legend.LIGHT_INDEX_START);
-		schoolIndexStartDictionary.Add (SpellSchool.Dark, legend.DARK_INDEX_START);
+		schoolIndexStartDictionary.Add (SpellSchool.Dark, legend.NECRO_INDEX_START);
 		schoolIndexStartDictionary.Add (SpellSchool.Fire, legend.FIRE_INDEX_START);
 		schoolIndexStartDictionary.Add (SpellSchool.Ice, legend.ICE_INDEX_START);
 
@@ -69,58 +75,64 @@ public class ConstantsManager : PersistentManager {
 				spellSchoolData.staffs [i].id = schoolIndexStart + legend.STAFF_INDEX_START + i + 1;//+1 to offset from startingStaff
 			}
 		}
+		
+		int objectiveCount = 100;
+		foreach (ObjectiveData objectiveData in objectives) {
+			foreach (SetPieceSpawnInfo objSpawnInfo in objectiveData.objectiveSpawnInfos) {
+				objSpawnInfo.setPieceData.id = objectiveCount++;
+			}
+		}
 
 
 		Dictionary<Zone, int> zoneIndexStartDictionary = new Dictionary<Zone, int>();
 		zoneIndexStartDictionary.Add (Zone.Generic, legend.GENERIC_INDEX_START);
-		zoneIndexStartDictionary.Add (Zone.Light, legend.LIGHT_INDEX_START);
-		zoneIndexStartDictionary.Add (Zone.Dark, legend.DARK_INDEX_START);
-		zoneIndexStartDictionary.Add (Zone.Fire, legend.FIRE_INDEX_START);
-		zoneIndexStartDictionary.Add (Zone.Ice, legend.ICE_INDEX_START);
 		zoneIndexStartDictionary.Add (Zone.Hub, legend.HUB_INDEX_START);
+		zoneIndexStartDictionary.Add (Zone.Dark, legend.NECRO_INDEX_START);
 		zoneIndexStartDictionary.Add (Zone.Tutorial, legend.TUTORIAL_INDEX_START);
+		zoneIndexStartDictionary.Add (Zone.Fire, legend.FIRE_INDEX_START);
+		zoneIndexStartDictionary.Add (Zone.Ice, legend.LIGHT_INDEX_START);
 
 		//assign unique index to all worlddata objects
-		foreach (WorldData worldData in worlds) {
-			int zoneIndexStart = zoneIndexStartDictionary [worldData.zone];
-			worldData.schoolIndexStart = zoneIndexStart;
-			if (worldData.playerSpawnSetpieceSpawnInfo.setPieceData.school == worldData.school) {
-				worldData.playerSpawnSetpieceSpawnInfo.setPieceData.id = zoneIndexStart + legend.OBJECTIVE_INDEX_START + legend.PLAYER_ONE_SPAWN_INDEX;
-			}
-			if (worldData.nextLevelPortalSpawnInfo.setPieceData.school == worldData.school) {
-				worldData.nextLevelPortalSpawnInfo.setPieceData.id = zoneIndexStart + legend.OBJECTIVE_INDEX_START + legend.NEXT_LEVEL_PORTAL_INDEX;
-			}
-			worldData.floorTile.zone = worldData.zone;
-			worldData.floorTile.id = zoneIndexStart + legend.TILE_INDEX_START + legend.FLOOR_TILE_INDEX_START;
-			worldData.floorTile.layer = TileLayer.FLOOR;
+		foreach (ZoneData zoneData in zones) {
+			int zoneIndexStart = zoneIndexStartDictionary [zoneData.zone];
+			zoneData.schoolIndexStart = zoneIndexStart;
+			zoneData.primaryFloorTile.id = zoneIndexStart + legend.TILE_INDEX_START + legend.FLOOR_TILE_INDEX_START;
+			zoneData.primaryFloorTile.layer = TileLayer.FLOOR;
+			zoneData.secondaryFloorTile.id = zoneIndexStart + legend.TILE_INDEX_START + legend.FLOOR_TILE_INDEX_START + 1;
+			zoneData.secondaryFloorTile.layer = TileLayer.FLOOR;
+			zoneData.underTile.id = zoneIndexStart + legend.TILE_INDEX_START + legend.FLOOR_TILE_INDEX_START + 2;
+			zoneData.underTile.layer = TileLayer.FLOOR;
 
-			worldData.baseTile.zone = worldData.zone;
-			worldData.baseTile.id = zoneIndexStart + legend.TILE_INDEX_START + legend.BASE_TILE_INDEX_START;
-			worldData.baseTile.layer = TileLayer.BASE;
+			zoneData.baseTile.id = zoneIndexStart + legend.TILE_INDEX_START + legend.BASE_TILE_INDEX_START;
+			zoneData.baseTile.layer = TileLayer.BASE;
 
-			worldData.borderTile.zone = worldData.zone;
-			worldData.borderTile.id = zoneIndexStart + legend.TILE_INDEX_START + legend.BORDER_TILE_INDEX_START;
-			worldData.borderTile.layer = TileLayer.BASE;
+			zoneData.borderTile.id = zoneIndexStart + legend.TILE_INDEX_START + legend.BORDER_TILE_INDEX_START;
+			zoneData.borderTile.layer = TileLayer.BASE;
 
-			for (int i = 0; i < worldData.baseDecorTiles.Count; i++) {
-				TileData tileData = worldData.baseDecorTiles[i];
-				tileData.zone = worldData.zone;
+			for (int i = 0; i < zoneData.baseDecorTiles.Count; i++) {
+				TileData tileData = zoneData.baseDecorTiles[i];
 				tileData.id = zoneIndexStart + legend.TILE_INDEX_START + legend.BASE_DECOR_TILE_INDEX_START + i;
 				tileData.layer = TileLayer.BASE;
 			}
 
-			for (int i = 0; i < worldData.topDecorTiles.Count; i++) {
-				TileData tileData = worldData.topDecorTiles[i];
-				tileData.zone = worldData.zone;
+			for (int i = 0; i < zoneData.floorDecorTiles.Count; i++) {
+				TileData tileData = zoneData.floorDecorTiles[i];
+				tileData.id = zoneIndexStart + legend.TILE_INDEX_START + legend.FLOOR_DECOR_TILE_INDEX_START + i;
+				tileData.layer = TileLayer.FLOOR;
+			}
+
+			for (int i = 0; i < zoneData.topDecorTiles.Count; i++) {
+				TileData tileData = zoneData.topDecorTiles[i];
 				tileData.id = zoneIndexStart + legend.TILE_INDEX_START + legend.TOP_DECOR_TILE_INDEX_START + i;
 				tileData.layer = TileLayer.TOP;
 			}
 
-			for (int i = 0; i < worldData.enemyDatas.Count; i++) {
-				worldData.enemyDatas [i].id = zoneIndexStart + legend.ENEMY_SPAWN_INDEX_START + i;
+
+			for (int i = 0; i < zoneData.enemyDatas.Count; i++) {
+				zoneData.enemyDatas [i].id = zoneIndexStart + legend.ENEMY_SPAWN_INDEX_START + i;
 			}
-			for (int i = 0; i < worldData.setPieceDatas.Count; i++) {
-				worldData.setPieceDatas [i].id = zoneIndexStart + legend.SETPIECE_INDEX_START + i;
+			for (int i = 0; i < zoneData.largeSetpieceDatas.Count; i++) {
+				zoneData.largeSetpieceDatas [i].id = zoneIndexStart + legend.SETPIECE_INDEX_START + i;
 			}
 		}
 	}

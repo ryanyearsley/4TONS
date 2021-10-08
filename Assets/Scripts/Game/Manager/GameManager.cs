@@ -24,6 +24,8 @@ public class GameManager : MonoBehaviour {
 	public GameContext gameContext;
 	protected GameState currentGameState;
 
+	private static int MAX_LEVEL_LOAD_TIME = 10;
+
 	//game loop
 	public event Action<int> loadLevelEvent;//generates map and creates objects.
 	public event Action<int> beginLevelEvent;//enables players/enemies/objects
@@ -53,7 +55,7 @@ public class GameManager : MonoBehaviour {
 	public bool GetLevelLoaded() {
 		return levelLoaded;
 	}
-	private void Awake () {
+	void Awake () {
 		SingletonInitialization ();
 	}
 	private void Start () {
@@ -84,8 +86,14 @@ public class GameManager : MonoBehaviour {
 		Debug.Log ("loading level... ");
 		loadLevelEvent?.Invoke (levelIndex);
 		levelLoaded = false;
+		float waitTime = 0f;
 		while (levelLoaded == false) {
 			yield return new WaitForSeconds (0.1f);
+			waitTime += 0.1f;
+			if (waitTime > MAX_LEVEL_LOAD_TIME) {
+				Debug.Log ("GameManager: Maximum load time exceeded. Returning to main menu...");
+				NERDSTORM.NerdstormSceneManager.instance.LoadMenu ();
+			}
 			//load level is toggled to true by LevelManager once everything is configured.
 			Debug.Log ("waiting for load level...");
 		}

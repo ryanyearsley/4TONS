@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f23d9d6a798cfa9429119b466ed6526f, type: 3}
+  m_Name: GauntletObjectiveData
+  m_EditorClassIdentifier: 
+  objectiveName: Gauntlet
+  playerObjectData: {fileID: 11400000, guid: 7505292d04f3608419afaf178b6440b3, type: 2}
+  objectiveSpawnInfos:
+  - spawnCount: 1
+    setPieceData: {fileID: 11400000, guid: be2d74a77f5fcc24790ae2dd3c9e8e4c, type: 2}

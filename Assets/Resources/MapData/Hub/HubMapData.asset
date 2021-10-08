@@ -16,10 +16,10 @@ MonoBehaviour:
   mapGenerationData: {fileID: 11400000, guid: 06ccb3e789cc56946a9ea232aa12a697, type: 2}
   floorPrefab: {fileID: 8472839727403202167, guid: 4ea040c5f20c4b547ad30734fde7c6bd, type: 3}
   enemySpawnInfos: []
+  staffSpawnInfos: []
   setPieceSpawnInfos:
   - spawnCount: 1
     setPieceData: {fileID: 11400000, guid: b73802c99c386d94cafbe5130da24257, type: 2}
-  spellGemSpawnInfos: []
-  staffSpawnInfos: []
-  seed: 637582329182223248
+  floorRollRange: {x: 0, y: 0}
+  seed: 637636894170217516
   useCustomSeed: 0

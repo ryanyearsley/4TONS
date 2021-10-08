@@ -12,23 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48eb5be7fe98956438c7ce906951b3f3, type: 3}
   m_Name: DarkWizardData
   m_EditorClassIdentifier: 
-  id: 0
-  poolSize: 4
-  clearance: 2
-  spawnObjectPrefab: {fileID: 3151322532891022119, guid: 7acbfccd59708564c83e4b3321f098de, type: 3}
-  creatureName: WoD
-  maxHealth: 100
-  maxResource: 100
-  movementSpeed: 6
-  creatureAudio:
-    attackSound: {fileID: 0}
-    gruntSound: {fileID: 0}
-    deathSound: {fileID: 0}
-    happySound: {fileID: 0}
-    sadSound: {fileID: 0}
-  school: 1
   schoolData: {fileID: 11400000, guid: 96174b60ed687704a95fd4f57c8a288e, type: 2}
   wizardSelectIcon: {fileID: 21300000, guid: 137d634ce3c652244a1b0533beeb1488, type: 3}
   portrait: {fileID: 21300000, guid: 1624b8ed24c4dfa41997fb2fd6141052, type: 3}
+  spectralPreview: {fileID: 21300008, guid: 1df8503682d40f14a8450bb77165df92, type: 3}
   animatorController: {fileID: 22100000, guid: 53842169d2e3b774db5dfbffcebf4c93, type: 2}
-  wizardBuildData: {fileID: 11400000, guid: 9a95e018017ba854eb1e309c8555e624, type: 2}
+  gauntletStartData: {fileID: 11400000, guid: 9a95e018017ba854eb1e309c8555e624, type: 2}
+  spawnSetPieceData: {fileID: 11400000, guid: d23a93a1f17a101429c5cb7656bf714d, type: 2}

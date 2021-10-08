@@ -14,24 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   customMapData: {fileID: 0}
   mapGenerationData: {fileID: 11400000, guid: 06ccb3e789cc56946a9ea232aa12a697, type: 2}
-  floorPrefab: {fileID: 8472839727403202167, guid: 4ea040c5f20c4b547ad30734fde7c6bd, type: 3}
   enemySpawnInfos:
-  - spawnCount: 15
-    spawnObjectData: {fileID: 11400000, guid: 217ed99b20a5ef84483df537037326ca, type: 2}
-  - spawnCount: 8
-    spawnObjectData: {fileID: 11400000, guid: f2a858c595dc31d4ab6153d8278630c9, type: 2}
-  setPieceSpawnInfos:
-  - spawnCount: 4
-    setPieceData: {fileID: 11400000, guid: bd2fadacf2e57264b9856ebe92851d36, type: 2}
-  spellGemSpawnInfos:
-  - dropPercentage: 20
-    spellData: {fileID: 11400000, guid: 2d3465d624cf7c743abbbaf28fec6fc3, type: 2}
-  - dropPercentage: 20
-    spellData: {fileID: 11400000, guid: f8a09e2fb222c62489690f14902cef0d, type: 2}
-  - dropPercentage: 100
-    spellData: {fileID: 11400000, guid: 50f771dfc4c331543aa4398e546ec730, type: 2}
-  staffSpawnInfos:
-  - dropPercentage: 100
-    puzzleData: {fileID: 11400000, guid: 8b1caf4a6f0803d4684d1c6a7f14c690, type: 2}
-  seed: 637543880278367942
+  - spawnCountRange: {x: 13, y: 15}
+    creatureData: {fileID: 11400000, guid: 217ed99b20a5ef84483df537037326ca, type: 2}
+  - spawnCountRange: {x: 6, y: 8}
+    creatureData: {fileID: 11400000, guid: f2a858c595dc31d4ab6153d8278630c9, type: 2}
+  floorRollRange: {x: 65, y: 100}
+  seed: 637669497987992791
   useCustomSeed: 0

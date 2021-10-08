@@ -166,6 +166,7 @@ MonoBehaviour:
   Cooldown: 1
   _started: 0
   _finished: 0
+  resourceCost: 10
   castSpeedPenaltyMultiplier: 0.8
   minAttackDistance: 1
   maxAttackDistance: 6
@@ -239,6 +240,7 @@ GameObject:
   - component: {fileID: 9091831058806863668}
   - component: {fileID: 1689958708456284416}
   - component: {fileID: 7828826955625312399}
+  - component: {fileID: 5729911020769528311}
   - component: {fileID: 449370461069558488}
   - component: {fileID: 7649317151411308054}
   - component: {fileID: 8036647390902012780}
@@ -328,7 +330,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentValue: 0
-  maxValue: 65
   overheadUIPrefab: {fileID: 7782048835682223337, guid: 8193f6f1c4045454c83ebf5c54b378f7, type: 3}
   isPlayer: 0
   bloodPoolPrefab: {fileID: 8449888385662570083, guid: 5cb53da2784d0634eb2d6632f137effe, type: 3}
@@ -349,6 +350,21 @@ MonoBehaviour:
   isometricScaling: {x: 1, y: 0.5}
   acceleration: 0.1
   feetCollider: {fileID: 9091831058806863668}
+--- !u!114 &5729911020769528311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8036647390902012779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faedb51ed87917e4297a2eb71bf7ee74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentValue: 0
+  overheadUIPrefab: {fileID: 2080469752280838136, guid: 1d61ee0787bec5244aa0424348880e31, type: 3}
+  resourceRegenPerSec: 1.5
 --- !u!114 &449370461069558488
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -363,6 +379,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   creatureData: {fileID: 11400000, guid: f2a858c595dc31d4ab6153d8278630c9, type: 2}
   vitalsEntity:
+    factionTag: 
     creatureData: {fileID: 0}
     trans: {fileID: 0}
     creatureObject: {fileID: 0}
@@ -390,6 +407,7 @@ MonoBehaviour:
   sensoryInfo:
     trans: {fileID: 0}
     vitalsEntity:
+      factionTag: 
       creatureData: {fileID: 0}
       trans: {fileID: 0}
       creatureObject: {fileID: 0}
@@ -402,6 +420,7 @@ MonoBehaviour:
     targetWithinLoS: 0
     targetPositionTransform: {fileID: 0}
     targetVitals:
+      factionTag: 
       creatureData: {fileID: 0}
       trans: {fileID: 0}
       creatureObject: {fileID: 0}

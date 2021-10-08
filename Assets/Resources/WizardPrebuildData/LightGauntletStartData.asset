@@ -1,0 +1,81 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 298f507a0fb3bf74ba9a144bdf8d7bf8, type: 3}
+  m_Name: LightGauntletStartData
+  m_EditorClassIdentifier: 
+  wizardSaveData:
+    wizardName: Edmund
+    spellSchoolData: {fileID: 11400000, guid: 16a7aee84221cf944b3bc8802b8d5ba3, type: 2}
+    spellSchoolDataIndex: 0
+    wizardData: {fileID: 11400000, guid: 58f2c90e77e39d84d895d047a0105b29, type: 2}
+    wizardDataIndex: 0
+    primaryStaffSaveData:
+      puzzleData: {fileID: 11400000, guid: aa7608112fc6c4c489844316f77c020c, type: 2}
+      puzzleDataIndex: 0
+      spellGemSaveDataDictionary:
+        m_keys:
+        - {x: 1, y: 3}
+        m_values:
+        - spellData: {fileID: 11400000, guid: 3e4c8f91a9e68be418b4c859bffba62e, type: 2}
+          spellDataIndex: 0
+          spellGemOriginCoordinate: {x: 1, y: 3}
+          spellGemRotation: 0
+          spellBindIndex: 0
+    secondaryStaffSaveData:
+      puzzleData: {fileID: 0}
+      puzzleDataIndex: 0
+      spellGemSaveDataDictionary:
+        m_keys: []
+        m_values: []
+    inventorySaveData:
+      puzzleData: {fileID: 11400000, guid: bc18cd6b47f224142b3b8d4bb5aa282d, type: 2}
+      puzzleDataIndex: 0
+      spellGemSaveDataDictionary:
+        m_keys: []
+        m_values: []
+    towerProgress:
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0

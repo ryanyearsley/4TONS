@@ -12,40 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48eb5be7fe98956438c7ce906951b3f3, type: 3}
   m_Name: LightWizardData
   m_EditorClassIdentifier: 
-  id: 0
-  poolSize: 0
-  clearance: 0
-  spawnObjectPrefab: {fileID: 0}
-  creatureName: 
-  health: 0
-  resourceMax: 0
-  movementSpeed: 0
-  clipsPackage:
-    attackSound: {fileID: 0}
-    gruntSound: {fileID: 0}
-    deathSound: {fileID: 0}
-    happySound: {fileID: 0}
-    sadSound: {fileID: 0}
-  wizardSaveData:
-    wizardName: 
-    spellSchoolData: {fileID: 0}
-    spellSchoolDataIndex: 0
-    primaryStaffSaveData:
-      puzzleData: {fileID: 0}
-      puzzleDataIndex: 0
-      spellGemSaveDataDictionary:
-        m_keys: []
-        m_values: []
-    secondaryStaffSaveData:
-      puzzleData: {fileID: 0}
-      puzzleDataIndex: 0
-      spellGemSaveDataDictionary:
-        m_keys: []
-        m_values: []
-    inventorySaveData:
-      puzzleData: {fileID: 0}
-      puzzleDataIndex: 0
-      spellGemSaveDataDictionary:
-        m_keys: []
-        m_values: []
-    towerProgress: []
+  schoolData: {fileID: 11400000, guid: 16a7aee84221cf944b3bc8802b8d5ba3, type: 2}
+  wizardSelectIcon: {fileID: 21300000, guid: 736294f5bfc4954489c654230618ca3c, type: 3}
+  portrait: {fileID: 21300000, guid: 3f29ab27c71f74241b509b70621985c8, type: 3}
+  spectralPreview: {fileID: 7476873482323608740, guid: 0a03b4e8a6169934e8ec555806193e07, type: 3}
+  animatorController: {fileID: 22100000, guid: 23500259947c92c47b83d6bd0b2a3e11, type: 2}
+  gauntletStartData: {fileID: 11400000, guid: 9a95e018017ba854eb1e309c8555e624, type: 2}

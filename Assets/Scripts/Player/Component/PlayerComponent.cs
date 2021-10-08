@@ -21,7 +21,9 @@ public class PlayerComponent : CreatureComponent, IPlayerComponent
 		base.SubscribeToCreatureEvents ();
 		playerObject.OnChangePlayerStateEvent += OnChangePlayerState;
 		playerObject.setAimingModeEvent += OnSetAimingMode;
-		playerObject.OnDashEvent += OnDash;
+		playerObject.OnDashEvent += OnDash; 
+		playerObject.CastSpellEvent += OnCastSpell;
+		playerObject.EndSpellEvent += OnEndSpell;
 		playerObject.PickUpStaffEvent += OnPickUpStaff;
 		playerObject.EquipStaffEvent += OnEquipStaff;
 		playerObject.DropStaffEvent += OnDropStaff;
@@ -37,13 +39,14 @@ public class PlayerComponent : CreatureComponent, IPlayerComponent
 		playerObject.OnChangePlayerStateEvent -= OnChangePlayerState;
 		playerObject.setAimingModeEvent -= OnSetAimingMode;
 		playerObject.OnDashEvent -= OnDash;
+		playerObject.CastSpellEvent -= OnCastSpell;
+		playerObject.EndSpellEvent -= OnEndSpell;
 		playerObject.PickUpStaffEvent -= OnPickUpStaff;
 		playerObject.EquipStaffEvent -= OnEquipStaff;
 		playerObject.DropStaffEvent -= OnDropStaff;
 		playerObject.PickUpSpellGemEvent -= OnPickUpSpellGem;
 		playerObject.DropSpellGemEvent -= OnDropSpellGem;
 		playerObject.BindSpellGemEvent -= OnBindSpellGem;
-		playerObject.UnbindSpellGemEvent -= OnUnbindSpellGem;
 		playerObject.UnbindSpellGemEvent -= OnUnbindSpellGem;
 		playerObject.RotateSpellGemEvent -= OnRotateSpellGem;
 
@@ -55,6 +58,13 @@ public class PlayerComponent : CreatureComponent, IPlayerComponent
 
 	}
 	public virtual void OnDash(DashInfo dashInfo) {
+
+	}
+
+	public virtual void OnCastSpell (Spell spell, SpellCastType spellCastType) {
+
+	}
+	public virtual void OnEndSpell (Spell spell) {
 
 	}
 	public virtual void OnPickUpStaff (PuzzleKey region, PuzzleGameData puzzleGameData) {

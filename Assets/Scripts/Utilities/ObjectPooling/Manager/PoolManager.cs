@@ -148,7 +148,6 @@ public class PoolManager : MonoBehaviour {
 			// Dequeue then requeue the object then call the Objects Reuse function
 			SpellObjectInstance spellObjectInstance = spellObjectDictionary [poolKey].Dequeue ();
 			spellObjectDictionary [poolKey].Enqueue (spellObjectInstance);
-
 			spellObjectInstance.Reuse (position, rotation, vitalsEntity);
 			return spellObjectInstance.go;
 		} else {

@@ -45,8 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spellData: {fileID: 11400000, guid: 50f771dfc4c331543aa4398e546ec730, type: 2}
-  onCooldown: 0
-  spellUI: {fileID: 0}
+  maxRange: 8
   previewObjectTransform: {fileID: 7739686443070325171}
   aoeMask:
     serializedVersion: 2
