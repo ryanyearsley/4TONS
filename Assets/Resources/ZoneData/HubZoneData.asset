@@ -15,33 +15,56 @@ MonoBehaviour:
   schoolIndexStart: 1000
   school: 4
   zone: 6
-  background: {fileID: 21300000, guid: 0eae138116f906047a7ac918aa7953ff, type: 3}
+  loadingBackgroundSprite: {fileID: 21300000, guid: a4685d82e1dd57b46bc6ef93e95406fc, type: 3}
   backgroundGroup:
     backgroundColor: {r: 0, g: 0, b: 0, a: 1}
     layerDatas:
-    - sprite: {fileID: 3464685617041972085, guid: 175f170ab1b56cd46873f2c24a2cf126, type: 3}
-      spriteOffset: {x: 0, y: 0}
+    - sprite: {fileID: 21300000, guid: b8be7d2d6b964f845a1df780259fb46f, type: 3}
+      spriteOffset: {x: 0, y: 5}
       distanceScaleX: 0.85
       distanceScaleY: 1
       opacity: 1
   floorPrefab: {fileID: 8472839727403202167, guid: 4ea040c5f20c4b547ad30734fde7c6bd, type: 3}
   primaryFloorTile:
-    tile: {fileID: 11400000, guid: 3ff61461b4d3c0f4c8d73d0003c3cf0e, type: 2}
+    tile: {fileID: 11400000, guid: 739ed65f445da344ab02be9ccfa763c7, type: 2}
     id: 1100
   secondaryFloorTile:
-    tile: {fileID: 11400000, guid: 41a7c7afea2bd6e41953c6039a9a6f26, type: 2}
+    tile: {fileID: 11400000, guid: 313f041bfab33d14f965dc2cb6ebe883, type: 2}
     id: 1101
   underTile:
-    tile: {fileID: 11400000, guid: c7b029ea9ad3b3b45852db814accf25b, type: 2}
+    tile: {fileID: 11400000, guid: ea448eba8014aea4aa8c36deba9c22a3, type: 2}
     id: 1102
   baseTile:
-    tile: {fileID: 11400000, guid: 41a7c7afea2bd6e41953c6039a9a6f26, type: 2}
+    tile: {fileID: 11400000, guid: b0592dbd987f4984688fa5d930874c05, type: 2}
+    id: 1103
+  baseBlankTopTile:
+    tile: {fileID: 11400000, guid: b0592dbd987f4984688fa5d930874c05, type: 2}
     id: 1103
   borderTile:
-    tile: {fileID: 11400000, guid: c196981409d75e441b76bbb2299d8685, type: 2}
+    tile: {fileID: 11400000, guid: 5f07248b78fb7514896525dd13e0020c, type: 2}
     id: 1104
   destructionDebrisObject: {fileID: 0}
-  floorDecorTiles: []
+  floorTiles:
+  - tile: {fileID: 11400000, guid: 512958dba743c98479386e4b8c6cc476, type: 2}
+    id: 1110
+  - tile: {fileID: 11400000, guid: 5b544e94e96f2ce4a88e9614703778fa, type: 2}
+    id: 1111
+  - tile: {fileID: 11400000, guid: 541ee39c0d919f54e8ee0b43f85b393b, type: 2}
+    id: 1112
+  - tile: {fileID: 11400000, guid: ae0619d3fb02e2f40951b42f8a9007fc, type: 2}
+    id: 1113
+  - tile: {fileID: 11400000, guid: b1d57d5bead2b8f4b9288317eaef45d4, type: 2}
+    id: 1114
+  - tile: {fileID: 11400000, guid: 67fc4e8d70734514c9ea26e89cbc3314, type: 2}
+    id: 1115
+  - tile: {fileID: 11400000, guid: 537d82b79b9d6bb409315aac9cc9696f, type: 2}
+    id: 1116
+  - tile: {fileID: 11400000, guid: 2ce5ef19d51b0c54497ca5008d37628c, type: 2}
+    id: 1117
+  - tile: {fileID: 11400000, guid: 739ed65f445da344ab02be9ccfa763c7, type: 2}
+    id: 1118
+  randomFloorDecorTiles: []
+  surroundingDecorTiles: []
   baseDecorTiles: []
   topDecorTiles: []
   largeSetpieceDatas: []

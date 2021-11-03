@@ -18,19 +18,27 @@ public class CastOnReleaseSpell : Spell {
 
 
 	public override void SpellButtonDown () {
-		if (!playerObject.usingMouseControls && playerObject.smartCursor)
-			playerObject.SetAimingMode (AimingMode.CURSOR);
+		if (playerObject.currentPlayerState == PlayerState.COMBAT) {
 
-		previewObjectTransform.gameObject.SetActive (true);
-		previewObjectTransform.position = spellCastTransform.position;
+			if (!playerObject.usingMouseControls && playerObject.smartCursor)
+				playerObject.SetAimingMode (AimingMode.CURSOR);
+
+			previewObjectTransform.gameObject.SetActive (true);
+			previewObjectTransform.position = spellCastTransform.position;
+		}
 	}
 	public override void SpellButtonHold () {
-		previewObjectTransform.position = spellCastTransform.position;
 
-		if (isCastEligible ()) {
-			previewObjectSprite.color = ConstantsManager.instance.validProjectedAoEColor;
-		} else {
-			previewObjectSprite.color = ConstantsManager.instance.invalidProjectedAoEColor;
+
+		if (playerObject.currentPlayerState == PlayerState.COMBAT) {
+
+			previewObjectTransform.position = spellCastTransform.position;
+
+			if (isCastEligible ()) {
+				previewObjectSprite.color = ConstantsManager.instance.validProjectedAoEColor;
+			} else {
+				previewObjectSprite.color = ConstantsManager.instance.invalidProjectedAoEColor;
+			}
 		}
 	}
 
@@ -48,13 +56,18 @@ public class CastOnReleaseSpell : Spell {
 
 	}
 	public override void SetUpSpell () {
+		base.SetUpSpell ();
 		previewObjectTransform.localPosition = Vector2.zero;
 		previewObjectSprite = previewObjectTransform.GetComponentInChildren<SpriteRenderer> ();
 		previewObjectTransform.gameObject.SetActive (false);
 	}
 
 	public override bool isCastEligible () {
-		if (onCooldown || !playerObject.canAttack || !playerObject.vitalsEntity.resource.HasEnoughMana (spellData.manaCost) || maxRange < playerObject.DistanceToTarget ())
+		if (playerObject.currentPlayerState != PlayerState.COMBAT
+			|| onCooldown
+			|| !playerObject.canAttack
+			|| !playerObject.vitalsEntity.resource.HasEnoughMana (spellData.manaCost)
+			|| maxRange < playerObject.DistanceToTarget ())
 			return false;
 		else if (Physics2D.OverlapCircle (spellCastTransform.position, 0.1f, aoeMask)) {
 			Debug.Log ("CastOnReleaseSpell: invalid cast position. Cannot cast AoE. ");
@@ -71,11 +84,5 @@ public class CastOnReleaseSpell : Spell {
 				new Vector3 (spellCastTransform.position.x, spellCastTransform.position.y, 0f),
 				Quaternion.identity, playerObject.vitalsEntity);
 		}
-	}
-
-
-	public void OnDrawGizmosSelected () {
-		Debug.DrawRay (spellCastTransform.position, spellCastTransform.TransformDirection (Vector3.forward * 20), Color.yellow);
-
 	}
 }

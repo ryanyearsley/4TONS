@@ -2,6 +2,10 @@ using UnityEngine;
 
 public abstract class SpellEffect : MonoBehaviour
 {
+	public virtual void SetUpSpellEffect () {
+
+	}
+
 	public virtual void OnEnemyHit (VitalsEntity caster, VitalsEntity enemy) {
 
 	}

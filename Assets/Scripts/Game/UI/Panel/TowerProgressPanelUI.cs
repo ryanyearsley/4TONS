@@ -13,7 +13,7 @@ public class TowerProgressPanelUI : AbstractPanelUI
 	protected override void InitializePanel () {
 		base.InitializePanel ();
 		if (GameManager.instance != null) {
-			finalFloorNumber = GameManager.instance.gameContext.worldData.mapDatas.Length;
+			finalFloorNumber = GameManager.instance.gameContext.zoneData.mapDatas.Length;
 			GameManager.instance.loadLevelEvent += OnLoadLevel;
 			UpdateTowerProgressUI (1);
 		}

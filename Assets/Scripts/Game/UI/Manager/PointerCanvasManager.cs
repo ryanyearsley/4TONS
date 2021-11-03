@@ -21,6 +21,7 @@ public class PointerCanvasManager : MonoBehaviour {
 	private void Awake () {
 		Debug.Log ("PointerCanvasManager: Awake (hiding/locking cursor)");
 		InitializeSingleton ();
+		DontDestroyOnLoad (this);
 		Cursor.lockState = CursorLockMode.Locked;
 		Cursor.visible = false;
 	}

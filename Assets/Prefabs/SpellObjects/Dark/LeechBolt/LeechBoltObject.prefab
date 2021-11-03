@@ -238,6 +238,26 @@ MonoBehaviour:
   lifeTime: 3
   lifeTimer: 0
   spellEffects: []
+  debrisPoolSize: 15
+  debrisObject: {fileID: 5273009326846120377, guid: defd0a297a2fc5c4e8787c3d191318cf, type: 3}
+  spellObjectSound:
+    clipName: 
+    singleClip: {fileID: 8300000, guid: f1215d77d46258e46a99226c1cea673f, type: 3}
+    volume: 1
+    pitch: 1
+    mixerGroup: {fileID: -7302680629657921355, guid: 004a37a2c22918345b123859e614950a, type: 2}
+    loop: 0
+    randomize: 0
+    randomClips: []
+  spellObjectDestroySound:
+    clipName: 
+    singleClip: {fileID: 8300000, guid: 3201b5421bdcbd847ae8c9ce09084287, type: 3}
+    volume: 1
+    pitch: 1
+    mixerGroup: {fileID: -7302680629657921355, guid: 004a37a2c22918345b123859e614950a, type: 2}
+    loop: 0
+    randomize: 0
+    randomClips: []
   moveSpeed: 10
   speedCurve:
     serializedVersion: 2
@@ -272,7 +292,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  debrisObject: {fileID: 5273009326846120377, guid: defd0a297a2fc5c4e8787c3d191318cf, type: 3}
 --- !u!50 &-7285497471155706187
 Rigidbody2D:
   serializedVersion: 4

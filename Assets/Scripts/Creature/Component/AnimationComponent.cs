@@ -8,6 +8,8 @@ public class AnimationComponent : CreatureComponent {
     protected SpriteRenderer sprite;
     protected Animator animator;
 
+    const float HIT_ANIM_TIME_MIN = 0.2f;
+    const float HIT_ANIM_TIME_MAX = 1f;
     readonly AnimationHashID attackAnimID = new AnimationHashID("Attack");
     readonly AnimationHashID hitAnimID = new AnimationHashID("Hit");
     readonly AnimationHashID deathAnimID = new AnimationHashID("Death");
@@ -55,6 +57,8 @@ public class AnimationComponent : CreatureComponent {
     }
     public override void OnHit (HitInfo hitInfo) {
         if (!creatureObject.isDead) {
+            float rawAnimTime =hitInfo.damage / 80;
+            float animTime = Mathf.Clamp(rawAnimTime, HIT_ANIM_TIME_MIN, HIT_ANIM_TIME_MAX);
             PlayTimedAnimation (hitAnimID, hitInfo.damage / 80);
         }
     }

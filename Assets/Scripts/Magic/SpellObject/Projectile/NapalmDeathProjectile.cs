@@ -13,8 +13,8 @@ public class NapalmDeathProjectile : ProjectileObject {
 		base.SetupObject ();
 		PoolManager.instance.CreateSpellObjectPool (napalmDebrisObject, napalmDebrisCount * 3);
 	}
-
-	protected override void DestroyProjectile () {
+/*
+	public override void TerminateObjectFunctions () {
 		Vector3 pointOfContact = trans.position;
 
 		if (napalmDebrisObject != null) {
@@ -29,5 +29,5 @@ public class NapalmDeathProjectile : ProjectileObject {
 		LevelManager.instance.DestroyEnvironment (pointOfContact, Mathf.RoundToInt(explosionRadius));
 		
 		Destroy ();
-	}
+	}*/
 }

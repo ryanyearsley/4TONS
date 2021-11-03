@@ -12,19 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d592d1a076b38154ebaf5ba54f5f581b, type: 3}
   m_Name: SuckingRodData
   m_EditorClassIdentifier: 
-  id: 2600
+  id: 3501
   puzzleName: Sucking Rod
   description: 
   puzzleSprite: {fileID: 21300000, guid: fdc64c981e9372e4498d07ba7a4caaf8, type: 3}
   puzzleIcon: {fileID: 21300000, guid: 12c75101b3212e24ab85ed2b159528b8, type: 3}
   puzzleFile: {fileID: 4900000, guid: 7203ca1e31406c94193f43ee1586f74f, type: 3}
+  puzzleType: 0
   defaultSpellGemDictionary:
     m_keys:
     - {x: 1, y: 1}
+    - {x: 5, y: 1}
     m_values:
     - spellData: {fileID: 11400000, guid: f8a09e2fb222c62489690f14902cef0d, type: 2}
       spellDataIndex: 0
       spellGemOriginCoordinate: {x: 1, y: 1}
       spellGemRotation: 0
-      spellIndex: 0
-      currentCoordinates: []
+      spellBindIndex: 0
+    - spellData: {fileID: 11400000, guid: 3b14f3e3f42c0ff47a8b899883f83fe5, type: 2}
+      spellDataIndex: 0
+      spellGemOriginCoordinate: {x: 5, y: 1}
+      spellGemRotation: 3
+      spellBindIndex: 0

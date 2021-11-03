@@ -27,7 +27,7 @@ public class BackgroundManager : MonoBehaviour
 	void Start () {
 		cameraTransform = Camera.main.transform;
 		if (GameManager.instance != null) {
-			SetUpCameraBackground (GameManager.instance.gameContext.worldData.backgroundGroup);
+			SetUpCameraBackground (GameManager.instance.gameContext.zoneData.backgroundGroup);
 		}
 	}
 

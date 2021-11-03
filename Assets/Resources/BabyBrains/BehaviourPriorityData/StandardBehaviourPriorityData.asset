@@ -13,10 +13,14 @@ MonoBehaviour:
   m_Name: StandardBehaviourPriorityData
   m_EditorClassIdentifier: 
   movementBehaviourWeights:
+  - {fileID: 11400000, guid: 9f7cbfe63de28a94e8c8a2918011a31a, type: 2}
   - {fileID: 11400000, guid: 35fcee90e0c42324e8d2d5f128612fdb, type: 2}
   - {fileID: 11400000, guid: 8fdd2d91cab272e46812366f5111fdf1, type: 2}
   abilityBehaviourWeights:
+  - {fileID: 11400000, guid: 7d88ce6bab43710408b83f1820512e17, type: 2}
+  - {fileID: 11400000, guid: 272a7ba03a6aa264798e6939f733ad8c, type: 2}
   - {fileID: 11400000, guid: e42415dbcec5bd24b8ac01f57e144d0f, type: 2}
+  - {fileID: 11400000, guid: f287c1c6378aa03439fa1061455ffcf4, type: 2}
   - {fileID: 11400000, guid: 1365205d7b33fdf44998ed896219c78e, type: 2}
   - {fileID: 11400000, guid: 3b6e7e98fc324b24ea721a0ac557a374, type: 2}
   - {fileID: 11400000, guid: e2859c76dcf73cf4d9f5b5d2c8489d30, type: 2}

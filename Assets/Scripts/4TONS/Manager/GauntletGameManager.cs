@@ -13,7 +13,9 @@ public class TowerProgress {
 	public int currentLevelIndex;
 	public int finalLevelIndex;
 
-	public MapDetails currentMapDetails;
+	public List<GauntletObjectiveComponent> currentFloorRemainingEnemies = new List<GauntletObjectiveComponent>();
+	public int currentFloorSpawnCount;
+
 
 	public TowerProgress (int finalFloorIndex) {
 		currentLevelIndex = 0;
@@ -39,6 +41,10 @@ public class GauntletGameManager : MonoBehaviour {
 	[SerializeField]
 	private TowerProgress towerProgress;
 
+	public TowerProgress GetProgress() {
+		return towerProgress;
+	}
+
 	private bool isPortalOpen;
 
 	public Action<EnemyDeathInfo> enemyDeathEvent;
@@ -52,30 +58,49 @@ public class GauntletGameManager : MonoBehaviour {
 	}
 
 	public void InitializeManager () {
-		towerProgress = new TowerProgress (GameManager.instance.gameContext.worldData.mapDatas.Length - 1);
+		towerProgress = new TowerProgress (GameManager.instance.gameContext.zoneData.mapDatas.Length - 1);
 		GameManager.instance.beginLevelEvent += OnBeginLevel;
 	}
 
 	public void OnBeginLevel(int levelIndex) {
+		towerProgress.currentFloorSpawnCount = towerProgress.currentFloorRemainingEnemies.Count;
 		isPortalOpen = true;
 		Debug.Log ("gauntlet manager begin level: " + levelIndex);
-		towerProgress.currentMapDetails = LevelManager.instance.GetMapDetails (levelIndex);
 	}
 
-	public void ReportEnemyDeath (GauntletObjectiveComponent gauntletEnemyEntity) {
-		towerProgress.totalKills++;
-		Debug.Log ("Enemy death reported. ");
+	public void RegisterEnemy(GauntletObjectiveComponent gauntletObjectiveComponent) {
+		if (!towerProgress.currentFloorRemainingEnemies.Contains (gauntletObjectiveComponent)) {
+			towerProgress.currentFloorRemainingEnemies.Add (gauntletObjectiveComponent);
+			if (towerProgress.currentFloorSpawnCount != 0) {
+				UpdateDeathCount ();
+			}
+		} else {
+			Debug.LogError ("GauntletGameManager: Cannot register enemy. Reason: Already registered.");
+		}
+	}
 
-		towerProgress.currentMapDetails.remainingEnemies.Remove (gauntletEnemyEntity);
-		int remainingEnemies = towerProgress.currentMapDetails.remainingEnemies.Count;
-		int percentageRemaining = remainingEnemies * 100 / towerProgress.currentMapDetails.totalEnemiesCount;
+
+
+	public void ReportEnemyDeath (GauntletObjectiveComponent gauntletComponent) {
+		if (towerProgress.currentFloorRemainingEnemies.Contains (gauntletComponent)) {
+			towerProgress.currentFloorRemainingEnemies.Remove (gauntletComponent);
+			UpdateDeathCount ();
+			if (towerProgress.currentFloorRemainingEnemies.Count == 0) {
+				GameManager.instance.LevelObjectiveComplete (towerProgress.currentLevelIndex);
+				towerProgress.totalKills += towerProgress.currentFloorSpawnCount;
+				towerProgress.currentFloorSpawnCount = 0;
+			}
+		} else {
+			Debug.LogError ("GauntletGameManager: Cannot process enemy death report.. Reason: Not registered.");
+		}
+	}
+
+	public void UpdateDeathCount() {
+		int remainingEnemies = towerProgress.currentFloorRemainingEnemies.Count;
+		int percentageRemaining = remainingEnemies * 100 / towerProgress.currentFloorSpawnCount;
 		int percentageCompleted = 100 - percentageRemaining;
 		EnemyDeathInfo enemyDeathInfo = new EnemyDeathInfo(percentageCompleted, towerProgress.totalKills);
 		enemyDeathEvent?.Invoke (enemyDeathInfo);
-		if (towerProgress.currentMapDetails.remainingEnemies.Count <= 0) {
-			//end game
-			GameManager.instance.LevelObjectiveComplete(towerProgress.currentLevelIndex);
-		}
 	}
 
 	public void PortalEntered () {
@@ -99,6 +124,7 @@ public class GauntletGameManager : MonoBehaviour {
 			//final level completed. return to hub.
 			GameManager.instance.LevelEnd (towerProgress.currentLevelIndex);
 			GameManager.instance.GameComplete();
+			PlayFabManager.instance.SendLeaderboardUpdate (Mathf.RoundToInt (Time.time * 1000), GameManager.instance.gameContext.zoneData.zone);//x1000 going in, /1000 when retrieved
 			yield break;
 		}
 		//time for loading screen....

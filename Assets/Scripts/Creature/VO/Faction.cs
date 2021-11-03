@@ -5,6 +5,6 @@ using UnityEngine;
 public class Faction
 {
 	public string factionTag;
-	public List<VitalsEntity> factionMemberEntities = new List<VitalsEntity>();
+	public List<VitalsEntity> vitalsEntities = new List<VitalsEntity>();
 
 }

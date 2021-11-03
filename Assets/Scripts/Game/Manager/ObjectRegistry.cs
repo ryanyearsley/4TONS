@@ -46,10 +46,10 @@ public class ObjectRegistry {
 			if (!activeTileDictionary.ContainsKey (id))
 				activeTileDictionary.Add (id, zoneData.baseDecorTiles [i].tile);
 		}
-		for (int i = 0; i < zoneData.floorDecorTiles.Count; i++) {
-			int id = zoneData.floorDecorTiles[i].id;
+		for (int i = 0; i < zoneData.randomFloorDecorTiles.Count; i++) {
+			int id = zoneData.randomFloorDecorTiles[i].id;
 			if (!activeTileDictionary.ContainsKey (id))
-				activeTileDictionary.Add (id, zoneData.floorDecorTiles [i].tile);
+				activeTileDictionary.Add (id, zoneData.randomFloorDecorTiles [i].tile);
 		}
 		for (int i = 0; i < zoneData.topDecorTiles.Count; i++) {
 			int id = zoneData.topDecorTiles[i].id;

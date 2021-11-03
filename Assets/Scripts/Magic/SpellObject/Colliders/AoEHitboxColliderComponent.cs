@@ -50,8 +50,8 @@ public class AoEHitboxColliderComponent : MonoBehaviour {
 
 	protected virtual void OnTriggerExit2D (Collider2D other) {
 		VitalsEntity vitals = VitalsManager.Instance.GetVitalsEntityFromHitBox (other);
-
-		if (vitals != null) {
+		
+		if (vitals != null && !vitals.creatureObject.isDead) {
 			if (vitals != aoeObject.casterVitalsEntity) {
 				aoeObject.OnEnemyExit (vitals);
 			}  else if (vitals.tag == aoeObject.casterVitalsEntity.tag) {

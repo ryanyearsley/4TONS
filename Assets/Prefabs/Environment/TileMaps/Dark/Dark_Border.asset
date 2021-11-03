@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: Dark_Border
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: -8511283434847535817, guid: 31c7bf3e01ea3c54da4f3052b61192e1, type: 3}
-  m_Color: {r: 0.4117647, g: 0.21960784, b: 0.47058824, a: 1}
+  m_Sprite: {fileID: -2358051357904518781, guid: 4ea644180ab79c34a9293e80db711ae2, type: 3}
+  m_Color: {r: 0.24092203, g: 0.10679958, b: 0.3018868, a: 1}
   m_Transform:
     e00: 1
     e01: 0

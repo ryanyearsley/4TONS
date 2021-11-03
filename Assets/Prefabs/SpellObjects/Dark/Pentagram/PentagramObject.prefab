@@ -363,8 +363,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7179079952450600559}
   - component: {fileID: 7008483759517432907}
-  - component: {fileID: 7206239779833173340}
-  - component: {fileID: 2397581653445403183}
+  - component: {fileID: 5776055348769540207}
   m_Layer: 16
   m_Name: PentagramObject
   m_TagString: Untagged
@@ -380,7 +379,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7184398735751379231}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 18.370605, y: -4.956025, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4466675091794666763}
@@ -444,7 +443,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7206239779833173340
+--- !u!114 &5776055348769540207
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -453,108 +452,35 @@ MonoBehaviour:
   m_GameObject: {fileID: 7184398735751379231}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5263ff48c804e1f4fb8484055f202eb1, type: 3}
+  m_Script: {fileID: 11500000, guid: e571a6eda824469469b5517ec6598a26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   lifeTime: 6
   lifeTimer: 0
   spellEffects: []
---- !u!82 &2397581653445403183
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7184398735751379231}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
+  debrisPoolSize: 2
+  debrisObject: {fileID: 5273009326846120377, guid: 0bf4eab52c49693499bdd03d4e61aaed, type: 3}
+  spellObjectSound:
+    clipName: PentagramObject
+    singleClip: {fileID: 8300000, guid: 585c0c5cabaa69a418bf8fa4032ed940, type: 3}
+    volume: 1
+    pitch: 1
+    mixerGroup: {fileID: -7302680629657921355, guid: 004a37a2c22918345b123859e614950a, type: 2}
+    loop: 0
+    randomize: 0
+    randomClips: []
+  spellObjectDestroySound:
+    clipName: PentagramEnding
+    singleClip: {fileID: 8300000, guid: 2cffc37c0ca646f4095a2b15d609e44b, type: 3}
+    volume: 1
+    pitch: 1
+    mixerGroup: {fileID: -7302680629657921355, guid: 004a37a2c22918345b123859e614950a, type: 2}
+    loop: 0
+    randomize: 0
+    randomClips: []
+  debrisObjectPrefab: {fileID: 5273009326846120377, guid: 031b615055c048b4698647365494457e, type: 3}
+  killCount: 0
+  healPerKill: 10
 --- !u!1 &7184519873846815727
 GameObject:
   m_ObjectHideFlags: 0

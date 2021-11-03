@@ -53,6 +53,7 @@ public class PlayerSpellComponent : PlayerComponent {
 		}
 	}
 
+
 	public override void OnEquipStaff (PuzzleKey region, PuzzleGameData puzzleGameData, StaffEquipType equipType) {
 		playerObject.playerUI.OnEquipStaff (region);
 		if (currentSpellBindingDictionary != null) {
@@ -68,7 +69,7 @@ public class PlayerSpellComponent : PlayerComponent {
 			if (currentSpellBindingDictionary [i] != null) {
 				Debug.Log ("PlayerSpellComponent: OnEquipStaff " + puzzleGameData.puzzleData.puzzleName + " CurrentSpellBindingDictionary " + i + " not null. setting up spell UI.");
 				currentSpellBindingDictionary [i].spellUI = playerObject.playerUI.spellUIs [i];
-				playerObject.playerUI.spellUIs [i].SetSpellUIToSpell (currentSpellBindingDictionary [i].spellData);
+				currentSpellBindingDictionary [i].UpdateSpellUI ();
 			} else {
 				playerObject.playerUI.spellUIs [i].ClearSpellBinding ();
 			}
@@ -77,9 +78,13 @@ public class PlayerSpellComponent : PlayerComponent {
 	}
 
 	public override void OnDropStaff (PuzzleKey region, PuzzleGameData puzzleGameData) {
-
 		if (puzzleGameData.spellBindingDictionary == currentSpellBindingDictionary) {
-			currentSpellBindingDictionary = null;
+			for (int i = 0; i < puzzleGameData.spellBindingDictionary.Count; i++) {
+				if (puzzleGameData.spellBindingDictionary [i] != null) {
+					puzzleGameData.spellBindingDictionary [i].spellUI = null;
+				}
+				currentSpellBindingDictionary = null;
+			}
 		}
 
 		for (int i = 0; i < playerObject.playerUI.spellUIs.Length; i++) {

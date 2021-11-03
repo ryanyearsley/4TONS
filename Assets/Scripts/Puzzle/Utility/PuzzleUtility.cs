@@ -71,7 +71,6 @@ public static class PuzzleUtility {
 
 	public static void RemoveSpellGemFromPuzzle (PuzzleGameData puzzleGameData, SpellGemGameData spellGemGameData) {
 		spellGemGameData.currentCoordinates = RotateCoordinates (spellGemGameData.spellData.puzzlePieceData.coordinates, spellGemGameData.spellGemRotation);
-
 		puzzleGameData.spellGemGameDataDictionary.Remove (spellGemGameData.spellGemOriginCoordinate);
 		Vector2Int spellGemCenterPoint = spellGemGameData.spellGemOriginCoordinate;
 		foreach (Vector2Int spellGemCoordinate in spellGemGameData.currentCoordinates) {

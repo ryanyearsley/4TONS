@@ -20,8 +20,8 @@ public class GauntletHubGameManager : MonoBehaviour
 	private void Awake () {
 		SingletonInitialization ();
 	}
-	public void TowerEntered(SpellSchool school) {
+	public void TowerEntered(Zone zone) {
 		GameManager.instance.LevelEnd (0);
-		NerdstormSceneManager.instance.LoadGauntletTowerScene (school);
+		NerdstormSceneManager.instance.LoadGauntletTowerScene (zone);
 	}
 }

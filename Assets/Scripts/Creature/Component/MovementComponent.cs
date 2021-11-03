@@ -18,13 +18,16 @@ public class MovementComponent : CreatureComponent {
 	[HideInInspector]
 	public Collider2D feetCollider;
 
-	protected Vector2 velocity;
+	protected bool isVelocityOverride = false;
+	protected Vector2 currentVelocityOverride;
+	protected Vector2 currentVelocity;
 	private Rigidbody2D rb;
 	protected float speedEffectMultiplier = 1f;
 	protected float creatureStateSpeedModifier = 1f;
 	protected float passiveAbilityModifier = 1f;
 	public int moveDirection { get; private set; }
 
+	[SerializeField]
 	private List<SpeedAlteringEffect> speedEffects = new List<SpeedAlteringEffect>();
 
 
@@ -66,47 +69,65 @@ public class MovementComponent : CreatureComponent {
 	public void MovementFixedUpdate (Vector2 direction) {
 		moveDirection = (int)Mathf.Sign (direction.x);
 		if (creatureObject.canWalk) {
-			velocity = CalculateVelocity (direction);
-			rb.MovePosition (rb.position + velocity * Time.fixedDeltaTime);
+			CalculateVelocity (direction);
+			rb.MovePosition (rb.position + currentVelocity * Time.fixedDeltaTime);
+		} else {
+			creatureObject.SetVelocity (Vector2.zero);
 		}
 	}
-	protected virtual Vector2 CalculateVelocity (Vector2 direction) {
+	protected virtual void CalculateVelocity (Vector2 direction) {
 
 		speedEffectMultiplier = CalculateSpeedMultipliers ();
-		Vector2 normalizedInput = (direction.sqrMagnitude > 1f)
+		//
+		if (!isVelocityOverride) {
+			Vector2 normalizedInput = (direction.sqrMagnitude > 1f)
 				? direction.normalized
 				: direction;
 
-		Vector2 targetVelocity = normalizedInput * CalculateActualSpeed() * isometricScaling;
-		Vector2 smoothedVelocity = Vector2.SmoothDamp (velocity, targetVelocity, ref velocitySmoothing, acceleration);
+			Vector2 oldVelocity = currentVelocity;
 
-		creatureObject.SetVelocity (
-			(smoothedVelocity * speedEffectMultiplier));
-		return smoothedVelocity;
+			float actualSpeed = CalculateActualSpeed();
+			Vector2 targetVelocity = normalizedInput * actualSpeed * isometricScaling;
+			currentVelocity =  Vector2.SmoothDamp (oldVelocity, targetVelocity, ref velocitySmoothing, acceleration);
+			creatureObject.SetVelocity (
+					(targetVelocity));
+			}
+		else {
+			currentVelocity = currentVelocityOverride;
+			creatureObject.SetVelocity (
+				(currentVelocityOverride));
+		}
 	}
 	private float CalculateActualSpeed() {
-		 return currentMovementSpeed = movementSpeed * creatureStateSpeedModifier * passiveAbilityModifier * speedEffectMultiplier;
+		return currentMovementSpeed = movementSpeed * creatureStateSpeedModifier * passiveAbilityModifier * speedEffectMultiplier;
 	}
 
 	protected float CalculateSpeedMultipliers () {
 		bool canWalk = true;
 		bool canAttack = true;
+		isVelocityOverride = false;
+		currentVelocityOverride = Vector2.zero;
 		speedEffectMultiplier = 1f;
 		for (int i = 0; i < speedEffects.Count; i++) {
 			if (speedEffects [i].speedMultiplier == 0)
 				canWalk = false;
 			if (!speedEffects [i].canAttack)
 				canAttack = false;
-
+			if (speedEffects [i].isVelocityOverride) {
+				isVelocityOverride = true;
+				Debug.Log ("MovementComponent: VELOCITY OVERRIDE FOUND");
+				currentVelocityOverride = speedEffects [i].velocityOverride;
+			}
 			//speedEffectMultiplier -= speedEffects [i].speedMultiplier;
 			speedEffectMultiplier += speedEffects [i].speedMultiplier - 1f;
-			speedEffects [i].timeRemaining -= Time.deltaTime;
+			speedEffects [i].effectTimer += Time.fixedDeltaTime;
 		}
 
 		speedEffectMultiplier = Mathf.Clamp (speedEffectMultiplier, 0f, 5f);
 		creatureObject.SetCanWalk (canWalk);
 		creatureObject.SetCanAttack (canAttack);
-		speedEffects.RemoveAll (debuff => debuff.timeRemaining <= 0f);
+		speedEffects.RemoveAll (debuff => debuff.effectTimer >= debuff.effectTime);
+		Debug.Log ("MovementComponent: SpeedEffects length:" + speedEffects.Count);
 		return speedEffectMultiplier;
 	}
 

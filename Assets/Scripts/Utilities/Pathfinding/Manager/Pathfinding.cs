@@ -23,7 +23,7 @@ public class Pathfinding : MonoBehaviour {
 
 		PathfindingNode startNode = levelManager.NodeFromWorldPoint (request.pathStart);
 		PathfindingNode targetNode = levelManager.NodeFromWorldPoint (request.pathEnd);
-
+		
 		if (startNode != null && startNode.walkable && targetNode != null && targetNode.walkable) {
 			Heap<PathfindingNode> openSet = new Heap<PathfindingNode> (levelManager.MaxSize);
 			HashSet<PathfindingNode> closedSet = new HashSet<PathfindingNode> ();

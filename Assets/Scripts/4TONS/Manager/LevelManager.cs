@@ -29,6 +29,8 @@ public class LevelManager : MonoBehaviour, IGameManager {
 	private Tilemap baseTilemap;
 	[SerializeField]
 	private Tilemap baseHitboxTilemap;
+	private CompositeCollider2D baseCompositeCollider;
+	private CompositeCollider2D baseHitboxCompositeCollider;
 	[SerializeField]
 	private Tilemap floorTilemap;
 	[SerializeField]
@@ -36,6 +38,7 @@ public class LevelManager : MonoBehaviour, IGameManager {
 	[SerializeField]
 	private Tilemap topTilemap;
 
+	[SerializeField]
 	private Tile baseHitboxTile;
 
 	//int = levelIndex
@@ -65,6 +68,8 @@ public class LevelManager : MonoBehaviour, IGameManager {
 	void Awake () {
 		SingletonInitialization ();
 		grid = GetComponent<Grid> ();
+		baseCompositeCollider = baseTilemap.GetComponent<CompositeCollider2D> ();
+		baseHitboxCompositeCollider = baseHitboxTilemap.GetComponent<CompositeCollider2D> ();
 	}
 
 	void Start () {
@@ -75,9 +80,8 @@ public class LevelManager : MonoBehaviour, IGameManager {
 	public void InitializeManager (GameContext gameContext) {
 		GameManager.instance.loadLevelEvent += OnLoadLevel;
 		GameManager.instance.levelEndEvent += OnLevelEnd;
-		this.zoneData = gameContext.worldData;
+		this.zoneData = gameContext.zoneData;
 		this.objectiveData = gameContext.objectiveData;
-		baseHitboxTile = ConstantsManager.instance.baseHitboxTile;
 		CreateLevelPools (zoneData, objectiveData);
 		BackgroundManager.instance.SetUpCameraBackground (zoneData.backgroundGroup);
 	}
@@ -117,9 +121,6 @@ public class LevelManager : MonoBehaviour, IGameManager {
 		yield return new WaitForSeconds (0.5f);
 		if (currentLevelDetails.mapData.mapGenerationData != null)
 			BuildFloor (levelIndex);
-		else {
-			GenerateFloorNodes (currentLevelDetails);
-		}
 		yield return new WaitForSeconds (0.5f);
 		if (levelIndex == 0)
 			CreatePlayerObjects ();
@@ -132,9 +133,9 @@ public class LevelManager : MonoBehaviour, IGameManager {
 		BuildSetpieces (levelIndex);
 		BuildObjectives (levelIndex);
 		yield return new WaitForSeconds (0.5f);
+		GenerateFloorNodes (currentLevelDetails);
 		SpawnEnemies (levelIndex);
 		yield return new WaitForSeconds (0.5f);
-
 		GameManager.instance.SetLevelLoaded ();
 
 	}
@@ -178,40 +179,27 @@ public class LevelManager : MonoBehaviour, IGameManager {
 				Instantiate (zoneData.floorPrefab, floorPrefabSpawnPosition, Quaternion.identity); ;
 			Transform parent = baseTilemap.transform.parent;
 			GameObject tilemapObject = baseTilemap.transform.gameObject;
+
 			for (int y = 0; y < mapTileInfo.GetLength (1); y++) {
 				for (int x = 0; x < mapTileInfo.GetLength (0); x++) {
 					MapTileInfo tileInfo = mapTileInfo[x, y];
-					int tileValue = tileInfo.value;
-					if (objectRegistry.activeTileDictionary.ContainsKey (tileValue)) {
-						if (tileInfo.tileLayer == TileLayer.FLOOR) {
-							floorTilemap.SetTile (new Vector3Int (x + origin.x, y + origin.y, 0), objectRegistry.activeTileDictionary [tileValue]);
-							mapTileInfo [x, y].walkable = true;
-						} else if (tileInfo.tileLayer == TileLayer.FLOOR_DECOR) {
-							floorTilemap.SetTile (new Vector3Int (x + origin.x, y + origin.y, 0), zoneData.primaryFloorTile.tile);
-							floorDecorTilemap.SetTile (new Vector3Int (x + origin.x, y + origin.y, 0), objectRegistry.activeTileDictionary [tileValue]);
-							mapTileInfo [x, y].walkable = true;
-						} else if (tileInfo.tileLayer == TileLayer.BASE) {
-							UpdateBaseTilemap(new Vector3Int (x +origin.x, y + origin.y, 0), objectRegistry.activeTileDictionary [tileValue]);
-							mapTileInfo [x, y].walkable = false;
-						} else if (tileInfo.tileLayer == TileLayer.TOP) {
-							UpdateBaseTilemap (new Vector3Int (x + origin.x, y + origin.y, 0), zoneData.baseTile.tile);
-							topTilemap.SetTile (new Vector3Int (x + origin.x, y + origin.y, 0), objectRegistry.activeTileDictionary [tileValue]);
-							mapTileInfo [x, y].walkable = false;
-						}
-					} else if (objectRegistry.activeSetpieceDictionary.ContainsKey (tileValue)) {
-						Vector3 position = baseTilemap.GetCellCenterWorld (new Vector3Int (x + origin.x, y + origin.y, 0));
-						PoolManager.instance.ReuseObject (objectRegistry.activeSetpieceDictionary [tileValue].spawnObjectPrefab, position, Quaternion.identity);
-						mapTileInfo [x, y].walkable = false;
-					} else {
-						floorTilemap.SetTile (new Vector3Int (x + origin.x, y + origin.y, 0), zoneData.primaryFloorTile.tile);
-						tileInfo.walkable = true;
+					if (tileInfo.floorTile != null) {
+						floorTilemap.SetTile (new Vector3Int (x + origin.x, y + origin.y, 0), tileInfo.floorTile.tile);
 					}
+					if (tileInfo.floorDecorTile != null) {
+						floorDecorTilemap.SetTile (new Vector3Int (x + origin.x, y + origin.y, 0), tileInfo.floorDecorTile.tile);
+					}
+					if (tileInfo.baseTile != null) {
+						UpdateBaseTilemap (new Vector3Int (x + origin.x, y + origin.y, 0), tileInfo.baseTile.tile);
+					}
+					if (tileInfo.topDecorTile != null) {
+						topTilemap.SetTile (new Vector3Int (x + origin.x, y + origin.y, 0), tileInfo.topDecorTile.tile);
+					} 
 				}
 			}
-			GenerateFloorNodes (buildingMapDetails);
 		}
 	}
-	public void UpdateBaseTilemap(Vector3Int coordinate, Tile tile) {
+	public void UpdateBaseTilemap (Vector3Int coordinate, Tile tile) {
 		floorTilemap.SetTile (coordinate, zoneData.underTile.tile);
 		baseTilemap.SetTile (coordinate, tile);
 		baseHitboxTilemap.SetTile (coordinate, baseHitboxTile);
@@ -264,9 +252,7 @@ public class LevelManager : MonoBehaviour, IGameManager {
 		foreach (SpawnPoint spawnPoint in currentMapDetails.spawnPoints.enemySpawnPoints) {
 			Vector3 enemySpawnPosition = ConvertIsoCoordToScene(spawnPoint.spawnCoordinate + currentMapDetails.floorOrigin);
 			GameObject enemyObject = PoolManager.instance.ReuseCreatureObject(spawnPoint.spawnObjectData.spawnObjectPrefab, enemySpawnPosition);
-			currentMapDetails.remainingEnemies.Add (enemyObject.GetComponent<GauntletObjectiveComponent> ());
 		}
-		currentMapDetails.totalEnemiesCount = currentMapDetails.remainingEnemies.Count;
 	}
 
 	public void SpawnSpellGems (int floorIndex) {
@@ -278,7 +264,7 @@ public class LevelManager : MonoBehaviour, IGameManager {
 			Vector3 spellGemSpawnPosition = ConvertIsoCoordToScene(spellGemSpawnPoint.spawnCoordinate + currentMapDetails.floorOrigin);
 			GameObject spellGemGo = PoolManager.instance.ReuseObject(ConstantsManager.instance.spellGemPickUpData.spawnObjectPrefab, spellGemSpawnPosition, Quaternion.identity);
 			spellGemGo.transform.position = spellGemSpawnPosition;
-			SpellGemPickUp spellGemPickUp = spellGemGo.GetComponent<SpellGemPickUp>();
+			SpellGemPickUpObject spellGemPickUp = spellGemGo.GetComponent<SpellGemPickUpObject>();
 			spellGemPickUp.ReuseSpellGemPickUp (spellGemSpawnPoint.spellData);
 			spellGemCount++;
 		}
@@ -291,7 +277,7 @@ public class LevelManager : MonoBehaviour, IGameManager {
 			Vector3 staffSpawnPosition = ConvertIsoCoordToScene(staffSpawnPoint.spawnCoordinate + currentMapDetails.floorOrigin);
 			GameObject staffPickUpGO = PoolManager.instance.ReuseObject(ConstantsManager.instance.staffPickUpData.spawnObjectPrefab, staffSpawnPosition, Quaternion.identity);
 			staffPickUpGO.transform.position = staffSpawnPosition;
-			StaffPickUp staffPickUp = staffPickUpGO.GetComponent<StaffPickUp>();
+			StaffPickUpObject staffPickUp = staffPickUpGO.GetComponent<StaffPickUpObject>();
 			staffPickUp.SetupObject ();
 			staffPickUp.ReuseStaffPickUp (staffSpawnPoint.puzzleData);
 		}
@@ -306,18 +292,16 @@ public class LevelManager : MonoBehaviour, IGameManager {
 					Vector3 coordinatePos = grid.GetCellCenterLocal ((Vector3Int)mapCoordinate);
 					MapTileInfo mapTileInfo = currentLevelDetails.mapTileInfo [x, y];
 					if (IsometricCoordinateUtilites.IsoDistanceBetweenPoints (centerPosition, coordinatePos) <= radius
-					&& mapTileInfo.tileLayer != TileLayer.FLOOR
-					&& mapTileInfo.value != zoneData.borderTile.id) {
+					&& mapTileInfo.floorTile != null
+					&& mapTileInfo.baseValue != zoneData.borderTile.id) {
 						Vector3Int coordinate = new Vector3Int (x + currentLevelDetails.floorOrigin.x, y + currentLevelDetails.floorOrigin.y, 0);
 						baseTilemap.SetTile (coordinate, null);
 						topTilemap.SetTile (coordinate, null);
-						mapTileInfo.tileLayer = TileLayer.FLOOR;
 						mapTileInfo.walkable = true;
 						if (zoneData.destructionDebrisObject != null)
 							PoolManager.instance.ReuseObject (zoneData.destructionDebrisObject, coordinatePos, Quaternion.identity);
 					}
-				}
-				else {
+				} else {
 					Debug.Log ("LevelManager: Attempting to destroy outside of bounds.");
 				}
 			}
@@ -355,17 +339,17 @@ public class LevelManager : MonoBehaviour, IGameManager {
 		gridSizeY = mapDetails.mapBounds.maxCoord.y + 1;
 		nodes = new PathfindingNode [gridSizeX, gridSizeY];
 
-		for (int x = 0; x < gridSizeX; x++) {
-			for (int y = 0; y < gridSizeY; y++) {
+		for (int y = 0; y < gridSizeY; y++) {
+			for (int x = 0; x < gridSizeX; x++) {
 				Vector2Int worldIsoCoordinate = mapDetails.floorOrigin + new Vector2Int (x, y);
 				MapTileInfo tile = mapDetails.mapTileInfo[x, y];
 
-				Vector3 worldPoint = grid.GetCellCenterWorld(new Vector3Int(worldIsoCoordinate.x, worldIsoCoordinate.y, 0));
-
-				bool walkable = tile.walkable;
-				if (Physics2D.OverlapCircle (worldPoint, nodeRadius, unwalkableMask) && walkable == true) {
+				Vector3 worldPoint = grid.GetCellCenterWorld(new Vector3Int(worldIsoCoordinate.x, worldIsoCoordinate.y, 1));
+				Debug.Log ("LevelManager: Checking coordinate " + worldIsoCoordinate +" @ world point " + worldPoint);
+					
+				if (Physics2D.OverlapCircle (worldPoint, 0.1f, unwalkableMask)) {
+					Debug.Log ("LevelManager: Found obstacle @ " + worldIsoCoordinate +", marking unwalkable.");
 					tile.walkable = false;
-					walkable = false;
 				}
 
 				int movementPenalty = 0;
@@ -374,14 +358,15 @@ public class LevelManager : MonoBehaviour, IGameManager {
 
 				//print ("hit Collider 2d: " + ((hitCollider2D) ? "true" : "false"));
 				if (hitCollider2D != null) {
+					Debug.Log ("LevelManager: Found obstacle @ " + worldIsoCoordinate + ", setting movement penalty.");
 					walkableRegionsDictionary.TryGetValue (hitCollider2D.gameObject.layer, out movementPenalty);
 				}
 
-				if (!walkable) {
+				if (!tile.walkable) {
 					movementPenalty += obstacleProximityPenalty;
 				}
 
-				nodes [x, y] = new PathfindingNode (walkable, worldPoint, x, y, movementPenalty);
+				nodes [x, y] = new PathfindingNode (tile.walkable, worldPoint, x, y, movementPenalty);
 			}
 		}
 
@@ -483,7 +468,7 @@ public class LevelManager : MonoBehaviour, IGameManager {
 	}
 
 	//used by AI to randomly walk around during idle.
-	public Vector3 RandomNearbyCoordinate (Vector3 worldPosition, int range) {
+	public Vector3 RandomNearbyCoordinatePosition (Vector3 worldPosition, int range) {
 		Vector2Int gridCoordinate = (Vector2Int)grid.WorldToCell (worldPosition);
 		Vector2Int mapCoordinate = gridCoordinate - pathfindingMapDetails.floorOrigin;
 		PathfindingNode randomWalkableNode = null;

@@ -1,5 +1,6 @@
 ﻿using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Tilemaps;
 using System.Collections.Generic;
 using System.Collections;
@@ -26,6 +27,9 @@ public class PlayerPuzzleUIComponent : PlayerComponent {
 
 	public SpriteRenderer puzzleIconSprite;
 	public TMP_Text puzzleNameText;
+	public GameObject toolTipPanel;
+	public TMP_Text toolTipText;
+	public Image toolTipImage;
 
 	private SpellGemEntity currentErrorFlashSpellGemEntity;
 	private bool isErrorFlashing = false;
@@ -41,7 +45,7 @@ public class PlayerPuzzleUIComponent : PlayerComponent {
 	public override void ReusePlayerComponent (Player player) {
 		Debug.Log ("PlayerPuzzleUIComponent: Reusing Player Component");
 		LoadPuzzleEntities (playerObject.wizardGameData);
-
+		ClearToolTip ();
 		puzzleUI.DisablePuzzleUI ();
 	}
 
@@ -119,11 +123,11 @@ public class PlayerPuzzleUIComponent : PlayerComponent {
 
 	public override void OnDropStaff (PuzzleKey region, PuzzleGameData puzzleGameData) {
 		base.OnDropStaff (region, puzzleGameData);
+		ClearStaffInfo ();
 
 	}
 	public override void OnPickUpSpellGem (SpellGemGameData spellGemGameData) {
-
-		UpdateHighlightedSpellGemInformation (spellGemGameData.spellData);
+		ClearToolTip ();
 		spellGemGameData.spellGemEntity = puzzleUI.AddSpellGemToPuzzleUIUncommited (spellGemGameData);
 		spellGemGameData.spellGemEntity.SetMovingColor ();
 		currentErrorFlashSpellGemEntity = spellGemGameData.spellGemEntity;
@@ -137,6 +141,7 @@ public class PlayerPuzzleUIComponent : PlayerComponent {
 	}
 	public override void OnUnbindSpellGem (PuzzleGameData puzzleGameData, SpellGemGameData spellGemGameData, PuzzleUnbindType unbindType) {
 		InterruptFlashRoutine ();
+		ClearToolTip ();
 		puzzleUI.MoveSpellGemToUncommited (spellGemGameData);
 		spellGemGameData.spellGemEntity.SetMovingColor ();
 	}
@@ -198,13 +203,18 @@ public class PlayerPuzzleUIComponent : PlayerComponent {
 	public PuzzleCursorLocation CalculatePuzzleCursorLocation (Vector3 cursorPosition) {
 		return puzzleUI.CalculatePuzzleCursorLocation (cursorPosition);
 	}
- 	public void UpdateHighlightedSpellGemInformation (SpellData spellData) {
-		cursorController.UpdateToolTipText (spellData.spellName);
-	}
-	public void ClearHighlightedSpellGemInformation () {
-		cursorController.ClearToolTip ();
-	}
 
+	public void UpdateToolTip (SpellGemEntity gemEntity, string text) {
+		toolTipPanel.SetActive (true);
+		toolTipPanel.transform.position = gemEntity.transform.position + (Vector3.up * 1);
+		toolTipText.text = text;
+		toolTipImage.sprite = gemEntity.spellData.icon;
+	}
+	public void ClearToolTip () {
+		toolTipPanel.SetActive (false);
+		toolTipText.text = "";
+		toolTipImage.sprite = null;
+	}
 	public void UpdateStaffInfo (PuzzleGameData puzzleGameData) {
 		puzzleIconSprite.sprite = puzzleGameData.puzzleData.puzzleSprite;
 		puzzleNameText.text = puzzleGameData.puzzleData.puzzleName;
@@ -212,6 +222,6 @@ public class PlayerPuzzleUIComponent : PlayerComponent {
 
 	public void ClearStaffInfo () {
 		puzzleIconSprite.sprite = null;
-		puzzleNameText.text = "";
+		puzzleNameText.text = "Unarmed";
 	}
 }

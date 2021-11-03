@@ -21,6 +21,7 @@ public class CreatureObject : PoolObject {
 
 	//Life Cycle
 	public event Action<Vector3> OnSpawnEvent;
+	public event Action<Vector3> OnRessurectEvent;
 
 	public bool isDead { get; private set; }
 	public event Action OnDeathEvent;
@@ -43,6 +44,8 @@ public class CreatureObject : PoolObject {
 	//Combat
 	public event Action<AttackInfo> OnAttackEvent;
 	public event Action<HitInfo> OnHitEvent;
+	private bool canPlayHitAnim = true;
+	private const float HIT_ANIM_REPEAT_THRESHOLD = 0.3f;
 	public event Action<SpeedAlteringEffect> OnAddDebuffEvent;
 
 	#region PoolObject Callbacks
@@ -87,13 +90,13 @@ public class CreatureObject : PoolObject {
 		OnSpawnEvent?.Invoke (spawnPosition);
 	}
 	public virtual void OnDeath () {
-		if (isDead)
-			return;
+		if (!isDead) {
 
-		isDead = true;
-		vitalsEntity.DisableVitals ();
-		OnDeathEvent?.Invoke ();
-		Destroy (30);
+			isDead = true;
+			vitalsEntity.DisableVitals ();
+			OnDeathEvent?.Invoke ();
+			Destroy (30);
+		}
 	}
 
 	public virtual void OnAttack (AttackInfo attackInfo) {
@@ -106,8 +109,16 @@ public class CreatureObject : PoolObject {
 		yield return new WaitForSeconds (attackInfo.attackTime);
 		SetCanAttack (true);
 	}
-	public virtual void OnHit (HitInfo onHitInfo) {
-		OnHitEvent?.Invoke (onHitInfo);
+	public virtual void OnHit (HitInfo hitInfo) {
+		if (canPlayHitAnim) {
+			StartCoroutine(HitRoutine (hitInfo));
+		}
+	}
+	public IEnumerator HitRoutine (HitInfo hitInfo) {
+		OnHitEvent?.Invoke (hitInfo);
+		canPlayHitAnim = false;
+		yield return new WaitForSeconds (HIT_ANIM_REPEAT_THRESHOLD);
+		canPlayHitAnim = true;
 	}
 	public virtual void AddSpeedEffect (SpeedAlteringEffect speedEffect) {
 		OnAddDebuffEvent?.Invoke (speedEffect);

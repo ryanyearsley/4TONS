@@ -1,23 +1,28 @@
 using UnityEngine.UI;
 using UnityEngine;
+using System;
 
 public class RoundKillObjectivePanel : AbstractPanelUI
 {
 	[SerializeField]
 	private Text currentFloorProgressText;
 	[SerializeField]
-	private Text totalKillsText;
+	private Text timeText;
 
 
 	protected override void InitializePanel () {
 		base.InitializePanel ();
-		UpdateTotalKills (0);
 		if (GameManager.instance != null) {
 			GameManager.instance.loadLevelEvent += OnLoadLevel;
 		}
-		if (GameManager.instance != null) {
+		if (GauntletGameManager.instance != null) {
 			GauntletGameManager.instance.enemyDeathEvent += OnEnemyDeath;
 		}
+	}
+
+	void Update () {
+		TimeSpan ts = TimeSpan.FromSeconds(Time.timeSinceLevelLoad);
+		timeText.text = string.Format ("{0:00}:{1:00}:{2:00}", ts.Minutes, ts.Seconds, ts.Milliseconds);
 	}
 
 	public void OnLoadLevel (int levelIndex) {
@@ -25,11 +30,7 @@ public class RoundKillObjectivePanel : AbstractPanelUI
 	}
 
 	public void OnEnemyDeath (EnemyDeathInfo enemyDeathInfo) {
-		UpdateTotalKills (enemyDeathInfo.totalKills);
 		UpdateObjectiveProgress (enemyDeathInfo.percentageFloorCleared);
-	}
-	private void UpdateTotalKills (int totalKills) {
-		totalKillsText.text = "Total Kills: " + totalKills;
 	}
 	private void UpdateObjectiveProgress (int percentageCleared) {
 		currentFloorProgressText.text = "Current Floor: " + percentageCleared + "%";

@@ -14,9 +14,12 @@ public abstract class Spell : MonoBehaviour {
 	//static
 	public SpellData spellData;
 
+	[SerializeField]
+	public int debrisPoolSize;
+	public GameObject debrisObject;
 	//dynamic
 	[NonSerialized]
-	public bool onCooldown;
+	public bool onCooldown = false;
 
 	protected Transform spellCastTransform;
 	protected float cdTimer;
@@ -32,8 +35,9 @@ public abstract class Spell : MonoBehaviour {
 	public virtual void SetUpSpell () {
 		if (spellData.spellObject != null)
 			PoolManager.instance.CreateSpellObjectPool (spellData.spellObject, spellData.poolSize);
-
-		AudioManager.instance.RegisterSound (spellData.spellCastSound);
+		
+		if (spellData.spellCastSound.singleClip != null)
+			AudioManager.instance.RegisterSound (spellData.spellCastSound);
 	}
 
 	public virtual void ConfigureSpellToPlayer (PlayerObject playerObject) {
@@ -49,6 +53,14 @@ public abstract class Spell : MonoBehaviour {
 			case SpellCastLocation.Player:
 				spellCastTransform = playerObject.creaturePositions.feetTransform;
 				break;
+		}
+	}
+
+	public virtual void UpdateSpellUI() {
+		if (spellUI != null) {
+			spellUI.SetSpellUIToSpell (spellData);
+			float fillPercentage = 1 - cdTimer/spellData.coolDown;
+			spellUI.UpdateSpellUICooldown (fillPercentage, cdTimer);
 		}
 	}
 
@@ -72,7 +84,8 @@ public abstract class Spell : MonoBehaviour {
 	}
 
 	public virtual bool isCastEligible () {
-		if (onCooldown
+		if (playerObject.currentPlayerState != PlayerState.COMBAT
+			|| onCooldown
 			|| !playerObject.canAttack
 			|| !playerObject.vitalsEntity.resource.HasEnoughMana (spellData.manaCost)
 			)

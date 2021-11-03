@@ -34,9 +34,18 @@ public class ThinkComponent : BabyBrainsComponent {
 
 
 	#region BabyBrainsComponent Callbacks
+/*
 	public override void OnBeginLevel (int levelIndex) {
 		Paused = false;
 		sensoryInfo.potentialTargetVitals = VitalsManager.Instance.AcquirePotentialTargets (babyBrainsObject.vitalsEntity);
+		sensoryInfo.potentialAllyVitals = VitalsManager.Instance.AcquirePotentialAllies (babyBrainsObject.vitalsEntity);
+		StartThinking ();
+	}*/
+
+	public override void OnSpawn (Vector3 spawnPosition) {
+		Paused = false;
+		sensoryInfo.potentialTargetVitals = VitalsManager.Instance.AcquirePotentialTargets (babyBrainsObject.vitalsEntity);
+		sensoryInfo.potentialAllyVitals = VitalsManager.Instance.AcquirePotentialAllies (babyBrainsObject.vitalsEntity);
 		StartThinking ();
 	}
 	public override void OnDeath () {

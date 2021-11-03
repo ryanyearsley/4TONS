@@ -14,6 +14,7 @@ public class DebrisObject : PoolObject
 
     private Transform trans;
 
+
     private void Awake () {
         trans = this.transform;
     }
@@ -22,6 +23,12 @@ public class DebrisObject : PoolObject
         base.ReuseObject ();
         lifeTimer = 0;
         isAlive = true;
+        int randomFlip = Random.Range(0,10);
+        if (randomFlip >= 5) {
+            trans.localScale = new Vector3 (-1, 1, 1);
+		} else {
+            trans.localScale = Vector3.one;
+        }
     }
 
     public virtual void Update () {

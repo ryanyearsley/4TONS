@@ -26,6 +26,30 @@ TextureImporter:
   - first:
       213: 4987769810501230162
     second: Dark_Decor_Spritesheet_7
+  - first:
+      213: 8580991033916174274
+    second: Dark_Decor_Spritesheet_8
+  - first:
+      213: 487065288579391517
+    second: Dark_Decor_Spritesheet_9
+  - first:
+      213: 5049805000030583874
+    second: Dark_Decor_Spritesheet_10
+  - first:
+      213: 5971522355514410317
+    second: Dark_Decor_Spritesheet_11
+  - first:
+      213: 8240711472856036677
+    second: Dark_Decor_Spritesheet_12
+  - first:
+      213: -9013655654288276992
+    second: Dark_Decor_Spritesheet_13
+  - first:
+      213: -4953445752450667383
+    second: Dark_Decor_Spritesheet_14
+  - first:
+      213: -4464917483098533050
+    second: Dark_Decor_Spritesheet_15
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -244,12 +268,12 @@ TextureImporter:
       name: Dark_Decor_Spritesheet_6
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
+        x: 64
+        y: 64
         width: 32
         height: 32
       alignment: 9
-      pivot: {x: 0.49547416, y: 0.3}
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -265,12 +289,12 @@ TextureImporter:
       name: Dark_Decor_Spritesheet_7
       rect:
         serializedVersion: 2
-        x: 32
-        y: 0
+        x: 96
+        y: 64
         width: 32
         height: 32
       alignment: 9
-      pivot: {x: 0.49547422, y: 0.14590421}
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -278,6 +302,174 @@ TextureImporter:
       bones: []
       spriteID: 25ed750673e183540800000000000000
       internalID: 4987769810501230162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dark_Decor_Spritesheet_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 32
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2cfa26d91edc51770800000000000000
+      internalID: 8580991033916174274
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dark_Decor_Spritesheet_9
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 32
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d10a234ac4762c600800000000000000
+      internalID: 487065288579391517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dark_Decor_Spritesheet_10
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 32
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24c70db74e2841640800000000000000
+      internalID: 5049805000030583874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dark_Decor_Spritesheet_11
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 32
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d458db0a1fb1fd250800000000000000
+      internalID: 5971522355514410317
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dark_Decor_Spritesheet_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 545f1146c63ec5270800000000000000
+      internalID: 8240711472856036677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dark_Decor_Spritesheet_13
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 002c47650ff09e280800000000000000
+      internalID: -9013655654288276992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dark_Decor_Spritesheet_14
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98ca2072553d14bb0800000000000000
+      internalID: -4953445752450667383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dark_Decor_Spritesheet_15
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6431b7c843d6902c0800000000000000
+      internalID: -4464917483098533050
       vertices: []
       indices: 
       edges: []

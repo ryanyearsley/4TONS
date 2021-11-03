@@ -5,8 +5,8 @@ using UnityEngine;
 public class AoEObject : SpellObject {
 
 	//List<AoEModifier> modifiers = new List<AoEModifier>();
-	List<VitalsEntity> inAreaTargets = new List<VitalsEntity>();
-	List<VitalsEntity> inAreaAllies = new List<VitalsEntity>();
+	protected List<VitalsEntity> inAreaTargets = new List<VitalsEntity>();
+	protected List<VitalsEntity> inAreaAllies = new List<VitalsEntity>();
 
 	//Default: 10x a second
 	private float tickInterval = 0.25f;
@@ -32,14 +32,16 @@ public class AoEObject : SpellObject {
 		}
 	}
 
-	private void EnemyTick (VitalsEntity vitalsEntity) {
+	protected virtual void EnemyTick (VitalsEntity vitalsEntity) {
+		Debug.Log ("AoEObject: Enemy tick");
 		if (vitalsEntity.creatureObject.isDead) {
+			Debug.Log ("AoEObject: DEATH DETECTED! Removing from list.");
 			inAreaTargets.Remove (vitalsEntity);
 		} else {
 			OnEnemyHit (vitalsEntity);
 		}
 	}
-	private void AlliedTick (VitalsEntity vitalsEntity) {
+	protected virtual void AlliedTick (VitalsEntity vitalsEntity) {
 		if (vitalsEntity.creatureObject.isDead) {
 			inAreaAllies.Remove (vitalsEntity);
 		} else {
@@ -51,6 +53,7 @@ public class AoEObject : SpellObject {
 		inAreaTargets.Add (enemyVitals);
 	}
 	public virtual void OnEnemyExit (VitalsEntity enemyVitals) {
+		Debug.Log ("AoEObject: OnEnemyExit");
 		inAreaTargets.Remove (enemyVitals);
 	}
 
@@ -62,6 +65,10 @@ public class AoEObject : SpellObject {
 	}
 
 	public override void TerminateObjectFunctions () {
+		base.TerminateObjectFunctions ();
+		if (debrisObject != null) {
+			PoolManager.instance.ReuseObject (debrisObject, trans.position, Quaternion.identity);
+		}
 		StopCoroutine (AoETickRoutine ());
 		inAreaTargets.Clear ();
 		inAreaAllies.Clear ();

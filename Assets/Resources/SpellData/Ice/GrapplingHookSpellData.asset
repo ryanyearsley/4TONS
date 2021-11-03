@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a701196f12370941a9b69b34871811b, type: 3}
+  m_Name: GrapplingHookSpellData
+  m_EditorClassIdentifier: 
+  spellName: Grappling Hook
+  spellSchool: 3
+  spellSchoolData: {fileID: 11400000, guid: e959e5d57d37b3440be2be2b0edf7aa4, type: 2}
+  id: 4401
+  description: Impale your enemies with a blast of icicles
+  icon: {fileID: 21300000, guid: 0058b924b3327bd4b97a8d812b850e4a, type: 3}
+  castObject: {fileID: 576230467533564272, guid: 5c86468c7b899bf469934c4e2c0fd517, type: 3}
+  manaCost: 4
+  castTime: 0.3
+  castSpeedReduction: 1
+  coolDown: 1.5
+  damage: 20
+  snareSpeedReduction: 0
+  snareDuration: 0
+  spellCastLocation: 0
+  spellCastSound:
+    clipName: IcicleBlast1_v01a
+    singleClip: {fileID: 8300000, guid: 0e5b0d62e2f97b84ebd01d089bab9aba, type: 3}
+    volume: 1
+    pitch: 1
+    mixerGroup: {fileID: -7302680629657921355, guid: 004a37a2c22918345b123859e614950a, type: 2}
+    loop: 0
+    randomize: 0
+    randomClips: []
+  spellEndSound: {fileID: 0}
+  spellObject: {fileID: 5217744383755033205, guid: bd05e0d652eafc64f9452d48b7a49ff6, type: 3}
+  poolSize: 2
+  puzzlePieceData: {fileID: 11400000, guid: 01e0f9a215cb33241a8e1f2bd827ee10, type: 2}

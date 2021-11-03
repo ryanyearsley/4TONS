@@ -15,20 +15,28 @@ MonoBehaviour:
   spellName: Blood Tentacles
   spellSchool: 1
   spellSchoolData: {fileID: 11400000, guid: 96174b60ed687704a95fd4f57c8a288e, type: 2}
-  id: 2401
+  id: 3401
   description: Sprout blood tentacles at target location, returning health to caster.
   icon: {fileID: 21300000, guid: 0402e56ed291d4e40a91d3e2b6f8699b, type: 3}
   castObject: {fileID: 576230467533564272, guid: 0355ab2125460014f8a0e0fb81a05a54, type: 3}
-  manaCost: 7
+  manaCost: 4
   castTime: 0.25
   castSpeedReduction: 0.6
-  coolDown: 3
+  coolDown: 2
+  damage: 5
+  snareSpeedReduction: 0
+  snareDuration: 0
   spellCastLocation: 1
-  spellCastSound: {fileID: 8300000, guid: 405b4349d36eaf142b579922ef747b60, type: 3}
-  spellChannelSound: {fileID: 0}
+  spellCastSound:
+    clipName: 
+    singleClip: {fileID: 0}
+    volume: 1
+    pitch: 1
+    mixerGroup: {fileID: -7302680629657921355, guid: 004a37a2c22918345b123859e614950a, type: 2}
+    loop: 0
+    randomize: 0
+    randomClips: []
   spellEndSound: {fileID: 0}
   spellObject: {fileID: 4454936331502018025, guid: 55041fe6378dd26429dd1a78dbb5b8e4, type: 3}
-  poolSize: 6
-  spellPreviewSprite: {fileID: 0}
-  spellObjectData: {fileID: 11400000, guid: 70d487c46980c54498c45063641f1f23, type: 2}
+  poolSize: 8
   puzzlePieceData: {fileID: 11400000, guid: c26e169939fd8c34bbeb8fbcff6535bf, type: 2}

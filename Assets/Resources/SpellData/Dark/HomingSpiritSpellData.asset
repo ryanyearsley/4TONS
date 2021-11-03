@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a701196f12370941a9b69b34871811b, type: 3}
+  m_Name: HomingSpiritSpellData
+  m_EditorClassIdentifier: 
+  spellName: HomingSpirit
+  spellSchool: 1
+  spellSchoolData: {fileID: 11400000, guid: 96174b60ed687704a95fd4f57c8a288e, type: 2}
+  id: 2476274
+  description: 
+  icon: {fileID: -9169843796943247677, guid: df82514d887d0e44da615f0ce3d6f9ad, type: 3}
+  castObject: {fileID: 576230467533564272, guid: 56db8557a53164a4c9ca3adff4f710df, type: 3}
+  manaCost: 8
+  castTime: 0.3
+  castSpeedReduction: 0.8
+  coolDown: 1
+  damage: 40
+  snareSpeedReduction: 0
+  snareDuration: 0
+  spellCastLocation: 0
+  spellCastSound:
+    clipName: 
+    singleClip: {fileID: 0}
+    volume: 1
+    pitch: 1
+    mixerGroup: {fileID: 0}
+    loop: 0
+    randomize: 0
+    randomClips: []
+  spellEndSound: {fileID: 0}
+  spellObject: {fileID: 5349493896159913635, guid: 45dd21ff9e76b194eb558c5cf39eb6aa, type: 3}
+  poolSize: 10
+  puzzlePieceData: {fileID: 11400000, guid: 4ec08e93c431f0f46ba4bfdd8ce69822, type: 2}

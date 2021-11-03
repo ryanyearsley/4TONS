@@ -48,6 +48,7 @@ public class CreatureComponent : MonoBehaviour, ICreatureComponent
 
 	}
 
+
 	//subscriptions
 	public virtual void SubscribeToCreatureEvents () {
 		creatureObject.OnSpawnEvent += OnSpawn;

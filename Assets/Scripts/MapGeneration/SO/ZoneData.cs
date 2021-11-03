@@ -12,20 +12,23 @@ public class ZoneData : ScriptableObject {
 	public int schoolIndexStart;
 	public SpellSchool school;
 	public Zone zone;
+	public Sprite loadingBackgroundSprite;
 	public ParallaxBackgroundData backgroundGroup;
 	public GameObject floorPrefab;
 	public TileData primaryFloorTile;//bulk of floor
 	public TileData secondaryFloorTile;//Goes around large setpieces
 	public TileData underTile;//Goes under large setpieces
 	public TileData baseTile;
+	public TileData baseBlankTopTile;
 	public TileData borderTile;
 	public GameObject destructionDebrisObject;
-	public List<TileData> floorDecorTiles;//non-obstructive floor tiles
+	public List<TileData> floorTiles;//All remaining standard flooring is overriden with random from this.
+	public List<TileData> randomFloorDecorTiles;//non-obstructive random floor tiles i.e. grass
+	public List<TileData> surroundingDecorTiles;//non-obstructive floor tiles surrounding objects, i.e. flowers
 	public List<TileData> baseDecorTiles;//placed on floor tiles, but clears base around.
 	public List<TileData> topDecorTiles;//placed on top of base tiles.
 	public List<SetPieceData> largeSetpieceDatas;
 	public List<CreatureData> enemyDatas;
 	public LootTableData lootTableData;
 	public MapData[] mapDatas;
-
 }

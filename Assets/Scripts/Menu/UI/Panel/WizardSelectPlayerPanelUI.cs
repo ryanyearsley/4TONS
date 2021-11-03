@@ -18,10 +18,10 @@ public class WizardSelectPlayerPanelUI : MonoBehaviour {
 	private float defaultRectVerticalSize;
 
 	[SerializeReference]
-	private GameObject noWizardsTextObject;
+	private GameObject noWizardText;
 
 	[SerializeField]
-	private List<LoadedWizardSelectionUI> loadedWizardButtonUIs;
+	private List<LoadedWizardSelectionUI> loadedWizardSelectionUI;
 
 	void Awake () {
 		Debug.Log ("wizard select panel player awake...");
@@ -40,27 +40,27 @@ public class WizardSelectPlayerPanelUI : MonoBehaviour {
 			InitializePanel ();
 		}
 		if (wizardSaveDatas.Count == 0) {
-			noWizardsTextObject.SetActive (true);
+			noWizardText.SetActive (true);
 		} else {
-			noWizardsTextObject.SetActive (false);
+			noWizardText.SetActive (false);
 		}
 		Debug.Log ("populating loaded wizard buttons. wizard data length: " + wizardSaveDatas.Count);
 		int wizardSaveDataCount = wizardSaveDatas.Count;
-		UpdateWizardSelectionGrouping (wizardSaveDataCount);
+		UpdateLeaderboardEntryGrouping (wizardSaveDataCount);
 		for (int i = 0; i < wizardSaveDataCount; i++) {
-			if (i >= loadedWizardButtonUIs.Count) {
+			if (i >= loadedWizardSelectionUI.Count) {
 				//adds a button if necessary
-				loadedWizardButtonUIs.Add (Instantiate (wizardSelectionButtonPrefab, verticalLayoutGroupRectTransform.transform).GetComponent<LoadedWizardSelectionUI> ());
+				loadedWizardSelectionUI.Add (Instantiate (wizardSelectionButtonPrefab, verticalLayoutGroupRectTransform.transform).GetComponent<LoadedWizardSelectionUI> ());
 			}
-			loadedWizardButtonUIs [i].DisplayWizardUI (wizardSaveDatas [i]);
+			loadedWizardSelectionUI [i].DisplayWizardUI (wizardSaveDatas [i]);
 		}
 		}
 
-	private void UpdateWizardSelectionGrouping (int wizardSaveDataCount) {
-		for (int i = 0; i < loadedWizardButtonUIs.Count; i++) {
+	private void UpdateLeaderboardEntryGrouping (int wizardSaveDataCount) {
+		for (int i = 0; i < loadedWizardSelectionUI.Count; i++) {
 			if (i >= wizardSaveDataCount) {
-				LoadedWizardSelectionUI deletingButton = loadedWizardButtonUIs[i];
-				loadedWizardButtonUIs.RemoveAt (i);
+				LoadedWizardSelectionUI deletingButton = loadedWizardSelectionUI[i];
+				loadedWizardSelectionUI.RemoveAt (i);
 				Destroy (deletingButton.gameObject);
 			}
 		}

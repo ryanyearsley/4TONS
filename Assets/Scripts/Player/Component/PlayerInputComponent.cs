@@ -15,7 +15,7 @@ namespace PlayerManagement {
 		[SerializeField]
 		private Vector2 mouseDelta;
 
-		private PlayerMovementComponent playerMovementController;
+		private PlayerMovementComponent playerMovementComponent;
 		private PlayerAimingComponent playerAimingController;
 		private PlayerSpellComponent playerSpellController;
 		private PlayerPuzzleComponent playerPuzzleController;
@@ -26,7 +26,7 @@ namespace PlayerManagement {
 			base.SetUpComponent (rootObject);
 			playerAimingController = GetComponent<PlayerAimingComponent> ();
 			playerObject = GetComponent<PlayerObject> ();
-			playerMovementController = GetComponent<PlayerMovementComponent> ();
+			playerMovementComponent = GetComponent<PlayerMovementComponent> ();
 			playerSpellController = GetComponentInChildren<PlayerSpellComponent> ();
 			playerPuzzleController = GetComponentInChildren<PlayerPuzzleComponent> ();
 			playerInteractComponent = GetComponent<PlayerInteractComponent> ();
@@ -47,13 +47,13 @@ namespace PlayerManagement {
 			}
 			PauseInput ();
 			if (rewiredController.GetButtonDown ("Dash")) {
-				playerMovementController.OnDashInputDown ();
+				playerMovementComponent.OnDashInputDown ();
 			}
 		}
 
 		private void FixedUpdate () {
 			Vector2 directionalInput = new Vector2 (rewiredController.GetAxisRaw ("MoveHorizontal"), rewiredController.GetAxisRaw ("MoveVertical"));
-			playerMovementController.UpdateMovementInput (directionalInput, playerAimingController.CursorDirection);
+			playerMovementComponent.UpdateMovementInput (directionalInput, playerAimingController.CursorDirection);
 		}
 		private void AimingInput () {
 			joystickInput = new Vector2 (rewiredController.GetAxisRaw ("AimHorizontal"), rewiredController.GetAxisRaw ("AimVertical"));
@@ -78,17 +78,15 @@ namespace PlayerManagement {
 
 		}
 		private void SpellInput () {
-			if (playerObject.currentPlayerState == PlayerState.COMBAT) {
-				for (int spellIndex = 0; spellIndex <= 3; spellIndex++) {
-					string buttonName = "Spell" + spellIndex;
-					if (rewiredController.GetButton (buttonName))
-						playerSpellController.OnSpellButton (spellIndex);
-					if (rewiredController.GetButtonDown (buttonName)) {
-						playerSpellController.OnSpellButtonDown (spellIndex);
-					}
-					if (rewiredController.GetButtonUp (buttonName)) {
-						playerSpellController.OnSpellButtonUp (spellIndex);
-					}
+			for (int spellIndex = 0; spellIndex <= 3; spellIndex++) {
+				string buttonName = "Spell" + spellIndex;
+				if (rewiredController.GetButton (buttonName))
+					playerSpellController.OnSpellButton (spellIndex);
+				if (rewiredController.GetButtonDown (buttonName)) {
+					playerSpellController.OnSpellButtonDown (spellIndex);
+				}
+				if (rewiredController.GetButtonUp (buttonName)) {
+					playerSpellController.OnSpellButtonUp (spellIndex);
 				}
 			}
 		}
@@ -99,7 +97,7 @@ namespace PlayerManagement {
 				playerPuzzleController.OnBindButtonDown (playerObject.currentPlayerState);
 			}
 
-			if (playerObject.currentPlayerState == PlayerState.PUZZLE_MOVING_SPELLGEM) {
+			if (playerObject.currentPlayerState == PlayerState.PUZZLE_BROWSING || playerObject.currentPlayerState == PlayerState.PUZZLE_MOVING_SPELLGEM) {
 				for (int spellIndex = 0; spellIndex <= 3; spellIndex++) {
 					string buttonName = "Spell" + spellIndex;
 					if (rewiredController.GetButtonDown (buttonName)) {
@@ -117,8 +115,12 @@ namespace PlayerManagement {
 			if (rewiredController.GetButtonDown ("GrabItem")) {
 				playerPuzzleController.OnGrabButtonDown (playerObject.currentPlayerState);
 			}
-			if (rewiredController.GetButtonDown ("RotateItem")) {
-				playerPuzzleController.OnRotateSpellGemButtonDown (playerObject.currentPlayerState);
+			if (rewiredController.GetButtonDown ("RotateItemCCW")) {
+				playerPuzzleController.OnRotateSpellGemCCWButtonDown (playerObject.currentPlayerState);
+			}
+			if (rewiredController.GetButtonDown ("RotateItemCW")) {
+				Debug.Log ("PlayerInputComponent: Rotating gem clockwise button pressed");
+				playerPuzzleController.OnRotateSpellGemCWButtonDown (playerObject.currentPlayerState);
 			}
 			if (rewiredController.GetButtonDown ("SwitchToPrimaryStaff")) {
 				playerPuzzleController.OnSwitchToPrimaryStaffButtonDown ();

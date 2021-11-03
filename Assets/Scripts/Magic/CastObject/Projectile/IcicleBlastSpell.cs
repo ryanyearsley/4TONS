@@ -5,6 +5,8 @@ using UnityEngine;
 public class IcicleBlastSpell : Spell {
 	[SerializeField]
 	private int icicleCount = 3;
+
+
 	public override void CastSpell () {
 		base.CastSpell ();
 		for (int i = 0; i < icicleCount; i++) {

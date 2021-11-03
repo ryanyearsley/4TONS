@@ -9,3 +9,7 @@ public class TileData {
 	[NonSerialized]
 	public TileLayer layer;
 }
+
+public enum TileLayer {
+	FLOOR, BASE
+}

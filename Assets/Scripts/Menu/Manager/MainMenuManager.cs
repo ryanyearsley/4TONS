@@ -15,9 +15,6 @@ public class MainMenuManager : MonoBehaviour {
 	public event Action<WizardSaveData> OnWizardDeleteEvent;
 
 
-	[SerializeField]
-	private Animator transitionAnimator;
-
 	#region Singleton
 	public static MainMenuManager Instance { get; private set; }
 	private void InitializeSingleton () {
@@ -38,7 +35,6 @@ public class MainMenuManager : MonoBehaviour {
 		Debug.Log ("MainMenuManager: Start routine begin.");
 		yield return new WaitForSeconds (0.3f);
 		Debug.Log ("MainMenuManager: Animator Fade In.");
-		transitionAnimator.SetTrigger ("FadeIn");
 		if (PlayerManager.instance.currentPlayers.Count > 0) {
 			Debug.Log ("more than zero players active. Going to gametype select screen.");
 			ChangeMenuScreen (MenuScreen.MAIN_MENU);
@@ -84,14 +80,5 @@ public class MainMenuManager : MonoBehaviour {
 		if (isEveryoneReady == true) {
 			ChangeMenuScreen (MenuScreen.BLANK);
 		}
-	}
-
-	public void LoadScene(int sceneIndex) {
-		StartCoroutine (LoadSceneRoutine (sceneIndex));
-	}
-	public IEnumerator LoadSceneRoutine(int sceneIndex) {
-		transitionAnimator.SetTrigger ("FadeOut");
-		yield return new WaitForSeconds (1f);
-		SceneManager.LoadScene (sceneIndex);
 	}
 }

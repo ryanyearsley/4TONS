@@ -5,7 +5,7 @@ using UnityEngine;
 public class StaffValidator : MonoBehaviour
 {
 
-	public StaffPickUp staffPickUp;
+	public StaffPickUpObject staffPickUp;
 
 
 

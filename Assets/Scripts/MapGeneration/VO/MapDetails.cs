@@ -21,9 +21,7 @@ public class MapDetails
     public MapTileInfo[,] mapTileInfo;
     public MapSpawnPoints spawnPoints;
 
-    public List<GauntletObjectiveComponent> remainingEnemies = new List<GauntletObjectiveComponent>();
-    public int totalEnemiesCount;
-
+   
     public MapDetails (ZoneData worldData, MapData mapData, int floorIndex, MapTileInfo [,] mapTileInfo, MapSpawnPoints spawnPoints) {
         this.zoneData = worldData;
         this.mapData = mapData;

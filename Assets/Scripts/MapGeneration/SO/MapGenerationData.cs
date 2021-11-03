@@ -8,6 +8,7 @@ public class MapGenerationData : ScriptableObject
 	public Vector2Int mapSize = new Vector2Int (60, 80);
 	[Range (0, 100)] public int randomFillPercent = 45;
 	[Range (0, 100)] public int floorDecorFillPercent = 10;
+	[Range (0, 100)] public int surroundingDecorFillPercent = 25;
 	[Range (0, 100)] public int topDecorFillPercent = 15;
 	[Range (1, 100)] public int borderSize = 5;
 	[Range (0, 100)] public int minimumRoomSize = 50;

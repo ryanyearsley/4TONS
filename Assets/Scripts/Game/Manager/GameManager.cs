@@ -63,7 +63,6 @@ public class GameManager : MonoBehaviour {
 	}
 	
 	private IEnumerator BeginGameRoutine() {
-
 		//waits for subscribers.
 		yield return new WaitForSeconds (0.5f);
 		StartCoroutine(LoadLevelRoutine (0));

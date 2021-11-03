@@ -8,9 +8,6 @@ public class RaycastObject : SpellObject
 	[SerializeField]
 	private LineRenderer lineRenderer;
 
-	[SerializeField]
-	private GameObject debrisObject;
-
 	public LayerMask layerMask;
 
 	public override void SetupObject () {
@@ -22,7 +19,13 @@ public class RaycastObject : SpellObject
 		base.ReuseSpellObject (vitalsEntity);
 		RaycastHit2D rayHit = Physics2D.Raycast(trans.position, trans.right, 50, layerMask);
 		if (rayHit.collider != null) {
-			OnHitEnemy (rayHit.point, VitalsManager.Instance.GetVitalsEntityFromHitBox (rayHit.collider));
+			VitalsEntity colliderVitals = VitalsManager.Instance.GetVitalsEntityFromHitBox (rayHit.collider);
+			if (colliderVitals != null) {
+				OnHitEnemy (rayHit.point, VitalsManager.Instance.GetVitalsEntityFromHitBox (rayHit.collider));
+			}
+			else {
+				OnHitWall (rayHit.point);
+			}
 		}
 		else {
 			OnHitWall (rayHit.point);
@@ -38,7 +41,7 @@ public class RaycastObject : SpellObject
 	}
 	private void OnHitWall(Vector2 position) {
 
-		Vector2 endpoint = position + (Vector2.up * 0.325f);
+		Vector2 endpoint = position;
 		lineRenderer.SetPosition (0, trans.position);
 		lineRenderer.SetPosition (1, endpoint);
 		PlaceDebrisObject (endpoint);
@@ -48,7 +51,7 @@ public class RaycastObject : SpellObject
 	public void PlaceDebrisObject (Vector3 contactPoint) {
 		if (debrisObject != null) {
 			//debris objects always used at simulated floor position (below projectile hitbox)
-			PoolManager.instance.ReuseObject (debrisObject, contactPoint + (Vector3.down * 0.325f), Quaternion.identity);
+			PoolManager.instance.ReuseObject (debrisObject, contactPoint + (Vector3.down * 0.33f), Quaternion.identity);
 		}
 	}
 }

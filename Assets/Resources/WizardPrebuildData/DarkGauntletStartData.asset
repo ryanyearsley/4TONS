@@ -24,12 +24,18 @@ MonoBehaviour:
       spellGemSaveDataDictionary:
         m_keys:
         - {x: 1, y: 1}
+        - {x: 5, y: 1}
         m_values:
         - spellData: {fileID: 11400000, guid: f8a09e2fb222c62489690f14902cef0d, type: 2}
           spellDataIndex: 0
           spellGemOriginCoordinate: {x: 1, y: 1}
           spellGemRotation: 0
           spellBindIndex: 0
+        - spellData: {fileID: 11400000, guid: fad75d86be9637a4b82d8c6fc901e461, type: 2}
+          spellDataIndex: 1
+          spellGemOriginCoordinate: {x: 5, y: 1}
+          spellGemRotation: 1
+          spellBindIndex: 1
     secondaryStaffSaveData:
       puzzleData: {fileID: 0}
       puzzleDataIndex: 0
@@ -43,6 +49,470 @@ MonoBehaviour:
         m_keys: []
         m_values: []
     towerProgress:
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
+    - school: 1
+      completed: 0
+    - school: 0
+      completed: 0
     - school: 1
       completed: 0
     - school: 0

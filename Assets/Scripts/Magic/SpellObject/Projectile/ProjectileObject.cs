@@ -11,16 +11,10 @@ public class ProjectileObject : SpellObject {
 	[SerializeField]
 	private AnimationCurve speedCurve;
 
-	[SerializeField]
-	protected GameObject debrisObject;
-
 	protected Damage damageEffect;
 	public override void SetupObject () {
 		base.SetupObject ();
-		if (debrisObject != null)
-			PoolManager.instance.CreateObjectPool (debrisObject, 2);
 		currentMoveSpeed = CalculateMoveSpeed ();
-
 		damageEffect = GetComponentInChildren<Damage> ();
 	}
 	public virtual float CalculateMoveSpeed() {
@@ -38,23 +32,22 @@ public class ProjectileObject : SpellObject {
 
 	public override void OnEnemyHit (VitalsEntity enemyVitals) {
 		base.OnEnemyHit (enemyVitals);
-		DestroyProjectile ();
+		Destroy ();
 	}
 	public override void OnWallHit () {
-		DestroyProjectile ();
+		Destroy ();
 	}
 
 	public override void OnBarrierHit (BarrierObject barrierObject) {
 		damageEffect.OnBarrierHit (barrierObject);
-		DestroyProjectile ();
+		Destroy ();
 	}
-	protected virtual void DestroyProjectile () {
+	public override void TerminateObjectFunctions () {
 		//LevelManager.instance.DestroyEnvironment (floorPosition, 2);
 		if (debrisObject != null) {
 			PoolManager.instance.ReuseObject (debrisObject, trans.position + (Vector3.down * 0.325f), Quaternion.identity);
 		}
-
-		Destroy ();
+		base.TerminateObjectFunctions ();
 	}
 
 }

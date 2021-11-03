@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mapSize: {x: 56, y: 56}
   randomFillPercent: 48
-  baseDecorFillPercent: 0
-  topDecorFillPercent: 5
+  floorDecorFillPercent: 4
+  surroundingDecorFillPercent: 25
+  topDecorFillPercent: 3
   borderSize: 1
   minimumRoomSize: 25
   minimumIslandSize: 6

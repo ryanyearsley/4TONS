@@ -52,8 +52,49 @@ MonoBehaviour:
   lifeTime: 5
   lifeTimer: 0
   spellEffects: []
+  spellObjectSound:
+    clipName: 
+    singleClip: {fileID: 0}
+    volume: 1
+    pitch: 1
+    mixerGroup: {fileID: 0}
+    loop: 0
+    randomize: 0
+    randomClips: []
+  spellObjectDestroySound:
+    clipName: 
+    singleClip: {fileID: 0}
+    volume: 1
+    pitch: 1
+    mixerGroup: {fileID: 0}
+    loop: 0
+    randomize: 0
+    randomClips: []
   moveSpeed: 20
-  groundColl: {fileID: 8849039915760320150}
+  speedCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   debrisObject: {fileID: 0}
 --- !u!50 &8780153425190681054
 Rigidbody2D:

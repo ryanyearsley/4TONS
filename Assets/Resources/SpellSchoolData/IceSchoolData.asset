@@ -18,6 +18,8 @@ MonoBehaviour:
   wizardData: {fileID: 11400000, guid: cce5addfd48d83549b156c6d1c9cc702, type: 2}
   wizardPrebuildData: {fileID: 11400000, guid: ceceb1af0ada8f54784daea3bb44d312, type: 2}
   schoolColor: {r: 0.5771182, g: 0.8882462, b: 0.9339623, a: 1}
-  staffs: []
+  staffs:
+  - {fileID: 11400000, guid: 13f5d597d02da6c43890da682c5c0ffc, type: 2}
   spells:
   - {fileID: 11400000, guid: 6ebd2bb1976f9354f819bcecf64679b4, type: 2}
+  - {fileID: 11400000, guid: 0a17615ad9d7fa74e9bb3f26ad564bf7, type: 2}

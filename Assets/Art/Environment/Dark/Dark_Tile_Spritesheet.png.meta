@@ -196,8 +196,8 @@ TextureImporter:
       name: Dark_Tile_Spritesheet_3
       rect:
         serializedVersion: 2
-        x: 0
-        y: 128
+        x: 192
+        y: 192
         width: 64
         height: 64
       alignment: 9
@@ -217,7 +217,7 @@ TextureImporter:
       name: Dark_Tile_Spritesheet_4
       rect:
         serializedVersion: 2
-        x: 64
+        x: 0
         y: 128
         width: 64
         height: 64
@@ -238,7 +238,7 @@ TextureImporter:
       name: Dark_Tile_Spritesheet_5
       rect:
         serializedVersion: 2
-        x: 128
+        x: 64
         y: 128
         width: 64
         height: 64
@@ -259,8 +259,8 @@ TextureImporter:
       name: Dark_Tile_Spritesheet_6
       rect:
         serializedVersion: 2
-        x: 0
-        y: 64
+        x: 128
+        y: 128
         width: 64
         height: 64
       alignment: 9
@@ -280,8 +280,8 @@ TextureImporter:
       name: Dark_Tile_Spritesheet_7
       rect:
         serializedVersion: 2
-        x: 64
-        y: 64
+        x: 192
+        y: 128
         width: 64
         height: 64
       alignment: 9
@@ -301,7 +301,7 @@ TextureImporter:
       name: Dark_Tile_Spritesheet_8
       rect:
         serializedVersion: 2
-        x: 128
+        x: 0
         y: 64
         width: 64
         height: 64
@@ -322,27 +322,6 @@ TextureImporter:
       name: Dark_Tile_Spritesheet_9
       rect:
         serializedVersion: 2
-        x: 192
-        y: 64
-        width: 64
-        height: 64
-      alignment: 9
-      pivot: {x: 0.5, y: 0.125}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1ea8529d482381ce0800000000000000
-      internalID: -1434340935157314847
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Dark_Tile_Spritesheet_10
-      rect:
-        serializedVersion: 2
         x: 0
         y: 0
         width: 64
@@ -354,50 +333,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 90e3dbfb1044a48c0800000000000000
-      internalID: -4014321343544869367
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Dark_Tile_Spritesheet_11
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 0
-        width: 64
-        height: 64
-      alignment: 9
-      pivot: {x: 0.5, y: 0.125}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c84d7704dabafeb90800000000000000
-      internalID: -7210355717797587828
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Dark_Tile_Spritesheet_12
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 0
-        width: 64
-        height: 64
-      alignment: 9
-      pivot: {x: 0.5, y: 0.125}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d541929f66fc5a8d0800000000000000
-      internalID: -2835632349186026403
+      spriteID: 1ea8529d482381ce0800000000000000
+      internalID: -1434340935157314847
       vertices: []
       indices: 
       edges: []

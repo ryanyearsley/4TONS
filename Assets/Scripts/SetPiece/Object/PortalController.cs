@@ -6,23 +6,27 @@ using UnityEngine;
 public class PortalController : InteractableObject {
 	private Animator animator;
 
-	private CircleCollider2D portalCollider;
+
+	private InteractableCollider portalCollider;
 	[SerializeField]
 	private bool opened;
 	public override void SetupObject () {
-		animator = GetComponentInChildren<Animator> ();
-		portalCollider = GetComponent<CircleCollider2D> ();
-		portalCollider.enabled = false;
-		opened = false;
 		base.SetupObject ();
+		animator = GetComponentInChildren<Animator> ();
+		portalCollider = GetComponentInChildren<InteractableCollider> ();
+		opened = false;
 	}
-
-	public override void ReuseObject() {
-		base.ReuseObject ();
+	public override void ReuseObject () {
 		SubscribeToEvents ();
 		opened = false;
 		animator.SetTrigger ("close");
-		portalCollider.enabled = false;
+		portalCollider.SetNonInteractable ();
+	}
+
+	public override void TerminateObjectFunctions() {
+		portalCollider.SetNonInteractable ();
+		UnsubscribeFromEvents ();
+		opened = false;
 	}
 	private void SubscribeToEvents () {
 		GameManager.instance.levelCompleteEvent += OnLevelComplete;
@@ -35,19 +39,15 @@ public class PortalController : InteractableObject {
 	public void OnLevelComplete(int floorIndex) {
 		opened = true;
 		animator.SetTrigger ("open");
-		portalCollider.enabled = true;
+		portalCollider.SetInteractable ();
 	}
 
 	public override void InteractWithObject () {
 		GauntletGameManager.instance.PortalEntered ();
-		portalCollider.enabled = false;
+		portalCollider.SetNonInteractable ();
 	}
 
 	public void OnLevelEnd(int floorIndex) {
 		Destroy ();
-	}
-	public override void TerminateObjectFunctions () {
-		opened = false;
-		UnsubscribeFromEvents ();
 	}
 }

@@ -16,6 +16,7 @@ public class SensoryInfo {
 	public Transform targetPositionTransform;
 	public VitalsEntity targetVitals = null;
 	public List<VitalsEntity> potentialTargetVitals;
+	public List<VitalsEntity> potentialAllyVitals;
 
 
 	public BabyBrainsBehaviour currentMovementTask;

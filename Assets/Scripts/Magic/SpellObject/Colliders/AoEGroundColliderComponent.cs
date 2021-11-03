@@ -11,27 +11,27 @@ public class AoEGroundColliderComponent : MonoBehaviour {
 		aoeObject = GetComponentInParent<AoEObject> ();
 		coll = GetComponent<Collider2D> ();
 	}
-/*
-	private void OnEnable () {
-		int colliderCount = Physics2D.OverlapCollider (coll, contactFilter, results);
+	/*
+		private void OnEnable () {
+			int colliderCount = Physics2D.OverlapCollider (coll, contactFilter, results);
 
-		if (colliderCount > 0) {
-			foreach (Collider2D overlappingCollider in results) {
-				VitalsEntity vitals = VitalsManager.Instance.GetVitalsEntityFromFeet (overlappingCollider);
-				if (vitals != null) {
-					if (vitals != aoeObject.casterVitalsEntity) {
-						aoeObject.OnEnemyEnter (vitals);
-					} else {
-						aoeObject.OnAllyEnter (vitals);
+			if (colliderCount > 0) {
+				foreach (Collider2D overlappingCollider in results) {
+					VitalsEntity vitals = VitalsManager.Instance.GetVitalsEntityFromFeet (overlappingCollider);
+					if (vitals != null) {
+						if (vitals != aoeObject.casterVitalsEntity) {
+							aoeObject.OnEnemyEnter (vitals);
+						} else {
+							aoeObject.OnAllyEnter (vitals);
+						}
+					} else if (overlappingCollider.tag == "Environment") {
+						aoeObject.OnWallHit ();
 					}
-				} else if (overlappingCollider.tag == "Environment") {
-					aoeObject.OnWallHit ();
 				}
 			}
-		}
 
 
-	}*/
+		}*/
 
 	protected virtual void OnTriggerEnter2D (Collider2D other) {
 		VitalsEntity vitals = VitalsManager.Instance.GetVitalsEntityFromFeet (other);
@@ -50,12 +50,11 @@ public class AoEGroundColliderComponent : MonoBehaviour {
 	protected virtual void OnTriggerExit2D (Collider2D other) {
 		VitalsEntity vitals = VitalsManager.Instance.GetVitalsEntityFromFeet (other);
 
-		if (vitals != null) {
+		if (vitals != null && !vitals.creatureObject.isDead)
 			if (vitals.factionTag != aoeObject.casterVitalsEntity.factionTag) {
 				aoeObject.OnEnemyExit (vitals);
 			} else {
 				aoeObject.OnAllyExit (vitals);
 			}
-		}
 	}
 }

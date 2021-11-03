@@ -6,6 +6,7 @@ public class PlayerInteractComponent : PlayerComponent {
 	private GameObject interactButtonPrefab;
 
 	private GameObject interactButton;
+	private SpriteRenderer interactSprite;
 
 	//active list of spell gems within pick-up distance.
 	[SerializeField]
@@ -17,18 +18,22 @@ public class PlayerInteractComponent : PlayerComponent {
 		interactButton.transform.parent = rootObject.transform;
 		interactButton.transform.localPosition = Vector2.up * 1.75f;
 		interactButton.SetActive (false);
+		interactSprite = interactButton.GetComponentInChildren<SpriteRenderer> ();
 	}
 
 	public void AddItemToInteractable (InteractableObject pickUp) {
 		interactablePickUps.Add (pickUp);
 		if (interactablePickUps.Count >= 1) {
 			interactButton.SetActive (true);
+			CalculateClosestPickUp (interactablePickUps);
 		}
 	}
 	public void RemoveItemFromInteractable (InteractableObject pickUp) {
 		interactablePickUps.Remove (pickUp);
 		if (interactablePickUps.Count == 0) {
 			interactButton.SetActive (false);
+		} else {
+			CalculateClosestPickUp (interactablePickUps);
 		}
 	}
 
@@ -44,11 +49,10 @@ public class PlayerInteractComponent : PlayerComponent {
 					closestObject = CalculateClosestPickUp (interactablePickUps);
 				}
 
-				if (closestObject is SpellGemPickUp) {
-					Debug.Log ("PlayerInteractComponent: Picking up SG");
-					PickUpSpellGem (closestObject.GetComponent<SpellGemPickUp> ());
-				} else if (closestObject is StaffPickUp) {
-					PickUpStaff (closestObject.GetComponent<StaffPickUp> ());
+				if (closestObject is SpellGemPickUpObject) {
+					PickUpSpellGem (closestObject.GetComponent<SpellGemPickUpObject> ());
+				} else if (closestObject is StaffPickUpObject) {
+					PickUpStaff (closestObject.GetComponent<StaffPickUpObject> ());
 				} else {
 					closestObject.InteractWithObject ();
 				}
@@ -58,15 +62,15 @@ public class PlayerInteractComponent : PlayerComponent {
 		}
 	}
 
-	private void PickUpSpellGem (SpellGemPickUp spellGemPickUp) {
+	private void PickUpSpellGem (SpellGemPickUpObject spellGemPickUp) {
 		SpellGemGameData spellGemGameData = new SpellGemGameData();
 		spellGemGameData.spellData = spellGemPickUp.spellData;
 		spellGemGameData.spellCast = spellGemPickUp.spellCast;
 		spellGemGameData.spellCast.transform.parent = this.transform.parent;
 		playerObject.PickUpSpellGem (spellGemGameData);
-		Destroy (spellGemPickUp.gameObject);
+		spellGemPickUp.Destroy ();
 	}
-	private void PickUpStaff (StaffPickUp staffPickUp) {
+	private void PickUpStaff (StaffPickUpObject staffPickUp) {
 
 		PuzzleGameData staffPuzzleGameData = staffPickUp.puzzleGameData;
 		if (!playerObject.wizardGameData.puzzleGameDataDictionary.ContainsKey (PuzzleKey.PRIMARY_STAFF)) {
@@ -74,10 +78,10 @@ public class PlayerInteractComponent : PlayerComponent {
 		} else if (!playerObject.wizardGameData.puzzleGameDataDictionary.ContainsKey (PuzzleKey.SECONDARY_STAFF)) {
 			playerObject.PickUpStaff (PuzzleKey.SECONDARY_STAFF, staffPuzzleGameData);
 		} else {
-			playerObject.DropStaff (playerObject.wizardGameData.currentStaffKey);
+			playerObject.DropStaff (playerObject.wizardGameData.currentStaffKey, StaffDropType.HOT_SWAP);
 			playerObject.PickUpStaff (playerObject.wizardGameData.currentStaffKey, staffPuzzleGameData);
 		}
-		Destroy (staffPickUp.gameObject);
+		staffPickUp.Destroy ();
 		Debug.Log ("PlayerInteractComponent: staff pickup destroyed");
 	}
 
@@ -91,6 +95,8 @@ public class PlayerInteractComponent : PlayerComponent {
 				closestDistance = distance;
 			}
 		}
+		if (closestInteractable != null)
+			interactSprite.sprite = closestInteractable.interactSprite;
 		return closestInteractable;
 	}
 }

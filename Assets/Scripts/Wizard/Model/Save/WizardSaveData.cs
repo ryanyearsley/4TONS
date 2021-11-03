@@ -22,9 +22,9 @@ public class WizardSaveData : ICloneable {
 	public List<WizardTowerStatus> towerProgress = new List<WizardTowerStatus>();
 
 	//utility
-	public bool CheckIfPlayerCompleteTower (SpellSchool school) {
+	public bool CheckIfPlayerCompleteTower (Zone zone) {
 		for (int i = 0; i < towerProgress.Count; i++) {
-			if (towerProgress[i].school == school && towerProgress [i].completed) {
+			if (towerProgress[i].zone == zone && towerProgress [i].completed) {
 				return true;
 			}
 		}
@@ -38,8 +38,8 @@ public class WizardSaveData : ICloneable {
 		if (wizard.secondaryStaffSaveData.puzzleData != null)
 			wizard.secondaryStaffSaveData = secondaryStaffSaveData.Clone ();
 		wizard.inventorySaveData = inventorySaveData.Clone ();
-		towerProgress.Add (new WizardTowerStatus (SpellSchool.Dark));
-		towerProgress.Add (new WizardTowerStatus (SpellSchool.Light));
+		towerProgress.Add (new WizardTowerStatus (Zone.Dark));
+		towerProgress.Add (new WizardTowerStatus (Zone.Light));
 		return wizard;
 	}
 
@@ -52,11 +52,11 @@ public class WizardSaveData : ICloneable {
 
 [Serializable]
 public class WizardTowerStatus {
-	public SpellSchool school;
+	public Zone zone;
 	public bool completed;
 
-	public WizardTowerStatus(SpellSchool towerSchool) {
-		school = towerSchool;
+	public WizardTowerStatus(Zone zone) {
+		this.zone = zone;
 		completed = false;
 	}
 }

@@ -41,33 +41,46 @@ public class MapConversionUtility {
 				output [x, y] = tileInfo;
 				tileInfo.mapCoordinate = new Vector2Int (x, y);
 				int mapValue = map[x, y];
-				tileInfo.value = mapValue;
+				tileInfo.baseValue = mapValue;
 				if (mapValue == 0) {
 					tileInfo.walkable = true;
-					tileInfo.tileLayer = TileLayer.FLOOR;
 				} else if (mapValue == 1) {
 					tileInfo.walkable = false;
-					tileInfo.tileLayer = TileLayer.BASE;
 				}
 			}
 		}
 		return output;
 	}
-	public static List<MapTileInfo> ConvertValueInTileInfo (MapDetails details, int replacingValue, TileData tileData
+	public static List<MapTileInfo> ConvertFloorValueInTileInfo (MapDetails details, int replacingValue, TileData tileData
+	   ) {
+
+		List<MapTileInfo> convertedTiles = new List<MapTileInfo>();
+		for (int x = 0; x < details.mapData.mapGenerationData.mapSize.x; x++) {
+			for (int y = 0; y < details.mapData.mapGenerationData.mapSize.y; y++) {
+				MapTileInfo convertingTile = details.mapTileInfo[x, y];
+				if (convertingTile.baseValue == replacingValue 
+					&& convertingTile.floorTile == null
+					&& convertingTile.baseTile == null) {
+					convertingTile.floorTile = tileData;
+					convertedTiles.Add (convertingTile);
+				}
+			}
+		}
+		return convertedTiles;
+	}
+	public static List<MapTileInfo> ConvertBaseValueInTileInfo (MapDetails details, int replacingValue, TileData tileData
 		) {
 
 		List<MapTileInfo> convertedTiles = new List<MapTileInfo>();
 		for (int x = 0; x < details.mapData.mapGenerationData.mapSize.x; x++) {
 			for (int y = 0; y < details.mapData.mapGenerationData.mapSize.y; y++) {
 				MapTileInfo convertingTile = details.mapTileInfo[x, y];
-				if (convertingTile.value == replacingValue) {
-					convertingTile.value = tileData.id;
-					convertingTile.tileLayer = tileData.layer;
+				if (convertingTile.baseValue == replacingValue) {
+					convertingTile.baseTile = tileData;
 					convertedTiles.Add (convertingTile);
 				}
 			}
 		}
-
 		return convertedTiles;
 	}
 	#endregion

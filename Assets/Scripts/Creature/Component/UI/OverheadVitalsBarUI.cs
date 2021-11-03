@@ -8,9 +8,10 @@ public class OverheadVitalsBarUI : MonoBehaviour
     [SerializeField]
     private Image vitalsBar;
     // Start is called before the first frame update
-    public void InitializeUI()
+    public void InitializeUI(float barHieght)
     {
         ResetBar();
+        transform.localPosition = new Vector3 (0, barHieght, 0);
     }
 
     public void ResetBar()

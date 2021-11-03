@@ -22,8 +22,8 @@ MonoBehaviour:
   maxResource: 60
   movementSpeed: 3.5
   creatureAudio:
-    attackSound: {fileID: 8300000, guid: 5217f967a802b2e42a46c1ec752811fd, type: 3}
-    gruntSound: {fileID: 0}
-    deathSound: {fileID: 8300000, guid: d8b13e890607ecd4d807cbed7f2dffc9, type: 3}
+    attackSound: {fileID: 0}
+    gruntSound: {fileID: 8300000, guid: ce61a3d1947e6ea449253fbf94480805, type: 3}
+    deathSound: {fileID: 8300000, guid: 381af8f28ea46694284e87a9fb864ce1, type: 3}
     happySound: {fileID: 0}
     sadSound: {fileID: 0}

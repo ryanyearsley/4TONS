@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 576230467533564273}
   - component: {fileID: 4825954670367849278}
-  m_Layer: 11
+  m_Layer: 8
   m_Name: PentagramCast
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -60,7 +60,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7739686443070325171}
   - component: {fileID: 6607910709891422257}
-  m_Layer: 11
+  m_Layer: 8
   m_Name: PentagramPreviewObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}

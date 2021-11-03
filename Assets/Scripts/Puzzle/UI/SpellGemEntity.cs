@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SpellGemEntity : MonoBehaviour {
-	private SpellData spellData;
+	public SpellData spellData;
 	private SpriteRenderer spriteRenderer;
 
 	private Color defaultColor;

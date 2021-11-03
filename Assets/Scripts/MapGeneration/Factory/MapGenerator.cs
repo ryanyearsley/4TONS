@@ -86,13 +86,19 @@ public class MapGenerator : MonoBehaviour {
 
 		//CONVERT TO WORLD SKIN
 		if (zoneData.largeSetpieceDatas.Count > 0)
-			SpawnUtility.GenerateRandomLargeSetpieceSpawnPoints (details);
+			spawnPoints.objectiveSpawnPoints.AddRange(SpawnUtility.GenerateRandomLargeSetpieceSpawnPoints (details));
 		MapGenerationUtility.GenerateRandomSmallSetPieces (details);
-		List<MapTileInfo> floorTiles = MapConversionUtility.ConvertValueInTileInfo (details, 0, zoneData.primaryFloorTile);
-		List<MapTileInfo> baseTiles = MapConversionUtility.ConvertValueInTileInfo (details, 1, zoneData.baseTile);
-		List<MapTileInfo> borderTiles = MapConversionUtility.ConvertValueInTileInfo (details, 2, zoneData.borderTile);
+		//At this point, map is still 1s and 0s
 
-		MapGenerationUtility.GenerateRandomFloorDecor (details, floorTiles);
+		//converts base tiles to match zoneData palette.
+		List<MapTileInfo> floorTiles = MapConversionUtility.ConvertFloorValueInTileInfo (details, 0, zoneData.primaryFloorTile);
+		List<MapTileInfo> baseTiles = MapConversionUtility.ConvertBaseValueInTileInfo (details, 1, zoneData.baseTile);
+		List<MapTileInfo> borderTiles = MapConversionUtility.ConvertBaseValueInTileInfo (details, 2, zoneData.borderTile);
+
+		MapGenerationUtility.RandomizeFloor (details, floorTiles);
+		MapGenerationUtility.GenerateFloorDecor (details, floorTiles);
+		MapGenerationUtility.ConvertBasesWithoutFloorNeighbors (baseTiles, details);
+		//RandomizeFloorTiles
 		MapGenerationUtility.GenerateRandomTopDecor (details, baseTiles);
 		return details;
 	}
@@ -453,7 +459,7 @@ public class MapGenerator : MonoBehaviour {
 		for (int x = 0; x < xLength; x++) {
 			for (int y = 0; y < yLength; y++) {
 				if (x == 0 || x == xLength - 1 || y == 0 || y == yLength - 1) {
-					mapTileInfo [x, y].value = 2;
+					mapTileInfo [x, y].baseValue = 2;
 					mapTileInfo [x, y].isSpawnConflict = true;
 				}
 			}

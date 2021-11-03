@@ -126,13 +126,15 @@ public class PlayerObject : CreatureObject {
 
 	public void OnCastSpell(Spell spell, SpellCastType spellCastType) {
 		SpellData spellData = spell.spellData;
-
 		vitalsEntity.resource.SubtractResourceCost (spellData.manaCost);
-		AudioManager.instance.PlaySound (spellData.spellCastSound.clipName);
-		CastSpellEvent?.Invoke (spell, spellCastType);
+		if (spellData.spellCastSound != null)
+			AudioManager.instance.PlaySound (spellData.spellCastSound.clipName);
+		CastSpellEvent?.Invoke (spell, spellCastType);/*
 		if (spellCastType == SpellCastType.CAST) {
 			OnAttack (new AttackInfo (spellData.castTime, spellData.castSpeedReduction, spellData));
-		}
+		} else {
+			OnAttack (new AttackInfo (spellData.castTime, spellData.castSpeedReduction, spellData));
+		}*/
 		AddSpeedEffect (new SpeedAlteringEffect (spellData.castSpeedReduction, spellData.castTime, false));
 	}
 	public void OnEndSpell (Spell spell) {
@@ -150,25 +152,27 @@ public class PlayerObject : CreatureObject {
 	}
 
 	//puzzle region to floor
-	public void DropStaff (PuzzleKey key) {
+	public void DropStaff (PuzzleKey key, StaffDropType dropType) {
 		if (wizardGameData.puzzleGameDataDictionary.ContainsKey (key)) {
 			PuzzleGameData puzzleGameData = wizardGameData.puzzleGameDataDictionary[key];
 			DropStaffEvent?.Invoke (key, puzzleGameData);
 
-			PuzzleGameData otherStaffPuzzleData = null;
-			foreach (KeyValuePair<PuzzleKey, PuzzleGameData> kvp in wizardGameData.puzzleGameDataDictionary) {
-				if (kvp.Value.puzzleData.puzzleType != PuzzleType.INVENTORY) {
-					otherStaffPuzzleData = kvp.Value;
+			if (dropType == StaffDropType.MANUAL_DROP) {
+				PuzzleGameData otherStaffPuzzleData = null;
+				foreach (KeyValuePair<PuzzleKey, PuzzleGameData> kvp in wizardGameData.puzzleGameDataDictionary) {
+					if (kvp.Value.puzzleData.puzzleType != PuzzleType.INVENTORY) {
+						otherStaffPuzzleData = kvp.Value;
+					}
+					// do something with entry.Value or entry.Key
 				}
-				// do something with entry.Value or entry.Key
-			}
 
-			if (otherStaffPuzzleData != null) {
-				Debug.Log ("PlayerPuzzleComponent: Dropping staff. Auto-equipping other weapon.");
-				EquipStaff (otherStaffPuzzleData.puzzleKey, otherStaffPuzzleData, StaffEquipType.DROPPED_OTHER);
-			} else {
-				wizardGameData.currentStaffKey = PuzzleKey.NO_WEAPON;
-			}
+				if (otherStaffPuzzleData != null) {
+					Debug.Log ("PlayerPuzzleComponent: Dropping staff. Auto-equipping other weapon.");
+					EquipStaff (otherStaffPuzzleData.puzzleKey, otherStaffPuzzleData, StaffEquipType.DROPPED_OTHER);
+				} else {
+					wizardGameData.currentStaffKey = PuzzleKey.NO_WEAPON;
+				}
+			} 
 		}
 	}
 
@@ -179,7 +183,7 @@ public class PlayerObject : CreatureObject {
 	}
 
 	//puzzle slot to floor
-	public void DropStaff (PuzzleKey key, PuzzleGameData puzzleGameData) {
+	public void DropStaff (PuzzleKey key, PuzzleGameData puzzleGameData, StaffDropType dropType) {
 		DropStaffEvent?.Invoke (key, puzzleGameData);
 	}
 
@@ -202,7 +206,7 @@ public class PlayerObject : CreatureObject {
 	}
 
 	//puzzle to hand
-	public void OnUnbindSpellGem (PuzzleGameData puzzleGameData, SpellGemGameData spellGameData, PuzzleUnbindType unbindType) {
+	public void UnbindSpellGem (PuzzleGameData puzzleGameData, SpellGemGameData spellGameData, PuzzleUnbindType unbindType) {
 		UnbindSpellGemEvent?.Invoke (puzzleGameData, spellGameData, unbindType);
 		OnChangePlayerState (PlayerState.PUZZLE_MOVING_SPELLGEM);
 	}

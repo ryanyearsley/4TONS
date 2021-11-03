@@ -5,31 +5,25 @@ using UnityEngine.SceneManagement;
 using TMPro;
 
 
-//virtually the same as a spellobject, except there is no life timer on these.
 public class HubPortalObject : InteractableObject {
 
-	public SpellSchool school;
+	public Zone zone;
 	public PortalStatus portalStatus;
-	private Collider2D portalCollider;
+	private InteractableCollider portalCollider;
 	[SerializeField]
 	private TextMeshProUGUI towerStatusText;
 
 	[SerializeField]
 	private GameObject spriteObject;
 
-	private void Awake () {
-	}
-
 	public override void SetupObject () {
-		portalCollider = GetComponent<Collider2D> ();
+		base.SetupObject ();
+		portalCollider = GetComponentInChildren<InteractableCollider> ();
 		portalCollider.enabled = false;
 		portalStatus = PortalStatus.DISABLED;
-		base.SetupObject ();
 	}
-
 	public override void ReuseObject () {
-		base.ReuseObject ();
-		bool completed = PlayerManager.instance.currentPlayers [0].wizardSaveData.CheckIfPlayerCompleteTower (school);
+		bool completed = PlayerManager.instance.currentPlayers [0].wizardSaveData.CheckIfPlayerCompleteTower (zone);
 
 		if (completed) {
 			SetPortalComplete ();
@@ -38,8 +32,13 @@ public class HubPortalObject : InteractableObject {
 		}
 	}
 
+	public override void TerminateObjectFunctions () {
+		portalStatus = PortalStatus.DISABLED;
+		portalCollider.enabled = false;
+	}
+
 	public override void InteractWithObject () {
-		GauntletHubGameManager.instance.TowerEntered (school);
+		GauntletHubGameManager.instance.TowerEntered (zone);
 		portalCollider.enabled = false;
 	}
 
@@ -60,10 +59,6 @@ public class HubPortalObject : InteractableObject {
 		towerStatusText.text = "COMPLETED";
 		portalCollider.enabled = false;
 		spriteObject.SetActive (false);
-	}
-	public override void TerminateObjectFunctions () {
-		portalStatus = PortalStatus.DISABLED;
-		portalCollider.enabled = false;
 	}
 }
 

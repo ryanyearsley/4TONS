@@ -17,14 +17,8 @@ public class CursorController : MonoBehaviour {
 	private SpriteRenderer spriteRenderer;
 	private Transform cursorCenter;
 
-	[SerializeField]
-	private TMP_Text tooltipText;
-
-	private bool pointingRight;
-
 	private void Awake () {
 		spriteRenderer = GetComponentInChildren<SpriteRenderer> ();
-		ClearToolTip ();
 	}
 
 	public void InitializeComponent (Player player) {
@@ -37,7 +31,6 @@ public class CursorController : MonoBehaviour {
 		switch (playerState) {
 			case (PlayerState.COMBAT): {
 					spriteRenderer.sprite = combatCursor;
-					ClearToolTip ();
 					break;
 				}
 			case (PlayerState.PUZZLE_BROWSING): {
@@ -47,7 +40,7 @@ public class CursorController : MonoBehaviour {
 			case (PlayerState.PUZZLE_MOVING_SPELLGEM): {
 					spriteRenderer.sprite = puzzleHoldCursor;
 					break;
-			}
+				}
 		}
 	}
 
@@ -62,35 +55,5 @@ public class CursorController : MonoBehaviour {
 
 	public void SetCursorCenter (Transform cursorCenter) {
 		this.cursorCenter = cursorCenter;
-	}
-
-	public void UpdateToolTipText(string text) {
-		tooltipText.text = text;
-	}
-	public void UpdateToolTipOrientation () {
-		if (transform.position.x > playerObject.transform.position.x) {
-			SetToolTipPointingRight ();
-		} else  {
-			SetToolTipPointingLeft ();
-		}
-	}
-	private void SetToolTipPointingRight() {
-		if (!pointingRight) {
-			pointingRight = true;
-			Debug.Log ("CursorController: Displaying ToolTip Pointing Right");
-			tooltipText.rectTransform.localEulerAngles = new Vector3 (0, 0, 0);
-			tooltipText.alignment = TextAlignmentOptions.MidlineRight;
-		}
-	}
-	private void SetToolTipPointingLeft () {
-		if (pointingRight) {
-			pointingRight = false;
-			Debug.Log ("CursorController: Displaying ToolTip Pointing Left");
-			tooltipText.rectTransform.localEulerAngles = new Vector3 (0, 0, 180);
-			tooltipText.alignment = TextAlignmentOptions.MidlineLeft;
-		}
-	}
-	public void ClearToolTip () {
-		tooltipText.text = "";
 	}
 }

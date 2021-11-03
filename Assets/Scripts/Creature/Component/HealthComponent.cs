@@ -13,7 +13,6 @@ public class HealthComponent : VitalsComponent {
 		maxValue = creatureObject.creatureData.maxHealth;
 		PoolManager.instance.CreateObjectPool (bloodPoolPrefab, 1);
 	}
-
 	public override void OnDeath () {
 		PoolManager.instance.ReuseObject (bloodPoolPrefab, transform.position, Quaternion.identity);
 		base.OnDeath ();

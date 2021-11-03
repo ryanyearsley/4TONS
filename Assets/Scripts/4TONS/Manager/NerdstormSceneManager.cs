@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,32 +18,45 @@ namespace NERDSTORM {
 		}
 		#endregion
 
-		public int darkTowerSceneIndex;
-		public int lightTowerSceneIndex;
+		public int menuSceneIndex = 0;
+		public int tutorialSceneIndex = 1;
+		public int hubSceneIndex = 2; 
+		public int darkTowerSceneIndex = 3;
+		public int lightTowerSceneIndex = 4;
 
-		private Dictionary <SpellSchool, int> gauntletSceneDictionary =
-			new Dictionary<SpellSchool, int> ();
+		public event Action sceneTransitionEvent;
+
+		private Dictionary <Zone, int> gauntletSceneDictionary =
+			new Dictionary<Zone, int> ();
 		private void Awake () {
 			InitializeSingleton ();
 			DontDestroyOnLoad (this.gameObject);
-			gauntletSceneDictionary.Add (SpellSchool.Dark, darkTowerSceneIndex);
-			gauntletSceneDictionary.Add (SpellSchool.Light, lightTowerSceneIndex);
+			gauntletSceneDictionary.Add (Zone.Hub, hubSceneIndex);
+			gauntletSceneDictionary.Add (Zone.Dark, darkTowerSceneIndex);
+			gauntletSceneDictionary.Add (Zone.Light, lightTowerSceneIndex);
 		}
 		public void LoadMenu() {
-			SceneManager.LoadScene (0);
+			LoadSceneByIndex (menuSceneIndex);
 		}
 
 		public void LoadTutorial() {
-			SceneManager.LoadScene (1);
+			LoadSceneByIndex (tutorialSceneIndex);
 		}
-		public void LoadGauntletTowerScene(SpellSchool towerSchool) {
-			if (gauntletSceneDictionary.ContainsKey(towerSchool)) {
-				SceneManager.LoadScene (gauntletSceneDictionary [towerSchool]);
+		public void LoadGauntletTowerScene(Zone towerZone) {
+			if (gauntletSceneDictionary.ContainsKey(towerZone)) {
+				LoadSceneByIndex (gauntletSceneDictionary [towerZone]);
 			}
 		}
 
 		public void LoadSceneByIndex(int index) {
+			StartCoroutine (LoadSceneRoutine (index));
+		}
+
+		public IEnumerator LoadSceneRoutine (int index) {
+			sceneTransitionEvent?.Invoke ();
+			yield return new WaitForSeconds (1f);//this allows fade-out screen to do it's thing lol
 			SceneManager.LoadScene (index);
+
 		}
 	}
 }

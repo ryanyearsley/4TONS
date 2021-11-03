@@ -59,7 +59,7 @@ public class ConstantsManager : PersistentManager {
 		Dictionary<SpellSchool, int> schoolIndexStartDictionary = new Dictionary<SpellSchool, int>();
 		schoolIndexStartDictionary.Add (SpellSchool.Generic, legend.GENERIC_INDEX_START);
 		schoolIndexStartDictionary.Add (SpellSchool.Light, legend.LIGHT_INDEX_START);
-		schoolIndexStartDictionary.Add (SpellSchool.Dark, legend.NECRO_INDEX_START);
+		schoolIndexStartDictionary.Add (SpellSchool.Dark, legend.DARK_INDEX_START);
 		schoolIndexStartDictionary.Add (SpellSchool.Fire, legend.FIRE_INDEX_START);
 		schoolIndexStartDictionary.Add (SpellSchool.Ice, legend.ICE_INDEX_START);
 
@@ -87,7 +87,7 @@ public class ConstantsManager : PersistentManager {
 		Dictionary<Zone, int> zoneIndexStartDictionary = new Dictionary<Zone, int>();
 		zoneIndexStartDictionary.Add (Zone.Generic, legend.GENERIC_INDEX_START);
 		zoneIndexStartDictionary.Add (Zone.Hub, legend.HUB_INDEX_START);
-		zoneIndexStartDictionary.Add (Zone.Dark, legend.NECRO_INDEX_START);
+		zoneIndexStartDictionary.Add (Zone.Dark, legend.DARK_INDEX_START);
 		zoneIndexStartDictionary.Add (Zone.Tutorial, legend.TUTORIAL_INDEX_START);
 		zoneIndexStartDictionary.Add (Zone.Fire, legend.FIRE_INDEX_START);
 		zoneIndexStartDictionary.Add (Zone.Ice, legend.LIGHT_INDEX_START);
@@ -106,6 +106,9 @@ public class ConstantsManager : PersistentManager {
 			zoneData.baseTile.id = zoneIndexStart + legend.TILE_INDEX_START + legend.BASE_TILE_INDEX_START;
 			zoneData.baseTile.layer = TileLayer.BASE;
 
+			zoneData.baseBlankTopTile.id = zoneIndexStart + legend.TILE_INDEX_START + legend.BASE_BLANKTOP_TILE_INDEX_START;
+			zoneData.baseBlankTopTile.layer = TileLayer.BASE;
+
 			zoneData.borderTile.id = zoneIndexStart + legend.TILE_INDEX_START + legend.BORDER_TILE_INDEX_START;
 			zoneData.borderTile.layer = TileLayer.BASE;
 
@@ -114,17 +117,27 @@ public class ConstantsManager : PersistentManager {
 				tileData.id = zoneIndexStart + legend.TILE_INDEX_START + legend.BASE_DECOR_TILE_INDEX_START + i;
 				tileData.layer = TileLayer.BASE;
 			}
+			for (int i = 0; i < zoneData.floorTiles.Count; i++) {
+				TileData tileData = zoneData.floorTiles[i];
+				tileData.id = zoneIndexStart + legend.TILE_INDEX_START + legend.FLOORS_TILE_INDEX_START + i;
+				tileData.layer = TileLayer.FLOOR;
+			}
 
-			for (int i = 0; i < zoneData.floorDecorTiles.Count; i++) {
-				TileData tileData = zoneData.floorDecorTiles[i];
+			for (int i = 0; i < zoneData.randomFloorDecorTiles.Count; i++) {
+				TileData tileData = zoneData.randomFloorDecorTiles[i];
 				tileData.id = zoneIndexStart + legend.TILE_INDEX_START + legend.FLOOR_DECOR_TILE_INDEX_START + i;
+				tileData.layer = TileLayer.FLOOR;
+			}
+			for (int i = 0; i < zoneData.surroundingDecorTiles.Count; i++) {
+				TileData tileData = zoneData.surroundingDecorTiles[i];
+				tileData.id = zoneIndexStart + legend.TILE_INDEX_START + legend.SURROUNDING_FLOOR_DECOR_TILE_INDEX_START + i;
 				tileData.layer = TileLayer.FLOOR;
 			}
 
 			for (int i = 0; i < zoneData.topDecorTiles.Count; i++) {
 				TileData tileData = zoneData.topDecorTiles[i];
 				tileData.id = zoneIndexStart + legend.TILE_INDEX_START + legend.TOP_DECOR_TILE_INDEX_START + i;
-				tileData.layer = TileLayer.TOP;
+				tileData.layer = TileLayer.BASE;
 			}
 
 

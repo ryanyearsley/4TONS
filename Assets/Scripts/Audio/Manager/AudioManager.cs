@@ -63,6 +63,7 @@ public class AudioManager : PersistentManager {
 		mixer.SetFloat (SFX_VOLUME_PARAM, Mathf.Log10 (settingsData.sfxVolume) * DB_MULTIPLIER);
 	}
 	public void RegisterSound (Sound sound) {
+		sound.clipName = sound.singleClip.name;
 		if (sound != null && !soundDictionary.ContainsKey (sound.clipName)) {
 			GameObject _go = new GameObject ("Sound_" + sound.clipName);
 			_go.transform.SetParent (this.transform);
@@ -77,16 +78,17 @@ public class AudioManager : PersistentManager {
 			soundDictionary [_name].Play ();
 		}
 	}
+	public void StopSound (string _name) {
+		if (soundDictionary.ContainsKey (_name)) {
+			soundDictionary [_name].Stop ();
+		}
+	}
+
 	public void PlayMusic (int trackIndex) {
 		musicSound.singleClip = musicTracks [trackIndex];
 		musicSound.Play ();
 	}
 	public void StopMusic () {
-		musicSound.Stop();
-	}
-	public void StopSound (string _name) {
-		if (soundDictionary.ContainsKey (_name)) {
-			soundDictionary [_name].Stop ();
-		}
+		musicSound.Stop ();
 	}
 }

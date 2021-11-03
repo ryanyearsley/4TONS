@@ -25,6 +25,8 @@ public class CreatureAudioComponent : CreatureComponent {
 
 		if (clipsPackage.gruntSound != null) {
 			source.Stop ();
+			source.pitch = Random.Range (0.75f, 1.25f);
+			source.volume = Random.Range (0.75f, 1.25f);
 			source.PlayOneShot (clipsPackage.gruntSound);
 		}
 	}

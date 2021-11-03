@@ -1,5 +1,6 @@
 ﻿using UnityEngine.SceneManagement;
 using System.Collections.Generic;
+using NERDSTORM;
 public class QuitToMenuButton : AbstractButtonClick {
 
 	protected override void OnClick () {
@@ -9,6 +10,6 @@ public class QuitToMenuButton : AbstractButtonClick {
 		playerOne.currentPlayerObject = null;
 		playerOne.isReady = false;
 		playerOne.isAlive = false;
-		SceneManager.LoadScene (0);
+		NerdstormSceneManager.instance.LoadMenu ();
 	}
 }

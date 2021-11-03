@@ -16,19 +16,40 @@ public class SpellObject : PoolObject, ISpellObject {
 
 
 
+	protected AudioSource audioSource;
 	protected Transform trans;
+
+
+	[SerializeField]
+	public int debrisPoolSize;
+	public GameObject debrisObject;
+	[SerializeField]
 	private Sound spellObjectSound;
+	[SerializeField]
 	private Sound spellObjectDestroySound;
 
 	public override void SetupObject () {
 		base.SetupObject ();
+		if (debrisObject != null)
+			PoolManager.instance.CreateObjectPool (debrisObject, debrisPoolSize);
 
 		trans = this.transform;
 		spellEffects = trans.GetComponentsInChildren<SpellEffect> ();
-		if (spellObjectSound != null)
-			AudioManager.instance.RegisterSound (spellObjectSound);
-		if (spellObjectDestroySound != null)
+
+		foreach (SpellEffect spellEffect in spellEffects) {
+			spellEffect.SetUpSpellEffect ();
+		}
+		if (spellObjectSound.singleClip != null) {
+			audioSource = gameObject.AddComponent<AudioSource> ();
+			audioSource.volume = spellObjectSound.volume;
+			audioSource.maxDistance = 15f;
+			audioSource.spatialBlend = 1f;
+			audioSource.rolloffMode = AudioRolloffMode.Linear;
+		}
+
+		if (spellObjectDestroySound.singleClip != null) {
 			AudioManager.instance.RegisterSound (spellObjectDestroySound);
+		}
 	}
 
 	public virtual void SetSpellObjectTag (VitalsEntity vitalsEntity) {
@@ -41,8 +62,8 @@ public class SpellObject : PoolObject, ISpellObject {
 
 	public virtual void ReuseSpellObject (VitalsEntity vitalsEntity) {
 		casterVitalsEntity = vitalsEntity;
-		if (spellObjectSound != null)
-			AudioManager.instance.PlaySound (spellObjectSound.clipName);
+		if (spellObjectSound.singleClip != null)
+			audioSource.PlayOneShot (spellObjectSound.singleClip);
 		lifeTimer = 0;
 		isAlive = true;
 	}
@@ -67,10 +88,9 @@ public class SpellObject : PoolObject, ISpellObject {
 	public override void TerminateObjectFunctions () {
 		isAlive = false;
 		this.tag = "Untagged";
-
-		//source.Stop ();
-		if (spellObjectDestroySound != null) {
-			AudioManager.instance.PlaySound (spellObjectDestroySound.clipName);
+		if (spellObjectDestroySound.singleClip != null) {
+			audioSource.Stop ();
+			AudioManager.instance.PlaySound(spellObjectDestroySound.clipName);
 		}
 
 	}

@@ -4,6 +4,6 @@
 [Serializable]
 public class GameContext 
 {
-	public ZoneData worldData;
+	public ZoneData zoneData;
 	public ObjectiveData objectiveData;
 }

@@ -5,12 +5,16 @@ using UnityEngine;
 public class MapTileInfo
 {
 	public Vector2Int mapCoordinate;
-	public int value;
-	public TileLayer tileLayer;
-	public bool isSpawnConflict = false;
-	public bool walkable = true;
-}
+	public Vector3 worldPosition;
+	public int baseValue;
 
-public enum TileLayer {
-	FLOOR, BASE, TOP, FLOOR_DECOR
+	public TileData floorTile;
+	public TileData floorDecorTile;
+	public TileData baseTile;
+	public TileData topDecorTile;
+	public SpawnObjectData spawnObjectData;
+
+	public bool isSpawnConflict = false;
+	public bool nearSetpiece = false;
+	public bool walkable = true;
 }

@@ -52,7 +52,7 @@ public class PlayerAimingComponent : PlayerComponent {
 		if (player.wizardSaveData.primaryStaffSaveData.puzzleData != null) {
 			staffAimObject.InitializeStaffAimObject (player.wizardSaveData.primaryStaffSaveData.puzzleData.puzzleSprite);
 		}
-		CameraController.instance.SetCameraRigidFollow (creatureObject.GetComponent<MovementComponent> ());
+		CameraController2D.instance.SetCameraRigidFollow (creatureObject.GetComponent<MovementComponent> ());
 
 	}
 	public override void OnSpawn (Vector3 spawnPosition) {
@@ -187,7 +187,6 @@ public class PlayerAimingComponent : PlayerComponent {
 
 		aimingPivotTransform.rotation = Quaternion.AngleAxis (angle, Vector3.forward);
 		cursorTransform.rotation = Quaternion.AngleAxis (angle - 90, Vector3.forward);
-		cursorController.UpdateToolTipOrientation ();
 	}
 
 
@@ -202,7 +201,6 @@ public class PlayerAimingComponent : PlayerComponent {
 			aimingPivotTransform.rotation = Quaternion.AngleAxis (angle, Vector3.forward);
 			cursorTransform.rotation = Quaternion.AngleAxis (angle - 90, Vector3.forward);
 
-			cursorController.UpdateToolTipOrientation ();
 		} else if (playerObject.currentAimingMode == AimingMode.RADIAL) {
 			if (joystickInput.sqrMagnitude > 1f)
 				joystickInput = joystickInput.normalized;
@@ -215,7 +213,6 @@ public class PlayerAimingComponent : PlayerComponent {
 			if (joystickInput != Vector2.zero) {
 				aimingPivotTransform.rotation = Quaternion.AngleAxis (angle, Vector3.forward);
 			}
-			cursorController.UpdateToolTipOrientation ();
 		}
 	}
 	private void AimStaffWithDeadzone () {

@@ -23,7 +23,7 @@ MonoBehaviour:
   movementSpeed: 6
   creatureAudio:
     attackSound: {fileID: 0}
-    gruntSound: {fileID: 0}
-    deathSound: {fileID: 0}
+    gruntSound: {fileID: 8300000, guid: 5b0156dc2e51d7a49bffd9778d04643f, type: 3}
+    deathSound: {fileID: 8300000, guid: 62b834941063fac438a170997cf1fe1d, type: 3}
     happySound: {fileID: 0}
     sadSound: {fileID: 0}

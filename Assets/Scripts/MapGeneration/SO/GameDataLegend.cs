@@ -10,7 +10,7 @@ public class GameDataLegend : ScriptableObject {
 	public int GENERIC_INDEX_START = 0;
 	public int HUB_INDEX_START = 1000;
 	public int LIGHT_INDEX_START = 2000;
-	public int NECRO_INDEX_START = 3000;
+	public int DARK_INDEX_START = 3000;
 	public int ICE_INDEX_START = 4000;
 	public int FIRE_INDEX_START = 5000;
 	public int TUTORIAL_INDEX_START = 6000;
@@ -23,12 +23,16 @@ public class GameDataLegend : ScriptableObject {
 	//and so on
 
 	public int TILE_INDEX_START = 100;  
-	public int FLOOR_TILE_INDEX_START = 0; //2100
-	public int BASE_TILE_INDEX_START = 1; //2101
-	public int BORDER_TILE_INDEX_START = 2; //2102
-	public int BASE_DECOR_TILE_INDEX_START = 3; //2103 - 2124
-	public int FLOOR_DECOR_TILE_INDEX_START = 25; //2125 - 2149
-	public int TOP_DECOR_TILE_INDEX_START = 50; //2150 - 2199
+	public int FLOOR_TILE_INDEX_START = 0;
+	public int BASE_TILE_INDEX_START = 1; 
+	public int BORDER_TILE_INDEX_START = 2; 
+	public int BASE_BLANKTOP_TILE_INDEX_START = 3;
+	public int FLOORS_TILE_INDEX_START = 10;
+	public int FLOOR_DECOR_TILE_INDEX_START = 20;
+	public int SURROUNDING_FLOOR_DECOR_TILE_INDEX_START = 30;
+	public int TOP_DECOR_TILE_INDEX_START = 40;
+	public int BASE_DECOR_TILE_INDEX_START = 50;
+
 	public int SETPIECE_INDEX_START = 200;
 	public int ENEMY_SPAWN_INDEX_START = 300;
 	public int SPELL_INDEX_START = 400;

@@ -9,6 +9,9 @@ public abstract class VitalsComponent : CreatureComponent {
     protected float currentValue;
     protected float maxValue;
 
+    [SerializeField]
+    protected float overheadUIHeight = 1.25f;
+
     public GameObject overheadUIPrefab;
     private OverheadVitalsBarUI overheadUI;
 	#region CreatureComponent Callbacks
@@ -17,9 +20,8 @@ public abstract class VitalsComponent : CreatureComponent {
         if (overheadUIPrefab != null) {
             GameObject go = Instantiate(overheadUIPrefab, rootObject.transform.position, rootObject.transform.rotation);
             go.transform.SetParent (rootObject.transform) ;
-            go.transform.localPosition = new Vector3 (0, 1.25f, 0);
             overheadUI = go.GetComponent<OverheadVitalsBarUI> ();
-            overheadUI.InitializeUI ();
+            overheadUI.InitializeUI (overheadUIHeight);
         }
         maxValue = creatureObject.creatureData.maxHealth;
         currentValue = maxValue;

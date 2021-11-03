@@ -18,23 +18,22 @@ MonoBehaviour:
   id: 3400
   description: Hurl a lecherous leech at your enemy, stealing their mana and health.
   icon: {fileID: 21300000, guid: b12ef7c5da09ffb4c8e4151c64fed96b, type: 3}
-  castObject: {fileID: 576230467533564272, guid: 8877f64b001a48749a94d481e84c9244, type: 3}
   manaCost: 3
   castTime: 0.15
   castSpeedReduction: 0.8
   coolDown: 0.3
+  castObject: {fileID: 576230467533564272, guid: 8877f64b001a48749a94d481e84c9244, type: 3}
+  poolSize: 10
+  spellObject: {fileID: 5217744383755033205, guid: 67aaafef65d8da9478a594303489a970, type: 3}
   spellCastLocation: 0
   spellCastSound:
-    clipName: Leechbolt
-    singleClip: {fileID: 8300000, guid: f1215d77d46258e46a99226c1cea673f, type: 3}
-    randomize: 0
-    randomClips: []
+    clipName: 
+    singleClip: {fileID: 0}
     volume: 1
     pitch: 1
-    mixerGroup: {fileID: -7302680629657921355, guid: 004a37a2c22918345b123859e614950a, type: 2}
+    mixerGroup: {fileID: 0}
     loop: 0
-    playOnAwake: 0
+    randomize: 0
+    randomClips: []
   spellEndSound: {fileID: 0}
-  spellObject: {fileID: 5217744383755033205, guid: 67aaafef65d8da9478a594303489a970, type: 3}
-  poolSize: 10
   puzzlePieceData: {fileID: 11400000, guid: 314e4bdbd8a40cc42bf1923e1d56a8c3, type: 2}
