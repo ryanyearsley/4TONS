@@ -221,6 +221,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 452158, guid: 03b9a6db219d12e4f8ec2934e0c7e721, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 452158, guid: 03b9a6db219d12e4f8ec2934e0c7e721, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -231,6 +235,10 @@ PrefabInstance:
     - target: {fileID: 452158, guid: 03b9a6db219d12e4f8ec2934e0c7e721, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 452158, guid: 03b9a6db219d12e4f8ec2934e0c7e721, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 452158, guid: 03b9a6db219d12e4f8ec2934e0c7e721, type: 3}
       propertyPath: m_LocalRotation.x
@@ -244,24 +252,52 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 452158, guid: 03b9a6db219d12e4f8ec2934e0c7e721, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
+    - target: {fileID: 11452084, guid: 03b9a6db219d12e4f8ec2934e0c7e721, type: 3}
+      propertyPath: _screenToggleAction
+      value: 21
       objectReference: {fileID: 0}
-    - target: {fileID: 452158, guid: 03b9a6db219d12e4f8ec2934e0c7e721, type: 3}
-      propertyPath: m_RootOrder
-      value: 3
+    - target: {fileID: 11452084, guid: 03b9a6db219d12e4f8ec2934e0c7e721, type: 3}
+      propertyPath: _rewiredInputManager
+      value: 
+      objectReference: {fileID: 1842252933}
+    - target: {fileID: 11452084, guid: 03b9a6db219d12e4f8ec2934e0c7e721, type: 3}
+      propertyPath: _universalCancelAction
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 11452084, guid: 03b9a6db219d12e4f8ec2934e0c7e721, type: 3}
       propertyPath: _mappingSets.Array.size
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 11452084, guid: 03b9a6db219d12e4f8ec2934e0c7e721, type: 3}
+      propertyPath: _showActionCategoryLabels
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11452084, guid: 03b9a6db219d12e4f8ec2934e0c7e721, type: 3}
+      propertyPath: _showInputBehaviorSettings
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11452084, guid: 03b9a6db219d12e4f8ec2934e0c7e721, type: 3}
+      propertyPath: _allowElementAssignmentSwap
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11452084, guid: 03b9a6db219d12e4f8ec2934e0c7e721, type: 3}
       propertyPath: _inputBehaviorSettings.Array.size
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 11452084, guid: 03b9a6db219d12e4f8ec2934e0c7e721, type: 3}
-      propertyPath: _mappingSets.Array.data[1]._actionCategoryIds.Array.size
+      propertyPath: _mappingSets.Array.data[1]._mapCategoryId
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11452084, guid: 03b9a6db219d12e4f8ec2934e0c7e721, type: 3}
+      propertyPath: _mappingSets.Array.data[2]._mapCategoryId
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11452084, guid: 03b9a6db219d12e4f8ec2934e0c7e721, type: 3}
+      propertyPath: _inputBehaviorSettings.Array.data[0]._inputBehaviorId
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11452084, guid: 03b9a6db219d12e4f8ec2934e0c7e721, type: 3}
+      propertyPath: _inputBehaviorSettings.Array.data[1]._inputBehaviorId
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11452084, guid: 03b9a6db219d12e4f8ec2934e0c7e721, type: 3}
@@ -269,28 +305,12 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11452084, guid: 03b9a6db219d12e4f8ec2934e0c7e721, type: 3}
-      propertyPath: _mappingSets.Array.data[2]._actionCategoryIds.Array.size
+      propertyPath: _mappingSets.Array.data[1]._actionCategoryIds.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11452084, guid: 03b9a6db219d12e4f8ec2934e0c7e721, type: 3}
-      propertyPath: _rewiredInputManager
-      value: 
-      objectReference: {fileID: 1842252933}
-    - target: {fileID: 11452084, guid: 03b9a6db219d12e4f8ec2934e0c7e721, type: 3}
-      propertyPath: _screenToggleAction
-      value: 21
-      objectReference: {fileID: 0}
-    - target: {fileID: 11452084, guid: 03b9a6db219d12e4f8ec2934e0c7e721, type: 3}
-      propertyPath: _showActionCategoryLabels
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11452084, guid: 03b9a6db219d12e4f8ec2934e0c7e721, type: 3}
-      propertyPath: _mappingSets.Array.data[1]._mapCategoryId
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 11452084, guid: 03b9a6db219d12e4f8ec2934e0c7e721, type: 3}
-      propertyPath: _mappingSets.Array.data[1]._actionCategoryIds.Array.data[0]
-      value: 4
+      propertyPath: _mappingSets.Array.data[2]._actionCategoryIds.Array.size
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11452084, guid: 03b9a6db219d12e4f8ec2934e0c7e721, type: 3}
       propertyPath: _mappingSets.Array.data[0]._actionCategoryIds.Array.data[1]
@@ -305,27 +325,11 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 11452084, guid: 03b9a6db219d12e4f8ec2934e0c7e721, type: 3}
-      propertyPath: _mappingSets.Array.data[2]._mapCategoryId
-      value: 5
+      propertyPath: _mappingSets.Array.data[1]._actionCategoryIds.Array.data[0]
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 11452084, guid: 03b9a6db219d12e4f8ec2934e0c7e721, type: 3}
       propertyPath: _mappingSets.Array.data[2]._actionCategoryIds.Array.data[0]
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 11452084, guid: 03b9a6db219d12e4f8ec2934e0c7e721, type: 3}
-      propertyPath: _showInputBehaviorSettings
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 11452084, guid: 03b9a6db219d12e4f8ec2934e0c7e721, type: 3}
-      propertyPath: _inputBehaviorSettings.Array.data[0]._joystickAxisSensitivityIcon
-      value: 
-      objectReference: {fileID: 21300000, guid: 0c9ce4e64fb83764aa394faeeed56210, type: 3}
-    - target: {fileID: 11452084, guid: 03b9a6db219d12e4f8ec2934e0c7e721, type: 3}
-      propertyPath: _inputBehaviorSettings.Array.data[0]._mouseXYAxisSensitivityIcon
-      value: 
-      objectReference: {fileID: 21300000, guid: fc88ce24a47f4014cb0ad237abc8d1dd, type: 3}
-    - target: {fileID: 11452084, guid: 03b9a6db219d12e4f8ec2934e0c7e721, type: 3}
-      propertyPath: _inputBehaviorSettings.Array.data[0]._joystickAxisSensitivityMax
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 11452084, guid: 03b9a6db219d12e4f8ec2934e0c7e721, type: 3}
@@ -333,9 +337,33 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 11452084, guid: 03b9a6db219d12e4f8ec2934e0c7e721, type: 3}
-      propertyPath: _inputBehaviorSettings.Array.data[0]._inputBehaviorId
+      propertyPath: _inputBehaviorSettings.Array.data[1]._mouseXYAxisSensitivityMax
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 11452084, guid: 03b9a6db219d12e4f8ec2934e0c7e721, type: 3}
+      propertyPath: _inputBehaviorSettings.Array.data[0]._joystickAxisSensitivityMax
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11452084, guid: 03b9a6db219d12e4f8ec2934e0c7e721, type: 3}
+      propertyPath: _inputBehaviorSettings.Array.data[0]._mouseXYAxisSensitivityIcon
+      value: 
+      objectReference: {fileID: 21300000, guid: fc88ce24a47f4014cb0ad237abc8d1dd, type: 3}
+    - target: {fileID: 11452084, guid: 03b9a6db219d12e4f8ec2934e0c7e721, type: 3}
+      propertyPath: _inputBehaviorSettings.Array.data[1]._joystickAxisSensitivityMax
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11452084, guid: 03b9a6db219d12e4f8ec2934e0c7e721, type: 3}
+      propertyPath: _inputBehaviorSettings.Array.data[1]._mouseXYAxisSensitivityIcon
+      value: 
+      objectReference: {fileID: 21300000, guid: fc88ce24a47f4014cb0ad237abc8d1dd, type: 3}
+    - target: {fileID: 11452084, guid: 03b9a6db219d12e4f8ec2934e0c7e721, type: 3}
+      propertyPath: _inputBehaviorSettings.Array.data[1]._showMouseXYAxisSensitivity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11452084, guid: 03b9a6db219d12e4f8ec2934e0c7e721, type: 3}
+      propertyPath: _inputBehaviorSettings.Array.data[0]._joystickAxisSensitivityIcon
+      value: 
+      objectReference: {fileID: 21300000, guid: 0c9ce4e64fb83764aa394faeeed56210, type: 3}
     - target: {fileID: 11452084, guid: 03b9a6db219d12e4f8ec2934e0c7e721, type: 3}
       propertyPath: _inputBehaviorSettings.Array.data[0]._showJoystickAxisSensitivity
       value: 1
@@ -345,35 +373,7 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 0c9ce4e64fb83764aa394faeeed56210, type: 3}
     - target: {fileID: 11452084, guid: 03b9a6db219d12e4f8ec2934e0c7e721, type: 3}
-      propertyPath: _inputBehaviorSettings.Array.data[1]._mouseXYAxisSensitivityIcon
-      value: 
-      objectReference: {fileID: 21300000, guid: fc88ce24a47f4014cb0ad237abc8d1dd, type: 3}
-    - target: {fileID: 11452084, guid: 03b9a6db219d12e4f8ec2934e0c7e721, type: 3}
-      propertyPath: _inputBehaviorSettings.Array.data[1]._joystickAxisSensitivityMax
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 11452084, guid: 03b9a6db219d12e4f8ec2934e0c7e721, type: 3}
-      propertyPath: _inputBehaviorSettings.Array.data[1]._mouseXYAxisSensitivityMax
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 11452084, guid: 03b9a6db219d12e4f8ec2934e0c7e721, type: 3}
-      propertyPath: _inputBehaviorSettings.Array.data[1]._inputBehaviorId
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 11452084, guid: 03b9a6db219d12e4f8ec2934e0c7e721, type: 3}
       propertyPath: _inputBehaviorSettings.Array.data[1]._showJoystickAxisSensitivity
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 11452084, guid: 03b9a6db219d12e4f8ec2934e0c7e721, type: 3}
-      propertyPath: _inputBehaviorSettings.Array.data[1]._showMouseXYAxisSensitivity
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 11452084, guid: 03b9a6db219d12e4f8ec2934e0c7e721, type: 3}
-      propertyPath: _universalCancelAction
-      value: 22
-      objectReference: {fileID: 0}
-    - target: {fileID: 11452084, guid: 03b9a6db219d12e4f8ec2934e0c7e721, type: 3}
-      propertyPath: _allowElementAssignmentSwap
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -408,7 +408,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10efa70eea88e69459c632aac286892d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rewiredInputManager: {fileID: 0}
+  rewiredInputManager: {fileID: 1842252933}
   useAllRewiredGamePlayers: 1
   useRewiredSystemPlayer: 1
   rewiredPlayerIds: 00000000
@@ -494,6 +494,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Navigation:
     m_Mode: 3
+    m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -617,6 +618,7 @@ GameObject:
   - component: {fileID: 1364034797}
   - component: {fileID: 1364034795}
   - component: {fileID: 1364034794}
+  - component: {fileID: 1364034796}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -640,6 +642,38 @@ Behaviour:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1364034793}
   m_Enabled: 1
+--- !u!114 &1364034796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1364034793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
 --- !u!20 &1364034797
 Camera:
   m_ObjectHideFlags: 0
@@ -2635,6 +2669,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 0
 --- !u!223 &1888913178
 Canvas:
   m_ObjectHideFlags: 0

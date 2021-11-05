@@ -179,8 +179,8 @@ public class PlayerAimingComponent : PlayerComponent {
 	public void MouseAimingUpdate (Vector2 mouseDelta) {
 
 		Bounds screenBounds = mainCamera.OrthographicBounds ();
-		float x = Mathf.Clamp (cursorTransform.position.x + mouseDelta.x * mouseSensitivity, screenBounds.min.x, screenBounds.max.x);
-		float y = Mathf.Clamp (cursorTransform.position.y + mouseDelta.y * mouseSensitivity, screenBounds.min.y, screenBounds.max.y);
+		float x = Mathf.Clamp (cursorTransform.position.x + mouseDelta.x * mouseSensitivity * Time.deltaTime, screenBounds.min.x, screenBounds.max.x);
+		float y = Mathf.Clamp (cursorTransform.position.y + mouseDelta.y * mouseSensitivity * Time.deltaTime, screenBounds.min.y, screenBounds.max.y);
 		cursorTransform.position = new Vector3 (x, y, -9f);
 		float angle = Mathf.Atan2 (CursorDirection.y, CursorDirection.x) * Mathf.Rad2Deg;
 

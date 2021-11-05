@@ -10,7 +10,7 @@ public class RandomizeWizardButtonClick : AbstractButtonClick
 		wizardCreatePanelUI = GetComponentInParent<WizardCreatePanelUI> ();
 	}
 
-	protected override void OnClick () {
+	public override void OnClick () {
 		AudioManager.instance.PlaySound ("Randomize");
 		wizardCreatePanelUI.SelectRandomName ();
 	}

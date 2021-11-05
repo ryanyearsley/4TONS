@@ -4,7 +4,7 @@ using NERDSTORM;
 
 public class RetireButton : AbstractButtonClick
 {
-	protected override void OnClick () {
+	public override void OnClick () {
 		Player playerOne = PlayerManager.instance.currentPlayers[0];
 		WizardSaveData wizardSaveData = WizardSaveDataMapper.MapGameToSaveData(playerOne.currentPlayerObject.wizardGameData);
 		WizardSaveDataManager.instance.SaveInfamousWizard (wizardSaveData);

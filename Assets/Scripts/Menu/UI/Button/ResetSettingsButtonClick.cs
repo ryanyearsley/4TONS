@@ -10,7 +10,7 @@ public class ResetSettingsButtonClick : AbstractButtonClick {
 		base.Awake ();
 		settingsScreenUI = GetComponentInParent<SettingsScreenUI> ();
 	}
-	protected override void OnClick () {
+	public override void OnClick () {
 		base.OnClick (); 
 		SettingsManager.instance.ResetSettingsData ();
 

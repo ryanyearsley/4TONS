@@ -8,7 +8,7 @@ public class CreateGauntletWizardButtonClick : AbstractButtonClick {
 		base.Awake ();
 		wizardCreatePanelUI = GetComponentInParent<WizardCreatePanelUI> ();
 	}
-	protected override void OnClick () {
+	public override void OnClick () {
 		if (wizardCreatePanelUI.isValidWizard ()) {
 			Debug.Log ("Confirmation button clicked, saving wizard");
 			WizardSaveData createdWizard = wizardCreatePanelUI.FinalizeWizardCreate();

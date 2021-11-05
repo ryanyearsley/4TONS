@@ -8,7 +8,7 @@ public class ApplySettingsButtonClick : AbstractButtonClick
 	private void Start () {
 		settingsScreenUI = GetComponentInParent<SettingsScreenUI> ();
 	}
-	protected override void OnClick () {
+	public override void OnClick () {
 		base.OnClick ();
 		settingsScreenUI.ApplySettings ();
 	}

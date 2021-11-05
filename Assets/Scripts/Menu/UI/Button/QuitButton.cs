@@ -6,7 +6,7 @@ using UnityEditor;
 public class QuitButton : AbstractButtonClick
 {
 
-	protected override void OnClick () {
+	public override void OnClick () {
 		Application.Quit ();
 
 #if UNITY_EDITOR

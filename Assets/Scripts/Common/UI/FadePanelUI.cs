@@ -20,7 +20,8 @@ public class FadePanelUI : MonoBehaviour {
 		InitializeSingleton ();//ON DDOL Object
 	}
 	private void Start () {
-		NERDSTORM.NerdstormSceneManager.instance.sceneTransitionEvent += OnSceneTransition;
+		if (NERDSTORM.NerdstormSceneManager.instance != null)
+			NERDSTORM.NerdstormSceneManager.instance.sceneTransitionEvent += OnSceneTransition;
 	}
 	private void OnSceneTransition () {
 		StartCoroutine (SceneTransitionRoutine ());

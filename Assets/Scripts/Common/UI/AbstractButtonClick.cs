@@ -14,7 +14,7 @@ public abstract class AbstractButtonClick : MonoBehaviour {
 
 
 
-    protected virtual void OnClick () {
+    public virtual void OnClick () {
         AudioManager.instance.PlaySound ("Confirm");
 	}
 

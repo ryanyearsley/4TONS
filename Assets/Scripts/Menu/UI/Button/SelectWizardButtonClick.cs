@@ -15,7 +15,7 @@ public class SelectWizardButtonClick : AbstractButtonClick {
 		loadedWizardButtonUI = GetComponentInParent<LoadedWizardSelectionUI> ();
 
 	}
-	protected override void OnClick () {
+	public override void OnClick () {
 		if (loadedWizardButtonUI.wizardSaveData != null) {
 			Debug.Log ("Confirmation button clicked, saving wizard");
 			WizardSaveData selectedWizard = loadedWizardButtonUI.wizardSaveData;

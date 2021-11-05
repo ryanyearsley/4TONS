@@ -292,17 +292,17 @@ MonoBehaviour:
     _elementType: 101
     _enabled: 1
     _elements:
-    - _name: Horizontal
+    - _name: UICursorHorizontal
       _elementType: 2
       _enabled: 1
-      _actionId: 12
+      _actionId: 47
       _coordinateMode: 1
       _absoluteToRelativeSensitivity: 600
       _repeatRate: 4
-    - _name: Vertical
+    - _name: UICursorVertical
       _elementType: 2
       _enabled: 1
-      _actionId: 11
+      _actionId: 48
       _coordinateMode: 1
       _absoluteToRelativeSensitivity: 600
       _repeatRate: 4

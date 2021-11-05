@@ -11,7 +11,7 @@ public class DeleteWizardButton : AbstractButtonClick
 		loadedWizardButtonUI = GetComponentInParent<LoadedWizardSelectionUI> ();
 
 	}
-	protected override void OnClick () {
+	public override void OnClick () {
 		if (loadedWizardButtonUI.wizardSaveData != null) {
 			Debug.Log ("delete button clicked, Deleting wizard");
 			WizardSaveData selectedWizard = loadedWizardButtonUI.wizardSaveData;

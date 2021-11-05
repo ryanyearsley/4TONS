@@ -131,6 +131,8 @@ namespace PlayerManagement {
 			if (rewiredController.GetButtonDown ("SwitchToAlternateStaff")) {
 				playerPuzzleController.OnSwitchToSecondaryStaffButtonDown ();
 			}
+			ControllerMap keyboardMap = rewiredController.controllers.maps.GetFirstMapInCategory (ControllerType.Keyboard, 0, "Combat");
+			ReInput.mapping.GetControllerMap (0);
 		}
 
 		private void InteractInput () {
