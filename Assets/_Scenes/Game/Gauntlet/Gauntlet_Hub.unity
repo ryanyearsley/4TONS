@@ -277,6 +277,103 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3172873c496b37f4282822aeb4a7a264, type: 3}
+--- !u!1001 &792514189
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1862424493716850944, guid: e2bf7785bfcaf5b42a3ab90d407ba529, type: 3}
+      propertyPath: m_Name
+      value: PersistentCanvas (DDOL)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1862424493716850948, guid: e2bf7785bfcaf5b42a3ab90d407ba529, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1862424493716850948, guid: e2bf7785bfcaf5b42a3ab90d407ba529, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1862424493716850948, guid: e2bf7785bfcaf5b42a3ab90d407ba529, type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1862424493716850948, guid: e2bf7785bfcaf5b42a3ab90d407ba529, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1862424493716850948, guid: e2bf7785bfcaf5b42a3ab90d407ba529, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1862424493716850948, guid: e2bf7785bfcaf5b42a3ab90d407ba529, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1862424493716850948, guid: e2bf7785bfcaf5b42a3ab90d407ba529, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1862424493716850948, guid: e2bf7785bfcaf5b42a3ab90d407ba529, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1862424493716850948, guid: e2bf7785bfcaf5b42a3ab90d407ba529, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1862424493716850948, guid: e2bf7785bfcaf5b42a3ab90d407ba529, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1862424493716850948, guid: e2bf7785bfcaf5b42a3ab90d407ba529, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1862424493716850948, guid: e2bf7785bfcaf5b42a3ab90d407ba529, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1862424493716850948, guid: e2bf7785bfcaf5b42a3ab90d407ba529, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1862424493716850948, guid: e2bf7785bfcaf5b42a3ab90d407ba529, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1862424493716850948, guid: e2bf7785bfcaf5b42a3ab90d407ba529, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1862424493716850948, guid: e2bf7785bfcaf5b42a3ab90d407ba529, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1862424493716850948, guid: e2bf7785bfcaf5b42a3ab90d407ba529, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1862424493716850948, guid: e2bf7785bfcaf5b42a3ab90d407ba529, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1862424493716850948, guid: e2bf7785bfcaf5b42a3ab90d407ba529, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1862424493716850948, guid: e2bf7785bfcaf5b42a3ab90d407ba529, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1862424493716850948, guid: e2bf7785bfcaf5b42a3ab90d407ba529, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e2bf7785bfcaf5b42a3ab90d407ba529, type: 3}
 --- !u!1001 &794789000
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1783,7 +1880,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08900153dc5781d43a5c281341fd757c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultBindingString: LMB
+  fallbackBindingString: ??
   spellIcon: {fileID: 8400785441616124739}
   spellBindingText: {fileID: 0}
 --- !u!224 &8400785441616124737
@@ -2234,7 +2331,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08900153dc5781d43a5c281341fd757c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultBindingString: LMB
+  fallbackBindingString: ??
   spellIcon: {fileID: 4203383181445686078}
   spellBindingText: {fileID: 4203902412746105418}
 --- !u!224 &8400785441997695520
@@ -2682,7 +2779,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08900153dc5781d43a5c281341fd757c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultBindingString: LMB
+  fallbackBindingString: ??
   spellIcon: {fileID: 8400785442459867000}
   spellBindingText: {fileID: 0}
 --- !u!224 &8400785442459867005
@@ -2716,7 +2813,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08900153dc5781d43a5c281341fd757c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultBindingString: Q
+  fallbackBindingString: ??
   spellIcon: {fileID: 4204100157549771306}
   spellBindingText: {fileID: 4203938462145826458}
 --- !u!224 &8400785442520977162
@@ -3239,7 +3336,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08900153dc5781d43a5c281341fd757c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultBindingString: RMB
+  fallbackBindingString: ??
   spellIcon: {fileID: 4203676250104699194}
   spellBindingText: {fileID: 4203689623580959102}
 --- !u!224 &8400785443342531642
@@ -3466,6 +3563,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08900153dc5781d43a5c281341fd757c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultBindingString: E
+  fallbackBindingString: ??
   spellIcon: {fileID: 4203774475442456466}
   spellBindingText: {fileID: 4203779465622490104}

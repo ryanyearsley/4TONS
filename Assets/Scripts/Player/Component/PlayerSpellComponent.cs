@@ -103,7 +103,7 @@ public class PlayerSpellComponent : PlayerComponent {
 		if (puzzleGameData.puzzleData.puzzleType != PuzzleType.INVENTORY) {
 			puzzleGameData.spellBindingDictionary [spellGemGameData.spellBindIndex] = spellGemGameData.spellCast;
 			if (puzzleGameData.puzzleKey == playerObject.wizardGameData.currentStaffKey) {
-				spellGemGameData.spellCast.spellUI = UIManager.Instance.playerUIs [playerObject.player.playerIndex].spellUIs [spellGemGameData.spellBindIndex];
+				spellGemGameData.spellCast.spellUI = UIManager.Instance.GetPlayerUIFromPlayerIndex(playerObject.player.playerIndex).spellUIs [spellGemGameData.spellBindIndex];
 				spellGemGameData.spellCast.spellUI.SetSpellUIToSpell (spellGemGameData.spellData);
 			}
 		}

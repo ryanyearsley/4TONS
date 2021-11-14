@@ -67,7 +67,8 @@ MonoBehaviour:
   surroundingDecorTiles: []
   baseDecorTiles: []
   topDecorTiles: []
-  largeSetpieceDatas: []
+  largeSetpieceDatas:
+  - {fileID: 11400000, guid: 213cf1f206fb3e44a8a3efef9e56a432, type: 2}
   enemyDatas: []
   lootTableData: {fileID: 11400000, guid: 30daa07b5559e1b478b90440b1bd2f29, type: 2}
   mapDatas:

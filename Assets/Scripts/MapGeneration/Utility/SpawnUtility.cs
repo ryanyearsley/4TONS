@@ -8,7 +8,8 @@ public class SpawnUtility {
 
 		for (int i = 0; i < spawnCount; i++) {
 			bool spawnPointAdded = false;
-			while (spawnPointAdded == false) {
+			int attempts = 0;
+			while (spawnPointAdded == false && attempts < 20) {
 				int randomX = Random.Range (2, details.mapData.mapGenerationData.mapSize.x - 2);
 				int randomY = Random.Range (2, details.mapData.mapGenerationData.mapSize.y - 2);
 
@@ -21,6 +22,10 @@ public class SpawnUtility {
 						spawnPointAdded = true;
 					}
 				}
+				attempts++;
+			}
+			if (spawnPointAdded == false) {
+				Debug.Log ("SpawnUtility: Failed to create all creature spawn points. current count: " + i + ", target spawn count: " + spawnCount);
 			}
 		}
 		return spawnPoints;

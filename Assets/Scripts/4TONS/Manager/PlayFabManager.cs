@@ -17,38 +17,107 @@ public class PlayFabManager : MonoBehaviour {
 	}
 	#endregion
 
+	private LoginResult cachedResult = null;
+
 	private void Awake () {
 		SingletonInitialization ();
+		PlayFabManager.instance.LogIn (OnInitialLogInSuccessCallback, OnLogInFailure);
 	}
-	void Start () {
-		LogIn ();
+	void GenericErrorExample (PlayFabError error) {
+		Debug.Log ("Generic Error: " + error.GenerateErrorReport ());
 	}
 
-	void LogIn () {
+	public void LogIn (Action<LoginResult> loginSuccessCallback, Action<PlayFabError> loginFailureCallback) {
 		LoginWithCustomIDRequest loginRequest = new LoginWithCustomIDRequest {
 			CustomId = SystemInfo.deviceUniqueIdentifier,
-			CreateAccount = true
+			CreateAccount = true,
+			InfoRequestParameters = new GetPlayerCombinedInfoRequestParams {
+				GetPlayerProfile = true
+			}
 		};
-		PlayFabClientAPI.LoginWithCustomID (loginRequest, OnLoginSuccess, OnError);
+		loginSuccessCallback += UpdateCachedLoginResult;
+		PlayFabClientAPI.LoginWithCustomID (loginRequest, loginSuccessCallback, loginFailureCallback);
+		loginSuccessCallback -= UpdateCachedLoginResult;
+	}
+	void UpdateCachedLoginResult(LoginResult result) {
+		cachedResult = result;
 	}
 
-	void OnLoginSuccess (LoginResult result) {
-		Debug.Log ("Successful login/account creation");
-		GetTitleData ();
-	}
-	void OnError (PlayFabError error) {
-		Debug.Log ("Error while logging in/creating account. Error: " + error.GenerateErrorReport ());
+	public LoginResult GetCachedLoginResult() {
+		if (cachedResult != null) {
+			return cachedResult;
+		} else return null;
 	}
 
-	public void SendLeaderboardUpdate (int time, Zone zone) {
+	private void OnInitialLogInSuccessCallback (LoginResult result) {
+		Debug.Log ("PlayFabManager: Log in success.");
+		string name = null;
+		if (result.InfoResultPayload.PlayerProfile != null) {
+			name = result.InfoResultPayload.PlayerProfile.DisplayName;
+			Debug.Log ("PlayFabManager: Player Profile present. Display name: " + name +"]") ;
+			if (name == null || name.Equals("")) {
+				SetDisplayName (GenerateString (), OnInitialSetDisplayNameSuccess, OnInitialSetDisplayNameFailure);
+			}
+		} 
+	}
+	private void OnInitialSetDisplayNameSuccess(UpdateUserTitleDisplayNameResult result) {
+		Debug.Log ("PlayFabManager: Successfully set player name to gibberish: " + result.DisplayName);
+	}
+	private void OnInitialSetDisplayNameFailure(PlayFabError error) {
+
+		switch (error.Error) {
+			case PlayFabErrorCode.UsernameNotAvailable:
+				Debug.Log ("PlayFabManager: ERROR: Username Not Available!");
+				break;
+			case PlayFabErrorCode.DuplicateUsername:
+				Debug.Log ("PlayFabManager: ERROR: Username Not Available!");
+				break;
+			case PlayFabErrorCode.InvalidUsername:
+				Debug.Log ("PlayFabManager: ERROR: Username Invalid!");
+				break;
+			case PlayFabErrorCode.AccountBanned:
+				Debug.Log ("PlayFabManager: ERROR: Account Banned");
+				break;
+			default:
+				break;
+		}
+	}
+
+	const string glyphs = "abcdefghijklmnopqrstuvwxyz";
+	private string GenerateString () {
+		int charAmount = UnityEngine.Random.Range(6, 12); //set those to the minimum and maximum length of your string
+		string myString = null;
+		for (int i = 0; i < charAmount; i++) {
+			myString += glyphs [UnityEngine.Random.Range (0, glyphs.Length)];
+		}
+
+		return myString;
+	}
+
+	private void OnLogInFailure (PlayFabError error) {
+		Debug.Log ("PlayFabManager: Log in failure.");
+	}
+
+	public bool CheckConnectionStatus () {
+		return PlayFabClientAPI.IsClientLoggedIn ();
+	}
+
+	public void SetDisplayName (string displayName, Action<UpdateUserTitleDisplayNameResult> resultCallback, Action<PlayFabError> errorCallback) {
+		UpdateUserTitleDisplayNameRequest request = new UpdateUserTitleDisplayNameRequest {
+			DisplayName = displayName,
+		};
+		PlayFabClientAPI.UpdateUserTitleDisplayName (request, resultCallback, errorCallback);
+	}
+
+	public void SendLeaderboardUpdate (int time, string leaderboardName) {
 		UpdatePlayerStatisticsRequest updateRequest = new UpdatePlayerStatisticsRequest{
 			Statistics = new List<StatisticUpdate> {
 				new StatisticUpdate {
-					StatisticName = zone.ToString(), Value = time
+					StatisticName = leaderboardName, Value = time
 				}
 			}
 		};
-		Debug.Log ("PlayfabManager: Sending Leaderboard Update for " +  zone.ToString());
+		Debug.Log ("PlayfabManager: Sending Leaderboard Update for " + leaderboardName);
 		PlayFabClientAPI.UpdatePlayerStatistics (updateRequest, OnLeaderboardUpdate, OnLeaderboardUpdateError);
 
 	}
@@ -68,19 +137,8 @@ public class PlayFabManager : MonoBehaviour {
 		};
 		PlayFabClientAPI.GetLeaderboard (request, successCallback, errorCallback);
 	}
-
-	void GetTitleData () {
-		PlayFabClientAPI.GetTitleData (new GetTitleDataRequest (), OnTitleDataReceived, OnError);
+	public void GetTitleData (Action<GetTitleDataResult> successCallback, Action<PlayFabError> errorCallback) {
+		PlayFabClientAPI.GetTitleData (new GetTitleDataRequest (), successCallback, errorCallback);
 	}
-
-	void OnTitleDataReceived (GetTitleDataResult result) {
-		if (result.Data == null || result.Data.ContainsKey ("Message") == false) {
-			Debug.Log ("No message!");
-			return;
-		} else if (MessageOfTheDayManager.instance != null) {
-			MessageOfTheDayManager.instance.UpdateMessageOfTheDay (result.Data ["Message"]);
-		}
-	}
-
 }
 

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Hub_Bush_Short
   m_EditorClassIdentifier: 
   m_Sprite: {fileID: 8550359443833726257, guid: 4ea644180ab79c34a9293e80db711ae2, type: 3}
-  m_Color: {r: 0.53733534, g: 0.990566, b: 0.57745546, a: 1}
+  m_Color: {r: 0.62473303, g: 0.9528302, b: 0.6516999, a: 1}
   m_Transform:
     e00: 1
     e01: 0
@@ -33,4 +33,4 @@ MonoBehaviour:
     e33: 1
   m_InstancedGameObject: {fileID: 0}
   m_Flags: 1
-  m_ColliderType: 2
+  m_ColliderType: 0

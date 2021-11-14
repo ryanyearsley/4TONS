@@ -232,7 +232,7 @@ public class LevelManager : MonoBehaviour, IGameManager {
 			Vector3 spawnPosition = ConvertIsoCoordToScene(spawnCoordinate);
 			GameObject playerObject = PoolManager.instance.ReusePlayerObject(spawnPosition, player);
 			player.isAlive = true;
-			UIManager.Instance.playerUIs [player.playerIndex].InitializePlayerUI (player);
+			UIManager.Instance.GetPlayerUIFromPlayerIndex(player.playerIndex).InitializePlayerUI (player);
 		}
 	}
 

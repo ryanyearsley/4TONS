@@ -67,7 +67,7 @@ public class PlayerObject : CreatureObject {
 	//Called right after PoolObject.Reuse to inject player save data into prefab.
 	public void ReusePlayerObject (Player player) {
 		this.player = player;
-		playerUI = UIManager.Instance.playerUIs [player.playerIndex];
+		playerUI = UIManager.Instance.GetPlayerUIFromPlayerIndex (player.playerIndex);
 		if (player.wizardSaveData.spellSchoolData != null) {
 			wizardGameData = WizardGameDataMapper.MapWizardSaveToGameData (player.wizardSaveData);
 		} else {

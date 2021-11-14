@@ -30,12 +30,12 @@ namespace PlayerManagement {
 			playerSpellController = GetComponentInChildren<PlayerSpellComponent> ();
 			playerPuzzleController = GetComponentInChildren<PlayerPuzzleComponent> ();
 			playerInteractComponent = GetComponent<PlayerInteractComponent> ();
+		
 		}
 		public override void ReusePlayerComponent (Player player) {
 			base.ReusePlayerComponent (player);
 			this.controllerIndex = player.controllerIndex;
 			rewiredController = ReInput.players.GetPlayer (controllerIndex);
-
 		}
 
 		private void Update () {
@@ -56,15 +56,18 @@ namespace PlayerManagement {
 			playerMovementComponent.UpdateMovementInput (directionalInput, playerAimingController.CursorDirection);
 		}
 		private void AimingInput () {
+			
 			joystickInput = new Vector2 (rewiredController.GetAxisRaw ("AimHorizontal"), rewiredController.GetAxisRaw ("AimVertical"));
-			mouseDelta = new Vector2 (rewiredController.GetAxis ("MouseX"), rewiredController.GetAxis ("MouseY"));
+			mouseDelta = new Vector2 (rewiredController.GetAxis ("AimHorizontalMouse"), rewiredController.GetAxis ("AimVerticalMouse"));
 			if (playerObject.usingMouseControls) {
 				if (joystickInput != Vector2.zero) {
 					playerObject.SetUsingMouseControls (false);
+					playerObject.playerUI.UpdateBindings (ControllerType.Joystick);
 				}
 			} else {
 				if (mouseDelta != Vector2.zero) {
 					playerObject.SetUsingMouseControls (true);
+					playerObject.playerUI.UpdateBindings (ControllerType.Mouse);
 				}
 			}
 
@@ -109,7 +112,7 @@ namespace PlayerManagement {
 				Debug.Log ("toggle puzzle button down.");
 				playerPuzzleController.OnTogglePuzzleMenuButtonDown (playerObject.currentPlayerState);
 			}
-			if (rewiredController.GetButtonDown ("DropItem")) {
+			if (rewiredController.GetButtonShortPressDown ("DropItem")) {
 				playerPuzzleController.OnDropButtonDown (playerObject.currentPlayerState);
 			}
 			if (rewiredController.GetButtonDown ("GrabItem")) {
@@ -131,7 +134,6 @@ namespace PlayerManagement {
 			if (rewiredController.GetButtonDown ("SwitchToAlternateStaff")) {
 				playerPuzzleController.OnSwitchToSecondaryStaffButtonDown ();
 			}
-			ControllerMap keyboardMap = rewiredController.controllers.maps.GetFirstMapInCategory (ControllerType.Keyboard, 0, "Combat");
 			ReInput.mapping.GetControllerMap (0);
 		}
 

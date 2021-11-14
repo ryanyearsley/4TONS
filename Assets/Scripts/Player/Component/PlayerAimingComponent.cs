@@ -17,6 +17,7 @@ public class PlayerAimingComponent : PlayerComponent {
 	private float puzzleJoystickSensitivity = 0.08f;
 
 	private float currentJoystickSensitivity = 0.15f;
+
 	[SerializeField]
 	private GameObject cursorPrefab;
 	[SerializeField]
@@ -177,7 +178,6 @@ public class PlayerAimingComponent : PlayerComponent {
 	#endregion
 
 	public void MouseAimingUpdate (Vector2 mouseDelta) {
-
 		Bounds screenBounds = mainCamera.OrthographicBounds ();
 		float x = Mathf.Clamp (cursorTransform.position.x + mouseDelta.x * mouseSensitivity * Time.deltaTime, screenBounds.min.x, screenBounds.max.x);
 		float y = Mathf.Clamp (cursorTransform.position.y + mouseDelta.y * mouseSensitivity * Time.deltaTime, screenBounds.min.y, screenBounds.max.y);

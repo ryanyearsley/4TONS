@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scenes/Game/Gauntlet/Gauntlet_Dark.unity
     guid: f0691db1d5c75784abf0855a5e83e568
+  - enabled: 1
+    path: Assets/_Scenes/Game/Gauntlet/Gauntlet_Light.unity
+    guid: 30240548a9fda124388dc2b065401299
   m_configObjects: {}

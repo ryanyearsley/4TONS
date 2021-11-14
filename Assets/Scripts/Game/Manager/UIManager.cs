@@ -12,10 +12,14 @@ public class UIManager : MonoBehaviour
 	}
 	#endregion
 
-	bool displayingControls;
-	public Text controlsText;
-	public List<PlayerUI> playerUIs = new List<PlayerUI>();
+	[SerializeField]
+	private List<PlayerUI> playerUIs = new List<PlayerUI>();
 
+	public PlayerUI GetPlayerUIFromPlayerIndex(int playerIndex) {
+		if (playerUIs.Count > playerIndex) {
+			return playerUIs [playerIndex];
+		} else return null;
+	}
 	private void Awake () {
 		InitializeSingleton ();
 	}

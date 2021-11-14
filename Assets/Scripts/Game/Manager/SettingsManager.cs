@@ -79,6 +79,7 @@ public class SettingsManager : MonoBehaviour {
 
 [System.Serializable]
 public class SettingsData {
+	public string playerName;
 	//AUDIO
 	[Range (0f, 1f)] public float masterVolume;
 	[Range (0f, 1f)] public float musicVolume;

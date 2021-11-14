@@ -5,21 +5,27 @@ using System;
 public class SpellUI : MonoBehaviour
 {
 	[SerializeField]
-	private string defaultBindingString;
+	private string fallbackBindingString = "??";
 
 	[SerializeField]
 	private Image spellIcon;
 	private Sprite emptySpellbindSprite;
 	[SerializeField]
 	private Text spellBindingText;
-	private string spellBindingDefault;
+	private string spellBindingInputString;
 
 	private void Awake () {
 		emptySpellbindSprite = spellIcon.sprite;
 		spellIcon.fillAmount = 1;
-		spellBindingDefault = defaultBindingString;
+		spellBindingInputString = fallbackBindingString;
 	}
 
+	public void UpdateBindingString(string bindingString) {
+		spellBindingInputString = bindingString;
+		if (spellIcon.fillAmount == 1) {
+			spellBindingText.text = spellBindingInputString;
+		}
+	}
 	public void SetSpellUIToSpell(SpellData spellData) {
 		spellIcon.sprite = spellData.icon;
 		spellIcon.fillAmount = 1;
@@ -31,14 +37,14 @@ public class SpellUI : MonoBehaviour
 	public void ActivateSpellUI () {
 		spellIcon.color = new Color (1, 1, 1, 1);
 		spellIcon.fillAmount = 1;
-		spellBindingText.text = spellBindingDefault;
+		spellBindingText.text = spellBindingInputString;
 	}
 
 	public void ClearSpellBinding() {
 		spellIcon.color = new Color (1, 1, 1, 1);
 		spellIcon.fillAmount = 1;
 		spellIcon.sprite = emptySpellbindSprite;
-		spellBindingText.text = spellBindingDefault;
+		spellBindingText.text = spellBindingInputString;
 	}
 
 	public void UpdateSpellUICooldown(float fillPercentage, float cooldownRemaining) {

@@ -13,7 +13,7 @@ public class MenuPlayerInputManager : MonoBehaviour {
 
 	private void Awake () {
 		PlayerManager playerManager = PlayerManager.instance;
-		for (int i = 0; i < 4; i++) {
+		for (int i = 0; i < 2; i++) {
 			Rewired.Player controller = ReInput.players.GetPlayer (i);
 			if (playerManager != null && playerManager.currentPlayers.Count > 0) {
 				foreach (Player player in playerManager.currentPlayers) {

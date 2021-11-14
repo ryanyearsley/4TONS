@@ -25,15 +25,14 @@ public class PlayerManager : PersistentManager {
 	protected override void Awake () {
 		base.Awake ();
 		InitializeSingleton ();
-		if (currentPlayers.Count == 0) {
-			Player testPlayer = new Player(0, 0);
-			testPlayer.isAlive = true;
-			testPlayer.wizardSaveData = defaultWizardData.wizardSaveData.Clone();
-			currentPlayers.Add (testPlayer);
-		}
 	}
 	public override void SceneLoaded (Scene scene, LoadSceneMode loadSceneMode) {
-		
+		if (MainMenuManager.Instance == null && currentPlayers.Count == 0) {
+			Player testPlayer = new Player(0, 0);
+			testPlayer.isAlive = true;
+			testPlayer.wizardSaveData = defaultWizardData.wizardSaveData.Clone ();
+			currentPlayers.Add (testPlayer);
+		}
 	}
 	public void AddPlayer(Player player) {
 		if (currentPlayers.Contains (player)) return;
