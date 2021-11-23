@@ -12,6 +12,7 @@ public class ZoneData : ScriptableObject {
 	public int schoolIndexStart;
 	public SpellSchool school;
 	public Zone zone;
+	public Sound music;
 	public Sprite loadingBackgroundSprite;
 	public ParallaxBackgroundData backgroundGroup;
 	public GameObject floorPrefab;

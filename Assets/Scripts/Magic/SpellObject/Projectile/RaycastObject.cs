@@ -7,9 +7,11 @@ public class RaycastObject : SpellObject
 
 	[SerializeField]
 	private LineRenderer lineRenderer;
+	[SerializeField]
+	private LayerMask layerMask;
 
-	public LayerMask layerMask;
-
+	[SerializeField]
+	private float accuracy = 0;
 	public override void SetupObject () {
 		base.SetupObject ();
 		PoolManager.instance.CreateObjectPool (debrisObject, 2);
@@ -17,6 +19,8 @@ public class RaycastObject : SpellObject
 
 	public override void ReuseSpellObject (VitalsEntity vitalsEntity) {
 		base.ReuseSpellObject (vitalsEntity);
+		float randomRotation = Random.Range(-accuracy, accuracy);
+		trans.Rotate (0, 0.0f, trans.rotation.z + randomRotation, Space.World);
 		RaycastHit2D rayHit = Physics2D.Raycast(trans.position, trans.right, 50, layerMask);
 		if (rayHit.collider != null) {
 			VitalsEntity colliderVitals = VitalsManager.Instance.GetVitalsEntityFromHitBox (rayHit.collider);

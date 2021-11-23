@@ -1,0 +1,159 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68618dbd50d979f4196b1d65060aed79, type: 3}
+  m_Name: TestZoneData
+  m_EditorClassIdentifier: 
+  schoolIndexStart: 3000
+  school: 1
+  zone: 5
+  music:
+    clipName: 
+    singleClip: {fileID: 8300000, guid: 7b498416b689656408a2a62a8dca006a, type: 3}
+    volume: 1
+    pitch: 1
+    mixerGroup: {fileID: -2677633204197684785, guid: 004a37a2c22918345b123859e614950a, type: 2}
+    loop: 1
+    randomize: 0
+    randomClips: []
+  loadingBackgroundSprite: {fileID: 21300000, guid: 66c9cdcf469a92f4f83be20ec48370bb, type: 3}
+  backgroundGroup:
+    backgroundColor: {r: 0.16470589, g: 0.058823533, b: 0.20392159, a: 1}
+    layerDatas:
+    - sprite: {fileID: 21300000, guid: 61689939624cac14f9b7f97cab65c885, type: 3}
+      spriteOffset: {x: 0, y: 4}
+      distanceScaleX: 0.65
+      distanceScaleY: 0.95
+      opacity: 1
+    - sprite: {fileID: 21300000, guid: 89ec7b8ed9e85e641be48da5875a4b2d, type: 3}
+      spriteOffset: {x: 0, y: 5}
+      distanceScaleX: 0.7
+      distanceScaleY: 0.95
+      opacity: 1
+    - sprite: {fileID: 21300000, guid: 2dedfc3623996304296876bdffa7493d, type: 3}
+      spriteOffset: {x: 0, y: 5}
+      distanceScaleX: 0.8
+      distanceScaleY: 0.95
+      opacity: 1
+    - sprite: {fileID: 21300000, guid: 8cbb9deafb5860a47a1d249ba478175f, type: 3}
+      spriteOffset: {x: 0, y: -5}
+      distanceScaleX: 0.9
+      distanceScaleY: 0.95
+      opacity: 1
+  floorPrefab: {fileID: 8472839727403202167, guid: 4ea040c5f20c4b547ad30734fde7c6bd, type: 3}
+  primaryFloorTile:
+    tile: {fileID: 11400000, guid: e6032200ac86e1c4f89234d68939a138, type: 2}
+    id: 3100
+  secondaryFloorTile:
+    tile: {fileID: 11400000, guid: 39dca13af34ba174099dc4e0d35e4a3c, type: 2}
+    id: 3101
+  underTile:
+    tile: {fileID: 11400000, guid: 1f9ab306b6a07dc42a78913f2e0bdfc1, type: 2}
+    id: 3102
+  baseTile:
+    tile: {fileID: 11400000, guid: 947d62488d04bed4ea2ef29b9bbb6f10, type: 2}
+    id: 3103
+  baseBlankTopTile:
+    tile: {fileID: 11400000, guid: cf694abaf4b42fb4db19751347bd5d7b, type: 2}
+    id: 3103
+  borderTile:
+    tile: {fileID: 11400000, guid: a685cdb827b1b304d95daf6fec5d0050, type: 2}
+    id: 3104
+  destructionDebrisObject: {fileID: 0}
+  floorTiles:
+  - tile: {fileID: 11400000, guid: ddcfd9b919087d44ebfb3a30ca5b3b1b, type: 2}
+    id: 3110
+  - tile: {fileID: 11400000, guid: e7d7a7a2cf27ef9478093030a3df5393, type: 2}
+    id: 3111
+  - tile: {fileID: 11400000, guid: a4074c5545a3113468172d050a9f576b, type: 2}
+    id: 3112
+  - tile: {fileID: 11400000, guid: f39080f5f2427f44cb9173ce5dab01ef, type: 2}
+    id: 3113
+  - tile: {fileID: 11400000, guid: 5e63fe84178b11948ae137c89262bb93, type: 2}
+    id: 3114
+  - tile: {fileID: 11400000, guid: 94b4a76985da7094ca275962d6e6a1c8, type: 2}
+    id: 3115
+  - tile: {fileID: 11400000, guid: 64f0cc5855428fd4ba43563b83cb06bd, type: 2}
+    id: 3116
+  - tile: {fileID: 11400000, guid: a42f4e6000585ad4888f0692dbc129c3, type: 2}
+    id: 3117
+  - tile: {fileID: 11400000, guid: e6032200ac86e1c4f89234d68939a138, type: 2}
+    id: 3118
+  randomFloorDecorTiles:
+  - tile: {fileID: 11400000, guid: d7719096c6dcfe849b1f0cf184a3829c, type: 2}
+    id: 3120
+  - tile: {fileID: 11400000, guid: c5a9bdfc4b7bcaf439166effc76fb328, type: 2}
+    id: 3121
+  - tile: {fileID: 11400000, guid: c05bf47aa19d2c746b0865d8b7dd746d, type: 2}
+    id: 3122
+  - tile: {fileID: 11400000, guid: 651055986aaa1474894aad9a01f1f7c8, type: 2}
+    id: 3123
+  surroundingDecorTiles:
+  - tile: {fileID: 11400000, guid: 8a8103da0863bba4fb3d0098a1e4f635, type: 2}
+    id: 3130
+  - tile: {fileID: 11400000, guid: 339f3c82080166a449c7a95e0bb40f32, type: 2}
+    id: 3131
+  - tile: {fileID: 11400000, guid: 67943673646bb634fb186d236a9b17d8, type: 2}
+    id: 3132
+  - tile: {fileID: 11400000, guid: e0a23bb6bd8f09a4580fb04365e134a5, type: 2}
+    id: 3133
+  baseDecorTiles:
+  - tile: {fileID: 11400000, guid: ae58fc2a79a0e644789df3932032de62, type: 2}
+    id: 3105
+  - tile: {fileID: 11400000, guid: a72d0c49a00cef14688ab43e4e419602, type: 2}
+    id: 3106
+  - tile: {fileID: 11400000, guid: dafd77dc03b7b514fa447faee9e6af33, type: 2}
+    id: 3107
+  - tile: {fileID: 11400000, guid: 9c3c64c3babff574981e2bde055013a3, type: 2}
+    id: 3108
+  - tile: {fileID: 11400000, guid: 1a6ca8e80b412794e937804895e1dae4, type: 2}
+    id: 3109
+  - tile: {fileID: 11400000, guid: 91b7faedcf3f04046a0fa004137eaa87, type: 2}
+    id: 3110
+  - tile: {fileID: 11400000, guid: 2fb8a5f697ff61b4680cbeb84d4954aa, type: 2}
+    id: 3111
+  - tile: {fileID: 11400000, guid: 3612f837094fddc42808d1e6a2589e12, type: 2}
+    id: 3112
+  - tile: {fileID: 11400000, guid: 4d08d825b6b37b6448b79205d6f4ba31, type: 2}
+    id: 3113
+  - tile: {fileID: 11400000, guid: db045ea176494f34d9375adec5947d3c, type: 2}
+    id: 3114
+  - tile: {fileID: 11400000, guid: e7deaecba4f7e894cb5e2c5fddeddf0d, type: 2}
+    id: 3115
+  topDecorTiles:
+  - tile: {fileID: 11400000, guid: bca00715c06ac10469e650b2db68d2bb, type: 2}
+    id: 3150
+  - tile: {fileID: 11400000, guid: 041f223b4e69cd945b618d3adc9a1fc5, type: 2}
+    id: 3151
+  - tile: {fileID: 11400000, guid: 7abbac806e2dea44095655f67ccd479e, type: 2}
+    id: 3152
+  - tile: {fileID: 11400000, guid: 09f5ad725881a7746b0327ef18bc8315, type: 2}
+    id: 3153
+  - tile: {fileID: 11400000, guid: e6974feff888e22448ba2435550fc817, type: 2}
+    id: 3154
+  - tile: {fileID: 11400000, guid: 5ef92289638156b4f97d13b7f4f43303, type: 2}
+    id: 3155
+  - tile: {fileID: 11400000, guid: 6d3997b98fe368848b88054c5d6e9f66, type: 2}
+    id: 3156
+  - tile: {fileID: 11400000, guid: e8d55aca9e2fa154fbfa4200315f272c, type: 2}
+    id: 3157
+  largeSetpieceDatas:
+  - {fileID: 11400000, guid: bd2fadacf2e57264b9856ebe92851d36, type: 2}
+  - {fileID: 11400000, guid: 34a1b4db12642f04c94b5a288cd0662d, type: 2}
+  - {fileID: 11400000, guid: 00cb506ce2cf65f4bbb4a03f59676b53, type: 2}
+  - {fileID: 11400000, guid: 951f0176f6dde2744a8d78d169e8dca6, type: 2}
+  enemyDatas:
+  - {fileID: 11400000, guid: 217ed99b20a5ef84483df537037326ca, type: 2}
+  - {fileID: 11400000, guid: f2a858c595dc31d4ab6153d8278630c9, type: 2}
+  - {fileID: 11400000, guid: efbde00ec86866e449406e6fe173e8cd, type: 2}
+  lootTableData: {fileID: 11400000, guid: 30daa07b5559e1b478b90440b1bd2f29, type: 2}
+  mapDatas:
+  - {fileID: 11400000, guid: e152ba1d3386736418f433dc2b350236, type: 2}

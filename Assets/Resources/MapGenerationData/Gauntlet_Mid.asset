@@ -22,5 +22,5 @@ MonoBehaviour:
   minimumIslandSize: 6
   passageRadius: 2
   smoothingIterations: 2
-  smallSetpieceCountRange: {x: 9, y: 13}
-  largeSetpieceCountRange: {x: 3, y: 6}
+  smallSetpieceCountRange: {x: 8, y: 8}
+  largeSetpieceCountRange: {x: 3, y: 3}

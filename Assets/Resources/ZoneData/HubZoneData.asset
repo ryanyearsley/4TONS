@@ -15,6 +15,15 @@ MonoBehaviour:
   schoolIndexStart: 1000
   school: 4
   zone: 6
+  music:
+    clipName: 
+    singleClip: {fileID: 8300000, guid: 7b498416b689656408a2a62a8dca006a, type: 3}
+    volume: 1
+    pitch: 1
+    mixerGroup: {fileID: -2677633204197684785, guid: 004a37a2c22918345b123859e614950a, type: 2}
+    loop: 1
+    randomize: 0
+    randomClips: []
   loadingBackgroundSprite: {fileID: 21300000, guid: a4685d82e1dd57b46bc6ef93e95406fc, type: 3}
   backgroundGroup:
     backgroundColor: {r: 0, g: 0, b: 0, a: 1}
@@ -63,13 +72,28 @@ MonoBehaviour:
     id: 1117
   - tile: {fileID: 11400000, guid: 739ed65f445da344ab02be9ccfa763c7, type: 2}
     id: 1118
-  randomFloorDecorTiles: []
+  randomFloorDecorTiles:
+  - tile: {fileID: 11400000, guid: 338f7cde3a330ab42b54b657be01568c, type: 2}
+    id: 1120
+  - tile: {fileID: 11400000, guid: f357d16b3a0debf4dae414986e06bace, type: 2}
+    id: 1121
+  - tile: {fileID: 11400000, guid: 3e96fe426adf35e4098e98433d4fb872, type: 2}
+    id: 1122
+  - tile: {fileID: 11400000, guid: 384f5e4924fe6544285a544eae2158b6, type: 2}
+    id: 1123
+  - tile: {fileID: 11400000, guid: cdbfcdf7ab1dc274a99549e53ffb9b6d, type: 2}
+    id: 1124
+  - tile: {fileID: 11400000, guid: dfd7cf6c219a83649a5811850c29a94d, type: 2}
+    id: 1125
+  - tile: {fileID: 11400000, guid: cfce12a63bff3b94a822335e5dcccef5, type: 2}
+    id: 1126
+  - tile: {fileID: 11400000, guid: f4372fe0429573f4498fdb905745f71e, type: 2}
+    id: 1127
   surroundingDecorTiles: []
   baseDecorTiles: []
   topDecorTiles: []
-  largeSetpieceDatas:
-  - {fileID: 11400000, guid: 213cf1f206fb3e44a8a3efef9e56a432, type: 2}
+  largeSetpieceDatas: []
   enemyDatas: []
-  lootTableData: {fileID: 11400000, guid: 30daa07b5559e1b478b90440b1bd2f29, type: 2}
+  lootTableData: {fileID: 11400000, guid: 7689f64354da42c41bcefbba0a52f1c6, type: 2}
   mapDatas:
   - {fileID: 11400000, guid: bd1c6f2dbe263cb449ee1871f3cc5d41, type: 2}

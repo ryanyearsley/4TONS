@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58488e2f9c5dea246823146dae462bde, type: 3}
   m_Name: LightHubPortal
   m_EditorClassIdentifier: 
-  id: 5200
+  id: 102
   poolSize: 1
   outerClearance: 3
-  school: 3
-  spawnObjectPrefab: {fileID: 6332764332078024517, guid: f01c50b55b45c6c4ea5c666feb58e453, type: 3}
+  school: 0
+  spawnObjectPrefab: {fileID: 6332764332078024517, guid: 60f2c48730962864a9aa9008a4651b0c, type: 3}
   innerClearance: 0

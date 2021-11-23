@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu (fileName = "New Map Data", menuName = "ScriptableObjects/Map Generation/ObjectiveData")]
 public class ObjectiveData : ScriptableObject
 {
-	public string objectiveName;
+	public Objective objective;
 	public CreatureData playerObjectData;
 	public SetPieceSpawnInfo[] objectiveSpawnInfos;
 }

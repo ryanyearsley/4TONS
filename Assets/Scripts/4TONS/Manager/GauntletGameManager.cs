@@ -124,7 +124,7 @@ public class GauntletGameManager : MonoBehaviour {
 			//final level completed. return to hub.
 			GameManager.instance.LevelEnd (towerProgress.currentLevelIndex);
 			GameManager.instance.GameComplete();
-			string leaderboardName = GameManager.instance.gameContext.objectiveData.objectiveName + ": " + GameManager.instance.gameContext.zoneData.zone.ToString();
+			string leaderboardName = GameManager.instance.gameContext.objectiveData.objective.ToString() + ": " + GameManager.instance.gameContext.zoneData.zone.ToString();
 			PlayFabManager.instance.SendLeaderboardUpdate (Mathf.RoundToInt (Time.time * 1000), leaderboardName);//x1000 going in, /1000 when retrieved
 			yield break;
 		}

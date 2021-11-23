@@ -18,23 +18,22 @@ MonoBehaviour:
   id: 2400
   description: Jolt your enemies with a bolt of lightning.
   icon: {fileID: 21300000, guid: 5754f26e84bb2594eb004e04a2d4ba4c, type: 3}
-  castObject: {fileID: 5398306314291750163, guid: 0f7829db1b3b5c4479bf90f8c222d7f6, type: 3}
-  manaCost: 4
+  manaCost: 3
   castTime: 0.3
   castSpeedReduction: 0.7
-  coolDown: 0.6
+  coolDown: 0.5
+  castObject: {fileID: 5398306314291750163, guid: 0f7829db1b3b5c4479bf90f8c222d7f6, type: 3}
+  poolSize: 1
+  spellObject: {fileID: 5398306314291750163, guid: 0fb2db1421f4bd74aa32e21185bce3d5, type: 3}
   spellCastLocation: 0
   spellCastSound:
     clipName: Lightning V1
     singleClip: {fileID: 8300000, guid: b23a0b338ae51504ca359574b6e834cd, type: 3}
-    randomize: 0
-    randomClips: []
     volume: 1
     pitch: 1
     mixerGroup: {fileID: -7302680629657921355, guid: 004a37a2c22918345b123859e614950a, type: 2}
     loop: 0
-    playOnAwake: 0
+    randomize: 0
+    randomClips: []
   spellEndSound: {fileID: 0}
-  spellObject: {fileID: 5398306314291750163, guid: 0fb2db1421f4bd74aa32e21185bce3d5, type: 3}
-  poolSize: 1
   puzzlePieceData: {fileID: 11400000, guid: eaa1924a4c758b3429c1c4a8f3ee5631, type: 2}

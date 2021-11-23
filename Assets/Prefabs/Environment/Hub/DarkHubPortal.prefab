@@ -1000,7 +1000,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactSprite: {fileID: 21300000, guid: 3255b39e6bd149d44b4c155bc37431e7, type: 3}
   trans: {fileID: 0}
-  zone: 0
+  zone: 1
   portalStatus: 3
   towerStatusText: {fileID: 1277654124}
   spriteObject: {fileID: 5014501570808473292}

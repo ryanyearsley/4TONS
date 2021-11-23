@@ -15,6 +15,15 @@ MonoBehaviour:
   schoolIndexStart: 3000
   school: 0
   zone: 0
+  music:
+    clipName: 
+    singleClip: {fileID: 8300000, guid: 7b498416b689656408a2a62a8dca006a, type: 3}
+    volume: 1
+    pitch: 1
+    mixerGroup: {fileID: -2677633204197684785, guid: 004a37a2c22918345b123859e614950a, type: 2}
+    loop: 1
+    randomize: 0
+    randomClips: []
   loadingBackgroundSprite: {fileID: 0}
   backgroundGroup:
     backgroundColor: {r: 0.16470589, g: 0.058823533, b: 0.20392159, a: 1}
@@ -29,19 +38,19 @@ MonoBehaviour:
     tile: {fileID: 11400000, guid: b7ab7ca9a13fe5d4e9801c0c32af7aab, type: 2}
     id: 3100
   secondaryFloorTile:
-    tile: {fileID: 0}
+    tile: {fileID: 11400000, guid: 313f041bfab33d14f965dc2cb6ebe883, type: 2}
     id: 3101
   underTile:
-    tile: {fileID: 0}
+    tile: {fileID: 11400000, guid: ea448eba8014aea4aa8c36deba9c22a3, type: 2}
     id: 3102
   baseTile:
     tile: {fileID: 11400000, guid: 697097f2e67837a459482be534a53bb9, type: 2}
     id: 3103
   baseBlankTopTile:
-    tile: {fileID: 11400000, guid: 697097f2e67837a459482be534a53bb9, type: 2}
+    tile: {fileID: 11400000, guid: d9867d64ddc0aab4a806bf12b5aca84e, type: 2}
     id: 0
   borderTile:
-    tile: {fileID: 0}
+    tile: {fileID: 11400000, guid: 84c2e17cd03df9a40a8075164c4784d0, type: 2}
     id: 3104
   destructionDebrisObject: {fileID: 0}
   floorTiles:
@@ -65,8 +74,11 @@ MonoBehaviour:
   surroundingDecorTiles: []
   baseDecorTiles: []
   topDecorTiles: []
-  largeSetpieceDatas: []
-  enemyDatas: []
+  largeSetpieceDatas:
+  - {fileID: 11400000, guid: da6dd3fc0721c5641bcb3e5507014fc7, type: 2}
+  enemyDatas:
+  - {fileID: 11400000, guid: 25564811f1a3005478f7b971d620ce3e, type: 2}
+  - {fileID: 11400000, guid: 99254d1eeda2dce4b8d0c9d3eed4a295, type: 2}
   lootTableData: {fileID: 11400000, guid: 8e453ecbddb9a0546a8c70b3d98af0ec, type: 2}
   mapDatas:
   - {fileID: 11400000, guid: 2c43c1dc81226d44e9385ba64c9d9169, type: 2}

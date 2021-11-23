@@ -130,6 +130,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6656125902995721707, guid: 442d32cf33ba7f444a9cd79349e5c1b8, type: 3}
+      propertyPath: _elements.Array.data[1]._elements.Array.data[0]._name
+      value: UICursorSubmit
+      objectReference: {fileID: 0}
+    - target: {fileID: 6656125902995721707, guid: 442d32cf33ba7f444a9cd79349e5c1b8, type: 3}
+      propertyPath: _elements.Array.data[1]._elements.Array.data[0]._actionId
+      value: 49
+      objectReference: {fileID: 0}
     - target: {fileID: 7046919624631408275, guid: 442d32cf33ba7f444a9cd79349e5c1b8, type: 3}
       propertyPath: m_Name
       value: PersistentCanvas
@@ -334,24 +342,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3172873c496b37f4282822aeb4a7a264, type: 3}
---- !u!1 &1082444816 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2778314042151761474, guid: 32b0764f7de3d8e41a8da209082b9b3a, type: 3}
-  m_PrefabInstance: {fileID: 2778314041578359443}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1082444818
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1082444816}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3c2205878af354418cb0883fb8125b0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneIndex: 2
 --- !u!1001 &1480669522
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -537,10 +527,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2015607, guid: 32b0764f7de3d8e41a8da209082b9b3a, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2778314042028239092, guid: 32b0764f7de3d8e41a8da209082b9b3a, type: 3}
       propertyPath: m_Name
       value: GauntletCombatCanvas
@@ -629,24 +615,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2778314042387150900, guid: 32b0764f7de3d8e41a8da209082b9b3a, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2778314042661299310, guid: 32b0764f7de3d8e41a8da209082b9b3a, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8885231085208258756, guid: 32b0764f7de3d8e41a8da209082b9b3a, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0.0000019073486
-      objectReference: {fileID: 0}
-    - target: {fileID: 8885231085208258756, guid: 32b0764f7de3d8e41a8da209082b9b3a, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -0.000024795532
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 2778314042151761472, guid: 32b0764f7de3d8e41a8da209082b9b3a, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 32b0764f7de3d8e41a8da209082b9b3a, type: 3}
 --- !u!1001 &3651358843515718943
 PrefabInstance:

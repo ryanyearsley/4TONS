@@ -21,6 +21,8 @@ public class MapGenerator : MonoBehaviour {
 	private MapData currentMapData;
 	public MapSpawnPoints spawnPoints;
 
+	private LoadingPanelUI loadLog;
+
 	[Header ("Gizmos")]
 	public bool drawGizmos;
 
@@ -31,13 +33,16 @@ public class MapGenerator : MonoBehaviour {
 
 	void Awake () {
 		SingletonInitialization ();
+		loadLog = FindObjectOfType<LoadingPanelUI> ();
 	}
 
-	public MapDetails GenerateMap (ZoneData zoneData, ObjectiveData objectiveData, int floorIndex) {
+
+	public void GenerateMap (ZoneData zoneData, ObjectiveData objectiveData, int floorIndex) {
 		this.zoneData = zoneData;
 		this.objectiveData = objectiveData;
 		this.currentMapData = zoneData.mapDatas [floorIndex];
 		map = new int [currentMapData.mapGenerationData.mapSize.x, currentMapData.mapGenerationData.mapSize.y];
+		Log ("Generating dungeon...");
 		RandomFillMap ();
 		for (int i = 0; i < currentMapData.mapGenerationData.smoothingIterations; i++) {
 			SmoothMap ();
@@ -45,6 +50,9 @@ public class MapGenerator : MonoBehaviour {
 		ProcessMap ();
 
 		mapTileInfo = MapConversionUtility.ConvertMapToTileInfo (map);
+
+
+		Log ("Generating border...");
 		GenerateMapBorder (mapTileInfo);
 
 		spawnPoints = new MapSpawnPoints ();
@@ -57,34 +65,43 @@ public class MapGenerator : MonoBehaviour {
 		}
 
 
+		Log ("Generating spawn points...");
 		spawnPoints.playerSpawnPoints = SpawnUtility.GenerateCreatureSpawnPoints (details, ConstantsManager.instance.playerCreatureData, playerCount);
 
+		Log ("Generating objectives...");
 		foreach (SetPieceSpawnInfo objectiveSpawnInfo in objectiveData.objectiveSpawnInfos) {
 			spawnPoints.objectiveSpawnPoints.AddRange(SpawnUtility.GenerateSetPieceSpawnPoints (details, objectiveSpawnInfo.setPieceData, objectiveSpawnInfo.spawnCount));
 		}
 
 
+		Log ("Generating enemy spawn points...");
 		foreach (CreatureSpawnInfo enemySpawnInfo in currentMapData.enemySpawnInfos) {
 			if (enemySpawnInfo.spawnCountRange.y != 0)
 				spawnPoints.enemySpawnPoints.AddRange (SpawnUtility.GenerateCreatureSpawnPoints (details, enemySpawnInfo.creatureData, enemySpawnInfo.GetSpawnCountWithinRange()));
 		}
-		
+
 		//GENERATE PICK-UPS
+
 		Vector2Int floorRollRange = currentMapData.floorRollRange;
+		Log ("Rolling for loot...");
 
 		int playerGemRoll = UnityEngine.Random.Range (floorRollRange.x, floorRollRange.y);
+		int playerStaffRoll = UnityEngine.Random.Range (floorRollRange.x, floorRollRange.y);
+
+		Log ("Generating spell gem spawn points...");
 		List<SpellData> spawningSpellGems = zoneData.lootTableData.RollForGems (playerGemRoll);
 		foreach (SpellData spellData in spawningSpellGems) {
 			spawnPoints.spellGemSpawnPoints.AddRange (SpawnUtility.GenerateSpellGemSpawnPoints (details, spellData));
 		}
 
-		int playerStaffRoll = UnityEngine.Random.Range (floorRollRange.x, floorRollRange.y);
+		Log ("Generating staff spawn points...");
 		List<PuzzleData> spawningStaves = zoneData.lootTableData.RollForStaves (playerStaffRoll);
 		foreach (PuzzleData staffPuzzleData in spawningStaves) {
 			spawnPoints.staffSpawnPoints.AddRange (SpawnUtility.GenerateStaffSpawnPoints (details, staffPuzzleData));
 		}
 
 		//CONVERT TO WORLD SKIN
+		Log ("Generating setpiece spawn points...");
 		if (zoneData.largeSetpieceDatas.Count > 0)
 			spawnPoints.objectiveSpawnPoints.AddRange(SpawnUtility.GenerateRandomLargeSetpieceSpawnPoints (details));
 		MapGenerationUtility.GenerateRandomSmallSetPieces (details);
@@ -96,11 +113,21 @@ public class MapGenerator : MonoBehaviour {
 		List<MapTileInfo> borderTiles = MapConversionUtility.ConvertBaseValueInTileInfo (details, 2, zoneData.borderTile);
 
 		MapGenerationUtility.RandomizeFloor (details, floorTiles);
+
+		Log ("Generating decor...");
 		MapGenerationUtility.GenerateFloorDecor (details, floorTiles);
 		MapGenerationUtility.ConvertBasesWithoutFloorNeighbors (baseTiles, details);
 		//RandomizeFloorTiles
 		MapGenerationUtility.GenerateRandomTopDecor (details, baseTiles);
-		return details;
+
+		Log ("Level Generation Success!");
+		LevelManager.instance.SetMapDetails (details);
+	}
+
+	private void Log (string logLine) {
+		if (loadLog != null) {
+			loadLog.UpdateLoadingLog (logLine);
+		}
 	}
 
 

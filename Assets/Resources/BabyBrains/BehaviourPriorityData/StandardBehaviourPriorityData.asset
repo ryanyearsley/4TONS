@@ -19,6 +19,8 @@ MonoBehaviour:
   abilityBehaviourWeights:
   - {fileID: 11400000, guid: 7d88ce6bab43710408b83f1820512e17, type: 2}
   - {fileID: 11400000, guid: 272a7ba03a6aa264798e6939f733ad8c, type: 2}
+  - {fileID: 11400000, guid: b84f266c35de52841a6328cd599e52e0, type: 2}
+  - {fileID: 11400000, guid: c25dd781524af754f983231a8897d10d, type: 2}
   - {fileID: 11400000, guid: e42415dbcec5bd24b8ac01f57e144d0f, type: 2}
   - {fileID: 11400000, guid: f287c1c6378aa03439fa1061455ffcf4, type: 2}
   - {fileID: 11400000, guid: 1365205d7b33fdf44998ed896219c78e, type: 2}

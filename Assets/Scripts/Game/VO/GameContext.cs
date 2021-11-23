@@ -7,3 +7,8 @@ public class GameContext
 	public ZoneData zoneData;
 	public ObjectiveData objectiveData;
 }
+
+//i.e. Gametype
+public enum Objective {
+	Gauntlet, Zombie_Horde
+}

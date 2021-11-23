@@ -16,6 +16,12 @@ public class CastOnReleaseSpell : Spell {
 
 	public LayerMask aoeMask;
 
+	public override void SetUpSpell () {
+		base.SetUpSpell ();
+		previewObjectTransform.localPosition = Vector2.zero;
+		previewObjectSprite = previewObjectTransform.GetComponentInChildren<SpriteRenderer> ();
+		previewObjectTransform.gameObject.SetActive (false);
+	}
 
 	public override void SpellButtonDown () {
 		if (playerObject.currentPlayerState == PlayerState.COMBAT) {
@@ -54,12 +60,6 @@ public class CastOnReleaseSpell : Spell {
 		previewObjectTransform.localPosition = Vector3.zero;
 		previewObjectTransform.gameObject.SetActive (false);
 
-	}
-	public override void SetUpSpell () {
-		base.SetUpSpell ();
-		previewObjectTransform.localPosition = Vector2.zero;
-		previewObjectSprite = previewObjectTransform.GetComponentInChildren<SpriteRenderer> ();
-		previewObjectTransform.gameObject.SetActive (false);
 	}
 
 	public override bool isCastEligible () {

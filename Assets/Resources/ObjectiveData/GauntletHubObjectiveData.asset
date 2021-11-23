@@ -17,3 +17,7 @@ MonoBehaviour:
   objectiveSpawnInfos:
   - spawnCount: 1
     setPieceData: {fileID: 11400000, guid: b73802c99c386d94cafbe5130da24257, type: 2}
+  - spawnCount: 1
+    setPieceData: {fileID: 11400000, guid: 213cf1f206fb3e44a8a3efef9e56a432, type: 2}
+  - spawnCount: 1
+    setPieceData: {fileID: 11400000, guid: e178e16aa25712d42ad514e6da234789, type: 2}

@@ -15,26 +15,25 @@ MonoBehaviour:
   spellName: Light Well
   spellSchool: 0
   spellSchoolData: {fileID: 11400000, guid: 16a7aee84221cf944b3bc8802b8d5ba3, type: 2}
-  id: 0
-  description: Place a well of holy light at target area.
+  id: 2400
+  description: Conjure a lightwell to hear yourself and nearby allies.
   icon: {fileID: 21300000, guid: 86657dd767050b547b4ad65960016d18, type: 3}
-  castObject: {fileID: 1084267642053696062, guid: cebf7cf9c8e824d4785cf6f500be5c84, type: 3}
-  manaCost: 20
-  castTime: 0.6
-  castSpeedReduction: 0.2
+  manaCost: 15
+  castTime: 0.75
+  castSpeedReduction: 0.4
   coolDown: 20
+  castObject: {fileID: 1084267642053696062, guid: cebf7cf9c8e824d4785cf6f500be5c84, type: 3}
+  poolSize: 1
+  spellObject: {fileID: 4454936331502018025, guid: 64e9b9486c71e3244a894b80a45d52a6, type: 3}
   spellCastLocation: 1
   spellCastSound:
-    clipName: 
-    singleClip: {fileID: 0}
-    randomize: 0
-    randomClips: []
+    clipName: Lightwell1_v01a
+    singleClip: {fileID: 8300000, guid: ff1ad6cc27ea9ad4688d4e31a1eed4f4, type: 3}
     volume: 1
     pitch: 1
-    mixerGroup: {fileID: 0}
+    mixerGroup: {fileID: -7302680629657921355, guid: 004a37a2c22918345b123859e614950a, type: 2}
     loop: 0
-    playOnAwake: 0
+    randomize: 0
+    randomClips: []
   spellEndSound: {fileID: 0}
-  spellObject: {fileID: 4454936331502018025, guid: 64e9b9486c71e3244a894b80a45d52a6, type: 3}
-  poolSize: 0
   puzzlePieceData: {fileID: 11400000, guid: 902a97464c833244c89bf304f2194bac, type: 2}

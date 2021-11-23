@@ -11,9 +11,10 @@ public class PersistentManager : MonoBehaviour, IPersistentManager {
 	}
 	protected virtual void Start () {
 		SubscribeToEvents ();
+		SetUpPersistentManager ();
 	}
-	void OnDisable() {
-		//UnsubscribeFromEvents ();
+	public virtual void SetUpPersistentManager() {
+
 	}
 
 	public void SubscribeToEvents () {
@@ -25,7 +26,6 @@ public class PersistentManager : MonoBehaviour, IPersistentManager {
 	public void UnsubscribeFromEvents () {
 		SceneManager.sceneLoaded -= SceneLoaded;
 		SettingsManager.instance.updateSettingsEvent -= OnUpdateSettings;
-
 	}
 	public virtual void SceneLoaded (Scene scene, LoadSceneMode loadSceneMode) {
 

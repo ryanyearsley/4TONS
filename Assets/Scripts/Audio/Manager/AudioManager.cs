@@ -27,8 +27,8 @@ public class AudioManager : PersistentManager {
 
 	public AudioMixer mixer;
 	public Sound[] sounds;
-	public AudioClip[] musicTracks;
 	public Sound musicSound;
+	public Sound fallbackMusicSound;
 
 	public Dictionary<string, Sound> soundDictionary = new Dictionary<string, Sound>();
 
@@ -48,13 +48,19 @@ public class AudioManager : PersistentManager {
 		for (int i = 0; i < sounds.Length; i++) {
 			RegisterSound (sounds [i]);
 		}
-		RegisterSound (musicSound);
 
-		PlayMusic (SceneManager.GetActiveScene().buildIndex);
+		RegisterSound (musicSound);
+		if (GameManager.instance != null) {
+			PlayMusic (GameManager.instance.gameContext.zoneData.music);
+		} else 
+			PlayMusic (fallbackMusicSound);
 	}
 	public override void SceneLoaded (Scene scene, LoadSceneMode loadSceneMode) {
 		StopMusic ();
-		PlayMusic (scene.buildIndex);
+		if (GameManager.instance != null) {
+			PlayMusic (GameManager.instance.gameContext.zoneData.music);
+		} else
+			PlayMusic (fallbackMusicSound);
 	}
 
 	private void ApplyAudioSettings (SettingsData settingsData) {
@@ -69,7 +75,7 @@ public class AudioManager : PersistentManager {
 			_go.transform.SetParent (this.transform);
 			sound.SetSource (_go.AddComponent<AudioSource> ());
 			soundDictionary.Add (sound.clipName, sound);
-			Debug.Log ("AudioManager: Spell Registered. Clip name: " + sound.clipName);
+			Debug.Log ("AudioManager: Sound Registered. Clip name: " + sound.clipName);
 		}
 	}
 
@@ -84,8 +90,8 @@ public class AudioManager : PersistentManager {
 		}
 	}
 
-	public void PlayMusic (int trackIndex) {
-		musicSound.singleClip = musicTracks [trackIndex];
+	public void PlayMusic (Sound sound) {
+		musicSound.singleClip = sound.singleClip;
 		musicSound.Play ();
 	}
 	public void StopMusic () {

@@ -15,6 +15,15 @@ MonoBehaviour:
   schoolIndexStart: 3000
   school: 1
   zone: 1
+  music:
+    clipName: 
+    singleClip: {fileID: 8300000, guid: 7b498416b689656408a2a62a8dca006a, type: 3}
+    volume: 1
+    pitch: 1
+    mixerGroup: {fileID: -2677633204197684785, guid: 004a37a2c22918345b123859e614950a, type: 2}
+    loop: 1
+    randomize: 0
+    randomClips: []
   loadingBackgroundSprite: {fileID: 21300000, guid: 66c9cdcf469a92f4f83be20ec48370bb, type: 3}
   backgroundGroup:
     backgroundColor: {r: 0.16470589, g: 0.058823533, b: 0.20392159, a: 1}

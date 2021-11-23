@@ -18,8 +18,11 @@ public class LevelManager : MonoBehaviour, IGameManager {
 		}
 	}
 	#endregion
+
+	private LoadingPanelUI loadLog;
+	private const float MAX_GENERATION_TIME = 2f;
 	public bool displayCustomSpawnGizmos;
-	private MapDetails currentLevelDetails;
+	private MapDetails currentMapDetails;
 	private ZoneData zoneData;
 	private ObjectiveData objectiveData;
 	[SerializeField]
@@ -67,9 +70,12 @@ public class LevelManager : MonoBehaviour, IGameManager {
 	#region awake/initialization
 	void Awake () {
 		SingletonInitialization ();
+
+		loadLog = FindObjectOfType<LoadingPanelUI> ();
 		grid = GetComponent<Grid> ();
 		baseCompositeCollider = baseTilemap.GetComponent<CompositeCollider2D> ();
 		baseHitboxCompositeCollider = baseHitboxTilemap.GetComponent<CompositeCollider2D> ();
+	
 	}
 
 	void Start () {
@@ -117,27 +123,42 @@ public class LevelManager : MonoBehaviour, IGameManager {
 	#region public utility methods
 
 	public IEnumerator LoadLevelRoutine (int levelIndex) {
+		currentMapDetails = null;
 		GenerateMapDetails (zoneData, objectiveData, levelIndex);
-		yield return new WaitForSeconds (0.5f);
-		if (currentLevelDetails.mapData.mapGenerationData != null)
+
+		float generationTime = 0f;
+		while (currentMapDetails == null) {
+			yield return new WaitForSeconds (0.25f);
+			generationTime++;
+			if (generationTime > MAX_GENERATION_TIME) {
+				yield break;
+			}
+		}
+		if (currentMapDetails.mapData.mapGenerationData != null)
 			BuildFloor (levelIndex);
-		yield return new WaitForSeconds (0.5f);
+		yield return new WaitForSeconds (0.25f);
 		if (levelIndex == 0)
 			CreatePlayerObjects ();
 		else
 			MovePlayerToNextStage (levelIndex);
 
-		yield return new WaitForSeconds (0.5f);
+		yield return new WaitForSeconds (0.25f);
 		SpawnSpellGems (levelIndex);
 		SpawnStaffs (levelIndex);
 		BuildSetpieces (levelIndex);
 		BuildObjectives (levelIndex);
-		yield return new WaitForSeconds (0.5f);
-		GenerateFloorNodes (currentLevelDetails);
+		yield return new WaitForSeconds (0.25f);
+		GenerateFloorNodes (currentMapDetails);
 		SpawnEnemies (levelIndex);
-		yield return new WaitForSeconds (0.5f);
+		yield return new WaitForSeconds (0.25f);
 		GameManager.instance.SetLevelLoaded ();
+	}
 
+	public void SetMapDetails(MapDetails mapDetails) {
+		if (!mapDetailDictionary.ContainsKey (mapDetails.floorIndex)) {
+			mapDetailDictionary.Add (mapDetails.floorIndex, mapDetails);
+			currentMapDetails = mapDetails;
+		}
 	}
 
 	public MapDetails GetMapDetails (int currentFloorIndex) {
@@ -151,23 +172,21 @@ public class LevelManager : MonoBehaviour, IGameManager {
 	public void GenerateMapDetails (ZoneData zoneData, ObjectiveData objectiveData, int floorIndex) {
 		if (floorIndex < zoneData.mapDatas.Length) {
 			MapData nextMapData = zoneData.mapDatas[floorIndex];
-			MapDetails generatingMapDetails = null;
 			if (nextMapData.mapGenerationData != null) {
-				generatingMapDetails = MapGenerator.instance.GenerateMap (zoneData, objectiveData, floorIndex);
+				MapGenerator.instance.GenerateMap (zoneData, objectiveData, floorIndex);
 			} else if (nextMapData.customMapData != null) {
 				int[,] map = MapConversionUtility.Generate2DArrayFromTilemap(baseTilemap,
 					new CoordinateBounds(Vector2Int.zero, Vector2Int.one * 56));
-				generatingMapDetails = new MapDetails (zoneData, nextMapData, floorIndex, MapConversionUtility.ConvertMapToTileInfo (map), nextMapData.customMapData.mapSpawnPoints);
-
-				GenerateFloorNodes (generatingMapDetails);
+				MapDetails customMapDetails = new MapDetails (zoneData, nextMapData, floorIndex, MapConversionUtility.ConvertMapToTileInfo (map), nextMapData.customMapData.mapSpawnPoints);
+				SetMapDetails (customMapDetails);
+				GenerateFloorNodes (customMapDetails);
 			}
 			Debug.Log ("LevelManager: Adding floorIndex " + floorIndex);
-			mapDetailDictionary.Add (floorIndex, generatingMapDetails);
-			currentLevelDetails = generatingMapDetails;
 		}
 	}
 
 	public void BuildFloor (int floorIndex) {
+		Log ("Building Tilemaps...");
 		if (mapDetailDictionary.ContainsKey (floorIndex)) {
 			MapDetails buildingMapDetails = mapDetailDictionary[floorIndex];
 			MapTileInfo[,] mapTileInfo = buildingMapDetails.mapTileInfo;
@@ -179,7 +198,7 @@ public class LevelManager : MonoBehaviour, IGameManager {
 				Instantiate (zoneData.floorPrefab, floorPrefabSpawnPosition, Quaternion.identity); ;
 			Transform parent = baseTilemap.transform.parent;
 			GameObject tilemapObject = baseTilemap.transform.gameObject;
-
+			//TILEMAP SETS ONLY
 			for (int y = 0; y < mapTileInfo.GetLength (1); y++) {
 				for (int x = 0; x < mapTileInfo.GetLength (0); x++) {
 					MapTileInfo tileInfo = mapTileInfo[x, y];
@@ -209,6 +228,7 @@ public class LevelManager : MonoBehaviour, IGameManager {
 	//NOTE: Players are only spawned on first stage. They are relocated to following stages.
 
 	public void BuildSetpieces (int floorIndex) {
+		Log ("Spawning setpieces...");
 		MapDetails currentMapDetails = mapDetailDictionary[floorIndex];
 
 		foreach (SpawnPoint spawnPoint in currentMapDetails.spawnPoints.setPieceSpawnPoints) {
@@ -217,6 +237,7 @@ public class LevelManager : MonoBehaviour, IGameManager {
 		}
 	}
 	public void BuildObjectives (int floorIndex) {
+		Log ("Spawning objectives...");
 		MapDetails currentMapDetails = mapDetailDictionary[floorIndex];
 
 		foreach (SpawnPoint spawnPoint in currentMapDetails.spawnPoints.objectiveSpawnPoints) {
@@ -225,7 +246,7 @@ public class LevelManager : MonoBehaviour, IGameManager {
 		}
 	}
 	public void CreatePlayerObjects () {
-		Debug.Log ("creating player objects");
+		Log ("Spawning Player...");
 		MapDetails currentMapDetails = mapDetailDictionary[0];
 		foreach (Player player in PlayerManager.instance.currentPlayers) {
 			Vector2Int spawnCoordinate = currentMapDetails.spawnPoints.playerSpawnPoints[player.playerIndex].spawnCoordinate;
@@ -237,6 +258,7 @@ public class LevelManager : MonoBehaviour, IGameManager {
 	}
 
 	public void MovePlayerToNextStage (int floorIndex) {
+		Log ("Spawning Player...");
 		Debug.Log ("moving player to floor " + floorIndex);
 		MapDetails currentMapDetails = mapDetailDictionary[floorIndex];
 		foreach (Player player in PlayerManager.instance.currentPlayers) {
@@ -247,6 +269,7 @@ public class LevelManager : MonoBehaviour, IGameManager {
 		}
 	}
 	public void SpawnEnemies (int floorIndex) {
+		Log ("Spawning enemies...");
 		MapDetails currentMapDetails = mapDetailDictionary[floorIndex];
 		List<GauntletObjectiveComponent> remainingEnemies = new List<GauntletObjectiveComponent>();
 		foreach (SpawnPoint spawnPoint in currentMapDetails.spawnPoints.enemySpawnPoints) {
@@ -257,6 +280,7 @@ public class LevelManager : MonoBehaviour, IGameManager {
 
 	public void SpawnSpellGems (int floorIndex) {
 
+		Log ("Spawning spell gems...");
 		MapDetails currentMapDetails = mapDetailDictionary[floorIndex];
 		int spellGemCount = 0;
 
@@ -271,6 +295,7 @@ public class LevelManager : MonoBehaviour, IGameManager {
 	}
 	public void SpawnStaffs (int floorIndex) {
 
+		Log ("Spawning staffs...");
 		MapDetails currentMapDetails = mapDetailDictionary[floorIndex];
 
 		foreach (StaffSpawnPoint staffSpawnPoint in currentMapDetails.spawnPoints.staffSpawnPoints) {
@@ -284,17 +309,17 @@ public class LevelManager : MonoBehaviour, IGameManager {
 	}
 
 	public void DestroyEnvironment (Vector3 centerPosition, int radius) {
-		Vector3Int centerCoordinate = grid.WorldToCell(centerPosition) - ((Vector3Int)currentLevelDetails.floorOrigin);
+		Vector3Int centerCoordinate = grid.WorldToCell(centerPosition) - ((Vector3Int)currentMapDetails.floorOrigin);
 		for (int x = centerCoordinate.x - radius; x < centerCoordinate.x + radius; x++) {
 			for (int y = centerCoordinate.y - radius; y < centerCoordinate.y + radius; y++) {
 				Vector2Int mapCoordinate = new Vector2Int (x, y);
-				if (currentLevelDetails.mapBounds.isWithinBounds (mapCoordinate)) {
+				if (currentMapDetails.mapBounds.isWithinBounds (mapCoordinate)) {
 					Vector3 coordinatePos = grid.GetCellCenterLocal ((Vector3Int)mapCoordinate);
-					MapTileInfo mapTileInfo = currentLevelDetails.mapTileInfo [x, y];
+					MapTileInfo mapTileInfo = currentMapDetails.mapTileInfo [x, y];
 					if (IsometricCoordinateUtilites.IsoDistanceBetweenPoints (centerPosition, coordinatePos) <= radius
 					&& mapTileInfo.floorTile != null
 					&& mapTileInfo.baseValue != zoneData.borderTile.id) {
-						Vector3Int coordinate = new Vector3Int (x + currentLevelDetails.floorOrigin.x, y + currentLevelDetails.floorOrigin.y, 0);
+						Vector3Int coordinate = new Vector3Int (x + currentMapDetails.floorOrigin.x, y + currentMapDetails.floorOrigin.y, 0);
 						baseTilemap.SetTile (coordinate, null);
 						topTilemap.SetTile (coordinate, null);
 						mapTileInfo.walkable = true;
@@ -308,6 +333,11 @@ public class LevelManager : MonoBehaviour, IGameManager {
 		}
 	}
 
+	private void Log (string logLine) {
+		if (loadLog != null) {
+			loadLog.UpdateLoadingLog (logLine);
+		}
+	}
 
 	#endregion
 

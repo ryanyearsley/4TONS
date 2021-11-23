@@ -44,5 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spellData: {fileID: 11400000, guid: 6527aebd3bb631f4a9d0c9030f9b8e9e, type: 2}
+  debrisPoolSize: 0
+  debrisObject: {fileID: 181527185890752559, guid: 34ffe2f068d19b449ad5c0f5926e7322, type: 3}
   healAmount: 20
   manaRegenAmount: 20

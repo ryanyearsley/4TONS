@@ -13,10 +13,20 @@ MonoBehaviour:
   m_Name: LightLootTable
   m_EditorClassIdentifier: 
   spellGemTable:
-  - spellGemRollRange: {x: 0, y: 21}
+  - spellGemRollRange: {x: 38, y: 59}
     spellData: {fileID: 11400000, guid: 3e4c8f91a9e68be418b4c859bffba62e, type: 2}
-  - spellGemRollRange: {x: 14, y: 25}
+  - spellGemRollRange: {x: 0, y: 32}
     spellData: {fileID: 11400000, guid: 4aa338a38cb396f4080327d9aaf31198, type: 2}
+  - spellGemRollRange: {x: 22, y: 46}
+    spellData: {fileID: 11400000, guid: 327fa663d091a4e46b0da643a42bed63, type: 2}
+  - spellGemRollRange: {x: 14, y: 38}
+    spellData: {fileID: 11400000, guid: 6527aebd3bb631f4a9d0c9030f9b8e9e, type: 2}
+  - spellGemRollRange: {x: 44, y: 68}
+    spellData: {fileID: 11400000, guid: 0a17615ad9d7fa74e9bb3f26ad564bf7, type: 2}
+  - spellGemRollRange: {x: 70, y: 100}
+    spellData: {fileID: 11400000, guid: e81e2e8e87f63a7479ac5d8f261dc577, type: 2}
   staffTable:
-  - spellGemRollRange: {x: 0, y: 100}
+  - spellGemRollRange: {x: 44, y: 68}
     puzzleData: {fileID: 11400000, guid: 8b361d36a6f6ab749b4038e923897d55, type: 2}
+  - spellGemRollRange: {x: 70, y: 100}
+    puzzleData: {fileID: 11400000, guid: 53f62736fa302db4cab76f2cee87ae27, type: 2}

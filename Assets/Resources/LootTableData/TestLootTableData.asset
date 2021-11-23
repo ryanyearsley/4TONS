@@ -44,3 +44,5 @@ MonoBehaviour:
     puzzleData: {fileID: 11400000, guid: b810acb48d10c2543ba19bb73473e5ce, type: 2}
   - spellGemRollRange: {x: 0, y: 100}
     puzzleData: {fileID: 11400000, guid: 13f5d597d02da6c43890da682c5c0ffc, type: 2}
+  - spellGemRollRange: {x: 0, y: 100}
+    puzzleData: {fileID: 11400000, guid: 8b361d36a6f6ab749b4038e923897d55, type: 2}

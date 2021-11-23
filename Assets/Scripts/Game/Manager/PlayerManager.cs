@@ -26,13 +26,18 @@ public class PlayerManager : PersistentManager {
 		base.Awake ();
 		InitializeSingleton ();
 	}
-	public override void SceneLoaded (Scene scene, LoadSceneMode loadSceneMode) {
+
+	public override void SetUpPersistentManager () {
 		if (MainMenuManager.Instance == null && currentPlayers.Count == 0) {
+			//This will create a test player in any scene aside from the menu.
 			Player testPlayer = new Player(0, 0);
 			testPlayer.isAlive = true;
 			testPlayer.wizardSaveData = defaultWizardData.wizardSaveData.Clone ();
 			currentPlayers.Add (testPlayer);
 		}
+	}
+	public override void SceneLoaded (Scene scene, LoadSceneMode loadSceneMode) {
+		Debug.Log ("PlayerManager: Scene Loaded");
 	}
 	public void AddPlayer(Player player) {
 		if (currentPlayers.Contains (player)) return;

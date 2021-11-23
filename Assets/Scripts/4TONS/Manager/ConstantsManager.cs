@@ -169,7 +169,7 @@ public class ConstantsManager : PersistentManager {
 
 }
 public enum Zone {
-	Light, Dark, Fire, Ice, Generic, Tutorial, Hub
+	Light, Dark, Fire, Ice, Generic, Tutorial, Hub, Test
 }
 
 public enum SpellSchool {

@@ -14,7 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   customMapData: {fileID: 0}
   mapGenerationData: {fileID: 11400000, guid: 06ccb3e789cc56946a9ea232aa12a697, type: 2}
-  enemySpawnInfos: []
+  enemySpawnInfos:
+  - spawnCountRange: {x: 5, y: 5}
+    creatureData: {fileID: 11400000, guid: 25564811f1a3005478f7b971d620ce3e, type: 2}
+  - spawnCountRange: {x: 8, y: 8}
+    creatureData: {fileID: 11400000, guid: 99254d1eeda2dce4b8d0c9d3eed4a295, type: 2}
   floorRollRange: {x: 37, y: 78}
-  seed: 637703629907303923
+  seed: 637731807385538152
   useCustomSeed: 0

@@ -78,7 +78,6 @@ namespace PlayerManagement {
 				playerAimingController.MouseAimingUpdate (mouseDelta);
 			else
 				playerAimingController.JoystickAimingUpdate (joystickInput);
-
 		}
 		private void SpellInput () {
 			for (int spellIndex = 0; spellIndex <= 3; spellIndex++) {

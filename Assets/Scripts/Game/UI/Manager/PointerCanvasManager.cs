@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PointerCanvasManager : MonoBehaviour {
+public class PointerCanvasManager : PersistentManager {
 	#region Singleton
 	public static PointerCanvasManager instance { get; private set; }
 	private void InitializeSingleton () {
@@ -13,12 +13,11 @@ public class PointerCanvasManager : MonoBehaviour {
 		}
 	}
 	#endregion
-
 	[SerializeField]
 	private List<Rewired.Components.PlayerMouse> playerMice = new List<Rewired.Components.PlayerMouse>();
 
-
-	private void Awake () {
+	protected override void Awake () {
+		base.Awake ();
 		Debug.Log ("PointerCanvasManager: Awake (hiding/locking cursor)");
 		InitializeSingleton ();
 		DontDestroyOnLoad (this);
@@ -26,10 +25,4 @@ public class PointerCanvasManager : MonoBehaviour {
 		Cursor.visible = false;
 	}
 
-	void Start () {/*
-		int activePlayers = PlayerManager.instance.currentPlayers.Count;
-		for (int i = 0; i < playerMice.Count; i++) {
-			playerMice [i].gameObject.SetActive (true);
-		}*/
-	}
 }

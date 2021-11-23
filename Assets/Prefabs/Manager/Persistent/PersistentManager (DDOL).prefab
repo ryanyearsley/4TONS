@@ -171,7 +171,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2168367583041131548, guid: 2c2d45fbed4272c44a0166ba0c84da81, type: 3}
       propertyPath: lightTowerSceneIndex
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3313865580707658467, guid: 2c2d45fbed4272c44a0166ba0c84da81, type: 3}
       propertyPath: m_RootOrder

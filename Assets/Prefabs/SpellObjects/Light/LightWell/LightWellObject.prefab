@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healAmount: 3
+  healAnimationObject: {fileID: 181527185890752559, guid: 34ffe2f068d19b449ad5c0f5926e7322, type: 3}
 --- !u!114 &3719581808133550423
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118,17 +119,21 @@ PolygonCollider2D:
     - - {x: 1.1120601, y: 0.544014}
       - {x: 0.69348145, y: 0.71067715}
       - {x: 0.005214691, y: 0.7782202}
-      - {x: -0.769917, y: 0.6425457}
-      - {x: -1.332253, y: 0.29474047}
-      - {x: -1.4154787, y: -0.19253635}
-      - {x: -0.96155834, y: -0.56820107}
-      - {x: -0.4332642, y: -0.7077359}
-      - {x: 0.48182642, y: -0.7126787}
+      - {x: -0.769917, y: 0.6866684}
+      - {x: -1.1226573, y: 0.5129204}
+      - {x: -1.3616681, y: 0.35357073}
+      - {x: -1.4872117, y: 0.1425476}
+      - {x: -1.4743094, y: -0.18518257}
+      - {x: -1.3521428, y: -0.38535023}
+      - {x: -0.96155834, y: -0.61967754}
+      - {x: -0.41855663, y: -0.75185955}
+      - {x: 0.46711886, y: -0.7568023}
       - {x: 0.9147458, y: -0.64042664}
       - {x: 1.2073922, y: -0.5178385}
       - {x: 1.3734212, y: -0.3390808}
       - {x: 1.4992938, y: -0.11551666}
-      - {x: 1.4705849, y: 0.20993036}
+      - {x: 1.4927478, y: 0.16524982}
+      - {x: 1.3749847, y: 0.3643598}
 --- !u!114 &6445130414130578269
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -192,6 +197,26 @@ MonoBehaviour:
   lifeTime: 8
   lifeTimer: 0
   spellEffects: []
+  debrisPoolSize: 0
+  debrisObject: {fileID: 0}
+  spellObjectSound:
+    clipName: 
+    singleClip: {fileID: 0}
+    volume: 1
+    pitch: 1
+    mixerGroup: {fileID: 0}
+    loop: 0
+    randomize: 0
+    randomClips: []
+  spellObjectDestroySound:
+    clipName: 
+    singleClip: {fileID: 0}
+    volume: 1
+    pitch: 1
+    mixerGroup: {fileID: 0}
+    loop: 0
+    randomize: 0
+    randomClips: []
 --- !u!82 &-2590231809125474755
 AudioSource:
   m_ObjectHideFlags: 0

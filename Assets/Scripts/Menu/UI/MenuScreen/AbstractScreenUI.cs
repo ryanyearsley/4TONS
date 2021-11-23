@@ -15,10 +15,8 @@ public class AbstractScreenUI : MonoBehaviour
 		screenObject = transform.GetChild (0).gameObject;
 		screenObject.SetActive (true);
 		MainMenuManager.Instance.OnMenuScreenChangeEvent += OnScreenChange;
-
 		MainMenuManager.Instance.OnPlayerJoinEvent += OnPlayerJoin;
 		screenObject.SetActive (false);
-
 	}
 
 	protected virtual void OnScreenChange (MenuScreen mainMenuScreen) {

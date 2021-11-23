@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//Abstract class for every create/player that's going to participate in combat.
+//Abstract class for every creature/player that's going to participate in combat.
 //Manages player events (Actions) 
 //Tracks player state
 public class CreatureObject : PoolObject {

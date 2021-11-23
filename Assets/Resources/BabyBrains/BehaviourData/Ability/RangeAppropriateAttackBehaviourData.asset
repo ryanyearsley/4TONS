@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b739b8257d7e7474aa4b464923778dde, type: 3}
+  m_Name: RangeAppropriateAttackBehaviourData
+  m_EditorClassIdentifier: 
+  Weight: 4
+  behaviourName: Range Appropriate Attack
+  behaviourDescription: Chooses the most range-appropriate attack based on provided
+    list.
+  behaviourType: 0

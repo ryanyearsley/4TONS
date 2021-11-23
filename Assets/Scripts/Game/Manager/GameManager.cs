@@ -87,7 +87,7 @@ public class GameManager : MonoBehaviour {
 		levelLoaded = false;
 		float waitTime = 0f;
 		while (levelLoaded == false) {
-			yield return new WaitForSeconds (0.1f);
+			yield return new WaitForSeconds (0.5f);
 			waitTime += 0.1f;
 			if (waitTime > MAX_LEVEL_LOAD_TIME) {
 				Debug.Log ("GameManager: Maximum load time exceeded. Returning to main menu...");
