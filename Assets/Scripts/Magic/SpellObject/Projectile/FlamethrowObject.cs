@@ -50,7 +50,7 @@ public class FlamethrowObject : AoEObject {
 		hasHitTarget = true;
 		currentMoveSpeed = 0;
 	}
-	public override void OnWallHit () {
+	public override void OnWallHit (Collider2D other) {
 		Debug.Log ("Flamethrow: hit wall. setting MoveSpeed to 0");
 		hasHitTarget = true;
 		currentMoveSpeed = 0;

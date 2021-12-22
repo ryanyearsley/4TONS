@@ -22,6 +22,7 @@ public class LoadingPanelUI : AbstractPanelUI
 	protected override void OnUIChange (GameState gameState) {
 		if (panelActiveStates.Contains (gameState)) {
 			panelObject.SetActive (true);
+			ClearLoadingLog ();
 
 			string loadingTextString = "Loading: \n";
 			if (GameManager.instance != null) {
@@ -39,6 +40,10 @@ public class LoadingPanelUI : AbstractPanelUI
 		} else {
 			panelObject.SetActive (false);
 		}
+	}
+	public void ClearLoadingLog() {
+		Eventlog.Clear ();
+		loadLogText.text = "";
 	}
 	public void UpdateLoadingLog (string eventString) {
 		Eventlog.Add (eventString);

@@ -24,7 +24,7 @@ MonoBehaviour:
     loop: 1
     randomize: 0
     randomClips: []
-  loadingBackgroundSprite: {fileID: 21300000, guid: 66c9cdcf469a92f4f83be20ec48370bb, type: 3}
+  loadingBackgroundSprite: {fileID: 21300000, guid: 8cbb9deafb5860a47a1d249ba478175f, type: 3}
   backgroundGroup:
     backgroundColor: {r: 0.16470589, g: 0.058823533, b: 0.20392159, a: 1}
     layerDatas:
@@ -68,25 +68,7 @@ MonoBehaviour:
     tile: {fileID: 11400000, guid: a685cdb827b1b304d95daf6fec5d0050, type: 2}
     id: 3104
   destructionDebrisObject: {fileID: 0}
-  floorTiles:
-  - tile: {fileID: 11400000, guid: ddcfd9b919087d44ebfb3a30ca5b3b1b, type: 2}
-    id: 3110
-  - tile: {fileID: 11400000, guid: e7d7a7a2cf27ef9478093030a3df5393, type: 2}
-    id: 3111
-  - tile: {fileID: 11400000, guid: a4074c5545a3113468172d050a9f576b, type: 2}
-    id: 3112
-  - tile: {fileID: 11400000, guid: f39080f5f2427f44cb9173ce5dab01ef, type: 2}
-    id: 3113
-  - tile: {fileID: 11400000, guid: 5e63fe84178b11948ae137c89262bb93, type: 2}
-    id: 3114
-  - tile: {fileID: 11400000, guid: 94b4a76985da7094ca275962d6e6a1c8, type: 2}
-    id: 3115
-  - tile: {fileID: 11400000, guid: 64f0cc5855428fd4ba43563b83cb06bd, type: 2}
-    id: 3116
-  - tile: {fileID: 11400000, guid: a42f4e6000585ad4888f0692dbc129c3, type: 2}
-    id: 3117
-  - tile: {fileID: 11400000, guid: e6032200ac86e1c4f89234d68939a138, type: 2}
-    id: 3118
+  floorData: {fileID: 11400000, guid: 15cf96dff9367d9489f1e3784a0d101a, type: 2}
   randomFloorDecorTiles:
   - tile: {fileID: 11400000, guid: d7719096c6dcfe849b1f0cf184a3829c, type: 2}
     id: 3120
@@ -149,7 +131,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: bd2fadacf2e57264b9856ebe92851d36, type: 2}
   - {fileID: 11400000, guid: 34a1b4db12642f04c94b5a288cd0662d, type: 2}
   - {fileID: 11400000, guid: 00cb506ce2cf65f4bbb4a03f59676b53, type: 2}
-  - {fileID: 11400000, guid: 951f0176f6dde2744a8d78d169e8dca6, type: 2}
   enemyDatas:
   - {fileID: 11400000, guid: 217ed99b20a5ef84483df537037326ca, type: 2}
   - {fileID: 11400000, guid: f2a858c595dc31d4ab6153d8278630c9, type: 2}

@@ -33,14 +33,15 @@ public class WizardSaveData : ICloneable {
 
 	//This is used to copy a PrebuildWizard SO.
 	public WizardSaveData Clone () {
-		WizardSaveData wizard =  (WizardSaveData) this.MemberwiseClone();
-		wizard.primaryStaffSaveData = primaryStaffSaveData.Clone ();
-		if (wizard.secondaryStaffSaveData.puzzleData != null)
-			wizard.secondaryStaffSaveData = secondaryStaffSaveData.Clone ();
-		wizard.inventorySaveData = inventorySaveData.Clone ();
-		towerProgress.Add (new WizardTowerStatus (Zone.Dark));
-		towerProgress.Add (new WizardTowerStatus (Zone.Light));
-		return wizard;
+		WizardSaveData clone =  (WizardSaveData) this.MemberwiseClone();
+		clone.primaryStaffSaveData = primaryStaffSaveData.Clone ();
+		if (clone.secondaryStaffSaveData.puzzleData != null)
+			clone.secondaryStaffSaveData = secondaryStaffSaveData.Clone ();
+		clone.inventorySaveData = inventorySaveData.Clone ();
+		clone.towerProgress = new List<WizardTowerStatus> ();
+		clone.towerProgress.Add (new WizardTowerStatus (Zone.Dark));
+		clone.towerProgress.Add (new WizardTowerStatus (Zone.Light));
+		return clone;
 	}
 
 	object ICloneable.Clone () {

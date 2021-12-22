@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 
 public class TowerCompletePanelUI : AbstractPanelUI {
+
 	[SerializeField]
 	private Text totalKillsText;
 	[SerializeField]

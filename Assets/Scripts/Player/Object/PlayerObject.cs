@@ -5,7 +5,7 @@ using UnityEngine;
 
 [SerializeField]
 public enum PlayerState {
-	COMBAT, PUZZLE_BROWSING, PUZZLE_MOVING_SPELLGEM, DEAD
+	COMBAT, PUZZLE_BROWSING, PUZZLE_MOVING_SPELLGEM, DEAD, DISABLED
 }
 public enum PlayerStaffSlot {
 	PRIMARY, SECONDARY
@@ -30,9 +30,7 @@ public class PlayerObject : CreatureObject {
 	public event Action<DashInfo> OnDashEvent;
 	public event Action<Spell, SpellCastType> CastSpellEvent;
 	public event Action<Spell> EndSpellEvent;
-
-
-
+	public Spell currentlyCastingSpell;
 
 	//events (Puzzle)
 
@@ -51,7 +49,6 @@ public class PlayerObject : CreatureObject {
 	public AimingMode currentAimingMode;
 	public event Action<AimingMode> setAimingModeEvent;
 
-	public Spell currentlyCastingSpell;
 	public SpellGemGameData highlightedSpellGemData;
 	public SpellGemGameData movingSpellGemData;
 
@@ -60,10 +57,15 @@ public class PlayerObject : CreatureObject {
 		playerComponents = GetComponentsInChildren<PlayerComponent> ();
 	}
 	public override void SubscribeToEvents () {
+		GameManager.instance.gameCompleteEvent += OnGameComplete;
 	}
 	public override void UnsubscribeFromEvents () {
+		GameManager.instance.gameCompleteEvent -= OnGameComplete;
 	}
 
+	public void OnGameComplete() {
+		ChangePlayerState (PlayerState.DISABLED);
+	}
 	//Called right after PoolObject.Reuse to inject player save data into prefab.
 	public void ReusePlayerObject (Player player) {
 		this.player = player;
@@ -86,7 +88,7 @@ public class PlayerObject : CreatureObject {
 	}
 
 	//SETTERS. Changing puzzle values causes events for updating sub-components
-	public void OnChangePlayerState (PlayerState playerState) {
+	public void ChangePlayerState (PlayerState playerState) {
 		if (currentPlayerState == playerState) {
 			return;
 		}
@@ -98,11 +100,11 @@ public class PlayerObject : CreatureObject {
 	//PLAYER
 	public override void OnSpawn (Vector3 spawnPosition) {
 		base.OnSpawn (spawnPosition);
-		OnChangePlayerState (PlayerState.COMBAT);
+		ChangePlayerState (PlayerState.COMBAT);
 	}
 	public override void OnDeath () {
 		base.OnDeath ();
-		OnChangePlayerState (PlayerState.DEAD);
+		ChangePlayerState (PlayerState.DEAD);
 		GameManager.instance.ReportPlayerDeath (player);
 	}
 
@@ -127,9 +129,9 @@ public class PlayerObject : CreatureObject {
 	public void OnCastSpell(Spell spell, SpellCastType spellCastType) {
 		SpellData spellData = spell.spellData;
 		vitalsEntity.resource.SubtractResourceCost (spellData.manaCost);
-		if (spellData.spellCastSound != null)
-			AudioManager.instance.PlaySound (spellData.spellCastSound.clipName);
-		CastSpellEvent?.Invoke (spell, spellCastType);/*
+		CastSpellEvent?.Invoke (spell, spellCastType);
+		OnAttack (new AttackInfo (spellData.castTime, spellData.castSpeedReduction, spellData));
+		/*
 		if (spellCastType == SpellCastType.CAST) {
 			OnAttack (new AttackInfo (spellData.castTime, spellData.castSpeedReduction, spellData));
 		} else {
@@ -202,13 +204,13 @@ public class PlayerObject : CreatureObject {
 	//hand to puzzle
 	public void BindSpellGem (PuzzleGameData puzzleGameData, SpellGemGameData spellGameData, PuzzleBindType bindingType) {
 		BindSpellGemEvent?.Invoke (puzzleGameData, spellGameData, bindingType);
-		OnChangePlayerState (PlayerState.PUZZLE_BROWSING);
+		ChangePlayerState (PlayerState.PUZZLE_BROWSING);
 	}
 
 	//puzzle to hand
 	public void UnbindSpellGem (PuzzleGameData puzzleGameData, SpellGemGameData spellGameData, PuzzleUnbindType unbindType) {
 		UnbindSpellGemEvent?.Invoke (puzzleGameData, spellGameData, unbindType);
-		OnChangePlayerState (PlayerState.PUZZLE_MOVING_SPELLGEM);
+		ChangePlayerState (PlayerState.PUZZLE_MOVING_SPELLGEM);
 	}
 
 }

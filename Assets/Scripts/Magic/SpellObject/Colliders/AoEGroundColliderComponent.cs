@@ -43,7 +43,7 @@ public class AoEGroundColliderComponent : MonoBehaviour {
 				aoeObject.OnAllyEnter (vitals);
 			}
 		} else if (other.tag == "Environment") {
-			aoeObject.OnWallHit ();
+			aoeObject.OnWallHit (other);
 		}
 	}
 

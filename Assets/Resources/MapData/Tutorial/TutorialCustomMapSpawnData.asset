@@ -14,16 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mapFile: {fileID: 0}
   mapSpawnPoints:
-    playerSpawnSetPiecePoint:
-      spawnCoordinate: {x: 5, y: 5}
-      spawnObjectData: {fileID: 11400000, guid: 7505292d04f3608419afaf178b6440b3, type: 2}
-      value: 0
-    portalSpawnPoint:
-      spawnCoordinate: {x: 0, y: 0}
-      spawnObjectData: {fileID: 0}
-      value: 0
+    objectiveSpawnPoints: []
     playerSpawnPoints:
-    - spawnCoordinate: {x: 3, y: 3}
+    - spawnCoordinate: {x: -6, y: -2}
       spawnObjectData: {fileID: 11400000, guid: 7505292d04f3608419afaf178b6440b3, type: 2}
       value: 0
     enemySpawnPoints:
@@ -43,7 +36,7 @@ MonoBehaviour:
       value: 0
       spellData: {fileID: 11400000, guid: 2d3465d624cf7c743abbbaf28fec6fc3, type: 2}
     staffSpawnPoints:
-    - spawnCoordinate: {x: 8, y: 8}
+    - spawnCoordinate: {x: -7, y: -7}
       spawnObjectData: {fileID: 11400000, guid: 068e24aab08d0fc4ab1b20cd58920012, type: 2}
       value: 0
       puzzleData: {fileID: 11400000, guid: 5c587b3a494d4eb4ebf7fd1544f23ad2, type: 2}

@@ -26,14 +26,14 @@ public abstract class BabyBrainsBehaviour : MonoBehaviour {
     public virtual void OnTaskStart (SensoryInfo sensoryInfo) {
         _started = true;
         _finished = false;
-        executionTimer = ExecutionTime;
+        executionTimer = 0;
         cdTimer = Cooldown;
     }
 
     //monitors variables during task execution and typically triggers OnTaskEnd (unless the task is interrupted)l
     public virtual void UpdateBehaviour (SensoryInfo sensoryInfo, float interval) {
-        executionTimer -= interval;
-        if (executionTimer <= 0) {
+        executionTimer += interval;
+        if (executionTimer >= ExecutionTime) {
             _finished = true;
         }
     }

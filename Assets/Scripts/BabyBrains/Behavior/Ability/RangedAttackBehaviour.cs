@@ -13,15 +13,17 @@ public class RangedAttackBehaviour : BabyBrainsBehaviour
 	[SerializeField]
 	protected float maxAttackDistance;
 	[SerializeField]
+	protected int poolSize = 5;
+	[SerializeField]
 	protected GameObject rangedProjectilePrefab;
 
 	public override void SetUpBehaviour (SensoryInfo sensoryInfo) {
-		PoolManager.instance.CreateSpellObjectPool (rangedProjectilePrefab, 3);
+		PoolManager.instance.CreateSpellObjectPool (rangedProjectilePrefab, poolSize);
 	}
 
 	public override bool Valid (SensoryInfo sensoryInfo) {
-		if (sensoryInfo.targetVitals.trans != null 
-			&& sensoryInfo.currentResource > resourceCost
+		if (sensoryInfo.targetVitals != null 
+			&& sensoryInfo.currentResource >= resourceCost
 			&& sensoryInfo.targetWithinLoS 
 			&& sensoryInfo.isoDistanceToTarget > minAttackDistance 
 			&& sensoryInfo.isoDistanceToTarget < maxAttackDistance)

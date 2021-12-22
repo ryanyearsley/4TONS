@@ -134,11 +134,10 @@ public class MapGenerationUtility {
 	}
 
 	public static void RandomizeFloor (MapDetails details, List<MapTileInfo> floorTiles) {
-		if (details.zoneData.floorTiles.Count > 0) {
+		if (details.zoneData.floorData != null) {
 			foreach (MapTileInfo mapTileInfo in floorTiles) {
 				if (mapTileInfo.floorTile == details.zoneData.primaryFloorTile) {
-					int randomFloorTileIndex = UnityEngine.Random.Range(0, details.zoneData.floorTiles.Count);
-					mapTileInfo.floorTile = details.zoneData.floorTiles [randomFloorTileIndex];
+					mapTileInfo.floorTile = details.zoneData.floorData.GetRandomTile ();
 				}
 			}
 		}

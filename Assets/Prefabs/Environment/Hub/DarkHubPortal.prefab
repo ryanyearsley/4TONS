@@ -548,9 +548,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6934121786508880024}
   - component: {fileID: 1712621666794189665}
-  m_Layer: 12
+  m_Layer: 13
   m_Name: ProjectileColliderLeft
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -754,9 +754,9 @@ GameObject:
   m_Component:
   - component: {fileID: 9201825267221375871}
   - component: {fileID: 7185428934078942523}
-  m_Layer: 12
+  m_Layer: 13
   m_Name: ProjectileColliderRight
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -936,7 +936,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 7025b65e994d8194e90392c5a3ad5808, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.3882353}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.70980394}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

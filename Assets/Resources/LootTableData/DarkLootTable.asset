@@ -15,28 +15,30 @@ MonoBehaviour:
   spellGemTable:
   - spellGemRollRange: {x: 0, y: 21}
     spellData: {fileID: 11400000, guid: 2d3465d624cf7c743abbbaf28fec6fc3, type: 2}
+  - spellGemRollRange: {x: 0, y: 25}
+    spellData: {fileID: 11400000, guid: d75a0e919248f2a49ab12f364c493069, type: 2}
   - spellGemRollRange: {x: 14, y: 25}
     spellData: {fileID: 11400000, guid: 558584ede83939345aea1475ca93588c, type: 2}
-  - spellGemRollRange: {x: 26, y: 42}
+  - spellGemRollRange: {x: 26, y: 40}
     spellData: {fileID: 11400000, guid: 3b716e754480f0c48a677ce4c4d2bf3b, type: 2}
-  - spellGemRollRange: {x: 39, y: 57}
-    spellData: {fileID: 11400000, guid: 3b14f3e3f42c0ff47a8b899883f83fe5, type: 2}
-  - spellGemRollRange: {x: 51, y: 67}
-    spellData: {fileID: 11400000, guid: e81e2e8e87f63a7479ac5d8f261dc577, type: 2}
-  - spellGemRollRange: {x: 61, y: 71}
-    spellData: {fileID: 11400000, guid: f8a09e2fb222c62489690f14902cef0d, type: 2}
-  - spellGemRollRange: {x: 62, y: 86}
+  - spellGemRollRange: {x: 26, y: 50}
     spellData: {fileID: 11400000, guid: fad75d86be9637a4b82d8c6fc901e461, type: 2}
+  - spellGemRollRange: {x: 33, y: 49}
+    spellData: {fileID: 11400000, guid: e81e2e8e87f63a7479ac5d8f261dc577, type: 2}
+  - spellGemRollRange: {x: 50, y: 68}
+    spellData: {fileID: 11400000, guid: 3b14f3e3f42c0ff47a8b899883f83fe5, type: 2}
+  - spellGemRollRange: {x: 51, y: 65}
+    spellData: {fileID: 11400000, guid: f8a09e2fb222c62489690f14902cef0d, type: 2}
+  - spellGemRollRange: {x: 76, y: 94}
+    spellData: {fileID: 11400000, guid: 66844d0fc5d3fe34985835a2d580261b, type: 2}
+  - spellGemRollRange: {x: 75, y: 87}
+    spellData: {fileID: 11400000, guid: 827de7f84f43a3c4993ed3d475230277, type: 2}
   - spellGemRollRange: {x: 90, y: 98}
     spellData: {fileID: 11400000, guid: 50f771dfc4c331543aa4398e546ec730, type: 2}
-  - spellGemRollRange: {x: 77, y: 89}
-    spellData: {fileID: 11400000, guid: 827de7f84f43a3c4993ed3d475230277, type: 2}
-  - spellGemRollRange: {x: 97, y: 100}
-    spellData: {fileID: 11400000, guid: 0a17615ad9d7fa74e9bb3f26ad564bf7, type: 2}
   staffTable:
   - spellGemRollRange: {x: 0, y: 10}
     puzzleData: {fileID: 11400000, guid: e5d2f55445c7aff4a978acb38800ad60, type: 2}
-  - spellGemRollRange: {x: 26, y: 46}
+  - spellGemRollRange: {x: 26, y: 50}
     puzzleData: {fileID: 11400000, guid: 8b361d36a6f6ab749b4038e923897d55, type: 2}
   - spellGemRollRange: {x: 76, y: 100}
     puzzleData: {fileID: 11400000, guid: 8b1caf4a6f0803d4684d1c6a7f14c690, type: 2}

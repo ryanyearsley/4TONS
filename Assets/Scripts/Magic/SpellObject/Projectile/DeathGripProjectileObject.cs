@@ -13,11 +13,9 @@ public class DeathGripProjectileObject : ProjectileObject {
 
 	private bool isPulling = false;
 	private Transform anchorTransform;
-	private Transform cursorTransform;
 	public override void ReuseSpellObject (VitalsEntity casterVitals) {
 		base.ReuseSpellObject (casterVitals);
-		anchorTransform = casterVitals.creatureObject.creaturePositions.staffAimTransform;
-		cursorTransform = casterVitals.creatureObject.creaturePositions.targetTransform;
+		anchorTransform = casterVitals.colliders[1].transform;
 
 		lineRenderer.SetPosition (0, anchorTransform.position);
 		lineRenderer.SetPosition (1, chainPointTransform.position);
@@ -25,12 +23,13 @@ public class DeathGripProjectileObject : ProjectileObject {
 		isPulling = false;
 		
 	}
-	public override void FixedUpdate () {
+	public override void Update () {
+		UpdateLifeTimer ();
 		if (isAlive) {
 			lineRenderer.SetPosition (0, anchorTransform.position);
 			lineRenderer.SetPosition (1, chainPointTransform.position);
 			if (!isPulling) {
-				transform.Translate (Vector2.right * moveSpeed * Time.fixedDeltaTime);
+				transform.Translate (Vector2.right * moveSpeed * Time.deltaTime);
 
 			} 
 			else {
@@ -43,9 +42,6 @@ public class DeathGripProjectileObject : ProjectileObject {
 		}
 	}
 
-public override void OnWallHit () {
-	Destroy ();
-}
 public override void OnEnemyHit (VitalsEntity enemyVitals) {
 	if (!isPulling) {
 		ApplyPullEffect (enemyVitals);
@@ -71,6 +67,5 @@ public void ApplyPullEffect (VitalsEntity vitals) {
 		lineRenderer.enabled = false;
 		isPulling = false;
 		anchorTransform = null;
-		cursorTransform = null;
 	}
 }

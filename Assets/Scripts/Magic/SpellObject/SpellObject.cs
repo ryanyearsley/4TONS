@@ -24,7 +24,10 @@ public class SpellObject : PoolObject, ISpellObject {
 	public int debrisPoolSize;
 	public GameObject debrisObject;
 	[SerializeField]
-	private Sound spellObjectSound;
+	protected Sound spellObjectSound;
+
+	[SerializeField]
+	private bool interruptSpellSoundOnDestroy = false;
 	[SerializeField]
 	private Sound spellObjectDestroySound;
 
@@ -40,11 +43,13 @@ public class SpellObject : PoolObject, ISpellObject {
 			spellEffect.SetUpSpellEffect ();
 		}
 		if (spellObjectSound.singleClip != null) {
+			AudioManager.instance.RegisterSound (spellObjectSound);
+			/*
 			audioSource = gameObject.AddComponent<AudioSource> ();
 			audioSource.volume = spellObjectSound.volume;
 			audioSource.maxDistance = 15f;
 			audioSource.spatialBlend = 1f;
-			audioSource.rolloffMode = AudioRolloffMode.Linear;
+			audioSource.rolloffMode = AudioRolloffMode.Linear;*/
 		}
 
 		if (spellObjectDestroySound.singleClip != null) {
@@ -63,12 +68,12 @@ public class SpellObject : PoolObject, ISpellObject {
 	public virtual void ReuseSpellObject (VitalsEntity vitalsEntity) {
 		casterVitalsEntity = vitalsEntity;
 		if (spellObjectSound.singleClip != null)
-			audioSource.PlayOneShot (spellObjectSound.singleClip);
+			AudioManager.instance.PlaySound (spellObjectSound.clipName);
 		lifeTimer = 0;
 		isAlive = true;
 	}
 
-	public virtual void OnWallHit () {
+	public virtual void OnWallHit (Collider2D otherColl) {
 	}
 	public virtual void OnEnemyHit (VitalsEntity enemyVitals) {
 		foreach (SpellEffect spellEffect in spellEffects) {
@@ -81,24 +86,34 @@ public class SpellObject : PoolObject, ISpellObject {
 		}
 	}
 
-	public virtual void OnBarrierHit(BarrierObject barrierObject) {
+	public virtual void OnBarrierHit (BarrierObject barrierObject) {
 
 	}
 
 	public override void TerminateObjectFunctions () {
 		isAlive = false;
 		this.tag = "Untagged";
+		if (interruptSpellSoundOnDestroy) {
+			AudioManager.instance.StopSound (spellObjectSound.clipName);
+		}
 		if (spellObjectDestroySound.singleClip != null) {
-			audioSource.Stop ();
-			AudioManager.instance.PlaySound(spellObjectDestroySound.clipName);
+			//audioSource.Stop ();
+			AudioManager.instance.PlaySound (spellObjectDestroySound.clipName);
 		}
 
 	}
 	public virtual void Update () {
 		if (isAlive) {
+			UpdateLifeTimer ();
+			foreach (SpellEffect spellEffect in spellEffects) {
+				spellEffect.UpdateSpellEffect (casterVitalsEntity);
+			}
+		}
+	}
+	protected void UpdateLifeTimer () {
+		if (isAlive) {
 			lifeTimer += Time.deltaTime;
 			if (lifeTimer >= lifeTime) {
-				print ("lifetime exceeded. object destroyed");
 				Destroy ();
 			}
 		}

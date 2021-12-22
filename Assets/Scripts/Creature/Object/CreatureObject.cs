@@ -43,6 +43,7 @@ public class CreatureObject : PoolObject {
 
 	//Combat
 	public event Action<AttackInfo> OnAttackEvent;
+	public event Action<AttackInfo> OnAttackSpecialEvent;
 	public event Action<HitInfo> OnHitEvent;
 	private bool canPlayHitAnim = true;
 	private const float HIT_ANIM_REPEAT_THRESHOLD = 0.3f;
@@ -101,6 +102,11 @@ public class CreatureObject : PoolObject {
 
 	public virtual void OnAttack (AttackInfo attackInfo) {
 		OnAttackEvent?.Invoke (attackInfo);
+		StartCoroutine (AttackRoutine (attackInfo));
+	}
+
+	public virtual void OnAttackSpecial(AttackInfo attackInfo) {
+		OnAttackSpecialEvent?.Invoke (attackInfo);
 		StartCoroutine (AttackRoutine (attackInfo));
 	}
 

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68618dbd50d979f4196b1d65060aed79, type: 3}
   m_Name: LightZoneData
   m_EditorClassIdentifier: 
-  schoolIndexStart: 3000
+  schoolIndexStart: 2000
   school: 0
   zone: 0
   music:
@@ -24,7 +24,7 @@ MonoBehaviour:
     loop: 1
     randomize: 0
     randomClips: []
-  loadingBackgroundSprite: {fileID: 0}
+  loadingBackgroundSprite: {fileID: 21300000, guid: 0eae138116f906047a7ac918aa7953ff, type: 3}
   backgroundGroup:
     backgroundColor: {r: 0.16470589, g: 0.058823533, b: 0.20392159, a: 1}
     layerDatas:
@@ -36,52 +36,57 @@ MonoBehaviour:
   floorPrefab: {fileID: 8472839727403202167, guid: 4ea040c5f20c4b547ad30734fde7c6bd, type: 3}
   primaryFloorTile:
     tile: {fileID: 11400000, guid: b7ab7ca9a13fe5d4e9801c0c32af7aab, type: 2}
-    id: 3100
+    id: 2100
   secondaryFloorTile:
     tile: {fileID: 11400000, guid: 313f041bfab33d14f965dc2cb6ebe883, type: 2}
-    id: 3101
+    id: 2101
   underTile:
     tile: {fileID: 11400000, guid: ea448eba8014aea4aa8c36deba9c22a3, type: 2}
-    id: 3102
+    id: 2102
   baseTile:
-    tile: {fileID: 11400000, guid: 697097f2e67837a459482be534a53bb9, type: 2}
-    id: 3103
+    tile: {fileID: 11400000, guid: f623092f7d4327e4d9a111e3f8b28ab8, type: 2}
+    id: 2103
   baseBlankTopTile:
     tile: {fileID: 11400000, guid: d9867d64ddc0aab4a806bf12b5aca84e, type: 2}
-    id: 0
+    id: 2103
   borderTile:
     tile: {fileID: 11400000, guid: 84c2e17cd03df9a40a8075164c4784d0, type: 2}
-    id: 3104
+    id: 2104
   destructionDebrisObject: {fileID: 0}
-  floorTiles:
-  - tile: {fileID: 11400000, guid: b7ab7ca9a13fe5d4e9801c0c32af7aab, type: 2}
-    id: 0
-  - tile: {fileID: 11400000, guid: 333917352f738714a882797fd8f0b9d3, type: 2}
-    id: 0
-  - tile: {fileID: 11400000, guid: d68f3d60ffa24f2449fe34b827ac156d, type: 2}
-    id: 0
-  - tile: {fileID: 11400000, guid: 478b4954d03f2bf4fa1d390bf185e8eb, type: 2}
-    id: 0
-  - tile: {fileID: 11400000, guid: 589a780db0fcfb34abbb73ace9af9220, type: 2}
-    id: 0
-  - tile: {fileID: 11400000, guid: e2c7577b9df7fa444a8e2467e6a1581c, type: 2}
-    id: 0
-  - tile: {fileID: 11400000, guid: d628b8ed525904e439b0b9a4f4765364, type: 2}
-    id: 0
-  - tile: {fileID: 11400000, guid: 7a7a964d87246494787d9320b5f66f1a, type: 2}
-    id: 0
+  floorData: {fileID: 11400000, guid: fd293d2761c4ab44884eaa9a432cda36, type: 2}
   randomFloorDecorTiles: []
-  surroundingDecorTiles: []
-  baseDecorTiles: []
+  surroundingDecorTiles:
+  - tile: {fileID: 11400000, guid: f357d16b3a0debf4dae414986e06bace, type: 2}
+    id: 2130
+  baseDecorTiles:
+  - tile: {fileID: 11400000, guid: ca3f96842cacd594f9c3d093bca93a9f, type: 2}
+    id: 2105
+  - tile: {fileID: 11400000, guid: ca3f96842cacd594f9c3d093bca93a9f, type: 2}
+    id: 2106
+  - tile: {fileID: 11400000, guid: c7ce742ab86e4b94f8833feb5021cfe0, type: 2}
+    id: 2107
+  - tile: {fileID: 11400000, guid: dea2578a64a4d854b9b6994502da0645, type: 2}
+    id: 2108
+  - tile: {fileID: 11400000, guid: f6759ea364719444ca05131645dd4beb, type: 2}
+    id: 2109
+  - tile: {fileID: 11400000, guid: 58a34db5db6e63c41a186877fae0868e, type: 2}
+    id: 2110
+  - tile: {fileID: 11400000, guid: 0f2979ab35f41bc488a781e170442036, type: 2}
+    id: 2111
+  - tile: {fileID: 11400000, guid: 6cefe1b538a03834b88390f6d814bcd0, type: 2}
+    id: 2112
   topDecorTiles: []
   largeSetpieceDatas:
   - {fileID: 11400000, guid: da6dd3fc0721c5641bcb3e5507014fc7, type: 2}
+  - {fileID: 11400000, guid: 32137f395d9572c4497131c77effe487, type: 2}
+  - {fileID: 11400000, guid: 3a383f36581440343bd5db6bab3d242b, type: 2}
   enemyDatas:
   - {fileID: 11400000, guid: 25564811f1a3005478f7b971d620ce3e, type: 2}
   - {fileID: 11400000, guid: 99254d1eeda2dce4b8d0c9d3eed4a295, type: 2}
+  - {fileID: 11400000, guid: fc72b557e96e8f547a645fbde1db0870, type: 2}
   lootTableData: {fileID: 11400000, guid: 8e453ecbddb9a0546a8c70b3d98af0ec, type: 2}
   mapDatas:
-  - {fileID: 11400000, guid: 2c43c1dc81226d44e9385ba64c9d9169, type: 2}
+  - {fileID: 11400000, guid: 9a2b88203333f3d42962a9a655325371, type: 2}
   - {fileID: 11400000, guid: 49ee74fa895ee254db67f59e9ebb4aea, type: 2}
   - {fileID: 11400000, guid: 6b562dc7106d13b49bf0bec257ddec82, type: 2}
   - {fileID: 11400000, guid: ea0c2cbee0d5e3649983298baa992c09, type: 2}

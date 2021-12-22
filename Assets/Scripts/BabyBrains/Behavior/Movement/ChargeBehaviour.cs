@@ -11,7 +11,9 @@ public class ChargeBehaviour : BabyBrainsBehaviour {
 	private float maxChargeDistance = 4f;
 
 	public override bool Valid (SensoryInfo sensoryInfo) {
-		if (sensoryInfo.targetVitals.trans != null && sensoryInfo.isoDistanceToTarget < maxChargeDistance && sensoryInfo.isoDistanceToTarget > minimumChargeDistance)
+		if (sensoryInfo.targetVitals != null 
+			&& sensoryInfo.isoDistanceToTarget < maxChargeDistance 
+			&& sensoryInfo.isoDistanceToTarget > minimumChargeDistance)
 			return true;
 		else return false;
 	}

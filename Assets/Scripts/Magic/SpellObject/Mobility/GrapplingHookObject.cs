@@ -26,6 +26,7 @@ public class GrapplingHookObject : ProjectileObject {
 		targetPullLocationTransform.parent = trans;
 		playerAnchorTransform = new GameObject ("GrapplingHookPlayer_" + GetInstanceID ()).transform;
 		playerAnchorTransform.parent = trans;
+		playerAnchorTransform.localPosition += Vector3.up * 0.325f;
 	}
 	public override void ReuseSpellObject (VitalsEntity casterVitals) {
 		base.ReuseSpellObject (casterVitals);
@@ -39,7 +40,7 @@ public class GrapplingHookObject : ProjectileObject {
 		isPullingCaster = false;
 
 	}
-	public override void FixedUpdate () {
+	public override void Update () {
 		if (isAlive) {
 			lineRenderer.SetPosition (0, playerAnchorTransform.position);
 			lineRenderer.SetPosition (1, projectileAnchorTransform.position);
@@ -53,7 +54,7 @@ public class GrapplingHookObject : ProjectileObject {
 		}
 	}
 
-	public override void OnWallHit () {
+	public override void OnWallHit (Collider2D other) {
 		if (!isPullingCaster) {
 			targetPullLocationTransform.parent = null;
 			targetPullLocationTransform.position = trans.position;

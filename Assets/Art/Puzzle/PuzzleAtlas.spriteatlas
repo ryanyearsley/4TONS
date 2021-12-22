@@ -1,0 +1,145 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: PuzzleAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 0
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 256
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 0
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: d386c72071dc120429e1fa109462dd6d, type: 3}
+    - {fileID: 2800000, guid: 59e38c4c566a394409579a64bc437d29, type: 3}
+    - {fileID: 2800000, guid: 3c96bdffdf65d8047bed09b492c05c58, type: 3}
+    - {fileID: 2800000, guid: 8baa17a231a98904a8b2968b24af8d0d, type: 3}
+    - {fileID: 2800000, guid: a7801fed9bf3bfb438431a73182ff114, type: 3}
+    - {fileID: 2800000, guid: 3e93dd77b27816d4886bc79a20b0eebd, type: 3}
+    - {fileID: 2800000, guid: 7a44cb4cf39ce464d81e10013420c163, type: 3}
+    - {fileID: 2800000, guid: 9ef02c05832dfe944b42b1ecf10af32d, type: 3}
+    - {fileID: 2800000, guid: 34320e745bbbf8c4a98496596edc723b, type: 3}
+    - {fileID: 2800000, guid: bec223a88cdc76149813d4969fd55a05, type: 3}
+    - {fileID: 2800000, guid: 448015cad9b08e34f9767e3c8a47ecc0, type: 3}
+    - {fileID: 2800000, guid: 16c3fa6f0614f3f46beb12385500d2e7, type: 3}
+    - {fileID: 2800000, guid: 37413388e461d2b4fb0ecb78d75a6a19, type: 3}
+    - {fileID: 2800000, guid: ec228f90cf5088c4a9a3292587cdb302, type: 3}
+    - {fileID: 2800000, guid: d822e2f75060d634da160f54c0233ea4, type: 3}
+    - {fileID: 2800000, guid: e1e7f89e277563041b2310859bd16c38, type: 3}
+    - {fileID: 2800000, guid: 70a56d41b54a4384cbd1be2d9067adfe, type: 3}
+    - {fileID: 2800000, guid: d20c95a122cd72645be32ae88ad2c894, type: 3}
+    - {fileID: 2800000, guid: 0ae03f738bf6fdd40b207d1487a4e36a, type: 3}
+    - {fileID: 2800000, guid: 8226eefa8549efb49aeb076b773b8236, type: 3}
+    - {fileID: 2800000, guid: 1ca37b72f0a582046a89fd63b73dbba7, type: 3}
+    - {fileID: 2800000, guid: 2ea9796d5ec6e0849b680a82771d0108, type: 3}
+    - {fileID: 2800000, guid: 1bc5ef510d9439749bcefce376cd37f2, type: 3}
+    - {fileID: 2800000, guid: 251665fde4feaea4598051be334d8bbf, type: 3}
+    - {fileID: 2800000, guid: 9ebb975673f8bae4a94241220568077a, type: 3}
+    - {fileID: 2800000, guid: f73a73bd5de55b74c8c7de4910a07d1a, type: 3}
+    - {fileID: 2800000, guid: cf12b2792cabed9409c7b97271a036c0, type: 3}
+    - {fileID: 2800000, guid: 4b1cec48d199be941ba174f829768889, type: 3}
+    totalSpriteSurfaceArea: 115876
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 6889240492925013292, guid: d386c72071dc120429e1fa109462dd6d, type: 3}
+  - {fileID: 6412447312875358497, guid: d386c72071dc120429e1fa109462dd6d, type: 3}
+  - {fileID: 8671137299588997487, guid: d386c72071dc120429e1fa109462dd6d, type: 3}
+  - {fileID: -8144825653227725821, guid: d386c72071dc120429e1fa109462dd6d, type: 3}
+  - {fileID: 21300000, guid: ec228f90cf5088c4a9a3292587cdb302, type: 3}
+  - {fileID: 21300000, guid: 70a56d41b54a4384cbd1be2d9067adfe, type: 3}
+  - {fileID: 21300000, guid: 1bc5ef510d9439749bcefce376cd37f2, type: 3}
+  - {fileID: 21300000, guid: d20c95a122cd72645be32ae88ad2c894, type: 3}
+  - {fileID: 21300000, guid: 1ca37b72f0a582046a89fd63b73dbba7, type: 3}
+  - {fileID: 21300000, guid: 8baa17a231a98904a8b2968b24af8d0d, type: 3}
+  - {fileID: 21300000, guid: 0ae03f738bf6fdd40b207d1487a4e36a, type: 3}
+  - {fileID: 21300000, guid: 34320e745bbbf8c4a98496596edc723b, type: 3}
+  - {fileID: 21300000, guid: 9ef02c05832dfe944b42b1ecf10af32d, type: 3}
+  - {fileID: 21300000, guid: 9ebb975673f8bae4a94241220568077a, type: 3}
+  - {fileID: 21300000, guid: 3e93dd77b27816d4886bc79a20b0eebd, type: 3}
+  - {fileID: 21300000, guid: d822e2f75060d634da160f54c0233ea4, type: 3}
+  - {fileID: 21300000, guid: 4b1cec48d199be941ba174f829768889, type: 3}
+  - {fileID: 21300000, guid: 37413388e461d2b4fb0ecb78d75a6a19, type: 3}
+  - {fileID: 21300000, guid: bec223a88cdc76149813d4969fd55a05, type: 3}
+  - {fileID: 21300000, guid: cf12b2792cabed9409c7b97271a036c0, type: 3}
+  - {fileID: 21300000, guid: 448015cad9b08e34f9767e3c8a47ecc0, type: 3}
+  - {fileID: 21300000, guid: 8226eefa8549efb49aeb076b773b8236, type: 3}
+  - {fileID: 21300000, guid: 7a44cb4cf39ce464d81e10013420c163, type: 3}
+  - {fileID: 21300000, guid: 59e38c4c566a394409579a64bc437d29, type: 3}
+  - {fileID: 21300000, guid: 2ea9796d5ec6e0849b680a82771d0108, type: 3}
+  - {fileID: 21300000, guid: f73a73bd5de55b74c8c7de4910a07d1a, type: 3}
+  - {fileID: 21300000, guid: a7801fed9bf3bfb438431a73182ff114, type: 3}
+  - {fileID: 21300000, guid: 251665fde4feaea4598051be334d8bbf, type: 3}
+  - {fileID: 21300000, guid: e1e7f89e277563041b2310859bd16c38, type: 3}
+  - {fileID: 21300000, guid: 16c3fa6f0614f3f46beb12385500d2e7, type: 3}
+  - {fileID: 21300000, guid: 3c96bdffdf65d8047bed09b492c05c58, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - PuzzleHand_Rotate
+  - PuzzleHand_HoverOver
+  - PuzzleHand_Point
+  - PuzzleHand_Grab
+  - 6j2
+  - 5a_a2
+  - 5g_2
+  - 5b_2
+  - 5e_2
+  - StaffTile
+  - 5c_2
+  - 6e_2
+  - 6d_2
+  - 5i_2
+  - 6b_2
+  - 6k_2
+  - 5L_2
+  - 6i_2
+  - 6f_2
+  - 5k_2
+  - 6g_2
+  - 5d_2
+  - 6c_2
+  - SpellGemPickup_Background
+  - 5f_2
+  - 5j_2
+  - 6a_2
+  - 5h_2
+  - 6L_2
+  - 6h_2
+  - StaffTile_10px
+  m_RenderDataMap: {}
+  m_Tag: PuzzleAtlas
+  m_IsVariant: 0

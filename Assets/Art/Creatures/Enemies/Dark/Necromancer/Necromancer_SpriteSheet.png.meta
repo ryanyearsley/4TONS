@@ -101,6 +101,24 @@ TextureImporter:
   - first:
       213: -5891185004727425630
     second: Necromancer_Run7
+  - first:
+      213: -2341730749019763195
+    second: Necromancer_SpriteSheet_33
+  - first:
+      213: -5928338592531032194
+    second: Necromancer_SpriteSheet_34
+  - first:
+      213: 4095838265394021439
+    second: Necromancer_SpriteSheet_35
+  - first:
+      213: 1341098705756980657
+    second: Necromancer_SpriteSheet_36
+  - first:
+      213: 6470702325087817343
+    second: Necromancer_SpriteSheet_37
+  - first:
+      213: -7251912757589568403
+    second: Necromancer_SpriteSheet_38
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -197,7 +215,7 @@ TextureImporter:
         y: 224
         width: 32
         height: 32
-      alignment: 9
+      alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -218,7 +236,7 @@ TextureImporter:
         y: 224
         width: 32
         height: 32
-      alignment: 9
+      alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -878,6 +896,132 @@ TextureImporter:
       bones: []
       spriteID: 2a52d17737e4e3ea0800000000000000
       internalID: -5891185004727425630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Necromancer_SpriteSheet_33
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 128
+        width: 32
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 50e41117a40808fd0800000000000000
+      internalID: -2341730749019763195
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Necromancer_SpriteSheet_34
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 32
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e77d2f3b57f4abda0800000000000000
+      internalID: -5928338592531032194
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Necromancer_SpriteSheet_35
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 128
+        width: 32
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f344342a33757d830800000000000000
+      internalID: 4095838265394021439
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Necromancer_SpriteSheet_36
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 32
+        width: 32
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b5816dda2a8c9210800000000000000
+      internalID: 1341098705756980657
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Necromancer_SpriteSheet_37
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 32
+        width: 32
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7e472e3b7d8cc950800000000000000
+      internalID: 6470702325087817343
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Necromancer_SpriteSheet_38
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 32
+        width: 32
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6410cde4c70c5b90800000000000000
+      internalID: -7251912757589568403
       vertices: []
       indices: 
       edges: []

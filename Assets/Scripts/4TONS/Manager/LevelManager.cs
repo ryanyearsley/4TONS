@@ -219,11 +219,14 @@ public class LevelManager : MonoBehaviour, IGameManager {
 		}
 	}
 	public void UpdateBaseTilemap (Vector3Int coordinate, Tile tile) {
-		floorTilemap.SetTile (coordinate, zoneData.underTile.tile);
+		floorTilemap.SetTile (coordinate, zoneData.primaryFloorTile.tile);
 		baseTilemap.SetTile (coordinate, tile);
 		baseHitboxTilemap.SetTile (coordinate, baseHitboxTile);
 	}
 
+	public void UpdateBase(Vector3Int coordinate, Tile tile) {
+
+	}
 
 	//NOTE: Players are only spawned on first stage. They are relocated to following stages.
 
@@ -517,6 +520,7 @@ public class LevelManager : MonoBehaviour, IGameManager {
 	[ExecuteInEditMode]
 	private void OnDrawGizmos () {
 		if (displayCustomSpawnGizmos) {
+			zoneData = FindObjectOfType<GameManager> ().gameContext.zoneData;
 			foreach (MapData mapData in zoneData.mapDatas)
 				if (mapData.customMapData != null) {
 					Gizmos.color = Color.cyan;

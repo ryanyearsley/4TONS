@@ -463,7 +463,7 @@ MonoBehaviour:
   spellObjectSound:
     clipName: PentagramObject
     singleClip: {fileID: 8300000, guid: 585c0c5cabaa69a418bf8fa4032ed940, type: 3}
-    volume: 1
+    volume: 0.5
     pitch: 1
     mixerGroup: {fileID: -7302680629657921355, guid: 004a37a2c22918345b123859e614950a, type: 2}
     loop: 0
@@ -472,7 +472,7 @@ MonoBehaviour:
   spellObjectDestroySound:
     clipName: PentagramEnding
     singleClip: {fileID: 8300000, guid: 2cffc37c0ca646f4095a2b15d609e44b, type: 3}
-    volume: 1
+    volume: 0.5
     pitch: 1
     mixerGroup: {fileID: -7302680629657921355, guid: 004a37a2c22918345b123859e614950a, type: 2}
     loop: 0

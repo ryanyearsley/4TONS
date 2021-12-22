@@ -18,7 +18,6 @@ public class PlayerManager : PersistentManager {
 	}
 	#endregion
 
-	public WizardPrebuildData defaultWizardData;
 	[SerializeField]
 	public List<Player> currentPlayers = new List<Player>();
 
@@ -29,10 +28,11 @@ public class PlayerManager : PersistentManager {
 
 	public override void SetUpPersistentManager () {
 		if (MainMenuManager.Instance == null && currentPlayers.Count == 0) {
+			Debug.Log ("PlayerManager: Spawning test player.");
 			//This will create a test player in any scene aside from the menu.
 			Player testPlayer = new Player(0, 0);
 			testPlayer.isAlive = true;
-			testPlayer.wizardSaveData = defaultWizardData.wizardSaveData.Clone ();
+			testPlayer.wizardSaveData = ConstantsManager.instance.defaultWizardData.wizardSaveData.Clone ();
 			currentPlayers.Add (testPlayer);
 		}
 	}

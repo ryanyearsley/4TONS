@@ -15,7 +15,7 @@ public class DeleteWizardButton : AbstractButtonClick
 		if (loadedWizardButtonUI.wizardSaveData != null) {
 			Debug.Log ("delete button clicked, Deleting wizard");
 			WizardSaveData selectedWizard = loadedWizardButtonUI.wizardSaveData;
-			WizardSaveDataManager.instance.DeleteWizardData (selectedWizard.wizardName);
+			WizardSaveDataManager.instance.DeleteInfamousWizardData (selectedWizard.wizardName);
 			MainMenuManager.Instance.OnWizardDelete (selectedWizard);
 		} else {
 			Debug.Log ("Wizard Delete Unsuccessful: No wizard assigned to button.");

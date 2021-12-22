@@ -428,6 +428,10 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8884175212134057212, guid: 9fee5ac39cf1ab540bf0c8e15f70c5da, type: 3}
+      propertyPath: defaultWizardData
+      value: 
+      objectReference: {fileID: 11400000, guid: 9a95e018017ba854eb1e309c8555e624, type: 2}
+    - target: {fileID: 8884175212134057212, guid: 9fee5ac39cf1ab540bf0c8e15f70c5da, type: 3}
       propertyPath: worlds.Array.size
       value: 2
       objectReference: {fileID: 0}

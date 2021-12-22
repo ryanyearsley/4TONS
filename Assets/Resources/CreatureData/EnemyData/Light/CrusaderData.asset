@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb6323e28d81e284a967b1ea2d1e4622, type: 3}
   m_Name: CrusaderData
   m_EditorClassIdentifier: 
-  id: 3301
-  poolSize: 10
+  id: 2301
+  poolSize: 20
   outerClearance: 1
   school: 0
   spawnObjectPrefab: {fileID: 8036647390902012779, guid: 6d2ecd9cc95317a49b76d22e2a732b01, type: 3}
@@ -23,7 +23,7 @@ MonoBehaviour:
   movementSpeed: 4
   creatureAudio:
     attackSound: {fileID: 0}
-    gruntSound: {fileID: 8300000, guid: ce61a3d1947e6ea449253fbf94480805, type: 3}
-    deathSound: {fileID: 8300000, guid: 381af8f28ea46694284e87a9fb864ce1, type: 3}
+    gruntSound: {fileID: 8300000, guid: 1ebe68daf4f1abe47a35f44a7c866224, type: 3}
+    deathSound: {fileID: 8300000, guid: d3bebeb1b2f3fac4693cbe54a2798c29, type: 3}
     happySound: {fileID: 0}
     sadSound: {fileID: 0}

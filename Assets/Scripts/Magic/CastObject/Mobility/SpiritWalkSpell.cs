@@ -6,7 +6,6 @@ public class SpiritWalkSpell : CastOnReleaseSpell
 {
 	public override void ConfigureSpellToPlayer (PlayerObject playerObject) {
 		base.ConfigureSpellToPlayer (playerObject);
-		previewObjectSprite.sprite = playerObject.wizardGameData.spellSchoolData.wizardData.spectralPreview;
 	}
 
 	public override void CastSpell () {

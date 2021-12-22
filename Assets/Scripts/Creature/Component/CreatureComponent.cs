@@ -41,6 +41,9 @@ public class CreatureComponent : MonoBehaviour, ICreatureComponent
 	public virtual void OnAttack (AttackInfo attackInfo) {
 
 	}
+	public virtual void OnAttackSpecial (AttackInfo attackInfo) {
+	
+	}
 	public virtual void OnHit (HitInfo hitInfo) {
 
 	}
@@ -54,6 +57,7 @@ public class CreatureComponent : MonoBehaviour, ICreatureComponent
 		creatureObject.OnSpawnEvent += OnSpawn;
 		creatureObject.OnDeathEvent += OnDeath;
 		creatureObject.OnAttackEvent += OnAttack;
+		creatureObject.OnAttackSpecialEvent += OnAttackSpecial;
 		creatureObject.OnHitEvent += OnHit;
 		creatureObject.OnAddDebuffEvent += OnAddDebuff;
 	}
@@ -62,6 +66,7 @@ public class CreatureComponent : MonoBehaviour, ICreatureComponent
 		creatureObject.OnSpawnEvent -= OnSpawn;
 		creatureObject.OnDeathEvent -= OnDeath;
 		creatureObject.OnAttackEvent -= OnAttack;
+		creatureObject.OnAttackSpecialEvent -= OnAttackSpecial;
 		creatureObject.OnHitEvent -= OnHit;
 		creatureObject.OnAddDebuffEvent -= OnAddDebuff;
 	}

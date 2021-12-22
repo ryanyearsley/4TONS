@@ -19,6 +19,10 @@ public class PlayerAudioComponent : PlayerComponent
 	public override void OnDash (DashInfo dashInfo) {
 		AudioManager.instance.PlaySound ("RollDodge");
 	}
+	public override void OnCastSpell (Spell spell, SpellCastType spellCastType) {
+		if (spell.spellData.spellCastSound != null)
+			AudioManager.instance.PlaySound (spell.spellData.spellCastSound.clipName);
+	}
 	public override void OnPickUpStaff (PuzzleKey region, PuzzleGameData puzzleGameData) {
 		AudioManager.instance.PlaySound ("StaffPickUp");
 	}

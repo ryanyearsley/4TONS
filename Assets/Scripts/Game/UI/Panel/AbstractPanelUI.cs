@@ -19,7 +19,7 @@ public class AbstractPanelUI : MonoBehaviour {
 		panelObject.SetActive (true);
 
 		if (GameManager.instance != null) {
-			GameManager.instance.UIChangeEvent += OnUIChange;
+			GameManager.instance.changeGameStateEvent += OnUIChange;
 		}
 
 		OnUIChange (GameState.LOADING);

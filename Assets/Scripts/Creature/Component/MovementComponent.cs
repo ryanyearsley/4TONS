@@ -72,6 +72,7 @@ public class MovementComponent : CreatureComponent {
 			CalculateVelocity (direction);
 			rb.MovePosition (rb.position + currentVelocity * Time.fixedDeltaTime);
 		} else {
+			CalculateSpeedMultipliers ();
 			creatureObject.SetVelocity (Vector2.zero);
 		}
 	}

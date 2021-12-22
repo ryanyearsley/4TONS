@@ -14,7 +14,7 @@ public class PursueTargetBehaviour : BabyBrainsBehaviour {
 		aStarUnit = GetComponentInParent<PathfindingComponent> ();
 	}
 	public override bool Valid (SensoryInfo sensoryInfo) {
-		if (sensoryInfo.targetVitals.trans != null
+		if (sensoryInfo.targetVitals != null
 			&& !sensoryInfo.targetVitals.creatureObject.isDead
 			&& sensoryInfo.isoDistanceToTarget < aggroDistance) {
 			return true;

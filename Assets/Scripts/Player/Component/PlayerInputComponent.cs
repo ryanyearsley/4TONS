@@ -56,7 +56,7 @@ namespace PlayerManagement {
 			playerMovementComponent.UpdateMovementInput (directionalInput, playerAimingController.CursorDirection);
 		}
 		private void AimingInput () {
-			
+			float sensitivity = rewiredController.controllers.maps.InputBehaviors [0].mouseXYAxisSensitivity;
 			joystickInput = new Vector2 (rewiredController.GetAxisRaw ("AimHorizontal"), rewiredController.GetAxisRaw ("AimVertical"));
 			mouseDelta = new Vector2 (rewiredController.GetAxis ("AimHorizontalMouse"), rewiredController.GetAxis ("AimVerticalMouse"));
 			if (playerObject.usingMouseControls) {
@@ -80,15 +80,17 @@ namespace PlayerManagement {
 				playerAimingController.JoystickAimingUpdate (joystickInput);
 		}
 		private void SpellInput () {
-			for (int spellIndex = 0; spellIndex <= 3; spellIndex++) {
-				string buttonName = "Spell" + spellIndex;
-				if (rewiredController.GetButton (buttonName))
-					playerSpellController.OnSpellButton (spellIndex);
-				if (rewiredController.GetButtonDown (buttonName)) {
-					playerSpellController.OnSpellButtonDown (spellIndex);
-				}
-				if (rewiredController.GetButtonUp (buttonName)) {
-					playerSpellController.OnSpellButtonUp (spellIndex);
+			if (playerObject.currentPlayerState == PlayerState.COMBAT) {
+				for (int spellIndex = 0; spellIndex <= 3; spellIndex++) {
+					string buttonName = "Spell" + spellIndex;
+					if (rewiredController.GetButton (buttonName))
+						playerSpellController.OnSpellButton (spellIndex);
+					if (rewiredController.GetButtonDown (buttonName)) {
+						playerSpellController.OnSpellButtonDown (spellIndex);
+					}
+					if (rewiredController.GetButtonUp (buttonName)) {
+						playerSpellController.OnSpellButtonUp (spellIndex);
+					}
 				}
 			}
 		}
@@ -131,7 +133,7 @@ namespace PlayerManagement {
 				playerPuzzleController.OnSwitchToSecondaryStaffButtonDown ();
 			}
 			if (rewiredController.GetButtonDown ("SwitchToAlternateStaff")) {
-				playerPuzzleController.OnSwitchToSecondaryStaffButtonDown ();
+				playerPuzzleController.OnSwitchToAlternateStaffButtonDown ();
 			}
 			ReInput.mapping.GetControllerMap (0);
 		}

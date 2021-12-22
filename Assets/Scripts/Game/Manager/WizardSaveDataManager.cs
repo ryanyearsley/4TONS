@@ -136,8 +136,15 @@ public class WizardSaveDataManager : MonoBehaviour {
 			}
 		}*/
 
-	public void DeleteWizardData (string wizardName) {
+	public void DeleteInfamousWizardData (string wizardName) {
 		string wizardFilePath = Application.persistentDataPath + "/infamous_wizards/" + wizardName + ".json";
+		if (File.Exists (wizardFilePath)) {
+			File.Delete (wizardFilePath);
+		}
+		infamousWizardSaveDatas = LoadInfamousWizardSavesJSON ();
+	}
+	public void DeleteInProgressWizard (string wizardName) {
+		string wizardFilePath = Application.persistentDataPath + "/gauntlet_wizards/" + wizardName + ".json";
 		if (File.Exists (wizardFilePath)) {
 			File.Delete (wizardFilePath);
 		}

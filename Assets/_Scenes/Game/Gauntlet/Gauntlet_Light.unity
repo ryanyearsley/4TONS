@@ -130,6 +130,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6656125902995721707, guid: 442d32cf33ba7f444a9cd79349e5c1b8, type: 3}
+      propertyPath: _elements.Array.data[1]._elements.Array.data[0]._name
+      value: UICursorSubmit
+      objectReference: {fileID: 0}
+    - target: {fileID: 6656125902995721707, guid: 442d32cf33ba7f444a9cd79349e5c1b8, type: 3}
+      propertyPath: _elements.Array.data[1]._elements.Array.data[0]._actionId
+      value: 49
+      objectReference: {fileID: 0}
     - target: {fileID: 7046919624631408275, guid: 442d32cf33ba7f444a9cd79349e5c1b8, type: 3}
       propertyPath: m_Name
       value: PersistentCanvas
@@ -275,14 +283,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PersistentManager (DDOL)
       objectReference: {fileID: 0}
-    - target: {fileID: 5045547284166057415, guid: b2e1dda71eeadfe4b89a0257e8788b67, type: 3}
-      propertyPath: defaultWizardData
-      value: 
-      objectReference: {fileID: 11400000, guid: 132ef5b8fd6f41e4fba57e66f842fe30, type: 2}
-    - target: {fileID: 6047757299098158316, guid: b2e1dda71eeadfe4b89a0257e8788b67, type: 3}
-      propertyPath: lightTowerSceneIndex
-      value: 4
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b2e1dda71eeadfe4b89a0257e8788b67, type: 3}
 --- !u!1001 &768547779
@@ -355,7 +355,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1583701276, guid: 192d6ed79cb25c342b26e0ebd313a237, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1583701276, guid: 192d6ed79cb25c342b26e0ebd313a237, type: 3}
+      propertyPath: m_UpscaleRT
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1583701276, guid: 192d6ed79cb25c342b26e0ebd313a237, type: 3}
       propertyPath: m_PixelSnapping
@@ -459,17 +463,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 192d6ed79cb25c342b26e0ebd313a237, type: 3}
---- !u!114 &1590531867 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 963191179, guid: 32b0764f7de3d8e41a8da209082b9b3a, type: 3}
-  m_PrefabInstance: {fileID: 2778314041578359443}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1272931494130310626
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -538,14 +531,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2015607, guid: 32b0764f7de3d8e41a8da209082b9b3a, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2778314041578359448, guid: 32b0764f7de3d8e41a8da209082b9b3a, type: 3}
-      propertyPath: leaderboardNameText
-      value: 
-      objectReference: {fileID: 1590531867}
     - target: {fileID: 2778314042028239092, guid: 32b0764f7de3d8e41a8da209082b9b3a, type: 3}
       propertyPath: m_Name
       value: GauntletCombatCanvas
@@ -637,14 +622,6 @@ PrefabInstance:
     - target: {fileID: 2778314042028239096, guid: 32b0764f7de3d8e41a8da209082b9b3a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3352277108663689035, guid: 32b0764f7de3d8e41a8da209082b9b3a, type: 3}
-      propertyPath: m_EffectDistance.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3352277108663689035, guid: 32b0764f7de3d8e41a8da209082b9b3a, type: 3}
-      propertyPath: m_EffectDistance.y
-      value: -0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 32b0764f7de3d8e41a8da209082b9b3a, type: 3}
@@ -758,6 +735,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3296669186561711075, guid: 4fd421e94e93ecf4bb2984fb5d16461f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8113259832178845256, guid: 4fd421e94e93ecf4bb2984fb5d16461f, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

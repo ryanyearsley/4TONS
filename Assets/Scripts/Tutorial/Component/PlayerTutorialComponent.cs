@@ -91,6 +91,7 @@ public class PlayerTutorialComponent : PlayerComponent {
 	}
 	//COMBAT
 	public override void OnAttack (AttackInfo attackInfo) {
+		Debug.Log ("PlayerTutorialComponent: OnAttack.");
 		if (attackInfo.spellData != null) {
 			if (attackInfo.spellData == autoBindSpellData) {
 				TutorialManager.instance.SetTaskComplete (TutorialTask.CAST_LEECHBOLT);
@@ -107,16 +108,12 @@ public class PlayerTutorialComponent : PlayerComponent {
 		TutorialManager.instance.SetTaskComplete (TutorialTask.DROP_SPELLGEM);
 	}
 
-	private bool primaryEquipped = false;
-	private bool secondaryEquipped = false;
 	public override void OnEquipStaff (PuzzleKey region, PuzzleGameData puzzleGameData, StaffEquipType equipType) {
 		if (equipType == StaffEquipType.MANUAL_SWAP) {
-			if (region == PuzzleKey.PRIMARY_STAFF && !primaryEquipped) {
-				primaryEquipped = true;
+			if (region == PuzzleKey.PRIMARY_STAFF) {
 				TutorialManager.instance.SetTaskComplete (TutorialTask.MANUAL_EQUIP_PRIMARY);
 
-			} else if (region == PuzzleKey.SECONDARY_STAFF && !secondaryEquipped) {
-				secondaryEquipped = true;
+			} else if (region == PuzzleKey.SECONDARY_STAFF) {
 				TutorialManager.instance.SetTaskComplete (TutorialTask.MANUAL_EQUIP_SECONDARY);
 			}
 		}

@@ -18,23 +18,22 @@ MonoBehaviour:
   id: 5400
   description: Spray fire in front of yourself, incinerating everything.
   icon: {fileID: 21300000, guid: f5a39483171970f4b86613b39c725d07, type: 3}
-  castObject: {fileID: 576230467533564272, guid: 6c3174bc060b49749a68dfbfbe2cdcdd, type: 3}
   manaCost: 0.5
   castTime: 0.15
   castSpeedReduction: 0.7
-  coolDown: 0.1
+  coolDown: 0.15
+  castObject: {fileID: 576230467533564272, guid: 6c3174bc060b49749a68dfbfbe2cdcdd, type: 3}
+  poolSize: 30
+  spellObject: {fileID: 5217744383755033205, guid: 4572ffb841d6f93438a593d20c3f17d8, type: 3}
   spellCastLocation: 0
   spellCastSound:
     clipName: asvgqawr
     singleClip: {fileID: 0}
-    randomize: 0
-    randomClips: []
     volume: 1
     pitch: 1
     mixerGroup: {fileID: -7302680629657921355, guid: 004a37a2c22918345b123859e614950a, type: 2}
     loop: 0
-    playOnAwake: 0
+    randomize: 0
+    randomClips: []
   spellEndSound: {fileID: 0}
-  spellObject: {fileID: 5217744383755033205, guid: 4572ffb841d6f93438a593d20c3f17d8, type: 3}
-  poolSize: 30
   puzzlePieceData: {fileID: 11400000, guid: c1b0d655888bbb442998fc5c3c462602, type: 2}

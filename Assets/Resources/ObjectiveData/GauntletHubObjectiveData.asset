@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f23d9d6a798cfa9429119b466ed6526f, type: 3}
   m_Name: GauntletHubObjectiveData
   m_EditorClassIdentifier: 
-  objectiveName: Hub
+  objective: 0
   playerObjectData: {fileID: 11400000, guid: 7505292d04f3608419afaf178b6440b3, type: 2}
   objectiveSpawnInfos:
   - spawnCount: 1
     setPieceData: {fileID: 11400000, guid: b73802c99c386d94cafbe5130da24257, type: 2}
   - spawnCount: 1
-    setPieceData: {fileID: 11400000, guid: 213cf1f206fb3e44a8a3efef9e56a432, type: 2}
-  - spawnCount: 1
     setPieceData: {fileID: 11400000, guid: e178e16aa25712d42ad514e6da234789, type: 2}
+  - spawnCount: 1
+    setPieceData: {fileID: 11400000, guid: 5d1b3bf8ec733304aa3f7af4cc45e65c, type: 2}

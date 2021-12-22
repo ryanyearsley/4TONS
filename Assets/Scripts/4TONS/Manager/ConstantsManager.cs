@@ -16,6 +16,7 @@ public class ConstantsManager : PersistentManager {
 	//Whenever a player is spawned, this agnostic wizard prefab is used...
 	//It is then overwritten by player's WizardSaveData (assigned in PlayerManager).
 	public CreatureData playerCreatureData;
+	public WizardPrebuildData defaultWizardData;
 
 
 
@@ -87,11 +88,11 @@ public class ConstantsManager : PersistentManager {
 		Dictionary<Zone, int> zoneIndexStartDictionary = new Dictionary<Zone, int>();
 		zoneIndexStartDictionary.Add (Zone.Generic, legend.GENERIC_INDEX_START);
 		zoneIndexStartDictionary.Add (Zone.Hub, legend.HUB_INDEX_START);
+		zoneIndexStartDictionary.Add (Zone.Light, legend.LIGHT_INDEX_START);
 		zoneIndexStartDictionary.Add (Zone.Dark, legend.DARK_INDEX_START);
-		zoneIndexStartDictionary.Add (Zone.Tutorial, legend.TUTORIAL_INDEX_START);
 		zoneIndexStartDictionary.Add (Zone.Fire, legend.FIRE_INDEX_START);
-		zoneIndexStartDictionary.Add (Zone.Ice, legend.LIGHT_INDEX_START);
-
+		zoneIndexStartDictionary.Add (Zone.Ice, legend.ICE_INDEX_START);
+		zoneIndexStartDictionary.Add (Zone.Tutorial, legend.TUTORIAL_INDEX_START);
 		//assign unique index to all worlddata objects
 		foreach (ZoneData zoneData in zones) {
 			int zoneIndexStart = zoneIndexStartDictionary [zoneData.zone];
@@ -117,10 +118,12 @@ public class ConstantsManager : PersistentManager {
 				tileData.id = zoneIndexStart + legend.TILE_INDEX_START + legend.BASE_DECOR_TILE_INDEX_START + i;
 				tileData.layer = TileLayer.BASE;
 			}
-			for (int i = 0; i < zoneData.floorTiles.Count; i++) {
-				TileData tileData = zoneData.floorTiles[i];
-				tileData.id = zoneIndexStart + legend.TILE_INDEX_START + legend.FLOORS_TILE_INDEX_START + i;
-				tileData.layer = TileLayer.FLOOR;
+			if (zoneData.floorData != null) {
+				for (int i = 0; i < zoneData.floorData.tiles.Count; i++) {
+					TileData tileData = zoneData.floorData.tiles[i];
+					tileData.id = zoneIndexStart + legend.TILE_INDEX_START + legend.FLOORS_TILE_INDEX_START + i;
+					tileData.layer = TileLayer.FLOOR;
+				}
 			}
 
 			for (int i = 0; i < zoneData.randomFloorDecorTiles.Count; i++) {

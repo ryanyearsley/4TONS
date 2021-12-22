@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour {
 	protected GameState unpauseResumeGameState;
 	
 
-	public event Action<GameState> UIChangeEvent;
+	public event Action<GameState> changeGameStateEvent;
 
 	private bool levelLoaded;
 	public void SetLevelLoaded () {
@@ -72,7 +72,7 @@ public class GameManager : MonoBehaviour {
 	private void ChangeGameState (GameState newGameState) { 
 		if (currentGameState != newGameState) {
 			currentGameState = newGameState;
-			UIChangeEvent?.Invoke (currentGameState);
+			changeGameStateEvent?.Invoke (currentGameState);
 		}
 	}
 	public void LoadLevel (int levelIndex) {
@@ -137,7 +137,7 @@ public class GameManager : MonoBehaviour {
 		}
 		if (gameOver) {
 			gameOverEvent?.Invoke (1);
-			UIChangeEvent?.Invoke (GameState.GAME_OVER);
+			changeGameStateEvent?.Invoke (GameState.GAME_OVER);
 		}
 	}
 
@@ -146,11 +146,11 @@ public class GameManager : MonoBehaviour {
 		if (!isPaused) {
 			Time.timeScale = 0;
 			unpauseResumeGameState = currentGameState;
-			UIChangeEvent?.Invoke (GameState.PAUSE);
+			changeGameStateEvent?.Invoke (GameState.PAUSE);
 			isPaused = true;
 		} else {
 			Time.timeScale = 1;
-			UIChangeEvent?.Invoke (unpauseResumeGameState);
+			changeGameStateEvent?.Invoke (unpauseResumeGameState);
 			isPaused = false;
 		}
 	}

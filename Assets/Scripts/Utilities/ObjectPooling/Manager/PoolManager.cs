@@ -136,7 +136,6 @@ public class PoolManager : MonoBehaviour {
 			// Dequeue then requeue the object then call the Objects Reuse function
 			PlayerObjectInstance objectToReuse = playerObjectPool.Dequeue ();
 			playerObjectPool.Enqueue (objectToReuse);
-
 			objectToReuse.Reuse (position, player);
 			return objectToReuse.go;
 	}

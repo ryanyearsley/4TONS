@@ -39,6 +39,10 @@ namespace NERDSTORM {
 			LoadSceneByIndex (menuSceneIndex);
 		}
 
+		public void LoadMenuInstant () {
+			LoadSceneInstant (menuSceneIndex);
+		}
+
 		public void LoadTutorial() {
 			LoadSceneByIndex (tutorialSceneIndex);
 		}
@@ -52,11 +56,18 @@ namespace NERDSTORM {
 			StartCoroutine (LoadSceneRoutine (index));
 		}
 
+		public void LoadSceneInstant (int index) {
+			//sceneTransitionEvent?.Invoke ();
+			SceneManager.LoadScene (index);
+		}
+
 		public IEnumerator LoadSceneRoutine (int index) {
+			if (GameManager.instance != null && GameManager.instance.isPaused) {
+				GameManager.instance.OnPause ();//unpauses game to allow for transition.
+			}
 			sceneTransitionEvent?.Invoke ();
 			yield return new WaitForSeconds (1f);//this allows fade-out screen to do it's thing lol
 			SceneManager.LoadScene (index);
-
 		}
 	}
 }

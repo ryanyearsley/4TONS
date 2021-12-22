@@ -8,7 +8,7 @@ public class AcquireTargetBehaviour : BabyBrainsBehaviour
 	public float acquireTargetDistance;
 
 	public override bool Valid (SensoryInfo sensoryInfo) {
-		if (sensoryInfo.targetVitals.trans == null && sensoryInfo.potentialTargetVitals != null)
+		if (sensoryInfo.targetVitals == null && sensoryInfo.potentialTargetVitals != null)
 			return true;
 		else return false;
 	}
@@ -17,12 +17,12 @@ public class AcquireTargetBehaviour : BabyBrainsBehaviour
 		base.OnTaskStart (sensoryInfo);
 		Debug.Log ("executing acquire target.");
 		VitalsEntity closestEnemy = null;
-		float closestEnemydistance = acquireTargetDistance;
+		float closestEnemyDistance = acquireTargetDistance;
 		foreach (VitalsEntity vitalsEntity in sensoryInfo.potentialTargetVitals) {
 			float enemyDistance = IsometricCoordinateUtilites.IsoDistanceBetweenPoints(sensoryInfo.trans.position, vitalsEntity.creatureObject.transform.position);
-			if (enemyDistance < closestEnemydistance) {
+			if (enemyDistance < closestEnemyDistance) {
 				closestEnemy = vitalsEntity;
-				closestEnemydistance = enemyDistance;
+				closestEnemyDistance = enemyDistance;
 			}
 		}
 		if (closestEnemy != null) {

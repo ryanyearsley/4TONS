@@ -24,8 +24,8 @@ public class HomingProjectileObject : ProjectileObject {
 		StartCoroutine (FindTargetRoutine ());
 	}
 
-	public override void FixedUpdate () {
-		base.FixedUpdate ();
+	public override void Update () {
+		base.Update ();
 
 		if (targetVitals != null) {
 			HomeTowardsTarget ();

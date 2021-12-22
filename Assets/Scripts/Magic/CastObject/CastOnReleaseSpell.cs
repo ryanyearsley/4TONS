@@ -24,27 +24,19 @@ public class CastOnReleaseSpell : Spell {
 	}
 
 	public override void SpellButtonDown () {
-		if (playerObject.currentPlayerState == PlayerState.COMBAT) {
+		if (!playerObject.usingMouseControls && playerObject.smartCursor)
+			playerObject.SetAimingMode (AimingMode.CURSOR);
 
-			if (!playerObject.usingMouseControls && playerObject.smartCursor)
-				playerObject.SetAimingMode (AimingMode.CURSOR);
-
-			previewObjectTransform.gameObject.SetActive (true);
-			previewObjectTransform.position = spellCastTransform.position;
-		}
+		previewObjectTransform.gameObject.SetActive (true);
+		previewObjectTransform.position = spellCastTransform.position;
 	}
 	public override void SpellButtonHold () {
+		previewObjectTransform.position = spellCastTransform.position;
 
-
-		if (playerObject.currentPlayerState == PlayerState.COMBAT) {
-
-			previewObjectTransform.position = spellCastTransform.position;
-
-			if (isCastEligible ()) {
-				previewObjectSprite.color = ConstantsManager.instance.validProjectedAoEColor;
-			} else {
-				previewObjectSprite.color = ConstantsManager.instance.invalidProjectedAoEColor;
-			}
+		if (isCastEligible ()) {
+			previewObjectSprite.color = ConstantsManager.instance.validProjectedAoEColor;
+		} else {
+			previewObjectSprite.color = ConstantsManager.instance.invalidProjectedAoEColor;
 		}
 	}
 
@@ -56,10 +48,12 @@ public class CastOnReleaseSpell : Spell {
 		if (!playerObject.usingMouseControls && playerObject.smartCursor)
 			playerObject.SetAimingMode (AimingMode.RADIAL);
 
+		HideProjection ();
+	}
 
+	private void HideProjection() {
 		previewObjectTransform.localPosition = Vector3.zero;
 		previewObjectTransform.gameObject.SetActive (false);
-
 	}
 
 	public override bool isCastEligible () {
@@ -75,6 +69,9 @@ public class CastOnReleaseSpell : Spell {
 		}
 		Debug.Log ("CastOnReleaseSpell: AoE can cast - raycast didn't hit object on layer mask");
 		return true;
+	}
+	public override void CancelCast () {
+		HideProjection ();
 	}
 	public override void CastSpell () {
 		base.CastSpell ();

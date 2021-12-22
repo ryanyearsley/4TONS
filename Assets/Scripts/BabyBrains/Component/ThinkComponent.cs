@@ -32,6 +32,8 @@ public class ThinkComponent : BabyBrainsComponent {
 
 	public LayerMask layerMask;
 
+	private Vector3 creatureBodyOFfset = new Vector3 (0, 0.325f, 0);
+
 
 	#region BabyBrainsComponent Callbacks
 /*
@@ -78,8 +80,9 @@ public class ThinkComponent : BabyBrainsComponent {
 		sensoryInfo.trans = this.transform;
 		sensoryInfo.lookTransform = new GameObject ("LookTransform").transform;
 		sensoryInfo.lookTransform.parent = sensoryInfo.trans;
-		sensoryInfo.lookTransform.localPosition = new Vector3 (0, 0.25f, 0);
+		sensoryInfo.lookTransform.localPosition = creatureBodyOFfset;
 		sensoryInfo.vitalsEntity = babyBrainsObject.vitalsEntity;
+		sensoryInfo.targetVitals = null;
 
 	}
 	private void SetUpBehaviours () {
@@ -125,11 +128,24 @@ public class ThinkComponent : BabyBrainsComponent {
 		if (sensoryInfo.vitalsEntity.resource != null) {
 			sensoryInfo.currentResource = babyBrainsObject.vitalsEntity.resource.GetValue ();
 		}
-		if (sensoryInfo.targetVitals.trans != null) {
-			sensoryInfo.isoDistanceToTarget = IsometricCoordinateUtilites.IsoDistanceBetweenPoints (sensoryInfo.trans.position, sensoryInfo.targetVitals.trans.position);
-			sensoryInfo.rawDistanceToTarget = IsometricCoordinateUtilites.RawDistanceBetweenPoints (sensoryInfo.trans, sensoryInfo.targetVitals.trans);
-			sensoryInfo.lookTransform.right = sensoryInfo.targetVitals.trans.position - sensoryInfo.trans.position;
-			sensoryInfo.targetWithinLoS = CalculateWithinLoS (sensoryInfo.lookTransform, sensoryInfo.targetVitals.trans);
+		if (sensoryInfo.targetVitals != null) {
+
+			if (!sensoryInfo.targetVitals.creatureObject.isDead) {
+				sensoryInfo.isoDistanceToTarget = IsometricCoordinateUtilites.IsoDistanceBetweenPoints (sensoryInfo.trans.position, sensoryInfo.targetVitals.trans.position);
+				sensoryInfo.rawDistanceToTarget = IsometricCoordinateUtilites.RawDistanceBetweenPoints (sensoryInfo.trans, sensoryInfo.targetVitals.trans);
+				sensoryInfo.lookTransform.right = (sensoryInfo.targetVitals.trans.position + creatureBodyOFfset) - sensoryInfo.trans.position;
+				sensoryInfo.targetWithinLoS = CalculateWithinLoS (sensoryInfo.lookTransform, sensoryInfo.targetVitals.trans);
+			} else {
+				sensoryInfo.targetVitals = null;
+				sensoryInfo.isoDistanceToTarget = 100;
+				sensoryInfo.rawDistanceToTarget = 100;
+				sensoryInfo.targetWithinLoS = false;
+				if (sensoryInfo.vitalsEntity.creatureObject.faceDirection >= 0) {
+					sensoryInfo.lookTransform.right = Vector3.right;
+				} else {
+					sensoryInfo.lookTransform.right = Vector3.left;
+				}
+			}
 		} else {
 			sensoryInfo.isoDistanceToTarget = 100;
 			sensoryInfo.rawDistanceToTarget = 100;

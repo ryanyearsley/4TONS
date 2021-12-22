@@ -88,6 +88,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spellData: {fileID: 11400000, guid: e81e2e8e87f63a7479ac5d8f261dc577, type: 2}
+  debrisPoolSize: 0
+  debrisObject: {fileID: 0}
   maxRange: 8
   previewObjectTransform: {fileID: 4082042041247961668}
   aoeMask:
@@ -164,7 +166,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2027962582880235600, guid: 1df8503682d40f14a8450bb77165df92, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cab3b61621e89d7489a23c7834c18a68, type: 3}
   m_Color: {r: 0.427451, g: 0.427451, b: 0.427451, a: 0.5372549}
   m_FlipX: 0
   m_FlipY: 0

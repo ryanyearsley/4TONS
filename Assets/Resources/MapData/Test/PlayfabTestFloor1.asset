@@ -17,6 +17,8 @@ MonoBehaviour:
   enemySpawnInfos:
   - spawnCountRange: {x: 1, y: 1}
     creatureData: {fileID: 11400000, guid: 217ed99b20a5ef84483df537037326ca, type: 2}
+  - spawnCountRange: {x: 1, y: 1}
+    creatureData: {fileID: 11400000, guid: f2a858c595dc31d4ab6153d8278630c9, type: 2}
   floorRollRange: {x: 0, y: 25}
-  seed: 637727563355178572
+  seed: 637746593920585421
   useCustomSeed: 0

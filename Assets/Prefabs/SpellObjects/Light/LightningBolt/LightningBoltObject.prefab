@@ -236,8 +236,29 @@ MonoBehaviour:
   lifeTime: 0.15
   lifeTimer: 0
   spellEffects: []
-  lineRenderer: {fileID: 4835404745279659283}
+  debrisPoolSize: 0
   debrisObject: {fileID: 1930889244971885074, guid: 65752b0c936f76e44b3da98d08a7107f, type: 3}
+  spellObjectSound:
+    clipName: 
+    singleClip: {fileID: 0}
+    volume: 1
+    pitch: 1
+    mixerGroup: {fileID: 0}
+    loop: 0
+    randomize: 0
+    randomClips: []
+  spellObjectDestroySound:
+    clipName: 
+    singleClip: {fileID: 0}
+    volume: 1
+    pitch: 1
+    mixerGroup: {fileID: 0}
+    loop: 0
+    randomize: 0
+    randomClips: []
+  raycastDistance: 60
+  lineRenderer: {fileID: 4835404745279659283}
   layerMask:
     serializedVersion: 2
     m_Bits: 9216
+  accuracy: 0

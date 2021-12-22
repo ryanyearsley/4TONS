@@ -16,7 +16,7 @@ MonoBehaviour:
   poolSize: 2
   outerClearance: 1
   school: 0
-  spawnObjectPrefab: {fileID: 3151322532891022119, guid: 28e6d1064bc229c4ab07c2e80570703b, type: 3}
+  spawnObjectPrefab: {fileID: 3151322532891022119, guid: 5726a48319eb5f1468c138d23d84b619, type: 3}
   creatureName: WoD
   maxHealth: 100
   maxResource: 100

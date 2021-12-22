@@ -10,7 +10,8 @@ public class AnimationComponent : CreatureComponent {
 
     const float HIT_ANIM_TIME_MIN = 0.2f;
     const float HIT_ANIM_TIME_MAX = 1f;
-    readonly AnimationHashID attackAnimID = new AnimationHashID("Attack");
+    readonly AnimationHashID attackAnimID = new AnimationHashID("Attack1");
+    readonly AnimationHashID specialAttackAnimID = new AnimationHashID("Attack2");
     readonly AnimationHashID hitAnimID = new AnimationHashID("Hit");
     readonly AnimationHashID deathAnimID = new AnimationHashID("Death");
     readonly AnimationHashID snapOutAnimID = new AnimationHashID("SnapOut");
@@ -52,7 +53,13 @@ public class AnimationComponent : CreatureComponent {
 
     public override void OnAttack (AttackInfo attackInfo) {
         if (!creatureObject.isDead) {
+            Debug.Log ("AnimationComponent: attack anim playing. Attack Time: " + attackInfo.attackTime);
             PlayTimedAnimation (attackAnimID, attackInfo.attackTime);
+        }
+    }
+    public override void OnAttackSpecial (AttackInfo attackInfo) {
+        if (!creatureObject.isDead) {
+            PlayTimedAnimation (specialAttackAnimID, attackInfo.attackTime);
         }
     }
     public override void OnHit (HitInfo hitInfo) {

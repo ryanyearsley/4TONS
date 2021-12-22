@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6998417985193740608}
   - component: {fileID: 3445943968809672274}
-  - component: {fileID: 338719542131416028}
   m_Layer: 9
   m_Name: DebrisObject(Leechbolt)
   m_TagString: Untagged
@@ -47,17 +46,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isAlive: 0
   lifeTime: 10
---- !u!210 &338719542131416028
-SortingGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5273009326846120377}
-  m_Enabled: 1
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
 --- !u!1 &6541770513240288271
 GameObject:
   m_ObjectHideFlags: 0
@@ -69,6 +57,7 @@ GameObject:
   - component: {fileID: 522299417813316726}
   - component: {fileID: 3724639881404332497}
   - component: {fileID: 917538377767653870}
+  - component: {fileID: 3795038578729319826}
   m_Layer: 9
   m_Name: Graphics
   m_TagString: Untagged
@@ -84,7 +73,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6541770513240288271}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.325, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6998417985193740608}
@@ -160,3 +149,14 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!210 &3795038578729319826
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6541770513240288271}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0

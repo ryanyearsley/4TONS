@@ -7,7 +7,7 @@ public class MapData : ScriptableObject {
 
 	//looks at which ever is present and acts accordingly.
 	public CustomMapData customMapData;
-	public MapGenerationData mapGenerationData;//one-piece floor object spawned at 0, 0 (includes front fascia) 
+	public MapGenerationData mapGenerationData;
 	
 	public CreatureSpawnInfo[] enemySpawnInfos;
 

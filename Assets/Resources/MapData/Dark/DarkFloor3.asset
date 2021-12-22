@@ -15,10 +15,10 @@ MonoBehaviour:
   customMapData: {fileID: 0}
   mapGenerationData: {fileID: 11400000, guid: 06ccb3e789cc56946a9ea232aa12a697, type: 2}
   enemySpawnInfos:
-  - spawnCountRange: {x: 10, y: 10}
+  - spawnCountRange: {x: 8, y: 8}
     creatureData: {fileID: 11400000, guid: 217ed99b20a5ef84483df537037326ca, type: 2}
-  - spawnCountRange: {x: 5, y: 5}
+  - spawnCountRange: {x: 4, y: 4}
     creatureData: {fileID: 11400000, guid: f2a858c595dc31d4ab6153d8278630c9, type: 2}
   floorRollRange: {x: 37, y: 78}
-  seed: 637703629907303923
+  seed: 637738841214067664
   useCustomSeed: 0

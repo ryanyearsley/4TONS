@@ -23,7 +23,7 @@ public class ZoneData : ScriptableObject {
 	public TileData baseBlankTopTile;
 	public TileData borderTile;
 	public GameObject destructionDebrisObject;
-	public List<TileData> floorTiles;//All remaining standard flooring is overriden with random from this.
+	public RandomSelectTileData floorData;
 	public List<TileData> randomFloorDecorTiles;//non-obstructive random floor tiles i.e. grass
 	public List<TileData> surroundingDecorTiles;//non-obstructive floor tiles surrounding objects, i.e. flowers
 	public List<TileData> baseDecorTiles;//placed on floor tiles, but clears base around.

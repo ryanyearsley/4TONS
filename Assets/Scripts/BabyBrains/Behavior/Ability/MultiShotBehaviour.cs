@@ -25,6 +25,7 @@ public class MultiShotBehaviour : RangedAttackBehaviour {
 			sensoryInfo.vitalsEntity.creatureObject.AddSpeedEffect (sae);
 			sensoryInfo.vitalsEntity.creatureObject.OnAttack (new AttackInfo (ExecutionTime, castSpeedPenaltyMultiplier));
 			float randomRotation = Random.Range(-spread, spread);
+			Quaternion shotRotation = new Quaternion(0, 0, sensoryInfo.lookTransform.rotation.z + randomRotation, 0);
 			PoolManager.instance.ReuseSpellObject (rangedProjectilePrefab, sensoryInfo.lookTransform.position, sensoryInfo.lookTransform.rotation, sensoryInfo.vitalsEntity);
 			yield return new WaitForSeconds (shotInterval);
 		}

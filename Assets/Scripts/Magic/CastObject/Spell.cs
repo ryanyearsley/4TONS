@@ -103,6 +103,9 @@ public abstract class Spell : MonoBehaviour {
 	public virtual void SpellButtonUp () {
 
 	}
+	public virtual void CancelCast() {
+
+	}
 	public virtual void CastSpell () {
 		playerObject.OnCastSpell (this, SpellCastType.CAST);
 		cdTimer = spellData.coolDown;

@@ -22,11 +22,11 @@ public class ProjectileObject : SpellObject {
 	}
 
 
-	public virtual void FixedUpdate () {
-
+	public override void Update () {
+		base.Update ();
 		if (isAlive) {
 			currentMoveSpeed = CalculateMoveSpeed ();
-			transform.Translate (Vector2.right * currentMoveSpeed * Time.fixedDeltaTime);
+			transform.Translate (Vector2.right * currentMoveSpeed * Time.deltaTime);
 		}
 	}
 
@@ -34,7 +34,7 @@ public class ProjectileObject : SpellObject {
 		base.OnEnemyHit (enemyVitals);
 		Destroy ();
 	}
-	public override void OnWallHit () {
+	public override void OnWallHit (Collider2D otherCollider) {
 		Destroy ();
 	}
 
@@ -42,10 +42,10 @@ public class ProjectileObject : SpellObject {
 		damageEffect.OnBarrierHit (barrierObject);
 		Destroy ();
 	}
+
 	public override void TerminateObjectFunctions () {
-		//LevelManager.instance.DestroyEnvironment (floorPosition, 2);
 		if (debrisObject != null) {
-			PoolManager.instance.ReuseObject (debrisObject, trans.position + (Vector3.down * 0.325f), Quaternion.identity);
+			PoolManager.instance.ReuseObject (debrisObject, trans.position, Quaternion.identity);
 		}
 		base.TerminateObjectFunctions ();
 	}

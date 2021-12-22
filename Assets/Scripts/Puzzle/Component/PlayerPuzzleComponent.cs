@@ -98,7 +98,7 @@ public class PlayerPuzzleComponent : PlayerComponent {
 		playerObject.movingSpellGemData = movingSpellGemGameData;
 		playerObject.highlightedSpellGemData = highlightedSpellGemGameData;
 		revertInfo = new SpellGemRevertInfo (PuzzleKey.OUTSIDE_BOUNDS, movingSpellGemGameData);
-		playerObject.OnChangePlayerState (PlayerState.PUZZLE_MOVING_SPELLGEM);
+		playerObject.ChangePlayerState (PlayerState.PUZZLE_MOVING_SPELLGEM);
 	}
 
 	public override void OnBindSpellGem (PuzzleGameData puzzleGameData, SpellGemGameData spellGemGameData, PuzzleBindType bindType) {
@@ -137,18 +137,18 @@ public class PlayerPuzzleComponent : PlayerComponent {
 	public void OnTogglePuzzleMenuButtonDown (PlayerState playerState) {
 		switch (playerState) {
 			case (PlayerState.COMBAT): {
-					playerObject.OnChangePlayerState (PlayerState.PUZZLE_BROWSING);
+					playerObject.ChangePlayerState (PlayerState.PUZZLE_BROWSING);
 					break;
 				}
 			case (PlayerState.PUZZLE_BROWSING): {
-					playerObject.OnChangePlayerState (PlayerState.COMBAT);
+					playerObject.ChangePlayerState (PlayerState.COMBAT);
 					break;
 				}
 			case (PlayerState.PUZZLE_MOVING_SPELLGEM): {
 					//return spellgem to previous position
 
 					RevertCurrentSpellGemMovement ();
-					playerObject.OnChangePlayerState (PlayerState.COMBAT);
+					playerObject.ChangePlayerState (PlayerState.COMBAT);
 					break;
 				}
 		}
@@ -179,7 +179,7 @@ public class PlayerPuzzleComponent : PlayerComponent {
 			case (PlayerState.PUZZLE_BROWSING): {
 					if (highlightedSpellGemGameData != null && wizardGameData.puzzleGameDataDictionary.ContainsKey (highlightedCursorLocation.puzzleKey)) {
 						playerObject.UnbindSpellGem (wizardGameData.puzzleGameDataDictionary [highlightedCursorLocation.puzzleKey], highlightedSpellGemGameData, PuzzleUnbindType.TO_HAND);
-						playerObject.OnChangePlayerState (PlayerState.PUZZLE_MOVING_SPELLGEM);
+						playerObject.ChangePlayerState (PlayerState.PUZZLE_MOVING_SPELLGEM);
 					}
 					break;
 				}
@@ -267,7 +267,7 @@ public class PlayerPuzzleComponent : PlayerComponent {
 						//Save Data is assigned to a puzzle grouping.
 						playerObject.UnbindSpellGem (wizardGameData.puzzleGameDataDictionary [highlightedCursorLocation.puzzleKey], droppingGemGameData, PuzzleUnbindType.TO_FLOOR);
 						playerObject.DropSpellGem (droppingGemGameData);
-						playerObject.OnChangePlayerState (PlayerState.PUZZLE_BROWSING);
+						playerObject.ChangePlayerState (PlayerState.PUZZLE_BROWSING);
 					}
 					break;
 				}
@@ -275,7 +275,7 @@ public class PlayerPuzzleComponent : PlayerComponent {
 					//Save Data is not assigned to any puzzle grouping in this state.
 					if (movingSpellGemGameData != null) {
 						playerObject.DropSpellGem (movingSpellGemGameData);
-						playerObject.OnChangePlayerState (PlayerState.PUZZLE_BROWSING);
+						playerObject.ChangePlayerState (PlayerState.PUZZLE_BROWSING);
 					}
 					break;
 				}

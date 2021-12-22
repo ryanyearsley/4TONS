@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealHurtAllyBehaviour : BabyBrainsBehaviour {
+public class HealHurtAllyBehaviour : InterruptableCastBehaviour {
 	[SerializeField]
 	private float healAmount = 20f;
 	[SerializeField]
@@ -67,12 +67,15 @@ public class HealHurtAllyBehaviour : BabyBrainsBehaviour {
 
 	public override void OnTaskStart (SensoryInfo sensoryInfo) {
 		base.OnTaskStart (sensoryInfo);
-		Debug.Log ("executing Heal ally.");
+		SpeedAlteringEffect sae = new SpeedAlteringEffect(castSpeedPenaltyMultiplier, ExecutionTime, true);
+		sensoryInfo.vitalsEntity.creatureObject.AddSpeedEffect (sae);
+		sensoryInfo.vitalsEntity.creatureObject.OnAttackSpecial (new AttackInfo (ExecutionTime, castSpeedPenaltyMultiplier));
+	}
+
+	public override void ExecuteInterruptableTask (SensoryInfo sensoryInfo) {
 		if (closestHurtAllyVitals != null) {
-			Debug.Log ("Heal Caster ID: " + sensoryInfo.vitalsEntity.creatureObject.GetInstanceID ());
 			Vector3 spawnPosition = closestHurtAllyVitals.creatureObject.transform.position;
 			closestHurtAllyVitals.health.Heal (healAmount);
-			Debug.Log ("Healing enemy object ID: " + closestHurtAllyVitals.creatureObject.GetInstanceID ());
 			PoolManager.instance.ReuseObject (healAnimationPrefab, closestHurtAllyVitals.creatureObject.transform.position, Quaternion.identity);
 
 			if (sensoryInfo.vitalsEntity.resource != null) {
@@ -81,8 +84,6 @@ public class HealHurtAllyBehaviour : BabyBrainsBehaviour {
 			SpeedAlteringEffect sae = new SpeedAlteringEffect(castSpeedPenaltyMultiplier, ExecutionTime, true);
 			sensoryInfo.vitalsEntity.creatureObject.AddSpeedEffect (sae);
 			sensoryInfo.vitalsEntity.creatureObject.OnAttack (new AttackInfo (ExecutionTime, castSpeedPenaltyMultiplier));
-
-
 		}
 	}
 }

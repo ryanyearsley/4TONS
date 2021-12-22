@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a701196f12370941a9b69b34871811b, type: 3}
+  m_Name: SwiftnessTotemSpellData
+  m_EditorClassIdentifier: 
+  spellName: Swiftness Totem
+  spellSchool: 2
+  spellSchoolData: {fileID: 11400000, guid: 4e7855788b47e6242848d147b41e03ae, type: 2}
+  id: 5400
+  description: Spray fire in front of yourself, incinerating everything.
+  icon: {fileID: 21300000, guid: d527801b6adebb544afb9f4091699fb0, type: 3}
+  manaCost: 5
+  castTime: 0.3
+  castSpeedReduction: 0.9
+  coolDown: 5
+  castObject: {fileID: 576230467533564272, guid: d9fe7978e72041643b87ac5b697a27a5, type: 3}
+  poolSize: 4
+  spellObject: {fileID: 7184398735751379231, guid: d543825cf5e85b940ab35fe95cb47338, type: 3}
+  spellCastLocation: 1
+  spellCastSound:
+    clipName: 
+    singleClip: {fileID: 0}
+    volume: 1
+    pitch: 1
+    mixerGroup: {fileID: -7302680629657921355, guid: 004a37a2c22918345b123859e614950a, type: 2}
+    loop: 0
+    randomize: 0
+    randomClips: []
+  spellEndSound: {fileID: 0}
+  puzzlePieceData: {fileID: 11400000, guid: 1f6dac31c4885b547a4513d88c4b8610, type: 2}

@@ -44,7 +44,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spellData: {fileID: 11400000, guid: 558584ede83939345aea1475ca93588c, type: 2}
-  totalHeal: 20
+  debrisPoolSize: 0
+  debrisObject: {fileID: 0}
+  totalHeal: 35
   healTimeDuration: 5
   healInterval: 0.5
   corpseObject: {fileID: 5273009326846120377, guid: 9fe5fe9ab50177540b3df58b9779bfb9, type: 3}

@@ -45,6 +45,14 @@ public class PlayerSpellComponent : PlayerComponent {
 			OnBindSpellGem (puzzleGameData, spellGemGameData, PuzzleBindType.MANUAL);
 		}
 	}
+	public override void OnChangePlayerState (PlayerState playerState) {
+		for (int i = 0; i < currentSpellBindingDictionary.Count; i++) {
+			Spell spell = currentSpellBindingDictionary [i];
+			if (spell != null ) {
+				spell.CancelCast ();
+			}
+		}
+	}
 
 	public override void OnPickUpStaff (PuzzleKey region, PuzzleGameData puzzleGameData) {
 		playerObject.playerUI.OnPickUpStaff (region, puzzleGameData);

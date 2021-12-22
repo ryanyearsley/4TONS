@@ -132,7 +132,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6656125902995721707, guid: 442d32cf33ba7f444a9cd79349e5c1b8, type: 3}
       propertyPath: _elements.Array.data[1]._elements.Array.data[0]._name
-      value: UICursorSubmit
+      value: UI Cursor Submit
       objectReference: {fileID: 0}
     - target: {fileID: 6656125902995721707, guid: 442d32cf33ba7f444a9cd79349e5c1b8, type: 3}
       propertyPath: _elements.Array.data[1]._elements.Array.data[0]._actionId
@@ -529,7 +529,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2778314042028239092, guid: 32b0764f7de3d8e41a8da209082b9b3a, type: 3}
       propertyPath: m_Name
-      value: GauntletCombatCanvas
+      value: CombatCanvas
       objectReference: {fileID: 0}
     - target: {fileID: 2778314042028239096, guid: 32b0764f7de3d8e41a8da209082b9b3a, type: 3}
       propertyPath: m_Pivot.x

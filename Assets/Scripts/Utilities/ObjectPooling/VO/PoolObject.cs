@@ -20,7 +20,6 @@ public class PoolObject : MonoBehaviour, IPoolable {
     }
 	public virtual void Destroy (float time) {
 		if (time <= 0) {
-			TerminateObjectFunctions ();
 			gameObject.SetActive (false);
 		} else
 			StartCoroutine (DestroyAfter (time));
@@ -28,8 +27,10 @@ public class PoolObject : MonoBehaviour, IPoolable {
 
 	private IEnumerator DestroyAfter (float time) {
 		yield return new WaitForSeconds (time);
-		TerminateObjectFunctions ();
-		gameObject.SetActive (false);
+		if (gameObject.activeInHierarchy) {
+			TerminateObjectFunctions ();
+			gameObject.SetActive (false);
+		}
 	}
 
 	public virtual void TerminateObjectFunctions () {

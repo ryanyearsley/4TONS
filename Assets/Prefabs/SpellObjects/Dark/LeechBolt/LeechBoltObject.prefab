@@ -242,7 +242,7 @@ MonoBehaviour:
   debrisObject: {fileID: 5273009326846120377, guid: defd0a297a2fc5c4e8787c3d191318cf, type: 3}
   spellObjectSound:
     clipName: 
-    singleClip: {fileID: 8300000, guid: f1215d77d46258e46a99226c1cea673f, type: 3}
+    singleClip: {fileID: 8300000, guid: aa8e143d3d77c2d45a5c04a1f2dfbad3, type: 3}
     volume: 1
     pitch: 1
     mixerGroup: {fileID: -7302680629657921355, guid: 004a37a2c22918345b123859e614950a, type: 2}

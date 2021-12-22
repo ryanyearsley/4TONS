@@ -19,7 +19,7 @@ public class PortalController : InteractableObject {
 	public override void ReuseObject () {
 		SubscribeToEvents ();
 		opened = false;
-		animator.SetTrigger ("close");
+		animator.SetTrigger ("lock");
 		portalCollider.SetNonInteractable ();
 	}
 

@@ -247,7 +247,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   behaviourData: {fileID: 11400000, guid: 272a7ba03a6aa264798e6939f733ad8c, type: 2}
   ExecutionTime: 1
-  Cooldown: 5
+  Cooldown: 7
   _started: 0
   _finished: 0
   resourceCost: 8
@@ -255,9 +255,9 @@ MonoBehaviour:
   minAttackDistance: 1
   maxAttackDistance: 7.5
   rangedProjectilePrefab: {fileID: 5349493896159913635, guid: b69c46467d87b624db55627dc8a16548, type: 3}
-  spread: 5
-  shotCount: 4
-  shotInterval: 0.25
+  spread: 60
+  shotCount: 7
+  shotInterval: 0.15
 --- !u!114 &3092602356733019838
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -462,6 +462,7 @@ MonoBehaviour:
   isometricScaling: {x: 1, y: 0.5}
   acceleration: 0.1
   feetCollider: {fileID: 9091831058806863668}
+  speedEffects: []
 --- !u!114 &5729911020769528311
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -577,8 +578,8 @@ MonoBehaviour:
   turnSpeed: 5
   turnDistance: 0.25
   targetTransform: {fileID: 0}
-  targetPosition: {x: 0, y: 0, z: 0}
   targetType: 0
+  isOnAutoFollow: 0
 --- !u!114 &4961063570847371997
 MonoBehaviour:
   m_ObjectHideFlags: 0

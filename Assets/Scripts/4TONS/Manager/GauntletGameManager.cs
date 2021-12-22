@@ -75,7 +75,7 @@ public class GauntletGameManager : MonoBehaviour {
 				UpdateDeathCount ();
 			}
 		} else {
-			Debug.LogError ("GauntletGameManager: Cannot register enemy. Reason: Already registered.");
+			Debug.Log ("GauntletGameManager: Cannot register enemy. Reason: Already registered.");
 		}
 	}
 

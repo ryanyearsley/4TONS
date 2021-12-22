@@ -50,6 +50,26 @@ MonoBehaviour:
   lifeTime: 1
   lifeTimer: 0
   spellEffects: []
+  debrisPoolSize: 2
+  debrisObject: {fileID: 5273009326846120377, guid: e8651459df4079143ba2390230b829ca, type: 3}
+  spellObjectSound:
+    clipName: 
+    singleClip: {fileID: 0}
+    volume: 1
+    pitch: 1
+    mixerGroup: {fileID: 0}
+    loop: 0
+    randomize: 0
+    randomClips: []
+  spellObjectDestroySound:
+    clipName: 
+    singleClip: {fileID: 0}
+    volume: 1
+    pitch: 1
+    mixerGroup: {fileID: 0}
+    loop: 0
+    randomize: 0
+    randomClips: []
   moveSpeed: 10
   speedCurve:
     serializedVersion: 2
@@ -75,7 +95,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  debrisObject: {fileID: 5273009326846120377, guid: e8651459df4079143ba2390230b829ca, type: 3}
   moveSpeedVariation: 2
   spreadRange: 25
   spriteRenderer: {fileID: 8794875045630506511}

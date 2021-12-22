@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: NecromancerData
   m_EditorClassIdentifier: 
   id: 3301
-  poolSize: 3
+  poolSize: 10
   outerClearance: 1
   school: 1
   spawnObjectPrefab: {fileID: 8036647390902012779, guid: c045fa55be8674649beb4b0b6ead0d50, type: 3}

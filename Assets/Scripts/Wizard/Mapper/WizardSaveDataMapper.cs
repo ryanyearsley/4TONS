@@ -9,6 +9,7 @@ public class WizardSaveDataMapper
 		WizardSaveData wizardSaveData = new WizardSaveData();
 		wizardSaveData.wizardName = wizardGameData.wizardName;
 		wizardSaveData.spellSchoolData = wizardGameData.spellSchoolData;
+		wizardSaveData.wizardData = wizardGameData.spellSchoolData.wizardData;
 		if (wizardGameData.puzzleGameDataDictionary.ContainsKey(PuzzleKey.INVENTORY)) {
 			wizardSaveData.inventorySaveData = (wizardGameData.puzzleGameDataDictionary [PuzzleKey.INVENTORY].MapToSaveData());
 		}

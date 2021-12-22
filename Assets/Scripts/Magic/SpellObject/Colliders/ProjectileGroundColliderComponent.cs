@@ -9,6 +9,6 @@ public class ProjectileGroundColliderComponent : MonoBehaviour {
 	}
 	protected virtual void OnTriggerEnter2D (Collider2D other) {
 		Debug.Log ("projectile hit environment: " + other.gameObject.name);
-		projectileObject.OnWallHit ();
+		projectileObject.OnWallHit (other);
 	}
 }

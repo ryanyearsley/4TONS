@@ -15,7 +15,7 @@ public class ProjectileHitboxColliderComponent : MonoBehaviour {
 				//apply spell effects
 				projectileObject.OnEnemyHit (hitTargetEntity);
 			} else if (other.gameObject.layer == 13) {//environment
-				projectileObject.OnWallHit ();
+				projectileObject.OnWallHit (other);
 			} else if (other.gameObject.layer == 17) {//barrier 
 				projectileObject.OnBarrierHit (other.transform.parent.GetComponent<BarrierObject>());
 			}
