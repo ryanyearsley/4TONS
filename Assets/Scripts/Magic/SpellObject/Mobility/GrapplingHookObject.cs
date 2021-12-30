@@ -41,6 +41,7 @@ public class GrapplingHookObject : ProjectileObject {
 
 	}
 	public override void Update () {
+		base.Update ();
 		if (isAlive) {
 			lineRenderer.SetPosition (0, playerAnchorTransform.position);
 			lineRenderer.SetPosition (1, projectileAnchorTransform.position);

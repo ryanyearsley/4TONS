@@ -34,7 +34,6 @@ public class PlayerAudioComponent : PlayerComponent
 			AudioManager.instance.PlaySound ("StaffSwitch");
 		}
 	}
-
 	public override void OnPickUpSpellGem (SpellGemGameData spellGemGameData) {
 		AudioManager.instance.PlaySound ("GemPickUp");
 	}
@@ -47,7 +46,6 @@ public class PlayerAudioComponent : PlayerComponent
 	public override void OnBindSpellGem (PuzzleGameData puzzleGameData, SpellGemGameData spellGameData, PuzzleBindType bindType) {
 		AudioManager.instance.PlaySound ("GemBind");
 	}
-
 	public override void OnUnbindSpellGem (PuzzleGameData puzzleGameData, SpellGemGameData spellGameData, PuzzleUnbindType unbindType) {
 		AudioManager.instance.PlaySound ("GemUnbind");
 	}

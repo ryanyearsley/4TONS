@@ -48,7 +48,11 @@ public class HarvestSoulCast : Spell {
 		float manaRegenPerTick = totalManaRegen / tickCount;
 
 		for (int i = 0; i < tickCount; i++) {
-			playerObject.vitalsEntity.resource.RegenerateMana (manaRegenPerTick);
+			if (!playerObject.isDead) {
+				playerObject.vitalsEntity.resource.RegenerateMana (manaRegenPerTick);
+			} else {
+				StopCoroutine (ManaOverTimeRoutine ());
+			}
 			yield return new WaitForSeconds (manaRegenInterval);
 		}
 	}

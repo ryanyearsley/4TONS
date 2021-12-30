@@ -12,13 +12,10 @@ public class CreatureAudioComponent : CreatureComponent {
 		source = GetComponent<AudioSource> ();
 		clipsPackage = creatureObject.creatureData.creatureAudio;
 	}
-
-
-
 	public override void OnAttack (AttackInfo attackInfo) {
 		if (clipsPackage.attackSound != null) {
 			source.Stop ();
-			source.PlayOneShot (clipsPackage.attackSound);
+			source.PlayOneShot (clipsPackage.attackClip);
 		}
 	}
 	public override void OnHit (HitInfo hitInfo) {
@@ -38,7 +35,7 @@ public class CreatureAudioComponent : CreatureComponent {
 		}
 	}
 
-	public void PlaySound(AudioClip audioClip) {
+	public void PlaySound (AudioClip audioClip) {
 		source.Stop ();
 		source.PlayOneShot (audioClip);
 	}

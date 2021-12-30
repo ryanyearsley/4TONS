@@ -13,7 +13,8 @@ public class CreatureData : SpawnObjectData {
 
 [Serializable]
 public class CreatureAudio {
-	public AudioClip attackSound;
+	public Sound attackSound;
+	public AudioClip attackClip;
 	public AudioClip gruntSound;
 	public AudioClip deathSound;
 	public AudioClip happySound;

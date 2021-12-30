@@ -71,6 +71,9 @@ public class ThinkComponent : BabyBrainsComponent {
 
 	private void StopThinking () {
 		isThinking = false;
+		if (sensoryInfo.currentAbilityTask != null) {
+			sensoryInfo.currentAbilityTask.InterruptBehaviour ();
+		}
 		StopCoroutine (ThinkRoutine ());
 	}
 	#endregion
@@ -201,8 +204,6 @@ public class ThinkComponent : BabyBrainsComponent {
 			BabyBrainsBehaviour bestPotentialMovement = PreviewBestValid(movementBehaviourPq);
 			if (bestPotentialMovement != null) {
 				if (bestPotentialMovement.behaviourData.Weight < sensoryInfo.currentMovementTask.behaviourData.Weight) {
-
-					Debug.Log ("ThinkComponent: A better movement behaviour has been detected. Switching behaviours.");
 					EndTask (sensoryInfo.currentMovementTask);
 					sensoryInfo.currentMovementTask = bestPotentialMovement;
 					bestPotentialMovement.OnTaskStart (sensoryInfo);
@@ -210,10 +211,8 @@ public class ThinkComponent : BabyBrainsComponent {
 					invalidatedBehaviours.Add (bestPotentialMovement);
 				}
 			}
-			Debug.Log ("ThinkComponent: updating current movement task");
 			sensoryInfo.currentMovementTask.UpdateBehaviour (sensoryInfo, thinkInterval);
 			if (sensoryInfo.currentMovementTask.Finished ()) {
-				Debug.Log ("ThinkComponent: Movement Task finished. Task name: " + sensoryInfo.currentMovementTask.behaviourData.behaviourName);
 				EndTask (sensoryInfo.currentMovementTask);
 				sensoryInfo.currentMovementTask = null;
 				sensoryInfo.currentMovementTask = AttemptBestTask (movementBehaviourPq);

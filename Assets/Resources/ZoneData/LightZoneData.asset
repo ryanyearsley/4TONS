@@ -86,7 +86,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: fc72b557e96e8f547a645fbde1db0870, type: 2}
   lootTableData: {fileID: 11400000, guid: 8e453ecbddb9a0546a8c70b3d98af0ec, type: 2}
   mapDatas:
-  - {fileID: 11400000, guid: 9a2b88203333f3d42962a9a655325371, type: 2}
+  - {fileID: 11400000, guid: 2c43c1dc81226d44e9385ba64c9d9169, type: 2}
   - {fileID: 11400000, guid: 49ee74fa895ee254db67f59e9ebb4aea, type: 2}
   - {fileID: 11400000, guid: 6b562dc7106d13b49bf0bec257ddec82, type: 2}
   - {fileID: 11400000, guid: ea0c2cbee0d5e3649983298baa992c09, type: 2}

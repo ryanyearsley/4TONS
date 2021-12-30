@@ -31,7 +31,7 @@ public class RotatingProjectileObject : ProjectileObject {
 		base.Update ();
 		if (isAlive) {
 			float currentRotateSpeed = rotateCurve.Evaluate(lifeTimer/lifeTime) * rotateSpeed;
-			rotatingTransform.Rotate (new Vector3 (0, 0, currentRotateSpeed * directionModifier * Time.fixedDeltaTime), Space.Self);
+			rotatingTransform.Rotate (new Vector3 (0, 0, currentRotateSpeed * directionModifier * Time.deltaTime), Space.Self);
 
 		}
 	}

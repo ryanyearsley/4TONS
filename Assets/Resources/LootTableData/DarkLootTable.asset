@@ -17,7 +17,7 @@ MonoBehaviour:
     spellData: {fileID: 11400000, guid: 2d3465d624cf7c743abbbaf28fec6fc3, type: 2}
   - spellGemRollRange: {x: 0, y: 25}
     spellData: {fileID: 11400000, guid: d75a0e919248f2a49ab12f364c493069, type: 2}
-  - spellGemRollRange: {x: 14, y: 25}
+  - spellGemRollRange: {x: 0, y: 25}
     spellData: {fileID: 11400000, guid: 558584ede83939345aea1475ca93588c, type: 2}
   - spellGemRollRange: {x: 26, y: 40}
     spellData: {fileID: 11400000, guid: 3b716e754480f0c48a677ce4c4d2bf3b, type: 2}

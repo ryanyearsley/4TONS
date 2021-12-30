@@ -59,6 +59,7 @@ MonoBehaviour:
   castSpeedPenaltyMultiplier: 0.75
   minAttackDistance: 2
   maxAttackDistance: 8
+  poolSize: 5
   rangedProjectilePrefab: {fileID: 5217744383755033205, guid: aeb80b37df5654a4cb1b489fb0bc4932, type: 3}
 --- !u!114 &4136038626074776131
 MonoBehaviour:

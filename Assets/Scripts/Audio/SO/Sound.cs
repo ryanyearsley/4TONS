@@ -4,10 +4,7 @@ using UnityEngine.Audio;
 
 [System.Serializable]
 public class Sound  {
-
-
 	private AudioSource source;
-
 	public string clipName;
 	public AudioClip singleClip;
 

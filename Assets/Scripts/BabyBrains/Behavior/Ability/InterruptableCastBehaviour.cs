@@ -30,7 +30,12 @@ public class InterruptableCastBehaviour : BabyBrainsBehaviour
         castIndicatorUI.UpdateCastIndicator (executionTimer / ExecutionTime * 100);
     }
 
-    public virtual void ExecuteInterruptableTask(SensoryInfo sensoryInfo) {
+	public override void InterruptBehaviour () {
+        base.InterruptBehaviour ();
+        castIndicatorUI.HideCastIndicator ();
+    }
+
+	public virtual void ExecuteInterruptableTask(SensoryInfo sensoryInfo) {
 
 	}
     public override void OnTaskEnd () {

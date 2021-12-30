@@ -33,9 +33,7 @@ public class AoEObject : SpellObject {
 	}
 
 	protected virtual void EnemyTick (VitalsEntity vitalsEntity) {
-		Debug.Log ("AoEObject: Enemy tick");
 		if (vitalsEntity.creatureObject.isDead) {
-			Debug.Log ("AoEObject: DEATH DETECTED! Removing from list.");
 			inAreaTargets.Remove (vitalsEntity);
 		} else {
 			OnEnemyHit (vitalsEntity);
@@ -53,7 +51,6 @@ public class AoEObject : SpellObject {
 		inAreaTargets.Add (enemyVitals);
 	}
 	public virtual void OnEnemyExit (VitalsEntity enemyVitals) {
-		Debug.Log ("AoEObject: OnEnemyExit");
 		inAreaTargets.Remove (enemyVitals);
 	}
 

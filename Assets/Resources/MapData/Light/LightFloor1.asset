@@ -17,7 +17,7 @@ MonoBehaviour:
   enemySpawnInfos:
   - spawnCountRange: {x: 2, y: 2}
     creatureData: {fileID: 11400000, guid: 25564811f1a3005478f7b971d620ce3e, type: 2}
-  - spawnCountRange: {x: 2, y: 2}
+  - spawnCountRange: {x: 3, y: 3}
     creatureData: {fileID: 11400000, guid: 99254d1eeda2dce4b8d0c9d3eed4a295, type: 2}
   - spawnCountRange: {x: 1, y: 1}
     creatureData: {fileID: 11400000, guid: fc72b557e96e8f547a645fbde1db0870, type: 2}

@@ -51,7 +51,7 @@ MonoBehaviour:
   lifeTimer: 0
   spellEffects: []
   debrisPoolSize: 2
-  debrisObject: {fileID: 5273009326846120377, guid: e8651459df4079143ba2390230b829ca, type: 3}
+  debrisObject: {fileID: 5273009326846120377, guid: 782a2f0caa26ace4289510e4d71c6ca9, type: 3}
   spellObjectSound:
     clipName: 
     singleClip: {fileID: 0}
@@ -61,6 +61,7 @@ MonoBehaviour:
     loop: 0
     randomize: 0
     randomClips: []
+  interruptSpellSoundOnDestroy: 0
   spellObjectDestroySound:
     clipName: 
     singleClip: {fileID: 0}

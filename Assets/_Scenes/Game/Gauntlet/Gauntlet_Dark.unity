@@ -283,6 +283,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PersistentManager (DDOL)
       objectReference: {fileID: 0}
+    - target: {fileID: 1176582185763508981, guid: b2e1dda71eeadfe4b89a0257e8788b67, type: 3}
+      propertyPath: defaultWizardData
+      value: 
+      objectReference: {fileID: 11400000, guid: 9a95e018017ba854eb1e309c8555e624, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b2e1dda71eeadfe4b89a0257e8788b67, type: 3}
 --- !u!1001 &768547779

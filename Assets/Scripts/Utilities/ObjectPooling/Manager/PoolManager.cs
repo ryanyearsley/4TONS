@@ -154,5 +154,4 @@ public class PoolManager : MonoBehaviour {
 			return ReuseSpellObject (prefab, position, rotation, vitalsEntity);
 		}
 	}
-
 }
