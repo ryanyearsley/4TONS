@@ -5,7 +5,7 @@ using UnityEngine;
 
 //Manages basic game loop and events.
 public enum GameState {
-	LOADING, COMBAT, PAUSE, GAME_OVER, LEVEL_COMPLETE, GAME_COMPLETE
+	LOADING, COMBAT, PAUSE, GAME_OVER, LEVEL_COMPLETE, GAME_COMPLETE, DECISION
 }
 public class GameManager : MonoBehaviour {
 
@@ -101,7 +101,6 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public void BeginLevel (int levelIndex) {
-		Debug.Log ("Begin Level");
 		ChangeGameState (GameState.COMBAT);
 		beginLevelEvent?.Invoke (levelIndex);
 	}
@@ -109,6 +108,13 @@ public class GameManager : MonoBehaviour {
 	public void GameOver (int levelLost) {
 		ChangeGameState (GameState.GAME_OVER);
 		gameOverEvent?.Invoke (levelLost);
+	}
+	public void ResumeCombat() {
+		if (currentGameState != GameState.COMBAT)
+			ChangeGameState (GameState.COMBAT);
+	}
+	public void MakeDecision (int level) {
+		ChangeGameState (GameState.DECISION);
 	}
 
 	public void LevelObjectiveComplete (int levelComplete) {

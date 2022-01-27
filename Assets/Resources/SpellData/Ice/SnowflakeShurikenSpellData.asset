@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a701196f12370941a9b69b34871811b, type: 3}
+  m_Name: SnowflakeShurikenSpellData
+  m_EditorClassIdentifier: 
+  spellName: Snowflake Shuriken
+  spellSchool: 3
+  spellSchoolData: {fileID: 11400000, guid: e959e5d57d37b3440be2be2b0edf7aa4, type: 2}
+  id: 4400
+  description: Launch three snowflake shurikens in rapid succession.
+  icon: {fileID: 21300000, guid: c655feb25eef9734fb66777a2fe891a4, type: 3}
+  manaCost: 5
+  castTime: 0.7
+  castSpeedReduction: 0.85
+  coolDown: 1
+  castObject: {fileID: 576230467533564272, guid: 1fb5aa7693e476740b909ead8707eca2, type: 3}
+  poolSize: 6
+  spellObject: {fileID: 1104920145457717224, guid: 1c2cead3e968c28458a2656f87d8474d, type: 3}
+  spellCastLocation: 0
+  spellCastSound:
+    clipName: IcicleBlast1_v01a
+    singleClip: {fileID: 8300000, guid: 0e5b0d62e2f97b84ebd01d089bab9aba, type: 3}
+    volume: 1
+    pitch: 1
+    mixerGroup: {fileID: -7302680629657921355, guid: 004a37a2c22918345b123859e614950a, type: 2}
+    loop: 0
+    randomize: 0
+    randomClips: []
+  spellEndSound: {fileID: 0}
+  puzzlePieceData: {fileID: 11400000, guid: 09731962ca8180f45a3aaecabd77eb90, type: 2}

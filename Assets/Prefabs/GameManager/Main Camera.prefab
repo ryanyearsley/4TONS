@@ -144,10 +144,10 @@ MonoBehaviour:
     right: 0
     top: 0
     bottom: 0
-  lookAheadDistance: 1
-  lookSmoothTime: 0.5
-  focusAreaSize: {x: 0.5, y: 0.25}
-  moveSmoothTime: 0.2
+  lookAheadDistance: 2
+  lookSmoothTime: 0.15
+  focusAreaSize: {x: 1, y: 0.5}
+  moveSmoothTime: 0.15
   smoothMoveVelocity: {x: 0, y: 0}
   minValues: {x: 0, y: 0, z: 0}
   maxValues: {x: 0, y: 0, z: 0}

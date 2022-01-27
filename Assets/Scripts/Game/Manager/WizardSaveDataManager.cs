@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 
-public class WizardSaveDataManager : MonoBehaviour {
+public class WizardSaveDataManager : PersistentManager {
 
 	private bool initialized;
 	public static WizardSaveDataManager instance;
@@ -17,7 +15,8 @@ public class WizardSaveDataManager : MonoBehaviour {
 
 	public Dictionary<string, WizardSaveData> infamousWizardDictionary = new Dictionary<string, WizardSaveData>();
 
-	private void Awake () {
+	protected override void Awake () {
+		base.Awake ();
 		if (instance == null) {
 			instance = this;
 		} else if (instance != this) {
@@ -27,7 +26,12 @@ public class WizardSaveDataManager : MonoBehaviour {
 		CreatePersistentDataDirectories ();
 	}
 
-	private void Start () {
+	protected override void Start () {
+		base.Start ();
+		infamousWizardSaveDatas = LoadInfamousWizardSavesJSON ();
+	}
+
+	public override void SceneLoaded (Scene scene, LoadSceneMode loadSceneMode) {
 		infamousWizardSaveDatas = LoadInfamousWizardSavesJSON ();
 	}
 	public void CreatePersistentDataDirectories () {
@@ -106,6 +110,7 @@ public class WizardSaveDataManager : MonoBehaviour {
 	public void OnAfterLoad (WizardSaveData wizardSaveData) {
 		//gets SO data objects by id.
 		wizardSaveData.spellSchoolData = ConstantsManager.instance.GetSpellSchoolData (wizardSaveData.spellSchoolDataIndex);
+		wizardSaveData.wizardData = wizardSaveData.spellSchoolData.wizardData;
 		wizardSaveData.primaryStaffSaveData.puzzleData = ConstantsManager.instance.GetPuzzleData (wizardSaveData.primaryStaffSaveData.puzzleDataIndex);
 		wizardSaveData.secondaryStaffSaveData.puzzleData = ConstantsManager.instance.GetPuzzleData (wizardSaveData.secondaryStaffSaveData.puzzleDataIndex);
 		wizardSaveData.inventorySaveData.puzzleData = ConstantsManager.instance.GetPuzzleData (wizardSaveData.inventorySaveData.puzzleDataIndex);

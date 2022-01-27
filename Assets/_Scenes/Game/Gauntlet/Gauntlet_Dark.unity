@@ -531,6 +531,58 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1498592260, guid: 32b0764f7de3d8e41a8da209082b9b3a, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1498592260, guid: 32b0764f7de3d8e41a8da209082b9b3a, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1498592260, guid: 32b0764f7de3d8e41a8da209082b9b3a, type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1498592260, guid: 32b0764f7de3d8e41a8da209082b9b3a, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: e81dc63849c22a34f96e8633cca7ced0, type: 3}
+    - target: {fileID: 1498592260, guid: 32b0764f7de3d8e41a8da209082b9b3a, type: 3}
+      propertyPath: m_FontData.m_MinSize
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1498592260, guid: 32b0764f7de3d8e41a8da209082b9b3a, type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 58584134019537355, guid: 32b0764f7de3d8e41a8da209082b9b3a, type: 3}
+      propertyPath: m_Horizontal
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 805407090068747979, guid: 32b0764f7de3d8e41a8da209082b9b3a, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 805407090068747979, guid: 32b0764f7de3d8e41a8da209082b9b3a, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 805407090068747979, guid: 32b0764f7de3d8e41a8da209082b9b3a, type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 805407090068747979, guid: 32b0764f7de3d8e41a8da209082b9b3a, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: e81dc63849c22a34f96e8633cca7ced0, type: 3}
+    - target: {fileID: 805407090068747979, guid: 32b0764f7de3d8e41a8da209082b9b3a, type: 3}
+      propertyPath: m_FontData.m_MinSize
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 805407090068747979, guid: 32b0764f7de3d8e41a8da209082b9b3a, type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 24
+      objectReference: {fileID: 0}
     - target: {fileID: 2778314042028239092, guid: 32b0764f7de3d8e41a8da209082b9b3a, type: 3}
       propertyPath: m_Name
       value: CombatCanvas
@@ -618,6 +670,30 @@ PrefabInstance:
     - target: {fileID: 2778314042028239096, guid: 32b0764f7de3d8e41a8da209082b9b3a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2778314042275304753, guid: 32b0764f7de3d8e41a8da209082b9b3a, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2778314042275304753, guid: 32b0764f7de3d8e41a8da209082b9b3a, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2778314042275304753, guid: 32b0764f7de3d8e41a8da209082b9b3a, type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2778314042275304753, guid: 32b0764f7de3d8e41a8da209082b9b3a, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: e81dc63849c22a34f96e8633cca7ced0, type: 3}
+    - target: {fileID: 2778314042275304753, guid: 32b0764f7de3d8e41a8da209082b9b3a, type: 3}
+      propertyPath: m_FontData.m_MinSize
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2778314042275304753, guid: 32b0764f7de3d8e41a8da209082b9b3a, type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 24
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 32b0764f7de3d8e41a8da209082b9b3a, type: 3}

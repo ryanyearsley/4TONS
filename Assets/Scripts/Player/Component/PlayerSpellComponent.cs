@@ -22,6 +22,10 @@ public class PlayerSpellComponent : PlayerComponent {
 		LoadSpellCastEntites (playerObject.wizardGameData);
 		playerObject.SetCanAttack (true);
 	}
+
+	public override void OnDeath () {
+		CancelAllSpells ();
+	}
 	public void LoadSpellCastEntites (WizardGameData wizardGameData) {
 		if (wizardGameData.puzzleGameDataDictionary.ContainsKey (PuzzleKey.INVENTORY)) {
 			PuzzleGameData inventoryGameData = wizardGameData.puzzleGameDataDictionary[PuzzleKey.INVENTORY];
@@ -46,9 +50,13 @@ public class PlayerSpellComponent : PlayerComponent {
 		}
 	}
 	public override void OnChangePlayerState (PlayerState playerState) {
+		CancelAllSpells ();
+	}
+
+	private void CancelAllSpells() {
 		for (int i = 0; i < currentSpellBindingDictionary.Count; i++) {
 			Spell spell = currentSpellBindingDictionary [i];
-			if (spell != null ) {
+			if (spell != null) {
 				spell.CancelCast ();
 			}
 		}

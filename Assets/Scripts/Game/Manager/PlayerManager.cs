@@ -55,6 +55,11 @@ public class PlayerManager : PersistentManager {
 			currentPlayers [playerIndex].isReady = true;
 		}
 	}
+	public void ClearSelectedWizards () {
+		foreach (Player player in currentPlayers) {
+			player.SetPlayerWizardNull ();
+		}
+	}
 
 } 
 

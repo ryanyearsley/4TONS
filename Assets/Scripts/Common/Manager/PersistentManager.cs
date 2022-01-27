@@ -20,8 +20,6 @@ public class PersistentManager : MonoBehaviour, IPersistentManager {
 	public void SubscribeToEvents () {
 		SceneManager.sceneLoaded += SceneLoaded;
 		SettingsManager.instance.updateSettingsEvent += OnUpdateSettings;
-
-
 	}
 	public void UnsubscribeFromEvents () {
 		SceneManager.sceneLoaded -= SceneLoaded;

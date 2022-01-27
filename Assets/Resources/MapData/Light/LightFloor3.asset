@@ -19,6 +19,6 @@ MonoBehaviour:
     creatureData: {fileID: 11400000, guid: 25564811f1a3005478f7b971d620ce3e, type: 2}
   - spawnCountRange: {x: 7, y: 7}
     creatureData: {fileID: 11400000, guid: 99254d1eeda2dce4b8d0c9d3eed4a295, type: 2}
-  floorRollRange: {x: 37, y: 78}
-  seed: 637731807385538152
+  floorRollRange: {x: 50, y: 74}
+  seed: 637783206158725368
   useCustomSeed: 0

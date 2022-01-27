@@ -19,6 +19,7 @@ public class AbstractScreenUI : MonoBehaviour
 		screenObject.SetActive (false);
 	}
 
+
 	protected virtual void OnScreenChange (MenuScreen mainMenuScreen) {
 		if (screenActiveStates.Contains (mainMenuScreen)) {
 			screenObject.SetActive (true);

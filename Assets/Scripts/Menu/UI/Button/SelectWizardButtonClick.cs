@@ -8,6 +8,7 @@ using UnityEngine;
  * */
 public class SelectWizardButtonClick : AbstractButtonClick {
 
+	private int playerIndex;
 	private LoadedWizardSelectionUI loadedWizardButtonUI;
 
 	protected override void Awake () {
@@ -19,7 +20,7 @@ public class SelectWizardButtonClick : AbstractButtonClick {
 		if (loadedWizardButtonUI.wizardSaveData != null) {
 			Debug.Log ("Confirmation button clicked, saving wizard");
 			WizardSaveData selectedWizard = loadedWizardButtonUI.wizardSaveData;
-			MainMenuManager.Instance.ConfirmPlayerWizardSelection (selectedWizard);
+			MainMenuManager.Instance.ConfirmPlayerWizardSelection (playerIndex, selectedWizard);
 		} else {
 			Debug.Log ("Wizard Selection Unsuccessful: No wizard assigned to button.");
 		}

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using PlayFab;
 using PlayFab.ClientModels;
@@ -12,10 +13,12 @@ public enum MenuScreen {
 public class MainMenuManager : MonoBehaviour {
 	public MenuScreen currentMainMenuScreen { get; private set; }
 	public event Action<MenuScreen> OnMenuScreenChangeEvent;
+	public event Action<Objective> OnObjectiveSelectEvent;
 	public event Action<Player> OnPlayerJoinEvent;
+	public event Action<int, WizardSaveData> OnWizardSelectEvent;
 	public event Action<WizardSaveData> OnWizardDeleteEvent;
 
-
+	public Objective selectedObjective = Objective.NOT_SELECTED;
 	#region Singleton
 	public static MainMenuManager Instance { get; private set; }
 	private void InitializeSingleton () {
@@ -48,6 +51,10 @@ public class MainMenuManager : MonoBehaviour {
 	public void ChangeMenuScreen (MenuScreen screen) {
 		currentMainMenuScreen = screen;
 		OnMenuScreenChangeEvent?.Invoke (screen);
+		if (screen == MenuScreen.MAIN_MENU) {
+			PlayerManager.instance.ClearSelectedWizards ();
+			ConfirmObjectiveSelection (Objective.NOT_SELECTED);
+		}
 	}
 
 	public void PlayerCancel () {
@@ -72,16 +79,38 @@ public class MainMenuManager : MonoBehaviour {
 		PlayerManager.instance.AddPlayer (player);
 		return player;
 	}
-	public void ConfirmPlayerWizardSelection (WizardSaveData selectedWizard) {
-		PlayerManager.instance.ConfirmPlayerWizardSelection (0, selectedWizard);
-		bool isEveryoneReady = true;
+
+	public void ConfirmObjectiveSelection (Objective objective) {
+		selectedObjective = objective;
+		OnObjectiveSelectEvent?.Invoke (objective);
+	}
+
+
+
+	public void ConfirmPlayerWizardSelection (int playerIndex, WizardSaveData selectedWizard) {
+		PlayerManager.instance.ConfirmPlayerWizardSelection (playerIndex, selectedWizard);
+		OnWizardSelectEvent?.Invoke (playerIndex, selectedWizard);
+	}
+
+	public bool CheckReadyCriteria () {
+
+		if (MainMenuManager.Instance.selectedObjective == Objective.NOT_SELECTED) {
+			return false;
+		}
 		foreach (Player player in PlayerManager.instance.currentPlayers) {
 			if (!player.isReady) {
-				isEveryoneReady = false;
+				return false;
 			}
 		}
-		if (isEveryoneReady == true) {
-			ChangeMenuScreen (MenuScreen.BLANK);
+		return true;
+	}
+	public void StartGame() {
+		if (CheckReadyCriteria()) {
+			if (selectedObjective == Objective.Gauntlet) {
+				NERDSTORM.NerdstormSceneManager.instance.LoadGauntletTowerScene (Zone.Hub);
+			} else if (selectedObjective == Objective.Zombie_Horde) {
+				NERDSTORM.NerdstormSceneManager.instance.LoadZombieHorde ();
+			}
 		}
 	}
 }

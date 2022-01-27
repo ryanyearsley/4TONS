@@ -18,11 +18,20 @@ MonoBehaviour:
   school: 0
   spawnObjectPrefab: {fileID: 8036647390902012779, guid: 5aaafc67612a61543baac0ccd5f2128c, type: 3}
   creatureName: Priest
-  maxHealth: 200
-  maxResource: 100
-  movementSpeed: 8
+  maxHealth: 250
+  maxResource: 180
+  movementSpeed: 6
   creatureAudio:
-    attackSound: {fileID: 0}
+    attackSound:
+      clipName: 
+      singleClip: {fileID: 0}
+      volume: 1
+      pitch: 1
+      mixerGroup: {fileID: 0}
+      loop: 0
+      randomize: 0
+      randomClips: []
+    attackClip: {fileID: 0}
     gruntSound: {fileID: 8300000, guid: 2d73caf00731b824da298925dc467044, type: 3}
     deathSound: {fileID: 8300000, guid: fdbfcd1dcf863bf46b70310735dccd03, type: 3}
     happySound: {fileID: 0}

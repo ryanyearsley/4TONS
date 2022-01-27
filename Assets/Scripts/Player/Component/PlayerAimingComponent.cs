@@ -53,14 +53,14 @@ public class PlayerAimingComponent : PlayerComponent {
 		if (player.wizardSaveData.primaryStaffSaveData.puzzleData != null) {
 			staffAimObject.InitializeStaffAimObject (player.wizardSaveData.primaryStaffSaveData.puzzleData.puzzleSprite);
 		}
-		CameraController2D.instance.SetCameraRigidFollow (creatureObject.GetComponent<MovementComponent> ());
-
+		CameraController2D.instance.SetCameraDynamic (creatureObject.GetComponent<MovementComponent> ());
 	}
 	public override void OnSpawn (Vector3 spawnPosition) {
 		playerObject.SetSmartCursor (false);
 		currentJoystickSensitivity = combatJoystickSensitivity;
 		playerObject.SetAimingMode (AimingMode.CURSOR);
 	}
+
 	private void CreateCursor () {
 		GameObject aimingPivotGo = new GameObject("AimingPivot");
 		aimingPivotTransform = aimingPivotGo.transform;
@@ -145,6 +145,7 @@ public class PlayerAimingComponent : PlayerComponent {
 		cursorController.OnChangeState (playerState);
 		switch (playerState) {
 			case (PlayerState.COMBAT): {
+					CameraController2D.instance.SetCameraDynamic (creatureObject.GetComponent<MovementComponent> ());
 					staffAimObject.gameObject.SetActive (true);
 					if (!playerObject.usingMouseControls) {
 						currentJoystickSensitivity = combatJoystickSensitivity;
@@ -158,6 +159,7 @@ public class PlayerAimingComponent : PlayerComponent {
 				}
 			case (PlayerState.PUZZLE_BROWSING):
 			case (PlayerState.PUZZLE_MOVING_SPELLGEM): {
+					CameraController2D.instance.SetCameraRigidFollow (creatureObject.GetComponent<MovementComponent> ());
 					staffAimObject.gameObject.SetActive (false);
 					if (!playerObject.usingMouseControls) {
 						currentJoystickSensitivity = puzzleJoystickSensitivity;

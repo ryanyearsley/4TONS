@@ -24,4 +24,8 @@ public class GauntletHubGameManager : MonoBehaviour
 		GameManager.instance.LevelEnd (0);
 		NerdstormSceneManager.instance.LoadGauntletTowerScene (zone);
 	}
+
+	public void WaflTempleEntered () {
+		GameManager.instance.MakeDecision (0);
+	}
 }

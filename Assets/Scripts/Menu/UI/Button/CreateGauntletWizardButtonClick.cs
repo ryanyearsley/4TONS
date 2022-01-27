@@ -10,14 +10,13 @@ public class CreateGauntletWizardButtonClick : AbstractButtonClick {
 	}
 	public override void OnClick () {
 		if (wizardCreatePanelUI.isValidWizard ()) {
-			Debug.Log ("Confirmation button clicked, saving wizard");
-			WizardSaveData createdWizard = wizardCreatePanelUI.FinalizeWizardCreate();
-			Debug.Log ("Created wizard name: " + createdWizard.wizardName);
-			MainMenuManager.Instance.ConfirmPlayerWizardSelection (createdWizard);
-			NERDSTORM.NerdstormSceneManager.instance.LoadGauntletTowerScene (Zone.Hub);
 			AudioManager.instance.PlaySound ("Confirm");
+			WizardSaveData createdWizard = wizardCreatePanelUI.FinalizeWizardCreate();
+			MainMenuManager.Instance.ConfirmPlayerWizardSelection (0, createdWizard);
+			MainMenuManager.Instance.StartGame ();
 		} else {
-			Debug.Log ("Cannot confirm: no name entered.");
+			AudioManager.instance.PlaySound ("Error");
+			//UI displays de
 		}
 	}
 }

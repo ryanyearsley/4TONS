@@ -66,7 +66,7 @@ public class WizardSelectPlayerPanelUI : MonoBehaviour {
 		}
 		if (wizardSaveDataCount >= 5) {
 			Debug.Log ("resizing wizard select panel/rect Transform.");
-			verticalLayoutGroupRectTransform.SetSizeWithCurrentAnchors (RectTransform.Axis.Vertical, wizardSaveDataCount * 160);
+			verticalLayoutGroupRectTransform.SetSizeWithCurrentAnchors (RectTransform.Axis.Vertical, wizardSaveDataCount * 255);
 			scrollRect.vertical = true;
 		} else {
 			Debug.Log ("5 or less wizards. reverting to default size and disabling scroll.");

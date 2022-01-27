@@ -17,4 +17,4 @@ MonoBehaviour:
   portrait: {fileID: 21300000, guid: 3f29ab27c71f74241b509b70621985c8, type: 3}
   spectralPreview: {fileID: 7476873482323608740, guid: 0a03b4e8a6169934e8ec555806193e07, type: 3}
   animatorController: {fileID: 22100000, guid: 23500259947c92c47b83d6bd0b2a3e11, type: 2}
-  gauntletStartData: {fileID: 11400000, guid: 9a95e018017ba854eb1e309c8555e624, type: 2}
+  gauntletStartData: {fileID: 11400000, guid: 132ef5b8fd6f41e4fba57e66f842fe30, type: 2}

@@ -10,16 +10,17 @@ public class WizardCreatePanelUI : MonoBehaviour
 {
 
 	[SerializeField]
-	private TextMeshProUGUI schoolNameText;
-	[SerializeField]
-	private TextMeshProUGUI wizardDescriptionText;
-	[SerializeField]
 	private TMP_InputField wizardNameInputField;
 	[SerializeField]
 	private Image wizardSelectImage;
 	[SerializeField]
+	private Image wizardStaffImage;
+	[SerializeField]
+	private Image wizardSpellImage;
+	[SerializeField]
 	private TextMeshProUGUI errorMessageText;
 
+	private int maxNameLength = 15;
 	SpellSchoolData currentSchool;
 
 	private void Start () {
@@ -38,10 +39,16 @@ public class WizardCreatePanelUI : MonoBehaviour
 		currentSchool = schoolData;
 
 		//on-screen...
-		schoolNameText.text = currentSchool.spellSchool.ToString ();
-		wizardDescriptionText.text = currentSchool.schoolDescription;
 		wizardSelectImage.sprite = currentSchool.wizardData.wizardSelectIcon;
-
+		WizardSaveData gauntletDefaultData = currentSchool.wizardData.gauntletStartData.wizardSaveData;
+		wizardStaffImage.sprite = gauntletDefaultData.primaryStaffSaveData.puzzleData.puzzleIcon;
+		SpellGemSaveData primaryGemSaveData = null;
+		foreach (SpellGemSaveData gemData in gauntletDefaultData.primaryStaffSaveData.spellGemSaveDataDictionary.Values) {
+			primaryGemSaveData = gemData;
+		}
+		if (primaryGemSaveData != null) {
+			wizardSpellImage.sprite = primaryGemSaveData.spellData.icon;
+		}
 
 	}
 	public bool isValidWizard () {
@@ -50,6 +57,11 @@ public class WizardCreatePanelUI : MonoBehaviour
 		if (currentSchool == null) {
 			AudioManager.instance.PlaySound ("Error");
 			StartCoroutine (DisplayWizardCreateErrorMessage ("Choose a wizard."));
+			return false;
+		}
+		else if (wizardNameInputField.text.Length > maxNameLength) {
+			AudioManager.instance.PlaySound ("Error");
+			StartCoroutine (DisplayWizardCreateErrorMessage ("That name is too long."));
 			return false;
 		}
 		else if (!WizardSaveDataManager.instance.isWizardNameAvailable (wizardNameInputField.text)) {

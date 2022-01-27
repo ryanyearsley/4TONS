@@ -29,7 +29,7 @@ MonoBehaviour:
     backgroundColor: {r: 0, g: 0, b: 0, a: 1}
     layerDatas:
     - sprite: {fileID: 21300000, guid: b8be7d2d6b964f845a1df780259fb46f, type: 3}
-      spriteOffset: {x: 0, y: 5}
+      spriteOffset: {x: 0, y: 0}
       distanceScaleX: 0.85
       distanceScaleY: 1
       opacity: 1
@@ -53,7 +53,7 @@ MonoBehaviour:
     tile: {fileID: 11400000, guid: 5f07248b78fb7514896525dd13e0020c, type: 2}
     id: 1104
   destructionDebrisObject: {fileID: 0}
-  floorData: {fileID: 0}
+  floorData: {fileID: 11400000, guid: 3c736bab14c00894ea0fcb27e8fbe51f, type: 2}
   randomFloorDecorTiles:
   - tile: {fileID: 11400000, guid: 384f5e4924fe6544285a544eae2158b6, type: 2}
     id: 1120
@@ -77,6 +77,8 @@ MonoBehaviour:
   baseDecorTiles:
   - tile: {fileID: 11400000, guid: b890e0b47902eef43a596d9dc6c6fd2e, type: 2}
     id: 1105
+  - tile: {fileID: 11400000, guid: eb2eaef3e585c7a4b9da7b92791fc400, type: 2}
+    id: 1106
   topDecorTiles: []
   largeSetpieceDatas: []
   enemyDatas: []

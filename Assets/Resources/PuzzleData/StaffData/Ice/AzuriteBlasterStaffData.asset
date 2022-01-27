@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d592d1a076b38154ebaf5ba54f5f581b, type: 3}
   m_Name: AzuriteBlasterStaffData
   m_EditorClassIdentifier: 
-  id: 2600
+  id: 4501
   puzzleName: Azurite Blaster
   description: 
   puzzleSprite: {fileID: 21300000, guid: 48d9bad160ddbbd41b17ca95894f0b3b, type: 3}
-  puzzleIcon: {fileID: 21300000, guid: 48d9bad160ddbbd41b17ca95894f0b3b, type: 3}
+  puzzleIcon: {fileID: 21300000, guid: 1c8487d94fd21be46bb6bd696c1d6d2b, type: 3}
   puzzleFile: {fileID: 4900000, guid: 86f6e20f96386e54ea883b25458c185f, type: 3}
   puzzleType: 0
   defaultSpellGemDictionary:

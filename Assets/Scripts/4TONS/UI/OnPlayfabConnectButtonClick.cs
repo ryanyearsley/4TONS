@@ -26,12 +26,8 @@ public class OnPlayfabConnectButtonClick : AbstractButtonClick {
 		while (connectionAttempts < MAX_CONNECTION_ATTEMPTS) {
 			yield return new WaitForSeconds (0.5f);
 			if (PlayFabManager.instance != null && PlayFabManager.instance.CheckConnectionStatus ()) {
-				LoginResult loginResult = PlayFabManager.instance.GetCachedLoginResult ();
-				if (loginResult.NewlyCreated || loginResult.InfoResultPayload.PlayerProfile == null) {
-					SetConnectionText ("Welcome,\nPlayer!");
-				} else if (loginResult.InfoResultPayload.PlayerProfile != null && loginResult.InfoResultPayload.PlayerProfile.DisplayName != null) {
-					SetConnectionText ("Welcome back,\n" + loginResult.InfoResultPayload.PlayerProfile.DisplayName + "...");
-				}
+				LoginResult result = PlayFabManager.instance.GetCachedLoginResult ();
+				//UpdateLoginResultText (loginResult);
 				SetIndicator (true);
 				isConnected = true;
 				yield break;
@@ -39,7 +35,7 @@ public class OnPlayfabConnectButtonClick : AbstractButtonClick {
 			connectionAttempts++;
 		}
 		if (!isConnected) {
-			SetConnectionText ("Offline mode.\n(No Leaderboards)");
+			//SetConnectionText ("Offline mode.\n(No Leaderboards)");
 			SetIndicator (false);
 		}
 	}
@@ -61,14 +57,18 @@ public class OnPlayfabConnectButtonClick : AbstractButtonClick {
 	void OnLoginSuccess (LoginResult result) {
 		Debug.Log ("PlayFabConnectButton: Successful login");
 		SetIndicator (true);
-		if (result.InfoResultPayload.PlayerProfile != null && result.InfoResultPayload.PlayerProfile.DisplayName != null) {
-			SetConnectionText ("Welcome back,\n" + result.InfoResultPayload.PlayerProfile.DisplayName + "...");
-		} else {
-			SetConnectionText ("Welcome,\nPlayer...");
+		//UpdateLoginResultText (result);
+	}
+
+	public void UpdateLoginResultText (LoginResult loginResult) {
+		if (loginResult.NewlyCreated || loginResult.InfoResultPayload.PlayerProfile == null) {
+			SetConnectionText ("Welcome,\nPlayer!");
+		} else if (loginResult.InfoResultPayload.PlayerProfile != null && loginResult.InfoResultPayload.PlayerProfile.DisplayName != null) {
+			SetConnectionText ("Welcome back,\n" + loginResult.InfoResultPayload.PlayerProfile.DisplayName + "...");
 		}
 	}
 	void OnError (PlayFabError error) {
-		SetConnectionText ("Offline mode.\n(No Leaderboards)");
+		//SetConnectionText ("Offline mode.\n(No Leaderboards)");
 		SetIndicator (false);
 		Debug.Log ("Error while logging in/creating account. Error: " + error.GenerateErrorReport ());
 	}

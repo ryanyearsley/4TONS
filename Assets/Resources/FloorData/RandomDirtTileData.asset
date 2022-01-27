@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd5502bcb4cbfab4dace29950afa2c7a, type: 3}
+  m_Name: RandomDirtTileData
+  m_EditorClassIdentifier: 
+  tiles:
+  - tile: {fileID: 11400000, guid: ddcfd9b919087d44ebfb3a30ca5b3b1b, type: 2}
+    id: 3110
+  - tile: {fileID: 11400000, guid: e7d7a7a2cf27ef9478093030a3df5393, type: 2}
+    id: 3111
+  - tile: {fileID: 11400000, guid: a4074c5545a3113468172d050a9f576b, type: 2}
+    id: 3112
+  - tile: {fileID: 11400000, guid: f39080f5f2427f44cb9173ce5dab01ef, type: 2}
+    id: 3113
+  - tile: {fileID: 11400000, guid: 5e63fe84178b11948ae137c89262bb93, type: 2}
+    id: 3114
+  - tile: {fileID: 11400000, guid: 94b4a76985da7094ca275962d6e6a1c8, type: 2}
+    id: 3115
+  - tile: {fileID: 11400000, guid: 64f0cc5855428fd4ba43563b83cb06bd, type: 2}
+    id: 3116
+  - tile: {fileID: 11400000, guid: a42f4e6000585ad4888f0692dbc129c3, type: 2}
+    id: 3117

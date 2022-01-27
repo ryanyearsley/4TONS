@@ -7,7 +7,7 @@ public class TutorialButtonClick : AbstractButtonClick {
 	private WizardPrebuildData tutorialWizard;
 	public override void OnClick () {
 		AudioManager.instance.PlaySound ("Confirm");
-		MainMenuManager.Instance.ConfirmPlayerWizardSelection (tutorialWizard.wizardSaveData);
+		MainMenuManager.Instance.ConfirmPlayerWizardSelection (0, tutorialWizard.wizardSaveData);
 		Debug.Log ("Tutorial button clicked. Beginning Tutorial.");
 		NERDSTORM.NerdstormSceneManager.instance.LoadTutorial ();
 	}

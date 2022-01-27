@@ -203,9 +203,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.15, y: 0}
+  m_Offset: {x: 0.01, y: 0}
   serializedVersion: 2
-  m_Radius: 0.075
+  m_Radius: 0.15138964
 --- !u!1 &5349493896159913635
 GameObject:
   m_ObjectHideFlags: 0
@@ -420,4 +420,4 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  bounceCountMax: 1
+  bounceCountMax: 2

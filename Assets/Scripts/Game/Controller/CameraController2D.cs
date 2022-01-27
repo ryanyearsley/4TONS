@@ -52,8 +52,6 @@ public class CameraController2D : MonoBehaviour {
 
 	public float moveSmoothTime;
 	public Vector2 smoothMoveVelocity;
-	private Vector3 boundPosition;
-	private float boundSmooth;
 	public Vector3 minValues, maxValues;
 
 	private void Awake () {
@@ -77,14 +75,14 @@ public class CameraController2D : MonoBehaviour {
 
 	void Update () {
 		if (cameraState.Equals (CameraState.DYNAMIC)) {
-			focusArea.Update (target.feetCollider.bounds);
-
-			Vector2 focusPosition = focusArea.center;
+			//focusArea.Update (target.feetCollider.bounds);
+			//Vector2 focusPosition = focusArea.center;
+			Vector2 focusPosition = targetTransform.position;
 			currentLookAhead = CalculateCursorLookAhead ();
 
 			focusPosition += currentLookAhead;
 
-			trans.position = focusPosition.ToVector3WithZ (-1);
+			trans.position = focusPosition.ToVector3WithZ (-10);
 
 		} else if (cameraState.Equals (CameraState.RIGID_FOLLOW)) {
 			trans.position = target.transform.position + Vector3.back * 10f + Vector3.up * 1f;

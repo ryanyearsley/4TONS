@@ -37,6 +37,8 @@ MonoBehaviour:
     spellData: {fileID: 11400000, guid: 0a17615ad9d7fa74e9bb3f26ad564bf7, type: 2}
   - spellGemRollRange: {x: 0, y: 100}
     spellData: {fileID: 11400000, guid: 3879acd23f6625a45a0083524c6fd4a5, type: 2}
+  - spellGemRollRange: {x: 0, y: 100}
+    spellData: {fileID: 11400000, guid: 0120e490755da2c46a16bb6b85f5000e, type: 2}
   staffTable:
   - spellGemRollRange: {x: 0, y: 100}
     puzzleData: {fileID: 11400000, guid: 8b1caf4a6f0803d4684d1c6a7f14c690, type: 2}

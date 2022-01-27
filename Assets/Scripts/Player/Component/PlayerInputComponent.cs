@@ -39,7 +39,9 @@ namespace PlayerManagement {
 		}
 
 		private void Update () {
-			if (!playerObject.isDead && !GameManager.instance.isPaused) {
+			if (!playerObject.isDead 
+				//&& playerObject.currentPlayerState != PlayerState.DISABLED 
+				&& !GameManager.instance.isPaused) {
 				AimingInput ();
 				PuzzleInput ();
 				SpellInput ();
@@ -56,7 +58,7 @@ namespace PlayerManagement {
 			playerMovementComponent.UpdateMovementInput (directionalInput, playerAimingController.CursorDirection);
 		}
 		private void AimingInput () {
-			float sensitivity = rewiredController.controllers.maps.InputBehaviors [0].mouseXYAxisSensitivity;
+			//float sensitivity = rewiredController.controllers.maps.InputBehaviors [0].mouseXYAxisSensitivity;
 			joystickInput = new Vector2 (rewiredController.GetAxisRaw ("AimHorizontal"), rewiredController.GetAxisRaw ("AimVertical"));
 			mouseDelta = new Vector2 (rewiredController.GetAxis ("AimHorizontalMouse"), rewiredController.GetAxis ("AimVerticalMouse"));
 			if (playerObject.usingMouseControls) {

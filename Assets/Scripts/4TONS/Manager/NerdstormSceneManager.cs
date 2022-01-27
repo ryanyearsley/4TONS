@@ -23,6 +23,7 @@ namespace NERDSTORM {
 		public int hubSceneIndex = 2; 
 		public int darkTowerSceneIndex = 3;
 		public int lightTowerSceneIndex = 4;
+		public int zombieHordeSceneIndex = 5;
 
 		public event Action sceneTransitionEvent;
 
@@ -45,6 +46,9 @@ namespace NERDSTORM {
 
 		public void LoadTutorial() {
 			LoadSceneByIndex (tutorialSceneIndex);
+		}
+		public void LoadZombieHorde () {
+			LoadSceneByIndex (zombieHordeSceneIndex);
 		}
 		public void LoadGauntletTowerScene(Zone towerZone) {
 			if (gauntletSceneDictionary.ContainsKey(towerZone)) {

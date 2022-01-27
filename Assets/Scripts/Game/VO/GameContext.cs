@@ -10,5 +10,5 @@ public class GameContext
 
 //i.e. Gametype
 public enum Objective {
-	Gauntlet, Zombie_Horde
+	Gauntlet, Zombie_Horde, Tutorial, NOT_SELECTED
 }

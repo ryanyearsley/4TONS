@@ -19,7 +19,6 @@ public class CursorPanelUI : AbstractPanelUI
     }
     protected override void InitializePanel () {
 		base.InitializePanel ();
-		Debug.Log ("initializing cursor panel. scene build index: " + SceneManager.GetActiveScene ().buildIndex);
 		if (SceneManager.GetActiveScene ().buildIndex == 0) {
 			panelObject.SetActive (true);
 		}
