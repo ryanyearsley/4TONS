@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //virtually the same as a spellobject, except there is no life timer on these.
-public class PortalController : InteractableObject {
+public class GauntletPortalObject : InteractableObject {
 	private Animator animator;
 
 
@@ -28,11 +28,11 @@ public class PortalController : InteractableObject {
 		UnsubscribeFromEvents ();
 		opened = false;
 	}
-	private void SubscribeToEvents () {
+	protected virtual void SubscribeToEvents () {
 		GameManager.instance.levelCompleteEvent += OnLevelComplete;
 		GameManager.instance.levelEndEvent += OnLevelEnd;
 	}
-	private void UnsubscribeFromEvents () {
+	protected virtual void UnsubscribeFromEvents () {
 		GameManager.instance.levelCompleteEvent -= OnLevelComplete;
 		GameManager.instance.levelEndEvent -= OnLevelEnd;
 	}
@@ -43,7 +43,7 @@ public class PortalController : InteractableObject {
 	}
 
 	public override void InteractWithObject () {
-		GauntletGameManager.instance.PortalEntered ();
+		GameManager.instance.LevelEnd ();
 		portalCollider.SetNonInteractable ();
 	}
 

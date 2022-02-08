@@ -6,10 +6,8 @@ public class EnemyDeathInfo
 {
 
 	public int percentageFloorCleared;
-	public int totalKills;
 
-	public EnemyDeathInfo (int percentageFloorCleared, int totalKills) {
+	public EnemyDeathInfo (int percentageFloorCleared) {
 		this.percentageFloorCleared = percentageFloorCleared;
-		this.totalKills = totalKills;
 	}
 }

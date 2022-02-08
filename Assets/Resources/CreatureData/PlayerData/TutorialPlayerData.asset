@@ -17,12 +17,21 @@ MonoBehaviour:
   outerClearance: 1
   school: 0
   spawnObjectPrefab: {fileID: 3151322532891022119, guid: 5726a48319eb5f1468c138d23d84b619, type: 3}
-  creatureName: WoD
+  creatureName: Wizard
   maxHealth: 100
   maxResource: 100
   movementSpeed: 6
   creatureAudio:
-    attackSound: {fileID: 0}
+    attackSound:
+      clipName: 
+      singleClip: {fileID: 0}
+      volume: 1
+      pitch: 1
+      mixerGroup: {fileID: 0}
+      loop: 0
+      randomize: 0
+      randomClips: []
+    attackClip: {fileID: 0}
     gruntSound: {fileID: 0}
     deathSound: {fileID: 0}
     happySound: {fileID: 0}

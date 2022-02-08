@@ -89,13 +89,13 @@ public class MapGenerator : MonoBehaviour {
 		int playerStaffRoll = UnityEngine.Random.Range (floorRollRange.x, floorRollRange.y);
 
 		Log ("Generating spell gem spawn points...");
-		List<SpellData> spawningSpellGems = zoneData.lootTableData.RollForGems (playerGemRoll);
+		List<SpellData> spawningSpellGems = currentMapData.lootTableData.RollForGems (playerGemRoll);
 		foreach (SpellData spellData in spawningSpellGems) {
 			spawnPoints.spellGemSpawnPoints.AddRange (SpawnUtility.GenerateSpellGemSpawnPoints (details, spellData));
 		}
 
 		Log ("Generating staff spawn points...");
-		List<PuzzleData> spawningStaves = zoneData.lootTableData.RollForStaves (playerStaffRoll);
+		List<PuzzleData> spawningStaves = currentMapData.lootTableData.RollForStaves (playerStaffRoll);
 		foreach (PuzzleData staffPuzzleData in spawningStaves) {
 			spawnPoints.staffSpawnPoints.AddRange (SpawnUtility.GenerateStaffSpawnPoints (details, staffPuzzleData));
 		}

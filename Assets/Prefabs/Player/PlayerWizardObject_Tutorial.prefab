@@ -1003,8 +1003,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 509799c470d2e6e499d247f79d9e86db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  autoBindSpellData: {fileID: 11400000, guid: f8a09e2fb222c62489690f14902cef0d, type: 2}
-  manualBindSpellData: {fileID: 11400000, guid: 2d3465d624cf7c743abbbaf28fec6fc3, type: 2}
+  leechboltSpellData: {fileID: 11400000, guid: f8a09e2fb222c62489690f14902cef0d, type: 2}
+  tentacleSpellData: {fileID: 11400000, guid: 2d3465d624cf7c743abbbaf28fec6fc3, type: 2}
+  harvestFleshSpellData: {fileID: 11400000, guid: 558584ede83939345aea1475ca93588c, type: 2}
 --- !u!1 &5289823530985314105
 GameObject:
   m_ObjectHideFlags: 0

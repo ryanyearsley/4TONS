@@ -30,6 +30,5 @@ public class ZoneData : ScriptableObject {
 	public List<TileData> topDecorTiles;//placed on top of base tiles.
 	public List<SetPieceData> largeSetpieceDatas;
 	public List<CreatureData> enemyDatas;
-	public LootTableData lootTableData;
 	public MapData[] mapDatas;
 }

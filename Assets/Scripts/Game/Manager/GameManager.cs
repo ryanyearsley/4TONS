@@ -52,6 +52,17 @@ public class GameManager : MonoBehaviour {
 		levelLoaded = true;
 	}
 
+	private bool levelObjectiveComplete;
+
+	[SerializeField]
+	private GameProgress gameProgress;
+
+	public GameProgress GetProgress () {
+		return gameProgress;
+	}
+
+	private bool isPortalOpen;
+
 	public bool GetLevelLoaded() {
 		return levelLoaded;
 	}
@@ -63,6 +74,7 @@ public class GameManager : MonoBehaviour {
 	}
 	
 	private IEnumerator BeginGameRoutine() {
+		gameProgress = new GameProgress (gameContext.zoneData.mapDatas.Length - 1);
 		//waits for subscribers.
 		yield return new WaitForSeconds (0.5f);
 		StartCoroutine(LoadLevelRoutine (0));
@@ -76,7 +88,6 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 	public void LoadLevel (int levelIndex) {
-
 		StartCoroutine (LoadLevelRoutine (levelIndex));
 	}
 
@@ -88,7 +99,7 @@ public class GameManager : MonoBehaviour {
 		float waitTime = 0f;
 		while (levelLoaded == false) {
 			yield return new WaitForSeconds (0.5f);
-			waitTime += 0.1f;
+			waitTime += 0.5f;
 			if (waitTime > MAX_LEVEL_LOAD_TIME) {
 				Debug.Log ("GameManager: Maximum load time exceeded. Returning to main menu...");
 				NERDSTORM.NerdstormSceneManager.instance.LoadMenu ();
@@ -101,6 +112,7 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public void BeginLevel (int levelIndex) {
+		levelObjectiveComplete = false;
 		ChangeGameState (GameState.COMBAT);
 		beginLevelEvent?.Invoke (levelIndex);
 	}
@@ -117,9 +129,10 @@ public class GameManager : MonoBehaviour {
 		ChangeGameState (GameState.DECISION);
 	}
 
-	public void LevelObjectiveComplete (int levelComplete) {
+	public void LevelObjectiveComplete () {
+		levelObjectiveComplete = true;
 		ChangeGameState (GameState.LEVEL_COMPLETE);
-		levelCompleteEvent?.Invoke (levelComplete);
+		levelCompleteEvent?.Invoke (gameProgress.currentLevelIndex);
 	}
 	public void LevelEnd (int levelEnded) {
 		ChangeGameState (GameState.LOADING);
@@ -130,8 +143,35 @@ public class GameManager : MonoBehaviour {
 		gameCompleteEvent?.Invoke ();
 	}
 
+	public void LevelEnd () {
+		if (levelObjectiveComplete) {
+			StartCoroutine (PortalEntryRoutine ());
+		}
+	}
 
-
+	public IEnumerator PortalEntryRoutine () {
+		levelObjectiveComplete = false;
+		Debug.Log ("GameManager: Level " + gameProgress.currentLevelIndex + " complete. ");
+		int nextLevelIndex = gameProgress.currentLevelIndex + 1;
+		//time for portal entry animation...
+		yield return new WaitForSeconds (0.5f);
+		if (nextLevelIndex <= gameProgress.finalLevelIndex) {
+			GameManager.instance.LevelEnd (gameProgress.currentLevelIndex);
+			gameProgress.currentLevelIndex = nextLevelIndex;
+			yield return new WaitForSeconds (0.5f);
+			GameManager.instance.LoadLevel (gameProgress.currentLevelIndex);
+		} else {
+			//final level completed. return to hub.
+			Debug.Log ("GameManager: Game complete. ");
+			GameManager.instance.LevelEnd (gameProgress.currentLevelIndex);
+			GameManager.instance.GameComplete ();
+			string leaderboardName = GameManager.instance.gameContext.objectiveData.objective.ToString() + ": " + GameManager.instance.gameContext.zoneData.zone.ToString();
+			PlayFabManager.instance.SendLeaderboardUpdate (Mathf.RoundToInt (Time.time * 1000), leaderboardName);//x1000 going in, /1000 when retrieved
+			yield break;
+		}
+		//time for loading screen....
+		yield return new WaitForSeconds (1f);
+	}
 	public void ReportPlayerDeath (Player player) {
 		player.isAlive = false;
 		player.currentPlayerObject = null;

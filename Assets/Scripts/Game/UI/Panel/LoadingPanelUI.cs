@@ -31,7 +31,7 @@ public class LoadingPanelUI : AbstractPanelUI
 			} 
 
 			if (GauntletGameManager.instance != null) {
-				loadingTextString += " Tower\nFloor " + (GauntletGameManager.instance.GetProgress ().currentLevelIndex + 1);
+				loadingTextString += " Tower\nFloor " + (GameManager.instance.GetProgress ().currentLevelIndex + 1);
 			}
 			loadingText.text = loadingTextString;
 

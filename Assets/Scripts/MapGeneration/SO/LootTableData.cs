@@ -1,10 +1,8 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-
-[CreateAssetMenu (fileName = "NewLootTableData", menuName = "ScriptableObjects/Map Generation/LootTableData")]
-
-public class LootTableData : ScriptableObject {
+[Serializable]
+public class LootTableData {
 
 	public List <SpellGemLootTableEntity> spellGemTable;
 	public List <StaffLootTableEntity> staffTable;

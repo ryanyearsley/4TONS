@@ -15,14 +15,12 @@ public class TutorialChecklistPanelUI : AbstractPanelUI, ITutorialSubscriber {
 		SubscribeToTutorialEvents ();
 	}
 	public void SubscribeToTutorialEvents () {
-		Debug.Log ("TutorialChecklistPanelUI: Subscribing to events");
-		TutorialManager.instance.OnStartPhaseEvent += OnStartPhase;
+		TutorialManager.instance.OnBeginTutorialLevel += OnStartPhase;
 		TutorialManager.instance.OnTaskCompleteEvent += OnTaskComplete;
 		TutorialManager.instance.OnPhaseCompleteEvent += OnPhaseComplete;
 	}
 
 	public void OnStartPhase (TutorialPhaseInfo tutorialPhaseInfo) {
-		Debug.Log ("TutorialCheckListUI: Start Phase");
 		phaseTitleText.text = tutorialPhaseInfo.phase.ToString ();
 		for (int i = 0; i < tutorialTaskListElements.Length; i++) {
 			if (tutorialPhaseInfo.requiredTasks.Length > i) {
@@ -35,8 +33,6 @@ public class TutorialChecklistPanelUI : AbstractPanelUI, ITutorialSubscriber {
 	}
 
 	public void OnTaskComplete (TutorialTask tutorialTask) {
-
-		Debug.Log ("TutorialCheckListUI: Task complete: " + tutorialTask);
 		for (int i = 0; i < tutorialTaskListElements.Length; i++) {
 			if (tutorialTaskListElements [i].gameObject.activeInHierarchy) {
 				tutorialTaskListElements [i].TrySetTaskComplete (tutorialTask);

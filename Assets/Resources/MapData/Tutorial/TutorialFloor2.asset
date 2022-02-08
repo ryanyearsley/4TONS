@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3444b8395a176b846a10fccafa6e569b, type: 3}
+  m_Name: TutorialFloor2
+  m_EditorClassIdentifier: 
+  customMapData: {fileID: 0}
+  mapGenerationData: {fileID: 11400000, guid: aff9c467ab7d7a64eb11856fa0cfd3f4, type: 2}
+  floorRollRange: {x: 0, y: 100}
+  lootTableData:
+    spellGemTable:
+    - spellGemRollRange: {x: 0, y: 100}
+      spellData: {fileID: 11400000, guid: f8a09e2fb222c62489690f14902cef0d, type: 2}
+    staffTable: []
+  enemySpawnInfos: []
+  seed: 637794171435363434
+  useCustomSeed: 0
+  tutorialPhaseInfo:
+    phase: 0
+    phaseIndex: 1
+    requiredTasks:
+    - task: 4
+      input: Tab
+      taskDescription: View your inventory.
+    - task: 5
+      input: G
+      taskDescription: Pick up the spell gem.
+    - task: 6
+      input: LMB
+      taskDescription: Bind the Leechbolt gem.
+    - task: 7
+      input: LMB
+      taskDescription: Cast Leechbolt.

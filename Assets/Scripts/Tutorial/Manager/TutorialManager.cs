@@ -2,35 +2,31 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using NERDSTORM;
 
 public enum TutorialTask {
-	//BASICS 
-	MOVEMENT, AIMING, PICK_UP_STAFF_PRIMARY, PUZZLE_TOGGLE, 
+	//FLOOR 1
+	MOVEMENT, AIMING, PICK_UP_STAFF_PRIMARY, DODGE,
 
-	//PUZZLE BIND AUTO
-	PICK_UP_SPELLGEM, AUTO_BIND_SPELLGEM, CAST_LEECHBOLT,
+	//FLOOR 2
+	PUZZLE_TOGGLE, PICK_UP_LEECHBOLT, BIND_LEECHBOLT, CAST_LEECHBOLT,
 
-	//COMBAT 1 (Zombie)
-	KILL_ENEMY,
-	//PUZZLE BIND MANUAL
-	ROTATE_SPELLGEM, MANUAL_BIND_SPELLGEM, CAST_TENTACLES,
+	//FLOOR 3
+	KILL_ENEMY,	ROTATE_SPELLGEM, BIND_TENTACLES, CAST_TENTACLES,
 
-	//Combat 2 (Necro)
-	DODGE, 
-	
-	//Staff transactions
+	//FLOOR 4
+	UNBIND_TENTACLES, BIND_TENTACLE_INVENTORY, MANUALBIND_HARVEST, CAST_HARVEST,
+
+	//FLOOR 5
 	PICK_UP_STAFF_SECONDARY, MANUAL_EQUIP_PRIMARY, MANUAL_EQUIP_SECONDARY,
+	
+	//FLOOR 6
+	DROP_SPELLGEM, DROP_STAFF
 
-	//PUZZLE UNBINDING/DROPPING
-	UNBIND_SPELLGEM, DROP_SPELLGEM, DROP_STAFF,
-
-	//ENTER_PORTAL
-	ENTER_PORTAL
 }
 
 public enum TutorialPhase {
-	BASICS, PUZZLE_BIND_AUTO, COMBAT_ZOMBIE, PUZZLE_BIND_MANUAL, COMBAT_NECRO, STAFF_TRANSACTIONS, PUZZLE_DROPPING, ENTER_PORTAL, 
+	Basics, Puzzled, Contemplation, Salvage, Sacrifice 
 }
 
 [Serializable]
@@ -63,7 +59,6 @@ public class TutorialManager : MonoBehaviour {
 
 	
 
-	public TutorialPhaseInfo[] tutorialPhaseInfos;
 	#region Singleton
 	public static TutorialManager instance;
 	void SingletonInitialization () {
@@ -76,11 +71,13 @@ public class TutorialManager : MonoBehaviour {
 	#endregion
 
 	//towers are separated by scenes. Hub is also it's own scene.
+
+	private ZoneData currentZoneData;
 	[SerializeField]
 	private TutorialProgress tutorialProgress;
 	private ControlSchemeData currentControlSchemeData;
 
-	public Action<TutorialPhaseInfo> OnStartPhaseEvent;
+	public Action<TutorialPhaseInfo> OnBeginTutorialLevel;
 	public Action<TutorialTask> OnTaskCompleteEvent;
 	public Action<TutorialPhaseInfo> OnPhaseCompleteEvent;
 	public Action OnTutorialCompleteEvent;
@@ -101,30 +98,37 @@ public class TutorialManager : MonoBehaviour {
 	}
 
 	public void InitializeManager () {
+		currentZoneData = GameManager.instance.gameContext.zoneData;
 		tutorialProgress = new TutorialProgress ();
 		GameManager.instance.beginLevelEvent += OnBeginLevel;
+		GameManager.instance.gameCompleteEvent += OnGameComplete;
 	}
 
 	public void OnBeginLevel (int levelIndex) {
-		StartPhase (0);
-		PlayerManager.instance.currentPlayers [0].currentPlayerObject.gameObject.AddComponent<PlayerTutorialComponent> ();
+		BeginTutorialLevel (levelIndex);
+		//PlayerManager.instance.currentPlayers [0].currentPlayerObject.gameObject.AddComponent<PlayerTutorialComponent> ();
 	}
 
-	public void StartPhase(int phaseIndex) {
-		TutorialPhaseInfo phaseInfo = tutorialPhaseInfos[phaseIndex];
+	public void BeginTutorialLevel(int phaseIndex) {
+		MapData currentMapData = currentZoneData.mapDatas[phaseIndex];
+		if (currentMapData is TutorialMapData) {
+			TutorialMapData currentTutorialMapData = (TutorialMapData) currentMapData;
+			TutorialPhaseInfo phaseInfo = currentTutorialMapData.tutorialPhaseInfo;
+			tutorialProgress.currentPhaseInfo = phaseInfo;
+			Debug.Log ("TutorialManager: Starting Phase " + phaseInfo.phaseIndex);
+			tutorialProgress.currentPhaseInfo.phase = phaseInfo.phase;
+			tutorialProgress.currentPhaseInfo.phaseIndex = phaseIndex;
+			tutorialProgress.currentTaskDictionary.Clear ();
 
-		Debug.Log ("TutorialManager: Starting Phase " + phaseInfo.phase);
-		tutorialProgress.currentPhaseInfo = phaseInfo;
-		tutorialProgress.currentPhaseInfo.phase = phaseInfo.phase;
-		tutorialProgress.currentPhaseInfo.phaseIndex = phaseIndex;
-		tutorialProgress.currentTaskDictionary.Clear ();
-
-		for (int i = 0; i < phaseInfo.requiredTasks.Length; i++) {
-			TutorialTaskInfo taskInfo = phaseInfo.requiredTasks[i];
-			tutorialProgress.currentTaskDictionary.Add (taskInfo.task, false);
+			for (int i = 0; i < phaseInfo.requiredTasks.Length; i++) {
+				TutorialTaskInfo taskInfo = phaseInfo.requiredTasks[i];
+				tutorialProgress.currentTaskDictionary.Add (taskInfo.task, false);
+			}
+			tutorialProgress.totalTasksThisPhase = tutorialProgress.currentTaskDictionary.Count;
+			OnBeginTutorialLevel?.Invoke (phaseInfo);
+		} else {
+			Debug.LogError ("Manager/Map Data Mismatch (Configuration Error)");
 		}
-		tutorialProgress.totalTasksThisPhase = tutorialProgress.currentTaskDictionary.Count;
-		OnStartPhaseEvent?.Invoke (phaseInfo);
 	}
 
 	public bool SetTaskComplete (TutorialTask tutorialTask) {
@@ -133,43 +137,33 @@ public class TutorialManager : MonoBehaviour {
 			&& tutorialProgress.currentTaskDictionary [tutorialTask] == false) {
 			tutorialProgress.currentTaskDictionary [tutorialTask] = true;
 			tutorialProgress.tasksComplete++;
-			TaskComplete (tutorialTask);
-			bool allComplete = true;
+			OnTaskCompleteEvent?.Invoke (tutorialTask);
+			bool allInPhaseComplete = true;
 			foreach (bool taskComplete in tutorialProgress.currentTaskDictionary.Values) {
 				if (!taskComplete) {
-					allComplete = false;
+					allInPhaseComplete = false;
 				}
 			}
-			if (allComplete == true) {
-				StartCoroutine (PhaseCompleteRoutine ());
+			if (allInPhaseComplete == true) {
+				GameManager.instance.LevelObjectiveComplete ();
 			}
 			return true;
 		} else {
 			return false;
 		}
-
-	}
-	public IEnumerator PhaseCompleteRoutine() {
-
-		yield return new WaitForSeconds (0.5f);
-		PhaseComplete (tutorialProgress.currentPhaseInfo);
-		int nextPhaseIndex = tutorialProgress.currentPhaseInfo.phaseIndex + 1;
-		if (nextPhaseIndex < tutorialPhaseInfos.Length) {
-			StartPhase (nextPhaseIndex);
-		} else {
-			GameManager.instance.GameComplete ();
-			SceneManager.LoadScene (0);
-		}
 	}
 
 	public void TaskComplete (TutorialTask task) {
-		Debug.Log ("TutorialManager: Task Complete event: " + task);
 		OnTaskCompleteEvent?.Invoke (task);
 	}
 	public void PhaseComplete (TutorialPhaseInfo phaseInfo) {
 		OnPhaseCompleteEvent?.Invoke (phaseInfo);
 	}
 
+	public void OnGameComplete() {
+		Debug.Log ("TutorialManager: Tutorial finished, returning to menu...");
+		NerdstormSceneManager.instance.LoadMenu ();
+	}
 
 
 

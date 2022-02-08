@@ -31,6 +31,7 @@ public class WarningShotRaycastObject : RaycastObject {
 		lineRenderer.SetPosition (0, trans.position);
 		lineRenderer.SetPosition (1, rayHit.point);
 		yield return new WaitForSeconds (warningTime);
+		lineRenderer.positionCount = 0;
 		lineRenderer.material = damageLineMat;
 		RaycastProcedure ();
 	}

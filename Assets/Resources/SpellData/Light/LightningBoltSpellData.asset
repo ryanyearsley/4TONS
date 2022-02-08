@@ -24,7 +24,7 @@ MonoBehaviour:
   coolDown: 0.5
   castObject: {fileID: 5398306314291750163, guid: 0f7829db1b3b5c4479bf90f8c222d7f6, type: 3}
   poolSize: 1
-  spellObject: {fileID: 5398306314291750163, guid: 0fb2db1421f4bd74aa32e21185bce3d5, type: 3}
+  spellObject: {fileID: 5398306314291750163, guid: 0f7829db1b3b5c4479bf90f8c222d7f6, type: 3}
   spellCastLocation: 0
   spellCastSound:
     clipName: Lightning V1

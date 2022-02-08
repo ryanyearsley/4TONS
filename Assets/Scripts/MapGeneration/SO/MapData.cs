@@ -8,11 +8,14 @@ public class MapData : ScriptableObject {
 	//looks at which ever is present and acts accordingly.
 	public CustomMapData customMapData;
 	public MapGenerationData mapGenerationData;
-	
-	public CreatureSpawnInfo[] enemySpawnInfos;
 
 	[MinMaxSlider(0, 100)]
 	public Vector2Int floorRollRange;
+
+	public LootTableData lootTableData;
+
+	public CreatureSpawnInfo[] enemySpawnInfos;
+
 
 
 	[ConditionalHide ("useCustomSeed")]

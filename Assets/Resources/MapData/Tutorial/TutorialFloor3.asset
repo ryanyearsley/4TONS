@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3444b8395a176b846a10fccafa6e569b, type: 3}
+  m_Name: TutorialFloor3
+  m_EditorClassIdentifier: 
+  customMapData: {fileID: 0}
+  mapGenerationData: {fileID: 11400000, guid: aff9c467ab7d7a64eb11856fa0cfd3f4, type: 2}
+  floorRollRange: {x: 0, y: 100}
+  lootTableData:
+    spellGemTable:
+    - spellGemRollRange: {x: 0, y: 100}
+      spellData: {fileID: 11400000, guid: 2d3465d624cf7c743abbbaf28fec6fc3, type: 2}
+    staffTable: []
+  enemySpawnInfos:
+  - spawnCountRange: {x: 1, y: 1}
+    creatureData: {fileID: 11400000, guid: 217ed99b20a5ef84483df537037326ca, type: 2}
+  seed: 637794171513919743
+  useCustomSeed: 0
+  tutorialPhaseInfo:
+    phase: 0
+    phaseIndex: 2
+    requiredTasks:
+    - task: 8
+      input: 
+      taskDescription: Kill the enemy.
+    - task: 5
+      input: G
+      taskDescription: Pick up the Tentacle gem.
+    - task: 9
+      input: R
+      taskDescription: Rotate the Tentacle gem.
+    - task: 10
+      input: LMB
+      taskDescription: Bind the Tentacles gem.
+    - task: 11
+      input: 
+      taskDescription: Cast Tentacle.

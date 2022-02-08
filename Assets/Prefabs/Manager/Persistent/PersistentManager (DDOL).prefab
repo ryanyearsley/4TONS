@@ -430,7 +430,7 @@ PrefabInstance:
     - target: {fileID: 8884175212134057212, guid: 9fee5ac39cf1ab540bf0c8e15f70c5da, type: 3}
       propertyPath: defaultWizardData
       value: 
-      objectReference: {fileID: 11400000, guid: 9a95e018017ba854eb1e309c8555e624, type: 2}
+      objectReference: {fileID: 11400000, guid: 8a83a3e68eb495d47a9515e7faaf375d, type: 2}
     - target: {fileID: 8884175212134057212, guid: 9fee5ac39cf1ab540bf0c8e15f70c5da, type: 3}
       propertyPath: worlds.Array.size
       value: 2
@@ -454,11 +454,11 @@ PrefabInstance:
     - target: {fileID: 8884175212134057212, guid: 9fee5ac39cf1ab540bf0c8e15f70c5da, type: 3}
       propertyPath: zones.Array.data[2]
       value: 
-      objectReference: {fileID: 11400000, guid: 5c8f5e60297e7e94a9c99b9598ac17f8, type: 2}
+      objectReference: {fileID: 11400000, guid: 78cbaa650e74e6e4baa5304e416b3269, type: 2}
     - target: {fileID: 8884175212134057212, guid: 9fee5ac39cf1ab540bf0c8e15f70c5da, type: 3}
       propertyPath: worlds.Array.data[2]
       value: 
-      objectReference: {fileID: 11400000, guid: 5c8f5e60297e7e94a9c99b9598ac17f8, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 8884175212134057212, guid: 9fee5ac39cf1ab540bf0c8e15f70c5da, type: 3}
       propertyPath: objectives.Array.size
       value: 3

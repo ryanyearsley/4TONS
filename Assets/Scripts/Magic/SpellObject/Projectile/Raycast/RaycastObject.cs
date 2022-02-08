@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class RaycastObject : SpellObject {
@@ -23,10 +21,11 @@ public class RaycastObject : SpellObject {
 		base.ReuseSpellObject (vitalsEntity);
 		float randomRotation = Random.Range(-accuracy, accuracy);
 		trans.Rotate (0, 0.0f, trans.rotation.z + randomRotation, Space.World);
+		lineRenderer.positionCount = 0;
 		RaycastProcedure ();
 	}
 	public void RaycastProcedure () {
-
+		AddLineRendererPoint (trans.position);
 		RaycastHit2D rayHit = Physics2D.Raycast(trans.position, trans.right, raycastDistance, layerMask);
 		if (rayHit.collider != null) {
 			VitalsEntity colliderVitals = VitalsManager.Instance.GetVitalsEntityFromHitBox (rayHit.collider);
@@ -39,22 +38,23 @@ public class RaycastObject : SpellObject {
 			OnHitWall (rayHit.point);
 		}
 	}
-	protected void OnHitEnemy (Vector2 position, VitalsEntity enemyVitals) {
-		lineRenderer.SetPosition (0, trans.position);
-		lineRenderer.SetPosition (1, position);
+	protected virtual void OnHitEnemy (Vector2 position, VitalsEntity enemyVitals) {
+		AddLineRendererPoint (position);
 		OnEnemyHit (enemyVitals);
 		PlaceDebrisObject (position);
 		Debug.Log ("hit enemy");
 	}
 	protected void OnHitWall(Vector2 position) {
-
-		Vector2 endpoint = position;
-		lineRenderer.SetPosition (0, trans.position);
-		lineRenderer.SetPosition (1, endpoint);
-		PlaceDebrisObject (endpoint);
+		AddLineRendererPoint (position);
+		PlaceDebrisObject (position);
 		Debug.Log ("hit wall");
 	}
 
+	protected void AddLineRendererPoint(Vector2 position) {
+		Debug.Log ("RaycastObject: Placing Line Renderer point at " + position);
+		lineRenderer.positionCount = lineRenderer.positionCount + 1;
+		lineRenderer.SetPosition (lineRenderer.positionCount - 1, position);
+	}
 	public void PlaceDebrisObject (Vector3 contactPoint) {
 		if (debrisObject != null) {
 			//debris objects always used at simulated floor position (below projectile hitbox)

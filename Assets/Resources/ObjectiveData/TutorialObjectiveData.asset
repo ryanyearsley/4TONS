@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f23d9d6a798cfa9429119b466ed6526f, type: 3}
   m_Name: TutorialObjectiveData
   m_EditorClassIdentifier: 
-  objectiveName: Tutorial
+  objective: 0
   playerObjectData: {fileID: 11400000, guid: abae3bc9f6af5754d87d65a582fc17ff, type: 2}
-  objectiveSpawnInfos: []
+  objectiveSpawnInfos:
+  - spawnCount: 1
+    setPieceData: {fileID: 11400000, guid: be2d74a77f5fcc24790ae2dd3c9e8e4c, type: 2}

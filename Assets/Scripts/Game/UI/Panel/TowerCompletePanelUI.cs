@@ -6,8 +6,6 @@ using UnityEngine.UI;
 public class TowerCompletePanelUI : AbstractPanelUI {
 
 	[SerializeField]
-	private Text totalKillsText;
-	[SerializeField]
 	private Text timeText;
 
 
@@ -22,7 +20,6 @@ public class TowerCompletePanelUI : AbstractPanelUI {
 	public void OnGameComplete () {
 
 		if (GauntletGameManager.instance != null) {
-			totalKillsText.text = "Kills: " + GauntletGameManager.instance.GetProgress ().totalKills.ToString();
 			TimeSpan ts = TimeSpan.FromSeconds(Time.timeSinceLevelLoad);
 			timeText.text = "Time: " + string.Format ("{0:00}:{1:00}:{2:00}", ts.Minutes, ts.Seconds, ts.Milliseconds);
 		}

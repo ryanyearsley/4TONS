@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class PlayerTutorialComponent : PlayerComponent {
 
-	public SpellData autoBindSpellData;
-	public SpellData manualBindSpellData;
+	public SpellData leechboltSpellData;
+	public SpellData tentacleSpellData;
+	public SpellData harvestFleshSpellData;
 	public override void SubscribeToCreatureEvents () {
-		Debug.Log ("Animation Controller subscribing to events");
 		base.SubscribeToCreatureEvents ();
 		creatureObject.OnSetFaceDirEvent += OnSetFaceDirection;
 		creatureObject.OnSetVelocityEvent += OnSetVelocity;
@@ -77,26 +77,42 @@ public class PlayerTutorialComponent : PlayerComponent {
 	}
 
 	public override void OnPickUpSpellGem (SpellGemGameData spellGemGameData) {
-		TutorialManager.instance.SetTaskComplete (TutorialTask.PICK_UP_SPELLGEM);
+		TutorialManager.instance.SetTaskComplete (TutorialTask.PICK_UP_LEECHBOLT);
 	}
 	public override void OnBindSpellGem (PuzzleGameData puzzleGameData, SpellGemGameData spellGameData, PuzzleBindType bindType) {
 
-		if (bindType == PuzzleBindType.AUTOMATIC)
-			TutorialManager.instance.SetTaskComplete (TutorialTask.AUTO_BIND_SPELLGEM);
-		else if (bindType == PuzzleBindType.MANUAL)
-			TutorialManager.instance.SetTaskComplete (TutorialTask.MANUAL_BIND_SPELLGEM);
+		if (puzzleGameData.puzzleKey == PuzzleKey.PRIMARY_STAFF) {
+			if (spellGameData.spellData == leechboltSpellData) {
+				TutorialManager.instance.SetTaskComplete (TutorialTask.BIND_LEECHBOLT);
+			} else if (spellGameData.spellData == tentacleSpellData) {
+				TutorialManager.instance.SetTaskComplete (TutorialTask.BIND_TENTACLES);
+			} else if (spellGameData.spellData == harvestFleshSpellData && bindType == PuzzleBindType.MANUAL) {
+					TutorialManager.instance.SetTaskComplete (TutorialTask.MANUALBIND_HARVEST);
+			}
+		}
+		else if (puzzleGameData.puzzleKey == PuzzleKey.INVENTORY) {
+			if (spellGameData.spellData == tentacleSpellData) {
+				TutorialManager.instance.SetTaskComplete (TutorialTask.BIND_TENTACLE_INVENTORY);
+			}
+		}
 	}
 	public override void OnUnbindSpellGem (PuzzleGameData puzzleGameData, SpellGemGameData spellGameData, PuzzleUnbindType unbindType) {
-		TutorialManager.instance.SetTaskComplete (TutorialTask.UNBIND_SPELLGEM);
+		if (puzzleGameData.puzzleKey == PuzzleKey.PRIMARY_STAFF) {
+			if (spellGameData.spellData == tentacleSpellData) {
+				TutorialManager.instance.SetTaskComplete (TutorialTask.UNBIND_TENTACLES);
+			}
+		}
 	}
 	//COMBAT
 	public override void OnAttack (AttackInfo attackInfo) {
 		Debug.Log ("PlayerTutorialComponent: OnAttack.");
 		if (attackInfo.spellData != null) {
-			if (attackInfo.spellData == autoBindSpellData) {
+			if (attackInfo.spellData == leechboltSpellData) {
 				TutorialManager.instance.SetTaskComplete (TutorialTask.CAST_LEECHBOLT);
-			} else if (attackInfo.spellData == manualBindSpellData) {
+			} else if (attackInfo.spellData == tentacleSpellData) {
 				TutorialManager.instance.SetTaskComplete (TutorialTask.CAST_TENTACLES);
+			} else if (attackInfo.spellData == harvestFleshSpellData) {
+				TutorialManager.instance.SetTaskComplete (TutorialTask.CAST_HARVEST);
 			}
 		}
 	}

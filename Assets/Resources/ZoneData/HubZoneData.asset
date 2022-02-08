@@ -33,7 +33,7 @@ MonoBehaviour:
       distanceScaleX: 0.85
       distanceScaleY: 1
       opacity: 1
-  floorPrefab: {fileID: 8472839727403202167, guid: 4ea040c5f20c4b547ad30734fde7c6bd, type: 3}
+  floorPrefab: {fileID: 8472839727403202167, guid: a939e6e166d4a3d44a759dce8faf48f2, type: 3}
   primaryFloorTile:
     tile: {fileID: 11400000, guid: 739ed65f445da344ab02be9ccfa763c7, type: 2}
     id: 1100
@@ -82,6 +82,5 @@ MonoBehaviour:
   topDecorTiles: []
   largeSetpieceDatas: []
   enemyDatas: []
-  lootTableData: {fileID: 11400000, guid: 7689f64354da42c41bcefbba0a52f1c6, type: 2}
   mapDatas:
   - {fileID: 11400000, guid: bd1c6f2dbe263cb449ee1871f3cc5d41, type: 2}
