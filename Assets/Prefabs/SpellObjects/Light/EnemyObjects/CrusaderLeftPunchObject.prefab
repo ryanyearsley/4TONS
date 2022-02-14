@@ -125,7 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fadbdc5f6251d7428df8b918a21b0d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 5
+  damage: 15
 --- !u!1 &5890059025032771774
 GameObject:
   m_ObjectHideFlags: 0
@@ -5048,7 +5048,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  offsetDegrees: 20
+  offsetDegrees: 30
   curveSpeed: 200
   curveDirectionModifier: -1
   curveTrajectory:

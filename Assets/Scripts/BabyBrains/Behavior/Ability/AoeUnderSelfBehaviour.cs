@@ -18,7 +18,7 @@ public class AoeUnderSelfBehaviour : BabyBrainsBehaviour
 	}
 
 	public override bool Valid (SensoryInfo sensoryInfo) {
-		if (sensoryInfo.targetVitals.trans != null
+		if (sensoryInfo.targetVitals != null
 			&& sensoryInfo.currentResource > resourceCost
 			&& sensoryInfo.targetWithinLoS
 			&& sensoryInfo.isoDistanceToTarget < maxAttackDistance)

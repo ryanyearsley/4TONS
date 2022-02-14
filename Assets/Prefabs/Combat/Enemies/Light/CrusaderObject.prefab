@@ -330,6 +330,7 @@ GameObject:
   - component: {fileID: 949232333939730191}
   - component: {fileID: 8080682316212352877}
   - component: {fileID: 3783217777964799896}
+  - component: {fileID: 5679699628773201134}
   m_Layer: 10
   m_Name: BabyBrainsBehaviours
   m_TagString: Enemy
@@ -471,6 +472,27 @@ MonoBehaviour:
   chargeSpeedMultiplier: 2.5
   minimumChargeDistance: 2
   maxChargeDistance: 4
+--- !u!114 &5679699628773201134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7102122313363664715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1438024d9c5c3694599c511ba3b0574d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  behaviourData: {fileID: 11400000, guid: 8a314b8579a6eba498776168832424c7, type: 2}
+  ExecutionTime: 0.5
+  Cooldown: 10
+  _started: 0
+  _finished: 0
+  resourceCost: 10
+  maxAttackDistance: 3
+  castSpeedPenaltyMultiplier: 0.5
+  aoePrefab: {fileID: 7184398735751379231, guid: 5e92e1d5d5d23794f802fcc706f5a2ed, type: 3}
 --- !u!1 &8036647390902012779
 GameObject:
   m_ObjectHideFlags: 0
