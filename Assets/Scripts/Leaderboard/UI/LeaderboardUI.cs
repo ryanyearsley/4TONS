@@ -124,7 +124,8 @@ public class LeaderboardUI : MonoBehaviour {
 		if (!initialized) {
 			InitializeLeaderboard ();
 		}
-		noLeaderboardResultsObject.SetActive (false);
+		noLeaderboardResultsObject.SetActive (false); 
+		verticalLayoutGroupRectTransform.gameObject.SetActive (true);
 		currentLeaderboardEntries = leaderboardEntries;
 		UpdateLeaderboardUIEvent?.Invoke (currentLeaderboardEntries, startingRankIndex);
 
@@ -165,6 +166,7 @@ public class LeaderboardUI : MonoBehaviour {
 	public void UpdateLeaderboardFail (PlayFabError error) {
 		//TODO: Get local leaderboard here.
 		Debug.Log ("LeaderboardUI: GetLeaderboardFailure. Defaulting to local leaderboard. Reason: " + error.ErrorMessage);
+		verticalLayoutGroupRectTransform.gameObject.SetActive (false);
 		noLeaderboardResultsObject.SetActive (true);
 	}
 
