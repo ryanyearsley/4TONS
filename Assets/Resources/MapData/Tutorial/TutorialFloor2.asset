@@ -21,7 +21,7 @@ MonoBehaviour:
       spellData: {fileID: 11400000, guid: f8a09e2fb222c62489690f14902cef0d, type: 2}
     staffTable: []
   enemySpawnInfos: []
-  seed: 637794171435363434
+  seed: 637810487401061023
   useCustomSeed: 0
   tutorialPhaseInfo:
     phase: 0
@@ -39,3 +39,9 @@ MonoBehaviour:
     - task: 7
       input: LMB
       taskDescription: Cast Leechbolt.
+    beginVoiceLine:
+      audioClip: {fileID: 0}
+      subtitleText: 
+    completeVoiceLine:
+      audioClip: {fileID: 0}
+      subtitleText: 

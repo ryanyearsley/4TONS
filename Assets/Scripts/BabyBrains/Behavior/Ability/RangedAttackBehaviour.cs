@@ -37,6 +37,6 @@ public class RangedAttackBehaviour : BabyBrainsBehaviour
 		}
 		sensoryInfo.vitalsEntity.creatureObject.AddSpeedEffect (sae);
 		sensoryInfo.vitalsEntity.creatureObject.OnAttack (new AttackInfo (ExecutionTime, castSpeedPenaltyMultiplier));
-		PoolManager.instance.ReuseSpellObject (rangedProjectilePrefab, sensoryInfo.lookTransform.position, sensoryInfo.lookTransform.rotation, sensoryInfo.vitalsEntity);
+		PoolManager.instance.ReuseSpellObject (rangedProjectilePrefab, sensoryInfo.projectileTransform.position, sensoryInfo.lookTransform.rotation, sensoryInfo.vitalsEntity);
 	}
 }

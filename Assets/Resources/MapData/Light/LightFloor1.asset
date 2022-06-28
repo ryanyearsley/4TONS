@@ -14,20 +14,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   customMapData: {fileID: 0}
   mapGenerationData: {fileID: 11400000, guid: 06ccb3e789cc56946a9ea232aa12a697, type: 2}
-  floorRollRange: {x: 0, y: 25}
+  floorRollRange: {x: 0, y: 100}
   lootTableData:
     spellGemTable:
-    - spellGemRollRange: {x: 0, y: 0}
-      spellData: {fileID: 11400000, guid: 3879acd23f6625a45a0083524c6fd4a5, type: 2}
-    - spellGemRollRange: {x: 0, y: 0}
+    - spellGemRollRange: {x: 0, y: 31}
       spellData: {fileID: 11400000, guid: 14acab46f839a4443a51820ba1db5eae, type: 2}
-    - spellGemRollRange: {x: 0, y: 0}
-      spellData: {fileID: 0}
-    staffTable: []
+    - spellGemRollRange: {x: 27, y: 76}
+      spellData: {fileID: 11400000, guid: 0120e490755da2c46a16bb6b85f5000e, type: 2}
+    - spellGemRollRange: {x: 62, y: 100}
+      spellData: {fileID: 11400000, guid: 3e4c8f91a9e68be418b4c859bffba62e, type: 2}
+    staffTable:
+    - spellGemRollRange: {x: 0, y: 15}
+      puzzleData: {fileID: 11400000, guid: 062c645d46e3ce345a02f086f79fe6ec, type: 2}
   enemySpawnInfos:
   - spawnCountRange: {x: 2, y: 2}
     creatureData: {fileID: 11400000, guid: 25564811f1a3005478f7b971d620ce3e, type: 2}
   - spawnCountRange: {x: 3, y: 3}
     creatureData: {fileID: 11400000, guid: 99254d1eeda2dce4b8d0c9d3eed4a295, type: 2}
-  seed: 637795305221113906
+  seed: 637883111177325995
   useCustomSeed: 0

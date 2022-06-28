@@ -183,6 +183,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4466675091794666763}
   - component: {fileID: 9073204081073775657}
+  - component: {fileID: 5080671781134612641}
   m_Layer: 16
   m_Name: SpellEffects
   m_TagString: Untagged
@@ -217,6 +218,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allySpeedMultiplier: 1.5
+--- !u!114 &5080671781134612641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4673084532094920559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bb084e2a6b05ac47a5b47aeee3030b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healAmount: 1
+  healAnimationObject: {fileID: 181527185890752559, guid: 34ffe2f068d19b449ad5c0f5926e7322, type: 3}
 --- !u!1 &4707297640491225308
 GameObject:
   m_ObjectHideFlags: 0
@@ -360,6 +375,7 @@ MonoBehaviour:
     loop: 0
     randomize: 0
     randomClips: []
+  interruptSpellSoundOnDestroy: 0
   spellObjectDestroySound:
     clipName: 
     singleClip: {fileID: 0}

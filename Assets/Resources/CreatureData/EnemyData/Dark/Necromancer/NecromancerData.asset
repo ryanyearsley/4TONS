@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb6323e28d81e284a967b1ea2d1e4622, type: 3}
   m_Name: NecromancerData
   m_EditorClassIdentifier: 
-  id: 6301
+  id: 3301
   poolSize: 20
   outerClearance: 1
   school: 1
+  zone: 1
   spawnObjectPrefab: {fileID: 8036647390902012779, guid: c045fa55be8674649beb4b0b6ead0d50, type: 3}
   creatureName: Necromancer
   maxHealth: 60

@@ -32,6 +32,7 @@ public class TeleportNearTargetBehaviour : BabyBrainsBehaviour
 		base.OnTaskStart (sensoryInfo);
 		Debug.Log ("TeleportNearTargetBehaviour: OnTaskStart");
 		animationComponent.PlayTimedAnimation (dashAnimID, 0.5f);
-		sensoryInfo.vitalsEntity.trans.position = LevelManager.instance.RandomNearbyCoordinatePosition (sensoryInfo.targetVitals.trans.position, tilesFromPlayerRadius);
+		Vector3 coordPosition = LevelManager.instance.RandomNearbyCoordinatePosition (sensoryInfo.targetVitals.trans.position, tilesFromPlayerRadius);
+		sensoryInfo.vitalsEntity.trans.position = new Vector3 (coordPosition.x, coordPosition.y, 0);
 	}
 }

@@ -12,6 +12,7 @@ public class SensoryInfo {
 
 	//looking at enemy or point of interest.
 	public Transform lookTransform;
+	public Transform projectileTransform;
 	public bool targetWithinLoS;
 	public Transform targetPositionTransform;
 	public VitalsEntity targetVitals = null;

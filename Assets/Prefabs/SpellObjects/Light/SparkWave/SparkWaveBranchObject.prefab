@@ -116,16 +116,17 @@ MonoBehaviour:
   lifeTimer: 0
   spellEffects: []
   debrisPoolSize: 2
-  debrisObject: {fileID: 1930889244971885074, guid: 3df316b5eeaccf34b83e3964817302d1, type: 3}
+  debrisObject: {fileID: 1930889244971885074, guid: 65752b0c936f76e44b3da98d08a7107f, type: 3}
   spellObjectSound:
     clipName: 
-    singleClip: {fileID: 8300000, guid: b23a0b338ae51504ca359574b6e834cd, type: 3}
+    singleClip: {fileID: 0}
     volume: 1
     pitch: 1
     mixerGroup: {fileID: -7302680629657921355, guid: 004a37a2c22918345b123859e614950a, type: 2}
     loop: 0
     randomize: 0
     randomClips: []
+  interruptSpellSoundOnDestroy: 0
   spellObjectDestroySound:
     clipName: 
     singleClip: {fileID: 8300000, guid: 3201b5421bdcbd847ae8c9ce09084287, type: 3}

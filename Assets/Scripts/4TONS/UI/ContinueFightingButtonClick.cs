@@ -5,6 +5,7 @@ using UnityEngine;
 public class ContinueFightingButtonClick : AbstractButtonClick
 {
 	public override void OnClick () {
-		GameManager.instance.ResumeCombat ();
+		//GameManager.instance.ResumeCombat ();
+		GameManager.instance.OnPause ();
 	}
 }

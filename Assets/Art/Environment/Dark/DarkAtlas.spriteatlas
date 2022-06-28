@@ -108,7 +108,6 @@ SpriteAtlas:
     - {fileID: 2800000, guid: d17a57c6a42a66e43a9cc875b6fa1c67, type: 3}
     - {fileID: 2800000, guid: 346f729d5e3d34749824f1dcfe974d48, type: 3}
     - {fileID: 2800000, guid: 15c3037aab046ee4d9069c2154344285, type: 3}
-    totalSpriteSurfaceArea: 872192
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -155,7 +154,9 @@ SpriteAtlas:
   - {fileID: 21300030, guid: 51f02f6296a3ad7469c6eaba1735b9ae, type: 3}
   - {fileID: 21300032, guid: 51f02f6296a3ad7469c6eaba1735b9ae, type: 3}
   - {fileID: 6804749392224894148, guid: 51f02f6296a3ad7469c6eaba1735b9ae, type: 3}
+  - {fileID: -7532486696781156287, guid: 51f02f6296a3ad7469c6eaba1735b9ae, type: 3}
   - {fileID: 6575764291277403306, guid: 51f02f6296a3ad7469c6eaba1735b9ae, type: 3}
+  - {fileID: -8628310179614885820, guid: 51f02f6296a3ad7469c6eaba1735b9ae, type: 3}
   - {fileID: 6632420766982645059, guid: 51f02f6296a3ad7469c6eaba1735b9ae, type: 3}
   - {fileID: 4358672621237997434, guid: 51f02f6296a3ad7469c6eaba1735b9ae, type: 3}
   - {fileID: 4646274806565169034, guid: 51f02f6296a3ad7469c6eaba1735b9ae, type: 3}
@@ -338,7 +339,9 @@ SpriteAtlas:
   - Zombie_SpriteSheet_15
   - Zombie_SpriteSheet_16
   - Zombie_SpriteSheet_17
+  - Zombie_SpriteSheet_32
   - Zombie_SpriteSheet_30
+  - Zombie_SpriteSheet_31
   - Zombie_SpriteSheet_21
   - Zombie_SpriteSheet_20
   - Zombie_SpriteSheet_23

@@ -21,6 +21,6 @@ EditorBuildSettings:
     path: Assets/_Scenes/Game/Gauntlet/Gauntlet_Light.unity
     guid: 30240548a9fda124388dc2b065401299
   - enabled: 1
-    path: Assets/_Scenes/Test/Gauntlet_Test.unity
-    guid: 705ec161ac874ce4c871a0cda744e251
+    path: Assets/_Scenes/Game/ZombieHorde/ZombieHorde_Dark.unity
+    guid: 0730d44db2083e741ba3b976fbd60844
   m_configObjects: {}

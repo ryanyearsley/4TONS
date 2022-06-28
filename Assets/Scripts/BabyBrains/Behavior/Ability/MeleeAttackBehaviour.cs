@@ -9,6 +9,9 @@ public class MeleeAttackBehaviour : BabyBrainsBehaviour {
 	[SerializeField]
 	private float attackDamage;
 
+	[SerializeField]
+	private GameObject meleeObject;
+
 	public override bool Valid (SensoryInfo sensoryInfo) {
 		if (sensoryInfo.targetVitals != null
 			&& !sensoryInfo.targetVitals.creatureObject.isDead

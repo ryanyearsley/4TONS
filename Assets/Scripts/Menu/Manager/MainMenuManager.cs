@@ -63,11 +63,11 @@ public class MainMenuManager : MonoBehaviour {
 			ChangeMenuScreen (MenuScreen.MAIN_MENU);
 	}
 	public void OnPlayerJoin (int controllerIndex) {
+		Player player = CreateAndRegisterPlayer (controllerIndex);
+		OnPlayerJoinEvent?.Invoke (player);
 		if (currentMainMenuScreen == MenuScreen.WELCOME) {
-			Player player = CreateAndRegisterPlayer (controllerIndex);
 			ChangeMenuScreen (MenuScreen.MAIN_MENU);
-			OnPlayerJoinEvent?.Invoke (player);
-		}
+		} 
 	}
 
 	public void OnWizardDelete (WizardSaveData wizardSaveData) {
@@ -90,6 +90,7 @@ public class MainMenuManager : MonoBehaviour {
 	public void ConfirmPlayerWizardSelection (int playerIndex, WizardSaveData selectedWizard) {
 		PlayerManager.instance.ConfirmPlayerWizardSelection (playerIndex, selectedWizard);
 		OnWizardSelectEvent?.Invoke (playerIndex, selectedWizard);
+		TryStartGame ();
 	}
 
 	public bool CheckReadyCriteria () {
@@ -104,7 +105,7 @@ public class MainMenuManager : MonoBehaviour {
 		}
 		return true;
 	}
-	public void StartGame() {
+	public void TryStartGame() {
 		if (CheckReadyCriteria()) {
 			if (selectedObjective == Objective.Gauntlet) {
 				NERDSTORM.NerdstormSceneManager.instance.LoadGauntletTowerScene (Zone.Hub);

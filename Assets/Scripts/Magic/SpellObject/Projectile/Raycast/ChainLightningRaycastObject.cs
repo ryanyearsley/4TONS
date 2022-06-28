@@ -1,8 +1,8 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChainLightningRaycastObject : RaycastObject
-{
+public class ChainLightningRaycastObject : RaycastObject {
 
 	[SerializeField]
 	private int hitCountMax = 3;
@@ -21,19 +21,25 @@ public class ChainLightningRaycastObject : RaycastObject
 		base.ReuseSpellObject (vitalsEntity);
 		hitCount = 0;
 	}
+
 	protected override void OnHitEnemy (Vector2 position, VitalsEntity enemyVitals) {
 		base.OnHitEnemy (position, enemyVitals);
 		hitCount++;
 		if (hitCount <= hitCountMax) {
-			chainLightningSensorColl.transform.position = position;
-			chainLightningSensorColl.transform.rotation = Quaternion.identity;
-			VitalsEntity nearestEntity = FindNearbyEnemy (enemyVitals);
-			if (nearestEntity != null) {
-				OnHitEnemy (nearestEntity.trans.position + (Vector3.up * 0.325f), nearestEntity);
-			}
+			StartCoroutine (ChainLightningRoutine (enemyVitals));
 		}
 	}
+	public IEnumerator ChainLightningRoutine (VitalsEntity enemyVitals) {
 
+		yield return new WaitForSeconds (0.1f);
+		chainLightningSensorColl.transform.position = enemyVitals.trans.position;
+		chainLightningSensorColl.transform.rotation = Quaternion.identity;
+
+		VitalsEntity nearestEntity = FindNearbyEnemy (enemyVitals);
+		if (nearestEntity != null) {
+			OnHitEnemy (nearestEntity.trans.position + (Vector3.up * 0.325f), nearestEntity);
+		}
+	}
 	public VitalsEntity FindNearbyEnemy (VitalsEntity hitEnemyVitals) {
 		List<Collider2D> overlapResults = new List<Collider2D>();
 		closestEnemy = null;

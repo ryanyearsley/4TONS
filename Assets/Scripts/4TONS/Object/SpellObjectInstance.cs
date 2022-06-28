@@ -11,12 +11,13 @@ public class SpellObjectInstance : ObjectInstance {
 		
 	}
 	public void Reuse (Vector3 position, Quaternion rotation, VitalsEntity casterVitals) {
+		
+		base.Reuse (position, rotation);
 		if (spellObject != null) {
 			int id = go.GetInstanceID();
-			spellObject.SetSpellObjectTag (casterVitals);
+			spellObject.SetSpellObjectTag (casterVitals.tag);
+			spellObject.ReuseSpellObject (casterVitals);
 		}
-		base.Reuse (position, rotation);
-		spellObject.ReuseSpellObject (casterVitals);
 
 	}
 }

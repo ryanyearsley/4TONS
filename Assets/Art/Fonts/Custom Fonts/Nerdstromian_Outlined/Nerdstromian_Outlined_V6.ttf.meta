@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 3904cc5b44cfeb947bd7cf6668095347
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Nerdstromian_Outlined_V5
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 49547745b557e3b4d81f63503184c1de, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

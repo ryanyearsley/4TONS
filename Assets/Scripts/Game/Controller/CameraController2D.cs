@@ -37,18 +37,16 @@ public class CameraController2D : MonoBehaviour {
 
 	//static variables
 	public Vector3 staticCameraOriginPosition;
-	//dynamic variables
-	public MovementComponent target;
 	public Transform targetTransform;
 	private PlayerAimingComponent playerAiming;
-	[SerializeField]
-	private FocusArea focusArea;
 	public float lookAheadDistance;
 	public float lookSmoothTime;
-	public Vector2 focusAreaSize;
 
 	private Vector2 currentLookAhead;
 	private Vector2 smoothLookVelocity;
+	public Vector3 rigidFollowTargetOffset = new Vector3(0, 0f, -10);
+	public float rigidFollowSmoothTime;
+	private Vector3 rigidFollowLookVelocity;
 
 	public float moveSmoothTime;
 	public Vector2 smoothMoveVelocity;
@@ -60,73 +58,50 @@ public class CameraController2D : MonoBehaviour {
 		pixelPerfectCamera = GetComponent<PixelPerfectCamera> ();
 	}
 	private void Start () {
-		switch (cameraState) {
-			case CameraState.STATIC:
-				SetCameraStatic (staticCameraOriginPosition);
-				break;
-			case CameraState.DYNAMIC:
-				if (target != null) {
-					SetCameraDynamic (target);
-				}
-				break;
-		}
 		SetCameraZoom (cameraZoom);
 	}
 
-	void Update () {
+	void LateUpdate () {
 		if (cameraState.Equals (CameraState.DYNAMIC)) {
-			//focusArea.Update (target.feetCollider.bounds);
-			//Vector2 focusPosition = focusArea.center;
 			Vector2 focusPosition = targetTransform.position;
-			currentLookAhead = CalculateCursorLookAhead ();
+			CalculateCursorLookAhead ();
 
 			focusPosition += currentLookAhead;
 
 			trans.position = focusPosition.ToVector3WithZ (-10);
 
 		} else if (cameraState.Equals (CameraState.RIGID_FOLLOW)) {
-			trans.position = target.transform.position + Vector3.back * 10f + Vector3.up * 1f;
+			trans.position = Vector3.SmoothDamp (trans.position, targetTransform.position + rigidFollowTargetOffset, ref rigidFollowLookVelocity, rigidFollowSmoothTime);
+			//trans.position = targetTransform.position + Vector3.back * 10f + Vector3.up * 1f;
 		}
 	}
 
 
-	private Vector2 PixelPerfectSmoothDamp (Vector2 desiredPosition) {
-		Vector2 smoothDampedPosition = Vector2.SmoothDamp (trans.position, desiredPosition, ref smoothMoveVelocity, moveSmoothTime);
-
-		Vector2 vectorInPixels = new Vector2(
-				Mathf.RoundToInt (smoothDampedPosition.x * 32),
-				Mathf.RoundToInt(smoothDampedPosition.y * 32));
-		return vectorInPixels / 32;
-	}
 	public void SetCameraStatic (Vector3 targetPosition) {
 		cameraState = CameraState.STATIC;
-		if (target != null) {
-			target = null;
+		if (targetTransform != null) {
 			targetTransform = null;
 			playerAiming = null;
 		}
 	}
 
-	public void SetCameraRigidFollow (MovementComponent focusTarget) {
+	public void SetCameraRigidFollow (Transform targetTransform) {
 		cameraState = CameraState.RIGID_FOLLOW;
-		if (focusTarget != null) {
-			target = focusTarget;
-			targetTransform = focusTarget.GetComponent<Transform> ();
-			focusArea = new FocusArea (target.feetCollider.bounds, focusAreaSize);
-			playerAiming = target.GetComponent<PlayerAimingComponent> ();
+		if (targetTransform != null) {
+			this.targetTransform = targetTransform;
+			playerAiming = null;
 		}
-
 		SetCameraZoom (CameraZoom.MID);
 	}
 
 
-	public void SetCameraDynamic (MovementComponent focusTarget) {
+	public void SetCameraDynamic (Transform targetTransform) {
 		cameraState = CameraState.DYNAMIC;
-		if (focusTarget != null) {
-			target = focusTarget;
-			targetTransform = focusTarget.GetComponent<Transform> ();
-			focusArea = new FocusArea (target.feetCollider.bounds, focusAreaSize);
-			playerAiming = target.GetComponent<PlayerAimingComponent> ();
+		if (targetTransform != null) {
+			currentLookAhead = Vector2.zero;
+			this.targetTransform = targetTransform;
+			CalculateCursorLookAhead ();
+			playerAiming = targetTransform.parent.GetComponent<PlayerAimingComponent> ();
 		}
 		SetCameraZoom (CameraZoom.MID);
 	}
@@ -150,62 +125,18 @@ public class CameraController2D : MonoBehaviour {
 		}
 	}
 
-	private Vector2 CalculateCursorLookAhead () {
-		if (playerAiming == null)
-			return Vector2.zero;
+	private void CalculateCursorLookAhead () {
+		if (playerAiming == null) {
+			currentLookAhead = Vector2.zero;
+			return;
+		}
 
 		Vector2 direction = playerAiming.CursorDirection;
 		float cursorDistance = Mathf.Clamp(playerAiming.CursorDistance, 0f, playerAiming.joystickCursorDistance);
 		cursorDistance = cursorDistance.MapValue (0f, playerAiming.joystickCursorDistance, 0f, 1f);
 
 		Vector2 targetLookAhead = direction * lookAheadDistance * cursorDistance;
-		return Vector2.SmoothDamp (currentLookAhead, targetLookAhead, ref smoothLookVelocity, lookSmoothTime);
+		currentLookAhead = Vector2.SmoothDamp (currentLookAhead, targetLookAhead, ref smoothLookVelocity, lookSmoothTime);
 	}
 
-	private void OnDrawGizmosSelected () {
-		Gizmos.color = new Color (1f, 0f, 0f, 0.5f);
-		Gizmos.DrawCube (focusArea.center, focusAreaSize);
-	}
-
-	[Serializable]
-	private struct FocusArea {
-		public Vector2 center;
-		//public Vector2 velocity;
-		[SerializeField]
-		private float left, right;
-		[SerializeField]
-		private float top, bottom;
-
-		public FocusArea (Bounds targetBounds, Vector2 size) {
-			left = targetBounds.center.x - size.x / 2;
-			right = targetBounds.center.x + size.x / 2;
-			bottom = targetBounds.center.y - size.y / 2;
-			top = targetBounds.center.y + size.y / 2;
-
-			//velocity = Vector2.zero;
-			center = new Vector2 ((left + right) / 2, (top + bottom) / 2);
-		}
-
-		public void Update (Bounds targetBounds) {
-			float shiftX = 0;
-			if (targetBounds.min.x < left) {
-				shiftX = targetBounds.min.x - left;
-			} else if (targetBounds.max.x > right) {
-				shiftX = targetBounds.max.x - right;
-			}
-			left += shiftX;
-			right += shiftX;
-
-			float shiftY = 0;
-			if (targetBounds.min.y < bottom) {
-				shiftY = targetBounds.min.y - bottom;
-			} else if (targetBounds.max.y > top) {
-				shiftY = targetBounds.max.y - top;
-			}
-			bottom += shiftY;
-			top += shiftY;
-			center = new Vector2 ((left + right) / 2, (top + bottom) / 2);
-			//velocity = new Vector2 (shiftX, shiftY);
-		}
-	}
 }

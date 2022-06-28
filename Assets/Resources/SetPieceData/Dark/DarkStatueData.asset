@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58488e2f9c5dea246823146dae462bde, type: 3}
   m_Name: DarkStatueData
   m_EditorClassIdentifier: 
-  id: 3201
-  poolSize: 10
+  id: 3202
+  poolSize: 5
   outerClearance: 3
   school: 1
+  zone: 1
   spawnObjectPrefab: {fileID: 4767748298142753111, guid: ac416d9dfcbcec14b80fba8258aa0a22, type: 3}
   innerClearance: 1

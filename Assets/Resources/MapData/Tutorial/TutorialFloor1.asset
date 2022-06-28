@@ -39,3 +39,11 @@ MonoBehaviour:
     - task: 3
       input: SPACE
       taskDescription: Perform a dodge.
+    voiceLine:
+      audioClip: {fileID: 8300000, guid: 6df1cb561bf47d644a3e00e12264ba85, type: 3}
+      subtitleText: Hello, my sweet little play-thing. Welcome to your new hell!
+        Get comfortable in your new flesh prison, but not too comfortable! You better
+        pick up a staff, too.
+  voiceLine:
+    audioClip: {fileID: 8300000, guid: 6df1cb561bf47d644a3e00e12264ba85, type: 3}
+    subtitleText: 

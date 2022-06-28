@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d592d1a076b38154ebaf5ba54f5f581b, type: 3}
   m_Name: ScytheData
   m_EditorClassIdentifier: 
-  id: 2602
+  id: 3502
   puzzleName: Scythe
-  description: Sharp, but also blunt
+  description: Once used for farming wheat, but is now used for farming souls.
   puzzleSprite: {fileID: 21300000, guid: e284de694310ba740827986f92eb1877, type: 3}
   puzzleIcon: {fileID: 21300000, guid: 15750d730618e7845a8f543a2694a16d, type: 3}
   puzzleFile: {fileID: 4900000, guid: eff1a8e0fe1288646933dc94006d6caf, type: 3}

@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
 public class GameMessagePanelUI : AbstractPanelUI {
 
@@ -10,7 +10,7 @@ public class GameMessagePanelUI : AbstractPanelUI {
 
 
 	[SerializeField]
-	private Text gameMessageText;
+	private TMP_Text gameMessageText;
 
 
 	protected override void OnUIChange(GameState gameState) {

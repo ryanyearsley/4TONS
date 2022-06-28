@@ -32,7 +32,7 @@ public class ThinkComponent : BabyBrainsComponent {
 
 	public LayerMask layerMask;
 
-	private Vector3 creatureBodyOFfset = new Vector3 (0, 0.325f, 0);
+	private Vector3 creatureBodyOffset = new Vector3 (0, 0.325f, 0);
 
 
 	#region BabyBrainsComponent Callbacks
@@ -83,7 +83,11 @@ public class ThinkComponent : BabyBrainsComponent {
 		sensoryInfo.trans = this.transform;
 		sensoryInfo.lookTransform = new GameObject ("LookTransform").transform;
 		sensoryInfo.lookTransform.parent = sensoryInfo.trans;
-		sensoryInfo.lookTransform.localPosition = creatureBodyOFfset;
+		sensoryInfo.lookTransform.localPosition = creatureBodyOffset;
+
+		sensoryInfo.projectileTransform = new GameObject ("ProjectileTransform").transform;
+		sensoryInfo.projectileTransform.parent = sensoryInfo.lookTransform;
+		sensoryInfo.projectileTransform.localPosition = new Vector3 (0.25f, 0, 0);
 		sensoryInfo.vitalsEntity = babyBrainsObject.vitalsEntity;
 		sensoryInfo.targetVitals = null;
 
@@ -136,7 +140,7 @@ public class ThinkComponent : BabyBrainsComponent {
 			if (!sensoryInfo.targetVitals.creatureObject.isDead) {
 				sensoryInfo.isoDistanceToTarget = IsometricCoordinateUtilites.IsoDistanceBetweenPoints (sensoryInfo.trans.position, sensoryInfo.targetVitals.trans.position);
 				sensoryInfo.rawDistanceToTarget = IsometricCoordinateUtilites.RawDistanceBetweenPoints (sensoryInfo.trans, sensoryInfo.targetVitals.trans);
-				sensoryInfo.lookTransform.right = (sensoryInfo.targetVitals.trans.position + creatureBodyOFfset) - sensoryInfo.trans.position;
+				sensoryInfo.lookTransform.right = (sensoryInfo.targetVitals.trans.position + creatureBodyOffset) - sensoryInfo.trans.position;
 				sensoryInfo.targetWithinLoS = CalculateWithinLoS (sensoryInfo.lookTransform, sensoryInfo.targetVitals.trans);
 			} else {
 				sensoryInfo.targetVitals = null;

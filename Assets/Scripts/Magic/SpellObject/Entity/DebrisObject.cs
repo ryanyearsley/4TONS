@@ -5,11 +5,14 @@ using UnityEngine;
 public class DebrisObject : PoolObject
 {
 
+
     [SerializeField]
     private bool isAlive;
 
     [SerializeField]
     private float lifeTime;
+    [SerializeField]
+    private bool randomFlip = true;
     private float lifeTimer;
 
     private Transform trans;
@@ -23,11 +26,13 @@ public class DebrisObject : PoolObject
         base.ReuseObject ();
         lifeTimer = 0;
         isAlive = true;
-        int randomFlip = Random.Range(0,10);
-        if (randomFlip >= 5) {
-            trans.localScale = new Vector3 (-1, 1, 1);
-		} else {
-            trans.localScale = Vector3.one;
+        if (randomFlip) {
+            int randomFlip = Random.Range(0,1);
+            if (randomFlip > 1) {
+                trans.localScale = new Vector3 (-1, 1, 1);
+            } else {
+                trans.localScale = Vector3.one;
+            }
         }
     }
 

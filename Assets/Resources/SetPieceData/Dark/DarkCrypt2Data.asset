@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58488e2f9c5dea246823146dae462bde, type: 3}
   m_Name: DarkCrypt2Data
   m_EditorClassIdentifier: 
-  id: 3200
-  poolSize: 10
+  id: 3201
+  poolSize: 5
   outerClearance: 4
   school: 1
+  zone: 1
   spawnObjectPrefab: {fileID: 4767748298142753111, guid: 062dfe007b78cf3468ae8985822b1142, type: 3}
   innerClearance: 2

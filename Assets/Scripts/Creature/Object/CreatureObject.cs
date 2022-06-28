@@ -15,8 +15,8 @@ public class CreatureObject : PoolObject {
 	
 	public CreatureComponent[] creatureComponents;
 	public CreaturePositions creaturePositions { get; private set; }
-	public void SetCreaturePositions (Transform targetTransform, Transform feetTransform, Transform staffTransform) {
-		creaturePositions = new CreaturePositions (targetTransform, feetTransform, staffTransform);
+	public void SetCreaturePositions (Transform targetTransform, Transform feetTransform, Transform centerTransform, Transform staffTransform) {
+		creaturePositions = new CreaturePositions (targetTransform, feetTransform, centerTransform, staffTransform);
 	}
 
 	//Life Cycle

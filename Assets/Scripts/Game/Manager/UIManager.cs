@@ -22,6 +22,22 @@ public class UIManager : MonoBehaviour
 	}
 	private void Awake () {
 		InitializeSingleton ();
+		InitializePlayerUIPanels ();
+	}
+
+	private void InitializePlayerUIPanels() {
+		int playerCount = 1;	
+		if (PlayerManager.instance != null) {
+			playerCount = PlayerManager.instance.currentPlayers.Count;
+		}
+		for (int i = 0; i < playerUIs.Count; i++) {
+			if (playerCount > i) {
+				playerUIs [i].gameObject.SetActive (true);
+			}
+			 else {
+				playerUIs [i].gameObject.SetActive (false);
+			}
+		}
 	}
 
 }

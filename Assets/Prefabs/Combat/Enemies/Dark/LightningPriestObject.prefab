@@ -958,6 +958,7 @@ MonoBehaviour:
       resource: {fileID: 0}
       movement: {fileID: 0}
     lookTransform: {fileID: 0}
+    projectileTransform: {fileID: 0}
     targetWithinLoS: 0
     targetPositionTransform: {fileID: 0}
     targetVitals:

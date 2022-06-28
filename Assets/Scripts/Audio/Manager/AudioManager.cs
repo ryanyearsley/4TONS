@@ -4,11 +4,13 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 
-
+//1. Updates audio mixer settings on init, and on audio setting update event
+//2. Registers appropriate audio sources to dictionary.
+//3. Deletes all sounds on new scene load + registers generic sounds again.
 public class AudioManager : PersistentManager {
 	#region Singleton
 	public static AudioManager instance { get; private set; }
-	private void InitializeSingleton () {
+	protected override void InitializeSingleton () {
 		if (instance == null) {
 			instance = this;
 		} else if (instance != this) {
@@ -23,50 +25,59 @@ public class AudioManager : PersistentManager {
 	private static string SFX_VOLUME_PARAM = "SFXVolume";
 	private static int DB_MULTIPLIER  = 20;
 
-	public SettingsData currentSettings;
+	public AudioSettingsData currentAudioSettings;
 
 	public AudioMixer mixer;
-	public Sound[] sounds;
-	public Sound musicSound;
-	public Sound fallbackMusicSound;
+	public Sound[] menuSounds;
+	public Sound[] genericGameSounds;
 
 	public Dictionary<string, Sound> soundDictionary = new Dictionary<string, Sound>();
 
-
-
-	protected override void Awake () {
-		base.Awake ();
-		InitializeSingleton ();
-	}
-	protected override void Start () {
-		base.Start ();
+	public override void InitializePersistentManager () {
 		if (SettingsManager.instance != null) {
-			currentSettings = SettingsManager.instance.GetSettingsData ();
+			currentAudioSettings = SettingsManager.instance.GetAudioSettings ();
+			ApplyAudioSettings (currentAudioSettings);
+		} else {
+			Debug.Log ("AudioManager: Cannot load audio settings (SettingsManager null)");
 		}
-		ApplyAudioSettings (currentSettings);
-
-		for (int i = 0; i < sounds.Length; i++) {
-			RegisterSound (sounds [i]);
-		}
-
-		RegisterSound (musicSound);
-		if (GameManager.instance != null) {
-			PlayMusic (GameManager.instance.gameContext.zoneData.music);
-		} else 
-			PlayMusic (fallbackMusicSound);
+		RegisterSounds ();
 	}
+
+	public override void SubscribeToEvents () {
+		base.SubscribeToEvents ();
+		SettingsManager.instance.updateAudioEvent += ApplyAudioSettings;
+	}
+	public override void UnsubscribeFromEvents () {
+		base.UnsubscribeFromEvents ();
+		SettingsManager.instance.updateAudioEvent -= ApplyAudioSettings;
+	}
+
 	public override void SceneLoaded (Scene scene, LoadSceneMode loadSceneMode) {
-		StopMusic ();
-		if (GameManager.instance != null) {
-			PlayMusic (GameManager.instance.gameContext.zoneData.music);
-		} else
-			PlayMusic (fallbackMusicSound);
+		RegisterSounds ();
 	}
 
-	private void ApplyAudioSettings (SettingsData settingsData) {
-		mixer.SetFloat (MASTER_VOLUME_PARAM, Mathf.Log10 (settingsData.masterVolume) * DB_MULTIPLIER);
-		mixer.SetFloat (MUSIC_VOLUME_PARAM, Mathf.Log10 (settingsData.musicVolume) * DB_MULTIPLIER);
-		mixer.SetFloat (SFX_VOLUME_PARAM, Mathf.Log10 (settingsData.sfxVolume) * DB_MULTIPLIER);
+	public void RegisterSounds () {
+		soundDictionary.Clear ();
+		foreach (Transform child in transform) {
+			GameObject.Destroy (child.gameObject);
+		}
+
+		foreach (Sound sound in menuSounds) {
+			RegisterSound (sound);
+		}
+
+		if (SceneManager.GetActiveScene().buildIndex != 0) {
+			foreach (Sound sound in genericGameSounds) {
+				RegisterSound (sound);
+			}
+		}
+	}
+
+	private void ApplyAudioSettings (AudioSettingsData audioSettingsData) {
+		Debug.Log ("AudioManager: Applying Audio setting update.");
+		mixer.SetFloat (MASTER_VOLUME_PARAM, Mathf.Log10 (audioSettingsData.masterVolume) * DB_MULTIPLIER);
+		mixer.SetFloat (MUSIC_VOLUME_PARAM, Mathf.Log10 (audioSettingsData.musicVolume) * DB_MULTIPLIER);
+		mixer.SetFloat (SFX_VOLUME_PARAM, Mathf.Log10 (audioSettingsData.sfxVolume) * DB_MULTIPLIER);
 	}
 	public void RegisterSound (Sound sound) {
 		sound.clipName = sound.singleClip.name;
@@ -75,7 +86,6 @@ public class AudioManager : PersistentManager {
 			_go.transform.SetParent (this.transform);
 			sound.SetSource (_go.AddComponent<AudioSource> ());
 			soundDictionary.Add (sound.clipName, sound);
-			Debug.Log ("AudioManager: Sound Registered. Clip name: " + sound.clipName);
 		}
 	}
 
@@ -90,11 +100,4 @@ public class AudioManager : PersistentManager {
 		}
 	}
 
-	public void PlayMusic (Sound sound) {
-		musicSound.singleClip = sound.singleClip;
-		musicSound.Play ();
-	}
-	public void StopMusic () {
-		musicSound.Stop ();
-	}
 }

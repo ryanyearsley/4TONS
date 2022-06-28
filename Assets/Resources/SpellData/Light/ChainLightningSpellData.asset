@@ -16,9 +16,9 @@ MonoBehaviour:
   spellSchool: 0
   spellSchoolData: {fileID: 11400000, guid: 16a7aee84221cf944b3bc8802b8d5ba3, type: 2}
   id: 2400
-  description: Jolt your enemies with a bolt of lightning.
-  icon: {fileID: 21300000, guid: 5754f26e84bb2594eb004e04a2d4ba4c, type: 3}
-  manaCost: 3
+  description: Jolt your enemies with lightning, hopping to other nearby enemies.
+  icon: {fileID: 21300000, guid: 53c18ff8d4e27004984d52d1c26b6488, type: 3}
+  manaCost: 4
   castTime: 0.3
   castSpeedReduction: 0.7
   coolDown: 0.5
@@ -36,4 +36,4 @@ MonoBehaviour:
     randomize: 0
     randomClips: []
   spellEndSound: {fileID: 0}
-  puzzlePieceData: {fileID: 11400000, guid: eaa1924a4c758b3429c1c4a8f3ee5631, type: 2}
+  puzzlePieceData: {fileID: 11400000, guid: 6ead1114b67d8c24cb8a4110fe806f57, type: 2}

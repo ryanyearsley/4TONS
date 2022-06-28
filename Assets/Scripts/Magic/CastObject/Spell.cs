@@ -2,7 +2,7 @@
 using UnityEngine;
 
 public enum SpellCastLocation {
-	Staff, Cursor, Player, Melee
+	Staff, Cursor, PlayerFeet, PlayerCenter
 }
 public enum SpellCastType {
 	CAST, CHANNEL, SPECIAL
@@ -26,8 +26,7 @@ public abstract class Spell : MonoBehaviour {
 
 	[NonSerialized]
 	public SpellUI spellUI;
-
-	void Start () {
+	void Awake () {
 		SetUpSpell ();
 	}
 
@@ -35,7 +34,7 @@ public abstract class Spell : MonoBehaviour {
 	public virtual void SetUpSpell () {
 		if (spellData.spellObject != null)
 			PoolManager.instance.CreateSpellObjectPool (spellData.spellObject, spellData.poolSize);
-		
+
 		if (spellData.spellCastSound.singleClip != null)
 			AudioManager.instance.RegisterSound (spellData.spellCastSound);
 	}
@@ -50,7 +49,7 @@ public abstract class Spell : MonoBehaviour {
 			case SpellCastLocation.Cursor:
 				spellCastTransform = playerObject.creaturePositions.targetTransform;
 				break;
-			case SpellCastLocation.Player:
+			case SpellCastLocation.PlayerFeet:
 				spellCastTransform = playerObject.creaturePositions.feetTransform;
 				break;
 		}

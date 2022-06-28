@@ -24,9 +24,6 @@ public class PlayerManager : PersistentManager {
 	protected override void Awake () {
 		base.Awake ();
 		InitializeSingleton ();
-	}
-
-	public override void SetUpPersistentManager () {
 		if (MainMenuManager.Instance == null && currentPlayers.Count == 0) {
 			Debug.Log ("PlayerManager: Spawning test player.");
 			//This will create a test player in any scene aside from the menu.
@@ -36,6 +33,7 @@ public class PlayerManager : PersistentManager {
 			currentPlayers.Add (testPlayer);
 		}
 	}
+
 	public override void SceneLoaded (Scene scene, LoadSceneMode loadSceneMode) {
 		Debug.Log ("PlayerManager: Scene Loaded");
 	}

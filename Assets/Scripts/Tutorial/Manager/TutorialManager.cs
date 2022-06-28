@@ -31,9 +31,17 @@ public enum TutorialPhase {
 
 [Serializable]
 public class TutorialPhaseInfo {
+
+	//static
 	public TutorialPhase phase;
 	public int phaseIndex;
 	public TutorialTaskInfo[] requiredTasks;
+	public VoiceLine beginVoiceLine;
+	public VoiceLine completeVoiceLine;
+
+	//dynamic
+	public int tasksComplete;
+	public int totalTasksThisPhase;
 }
 
 [Serializable]
@@ -48,8 +56,7 @@ public class TutorialTaskInfo {
 public class TutorialProgress {
 
 
-	public int tasksComplete;
-	public int totalTasksThisPhase;
+	public TutorialTask currentTask;
 	public Dictionary <TutorialTask, bool> currentTaskDictionary = new Dictionary<TutorialTask, bool>();
 
 	public TutorialPhaseInfo currentPhaseInfo;
@@ -79,6 +86,7 @@ public class TutorialManager : MonoBehaviour {
 
 	public Action<TutorialPhaseInfo> OnBeginTutorialLevel;
 	public Action<TutorialTask> OnTaskCompleteEvent;
+	public Action <TutorialTaskInfo> UpdateTaskEvent;
 	public Action<TutorialPhaseInfo> OnPhaseCompleteEvent;
 	public Action OnTutorialCompleteEvent;
 
@@ -118,33 +126,25 @@ public class TutorialManager : MonoBehaviour {
 			Debug.Log ("TutorialManager: Starting Phase " + phaseInfo.phaseIndex);
 			tutorialProgress.currentPhaseInfo.phase = phaseInfo.phase;
 			tutorialProgress.currentPhaseInfo.phaseIndex = phaseIndex;
-			tutorialProgress.currentTaskDictionary.Clear ();
-
-			for (int i = 0; i < phaseInfo.requiredTasks.Length; i++) {
-				TutorialTaskInfo taskInfo = phaseInfo.requiredTasks[i];
-				tutorialProgress.currentTaskDictionary.Add (taskInfo.task, false);
-			}
-			tutorialProgress.totalTasksThisPhase = tutorialProgress.currentTaskDictionary.Count;
+			tutorialProgress.currentPhaseInfo.tasksComplete = 0;
+			tutorialProgress.currentTask = tutorialProgress.currentPhaseInfo.requiredTasks [tutorialProgress.currentPhaseInfo.tasksComplete].task;
+			tutorialProgress.currentPhaseInfo.totalTasksThisPhase = tutorialProgress.currentPhaseInfo.requiredTasks.Length;
 			OnBeginTutorialLevel?.Invoke (phaseInfo);
 		} else {
 			Debug.LogError ("Manager/Map Data Mismatch (Configuration Error)");
 		}
 	}
+	
 
 	public bool SetTaskComplete (TutorialTask tutorialTask) {
 		Debug.Log ("TutorialManager: Setting task complete!");
-		if (tutorialProgress.currentTaskDictionary.ContainsKey (tutorialTask)
-			&& tutorialProgress.currentTaskDictionary [tutorialTask] == false) {
-			tutorialProgress.currentTaskDictionary [tutorialTask] = true;
-			tutorialProgress.tasksComplete++;
+		if (tutorialProgress.currentTask == tutorialTask) {
+			tutorialProgress.currentPhaseInfo.tasksComplete++;
 			OnTaskCompleteEvent?.Invoke (tutorialTask);
-			bool allInPhaseComplete = true;
-			foreach (bool taskComplete in tutorialProgress.currentTaskDictionary.Values) {
-				if (!taskComplete) {
-					allInPhaseComplete = false;
-				}
-			}
-			if (allInPhaseComplete == true) {
+			Debug.Log ("tasks complete: " + tutorialProgress.currentPhaseInfo.tasksComplete  + ", tasks this phase: " + tutorialProgress.currentPhaseInfo.totalTasksThisPhase);
+			if (tutorialProgress.currentPhaseInfo.totalTasksThisPhase > tutorialProgress.currentPhaseInfo.tasksComplete) {
+				tutorialProgress.currentTask = tutorialProgress.currentPhaseInfo.requiredTasks [tutorialProgress.currentPhaseInfo.tasksComplete].task;
+			} else {
 				GameManager.instance.LevelObjectiveComplete ();
 			}
 			return true;
@@ -153,6 +153,10 @@ public class TutorialManager : MonoBehaviour {
 		}
 	}
 
+	public void UpdateTask(TutorialTaskInfo taskInfo) {
+
+		UpdateTaskEvent?.Invoke (taskInfo);
+	}
 	public void TaskComplete (TutorialTask task) {
 		OnTaskCompleteEvent?.Invoke (task);
 	}

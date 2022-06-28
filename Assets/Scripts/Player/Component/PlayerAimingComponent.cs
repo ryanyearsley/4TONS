@@ -43,8 +43,7 @@ public class PlayerAimingComponent : PlayerComponent {
 		mainCamera = Camera.main;
 		CreateCursor ();
 		CreateStaffAimObject ();
-		playerObject.SetCreaturePositions (cursorTransform, transform, staffAimObject.staffTipTransform);
-		
+		playerObject.SetCreaturePositions (cursorTransform, transform, aimingPivotTransform, staffAimObject.staffTipTransform);
 	}
 	//TODO: Destroy cursor/staff after death.
 	public override void ReusePlayerComponent (Player player) {
@@ -53,7 +52,7 @@ public class PlayerAimingComponent : PlayerComponent {
 		if (player.wizardSaveData.primaryStaffSaveData.puzzleData != null) {
 			staffAimObject.InitializeStaffAimObject (player.wizardSaveData.primaryStaffSaveData.puzzleData.puzzleSprite);
 		}
-		CameraController2D.instance.SetCameraDynamic (creatureObject.GetComponent<MovementComponent> ());
+		CameraController2D.instance.SetCameraDynamic (creatureObject.creaturePositions.centerTransform);
 	}
 	public override void OnSpawn (Vector3 spawnPosition) {
 		playerObject.SetSmartCursor (false);
@@ -110,7 +109,6 @@ public class PlayerAimingComponent : PlayerComponent {
 	}
 	public void ToggleSmartCursorModeButtonDown () {
 		if (!playerObject.usingMouseControls) {
-
 			playerObject.SetSmartCursor (!playerObject.smartCursor);
 			if (!playerObject.smartCursor) {
 				playerObject.SetAimingMode (AimingMode.CURSOR);
@@ -145,7 +143,7 @@ public class PlayerAimingComponent : PlayerComponent {
 		cursorController.OnChangeState (playerState);
 		switch (playerState) {
 			case (PlayerState.COMBAT): {
-					CameraController2D.instance.SetCameraDynamic (creatureObject.GetComponent<MovementComponent> ());
+					CameraController2D.instance.SetCameraDynamic (creatureObject.creaturePositions.centerTransform);
 					staffAimObject.gameObject.SetActive (true);
 					if (!playerObject.usingMouseControls) {
 						currentJoystickSensitivity = combatJoystickSensitivity;
@@ -159,7 +157,7 @@ public class PlayerAimingComponent : PlayerComponent {
 				}
 			case (PlayerState.PUZZLE_BROWSING):
 			case (PlayerState.PUZZLE_MOVING_SPELLGEM): {
-					CameraController2D.instance.SetCameraRigidFollow (creatureObject.GetComponent<MovementComponent> ());
+					CameraController2D.instance.SetCameraRigidFollow (playerObject.creaturePositions.centerTransform);
 					staffAimObject.gameObject.SetActive (false);
 					if (!playerObject.usingMouseControls) {
 						currentJoystickSensitivity = puzzleJoystickSensitivity;

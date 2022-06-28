@@ -8,7 +8,9 @@ public class TutorialChecklistPanelUI : AbstractPanelUI, ITutorialSubscriber {
 	[SerializeField]
 	private TMP_Text phaseTitleText;
 	[SerializeField]
-	private TutorialTasklistElement[] tutorialTaskListElements;
+	private TutorialTasklistElement tutorialTaskListElement;
+
+	private TutorialPhaseInfo currentPhaseInfo;
 
 	public override void Start () {
 		base.Start ();
@@ -21,27 +23,24 @@ public class TutorialChecklistPanelUI : AbstractPanelUI, ITutorialSubscriber {
 	}
 
 	public void OnStartPhase (TutorialPhaseInfo tutorialPhaseInfo) {
+		currentPhaseInfo = tutorialPhaseInfo;
 		phaseTitleText.text = tutorialPhaseInfo.phase.ToString ();
-		for (int i = 0; i < tutorialTaskListElements.Length; i++) {
-			if (tutorialPhaseInfo.requiredTasks.Length > i) {
-				tutorialTaskListElements [i].gameObject.SetActive (true);
-				tutorialTaskListElements [i].ReuseTasklistElement (tutorialPhaseInfo.requiredTasks [i]);
-			} else {
-				tutorialTaskListElements [i].gameObject.SetActive (false);
-			}
-		}
+		tutorialTaskListElement.gameObject.SetActive (true);
+		tutorialTaskListElement.ReuseTasklistElement (tutorialPhaseInfo.requiredTasks [0]);
 	}
 
 	public void OnTaskComplete (TutorialTask tutorialTask) {
-		for (int i = 0; i < tutorialTaskListElements.Length; i++) {
-			if (tutorialTaskListElements [i].gameObject.activeInHierarchy) {
-				tutorialTaskListElements [i].TrySetTaskComplete (tutorialTask);
-			}
+		StartCoroutine (UpdateTaskRoutine (tutorialTask));
+	}
+
+	public IEnumerator UpdateTaskRoutine(TutorialTask tutorialTask) {
+		tutorialTaskListElement.TrySetTaskComplete (tutorialTask);
+		yield return new WaitForSeconds (1f);
+		if (currentPhaseInfo.tasksComplete < currentPhaseInfo.requiredTasks.Length) {
+			tutorialTaskListElement.ReuseTasklistElement (currentPhaseInfo.requiredTasks [currentPhaseInfo.tasksComplete]);
 		}
 	}
 	public void OnPhaseComplete (TutorialPhaseInfo completedPhaseInfo) {
-		for (int i = 0; i < tutorialTaskListElements.Length; i++) {
-			tutorialTaskListElements [i].gameObject.SetActive (false);
-		}
+		tutorialTaskListElement.gameObject.SetActive (false);
 	}
 }

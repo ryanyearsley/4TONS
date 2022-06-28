@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7045842819127210614}
   - component: {fileID: 4120377049484227430}
-  - component: {fileID: 4136038626074776131}
   - component: {fileID: 1479866047919367103}
   - component: {fileID: 3261627122669210280}
   - component: {fileID: 7940440417784645156}
@@ -51,35 +50,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   behaviourData: {fileID: 11400000, guid: e42415dbcec5bd24b8ac01f57e144d0f, type: 2}
-  ExecutionTime: 0.25
-  Cooldown: 10
+  ExecutionTime: 0.35
+  Cooldown: 3
   _started: 0
   _finished: 0
   resourceCost: 0
   castSpeedPenaltyMultiplier: 0.75
-  minAttackDistance: 2
-  maxAttackDistance: 8
-  poolSize: 5
-  rangedProjectilePrefab: {fileID: 5217744383755033205, guid: aeb80b37df5654a4cb1b489fb0bc4932, type: 3}
---- !u!114 &4136038626074776131
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2762663245159624657}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16417783756cbef4ebb8319bbb75fe97, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  behaviourData: {fileID: 11400000, guid: 1365205d7b33fdf44998ed896219c78e, type: 2}
-  ExecutionTime: 0.4
-  Cooldown: 2
-  _started: 0
-  _finished: 0
-  attackDistance: 1.5
-  attackDamage: 20
+  minAttackDistance: 1
+  maxAttackDistance: 3
+  poolSize: 1
+  rangedProjectilePrefab: {fileID: 5349493896159913635, guid: a942384fd1d92cb4db2e428b1e42cec1, type: 3}
 --- !u!114 &1479866047919367103
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -93,13 +73,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   behaviourData: {fileID: 11400000, guid: 3b6e7e98fc324b24ea721a0ac557a374, type: 2}
-  ExecutionTime: 0.3
-  Cooldown: 4
+  ExecutionTime: 0.5
+  Cooldown: 2
   _started: 0
   _finished: 0
-  chargeSpeedMultiplier: 2.5
-  minimumChargeDistance: 3
-  maxChargeDistance: 6
+  chargeSpeedMultiplier: 2
+  minimumChargeDistance: 5
+  maxChargeDistance: 7
 --- !u!114 &3261627122669210280
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -311,7 +291,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentMovementSpeed: 0
-  movementSpeed: 6
+  movementSpeed: 7
   isometricScaling: {x: 1, y: 0.5}
   acceleration: 0.1
   feetCollider: {fileID: 4248461413684950958}
@@ -370,6 +350,7 @@ MonoBehaviour:
       resource: {fileID: 0}
       movement: {fileID: 0}
     lookTransform: {fileID: 0}
+    projectileTransform: {fileID: 0}
     targetWithinLoS: 0
     targetPositionTransform: {fileID: 0}
     targetVitals:

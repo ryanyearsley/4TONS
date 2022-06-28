@@ -16,13 +16,23 @@ MonoBehaviour:
   poolSize: 20
   outerClearance: 1
   school: 1
+  zone: 1
   spawnObjectPrefab: {fileID: 3125169596821539825, guid: d5487051237bc0c468fa6ed0a17c65cc, type: 3}
   creatureName: Zombie
   maxHealth: 40
   maxResource: 0
-  movementSpeed: 5
+  movementSpeed: 6
   creatureAudio:
-    attackSound: {fileID: 0}
+    attackSound:
+      clipName: 
+      singleClip: {fileID: 0}
+      volume: 1
+      pitch: 1
+      mixerGroup: {fileID: 0}
+      loop: 0
+      randomize: 0
+      randomClips: []
+    attackClip: {fileID: 0}
     gruntSound: {fileID: 8300000, guid: 5217f967a802b2e42a46c1ec752811fd, type: 3}
     deathSound: {fileID: 8300000, guid: d8b13e890607ecd4d807cbed7f2dffc9, type: 3}
     happySound: {fileID: 0}

@@ -109,18 +109,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a2013a34ab195b46becd81ef7ee9d88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventoryOrigin: {x: -11, y: 0}
-  inventoryBoundSize: {x: 9, y: 6}
-  staffOrigin: {x: 0, y: 0}
-  staffBoundSize: {x: 7, y: 7}
-  staffTile: {fileID: 11400000, guid: b4c6b12a214a7744ea78a5573676c646, type: 2}
-  grid: {fileID: 5893838107266281423}
-  currentPuzzleCursorLocation:
-    puzzleRegion: 0
-    coordinate: {x: 0, y: 0, z: 0}
   highlightedBlockTransform: {fileID: 2056936623958212298}
-  uncommitedSpellGemParentTransform: {fileID: 3153844221677242144}
-  highlightedSpellNameText: {fileID: 5247402216564699677}
+  puzzleIconSprite: {fileID: 0}
+  puzzleNameText: {fileID: 0}
+  toolTipPanel: {fileID: 0}
+  toolTipText: {fileID: 0}
+  toolTipImage: {fileID: 0}
 --- !u!210 &8444464670145012147
 SortingGroup:
   m_ObjectHideFlags: 0
@@ -281,8 +275,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Leechbolt
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 2a5aa826e5b710549a250053f29c9570, type: 2}
-  m_sharedMaterial: {fileID: -7629271218451061245, guid: 2a5aa826e5b710549a250053f29c9570, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 117d90ab89ba0714180f1b416f7db863, type: 2}
+  m_sharedMaterial: {fileID: -3121098833252176014, guid: 117d90ab89ba0714180f1b416f7db863, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

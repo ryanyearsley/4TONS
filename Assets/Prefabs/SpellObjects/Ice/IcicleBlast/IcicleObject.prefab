@@ -71,7 +71,7 @@ MonoBehaviour:
     loop: 0
     randomize: 0
     randomClips: []
-  moveSpeed: 10
+  moveSpeed: 12
   speedCurve:
     serializedVersion: 2
     m_Curve:
@@ -97,7 +97,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   moveSpeedVariation: 2
-  spreadRange: 25
+  spreadRange: 17
   spriteRenderer: {fileID: 8794875045630506511}
   sprites:
   - {fileID: 21300000, guid: 6c7b5e1e72eedea4da63c72fff3b3b14, type: 3}

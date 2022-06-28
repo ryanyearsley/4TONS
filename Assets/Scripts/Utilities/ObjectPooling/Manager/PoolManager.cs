@@ -102,6 +102,10 @@ public class PoolManager : MonoBehaviour {
 		}
 	}
 
+	public void CreateAudioObjectPool(GameObject prefab, int poolSize) {
+
+	}
+
 	// Reuse a gameobject and places it in the desired position
 	public GameObject ReuseObject (GameObject prefab, Vector3 position, Quaternion rotation) {
 		int poolKey = prefab.GetInstanceID ();

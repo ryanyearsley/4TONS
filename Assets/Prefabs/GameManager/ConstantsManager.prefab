@@ -68,6 +68,7 @@ MonoBehaviour:
       m_keys: 
       m_values: []
   playerCreatureData: {fileID: 11400000, guid: 7505292d04f3608419afaf178b6440b3, type: 2}
+  defaultWizardData: {fileID: 0}
   spellGemPickUpData: {fileID: 11400000, guid: c5abe41b66335894d94c02f288c77685, type: 2}
   staffPickUpData: {fileID: 11400000, guid: 068e24aab08d0fc4ab1b20cd58920012, type: 2}
   spellGemUIPrefab: {fileID: 3736764071619496437, guid: caa8575b570f7064fa9976b4e192f64d, type: 3}
@@ -77,3 +78,36 @@ MonoBehaviour:
   randomWizardNames: {fileID: 11400000, guid: 660b8bb0a2792ea468e012a6085ff2e0, type: 2}
   validProjectedAoEColor: {r: 1, g: 1, b: 1, a: 0.46666667}
   invalidProjectedAoEColor: {r: 0.8018868, g: 0.11725702, b: 0.11725702, a: 0.3882353}
+  isoSpeedCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0.5585651
+      outSlope: 0.5585651
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.3656616
+    - serializedVersion: 3
+      time: 0.6666
+      value: 0.5
+      inSlope: 1.0849411
+      outSlope: 1.0849411
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.24992497
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4

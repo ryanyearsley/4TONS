@@ -51,15 +51,18 @@ MonoBehaviour:
   lifeTime: 10
   lifeTimer: 0
   spellEffects: []
+  debrisPoolSize: 0
+  debrisObject: {fileID: 0}
   spellObjectSound:
     clipName: 
     singleClip: {fileID: 8300000, guid: c07072b0f1a2b5940ac1793321a71f4d, type: 3}
-    volume: 2
+    volume: 1
     pitch: 1
     mixerGroup: {fileID: -7302680629657921355, guid: 004a37a2c22918345b123859e614950a, type: 2}
     loop: 0
     randomize: 0
     randomClips: []
+  interruptSpellSoundOnDestroy: 1
   spellObjectDestroySound:
     clipName: 
     singleClip: {fileID: 0}

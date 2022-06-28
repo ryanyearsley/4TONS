@@ -28,6 +28,7 @@ public class ZoneData : ScriptableObject {
 	public List<TileData> surroundingDecorTiles;//non-obstructive floor tiles surrounding objects, i.e. flowers
 	public List<TileData> baseDecorTiles;//placed on floor tiles, but clears base around.
 	public List<TileData> topDecorTiles;//placed on top of base tiles.
+
 	public List<SetPieceData> largeSetpieceDatas;
 	public List<CreatureData> enemyDatas;
 	public MapData[] mapDatas;

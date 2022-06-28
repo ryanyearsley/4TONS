@@ -45,4 +45,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spellData: {fileID: 11400000, guid: 4aa338a38cb396f4080327d9aaf31198, type: 2}
   debrisPoolSize: 2
-  debrisObject: {fileID: 1930889244971885074, guid: 3df316b5eeaccf34b83e3964817302d1, type: 3}
+  debrisObject: {fileID: 1930889244971885074, guid: 65752b0c936f76e44b3da98d08a7107f, type: 3}

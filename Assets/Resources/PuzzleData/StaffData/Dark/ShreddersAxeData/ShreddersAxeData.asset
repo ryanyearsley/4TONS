@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d592d1a076b38154ebaf5ba54f5f581b, type: 3}
+  m_Name: ShreddersAxeData
+  m_EditorClassIdentifier: 
+  id: 2602
+  puzzleName: Shredder's Axe
+  description: Sharp, but also blunt
+  puzzleSprite: {fileID: 21300000, guid: 52fe03e887cce6a499dc56a0370819bb, type: 3}
+  puzzleIcon: {fileID: 21300000, guid: a552e349dd2a9554198ce7f544b6be3a, type: 3}
+  puzzleFile: {fileID: 4900000, guid: 90bbf22da0cf0a44aab279ccad91b73d, type: 3}
+  puzzleType: 0
+  defaultSpellGemDictionary:
+    m_keys: []
+    m_values: []

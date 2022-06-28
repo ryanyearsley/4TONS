@@ -232,6 +232,7 @@ MonoBehaviour:
   castSpeedPenaltyMultiplier: 0.9
   minAttackDistance: 6
   maxAttackDistance: 12
+  poolSize: 5
   rangedProjectilePrefab: {fileID: 5349493896159913635, guid: f8a2cb183c6c1e7409e5fed833cefaff, type: 3}
 --- !u!114 &3400275548769995837
 MonoBehaviour:
@@ -254,6 +255,7 @@ MonoBehaviour:
   castSpeedPenaltyMultiplier: 0.75
   minAttackDistance: 1
   maxAttackDistance: 7.5
+  poolSize: 5
   rangedProjectilePrefab: {fileID: 5349493896159913635, guid: b69c46467d87b624db55627dc8a16548, type: 3}
   spread: 60
   shotCount: 7
@@ -370,7 +372,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8036647390902012779}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.69, y: 8.13, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2674823438085829356}

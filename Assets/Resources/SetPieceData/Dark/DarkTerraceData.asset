@@ -16,5 +16,6 @@ MonoBehaviour:
   poolSize: 10
   outerClearance: 5
   school: 1
+  zone: 1
   spawnObjectPrefab: {fileID: 4767748298142753111, guid: a0f2ed9d46aae584baad575f22ce0412, type: 3}
   innerClearance: 3

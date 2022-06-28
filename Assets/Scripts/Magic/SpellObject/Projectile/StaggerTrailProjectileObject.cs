@@ -44,9 +44,13 @@ public class StaggerTrailProjectileObject : ProjectileObject
 	public override void ReuseObject () {
 		base.ReuseObject ();
 		lineRenderer.positionCount = 0;
-		HalfedFirstTurn ();
 		tbcTimer = 0;
 
+	}
+
+	public override void ReuseSpellObject (VitalsEntity vitalsEntity) {
+		base.ReuseSpellObject (vitalsEntity);
+		HalfedFirstTurn ();
 	}
 	private void HalfedFirstTurn() {
 		int directionRoll = Random.Range(0, 10);

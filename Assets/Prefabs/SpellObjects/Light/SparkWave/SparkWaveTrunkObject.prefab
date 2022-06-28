@@ -116,7 +116,7 @@ MonoBehaviour:
   lifeTimer: 0
   spellEffects: []
   debrisPoolSize: 5
-  debrisObject: {fileID: 1930889244971885074, guid: 3df316b5eeaccf34b83e3964817302d1, type: 3}
+  debrisObject: {fileID: 1930889244971885074, guid: 65752b0c936f76e44b3da98d08a7107f, type: 3}
   spellObjectSound:
     clipName: 
     singleClip: {fileID: 8300000, guid: 4c7fadf177797c84d8fca9900771d1bb, type: 3}
@@ -126,6 +126,7 @@ MonoBehaviour:
     loop: 0
     randomize: 0
     randomClips: []
+  interruptSpellSoundOnDestroy: 0
   spellObjectDestroySound:
     clipName: 
     singleClip: {fileID: 8300000, guid: 3201b5421bdcbd847ae8c9ce09084287, type: 3}
@@ -238,7 +239,8 @@ LineRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Positions: []
+  m_Positions:
+  - {x: 0, y: 0, z: 0}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1

@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58488e2f9c5dea246823146dae462bde, type: 3}
   m_Name: TempleData
   m_EditorClassIdentifier: 
-  id: 102
+  id: 103
   poolSize: 10
   outerClearance: 4
-  school: 1
+  school: 4
+  zone: 6
   spawnObjectPrefab: {fileID: 4767748298142753111, guid: db416f828758c2045b74ff9dcf7036f7, type: 3}
   innerClearance: 2

@@ -41,10 +41,17 @@ public class GauntletGameManager : MonoBehaviour {
 
 	public void InitializeManager () {
 		GameManager.instance.beginLevelEvent += OnBeginLevel;
+		GameManager.instance.gameCompleteEvent += OnGameComplete;
 	}
 
 	public void OnBeginLevel(int levelIndex) {
 		levelProgress.currentFloorSpawnCount = levelProgress.currentFloorRemainingEnemies.Count;
+	}
+
+	public void OnGameComplete() {
+		string leaderboardName = "Gauntlet: " + GameManager.instance.gameContext.zoneData.zone.ToString();
+		PlayFabManager.instance.SendLeaderboardUpdate (Mathf.RoundToInt (Time.time * 1000), leaderboardName);//x1000 going in, /1000 when retrieved
+
 	}
 
 	public void RegisterEnemy(GauntletObjectiveComponent gauntletObjectiveComponent) {
@@ -74,10 +81,10 @@ public class GauntletGameManager : MonoBehaviour {
 	}
 
 	public void UpdateDeathCount() {
-		int remainingEnemies = levelProgress.currentFloorRemainingEnemies.Count;
-		int percentageRemaining = remainingEnemies * 100 / levelProgress.currentFloorSpawnCount;
-		int percentageCompleted = 100 - percentageRemaining;
-		EnemyDeathInfo enemyDeathInfo = new EnemyDeathInfo(percentageCompleted);
+		float remainingEnemies = levelProgress.currentFloorRemainingEnemies.Count;
+		float percentageNormalized = 1 - remainingEnemies/levelProgress.currentFloorSpawnCount;
+		EnemyDeathInfo enemyDeathInfo = new EnemyDeathInfo(percentageNormalized);
 		enemyDeathEvent?.Invoke (enemyDeathInfo);
 	}
+
 }

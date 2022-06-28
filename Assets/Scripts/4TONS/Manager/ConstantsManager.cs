@@ -5,7 +5,9 @@ using UnityEngine.Tilemaps;
 
 public class ConstantsManager : PersistentManager {
 
+	public string testNumber;
 	public GameDataLegend legend;
+	public PuzzleData[] inventoryTemplates;
 	public SpellSchoolData[] spellSchools;
 	public ZoneData[] zones;
 	public ObjectiveData[] objectives;
@@ -17,8 +19,7 @@ public class ConstantsManager : PersistentManager {
 	//It is then overwritten by player's WizardSaveData (assigned in PlayerManager).
 	public CreatureData playerCreatureData;
 	public WizardPrebuildData defaultWizardData;
-
-
+	
 
 	//STAFF AND PUZZLE PREFABS
 
@@ -38,23 +39,24 @@ public class ConstantsManager : PersistentManager {
 	public Color validProjectedAoEColor;
 	public Color invalidProjectedAoEColor;
 
+	public AnimationCurve isoSpeedCurve;
+	public Sound mainMenuMusic;
 
+	public List<ResolutionSetting> validResolutions;
+
+	public List <int> validTargetFramerates;
 	#region Singleton
 	public static ConstantsManager instance;
-	void SingletonInitialization () {
+	protected override void InitializeSingleton () {
 		if (instance == null) {
 			instance = this;
+			MapObjectIDsToLegend ();//sets indexes on all objects using the world data and legend.
+			objectRegistry = new ObjectRegistry (inventoryTemplates, spellSchools, zones, objectives, legend);//registers objects by their assigned ID into dictionaries.
 		} else if (instance != this) {
-			Destroy (gameObject);
+			Destroy (this);
 		}
 	}
 	#endregion
-	protected override void Awake () {
-		base.Awake ();
-		SingletonInitialization ();
-		MapObjectIDsToLegend ();//sets indexes on all objects using the world data and legend.
-		objectRegistry = new ObjectRegistry (spellSchools, zones, objectives, legend);//registers objects by their assigned ID into dictionaries.
-	}
 
 	public void MapObjectIDsToLegend () {
 		Dictionary<SpellSchool, int> schoolIndexStartDictionary = new Dictionary<SpellSchool, int>();
@@ -64,6 +66,9 @@ public class ConstantsManager : PersistentManager {
 		schoolIndexStartDictionary.Add (SpellSchool.Fire, legend.FIRE_INDEX_START);
 		schoolIndexStartDictionary.Add (SpellSchool.Ice, legend.ICE_INDEX_START);
 
+		for (int i = 0; i < inventoryTemplates.Length; i++) {
+			inventoryTemplates [i].id = legend.GENERIC_INDEX_START + legend.STAFF_INDEX_START + i;
+		}
 		//assigns unique index to all spell data objects.
 		foreach (SpellSchoolData spellSchoolData in spellSchools) {
 			int schoolIndexStart = schoolIndexStartDictionary [spellSchoolData.spellSchool];
@@ -144,11 +149,14 @@ public class ConstantsManager : PersistentManager {
 			}
 
 
+
 			for (int i = 0; i < zoneData.enemyDatas.Count; i++) {
-				zoneData.enemyDatas [i].id = zoneIndexStart + legend.ENEMY_SPAWN_INDEX_START + i;
+				if (zoneData.enemyDatas[i].zone == zoneData.zone)
+					zoneData.enemyDatas [i].id = zoneIndexStart + legend.ENEMY_SPAWN_INDEX_START + i;
 			}
 			for (int i = 0; i < zoneData.largeSetpieceDatas.Count; i++) {
-				zoneData.largeSetpieceDatas [i].id = zoneIndexStart + legend.SETPIECE_INDEX_START + i;
+				if (zoneData.largeSetpieceDatas [i].zone == zoneData.zone)
+					zoneData.largeSetpieceDatas [i].id = zoneIndexStart + legend.SETPIECE_INDEX_START + i;
 			}
 		}
 	}

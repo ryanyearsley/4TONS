@@ -722,8 +722,8 @@ Transform:
   m_Children:
   - {fileID: 1427725617416868248}
   - {fileID: 3308846037857523567}
-  - {fileID: 6684066279382379788}
   - {fileID: 2713038008947863575}
+  - {fileID: 6684066279382379788}
   - {fileID: 7139800860235479515}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -1620,7 +1620,7 @@ GameObject:
   - component: {fileID: 2742370487380122056}
   m_Layer: 8
   m_Name: WizardBodyHitBox
-  m_TagString: Player
+  m_TagString: Player1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1637,7 +1637,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3151322532891022115}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &2742370487380122056
 BoxCollider2D:
@@ -1726,7 +1726,7 @@ Transform:
   m_Children:
   - {fileID: 501852614822227419}
   m_Father: {fileID: 3151322532891022115}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &485260408609045724
 MonoBehaviour:

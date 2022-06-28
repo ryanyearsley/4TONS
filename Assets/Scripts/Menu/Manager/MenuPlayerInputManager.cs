@@ -32,7 +32,7 @@ public class MenuPlayerInputManager : MonoBehaviour {
 
 	void Update () {
 		for (int i = unassignedControllers.Count - 1; i >= 0; i--) {
-			Debug.Log ("PlayerJoinInputPollManager: Checking Input " + i + ". ");
+			Debug.Log ("PlayerJoinInputPollManager: Checking Input " + unassignedControllers [i].descriptiveName + ". ");
 			if (unassignedControllers [i].GetAnyButtonDown ()) {
 				Debug.Log ("Input detected. Player joining.");
 				MainMenuManager.Instance.OnPlayerJoin (unassignedControllers [i].id);

@@ -8,5 +8,6 @@ public class SpawnObjectData : ScriptableObject
 	public int poolSize;
 	public int outerClearance;
 	public SpellSchool school;
+	public Zone zone;
 	public GameObject spawnObjectPrefab;
 }

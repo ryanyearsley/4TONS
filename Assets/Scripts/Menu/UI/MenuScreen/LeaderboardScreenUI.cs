@@ -4,19 +4,19 @@ using UnityEngine;
 
 public class LeaderboardScreenUI : AbstractScreenUI
 {
+	[SerializeField]
 	private LeaderboardUI leaderboardUI;
 
 	private Objective selectedObjective = Objective.Gauntlet;
 	private Zone selectedZone = Zone.Dark;
 
 	private void Awake () {
-		leaderboardUI = GetComponent<LeaderboardUI> ();
 	}
 
 	protected override void OnScreenChange (MenuScreen mainMenuScreen) {
 		if (screenActiveStates.Contains (mainMenuScreen)) {
 			screenObject.SetActive (true);
-			leaderboardUI.GetLeaderboard (selectedObjective, selectedZone);
+			leaderboardUI.GetOnlineLeaderboard (selectedObjective, selectedZone);
 		} else {
 			screenObject.SetActive (false);
 		}
@@ -26,7 +26,7 @@ public class LeaderboardScreenUI : AbstractScreenUI
 		if (objective != selectedObjective) {
 			//new selection, update leaderboard
 			selectedObjective = objective;
-			leaderboardUI.GetLeaderboard (selectedObjective, selectedZone);
+			leaderboardUI.GetOnlineLeaderboard (selectedObjective, selectedZone);
 
 		}
 	}
@@ -34,7 +34,7 @@ public class LeaderboardScreenUI : AbstractScreenUI
 		if (zone != selectedZone) {
 			//new selection, update leaderboard
 			selectedZone = zone;
-			leaderboardUI.GetLeaderboard (selectedObjective, selectedZone);
+			leaderboardUI.GetOnlineLeaderboard (selectedObjective, selectedZone);
 
 		}
 	}

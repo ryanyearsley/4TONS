@@ -5,9 +5,9 @@ using UnityEngine;
 public class EnemyDeathInfo
 {
 
-	public int percentageFloorCleared;
+	public float percentageNormalized;
 
-	public EnemyDeathInfo (int percentageFloorCleared) {
-		this.percentageFloorCleared = percentageFloorCleared;
+	public EnemyDeathInfo (float percentageNormalized) {
+		this.percentageNormalized = percentageNormalized;
 	}
 }

@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+
+
+
+
 public class LeaderboardEntryUI : MonoBehaviour
 {
 	[SerializeField]
@@ -17,10 +21,15 @@ public class LeaderboardEntryUI : MonoBehaviour
 		timeText.text = time;
 	}
 
+	public void DisplayLeaderboardEntry (LeaderboardEntry lbEntry) {
+		rankText.text = lbEntry.rank.ToString ();
+		nameText.text = lbEntry.name;
+		timeText.text = lbEntry.timeString;
+	}
+
 	public void BlankOutFields () {
 		rankText.text = " - - - - ";
 		nameText.text = " - - - - ";
 		timeText.text = " - - - - ";
-		nameText.text = " - - - - ";
 	}
 }

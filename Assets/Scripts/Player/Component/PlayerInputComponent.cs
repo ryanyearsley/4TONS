@@ -46,14 +46,19 @@ namespace PlayerManagement {
 				PuzzleInput ();
 				SpellInput ();
 				InteractInput ();
+				if (rewiredController.GetButtonDown ("Dash")) {
+					playerMovementComponent.OnDashInputDown ();
+				}
 			}
 			PauseInput ();
-			if (rewiredController.GetButtonDown ("Dash")) {
-				playerMovementComponent.OnDashInputDown ();
-			}
 		}
 
 		private void FixedUpdate () {
+			MovementInput ();
+		}
+
+		private void MovementInput () {
+
 			Vector2 directionalInput = new Vector2 (rewiredController.GetAxisRaw ("MoveHorizontal"), rewiredController.GetAxisRaw ("MoveVertical"));
 			playerMovementComponent.UpdateMovementInput (directionalInput, playerAimingController.CursorDirection);
 		}
@@ -74,6 +79,7 @@ namespace PlayerManagement {
 			}
 
 			if (rewiredController.GetButtonDown ("ToggleAimingMode")) {
+				Debug.Log ("PlayerInputComponent: ToggleAimingMode button pressed");
 				playerAimingController.ToggleSmartCursorModeButtonDown ();
 			}
 			if (playerObject.usingMouseControls)
@@ -149,7 +155,8 @@ namespace PlayerManagement {
 
 		private void PauseInput () {
 			if (rewiredController.GetButtonDown ("Pause")) {
-				GameManager.instance.OnPause ();
+				if (!playerObject.isDead)
+					GameManager.instance.OnPause ();
 			}
 		}
 	}

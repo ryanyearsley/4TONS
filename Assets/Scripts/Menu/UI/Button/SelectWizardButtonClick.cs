@@ -8,11 +8,16 @@ using UnityEngine;
  * */
 public class SelectWizardButtonClick : AbstractButtonClick {
 
+	private WizardSelectPlayerPanelUI playerPanelUI;
 	private int playerIndex;
 	private LoadedWizardSelectionUI loadedWizardButtonUI;
 
+
 	protected override void Awake () {
 		base.Awake ();
+		playerPanelUI = transform.GetComponentInParent<WizardSelectPlayerPanelUI> ();
+		playerIndex = playerPanelUI.transform.GetSiblingIndex ();
+
 		loadedWizardButtonUI = GetComponentInParent<LoadedWizardSelectionUI> ();
 
 	}

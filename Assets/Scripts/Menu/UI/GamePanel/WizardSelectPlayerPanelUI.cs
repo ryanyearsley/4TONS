@@ -16,6 +16,7 @@ public class WizardSelectPlayerPanelUI : MonoBehaviour {
 	[SerializeField]
 	private ScrollRect scrollRect;
 	private float defaultRectVerticalSize;
+	private Vector3 defaultLocalPosition;
 
 	[SerializeReference]
 	private GameObject noWizardText;
@@ -27,8 +28,9 @@ public class WizardSelectPlayerPanelUI : MonoBehaviour {
 		Debug.Log ("wizard select panel player awake...");
 		scrollRect = GetComponentInChildren<ScrollRect> ();
 		defaultRectVerticalSize = verticalLayoutGroupRectTransform.rect.height;
+		defaultLocalPosition = verticalLayoutGroupRectTransform.localPosition;
 	}
-	
+
 	private void InitializePanel () {
 		scrollRect = GetComponentInChildren<ScrollRect> ();
 		defaultRectVerticalSize = verticalLayoutGroupRectTransform.rect.height;
@@ -54,7 +56,8 @@ public class WizardSelectPlayerPanelUI : MonoBehaviour {
 			}
 			loadedWizardSelectionUI [i].DisplayWizardUI (wizardSaveDatas [i]);
 		}
-		}
+	}
+
 
 	private void UpdateLeaderboardEntryGrouping (int wizardSaveDataCount) {
 		for (int i = 0; i < loadedWizardSelectionUI.Count; i++) {
@@ -64,14 +67,17 @@ public class WizardSelectPlayerPanelUI : MonoBehaviour {
 				Destroy (deletingButton.gameObject);
 			}
 		}
-		if (wizardSaveDataCount >= 5) {
+		if (wizardSaveDataCount >= 4) {
 			Debug.Log ("resizing wizard select panel/rect Transform.");
-			verticalLayoutGroupRectTransform.SetSizeWithCurrentAnchors (RectTransform.Axis.Vertical, wizardSaveDataCount * 255);
+			float windowSizeY = (wizardSaveDataCount * 90) + 20;
+			verticalLayoutGroupRectTransform.SetSizeWithCurrentAnchors (RectTransform.Axis.Vertical, windowSizeY);
+			verticalLayoutGroupRectTransform.localPosition = new Vector3 (18, -(windowSizeY / 2), 0);
 			scrollRect.vertical = true;
 		} else {
 			Debug.Log ("5 or less wizards. reverting to default size and disabling scroll.");
 			verticalLayoutGroupRectTransform.SetSizeWithCurrentAnchors (RectTransform.Axis.Vertical, defaultRectVerticalSize);
 			scrollRect.vertical = false;
+			verticalLayoutGroupRectTransform.localPosition = defaultLocalPosition;
 		}
 
 	}

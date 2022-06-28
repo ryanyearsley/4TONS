@@ -1,13 +1,16 @@
-using UnityEngine.UI;
 using UnityEngine;
 using System;
-
+using TMPro;
+using UnityEngine.UI;
 public class RoundKillObjectivePanel : AbstractPanelUI
 {
 	[SerializeField]
-	private Text currentFloorProgressText;
+	private TMP_Text currentFloorNumberText;
+
 	[SerializeField]
-	private Text timeText;
+	private Image floorCompletionFillImage;
+	[SerializeField]
+	private TMP_Text timeText;
 
 
 	protected override void InitializePanel () {
@@ -26,14 +29,15 @@ public class RoundKillObjectivePanel : AbstractPanelUI
 	}
 
 	public void OnLoadLevel (int levelIndex) {
-		UpdateObjectiveProgress (0);
+		UpdateObjectiveIconFill (0);
+		currentFloorNumberText.text = (levelIndex + 1).ToString ();
 	}
 
 	public void OnEnemyDeath (EnemyDeathInfo enemyDeathInfo) {
-		UpdateObjectiveProgress (enemyDeathInfo.percentageFloorCleared);
+		UpdateObjectiveIconFill (enemyDeathInfo.percentageNormalized);
 	}
-	private void UpdateObjectiveProgress (int percentageCleared) {
-		currentFloorProgressText.text = "Current Floor: " + percentageCleared + "%";
+	private void UpdateObjectiveIconFill (float percentageNormalized) {
+		floorCompletionFillImage.fillAmount = percentageNormalized;
 	}
 
 }

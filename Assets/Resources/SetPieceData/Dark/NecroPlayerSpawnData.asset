@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 2001
   poolSize: 2
-  clearance: 1
+  outerClearance: 0
   school: 1
+  zone: 1
   spawnObjectPrefab: {fileID: 3879574491715782839, guid: 29d72de23aa40894bbfbe62fa0f136d8, type: 3}
+  innerClearance: 0

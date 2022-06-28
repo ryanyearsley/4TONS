@@ -172,7 +172,7 @@ MonoBehaviour:
   floorDecorTilemap: {fileID: 2054143255611958078}
   topTilemap: {fileID: 4926479910902012569}
   baseHitboxTile: {fileID: 11400000, guid: 85fc681007fa4374cb7ca3e5319181cc, type: 2}
-  displayGridGizmos: 0
+  displayGridGizmos: 1
   unwalkableMask:
     serializedVersion: 2
     m_Bits: 4096
@@ -345,7 +345,7 @@ Tilemap:
     e20: 0
     e21: 0
     e22: 1
-    e23: -1
+    e23: -1.85
     e30: 0
     e31: 0
     e32: 0
@@ -709,7 +709,7 @@ GameObject:
   - component: {fileID: 4258916903447656256}
   - component: {fileID: 2054143255611958078}
   - component: {fileID: 1993369338207803696}
-  m_Layer: 13
+  m_Layer: 12
   m_Name: FloorDecorTilemap
   m_TagString: Environment
   m_Icon: {fileID: 0}

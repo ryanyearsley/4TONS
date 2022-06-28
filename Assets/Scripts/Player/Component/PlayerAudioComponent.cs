@@ -5,13 +5,14 @@ using UnityEngine;
 public class PlayerAudioComponent : PlayerComponent
 {
 	public override void OnChangePlayerState (PlayerState playerState) {
+		Debug.Log ("PlayerAudioComponent: Changing Player State to " + playerState.ToString ());
 		switch (playerState) {
 			case (PlayerState.COMBAT): {
-					AudioManager.instance.PlaySound ("TogglePuzzleOff");
+					AudioManager.instance.PlaySound ("PuzzleToggleOff");
 					break;
 				}
 			case (PlayerState.PUZZLE_BROWSING): {
-					AudioManager.instance.PlaySound ("TogglePuzzleOn");
+					AudioManager.instance.PlaySound ("PuzzleToggleOn");
 					break;
 				}
 		}

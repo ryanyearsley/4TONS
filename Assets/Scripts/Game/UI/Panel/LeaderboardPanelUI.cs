@@ -8,20 +8,17 @@ using System;
 
 public class LeaderboardPanelUI : AbstractPanelUI {
 
+	[SerializeField]
 	private LeaderboardUI leaderboardUI;
 
 	protected override void InitializePanel () {
 		base.InitializePanel ();
-		leaderboardUI = GetComponent<LeaderboardUI> ();
 	}
 	protected override void OnUIChange (GameState gameState) {
 		if (panelActiveStates.Contains (gameState)) {
 			panelObject.SetActive (true);
 			//might want to add some delay to allow for player's leaderboard update to go through.
-			if (GameManager.instance != null) {
-				GameContext context = GameManager.instance.gameContext;
-				leaderboardUI.GetLeaderboard (context.objectiveData.objective, context.zoneData.zone);
-			} 
+			leaderboardUI.LoadGlobalLeaderboardDelayed ();
 		} else {
 			panelObject.SetActive (false);
 		}

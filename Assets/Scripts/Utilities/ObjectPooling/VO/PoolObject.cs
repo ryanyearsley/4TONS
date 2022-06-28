@@ -12,8 +12,14 @@ public class PoolObject : MonoBehaviour, IPoolable {
 
 	//Virtual Reset function so it can be overriden in classes with specific needs
 	public virtual void ReuseObject() {
+		if (GameManager.instance != null) {
+			GameManager.instance.levelEndEvent += OnLevelEnd;
+		}
 	}
 
+	public virtual void OnLevelEnd(int level) {
+		Destroy ();
+	}
 	public virtual void Destroy () {
 		TerminateObjectFunctions ();
 		gameObject.SetActive (false);
@@ -34,5 +40,7 @@ public class PoolObject : MonoBehaviour, IPoolable {
 	}
 
 	public virtual void TerminateObjectFunctions () {
+		if (GameManager.instance != null)
+			GameManager.instance.levelEndEvent -= OnLevelEnd;
 	}
 }

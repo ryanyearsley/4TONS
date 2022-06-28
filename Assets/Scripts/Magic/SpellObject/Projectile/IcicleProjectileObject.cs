@@ -29,13 +29,13 @@ public class IcicleProjectileObject : ProjectileObject
 		spriteRenderer.sprite = sprites [randomSpriteIndex];
 
 		moveSpeedModifier = Random.Range (-moveSpeedVariation, moveSpeedVariation);
-		CalculateMoveSpeed ();
+		CalculateRealMoveSpeed ();
 
 		float randomRotation = Random.Range(-spreadRange, spreadRange);
 		trans.Rotate (0, 0.0f, trans.rotation.z + randomRotation, Space.World);
 	}
-	public override float CalculateMoveSpeed () {
-		return (moveSpeedModifier + base.CalculateMoveSpeed());
+	public override float CalculateRealMoveSpeed () {
+		return (moveSpeedModifier + base.CalculateRealMoveSpeed());
 	}
 
 }

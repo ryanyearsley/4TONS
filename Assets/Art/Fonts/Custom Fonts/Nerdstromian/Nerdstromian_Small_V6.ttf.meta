@@ -1,0 +1,24 @@
+fileFormatVersion: 2
+guid: 83b12173fb15e844bbf5515c9e4d5db6
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 8
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Nerdstromian_Small_V2
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 17ae94bc5bdca5f48818456c8694b44a, type: 3}
+  - {fileID: 12800000, guid: 948c84e1d51424a47a49d28ef1d5bec4, type: 3}
+  - {fileID: 12800000, guid: 11b3bccc31691394f902ed4dd5f42494, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

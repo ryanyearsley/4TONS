@@ -2,14 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine.UI;
 using Rewired;
+using TMPro;
 
 public class PlayerUI : MonoBehaviour {
 
-	public Text playerName;
-	public Image playerPortait;
 	public SpellUI[] spellUIs;
 	public StaffSlotUI primaryStaffSlot;
 	public StaffSlotUI secondaryStaffSlot;
+
+	private Sprite emptyStaffSprite;
+	private Sprite emptySpellSprite;
 
 	private Dictionary<string, string> currentBindingDictionary;
 
@@ -92,10 +94,7 @@ public class PlayerUI : MonoBehaviour {
 			}
 		}
 
-
-		playerName.text = player.wizardSaveData.wizardName;
-		playerName.color = player.wizardSaveData.spellSchoolData.schoolColor;
-		playerPortait.sprite = player.wizardSaveData.spellSchoolData.wizardData.portrait;
+		//playerName.color = player.wizardSaveData.spellSchoolData.schoolColor;
 		if (player.wizardSaveData.primaryStaffSaveData.puzzleData != null)
 			primaryStaffSlot.UpdateStaffSlotUI (player.wizardSaveData.primaryStaffSaveData.puzzleData);
 

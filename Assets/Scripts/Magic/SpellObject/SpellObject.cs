@@ -57,10 +57,9 @@ public class SpellObject : PoolObject, ISpellObject {
 		}
 	}
 
-	public virtual void SetSpellObjectTag (VitalsEntity vitalsEntity) {
-		casterVitalsEntity = vitalsEntity;
-		if (vitalsEntity.tag != this.tag) {
-			this.tag = vitalsEntity.tag;
+	public virtual void SetSpellObjectTag (string tag) {
+		if (tag != this.tag) {
+			this.tag = tag;
 		}
 	}
 
@@ -100,6 +99,7 @@ public class SpellObject : PoolObject, ISpellObject {
 			//audioSource.Stop ();
 			AudioManager.instance.PlaySound (spellObjectDestroySound.clipName);
 		}
+		base.TerminateObjectFunctions ();
 
 	}
 	public virtual void Update () {

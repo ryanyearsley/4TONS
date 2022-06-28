@@ -12,17 +12,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb6323e28d81e284a967b1ea2d1e4622, type: 3}
   m_Name: ReaperData
   m_EditorClassIdentifier: 
-  id: 3300
+  id: 3302
   poolSize: 20
   outerClearance: 2
   school: 1
+  zone: 1
   spawnObjectPrefab: {fileID: 8036647390902012779, guid: 761e90fb3b481d64db79929f3401a02e, type: 3}
   creatureName: Reaper
   maxHealth: 350
   maxResource: 200
   movementSpeed: 5
   creatureAudio:
-    attackSound: {fileID: 0}
+    attackSound:
+      clipName: 
+      singleClip: {fileID: 0}
+      volume: 1
+      pitch: 1
+      mixerGroup: {fileID: 0}
+      loop: 0
+      randomize: 0
+      randomClips: []
+    attackClip: {fileID: 0}
     gruntSound: {fileID: 0}
     deathSound: {fileID: 0}
     happySound: {fileID: 0}

@@ -13,16 +13,18 @@ public class ObjectRegistry {
 	public ActiveObjectDictionary activeCreatureDictionary = new ActiveObjectDictionary();
 	public ActiveSpellDictionary activeSpellDictionary = new ActiveSpellDictionary();
 	public PuzzleDataDictionary activePuzzleDictionary = new PuzzleDataDictionary();
-	public ObjectRegistry (SpellSchoolData [] spellSchoolDatas, ZoneData [] zones, ObjectiveData[] objectives, GameDataLegend legend) {
+	public ObjectRegistry (PuzzleData[] inventoryTemplates, SpellSchoolData [] spellSchoolDatas, ZoneData [] zones, ObjectiveData [] objectives, GameDataLegend legend) {
+
+		RegisterPuzzles (inventoryTemplates);
 
 		foreach (SpellSchoolData schoolData in spellSchoolDatas) {
 			schoolDataDictionary.Add (schoolData.schoolIndexStart, schoolData);
 			RegisterSpells (schoolData);
-			RegisterPuzzles (schoolData);
+			RegisterPuzzles (schoolData.staffs);
 		}
 
 		foreach (ZoneData zoneData in zones) {
-			RegisterTiles (zoneData, legend);
+			RegisterTiles (zoneData);
 			RegisterEnemies (zoneData, legend);
 			RegisterSetPieces (zoneData);
 		}
@@ -34,7 +36,7 @@ public class ObjectRegistry {
 
 	#region dictionary setup
 
-	private void RegisterTiles (ZoneData zoneData, GameDataLegend legend) {
+	private void RegisterTiles (ZoneData zoneData) {
 
 		activeTileDictionary.Add (zoneData.primaryFloorTile.id, zoneData.primaryFloorTile.tile);
 		activeTileDictionary.Add (zoneData.secondaryFloorTile.id, zoneData.secondaryFloorTile.tile);
@@ -61,9 +63,12 @@ public class ObjectRegistry {
 	private void RegisterEnemies (ZoneData worldData, GameDataLegend legend) {
 		for (int i = 0; i < worldData.enemyDatas.Count; i++) {
 			CreatureData enemyData = worldData.enemyDatas[i];
-			activeCreatureDictionary.Add (enemyData.id, enemyData);
+			if (!activeCreatureDictionary.ContainsKey (enemyData.id)) {
+				activeCreatureDictionary.Add (enemyData.id, enemyData);
+			}
 		}
 	}
+
 	private void RegisterSetPieces (ZoneData zoneData) {
 		for (int i = 0; i < zoneData.largeSetpieceDatas.Count; i++) {
 			SetPieceData setPieceData = zoneData.largeSetpieceDatas[i];
@@ -73,7 +78,7 @@ public class ObjectRegistry {
 		}
 	}
 
-	private void RegisterObjectivePieces(ObjectiveData objectiveData) {
+	private void RegisterObjectivePieces (ObjectiveData objectiveData) {
 		for (int i = 0; i < objectiveData.objectiveSpawnInfos.Length; i++) {
 			SetPieceData setPieceData = objectiveData.objectiveSpawnInfos[i].setPieceData;
 			if (!activeSetpieceDictionary.ContainsKey (setPieceData.id)) {
@@ -88,9 +93,9 @@ public class ObjectRegistry {
 			activeSpellDictionary.Add (spellData.id, spellData);
 		}
 	}
-	private void RegisterPuzzles (SpellSchoolData spellSchoolData) {
-		for (int i = 0; i < spellSchoolData.staffs.Length; i++) {
-			PuzzleData puzzleData = spellSchoolData.staffs[i];
+	private void RegisterPuzzles (PuzzleData[] puzzleDatas) {
+		for (int i = 0; i < puzzleDatas.Length; i++) {
+			PuzzleData puzzleData = puzzleDatas[i];
 			activePuzzleDictionary.Add (puzzleData.id, puzzleData);
 		}
 	}

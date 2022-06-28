@@ -5,25 +5,24 @@ using UnityEngine.UI;
 
 public class StaffSlotUI : MonoBehaviour {
 	[SerializeField]
-	private Sprite emptyStaffSlotSprite;
-	[SerializeField]
 	private Image staffImage;
-	[SerializeField]
-	private Image staffBackgroundImage;
 
-
-
+	private Sprite emptyStaffSprite;
+	void Awake() {
+		emptyStaffSprite = staffImage.sprite;
+	}
 	public void UpdateStaffSlotUI (PuzzleData puzzleData) {
 		staffImage.sprite = puzzleData.puzzleIcon;
 	}
 	public void OnDropStaff () {
-		staffImage.sprite = emptyStaffSlotSprite;
+		staffImage.sprite = emptyStaffSprite;
+		staffImage.color = new Color (1, 1, 1, 1f);
 	}
 
 	public void OnUnequipStaff () {
-		staffBackgroundImage.enabled = false;
+		staffImage.color = new Color (1, 1, 1, 0.5f);
 	}
 	public void OnEquipStaff() {
-		staffBackgroundImage.enabled = true;
+		staffImage.color = new Color (1, 1, 1, 1f);
 	}
 }

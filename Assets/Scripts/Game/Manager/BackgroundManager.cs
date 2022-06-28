@@ -48,7 +48,7 @@ public class BackgroundManager : MonoBehaviour
 
 
 	private void UpdateBackgroundLayers () {
-		Debug.Log ("Updating background layers");
+		//Debug.Log ("Updating background layers");
 		int layerOffset = 1;
 		foreach (ParallaxLayerObject layerObject in layerObjects) {
 			layerObject.UpdateLayerObject (cameraTransform.position, layerOffset);

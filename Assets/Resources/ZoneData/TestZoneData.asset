@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   schoolIndexStart: 3000
   school: 1
-  zone: 5
+  zone: 7
   music:
     clipName: 
     singleClip: {fileID: 8300000, guid: 7b498416b689656408a2a62a8dca006a, type: 3}
@@ -135,6 +135,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 217ed99b20a5ef84483df537037326ca, type: 2}
   - {fileID: 11400000, guid: f2a858c595dc31d4ab6153d8278630c9, type: 2}
   - {fileID: 11400000, guid: efbde00ec86866e449406e6fe173e8cd, type: 2}
-  lootTableData: {fileID: 11400000, guid: 30daa07b5559e1b478b90440b1bd2f29, type: 2}
   mapDatas:
   - {fileID: 11400000, guid: e152ba1d3386736418f433dc2b350236, type: 2}

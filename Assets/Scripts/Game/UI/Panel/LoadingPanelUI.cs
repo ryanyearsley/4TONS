@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 using System.Collections.Generic;
 
 public class LoadingPanelUI : AbstractPanelUI
@@ -10,12 +11,12 @@ public class LoadingPanelUI : AbstractPanelUI
 	private Image backgroundImage;
 
 	[SerializeField]
-	private Text loadingText;
+	private TMP_Text loadingText;
 	[SerializeField]
-	private Text tipText;
+	private TMP_Text tipText;
 
 	[SerializeField]
-	private Text loadLogText;
+	private TMP_Text loadLogText;
 	private List<string> Eventlog = new List<string>();
 	private string logText = "";
 	public int maxLines = 10;
@@ -23,20 +24,26 @@ public class LoadingPanelUI : AbstractPanelUI
 		if (panelActiveStates.Contains (gameState)) {
 			panelObject.SetActive (true);
 			ClearLoadingLog ();
+			if (gameState == GameState.LOADING) {
 
-			string loadingTextString = "Loading: \n";
-			if (GameManager.instance != null) {
-				loadingTextString += GameManager.instance.gameContext.zoneData.zone;
-				backgroundImage.sprite = GameManager.instance.gameContext.zoneData.loadingBackgroundSprite;
-			} 
+				string loadingTextString = "Loading: \n";
+				if (GameManager.instance != null) {
+					loadingTextString += GameManager.instance.gameContext.zoneData.zone;
+					backgroundImage.sprite = GameManager.instance.gameContext.zoneData.loadingBackgroundSprite;
+				}
 
-			if (GauntletGameManager.instance != null) {
-				loadingTextString += " Tower\nFloor " + (GameManager.instance.GetProgress ().currentLevelIndex + 1);
+				if (GauntletGameManager.instance != null) {
+					loadingTextString += " Tower\nFloor " + (GameManager.instance.GetProgress ().currentLevelIndex + 1);
+				}
+				loadingText.text = loadingTextString;
+
+				int randomTipIndex = Random.Range(0, tipData.tips.Length - 1);
+				tipText.text = tipData.tips [randomTipIndex];
 			}
-			loadingText.text = loadingTextString;
-
-			int randomTipIndex = Random.Range(0, tipData.tips.Length - 1);
-			tipText.text = tipData.tips [randomTipIndex];
+			else if (gameState == GameState.GAME_COMPLETE) {
+				loadingText.text = "";
+				tipText.text = "";
+			}
 		} else {
 			panelObject.SetActive (false);
 		}

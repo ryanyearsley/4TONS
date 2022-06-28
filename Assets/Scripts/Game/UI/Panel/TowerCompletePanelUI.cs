@@ -1,12 +1,14 @@
 ﻿using System;
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
 
 public class TowerCompletePanelUI : AbstractPanelUI {
 
 	[SerializeField]
-	private Text timeText;
+	private TMP_Text timeText;
+
+
 
 
 	protected override void InitializePanel () {
