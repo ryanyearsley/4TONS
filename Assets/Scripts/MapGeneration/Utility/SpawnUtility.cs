@@ -2,22 +2,21 @@
 using UnityEngine;
 
 public class SpawnUtility {
-	#region Spawn Generation
-	public static List<SpawnPoint> GenerateCreatureSpawnPoints (MapDetails details, CreatureData creatureData, int spawnCount) {
+	public static List<SpawnPoint> GenerateCreatureSpawnPoints (MapDetails details, CreatureSpawnInfo creatureSpawnInfo, SpawnSectorInfo sectorInfo) {
 		List<SpawnPoint> spawnPoints = new List<SpawnPoint>();
-
+		int spawnCount = creatureSpawnInfo.GetSpawnCountWithinRange();
 		for (int i = 0; i < spawnCount; i++) {
 			bool spawnPointAdded = false;
 			int attempts = 0;
 			while (spawnPointAdded == false && attempts < 20) {
-				int randomX = Random.Range (2, details.mapData.mapGenerationData.mapSize.x - 2);
-				int randomY = Random.Range (2, details.mapData.mapGenerationData.mapSize.y - 2);
+				int randomX = Random.Range (sectorInfo.minCoord.x, sectorInfo.maxCoord.x);
+				int randomY = Random.Range (sectorInfo.minCoord.y, sectorInfo.maxCoord.y);
 
 				if (details.mapTileInfo [randomX, randomY].baseValue == 0) {
-					if (MapGenerationUtility.CheckSpawnPointEligibility (details, new Vector2Int (randomX, randomY), creatureData.outerClearance)) {
+					if (MapGenerationUtility.CheckSpawnPointEligibility (details, new Vector2Int (randomX, randomY), creatureSpawnInfo.creatureData.outerClearance)) {
 						Vector2Int coord = new Vector2Int (randomX, randomY);
-						MapGenerationUtility.ClearSpawnPointArea (details, coord, creatureData.outerClearance);
-						SpawnPoint spawnPoint = new SpawnPoint (coord, creatureData);
+						MapGenerationUtility.ClearSpawnPointArea (details, coord, creatureSpawnInfo.creatureData.outerClearance);
+						SpawnPoint spawnPoint = new SpawnPoint (coord, creatureSpawnInfo.creatureData);
 						spawnPoints.Add (spawnPoint);
 						spawnPointAdded = true;
 					}
@@ -30,13 +29,14 @@ public class SpawnUtility {
 		}
 		return spawnPoints;
 	}
-	public static List<SpawnPoint> GenerateSetPieceSpawnPoints (MapDetails details, SetPieceData setPieceData, int count) {
+
+	public static List<SpawnPoint> GenerateSetPieceSpawnPoints (MapDetails details, SetPieceData setPieceData, int count, SpawnSectorInfo sector) {
 		List<SpawnPoint> spawnPoints = new List<SpawnPoint>();
 		for (int i = 0; i < count; i++) {
 			bool spawnPointAdded = false;
 			while (spawnPointAdded == false) {
-				int randomX = UnityEngine.Random.Range (5, details.mapData.mapGenerationData.mapSize.x - 5);
-				int randomY = UnityEngine.Random.Range (5, details.mapData.mapGenerationData.mapSize.y - 5);
+				int randomX = UnityEngine.Random.Range (sector.minCoord.x, sector.maxCoord.x);
+				int randomY = UnityEngine.Random.Range  (sector.minCoord.y, sector.maxCoord.y);
 				Vector2Int coord = new Vector2Int (randomX, randomY);
 				if (details.mapTileInfo [randomX, randomY].baseValue == 0) {
 					if (MapGenerationUtility.CheckSpawnPointEligibility (details, coord, setPieceData.outerClearance)) {
@@ -113,6 +113,5 @@ public class SpawnUtility {
 		}
 		return spawnPoints;
 	}
-	#endregion
 
 }

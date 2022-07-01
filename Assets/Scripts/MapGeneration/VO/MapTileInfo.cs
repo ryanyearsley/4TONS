@@ -5,6 +5,7 @@ using UnityEngine;
 public class MapTileInfo
 {
 	public Vector2Int mapCoordinate;
+	public SpawnSector spawnSector;
 	public Vector3 worldPosition;
 	public int baseValue;
 

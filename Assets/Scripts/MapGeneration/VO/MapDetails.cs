@@ -22,12 +22,13 @@ public class MapDetails
     public MapSpawnPoints spawnPoints;
 
    
-    public MapDetails (ZoneData worldData, MapData mapData, int floorIndex, MapTileInfo [,] mapTileInfo, MapSpawnPoints spawnPoints) {
-        this.zoneData = worldData;
+    public MapDetails (ZoneData zoneData, MapData mapData, int floorIndex, MapTileInfo [,] mapTileInfo, MapSpawnPoints spawnPoints) {
+        this.zoneData = zoneData;
         this.mapData = mapData;
         this.floorIndex = floorIndex;
         this.floorOrigin = floorIndex * Vector2Int.one * 80;
         this.floorOriginPosition = IsometricCoordinateUtilites.TranslateIsoToScene (this.floorOrigin);
+
         this.mapTileInfo = mapTileInfo;
         this.spawnPoints = spawnPoints;
         GenerateBounds ();

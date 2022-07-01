@@ -45,6 +45,7 @@ public class ConstantsManager : PersistentManager {
 	public List<ResolutionSetting> validResolutions;
 
 	public List <int> validTargetFramerates;
+
 	#region Singleton
 	public static ConstantsManager instance;
 	protected override void InitializeSingleton () {

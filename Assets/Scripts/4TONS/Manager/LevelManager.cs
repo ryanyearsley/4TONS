@@ -99,7 +99,7 @@ public class LevelManager : MonoBehaviour, IGameManager {
 			PoolManager.instance.CreateObjectPool (objectiveSpawnInfo.setPieceData.spawnObjectPrefab, objectiveSpawnInfo.setPieceData.poolSize);
 		}
 		//player pools
-		PoolManager.instance.CreatePlayerPool (objectiveData.playerObjectData.spawnObjectPrefab, 2);
+		PoolManager.instance.CreatePlayerPool (objectiveData.playerSpawnInfo.creatureData.spawnObjectPrefab, 2);
 
 		//creature pools
 		foreach (CreatureData enemyData in worldData.enemyDatas) {

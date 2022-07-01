@@ -21,6 +21,8 @@ public class MapGenerator : MonoBehaviour {
 	private MapData currentMapData;
 	public MapSpawnPoints spawnPoints;
 
+	public SpawnSectorDictionary spawnSectorDictionary = new SpawnSectorDictionary();
+	private SpawnSectorInfo fallbackSector = new SpawnSectorInfo(Vector2.one * 0.1f, Vector2.one * 0.9f);
 	private LoadingPanelUI loadLog;
 
 	[Header ("Gizmos")]
@@ -54,11 +56,11 @@ public class MapGenerator : MonoBehaviour {
 
 		Log ("Generating border...");
 		GenerateMapBorder (mapTileInfo);
-
 		spawnPoints = new MapSpawnPoints ();
 		Vector2Int floorOrigin = floorIndex * Vector2Int.one * 80;
 		MapDetails details = new MapDetails(zoneData, currentMapData, floorIndex,  mapTileInfo, spawnPoints);
 
+		CalculateSectors (details);
 		int playerCount = 1;
 		if (PlayerManager.instance != null) {
 			playerCount = PlayerManager.instance.currentPlayers.Count;
@@ -66,18 +68,23 @@ public class MapGenerator : MonoBehaviour {
 
 
 		Log ("Generating spawn points...");
-		spawnPoints.playerSpawnPoints = SpawnUtility.GenerateCreatureSpawnPoints (details, ConstantsManager.instance.playerCreatureData, playerCount);
+		SpawnSectorInfo playerSector = GetSpawnSector(objectiveData.playerSpawnInfo.spawnSector);
+		spawnPoints.playerSpawnPoints = SpawnUtility.GenerateCreatureSpawnPoints (details, objectiveData.playerSpawnInfo, playerSector);
 
 		Log ("Generating objectives...");
 		foreach (SetPieceSpawnInfo objectiveSpawnInfo in objectiveData.objectiveSpawnInfos) {
-			spawnPoints.objectiveSpawnPoints.AddRange(SpawnUtility.GenerateSetPieceSpawnPoints (details, objectiveSpawnInfo.setPieceData, objectiveSpawnInfo.spawnCount));
+			SpawnSectorInfo setpieceSector = GetSpawnSector(objectiveSpawnInfo.setPieceSpawnSector);
+
+			spawnPoints.objectiveSpawnPoints.AddRange (SpawnUtility.GenerateSetPieceSpawnPoints (details, objectiveSpawnInfo.setPieceData, objectiveSpawnInfo.spawnCount, setpieceSector));
 		}
 
 
 		Log ("Generating enemy spawn points...");
 		foreach (CreatureSpawnInfo enemySpawnInfo in currentMapData.enemySpawnInfos) {
-			if (enemySpawnInfo.spawnCountRange.y != 0)
-				spawnPoints.enemySpawnPoints.AddRange (SpawnUtility.GenerateCreatureSpawnPoints (details, enemySpawnInfo.creatureData, enemySpawnInfo.GetSpawnCountWithinRange()));
+			if (enemySpawnInfo.spawnCountRange.y != 0) {
+				SpawnSectorInfo enemySector = GetSpawnSector(enemySpawnInfo.spawnSector);
+				spawnPoints.enemySpawnPoints.AddRange (SpawnUtility.GenerateCreatureSpawnPoints (details, enemySpawnInfo, enemySector));
+			}
 		}
 
 		//GENERATE PICK-UPS
@@ -103,7 +110,7 @@ public class MapGenerator : MonoBehaviour {
 		//CONVERT TO WORLD SKIN
 		Log ("Generating setpiece spawn points...");
 		if (zoneData.largeSetpieceDatas.Count > 0)
-			spawnPoints.objectiveSpawnPoints.AddRange(SpawnUtility.GenerateRandomLargeSetpieceSpawnPoints (details));
+			spawnPoints.objectiveSpawnPoints.AddRange (SpawnUtility.GenerateRandomLargeSetpieceSpawnPoints (details));
 		MapGenerationUtility.GenerateRandomSmallSetPieces (details);
 		//At this point, map is still 1s and 0s
 
@@ -122,12 +129,19 @@ public class MapGenerator : MonoBehaviour {
 
 		Log ("Level Generation Success!");
 		LevelManager.instance.SetMapDetails (details);
+
 	}
 
 	private void Log (string logLine) {
 		if (loadLog != null) {
 			loadLog.UpdateLoadingLog (logLine);
 		}
+	}
+
+	private SpawnSectorInfo GetSpawnSector (SpawnSector sector) {
+		if (spawnSectorDictionary.ContainsKey (sector)) {
+			return spawnSectorDictionary [sector];
+		} else return fallbackSector;
 	}
 
 
@@ -491,6 +505,20 @@ public class MapGenerator : MonoBehaviour {
 				}
 			}
 		}
+	}
+
+	private void CalculateSectors (MapDetails details) {
+		Vector2Int maxCoord = details.mapBounds.maxCoord;
+		foreach (SpawnSectorInfo sector in spawnSectorDictionary.Values) {
+			Vector2 minCoordRaw = sector.minNormalized * maxCoord;
+			Vector2 maxCoordRaw = sector.maxNormalized * maxCoord;
+			sector.minCoord = new Vector2Int (Mathf.RoundToInt (minCoordRaw.x), Mathf.RoundToInt (minCoordRaw.y));
+			sector.maxCoord = new Vector2Int (Mathf.RoundToInt (maxCoordRaw.x), Mathf.RoundToInt (maxCoordRaw.y));
+		}
+		Vector2 fallbackMinRaw = fallbackSector.minNormalized * maxCoord;
+		Vector2 fallbackMaxRaw = fallbackSector.maxNormalized * maxCoord;
+		fallbackSector.minCoord = new Vector2Int (Mathf.RoundToInt (fallbackMinRaw.x), Mathf.RoundToInt (fallbackMinRaw.y));
+		fallbackSector.maxCoord = new Vector2Int (Mathf.RoundToInt (fallbackMaxRaw.x), Mathf.RoundToInt (fallbackMaxRaw.y));
 	}
 
 	#endregion

@@ -6,6 +6,6 @@ using UnityEngine;
 public class ObjectiveData : ScriptableObject
 {
 	public Objective objective;
-	public CreatureData playerObjectData;
+	public CreatureSpawnInfo playerSpawnInfo;
 	public SetPieceSpawnInfo[] objectiveSpawnInfos;
 }

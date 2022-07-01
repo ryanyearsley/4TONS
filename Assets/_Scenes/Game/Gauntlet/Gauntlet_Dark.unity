@@ -130,14 +130,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 628689340306461280, guid: e2bf7785bfcaf5b42a3ab90d407ba529, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 628689340321882119, guid: e2bf7785bfcaf5b42a3ab90d407ba529, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1862424493716850944, guid: e2bf7785bfcaf5b42a3ab90d407ba529, type: 3}
       propertyPath: m_Name
       value: PersistentCanvas (DDOL)
@@ -226,10 +218,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2615560060406221519, guid: e2bf7785bfcaf5b42a3ab90d407ba529, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e2bf7785bfcaf5b42a3ab90d407ba529, type: 3}
 --- !u!1001 &179679508
@@ -286,10 +274,6 @@ PrefabInstance:
     - target: {fileID: 462887182419059083, guid: b2e1dda71eeadfe4b89a0257e8788b67, type: 3}
       propertyPath: m_Name
       value: PersistentManager (DDOL)
-      objectReference: {fileID: 0}
-    - target: {fileID: 5045547284166057415, guid: b2e1dda71eeadfe4b89a0257e8788b67, type: 3}
-      propertyPath: currentPlayers.Array.size
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b2e1dda71eeadfe4b89a0257e8788b67, type: 3}

@@ -199,6 +199,29 @@ MonoBehaviour:
     spellGemSpawnPoints: []
     staffSpawnPoints: []
     setPieceSpawnPoints: []
+  spawnSectorDictionary:
+    m_keys: 00000000010000000200000003000000040000000500000006000000070000000800000009000000
+    m_values:
+    - minNormalized: {x: 0.05, y: 0.05}
+      maxNormalized: {x: 0.95, y: 0.95}
+    - minNormalized: {x: 0.35, y: 0.35}
+      maxNormalized: {x: 0.65, y: 0.65}
+    - minNormalized: {x: 0.65, y: 0.65}
+      maxNormalized: {x: 0.95, y: 0.95}
+    - minNormalized: {x: 0.05, y: 0.05}
+      maxNormalized: {x: 0.35, y: 0.35}
+    - minNormalized: {x: 0.65, y: 0.05}
+      maxNormalized: {x: 0.95, y: 0.35}
+    - minNormalized: {x: 0.05, y: 0.65}
+      maxNormalized: {x: 0.35, y: 0.95}
+    - minNormalized: {x: 0.35, y: 0.65}
+      maxNormalized: {x: 0.65, y: 0.95}
+    - minNormalized: {x: 0.65, y: 0.05}
+      maxNormalized: {x: 0.95, y: 0.35}
+    - minNormalized: {x: 0.05, y: 0.35}
+      maxNormalized: {x: 0.35, y: 0.65}
+    - minNormalized: {x: 0.35, y: 0.05}
+      maxNormalized: {x: 0.65, y: 0.35}
   drawGizmos: 0
 --- !u!114 &803649138411855089
 MonoBehaviour:

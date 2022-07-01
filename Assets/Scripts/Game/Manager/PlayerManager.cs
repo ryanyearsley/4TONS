@@ -1,5 +1,4 @@
-﻿using Rewired;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -7,9 +6,11 @@ using UnityEngine.SceneManagement;
 
 
 public class PlayerManager : PersistentManager {
+	[SerializeField]
+	private WizardPrebuildData defaultWizardData;
 	#region Singleton
 	public static PlayerManager instance { get; private set; }
-	private void InitializeSingleton () {
+	protected override void InitializeSingleton () {
 		if (instance == null) {
 			instance = this;
 		} else if (instance != this) {
@@ -29,7 +30,7 @@ public class PlayerManager : PersistentManager {
 			//This will create a test player in any scene aside from the menu.
 			Player testPlayer = new Player(0, 0);
 			testPlayer.isAlive = true;
-			testPlayer.wizardSaveData = ConstantsManager.instance.defaultWizardData.wizardSaveData.Clone ();
+			testPlayer.wizardSaveData = defaultWizardData.wizardSaveData.Clone ();
 			currentPlayers.Add (testPlayer);
 		}
 	}

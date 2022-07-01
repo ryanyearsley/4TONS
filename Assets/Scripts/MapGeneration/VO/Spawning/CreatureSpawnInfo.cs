@@ -7,6 +7,7 @@ public class CreatureSpawnInfo {
 	[MinMaxSlider(0, 20)]
 	public Vector2Int spawnCountRange;
 	public CreatureData creatureData;
+	public SpawnSector spawnSector = SpawnSector.Anywhere;
 
 
 	public int GetSpawnCountWithinRange () {
