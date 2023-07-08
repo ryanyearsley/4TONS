@@ -54,10 +54,15 @@ public class PlayerSpellComponent : PlayerComponent {
 	}
 
 	private void CancelAllSpells() {
-		for (int i = 0; i < currentSpellBindingDictionary.Count; i++) {
-			Spell spell = currentSpellBindingDictionary [i];
-			if (spell != null) {
-				spell.CancelCast ();
+		if (currentSpellBindingDictionary != null)
+		{
+			for (int i = 0; i < currentSpellBindingDictionary.Count; i++)
+			{
+				Spell spell = currentSpellBindingDictionary[i];
+				if (spell != null)
+				{
+					spell.CancelCast();
+				}
 			}
 		}
 	}
