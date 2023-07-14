@@ -440,7 +440,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fadbdc5f6251d7428df8b918a21b0d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 3
+  damage: 3.5
 --- !u!114 &6583950534998699023
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -453,5 +453,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bee01ef004c7fd4ca8448cb2df8f982, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedReduction: 0.4
+  speedReduction: 0.5
   duration: 0.25
