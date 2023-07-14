@@ -48,7 +48,7 @@ MonoBehaviour:
       distanceScaleX: 0.9
       distanceScaleY: 0.95
       opacity: 1
-  floorPrefab: {fileID: 8472839727403202167, guid: 4ea040c5f20c4b547ad30734fde7c6bd, type: 3}
+  floorPrefab: {fileID: 8472839727403202167, guid: a939e6e166d4a3d44a759dce8faf48f2, type: 3}
   primaryFloorTile:
     tile: {fileID: 11400000, guid: e6032200ac86e1c4f89234d68939a138, type: 2}
     id: 3100
