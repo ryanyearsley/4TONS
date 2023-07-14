@@ -9,8 +9,8 @@ public class HealSpell : Spell
         base.CastSpell ();
         playerObject.vitalsEntity.health.Heal (healAmount);
         playerObject.vitalsEntity.resource.RegenerateMana (manaRegenAmount);
-        if (spellData.spellObject != null) {
-            PoolManager.instance.ReuseObject (spellData.spellObject, playerObject.vitalsEntity.creatureObject.transform.position, Quaternion.identity);
+        if (debrisObject != null) {
+            PoolManager.instance.ReuseObject (debrisObject, playerObject.vitalsEntity.creatureObject.transform.position, Quaternion.identity);
         }
     }
 }

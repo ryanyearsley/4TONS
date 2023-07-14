@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 5415277420963770190, guid: e6d4b14a2987ebf4483bf0a954ca7eac, type: 3}
-  m_Color: {r: 0, g: 0.6037736, b: 0.011246735, a: 1}
+  m_Color: {r: 0.6449508, g: 0.35955858, b: 0.754717, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -282,6 +282,7 @@ MonoBehaviour:
     loop: 0
     randomize: 0
     randomClips: []
+  interruptSpellSoundOnDestroy: 0
   spellObjectDestroySound:
     clipName: 
     singleClip: {fileID: 8300000, guid: 3201b5421bdcbd847ae8c9ce09084287, type: 3}

@@ -48,7 +48,7 @@ namespace NERDSTORM {
 			LoadSceneByIndex (tutorialSceneIndex);
 		}
 		public void LoadZombieHorde () {
-			LoadSceneByIndex (zombieHordeSceneIndex);
+			//LoadSceneByIndex (zombieHordeSceneIndex);
 		}
 		public void LoadGauntletTowerScene(Zone towerZone) {
 			if (gauntletSceneDictionary.ContainsKey(towerZone)) {
