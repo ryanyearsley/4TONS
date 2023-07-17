@@ -43,15 +43,8 @@ public class SpellObject : PoolObject, ISpellObject {
 			spellEffect.SetUpSpellEffect ();
 		}
 		if (spellObjectSound.singleClip != null) {
-			AudioManager.instance.RegisterSound (spellObjectSound);
-			/*
-			audioSource = gameObject.AddComponent<AudioSource> ();
-			audioSource.volume = spellObjectSound.volume;
-			audioSource.maxDistance = 15f;
-			audioSource.spatialBlend = 1f;
-			audioSource.rolloffMode = AudioRolloffMode.Linear;*/
+			AudioManager.instance.RegisterSound(spellObjectSound);
 		}
-
 		if (spellObjectDestroySound.singleClip != null) {
 			AudioManager.instance.RegisterSound (spellObjectDestroySound);
 		}
@@ -62,8 +55,6 @@ public class SpellObject : PoolObject, ISpellObject {
 			this.tag = tag;
 		}
 	}
-
-
 	public virtual void ReuseSpellObject (VitalsEntity vitalsEntity) {
 		casterVitalsEntity = vitalsEntity;
 		if (spellObjectSound.singleClip != null)
