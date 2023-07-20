@@ -181,7 +181,12 @@ public class GameManager : MonoBehaviour {
 		}
 		if (gameOver) {
 			gameOverEvent?.Invoke (1);
-			changeGameStateEvent?.Invoke (GameState.GAME_OVER);
+			changeGameStateEvent?.Invoke (GameState.GAME_OVER); 
+			foreach (Player currentPlayer in PlayerManager.instance.currentPlayers)
+			{
+				WizardSaveData wizardSaveData = WizardSaveDataMapper.MapGameToSaveData(currentPlayer.currentPlayerObject.wizardGameData);
+				WizardSaveDataManager.instance.SaveDeadWizard(wizardSaveData);
+			}
 		}
 	}
 

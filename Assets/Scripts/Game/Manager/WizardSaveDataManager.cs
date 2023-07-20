@@ -41,6 +41,10 @@ public class WizardSaveDataManager : PersistentManager {
 		if (!Directory.Exists (Application.persistentDataPath + "/infamous_wizards")) {
 			Directory.CreateDirectory (Application.persistentDataPath + "/infamous_wizards");
 		}
+		if (!Directory.Exists(Application.persistentDataPath + "/dead_wizards"))
+		{
+			Directory.CreateDirectory(Application.persistentDataPath + "/dead_wizards");
+		}
 	}
 	public void SaveInfamousWizard (WizardSaveData wizardSaveData) {
 		String directoryPath = Application.persistentDataPath + "/infamous_wizards/";
@@ -50,7 +54,11 @@ public class WizardSaveDataManager : PersistentManager {
 		String directoryPath = Application.persistentDataPath + "/gauntlet_wizards/";
 		SaveWizardJSON (wizardSaveData, directoryPath);
 	}
-
+	public void SaveDeadWizard(WizardSaveData wizardSaveData)
+	{
+		String directoryPath = Application.persistentDataPath + "/dead_wizards/";
+		SaveWizardJSON(wizardSaveData, directoryPath);
+	}
 	private void SaveWizardJSON (WizardSaveData wizardSaveData, string directoryPath) {
 		OnBeforeWizardSave (wizardSaveData);
 		string wizardSavePath = directoryPath + wizardSaveData.wizardName + ".json";
