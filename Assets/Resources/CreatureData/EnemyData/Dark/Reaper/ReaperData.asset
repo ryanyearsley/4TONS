@@ -34,6 +34,6 @@ MonoBehaviour:
       randomClips: []
     attackClip: {fileID: 0}
     gruntSound: {fileID: 0}
-    deathSound: {fileID: 0}
+    deathSound: {fileID: 8300000, guid: 0a8573bb23ec27a40abf14c36b0e907e, type: 3}
     happySound: {fileID: 0}
     sadSound: {fileID: 0}
