@@ -10,6 +10,8 @@ public class TeleportNearTargetBehaviour : BabyBrainsBehaviour
 	private float maxRange = 10f;
 	[SerializeField]
 	private int tilesFromPlayerRadius;
+	[SerializeField]
+	private Sound teleportSound;
 
 
 	readonly AnimationHashID dashAnimID = new AnimationHashID("Dash");
@@ -18,6 +20,10 @@ public class TeleportNearTargetBehaviour : BabyBrainsBehaviour
 	public override void SetUpBehaviour (SensoryInfo sensoryInfo) {
 		base.SetUpBehaviour (sensoryInfo);
 		animationComponent = transform.parent.GetComponentInChildren<AnimationComponent> ();
+		if (teleportSound.singleClip != null)
+		{
+			AudioManager.instance.RegisterSound(teleportSound);
+		}
 	}
 
 	public override bool Valid (SensoryInfo sensoryInfo) {
@@ -31,6 +37,7 @@ public class TeleportNearTargetBehaviour : BabyBrainsBehaviour
 	public override void OnTaskStart (SensoryInfo sensoryInfo) {
 		base.OnTaskStart (sensoryInfo);
 		Debug.Log ("TeleportNearTargetBehaviour: OnTaskStart");
+		AudioManager.instance.PlaySound(teleportSound.clipName);
 		animationComponent.PlayTimedAnimation (dashAnimID, 0.5f);
 		Vector3 coordPosition = LevelManager.instance.RandomNearbyCoordinatePosition (sensoryInfo.targetVitals.trans.position, tilesFromPlayerRadius);
 		sensoryInfo.vitalsEntity.trans.position = new Vector3 (coordPosition.x, coordPosition.y, 0);

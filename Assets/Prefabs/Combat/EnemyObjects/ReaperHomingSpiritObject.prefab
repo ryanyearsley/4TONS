@@ -271,6 +271,27 @@ MonoBehaviour:
   lifeTime: 3
   lifeTimer: 0
   spellEffects: []
+  debrisPoolSize: 0
+  debrisObject: {fileID: 5273009326846120377, guid: b850ec8683a0b4242a70076619acc9e5, type: 3}
+  spellObjectSound:
+    clipName: 
+    singleClip: {fileID: 0}
+    volume: 1.5
+    pitch: 1
+    mixerGroup: {fileID: -7302680629657921355, guid: 004a37a2c22918345b123859e614950a, type: 2}
+    loop: 0
+    randomize: 0
+    randomClips: []
+  interruptSpellSoundOnDestroy: 0
+  spellObjectDestroySound:
+    clipName: 
+    singleClip: {fileID: 0}
+    volume: 1
+    pitch: 1
+    mixerGroup: {fileID: 0}
+    loop: 0
+    randomize: 0
+    randomClips: []
   moveSpeed: 10
   speedCurve:
     serializedVersion: 2
@@ -305,7 +326,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  debrisObject: {fileID: 5273009326846120377, guid: b850ec8683a0b4242a70076619acc9e5, type: 3}
   homingAngleRange: 15
   layerMask:
     serializedVersion: 2
@@ -341,8 +361,8 @@ AudioSource:
   m_GameObject: {fileID: 5349493896159913635}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -7302680629657921355, guid: 004a37a2c22918345b123859e614950a, type: 2}
+  m_audioClip: {fileID: 8300000, guid: 8407516893063e5498d325bb59c8f9a9, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -353,9 +373,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 20
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -388,7 +408,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0

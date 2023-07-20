@@ -88,7 +88,6 @@ public class LevelManager : MonoBehaviour, IGameManager {
 		GameManager.instance.levelEndEvent += OnLevelEnd;
 		this.zoneData = gameContext.zoneData;
 		this.objectiveData = gameContext.objectiveData;
-		CreateLevelPools (zoneData, objectiveData);
 		BackgroundManager.instance.SetUpCameraBackground (zoneData.backgroundGroup);
 	}
 	private void CreateLevelPools (ZoneData worldData, ObjectiveData objectivedata) {
@@ -113,7 +112,8 @@ public class LevelManager : MonoBehaviour, IGameManager {
 	#region events/subscriptions
 
 
-	public void OnLoadLevel (int levelIndex) {
+	public void OnLoadLevel (int levelIndex)
+	{
 		StartCoroutine (LoadLevelRoutine (levelIndex));
 	}
 	public void OnLevelEnd (int levelIndex) {
@@ -122,7 +122,9 @@ public class LevelManager : MonoBehaviour, IGameManager {
 	#endregion
 	#region public utility methods
 
-	public IEnumerator LoadLevelRoutine (int levelIndex) {
+	public IEnumerator LoadLevelRoutine (int levelIndex)
+	{
+		CreateLevelPools(zoneData, objectiveData);
 		currentMapDetails = null;
 		GenerateMapDetails (zoneData, objectiveData, levelIndex);
 

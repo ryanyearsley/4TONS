@@ -47,6 +47,16 @@ MonoBehaviour:
   indicatorObject: {fileID: 6061439320400253421}
   maskTransform: {fileID: 5372093435520549021}
   castCompleteYValue: 0.45
+  interruptableSpellSound:
+    clipName: 
+    singleClip: {fileID: 8300000, guid: 1eace2f5f1f5f1b468e65d673e8b6ac5, type: 3}
+    volume: 1
+    pitch: 1
+    mixerGroup: {fileID: -7302680629657921355, guid: 004a37a2c22918345b123859e614950a, type: 2}
+    loop: 0
+    randomize: 0
+    randomClips: []
+  source: {fileID: 1636690530776756896}
 --- !u!1 &166070481475006028
 GameObject:
   m_ObjectHideFlags: 0
@@ -73,7 +83,7 @@ Transform:
   m_GameObject: {fileID: 166070481475006028}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 1}
   m_Children: []
   m_Father: {fileID: 2674823438085829356}
   m_RootOrder: 0
@@ -462,6 +472,133 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 2
   m_SpriteSortPoint: 0
+--- !u!1 &3729671224975818399
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6348596253024293386}
+  - component: {fileID: 1636690530776756896}
+  m_Layer: 10
+  m_Name: ResurrectAudio
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6348596253024293386
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3729671224975818399}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2674823438085829356}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1636690530776756896
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3729671224975818399}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: -7302680629657921355, guid: 004a37a2c22918345b123859e614950a, type: 2}
+  m_audioClip: {fileID: 8300000, guid: 1eace2f5f1f5f1b468e65d673e8b6ac5, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 20
+  Pan2D: 0
+  rolloffMode: 1
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &3925559492253858413
 GameObject:
   m_ObjectHideFlags: 0
@@ -548,7 +685,7 @@ Transform:
   m_GameObject: {fileID: 5005128888418859481}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 0.7, z: 1}
+  m_LocalScale: {x: 1.6335, y: 1.6335, z: 1.6335}
   m_Children: []
   m_Father: {fileID: 8286696734214419539}
   m_RootOrder: 2
@@ -593,7 +730,7 @@ SpriteMask:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5dc8262f55e58464e939fd1047a71a09, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3c96bdffdf65d8047bed09b492c05c58, type: 3}
   m_MaskAlphaCutoff: 0.406
   m_FrontSortingLayerID: 0
   m_BackSortingLayerID: 0
@@ -671,6 +808,7 @@ Transform:
   m_Children:
   - {fileID: 166070481475004556}
   - {fileID: 5019729371898529745}
+  - {fileID: 6348596253024293386}
   m_Father: {fileID: 8036647390902012783}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -689,12 +827,22 @@ MonoBehaviour:
   behaviourData: {fileID: 11400000, guid: e42415dbcec5bd24b8ac01f57e144d0f, type: 2}
   ExecutionTime: 0.5
   Cooldown: 1
+  behaviourSound:
+    clipName: 
+    singleClip: {fileID: 0}
+    volume: 1
+    pitch: 1
+    mixerGroup: {fileID: 0}
+    loop: 0
+    randomize: 0
+    randomClips: []
   _started: 0
   _finished: 0
   resourceCost: 5
   castSpeedPenaltyMultiplier: 0.8
   minAttackDistance: 2
   maxAttackDistance: 7
+  poolSize: 5
   rangedProjectilePrefab: {fileID: 5349493896159913635, guid: 56b9d9601666caf47993ad9a7cfb928a, type: 3}
 --- !u!114 &4901044568475832964
 MonoBehaviour:
@@ -709,8 +857,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   behaviourData: {fileID: 11400000, guid: f287c1c6378aa03439fa1061455ffcf4, type: 2}
-  ExecutionTime: 2
-  Cooldown: 8
+  ExecutionTime: 1.5
+  Cooldown: 6
+  behaviourSound:
+    clipName: 
+    singleClip: {fileID: 0}
+    volume: 1
+    pitch: 1
+    mixerGroup: {fileID: 0}
+    loop: 0
+    randomize: 0
+    randomClips: []
   _started: 0
   _finished: 0
   castIndicatorUI: {fileID: 983688557956976839}
@@ -731,10 +888,20 @@ MonoBehaviour:
     maxDepth: 0
     minNormalAngle: 0
     maxNormalAngle: 0
-  resurrectRange: 6
-  resourceCost: 10
+  resurrectRange: 8.5
+  resourceCost: 7
   castSpeedPenaltyMultiplier: 0
   resurrectHandPrefab: {fileID: 5273009326846120377, guid: 29206f0e55dae564a92cee8777afaee3, type: 3}
+  resurrectSound:
+    clipName: 
+    singleClip: {fileID: 8300000, guid: 1eace2f5f1f5f1b468e65d673e8b6ac5, type: 3}
+    volume: 1
+    pitch: 1
+    mixerGroup: {fileID: -7302680629657921355, guid: 004a37a2c22918345b123859e614950a, type: 2}
+    loop: 0
+    randomize: 0
+    randomClips: []
+  source: {fileID: 1636690530776756896}
 --- !u!114 &3092602356733019838
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -750,6 +917,15 @@ MonoBehaviour:
   behaviourData: {fileID: 11400000, guid: 8fdd2d91cab272e46812366f5111fdf1, type: 2}
   ExecutionTime: 0.75
   Cooldown: 1
+  behaviourSound:
+    clipName: 
+    singleClip: {fileID: 0}
+    volume: 1
+    pitch: 1
+    mixerGroup: {fileID: 0}
+    loop: 0
+    randomize: 0
+    randomClips: []
   _started: 0
   _finished: 0
   wanderDistance: 5
@@ -768,6 +944,15 @@ MonoBehaviour:
   behaviourData: {fileID: 11400000, guid: e2859c76dcf73cf4d9f5b5d2c8489d30, type: 2}
   ExecutionTime: 0.2
   Cooldown: 2
+  behaviourSound:
+    clipName: 
+    singleClip: {fileID: 0}
+    volume: 1
+    pitch: 1
+    mixerGroup: {fileID: 0}
+    loop: 0
+    randomize: 0
+    randomClips: []
   _started: 0
   _finished: 0
   acquireTargetDistance: 10
@@ -786,6 +971,15 @@ MonoBehaviour:
   behaviourData: {fileID: 11400000, guid: 9f7cbfe63de28a94e8c8a2918011a31a, type: 2}
   ExecutionTime: 1
   Cooldown: 1.2
+  behaviourSound:
+    clipName: 
+    singleClip: {fileID: 0}
+    volume: 1
+    pitch: 1
+    mixerGroup: {fileID: 0}
+    loop: 0
+    randomize: 0
+    randomClips: []
   _started: 0
   _finished: 0
   aggroDistance: 8
@@ -806,12 +1000,22 @@ MonoBehaviour:
   behaviourData: {fileID: 11400000, guid: 272a7ba03a6aa264798e6939f733ad8c, type: 2}
   ExecutionTime: 0.9
   Cooldown: 3
+  behaviourSound:
+    clipName: 
+    singleClip: {fileID: 0}
+    volume: 1
+    pitch: 1
+    mixerGroup: {fileID: 0}
+    loop: 0
+    randomize: 0
+    randomClips: []
   _started: 0
   _finished: 0
   resourceCost: 10
   castSpeedPenaltyMultiplier: 0.75
   minAttackDistance: 1
   maxAttackDistance: 8
+  poolSize: 5
   rangedProjectilePrefab: {fileID: 5349493896159913635, guid: 56b9d9601666caf47993ad9a7cfb928a, type: 3}
   spread: 20
   shotCount: 3
@@ -1014,6 +1218,7 @@ MonoBehaviour:
       resource: {fileID: 0}
       movement: {fileID: 0}
     lookTransform: {fileID: 0}
+    projectileTransform: {fileID: 0}
     targetWithinLoS: 0
     targetPositionTransform: {fileID: 0}
     targetVitals:
