@@ -14,19 +14,32 @@ public class InterruptableCastIndicatorUI : MonoBehaviour {
 
 	private float yValuePerPercent;
 
+	[SerializeField]
+	private Sound interruptableSpellSound;
+	[SerializeField]
+	private AudioSource source;
+
 	private void Awake () {
 		SetUpCastIndicator ();
 		HideCastIndicator ();
 	}
-	public void SetUpCastIndicator () {
-		ResetCastIndicator ();
+
+	public void SetUpCastIndicator()
+	{
+		ResetCastIndicator();
 		yValuePerPercent = castCompleteYValue / 100;
+		if (interruptableSpellSound.singleClip != null)
+			source.clip = interruptableSpellSound.singleClip;
 	}
 	public void HideCastIndicator() {
 		indicatorObject.SetActive (false);
+			if (source.clip != null)
+				source.Stop();
 	}
 	public void ShowCastIndicator () {
 		indicatorObject.SetActive (true);
+		if (source.clip != null)
+			source.Play();
 	}
 	public void ResetCastIndicator() {
 		maskTransform.localPosition = Vector3.zero;
