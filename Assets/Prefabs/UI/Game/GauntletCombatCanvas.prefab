@@ -1083,7 +1083,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4996952386562043757
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4166,7 +4166,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4316811044498637255, guid: 7d9131ffa20c6e94096ad9b95c28c6af, type: 3}
       propertyPath: m_Name
-      value: GauntletCombatCanvas
+      value: CombatCanvas
       objectReference: {fileID: 0}
     - target: {fileID: 4316811044498637259, guid: 7d9131ffa20c6e94096ad9b95c28c6af, type: 3}
       propertyPath: m_Pivot.x
@@ -4276,6 +4276,18 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -35.0366
       objectReference: {fileID: 0}
+    - target: {fileID: 4316811045039074641, guid: 7d9131ffa20c6e94096ad9b95c28c6af, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 320
+      objectReference: {fileID: 0}
+    - target: {fileID: 4316811045039074641, guid: 7d9131ffa20c6e94096ad9b95c28c6af, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 4316811045039074642, guid: 7d9131ffa20c6e94096ad9b95c28c6af, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: bb40b86a678a3b84ea4c2d2bffe86aad, type: 3}
     - target: {fileID: 4316811045174459230, guid: 7d9131ffa20c6e94096ad9b95c28c6af, type: 3}
       propertyPath: m_Enabled
       value: 0
