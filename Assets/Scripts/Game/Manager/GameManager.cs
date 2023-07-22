@@ -172,7 +172,6 @@ public class GameManager : MonoBehaviour {
 	}
 	public void ReportPlayerDeath (Player player) {
 		player.isAlive = false;
-		player.currentPlayerObject = null;
 
 		bool gameOver = true;
 		foreach (Player currentPlayer in PlayerManager.instance.currentPlayers) {
@@ -181,12 +180,7 @@ public class GameManager : MonoBehaviour {
 		}
 		if (gameOver) {
 			gameOverEvent?.Invoke (1);
-			changeGameStateEvent?.Invoke (GameState.GAME_OVER); 
-			foreach (Player currentPlayer in PlayerManager.instance.currentPlayers)
-			{
-				WizardSaveData wizardSaveData = WizardSaveDataMapper.MapGameToSaveData(currentPlayer.currentPlayerObject.wizardGameData);
-				WizardSaveDataManager.instance.SaveDeadWizard(wizardSaveData);
-			}
+			changeGameStateEvent?.Invoke (GameState.GAME_OVER);
 		}
 	}
 
