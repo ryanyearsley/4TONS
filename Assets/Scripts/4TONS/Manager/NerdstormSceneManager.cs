@@ -39,11 +39,6 @@ namespace NERDSTORM {
 		public void LoadMenu() {
 			LoadSceneByIndex (menuSceneIndex);
 		}
-
-		public void LoadMenuInstant () {
-			LoadSceneInstant (menuSceneIndex);
-		}
-
 		public void LoadTutorial() {
 			LoadSceneByIndex (tutorialSceneIndex);
 		}
@@ -58,11 +53,6 @@ namespace NERDSTORM {
 
 		public void LoadSceneByIndex(int index) {
 			StartCoroutine (LoadSceneRoutine (index));
-		}
-
-		public void LoadSceneInstant (int index) {
-			//sceneTransitionEvent?.Invoke ();
-			SceneManager.LoadScene (index);
 		}
 
 		public IEnumerator LoadSceneRoutine (int index) {
