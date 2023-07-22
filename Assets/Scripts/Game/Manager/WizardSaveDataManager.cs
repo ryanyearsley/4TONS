@@ -12,6 +12,7 @@ public class WizardSaveDataManager : PersistentManager {
 	public WizardData defaultWizardData;
 
 	public List<WizardSaveData> infamousWizardSaveDatas;
+	public List<WizardSaveData> deadWizardSaveDatas;
 
 	public Dictionary<string, WizardSaveData> infamousWizardDictionary = new Dictionary<string, WizardSaveData>();
 
@@ -28,11 +29,13 @@ public class WizardSaveDataManager : PersistentManager {
 
 	protected override void Start () {
 		base.Start ();
-		infamousWizardSaveDatas = LoadInfamousWizardSavesJSON ();
+		infamousWizardSaveDatas = LoadWizardJSON(Application.persistentDataPath + "/infamous_wizards/");
+		deadWizardSaveDatas = LoadWizardJSON(Application.persistentDataPath + "/dead_wizards/");
 	}
 
 	public override void SceneLoaded (Scene scene, LoadSceneMode loadSceneMode) {
-		infamousWizardSaveDatas = LoadInfamousWizardSavesJSON ();
+		infamousWizardSaveDatas = LoadWizardJSON (Application.persistentDataPath + "/infamous_wizards/");
+		deadWizardSaveDatas = LoadWizardJSON(Application.persistentDataPath + "/dead_wizards/");
 	}
 	public void CreatePersistentDataDirectories () {
 		if (!Directory.Exists (Application.persistentDataPath + "/gauntlet_wizards")) {
@@ -61,7 +64,8 @@ public class WizardSaveDataManager : PersistentManager {
 	}
 	private void SaveWizardJSON (WizardSaveData wizardSaveData, string directoryPath) {
 		OnBeforeWizardSave (wizardSaveData);
-		string wizardSavePath = directoryPath + wizardSaveData.wizardName + ".json";
+		string dateFormatted = wizardSaveData.deathInfo.endTime.ToString("yyyy-MM-dd-hh-mm-ss");
+		string wizardSavePath = directoryPath + dateFormatted + "_" + wizardSaveData.wizardName  + ".json";
 		if (File.Exists (wizardSavePath)) {
 			Debug.Log ("Save failed: Wizard already exists with this name.");
 			return;
@@ -92,11 +96,10 @@ public class WizardSaveDataManager : PersistentManager {
 		}
 	}
 
-	public List<WizardSaveData> LoadInfamousWizardSavesJSON () {
-		string wizardDirectory = Application.persistentDataPath + "/infamous_wizards/";
+	public List<WizardSaveData> LoadWizardJSON (string directory) {
 		List<WizardSaveData> infamousWizards = new List<WizardSaveData>();
 
-		String[] wizardFilePaths = Directory.GetFiles (wizardDirectory);
+		String[] wizardFilePaths = Directory.GetFiles (directory);
 		Debug.Log ("Found " + wizardFilePaths.Length + " saves");
 
 		foreach (String wizardFilePath in wizardFilePaths) {
@@ -109,6 +112,8 @@ public class WizardSaveDataManager : PersistentManager {
 		}
 		return infamousWizards;
 	}
+
+
 	public bool isWizardNameAvailable (string wizardName) {
 		if (infamousWizardDictionary.ContainsKey (wizardName)) {
 			return false;
@@ -154,14 +159,13 @@ public class WizardSaveDataManager : PersistentManager {
 		if (File.Exists (wizardFilePath)) {
 			File.Delete (wizardFilePath);
 		}
-		infamousWizardSaveDatas = LoadInfamousWizardSavesJSON ();
+		infamousWizardSaveDatas = LoadWizardJSON (Application.persistentDataPath + "/infamous_wizards/");
 	}
 	public void DeleteInProgressWizard (string wizardName) {
 		string wizardFilePath = Application.persistentDataPath + "/gauntlet_wizards/" + wizardName + ".json";
 		if (File.Exists (wizardFilePath)) {
 			File.Delete (wizardFilePath);
 		}
-		infamousWizardSaveDatas = LoadInfamousWizardSavesJSON ();
 	}
 
 	public void DeleteAllWizardData () {
