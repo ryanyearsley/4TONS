@@ -6,12 +6,12 @@ using UnityEngine;
 [Serializable]
 public class PlayerDeathInfo
 {
-	public DateTime endTime;
+	public string date;
 	public string lastWords;
 
-	public PlayerDeathInfo(DateTime end, string lastWords)
+	public PlayerDeathInfo(string date, string lastWords)
 	{
-		endTime = end;
+		this.date = date;
 		this.lastWords = lastWords;
 	}
 }
