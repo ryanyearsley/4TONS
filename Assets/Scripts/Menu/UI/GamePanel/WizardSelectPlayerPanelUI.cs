@@ -48,7 +48,7 @@ public class WizardSelectPlayerPanelUI : MonoBehaviour {
 		}
 		Debug.Log ("populating loaded wizard buttons. wizard data length: " + wizardSaveDatas.Count);
 		int wizardSaveDataCount = wizardSaveDatas.Count;
-		UpdateLeaderboardEntryGrouping (wizardSaveDataCount);
+		UpdateWizardSelectGroupingUI (wizardSaveDataCount);
 		for (int i = 0; i < wizardSaveDataCount; i++) {
 			if (i >= loadedWizardSelectionUI.Count) {
 				//adds a button if necessary
@@ -59,7 +59,7 @@ public class WizardSelectPlayerPanelUI : MonoBehaviour {
 	}
 
 
-	private void UpdateLeaderboardEntryGrouping (int wizardSaveDataCount) {
+	private void UpdateWizardSelectGroupingUI (int wizardSaveDataCount) {
 		for (int i = 0; i < loadedWizardSelectionUI.Count; i++) {
 			if (i >= wizardSaveDataCount) {
 				LoadedWizardSelectionUI deletingButton = loadedWizardSelectionUI[i];

@@ -2,12 +2,12 @@ using System.Collections;
 using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
 
 public class ObituaryScreenUI : AbstractScreenUI
 {
 	[SerializeField]
-	private WizardSelectPlayerPanelUI[] obituaryPanels;
+	private ObituaryPanelUI obituaryPanel;
 
 	private void Awake()
 	{
@@ -32,11 +32,7 @@ public class ObituaryScreenUI : AbstractScreenUI
 	private void UpdateObituaryPanels()
 	{
 		List<WizardSaveData> wizardSaveDatas = WizardSaveDataManager.instance.deadWizardSaveDatas;
-
 		Debug.Log("updating wizard select panels. wizard count: " + wizardSaveDatas.Count);
-		foreach (WizardSelectPlayerPanelUI panel in obituaryPanels)
-		{
-			panel.PopulateLoadedWizardButtons(wizardSaveDatas);
-		}
+		obituaryPanel.PopulateObituaryEntries(wizardSaveDatas);
 	}
 }
