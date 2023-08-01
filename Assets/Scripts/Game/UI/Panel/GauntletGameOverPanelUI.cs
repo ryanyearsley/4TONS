@@ -7,8 +7,7 @@ public class GauntletGameOverPanelUI : AbstractPanelUI
 {
 
 	private WizardSaveData currentWizardSaveData;
-	private DateTime endTime;
-	private string currentLastWords;
+	private string endTimeFormatted;
 
 	[SerializeField]
 	private TMP_Text nameText;
@@ -36,9 +35,9 @@ public class GauntletGameOverPanelUI : AbstractPanelUI
 		{
 			Player currentPlayer = PlayerManager.instance.currentPlayers[0];
 			currentWizardSaveData = WizardSaveDataMapper.MapGameToSaveData(currentPlayer.currentPlayerObject.wizardGameData);
+			endTimeFormatted = DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss");
+			todText.text = "Time of Death: " + endTimeFormatted;
 			nameText.text = currentWizardSaveData.wizardName;
-			endTime = DateTime.Now;
-			todText.text = endTime.ToString("d");
 		}
 	}
 
@@ -46,7 +45,7 @@ public class GauntletGameOverPanelUI : AbstractPanelUI
 	{
 		string lastWordsTruncated = TruncateLastWords(lastWordsInputField.text);
 		Debug.Log("GameOverPanel: Last words: " + lastWordsTruncated);
-		currentWizardSaveData.deathInfo = new PlayerDeathInfo(endTime, lastWordsTruncated);
+		currentWizardSaveData.deathInfo = new PlayerDeathInfo(endTimeFormatted, lastWordsTruncated);
 		WizardSaveDataManager.instance.SaveDeadWizard(currentWizardSaveData);
 	}
 
