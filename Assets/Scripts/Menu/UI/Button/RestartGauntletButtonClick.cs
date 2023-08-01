@@ -15,9 +15,12 @@ public class RestartGauntletButtonClick : AbstractButtonClick {
 
 	public override void OnClick () {
 		gameOverPanelUI.ConfirmDeathInfo();
-		PlayerManager.instance.ClearSelectedWizards(); 
 		Player playerOne = PlayerManager.instance.currentPlayers[0];
-		playerOne.wizardSaveData = playerOne.wizardSaveData.wizardData.gauntletStartData.wizardSaveData.Clone();
+		WizardPrebuildData starterData = playerOne.wizardSaveData.wizardData.gauntletStartData;
+		string wizardName = playerOne.wizardSaveData.wizardName;
+		PlayerManager.instance.ClearSelectedWizards();
+		playerOne.wizardSaveData = starterData.wizardSaveData.Clone();
+		playerOne.wizardSaveData.wizardName = wizardName;
 		NerdstormSceneManager.instance.LoadGauntletTowerScene (Zone.Hub);
 	}
 }

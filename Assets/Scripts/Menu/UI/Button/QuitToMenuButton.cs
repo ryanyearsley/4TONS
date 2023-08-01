@@ -7,12 +7,10 @@ public class QuitToMenuButton : AbstractButtonClick {
 	protected override void Awake()
 	{
 		base.Awake();
-		gameOverPanelUI = GetComponentInParent<GauntletGameOverPanelUI>();
 	}
 
 	public override void OnClick()
 	{
-		gameOverPanelUI.ConfirmDeathInfo();
 		PlayerManager.instance.ClearSelectedWizards();
 		NerdstormSceneManager.instance.LoadMenu();
 	}
