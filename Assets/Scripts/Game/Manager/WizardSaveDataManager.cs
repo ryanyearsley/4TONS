@@ -64,8 +64,7 @@ public class WizardSaveDataManager : PersistentManager {
 	}
 	private void SaveWizardJSON (WizardSaveData wizardSaveData, string directoryPath) {
 		OnBeforeWizardSave (wizardSaveData);
-		string dateFormatted = wizardSaveData.deathInfo.endTime.ToString("yyyy-MM-dd-hh-mm-ss");
-		string wizardSavePath = directoryPath + dateFormatted + "_" + wizardSaveData.wizardName  + ".json";
+		string wizardSavePath = directoryPath + DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + "_" + wizardSaveData.wizardName  + ".json";
 		if (File.Exists (wizardSavePath)) {
 			Debug.Log ("Save failed: Wizard already exists with this name.");
 			return;
