@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7150dc5072870b429cf1b59e1e27331, type: 3}
   m_Name: FireSchoolData
   m_EditorClassIdentifier: 
-  schoolIndexStart: 0
+  schoolIndexStart: 5000
   spellSchool: 2
   schoolDescription: Melt the flesh from the bones of your enemies.
   wizardData: {fileID: 11400000, guid: 6bb9a2488cce3154bb42857fdb52c7cf, type: 2}
@@ -22,3 +22,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b810acb48d10c2543ba19bb73473e5ce, type: 2}
   spells:
   - {fileID: 11400000, guid: 84830a00a35f38d4abd0035861bedb42, type: 2}
+  - {fileID: 11400000, guid: 3879acd23f6625a45a0083524c6fd4a5, type: 2}
