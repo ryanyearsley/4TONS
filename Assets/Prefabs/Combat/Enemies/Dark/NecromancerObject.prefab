@@ -827,18 +827,9 @@ MonoBehaviour:
   behaviourData: {fileID: 11400000, guid: e42415dbcec5bd24b8ac01f57e144d0f, type: 2}
   ExecutionTime: 0.5
   Cooldown: 1
-  behaviourSound:
-    clipName: 
-    singleClip: {fileID: 0}
-    volume: 1
-    pitch: 1
-    mixerGroup: {fileID: 0}
-    loop: 0
-    randomize: 0
-    randomClips: []
   _started: 0
   _finished: 0
-  resourceCost: 5
+  resourceCost: 2
   castSpeedPenaltyMultiplier: 0.8
   minAttackDistance: 2
   maxAttackDistance: 7
@@ -859,15 +850,6 @@ MonoBehaviour:
   behaviourData: {fileID: 11400000, guid: f287c1c6378aa03439fa1061455ffcf4, type: 2}
   ExecutionTime: 1.5
   Cooldown: 6
-  behaviourSound:
-    clipName: 
-    singleClip: {fileID: 0}
-    volume: 1
-    pitch: 1
-    mixerGroup: {fileID: 0}
-    loop: 0
-    randomize: 0
-    randomClips: []
   _started: 0
   _finished: 0
   castIndicatorUI: {fileID: 983688557956976839}
@@ -889,19 +871,9 @@ MonoBehaviour:
     minNormalAngle: 0
     maxNormalAngle: 0
   resurrectRange: 8.5
-  resourceCost: 7
+  resourceCost: 5
   castSpeedPenaltyMultiplier: 0
   resurrectHandPrefab: {fileID: 5273009326846120377, guid: 29206f0e55dae564a92cee8777afaee3, type: 3}
-  resurrectSound:
-    clipName: 
-    singleClip: {fileID: 8300000, guid: 1eace2f5f1f5f1b468e65d673e8b6ac5, type: 3}
-    volume: 1
-    pitch: 1
-    mixerGroup: {fileID: -7302680629657921355, guid: 004a37a2c22918345b123859e614950a, type: 2}
-    loop: 0
-    randomize: 0
-    randomClips: []
-  source: {fileID: 1636690530776756896}
 --- !u!114 &3092602356733019838
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -917,15 +889,6 @@ MonoBehaviour:
   behaviourData: {fileID: 11400000, guid: 8fdd2d91cab272e46812366f5111fdf1, type: 2}
   ExecutionTime: 0.75
   Cooldown: 1
-  behaviourSound:
-    clipName: 
-    singleClip: {fileID: 0}
-    volume: 1
-    pitch: 1
-    mixerGroup: {fileID: 0}
-    loop: 0
-    randomize: 0
-    randomClips: []
   _started: 0
   _finished: 0
   wanderDistance: 5
@@ -944,15 +907,6 @@ MonoBehaviour:
   behaviourData: {fileID: 11400000, guid: e2859c76dcf73cf4d9f5b5d2c8489d30, type: 2}
   ExecutionTime: 0.2
   Cooldown: 2
-  behaviourSound:
-    clipName: 
-    singleClip: {fileID: 0}
-    volume: 1
-    pitch: 1
-    mixerGroup: {fileID: 0}
-    loop: 0
-    randomize: 0
-    randomClips: []
   _started: 0
   _finished: 0
   acquireTargetDistance: 10
@@ -971,15 +925,6 @@ MonoBehaviour:
   behaviourData: {fileID: 11400000, guid: 9f7cbfe63de28a94e8c8a2918011a31a, type: 2}
   ExecutionTime: 1
   Cooldown: 1.2
-  behaviourSound:
-    clipName: 
-    singleClip: {fileID: 0}
-    volume: 1
-    pitch: 1
-    mixerGroup: {fileID: 0}
-    loop: 0
-    randomize: 0
-    randomClips: []
   _started: 0
   _finished: 0
   aggroDistance: 8
@@ -1000,18 +945,9 @@ MonoBehaviour:
   behaviourData: {fileID: 11400000, guid: 272a7ba03a6aa264798e6939f733ad8c, type: 2}
   ExecutionTime: 0.9
   Cooldown: 3
-  behaviourSound:
-    clipName: 
-    singleClip: {fileID: 0}
-    volume: 1
-    pitch: 1
-    mixerGroup: {fileID: 0}
-    loop: 0
-    randomize: 0
-    randomClips: []
   _started: 0
   _finished: 0
-  resourceCost: 10
+  resourceCost: 4
   castSpeedPenaltyMultiplier: 0.75
   minAttackDistance: 1
   maxAttackDistance: 8
