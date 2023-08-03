@@ -19,7 +19,8 @@ public class ConstantsManager : PersistentManager {
 	//It is then overwritten by player's WizardSaveData (assigned in PlayerManager).
 	public CreatureData playerCreatureData;
 	public WizardPrebuildData defaultWizardData;
-	
+	public WizardPrebuildData tutorialWizardData;
+
 
 	//STAFF AND PUZZLE PREFABS
 

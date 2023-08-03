@@ -437,19 +437,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9208858513810747366, guid: f1dec2cdb3f40584d81bf72a0d55cf8f, type: 3}
   m_PrefabInstance: {fileID: 3114132081234587278}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2112613520
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6123750523446739310}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5e9054d322abb040acde04db56b37ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  musicSource: {fileID: 2044073288}
 --- !u!82 &2044073288
 AudioSource:
   m_ObjectHideFlags: 0
@@ -546,6 +533,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2112613520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6123750523446739310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5e9054d322abb040acde04db56b37ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicSource: {fileID: 2044073288}
 --- !u!1001 &5618915551887102192
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -816,6 +816,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8884175212134057212, guid: 9fee5ac39cf1ab540bf0c8e15f70c5da, type: 3}
+      propertyPath: testNumber
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884175212134057212, guid: 9fee5ac39cf1ab540bf0c8e15f70c5da, type: 3}
       propertyPath: baseHitboxTile
       value: 
       objectReference: {fileID: 11400000, guid: 85fc681007fa4374cb7ca3e5319181cc, type: 2}
@@ -843,6 +847,10 @@ PrefabInstance:
       propertyPath: spellGemPickUpData
       value: 
       objectReference: {fileID: 11400000, guid: c5abe41b66335894d94c02f288c77685, type: 2}
+    - target: {fileID: 8884175212134057212, guid: 9fee5ac39cf1ab540bf0c8e15f70c5da, type: 3}
+      propertyPath: tutorialWizardData
+      value: 
+      objectReference: {fileID: 11400000, guid: 8a83a3e68eb495d47a9515e7faaf375d, type: 2}
     - target: {fileID: 8884175212134057212, guid: 9fee5ac39cf1ab540bf0c8e15f70c5da, type: 3}
       propertyPath: zones.Array.data[0]
       value: 
@@ -911,6 +919,14 @@ PrefabInstance:
       propertyPath: validResolutions.Array.size
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 8884175212134057212, guid: 9fee5ac39cf1ab540bf0c8e15f70c5da, type: 3}
+      propertyPath: inventoryTemplates.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884175212134057212, guid: 9fee5ac39cf1ab540bf0c8e15f70c5da, type: 3}
+      propertyPath: inventoryTemplates.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: bc18cd6b47f224142b3b8d4bb5aa282d, type: 2}
     - target: {fileID: 8884175212134057212, guid: 9fee5ac39cf1ab540bf0c8e15f70c5da, type: 3}
       propertyPath: isoSpeedCurve.m_Curve.Array.size
       value: 3
