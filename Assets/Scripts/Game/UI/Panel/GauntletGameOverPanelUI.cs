@@ -15,7 +15,8 @@ public class GauntletGameOverPanelUI : AbstractPanelUI
 	TMP_Text todText;
 	[SerializeField]
 	TMP_InputField lastWordsInputField;
-
+	[SerializeField]
+	RandomLastWordsData lastWords;
 	protected override void OnUIChange(GameState gameState)
 	{
 		if (panelActiveStates.Contains(gameState))
@@ -36,8 +37,9 @@ public class GauntletGameOverPanelUI : AbstractPanelUI
 			Player currentPlayer = PlayerManager.instance.currentPlayers[0];
 			currentWizardSaveData = WizardSaveDataMapper.MapGameToSaveData(currentPlayer.currentPlayerObject.wizardGameData);
 			endTimeFormatted = DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss");
-			todText.text = "Time of Death: " + endTimeFormatted;
+			todText.text = endTimeFormatted;
 			nameText.text = currentWizardSaveData.wizardName;
+			lastWordsInputField.text = lastWords.GetRandomLastWords();
 		}
 	}
 
