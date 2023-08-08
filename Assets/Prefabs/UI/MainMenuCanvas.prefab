@@ -1995,8 +1995,8 @@ RectTransform:
   m_Father: {fileID: 3948773280541858826}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 0.0011495352}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0.5686188, y: 0.0025024414}
   m_SizeDelta: {x: -9.0997, y: 0.0049438}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -20756,7 +20756,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 902797591bb2e6d42b9f19a0134d11b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tutorialWizard: {fileID: 11400000, guid: 8a83a3e68eb495d47a9515e7faaf375d, type: 2}
 --- !u!114 &2896301670854898193
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21287,7 +21286,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8812332622484427519
 RectTransform:
   m_ObjectHideFlags: 0
