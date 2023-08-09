@@ -36,7 +36,7 @@ public class GauntletGameOverPanelUI : AbstractPanelUI
 		{
 			Player currentPlayer = PlayerManager.instance.currentPlayers[0];
 			currentWizardSaveData = WizardSaveDataMapper.MapGameToSaveData(currentPlayer.currentPlayerObject.wizardGameData);
-			endTimeFormatted = DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss");
+			endTimeFormatted = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
 			todText.text = endTimeFormatted;
 			nameText.text = currentWizardSaveData.wizardName;
 			lastWordsInputField.text = lastWords.GetRandomLastWords();
