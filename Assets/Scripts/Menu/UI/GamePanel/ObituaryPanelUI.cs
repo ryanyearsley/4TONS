@@ -8,6 +8,8 @@ public class ObituaryPanelUI : MonoBehaviour
 {
 
 	private bool initialized;
+	[SerializeField]
+	private int maxObituariesCount = 50;
 
 	[SerializeField]
 	private GameObject obituaryEntryPrefab;
@@ -57,10 +59,10 @@ public class ObituaryPanelUI : MonoBehaviour
 			noWizardText.SetActive(false);
 		}
 		totalDeathsText.text = "Total Deaths: " + wizardSaveDatas.Count;
-		Debug.Log("populating loaded obituaries. wizard data length: " + wizardSaveDatas.Count);
-		int wizardSaveDataCount = wizardSaveDatas.Count;
-		UpdateObituaryGroupingUI(wizardSaveDataCount);
-		for (int i = 0; i < wizardSaveDataCount; i++)
+		int wizardCount = wizardSaveDatas.Count;
+		int displayCount = wizardCount > maxObituariesCount? maxObituariesCount : wizardCount;
+		UpdateObituaryGroupingUI(displayCount);
+		for (int i = 0; i < displayCount; i++)
 		{
 			if (i >= loadedObituaryUI.Count)
 			{
