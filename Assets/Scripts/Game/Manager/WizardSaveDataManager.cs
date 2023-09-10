@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -96,7 +97,7 @@ public class WizardSaveDataManager : PersistentManager {
 	}
 
 	public List<WizardSaveData> LoadWizardJSON (string directory) {
-		List<WizardSaveData> infamousWizards = new List<WizardSaveData>();
+		List<WizardSaveData> wizards = new List<WizardSaveData>();
 
 		String[] wizardFilePaths = Directory.GetFiles (directory);
 		Debug.Log ("Found " + wizardFilePaths.Length + " saves");
@@ -105,11 +106,12 @@ public class WizardSaveDataManager : PersistentManager {
 			String json = File.ReadAllText (wizardFilePath);
 			WizardSaveData wizard = JsonUtility.FromJson<WizardSaveData>(json);
 			OnAfterLoad (wizard);
-			infamousWizards.Add (wizard);
+			wizards.Add (wizard);
 			if (isWizardNameAvailable (wizard.wizardName))
 				infamousWizardDictionary.Add (wizard.wizardName, wizard);
 		}
-		return infamousWizards;
+		wizards.Reverse();
+		return wizards;
 	}
 
 
