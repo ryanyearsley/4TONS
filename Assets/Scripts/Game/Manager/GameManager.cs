@@ -172,7 +172,6 @@ public class GameManager : MonoBehaviour {
 	}
 	public void ReportPlayerDeath (Player player) {
 		player.isAlive = false;
-		player.currentPlayerObject = null;
 
 		bool gameOver = true;
 		foreach (Player currentPlayer in PlayerManager.instance.currentPlayers) {

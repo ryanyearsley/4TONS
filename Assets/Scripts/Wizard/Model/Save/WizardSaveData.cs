@@ -18,6 +18,7 @@ public class WizardSaveData : ICloneable {
 	public PuzzleSaveData primaryStaffSaveData;
 	public PuzzleSaveData secondaryStaffSaveData;
 	public PuzzleSaveData inventorySaveData;
+	public PlayerDeathInfo deathInfo;
 
 	public List<WizardTowerStatus> towerProgress = new List<WizardTowerStatus>();
 

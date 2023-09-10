@@ -5,10 +5,22 @@ using NERDSTORM;
 
 public class RestartGauntletButtonClick : AbstractButtonClick {
 
+	GauntletGameOverPanelUI gameOverPanelUI;
+
+	protected override void Awake()
+	{
+		base.Awake();
+		gameOverPanelUI = GetComponentInParent<GauntletGameOverPanelUI>();
+	}
+
 	public override void OnClick () {
+		gameOverPanelUI.ConfirmDeathInfo();
 		Player playerOne = PlayerManager.instance.currentPlayers[0];
-		playerOne.wizardSaveData = playerOne.wizardSaveData.wizardData.gauntletStartData.wizardSaveData.Clone ();
-		playerOne.currentPlayerObject = null;
+		WizardPrebuildData starterData = playerOne.wizardSaveData.wizardData.gauntletStartData;
+		string wizardName = playerOne.wizardSaveData.wizardName;
+		PlayerManager.instance.ClearSelectedWizards();
+		playerOne.wizardSaveData = starterData.wizardSaveData.Clone();
+		playerOne.wizardSaveData.wizardName = wizardName;
 		NerdstormSceneManager.instance.LoadGauntletTowerScene (Zone.Hub);
 	}
 }

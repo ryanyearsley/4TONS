@@ -19,7 +19,16 @@ MonoBehaviour:
   wizardData: {fileID: 11400000, guid: 58f2c90e77e39d84d895d047a0105b29, type: 2}
   wizardPrebuildData: {fileID: 11400000, guid: 132ef5b8fd6f41e4fba57e66f842fe30, type: 2}
   schoolColor: {r: 0.8207547, g: 0.77889574, b: 0.096787095, a: 1}
-  staffs: []
+  staffs:
+  - {fileID: 11400000, guid: aa7608112fc6c4c489844316f77c020c, type: 2}
+  - {fileID: 11400000, guid: 062c645d46e3ce345a02f086f79fe6ec, type: 2}
+  - {fileID: 11400000, guid: 53f62736fa302db4cab76f2cee87ae27, type: 2}
+  - {fileID: 11400000, guid: 7859822e36a90a240b54a5f0329d95bb, type: 2}
   spells:
+  - {fileID: 11400000, guid: 14acab46f839a4443a51820ba1db5eae, type: 2}
+  - {fileID: 11400000, guid: 7e480e156dfa75444ade4f7f87b41d4a, type: 2}
+  - {fileID: 11400000, guid: fd3e04ce5de42bc46b209c2474d5345d, type: 2}
+  - {fileID: 11400000, guid: 6527aebd3bb631f4a9d0c9030f9b8e9e, type: 2}
   - {fileID: 11400000, guid: 3e4c8f91a9e68be418b4c859bffba62e, type: 2}
+  - {fileID: 11400000, guid: 327fa663d091a4e46b0da643a42bed63, type: 2}
   - {fileID: 11400000, guid: 4aa338a38cb396f4080327d9aaf31198, type: 2}

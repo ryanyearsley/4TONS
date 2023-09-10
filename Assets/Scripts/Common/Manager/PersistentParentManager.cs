@@ -13,8 +13,13 @@ public class PersistentParentManager : MonoBehaviour {
 		}
 	}
 	#endregion
-	private void Awake () {
-		InitializeSingleton ();
-		DontDestroyOnLoad (this.gameObject);
+	private void Awake()
+	{
+		InitializeSingleton();
+#if UNITY_EDITOR
+		if (Application.isPlaying)
+			UnityEditor.SceneVisibilityManager.instance.Show(gameObject, false);
+#endif
+		DontDestroyOnLoad(gameObject);
 	}
 }

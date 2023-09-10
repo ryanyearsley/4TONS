@@ -15,9 +15,9 @@ MonoBehaviour:
   spellName: Spark Wave
   spellSchool: 0
   spellSchoolData: {fileID: 11400000, guid: 16a7aee84221cf944b3bc8802b8d5ba3, type: 2}
-  id: 2401
+  id: 2406
   description: Cast a inaccurate and branching wave of lightning.
-  icon: {fileID: 21300000, guid: ef127ea7258730d4bbfacb1799730c42, type: 3}
+  icon: {fileID: 21300000, guid: 5754f26e84bb2594eb004e04a2d4ba4c, type: 3}
   manaCost: 5
   castTime: 0.3
   castSpeedReduction: 0.6

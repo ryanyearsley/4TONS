@@ -15,29 +15,25 @@ MonoBehaviour:
   spellName: Bubble of Fortitude
   spellSchool: 0
   spellSchoolData: {fileID: 11400000, guid: 16a7aee84221cf944b3bc8802b8d5ba3, type: 2}
-  id: 325621
+  id: 2401
   description: Place a protective bubble on the ground
-  icon: {fileID: 21300000, guid: d3ba7a92abdb01240879f6d79fea3600, type: 3}
-  castObject: {fileID: 7543638005694442030, guid: 0a529b21b02c1ee46a3d0d2e11e82485, type: 3}
+  icon: {fileID: 21300000, guid: 5754f26e84bb2594eb004e04a2d4ba4c, type: 3}
   manaCost: 10
   castTime: 0.2
   castSpeedReduction: 0.5
   coolDown: 15
-  damage: 0
-  snareSpeedReduction: 0
-  snareDuration: 0
+  castObject: {fileID: 7543638005694442030, guid: 0a529b21b02c1ee46a3d0d2e11e82485, type: 3}
+  poolSize: 2
+  spellObject: {fileID: 3223457085243026714, guid: 7454b7ca4300a6148a44ee83fb187a63, type: 3}
   spellCastLocation: 1
   spellCastSound:
     clipName: 
     singleClip: {fileID: 0}
-    randomize: 0
-    randomClips: []
     volume: 1
     pitch: 1
     mixerGroup: {fileID: 0}
     loop: 0
-    playOnAwake: 0
+    randomize: 0
+    randomClips: []
   spellEndSound: {fileID: 0}
-  spellObject: {fileID: 3223457085243026714, guid: 7454b7ca4300a6148a44ee83fb187a63, type: 3}
-  poolSize: 2
   puzzlePieceData: {fileID: 11400000, guid: 049188c85e062fb4ca5078709664b3fd, type: 2}

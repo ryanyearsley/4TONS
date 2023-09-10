@@ -15,9 +15,9 @@ MonoBehaviour:
   spellName: Chain Lightning
   spellSchool: 0
   spellSchoolData: {fileID: 11400000, guid: 16a7aee84221cf944b3bc8802b8d5ba3, type: 2}
-  id: 2400
+  id: 2402
   description: Jolt your enemies with lightning, hopping to other nearby enemies.
-  icon: {fileID: 21300000, guid: 53c18ff8d4e27004984d52d1c26b6488, type: 3}
+  icon: {fileID: 21300000, guid: 5754f26e84bb2594eb004e04a2d4ba4c, type: 3}
   manaCost: 4
   castTime: 0.3
   castSpeedReduction: 0.7
