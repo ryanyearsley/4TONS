@@ -15,6 +15,12 @@ public class TutorialTasklistElement : MonoBehaviour
 		inputText.text = taskInfo.input;
 		checkbox.sprite = TutorialManager.instance.incompleteCheckboxSprite;
 	}
+	public void SetTutorialLevelComplete()
+	{
+		taskText.text = "Enter the portal";
+		inputText.text = "F";
+		checkbox.sprite = TutorialManager.instance.incompleteCheckboxSprite;
+	}
 
 	public void TrySetTaskComplete(TutorialTask tutorialTask) {
 		Debug.Log ("TutorialTaskListElement: Try set task complete");
