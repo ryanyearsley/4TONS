@@ -18,26 +18,35 @@ MonoBehaviour:
   lootTableData:
     spellGemTable:
     - spellGemRollRange: {x: 0, y: 100}
-      spellData: {fileID: 11400000, guid: 558584ede83939345aea1475ca93588c, type: 2}
+      spellData: {fileID: 11400000, guid: 2d3465d624cf7c743abbbaf28fec6fc3, type: 2}
     staffTable: []
   enemySpawnInfos:
   - spawnCountRange: {x: 1, y: 1}
-    creatureData: {fileID: 11400000, guid: f2a858c595dc31d4ab6153d8278630c9, type: 2}
-  seed: 637794174637226593
+    creatureData: {fileID: 11400000, guid: 217ed99b20a5ef84483df537037326ca, type: 2}
+    spawnSector: 0
+  seed: 638299798673153111
   useCustomSeed: 0
   tutorialPhaseInfo:
     phase: 2
     phaseIndex: 3
     requiredTasks:
-    - task: 8
+    - task: 9
       input: 
-      taskDescription: Kill the necromancer.
+      taskDescription: Kill the enemy.
+    - task: 6
+      input: F
+      taskDescription: Pick up Spellgem.
+    - task: 10
+      input: R
+      taskDescription: Rotate Spellgem.
     - task: 12
-      input: G
-      taskDescription: Unbind the Tentacles gem.
-    - task: 13
       input: LMB
-      taskDescription: Bind the Tentacles gem to inventory.
-    - task: 14
-      input: RMB, Q, E
-      taskDescription: Manually bind the Harvest gem.
+      taskDescription: Bind Spellgem.
+    beginVoiceLine:
+      audioClip: {fileID: 0}
+      subtitleText: 
+    completeVoiceLine:
+      audioClip: {fileID: 0}
+      subtitleText: 
+    tasksComplete: 4
+    totalTasksThisPhase: 4

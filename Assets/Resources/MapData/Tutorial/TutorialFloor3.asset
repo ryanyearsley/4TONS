@@ -18,29 +18,29 @@ MonoBehaviour:
   lootTableData:
     spellGemTable:
     - spellGemRollRange: {x: 0, y: 100}
-      spellData: {fileID: 11400000, guid: 2d3465d624cf7c743abbbaf28fec6fc3, type: 2}
+      spellData: {fileID: 11400000, guid: f8a09e2fb222c62489690f14902cef0d, type: 2}
     staffTable: []
-  enemySpawnInfos:
-  - spawnCountRange: {x: 1, y: 1}
-    creatureData: {fileID: 11400000, guid: 217ed99b20a5ef84483df537037326ca, type: 2}
-  seed: 637794171513919743
+  enemySpawnInfos: []
+  seed: 638299693097511470
   useCustomSeed: 0
   tutorialPhaseInfo:
     phase: 0
     phaseIndex: 2
     requiredTasks:
-    - task: 8
-      input: 
-      taskDescription: Kill the enemy.
-    - task: 5
-      input: G
-      taskDescription: Pick up the Tentacle gem.
-    - task: 9
-      input: R
-      taskDescription: Rotate the Tentacle gem.
-    - task: 10
+    - task: 6
+      input: F
+      taskDescription: Pick up Spellgem.
+    - task: 7
       input: LMB
-      taskDescription: Bind the Tentacles gem.
-    - task: 11
-      input: 
-      taskDescription: Cast Tentacle.
+      taskDescription: Bind Spellgem (Automatic).
+    - task: 8
+      input: LMB
+      taskDescription: Cast Leechbolt.
+    beginVoiceLine:
+      audioClip: {fileID: 0}
+      subtitleText: 
+    completeVoiceLine:
+      audioClip: {fileID: 0}
+      subtitleText: 
+    tasksComplete: 3
+    totalTasksThisPhase: 3

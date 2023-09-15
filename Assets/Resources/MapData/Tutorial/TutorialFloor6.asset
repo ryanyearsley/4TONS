@@ -17,19 +17,25 @@ MonoBehaviour:
   floorRollRange: {x: 0, y: 100}
   lootTableData:
     spellGemTable: []
-    staffTable:
-    - spellGemRollRange: {x: 0, y: 100}
-      puzzleData: {fileID: 11400000, guid: 8b1caf4a6f0803d4684d1c6a7f14c690, type: 2}
+    staffTable: []
   enemySpawnInfos: []
-  seed: 637794175018725288
+  seed: 638299798907667304
   useCustomSeed: 0
   tutorialPhaseInfo:
     phase: 4
     phaseIndex: 5
     requiredTasks:
-    - task: 19
-      input: Z (Hold)
-      taskDescription: Drop a spell gem.
-    - task: 20
-      input: Z (Hold)
-      taskDescription: Drop a staff.
+    - task: 21
+      input: Z (Hold while selecting Spellgem).
+      taskDescription: Drop Spellgem.
+    - task: 22
+      input: Z (Hold in combat).
+      taskDescription: Drop staff.
+    beginVoiceLine:
+      audioClip: {fileID: 0}
+      subtitleText: 
+    completeVoiceLine:
+      audioClip: {fileID: 0}
+      subtitleText: 
+    tasksComplete: 2
+    totalTasksThisPhase: 2

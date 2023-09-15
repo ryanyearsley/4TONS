@@ -16,32 +16,31 @@ MonoBehaviour:
   mapGenerationData: {fileID: 11400000, guid: aff9c467ab7d7a64eb11856fa0cfd3f4, type: 2}
   floorRollRange: {x: 0, y: 100}
   lootTableData:
-    spellGemTable:
+    spellGemTable: []
+    staffTable:
     - spellGemRollRange: {x: 0, y: 100}
-      spellData: {fileID: 11400000, guid: f8a09e2fb222c62489690f14902cef0d, type: 2}
-    staffTable: []
+      puzzleData: {fileID: 11400000, guid: 63c375b9df3cd9241a9aaa2f67e52c47, type: 2}
   enemySpawnInfos: []
-  seed: 637810487401061023
+  seed: 638299806741657823
   useCustomSeed: 0
   tutorialPhaseInfo:
     phase: 0
     phaseIndex: 1
     requiredTasks:
+    - task: 3
+      input: F
+      taskDescription: Pick up the staff.
     - task: 4
       input: Tab
-      taskDescription: View your inventory.
+      taskDescription: Enable Puzzle Mode.
     - task: 5
-      input: G
-      taskDescription: Pick up the spell gem.
-    - task: 6
-      input: LMB
-      taskDescription: Bind the Leechbolt gem.
-    - task: 7
-      input: LMB
-      taskDescription: Cast Leechbolt.
+      input: Tab
+      taskDescription: Disable Puzzle Mode.
     beginVoiceLine:
       audioClip: {fileID: 0}
       subtitleText: 
     completeVoiceLine:
       audioClip: {fileID: 0}
       subtitleText: 
+    tasksComplete: 3
+    totalTasksThisPhase: 3

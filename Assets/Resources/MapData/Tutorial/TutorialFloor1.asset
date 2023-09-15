@@ -17,33 +17,28 @@ MonoBehaviour:
   floorRollRange: {x: 0, y: 100}
   lootTableData:
     spellGemTable: []
-    staffTable:
-    - spellGemRollRange: {x: 0, y: 100}
-      puzzleData: {fileID: 11400000, guid: 5c587b3a494d4eb4ebf7fd1544f23ad2, type: 2}
+    staffTable: []
   enemySpawnInfos: []
-  seed: 637794171366346883
+  seed: 638299692907987924
   useCustomSeed: 0
   tutorialPhaseInfo:
     phase: 0
     phaseIndex: 0
     requiredTasks:
     - task: 0
-      input: WASD
+      input: W, A, S, D
       taskDescription: Move around.
     - task: 1
       input: Mouse
       taskDescription: Look around.
     - task: 2
-      input: G
-      taskDescription: Pick up the staff.
-    - task: 3
-      input: SPACE
+      input: Space
       taskDescription: Perform a dodge.
-    voiceLine:
-      audioClip: {fileID: 8300000, guid: 6df1cb561bf47d644a3e00e12264ba85, type: 3}
-      subtitleText: Hello, my sweet little play-thing. Welcome to your new hell!
-        Get comfortable in your new flesh prison, but not too comfortable! You better
-        pick up a staff, too.
-  voiceLine:
-    audioClip: {fileID: 8300000, guid: 6df1cb561bf47d644a3e00e12264ba85, type: 3}
-    subtitleText: 
+    beginVoiceLine:
+      audioClip: {fileID: 0}
+      subtitleText: 
+    completeVoiceLine:
+      audioClip: {fileID: 0}
+      subtitleText: 
+    tasksComplete: 3
+    totalTasksThisPhase: 3
