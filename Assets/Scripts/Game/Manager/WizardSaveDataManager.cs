@@ -30,12 +30,21 @@ public class WizardSaveDataManager : PersistentManager {
 
 	protected override void Start () {
 		base.Start ();
-		infamousWizardSaveDatas = LoadWizardJSON(Application.persistentDataPath + "/infamous_wizards/");
-		deadWizardSaveDatas = LoadWizardJSON(Application.persistentDataPath + "/dead_wizards/");
+		LoadWizardSaveData();
 	}
 
 	public override void SceneLoaded (Scene scene, LoadSceneMode loadSceneMode) {
-		infamousWizardSaveDatas = LoadWizardJSON (Application.persistentDataPath + "/infamous_wizards/");
+		LoadWizardSaveData();
+	}
+
+	private void LoadWizardSaveData()
+	{
+		infamousWizardSaveDatas = LoadWizardJSON(Application.persistentDataPath + "/infamous_wizards/");
+		foreach (WizardSaveData wizardSaveData in infamousWizardSaveDatas)
+		{
+			if (isWizardNameAvailable(wizardSaveData.wizardName))
+				infamousWizardDictionary.Add(wizardSaveData.wizardName, wizardSaveData);
+		}
 		deadWizardSaveDatas = LoadWizardJSON(Application.persistentDataPath + "/dead_wizards/");
 	}
 	public void CreatePersistentDataDirectories () {
@@ -107,8 +116,6 @@ public class WizardSaveDataManager : PersistentManager {
 			WizardSaveData wizard = JsonUtility.FromJson<WizardSaveData>(json);
 			OnAfterLoad (wizard);
 			wizards.Add (wizard);
-			if (isWizardNameAvailable (wizard.wizardName))
-				infamousWizardDictionary.Add (wizard.wizardName, wizard);
 		}
 		wizards.Reverse();
 		return wizards;
