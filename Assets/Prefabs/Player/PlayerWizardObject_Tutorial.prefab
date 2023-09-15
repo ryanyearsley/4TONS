@@ -71,7 +71,7 @@ SpriteRenderer:
   m_SortingLayerID: -135582665
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: fdc64c981e9372e4498d07ba7a4caaf8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1ea611f56ee97594cb1515b4192a232b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -458,7 +458,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Sucking Rod
+  m_text: Unarmed
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2a5aa826e5b710549a250053f29c9570, type: 2}
   m_sharedMaterial: {fileID: -7629271218451061245, guid: 2a5aa826e5b710549a250053f29c9570, type: 2}
@@ -803,6 +803,9 @@ MonoBehaviour:
         spellGemSaveDataDictionary:
           m_keys: []
           m_values: []
+      deathInfo:
+        date: 
+        lastWords: 
       towerProgress: []
     currentPlayerObject: {fileID: 0}
   playerUI: {fileID: 0}
