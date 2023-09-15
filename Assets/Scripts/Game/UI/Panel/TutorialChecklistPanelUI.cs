@@ -38,6 +38,9 @@ public class TutorialChecklistPanelUI : AbstractPanelUI, ITutorialSubscriber {
 		yield return new WaitForSeconds (1f);
 		if (currentPhaseInfo.tasksComplete < currentPhaseInfo.requiredTasks.Length) {
 			tutorialTaskListElement.ReuseTasklistElement (currentPhaseInfo.requiredTasks [currentPhaseInfo.tasksComplete]);
+		} else
+		{
+			tutorialTaskListElement.SetTutorialLevelComplete();
 		}
 	}
 	public void OnPhaseComplete (TutorialPhaseInfo completedPhaseInfo) {
