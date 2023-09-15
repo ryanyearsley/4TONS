@@ -20,17 +20,5 @@ MonoBehaviour:
   puzzleFile: {fileID: 4900000, guid: 7203ca1e31406c94193f43ee1586f74f, type: 3}
   puzzleType: 0
   defaultSpellGemDictionary:
-    m_keys:
-    - {x: 1, y: 1}
-    - {x: 5, y: 1}
-    m_values:
-    - spellData: {fileID: 11400000, guid: f8a09e2fb222c62489690f14902cef0d, type: 2}
-      spellDataIndex: 0
-      spellGemOriginCoordinate: {x: 1, y: 1}
-      spellGemRotation: 0
-      spellBindIndex: 0
-    - spellData: {fileID: 11400000, guid: 3b14f3e3f42c0ff47a8b899883f83fe5, type: 2}
-      spellDataIndex: 0
-      spellGemOriginCoordinate: {x: 5, y: 1}
-      spellGemRotation: 3
-      spellBindIndex: 0
+    m_keys: []
+    m_values: []
