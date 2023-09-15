@@ -34,14 +34,23 @@ MonoBehaviour:
       puzzleData: {fileID: 11400000, guid: bc18cd6b47f224142b3b8d4bb5aa282d, type: 2}
       puzzleDataIndex: 0
       spellGemSaveDataDictionary:
-        m_keys: []
-        m_values: []
+        m_keys:
+        - {x: 3, y: 2}
+        m_values:
+        - spellData: {fileID: 11400000, guid: f8a09e2fb222c62489690f14902cef0d, type: 2}
+          spellDataIndex: 0
+          spellGemOriginCoordinate: {x: 3, y: 2}
+          spellGemRotation: 0
+          spellBindIndex: 0
+    deathInfo:
+      date: 
+      lastWords: 
     towerProgress:
-    - school: 1
+    - zone: 0
       completed: 0
-    - school: 0
+    - zone: 0
       completed: 0
-    - school: 1
+    - zone: 0
       completed: 0
-    - school: 0
+    - zone: 0
       completed: 0
