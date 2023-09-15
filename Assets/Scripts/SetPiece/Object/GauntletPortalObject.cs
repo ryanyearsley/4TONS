@@ -37,9 +37,12 @@ public class GauntletPortalObject : InteractableObject {
 		GameManager.instance.levelEndEvent -= OnLevelEnd;
 	}
 	public void OnLevelComplete(int floorIndex) {
-		opened = true;
-		animator.SetTrigger ("open");
-		portalCollider.SetInteractable ();
+		if (!opened)
+		{
+			opened = true;
+			animator.SetTrigger("open");
+			portalCollider.SetInteractable();
+		}
 	}
 
 	public override void InteractWithObject () {
