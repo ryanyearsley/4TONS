@@ -126,6 +126,11 @@ public class PlayerTutorialComponent : PlayerComponent
 				TutorialManager.instance.SetTaskComplete(TutorialTask.BIND_TENTACLE_INVENTORY);
 			}
 		}
+
+		if (bindType == PuzzleBindType.HOT_SWAP)
+		{
+			TutorialManager.instance.SetTaskComplete(TutorialTask.QUICK_SWAP_SPELLGEMS);
+		}
 	}
 	public override void OnUnbindSpellGem(PuzzleGameData puzzleGameData, SpellGemGameData spellGameData, PuzzleUnbindType unbindType)
 	{
@@ -174,6 +179,9 @@ public class PlayerTutorialComponent : PlayerComponent
 			{
 				TutorialManager.instance.SetTaskComplete(TutorialTask.MANUAL_EQUIP_SECONDARY);
 			}
+		} else if (equipType == StaffEquipType.QUICK_SWAP)
+		{
+			TutorialManager.instance.SetTaskComplete(TutorialTask.QUICK_SWAP_STAFF);
 		}
 	}
 
