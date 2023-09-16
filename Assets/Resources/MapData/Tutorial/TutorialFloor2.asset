@@ -33,9 +33,18 @@ MonoBehaviour:
     - task: 4
       input: Tab
       taskDescription: Enable Puzzle Mode.
+    - task: 14
+      input: F
+      taskDescription: Unbind Spellgem from inventory.
+    - task: 7
+      input: LMB
+      taskDescription: Bind Spellgem to staff (Automatic).
     - task: 5
       input: Tab
       taskDescription: Disable Puzzle Mode.
+    - task: 8
+      input: LMB
+      taskDescription: Cast Leechbolt
     beginVoiceLine:
       audioClip: {fileID: 0}
       subtitleText: 
