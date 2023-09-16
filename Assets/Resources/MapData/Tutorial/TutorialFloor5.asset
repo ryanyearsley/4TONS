@@ -36,6 +36,9 @@ MonoBehaviour:
     - task: 20
       input: 2
       taskDescription: Equip Staff 2.
+    - task: 23
+      input: Shift
+      taskDescription: Quick Swap to other staff.
     beginVoiceLine:
       audioClip: {fileID: 0}
       subtitleText: 
