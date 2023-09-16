@@ -110,9 +110,9 @@ public class PlayerTutorialComponent : PlayerComponent
 			{
 				TutorialManager.instance.SetTaskComplete(TutorialTask.BIND_LEECHBOLT);
 			}
-			else if (spellGameData.spellData == tentacleSpellData)
+			else if (spellGameData.spellData == tentacleSpellData && bindType == PuzzleBindType.MANUAL) 
 			{
-				TutorialManager.instance.SetTaskComplete(TutorialTask.BIND_TENTACLES);
+				TutorialManager.instance.SetTaskComplete(TutorialTask.MANUALBIND_TENTACLES);
 			}
 			else if (spellGameData.spellData == harvestFleshSpellData && bindType == PuzzleBindType.MANUAL)
 			{
@@ -127,7 +127,7 @@ public class PlayerTutorialComponent : PlayerComponent
 			}
 		}
 
-		if (bindType == PuzzleBindType.HOT_SWAP)
+		if (bindType == PuzzleBindType.HOT_SWAP || bindType == PuzzleBindType.COLD_SWAP)
 		{
 			TutorialManager.instance.SetTaskComplete(TutorialTask.QUICK_SWAP_SPELLGEMS);
 		}
