@@ -16,37 +16,34 @@ MonoBehaviour:
   mapGenerationData: {fileID: 11400000, guid: aff9c467ab7d7a64eb11856fa0cfd3f4, type: 2}
   floorRollRange: {x: 0, y: 100}
   lootTableData:
-    spellGemTable:
+    spellGemTable: []
+    staffTable:
     - spellGemRollRange: {x: 0, y: 100}
-      spellData: {fileID: 11400000, guid: 2d3465d624cf7c743abbbaf28fec6fc3, type: 2}
-    staffTable: []
-  enemySpawnInfos:
-  - spawnCountRange: {x: 1, y: 1}
-    creatureData: {fileID: 11400000, guid: 217ed99b20a5ef84483df537037326ca, type: 2}
-    spawnSector: 0
-  seed: 638299798673153111
+      puzzleData: {fileID: 11400000, guid: 8b1caf4a6f0803d4684d1c6a7f14c690, type: 2}
+  enemySpawnInfos: []
+  seed: 638299798808098822
   useCustomSeed: 0
   tutorialPhaseInfo:
-    phase: 2
-    phaseIndex: 3
+    phase: 3
+    phaseIndex: 4
     requiredTasks:
-    - task: 9
-      input: 
-      taskDescription: Kill the enemy.
-    - task: 6
+    - task: 18
       input: F
-      taskDescription: Pick up Spellgem.
-    - task: 10
-      input: R
-      taskDescription: Rotate Spellgem.
-    - task: 12
-      input: LMB
-      taskDescription: Bind Spellgem.
+      taskDescription: Pick up staff.
+    - task: 19
+      input: 1
+      taskDescription: Equip Staff 1.
+    - task: 20
+      input: 2
+      taskDescription: Equip Staff 2.
+    - task: 23
+      input: Shift
+      taskDescription: Quick Swap to other staff.
     beginVoiceLine:
       audioClip: {fileID: 0}
       subtitleText: 
     completeVoiceLine:
       audioClip: {fileID: 0}
       subtitleText: 
-    tasksComplete: 4
-    totalTasksThisPhase: 4
+    tasksComplete: 3
+    totalTasksThisPhase: 3
