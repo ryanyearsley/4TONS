@@ -22,9 +22,11 @@ public class WizardCreatePanelUI : MonoBehaviour
 
 	private int maxNameLength = 15;
 	SpellSchoolData currentSchool;
+	[SerializeField]
+	private SpellSchoolData defaultSchool;
 
 	private void Start () {
-		DisplayWizardInfo (ConstantsManager.instance.spellSchools[0]);
+		DisplayWizardInfo (defaultSchool);
 		SelectRandomName();
 	}
 
