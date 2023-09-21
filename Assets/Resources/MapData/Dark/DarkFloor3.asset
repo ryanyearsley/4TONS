@@ -17,11 +17,9 @@ MonoBehaviour:
   floorRollRange: {x: 0, y: 100}
   lootTableData:
     spellGemTable:
-    - spellGemRollRange: {x: 0, y: 24}
-      spellData: {fileID: 11400000, guid: 66844d0fc5d3fe34985835a2d580261b, type: 2}
-    - spellGemRollRange: {x: 24, y: 61}
+    - spellGemRollRange: {x: 23, y: 73}
       spellData: {fileID: 11400000, guid: e81e2e8e87f63a7479ac5d8f261dc577, type: 2}
-    - spellGemRollRange: {x: 51, y: 100}
+    - spellGemRollRange: {x: 48, y: 100}
       spellData: {fileID: 11400000, guid: fad75d86be9637a4b82d8c6fc901e461, type: 2}
     - spellGemRollRange: {x: 0, y: 49}
       spellData: {fileID: 11400000, guid: ae660ee42c7fbfa48a366cd5546284b5, type: 2}
@@ -31,7 +29,9 @@ MonoBehaviour:
   enemySpawnInfos:
   - spawnCountRange: {x: 8, y: 8}
     creatureData: {fileID: 11400000, guid: 217ed99b20a5ef84483df537037326ca, type: 2}
+    spawnSector: 0
   - spawnCountRange: {x: 4, y: 4}
     creatureData: {fileID: 11400000, guid: f2a858c595dc31d4ab6153d8278630c9, type: 2}
+    spawnSector: 0
   seed: 637881699622013230
   useCustomSeed: 0
