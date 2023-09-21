@@ -22,31 +22,32 @@ MonoBehaviour:
       puzzleData: {fileID: 11400000, guid: 8b1caf4a6f0803d4684d1c6a7f14c690, type: 2}
   enemySpawnInfos:
   - spawnCountRange: {x: 1, y: 1}
-    creatureData: {fileID: 11400000, guid: f2a858c595dc31d4ab6153d8278630c9, type: 2}
-    spawnSector: 0
-  - spawnCountRange: {x: 1, y: 1}
     creatureData: {fileID: 11400000, guid: 217ed99b20a5ef84483df537037326ca, type: 2}
     spawnSector: 0
-  seed: 638304827772261147
+  seed: 638308983589673060
   useCustomSeed: 0
   tutorialPhaseInfo:
     phase: 3
     phaseIndex: 3
     requiredTasks:
     - task: 9
-      input: 
-      taskDescription: Kill the enemies.
+      input: []
+      taskDescription: Kill the enemy.
     - task: 18
-      input: F
+      input:
+      - GrabItem
       taskDescription: Pick up staff.
     - task: 19
-      input: 1
+      input:
+      - SwitchToPrimaryStaff
       taskDescription: Equip Staff 1.
     - task: 20
-      input: 2
+      input:
+      - SwitchToSecondaryStaff
       taskDescription: Equip Staff 2.
     - task: 23
-      input: Shift
+      input:
+      - SwitchToAlternateStaff
       taskDescription: Quick Swap to other staff.
     beginVoiceLine:
       audioClip: {fileID: 0}
@@ -54,5 +55,5 @@ MonoBehaviour:
     completeVoiceLine:
       audioClip: {fileID: 0}
       subtitleText: 
-    tasksComplete: 9
+    tasksComplete: 5
     totalTasksThisPhase: 5

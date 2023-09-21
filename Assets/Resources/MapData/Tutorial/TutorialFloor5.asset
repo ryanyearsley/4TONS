@@ -19,17 +19,21 @@ MonoBehaviour:
     spellGemTable: []
     staffTable: []
   enemySpawnInfos: []
-  seed: 638299798907667304
+  seed: 638308982414918897
   useCustomSeed: 0
   tutorialPhaseInfo:
     phase: 4
-    phaseIndex: 5
+    phaseIndex: 4
     requiredTasks:
     - task: 21
-      input: Z (Hold while selecting Spellgem)
+      input:
+      - DropItem
+      - (Hold while selecting)
       taskDescription: Drop Spellgem.
     - task: 22
-      input: Z (Hold in combat)
+      input:
+      - DropItem
+      - (Hold in combat)
       taskDescription: Drop staff.
     beginVoiceLine:
       audioClip: {fileID: 0}

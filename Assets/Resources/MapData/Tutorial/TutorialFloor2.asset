@@ -21,29 +21,35 @@ MonoBehaviour:
     - spellGemRollRange: {x: 0, y: 100}
       puzzleData: {fileID: 11400000, guid: 63c375b9df3cd9241a9aaa2f67e52c47, type: 2}
   enemySpawnInfos: []
-  seed: 638299806741657823
+  seed: 638308992668012010
   useCustomSeed: 0
   tutorialPhaseInfo:
     phase: 0
     phaseIndex: 1
     requiredTasks:
     - task: 3
-      input: F
+      input:
+      - GrabItem
       taskDescription: Pick up the staff.
     - task: 4
-      input: Tab
+      input:
+      - TogglePuzzle
       taskDescription: Enable Puzzle Mode.
     - task: 14
-      input: F
+      input:
+      - GrabItem
       taskDescription: Unbind Spellgem from inventory.
     - task: 7
-      input: LMB
+      input:
+      - AutoBindItem
       taskDescription: Bind Spellgem to staff (Automatic).
     - task: 5
-      input: Tab
+      input:
+      - TogglePuzzle
       taskDescription: Disable Puzzle Mode.
     - task: 8
-      input: LMB
+      input:
+      - Spell0
       taskDescription: Cast Leechbolt
     beginVoiceLine:
       audioClip: {fileID: 0}
@@ -51,5 +57,5 @@ MonoBehaviour:
     completeVoiceLine:
       audioClip: {fileID: 0}
       subtitleText: 
-    tasksComplete: 3
-    totalTasksThisPhase: 3
+    tasksComplete: 6
+    totalTasksThisPhase: 6

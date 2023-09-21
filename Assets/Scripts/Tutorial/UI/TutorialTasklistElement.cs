@@ -9,10 +9,11 @@ public class TutorialTasklistElement : MonoBehaviour
 	public TMP_Text taskText;
 	public TMP_Text inputText;
 
-	public void ReuseTasklistElement(TutorialTaskInfo taskInfo) {
+	public void ReuseTasklistElement(TutorialTaskInfo taskInfo, string binding)
+	{
 		task = taskInfo.task;
 		taskText.text = taskInfo.taskDescription;
-		inputText.text = taskInfo.input;
+		inputText.text = binding;
 		checkbox.sprite = TutorialManager.instance.incompleteCheckboxSprite;
 	}
 	public void SetTutorialLevelComplete()
@@ -22,10 +23,12 @@ public class TutorialTasklistElement : MonoBehaviour
 		checkbox.sprite = TutorialManager.instance.incompleteCheckboxSprite;
 	}
 
-	public void TrySetTaskComplete(TutorialTask tutorialTask) {
-		Debug.Log ("TutorialTaskListElement: Try set task complete");
-		if (tutorialTask == task) {
-			Debug.Log ("TutorialTaskListElement: Corresponding task complete!");
+	public void TrySetTaskComplete(TutorialTask tutorialTask)
+	{
+		Debug.Log("TutorialTaskListElement: Try set task complete");
+		if (tutorialTask == task)
+		{
+			Debug.Log("TutorialTaskListElement: Corresponding task complete!");
 			checkbox.sprite = TutorialManager.instance.completeCheckboxSprite;
 		}
 	}

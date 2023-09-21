@@ -21,29 +21,37 @@ MonoBehaviour:
       spellData: {fileID: 11400000, guid: 2d3465d624cf7c743abbbaf28fec6fc3, type: 2}
     staffTable: []
   enemySpawnInfos: []
-  seed: 638304822721346995
+  seed: 638308992835897346
   useCustomSeed: 0
   tutorialPhaseInfo:
     phase: 0
     phaseIndex: 2
     requiredTasks:
     - task: 6
-      input: F
-      taskDescription: Pick up Spellgem.
+      input:
+      - GrabItem
+      taskDescription: Pick up Tentacles Spellgem.
     - task: 10
-      input: R
-      taskDescription: Rotate Spellgem.
+      input:
+      - RotateItemCCW
+      taskDescription: Rotate Tentacles Spellgem.
     - task: 12
-      input: RMB Q or E
-      taskDescription: Bind Spellgem (Manual)
+      input:
+      - Spell1
+      - Spell2
+      - Spell3
+      taskDescription: Bind Tentacles Spellgem (Manual).
     - task: 24
-      input: RMB Q or E while highlighting gem
-      taskDescription: Quick Swap Gems
+      input:
+      - Spell1
+      - Spell2
+      - Spell3
+      taskDescription: Quick Swap Spellgems
     beginVoiceLine:
       audioClip: {fileID: 0}
       subtitleText: 
     completeVoiceLine:
       audioClip: {fileID: 0}
       subtitleText: 
-    tasksComplete: 4
+    tasksComplete: 3
     totalTasksThisPhase: 4

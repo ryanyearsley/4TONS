@@ -53,7 +53,7 @@ public class TutorialPhaseInfo {
 [Serializable]
 public class TutorialTaskInfo {
 	public TutorialTask task;
-	public string input;
+	public string[] input;
 	[TextArea(5,4)]
 	public string taskDescription;
 }

@@ -35,17 +35,31 @@ public class PlayerUI : MonoBehaviour {
 		bindAbbreviationDictionary.Add ("Right Shoulder", "RB");
 		bindAbbreviationDictionary.Add ("Left Shoulder", "LB");
 
-		IEnumerable<ControllerMap> keyboardMaps = rewiredController.controllers.maps.GetMapsInCategory(ControllerType.Keyboard, 0, 2);
-		IEnumerable<ControllerMap> mouseMaps = rewiredController.controllers.maps.GetMapsInCategory(ControllerType.Mouse, 0, 2);
+		IEnumerable<ControllerMap> keyboardMaps = rewiredController.controllers.maps.GetMaps(ControllerType.Keyboard, 0);
+		IEnumerable<ControllerMap> mouseMaps = rewiredController.controllers.maps.GetMaps(ControllerType.Mouse, 0);
 		kbmBindingDictionary = new Dictionary<string, string>();
+		kbmBindingDictionary.Add("MoveUp", null);
+		kbmBindingDictionary.Add("MoveDown", null);
+		kbmBindingDictionary.Add("MoveLeft", null);
+		kbmBindingDictionary.Add("MoveRight", null);
 		kbmBindingDictionary.Add ("Spell0", null);
 		kbmBindingDictionary.Add ("Spell1", null);
 		kbmBindingDictionary.Add ("Spell2", null);
 		kbmBindingDictionary.Add ("Spell3", null);
+		kbmBindingDictionary.Add ("Dash", null);
+		kbmBindingDictionary.Add ("GrabItem", null);
+		kbmBindingDictionary.Add ("TogglePuzzle", null);
+		kbmBindingDictionary.Add ("AutoBindItem", null);
+		kbmBindingDictionary.Add("SwitchToPrimaryStaff", null);
+		kbmBindingDictionary.Add("SwitchToSecondaryStaff", null);
+		kbmBindingDictionary.Add("SwitchToAlternateStaff", null);
+		kbmBindingDictionary.Add("RotateItemCCW", null);
+		kbmBindingDictionary.Add("RotateItemCW", null);
+		kbmBindingDictionary.Add("DropItem", null);
 
 
 		foreach (ControllerMap map in keyboardMaps) {
-			foreach (ActionElementMap actionElementMap in map.ButtonMaps) {
+			foreach (ActionElementMap actionElementMap in map.AllMaps) {
 				if (kbmBindingDictionary.ContainsKey (actionElementMap.actionDescriptiveName)) {
 					Debug.Log ("PlayerUI: Found keyboard binding. Setting bind string. Action: " + actionElementMap.actionDescriptiveName + ", Binding: " + actionElementMap.elementIdentifierName);
 					string bindString = actionElementMap.elementIdentifierName;
@@ -58,7 +72,7 @@ public class PlayerUI : MonoBehaviour {
 		}
 
 		foreach (ControllerMap map in mouseMaps) {
-			foreach (ActionElementMap actionElementMap in map.ButtonMaps) {
+			foreach (ActionElementMap actionElementMap in map.AllMaps) {
 				if (kbmBindingDictionary.ContainsKey (actionElementMap.actionDescriptiveName)) {
 					Debug.Log ("PlayerUI: Found mouse binding. Setting bind string. Action: " + actionElementMap.actionDescriptiveName + ", Binding: " + actionElementMap.elementIdentifierName);
 					string bindString = actionElementMap.elementIdentifierName;
@@ -78,7 +92,17 @@ public class PlayerUI : MonoBehaviour {
 		controllerBindingDictionary.Add ("Spell1", null);
 		controllerBindingDictionary.Add ("Spell2", null);
 		controllerBindingDictionary.Add ("Spell3", null);
-		IEnumerable<ControllerMap> controllerMaps = rewiredController.controllers.maps.GetMapsInCategory(ControllerType.Joystick, 0, 2);
+		controllerBindingDictionary.Add("Dash", null);
+		controllerBindingDictionary.Add("GrabItem", null);
+		controllerBindingDictionary.Add("TogglePuzzle", null);
+		controllerBindingDictionary.Add("AutoBindItem", null);
+		controllerBindingDictionary.Add("SwitchToPrimaryStaff", null);
+		controllerBindingDictionary.Add("SwitchToSecondaryStaff", null);
+		controllerBindingDictionary.Add("SwitchToAlternateStaff", null);
+		controllerBindingDictionary.Add("RotateItemCCW", null);
+		controllerBindingDictionary.Add("RotateItemCW", null);
+		controllerBindingDictionary.Add("DropItem", null);
+		IEnumerable<ControllerMap> controllerMaps = rewiredController.controllers.maps.GetMaps(ControllerType.Joystick, 0);
 		foreach (ControllerMap map in controllerMaps) {
 			foreach (ActionElementMap actionElementMap in map.AllMaps) {
 				Debug.Log ("PlayerUI: checking controller action: " + actionElementMap.actionDescriptiveName +", binding: " + actionElementMap.elementIdentifierName);
@@ -117,6 +141,14 @@ public class PlayerUI : MonoBehaviour {
 		}
 	}
 
+	public string GetCurrentBinding (string rewiredAction)
+	{
+		if (currentBindingDictionary.TryGetValue(rewiredAction, out string binding))
+		{
+			return binding;
+		}
+		else return rewiredAction;
+	}
 
 
 	public void OnPickUpStaff (PuzzleKey region, PuzzleGameData puzzleGameData) {

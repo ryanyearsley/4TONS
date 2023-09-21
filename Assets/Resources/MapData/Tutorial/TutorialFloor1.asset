@@ -19,20 +19,25 @@ MonoBehaviour:
     spellGemTable: []
     staffTable: []
   enemySpawnInfos: []
-  seed: 638299692907987924
+  seed: 638308997681946702
   useCustomSeed: 0
   tutorialPhaseInfo:
     phase: 0
     phaseIndex: 0
     requiredTasks:
     - task: 0
-      input: W, A, S, D
+      input:
+      - MoveUp
+      - MoveDown
+      - MoveLeft
+      - MoveRight
       taskDescription: Move around.
     - task: 1
-      input: Mouse
+      input: []
       taskDescription: Look around.
     - task: 2
-      input: Space
+      input:
+      - Dash
       taskDescription: Perform a dodge.
     beginVoiceLine:
       audioClip: {fileID: 0}
