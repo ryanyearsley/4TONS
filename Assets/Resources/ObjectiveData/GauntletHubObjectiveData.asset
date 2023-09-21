@@ -21,9 +21,3 @@ MonoBehaviour:
   - spawnCount: 1
     setPieceData: {fileID: 11400000, guid: b73802c99c386d94cafbe5130da24257, type: 2}
     setPieceSpawnSector: 3
-  - spawnCount: 1
-    setPieceData: {fileID: 11400000, guid: e178e16aa25712d42ad514e6da234789, type: 2}
-    setPieceSpawnSector: 2
-  - spawnCount: 1
-    setPieceData: {fileID: 11400000, guid: 5d1b3bf8ec733304aa3f7af4cc45e65c, type: 2}
-    setPieceSpawnSector: 1
