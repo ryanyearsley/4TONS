@@ -47,22 +47,23 @@ public class ProjectileObject : SpellObject {
 
 	public override void OnEnemyHit (VitalsEntity enemyVitals) {
 		base.OnEnemyHit (enemyVitals);
+		CreateDebris();
 		Destroy ();
 	}
 	public override void OnWallHit (Collider2D otherCollider) {
+		CreateDebris();
 		Destroy ();
 	}
 
 	public override void OnBarrierHit (BarrierObject barrierObject) {
 		damageEffect.OnBarrierHit (barrierObject);
+		CreateDebris();
 		Destroy ();
 	}
 
-	public override void TerminateObjectFunctions () {
-		if (debrisObject != null) {
-			PoolManager.instance.ReuseObject (debrisObject, trans.position, Quaternion.identity);
-		}
-		base.TerminateObjectFunctions ();
+	private void CreateDebris()
+	{
+		if (debrisObject != null)
+			PoolManager.instance.ReuseObject(debrisObject, trans.position, Quaternion.identity);
 	}
-
 }
