@@ -863,7 +863,8 @@ MonoBehaviour:
   currentValue: 0
   overheadUIHeight: 1.25
   overheadUIPrefab: {fileID: 2080469752280838136, guid: 1d61ee0787bec5244aa0424348880e31, type: 3}
-  resourceRegenPerSec: 1.5
+  slowRegenRate: 1
+  fastRegenRate: 3
 --- !u!114 &2895881590502136685
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -8,5 +8,5 @@ public interface IHasResource
     bool HasEnoughMana (float manaCost);
     void SubtractResourceCost(float manaCost);
     void RegenerateMana(float manaRegenAmount);
-    void RegenerateResourcePerSecond();
+    void RegenerateResourcePerSecond(float regenAmount);
 }

@@ -5,7 +5,12 @@ using UnityEngine;
 public class ResourceComponent : VitalsComponent, IHasResource
 {
     [SerializeField]
-    private float resourceRegenPerSec;
+    private float slowRegenRate = 0f;
+    [SerializeField]
+    private float fastRegenRate = 5f;
+
+    private float lastCastTime;
+    private float timeBeforeFastRegen = 5f;
 
     public override void SetUpComponent (GameObject rootObject) {
         base.SetUpComponent (rootObject);
@@ -31,6 +36,7 @@ public class ResourceComponent : VitalsComponent, IHasResource
         if (currentValue > resourceCost)
         {
             currentValue = Mathf.Clamp(currentValue -= resourceCost, 0, maxValue);
+            lastCastTime = Time.time;
             UpdateVitalsBar();
         }
         else
@@ -38,14 +44,18 @@ public class ResourceComponent : VitalsComponent, IHasResource
             //invalid operation.
         }
     }
-    public void RegenerateResourcePerSecond()
+    public void RegenerateResourcePerSecond(float regenAmount)
     {
-        currentValue = Mathf.Clamp(currentValue += resourceRegenPerSec, 0, maxValue);
+        currentValue = Mathf.Clamp(currentValue += regenAmount, 0, maxValue);
         UpdateVitalsBar();
     }
     IEnumerator RegenerateResourcePerSecRoutine () {
         for (int i = 0; i >= 0; i++) {
-            RegenerateResourcePerSecond ();
+            float timeSinceLastCast = Time.time - lastCastTime;
+            if (timeSinceLastCast > timeBeforeFastRegen)
+                RegenerateResourcePerSecond(fastRegenRate);
+            else
+                RegenerateResourcePerSecond(slowRegenRate);
             yield return new WaitForSeconds (1);
         }
     }
