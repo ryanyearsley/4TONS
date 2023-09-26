@@ -345,4 +345,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactSprite: {fileID: 21300000, guid: 3255b39e6bd149d44b4c155bc37431e7, type: 3}
   trans: {fileID: 0}
+  portalOpenSound:
+    clipName: 
+    singleClip: {fileID: 8300000, guid: 8aba2dde07606c449a2034d13ba7f0d4, type: 3}
+    volume: 1
+    pitch: 1
+    mixerGroup: {fileID: -7302680629657921355, guid: 004a37a2c22918345b123859e614950a, type: 2}
+    loop: 0
+    randomize: 0
+    randomClips: []
   opened: 0

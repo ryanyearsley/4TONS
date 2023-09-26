@@ -6,6 +6,9 @@ using UnityEngine;
 public class GauntletPortalObject : InteractableObject {
 	private Animator animator;
 
+	[SerializeField]
+	private Sound portalOpenSound;
+
 
 	private InteractableCollider portalCollider;
 	[SerializeField]
@@ -15,6 +18,9 @@ public class GauntletPortalObject : InteractableObject {
 		animator = GetComponentInChildren<Animator> ();
 		portalCollider = GetComponentInChildren<InteractableCollider> ();
 		opened = false;
+		if (portalOpenSound.singleClip != null) {
+			AudioManager.instance.RegisterSound(portalOpenSound);
+		}
 	}
 	public override void ReuseObject () {
 		SubscribeToEvents ();
@@ -42,6 +48,7 @@ public class GauntletPortalObject : InteractableObject {
 			opened = true;
 			animator.SetTrigger("open");
 			portalCollider.SetInteractable();
+			AudioManager.instance.PlaySound(portalOpenSound.clipName);
 		}
 	}
 
