@@ -93,17 +93,22 @@ public class LevelManager : MonoBehaviour, IGameManager {
 	private void CreateLevelPools (ZoneData worldData, ObjectiveData objectivedata) {
 		//PoolManager.instance.CreatePoolGeneric (worldData.playerData.spawnObjectPrefab, worldData.playerData.poolSize);
 		//objective pools
-
+		Log("Creating Objective pools...");
 		foreach (SetPieceSpawnInfo objectiveSpawnInfo in objectiveData.objectiveSpawnInfos) {
 			PoolManager.instance.CreateObjectPool (objectiveSpawnInfo.setPieceData.spawnObjectPrefab, objectiveSpawnInfo.setPieceData.poolSize);
 		}
 		//player pools
+		Log("Creating Player pools...");
 		PoolManager.instance.CreatePlayerPool (objectiveData.playerSpawnInfo.creatureData.spawnObjectPrefab, 2);
 
 		//creature pools
+		Log("Creating Enemy pools...");
+		Debug.Log("Creating Enemy pools...");
 		foreach (CreatureData enemyData in worldData.enemyDatas) {
 			PoolManager.instance.CreateCreaturePool (enemyData.spawnObjectPrefab, enemyData.poolSize);
 		}
+		Log("Creating Pick Up pools...");
+		Debug.Log("Creating Pick Up pools...");
 		PoolManager.instance.CreateObjectPool (ConstantsManager.instance.spellGemPickUpData.spawnObjectPrefab, 30);
 		PoolManager.instance.CreateObjectPool (ConstantsManager.instance.staffPickUpData.spawnObjectPrefab, 15);
 	}
@@ -125,14 +130,20 @@ public class LevelManager : MonoBehaviour, IGameManager {
 	public IEnumerator LoadLevelRoutine (int levelIndex)
 	{
 		CreateLevelPools(zoneData, objectiveData);
+		yield return new WaitForSeconds(0.25f);
 		currentMapDetails = null;
+		Log("Generating Map Details");
 		GenerateMapDetails (zoneData, objectiveData, levelIndex);
+		yield return new WaitForSeconds(0.25f);
 
 		float generationTime = 0f;
 		while (currentMapDetails == null) {
 			yield return new WaitForSeconds (0.25f);
 			generationTime++;
-			if (generationTime > MAX_GENERATION_TIME) {
+			Log("...");
+			if (generationTime > MAX_GENERATION_TIME)
+			{
+				Log("this is taking too long lol");
 				yield break;
 			}
 		}
@@ -172,6 +183,7 @@ public class LevelManager : MonoBehaviour, IGameManager {
 		return baseTilemap.GetCellCenterWorld ((Vector3Int)cartCoordinate);
 	}
 	public void GenerateMapDetails (ZoneData zoneData, ObjectiveData objectiveData, int floorIndex) {
+		Log("Generating Floor...");
 		if (floorIndex < zoneData.mapDatas.Length) {
 			MapData nextMapData = zoneData.mapDatas[floorIndex];
 			if (nextMapData.mapGenerationData != null) {
