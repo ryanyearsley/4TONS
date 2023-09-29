@@ -23,13 +23,7 @@ public class HubPortalObject : InteractableObject {
 		portalStatus = PortalStatus.DISABLED;
 	}
 	public override void ReuseObject () {
-		bool completed = PlayerManager.instance.currentPlayers [0].wizardSaveData.CheckIfPlayerCompleteTower (zone);
-
-		if (completed) {
-			SetPortalComplete ();
-		} else {
-			SetPortalOpen ();
-		}
+		SetPortalOpen();
 	}
 
 	public override void TerminateObjectFunctions () {
