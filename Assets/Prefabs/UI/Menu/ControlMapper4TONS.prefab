@@ -338,10 +338,10 @@ RectTransform:
   m_Father: {fileID: 8376112614110667608}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 709.99994, y: -70}
+  m_SizeDelta: {x: 709.99994, y: 289.99997}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &8376112614119574070
 MonoBehaviour:
@@ -522,10 +522,10 @@ RectTransform:
   m_Father: {fileID: 8376112614110667590}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 709.99994, y: 289.99997}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &8376112614119574072
 MonoBehaviour:
@@ -689,7 +689,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8376112614110667600
 RectTransform:
   m_ObjectHideFlags: 0
@@ -945,7 +945,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 8376112614110667636}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.37499997
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1039,10 +1039,10 @@ RectTransform:
   m_Father: {fileID: 8376112614110667654}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 387.0833, y: 0}
+  m_SizeDelta: {x: 234.16666, y: 40}
   m_Pivot: {x: 1, y: 1}
 --- !u!222 &8376112614110477974
 CanvasRenderer:
@@ -1489,7 +1489,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000030517578}
+  m_AnchoredPosition: {x: 0, y: 0.000045776367}
   m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &8376112614119574020
@@ -1623,10 +1623,10 @@ RectTransform:
   m_Father: {fileID: 8376112614110667606}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 117.08333, y: -20}
+  m_SizeDelta: {x: 134.16666, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8376112614110477952
 CanvasRenderer:
@@ -2283,6 +2283,7 @@ GameObject:
   - component: {fileID: 8376112614119574100}
   - component: {fileID: 8376112614119636906}
   - component: {fileID: 8376112614119575582}
+  - component: {fileID: 814515927}
   m_Layer: 5
   m_Name: DoneButton
   m_TagString: Untagged
@@ -2305,10 +2306,10 @@ RectTransform:
   m_Father: {fileID: 8376112614110667654}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 142.91666, y: 40}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &8376112614110477978
 CanvasRenderer:
@@ -2490,6 +2491,19 @@ MonoBehaviour:
   m_FlexibleWidth: 0
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+--- !u!114 &814515927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8376112614130378450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 618ea2072c2bb054fbfda4123fffd86d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  menuScreen: 1
 --- !u!1 &8376112614130378452
 GameObject:
   m_ObjectHideFlags: 0
@@ -2523,7 +2537,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 0.37499997}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2770,6 +2784,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8376112614130602710}
   - component: {fileID: 8376112614119574108}
+  - component: {fileID: 273917688}
   m_Layer: 5
   m_Name: ControlMapper4TONS
   m_TagString: Untagged
@@ -2786,7 +2801,7 @@ Transform:
   m_GameObject: {fileID: 8376112614130378458}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 192, y: 192, z: 192}
   m_Children:
   - {fileID: 8376112614110667600}
   m_Father: {fileID: 0}
@@ -2804,7 +2819,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edac79059a45d244a8050315593a7e9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rewiredInputManager: {fileID: 0}
+  _rewiredInputManager: {fileID: 2898646816500575596, guid: 0cdbb3c702ab23b4f8338716c2e9a3d5, type: 3}
   _dontDestroyOnLoad: 0
   _openOnStart: 0
   _keyboardMapDefaultLayout: 0
@@ -2858,26 +2873,26 @@ MonoBehaviour:
   _axisCalibrationTimeout: 5
   _ignoreMouseXAxisAssignment: 1
   _ignoreMouseYAxisAssignment: 1
-  _screenToggleAction: 21
+  _screenToggleAction: -1
   _screenOpenAction: -1
   _screenCloseAction: -1
-  _universalCancelAction: 22
+  _universalCancelAction: -1
   _universalCancelClosesScreen: 1
   _showInputBehaviorSettings: 1
   _inputBehaviorSettings:
-  - _inputBehaviorId: 2
+  - _inputBehaviorId: 7
     _showJoystickAxisSensitivity: 1
-    _showMouseXYAxisSensitivity: 0
+    _showMouseXYAxisSensitivity: 1
     _labelLanguageKey: 
     _joystickAxisSensitivityLabelLanguageKey: 
     _mouseXYAxisSensitivityLabelLanguageKey: 
     _joystickAxisSensitivityIcon: {fileID: 21300000, guid: 0c9ce4e64fb83764aa394faeeed56210, type: 3}
     _mouseXYAxisSensitivityIcon: {fileID: 21300000, guid: fc88ce24a47f4014cb0ad237abc8d1dd, type: 3}
-    _joystickAxisSensitivityMin: 0
+    _joystickAxisSensitivityMin: 0.1
     _joystickAxisSensitivityMax: 2
-    _mouseXYAxisSensitivityMin: 0
+    _mouseXYAxisSensitivityMin: 0.1
     _mouseXYAxisSensitivityMax: 2
-  - _inputBehaviorId: 1
+  - _inputBehaviorId: 6
     _showJoystickAxisSensitivity: 1
     _showMouseXYAxisSensitivity: 1
     _labelLanguageKey: 
@@ -2965,6 +2980,20 @@ MonoBehaviour:
   _onInputPollingEnded:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &273917688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8376112614130378458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b568c10a813e3343b59ede0fc42fc68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  screenActiveStates: 06000000
+  controlMapper: {fileID: 8376112614119574108}
 --- !u!1 &8376112614130378460
 GameObject:
   m_ObjectHideFlags: 0
@@ -3265,10 +3294,10 @@ RectTransform:
   m_Father: {fileID: 8376112614110667608}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 709.99994, y: 40}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &8376112614119574152
 MonoBehaviour:
@@ -3348,10 +3377,10 @@ RectTransform:
   m_Father: {fileID: 8376112614110667634}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 71.45833, y: -20}
+  m_SizeDelta: {x: 42.916664, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8376112614110478002
 CanvasRenderer:
