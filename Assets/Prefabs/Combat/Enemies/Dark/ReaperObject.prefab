@@ -388,7 +388,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   behaviourData: {fileID: 11400000, guid: 272a7ba03a6aa264798e6939f733ad8c, type: 2}
   ExecutionTime: 1
-  Cooldown: 7
+  Cooldown: 10
   _started: 0
   _finished: 0
   resourceCost: 8
@@ -397,9 +397,9 @@ MonoBehaviour:
   maxAttackDistance: 7.5
   poolSize: 5
   rangedProjectilePrefab: {fileID: 5349493896159913635, guid: b69c46467d87b624db55627dc8a16548, type: 3}
-  spread: 40
-  shotCount: 7
-  shotInterval: 0.15
+  spread: 50
+  shotCount: 6
+  shotInterval: 0.2
 --- !u!114 &3092602356733019838
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -431,13 +431,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   behaviourData: {fileID: 11400000, guid: 7d88ce6bab43710408b83f1820512e17, type: 2}
-  ExecutionTime: 0.75
-  Cooldown: 5
+  ExecutionTime: 1.25
+  Cooldown: 4
   _started: 0
   _finished: 0
   minRange: 3
-  maxRange: 10
-  tilesFromPlayerRadius: 5
+  maxRange: 12
+  tilesFromPlayerRadius: 8
   teleportSound:
     clipName: 
     singleClip: {fileID: 8300000, guid: 71930591a8c796143b72538fec1e1ef8, type: 3}
