@@ -44,9 +44,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spellData: {fileID: 11400000, guid: fad75d86be9637a4b82d8c6fc901e461, type: 2}
-  totalManaRegen: 20
-  manaRegenTimeDuration: 5
-  manaRegenInterval: 0.5
+  debrisPoolSize: 0
+  debrisObject: {fileID: 0}
+  totalManaRegen: 33
+  manaRegenTimeDuration: 3
+  manaRegenInterval: 1
   corpseObject: {fileID: 5273009326846120377, guid: 9fe5fe9ab50177540b3df58b9779bfb9, type: 3}
   contactFilter:
     useTriggers: 1
