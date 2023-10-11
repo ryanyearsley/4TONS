@@ -28,11 +28,19 @@ public class PlayerPuzzleUIComponent : PlayerComponent {
 	public SpriteRenderer puzzleIconSprite;
 	public TMP_Text puzzleNameText;
 	public GameObject toolTipPanel;
+	public GameObject descriptionPanel;
+	public GameObject movingPanel;
 	public TMP_Text toolTipText;
+	public TMP_Text descriptionText;
 	public Image toolTipImage;
-
+	public TMP_Text pickUpBind;
+	public TMP_Text hotSwapBind;
+	public TMP_Text rotateBind;
+	public TMP_Text socketBind;
+	public TMP_Text dropBind;
 	private SpellGemEntity currentErrorFlashSpellGemEntity;
 	private bool isErrorFlashing = false;
+	public float tooltipOffset = 2f;
 
 	private PuzzleKey activeStaffKey = PuzzleKey.PRIMARY_STAFF;
 
@@ -99,11 +107,13 @@ public class PlayerPuzzleUIComponent : PlayerComponent {
 			case (PlayerState.PUZZLE_BROWSING): {
 					puzzleUI.EnablePuzzleUI ();
 					InterruptFlashRoutine ();
+					movingPanel.SetActive(false);
 					puzzleUI.UpdateActiveRegion (playerObject.wizardGameData.currentStaffKey);
 					break;
 				}
 			case (PlayerState.PUZZLE_MOVING_SPELLGEM): {
 					puzzleUI.EnablePuzzleUI ();
+					EnableMovingPrompts();
 					puzzleUI.UpdateActiveRegion (playerObject.wizardGameData.currentStaffKey);
 					break;
 				}
@@ -204,15 +214,38 @@ public class PlayerPuzzleUIComponent : PlayerComponent {
 		return puzzleUI.CalculatePuzzleCursorLocation (cursorPosition);
 	}
 
+	public void EnableMovingPrompts ()
+	{
+		movingPanel.SetActive(true);
+		rotateBind.text = playerObject.playerUI.GetCurrentBinding("RotateItemCCW");
+		string socketBinds = playerObject.playerUI.GetCurrentBinding("AutoBindItem");
+		socketBinds += " " + playerObject.playerUI.GetCurrentBinding("Spell1");
+		socketBinds += " " + playerObject.playerUI.GetCurrentBinding("Spell2");
+		socketBinds += " " + playerObject.playerUI.GetCurrentBinding("Spell3");
+		socketBind.text = socketBinds;
+		dropBind.text = playerObject.playerUI.GetCurrentBinding("DropItem");
+	}
+
 	public void UpdateToolTip (SpellGemEntity gemEntity, string text) {
 		toolTipPanel.SetActive (true);
-		toolTipPanel.transform.position = gemEntity.transform.position + (Vector3.up * 1);
+		descriptionPanel.SetActive(true);
+		movingPanel.SetActive(false);
+		toolTipPanel.transform.position = gemEntity.transform.position + (Vector3.up * tooltipOffset);
 		toolTipText.text = text;
+		descriptionText.text = gemEntity.spellData.description;
 		toolTipImage.sprite = gemEntity.spellData.icon;
+		pickUpBind.text = playerObject.playerUI.GetCurrentBinding("GrabItem");
+		string swapBinds = playerObject.playerUI.GetCurrentBinding("Spell0");
+		swapBinds += " " + playerObject.playerUI.GetCurrentBinding("Spell1");
+		swapBinds += " " + playerObject.playerUI.GetCurrentBinding("Spell2");
+		swapBinds += " " + playerObject.playerUI.GetCurrentBinding("Spell3");
+		hotSwapBind.text = swapBinds;
 	}
 	public void ClearToolTip () {
 		toolTipPanel.SetActive (false);
+		descriptionPanel.SetActive(false);
 		toolTipText.text = "";
+		descriptionText.text = "";
 		toolTipImage.sprite = null;
 	}
 	public void UpdateStaffInfo (PuzzleGameData puzzleGameData) {
