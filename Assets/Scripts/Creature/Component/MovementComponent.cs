@@ -128,7 +128,7 @@ public class MovementComponent : CreatureComponent {
 		creatureObject.SetCanWalk (canWalk);
 		creatureObject.SetCanAttack (canAttack);
 		speedEffects.RemoveAll (debuff => debuff.effectTimer >= debuff.effectTime);
-		Debug.Log ("MovementComponent: SpeedEffects length:" + speedEffects.Count);
+		//Debug.Log ("MovementComponent: SpeedEffects length:" + speedEffects.Count);
 		return speedEffectMultiplier;
 	}
 
