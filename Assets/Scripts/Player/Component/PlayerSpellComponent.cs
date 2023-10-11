@@ -51,6 +51,7 @@ public class PlayerSpellComponent : PlayerComponent {
 	}
 	public override void OnChangePlayerState (PlayerState playerState) {
 		CancelAllSpells ();
+		playerObject.playerUI.UpdatePlayerState(playerState);
 	}
 
 	private void CancelAllSpells() {
