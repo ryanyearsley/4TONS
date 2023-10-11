@@ -10,8 +10,18 @@ public class PlayerUI : MonoBehaviour {
 	public StaffSlotUI primaryStaffSlot;
 	public StaffSlotUI secondaryStaffSlot;
 
-	private Sprite emptyStaffSprite;
-	private Sprite emptySpellSprite;
+	[SerializeField]
+	private Sprite puzzlePhaseSprite;
+	[SerializeField]
+	private Sprite combatPhaseSprite;
+	[SerializeField]
+	private Image stateImage;
+
+	[SerializeField]
+	private TMP_Text changeStateBind;
+	[SerializeField]
+	private TMP_Text rollDodgeBind;
+
 
 	private Dictionary<string, string> currentBindingDictionary;
 
@@ -139,6 +149,14 @@ public class PlayerUI : MonoBehaviour {
 				spellUIs [i].UpdateBindingString (currentBindingDictionary[actionString]);
 			}
 		}
+		if (currentBindingDictionary.ContainsKey("Dash"))
+		{
+			rollDodgeBind.text = currentBindingDictionary["Dash"];
+		}
+		if (currentBindingDictionary.ContainsKey("TogglePuzzle"))
+		{
+			changeStateBind.text = currentBindingDictionary["TogglePuzzle"];
+		}
 	}
 
 	public string GetCurrentBinding (string rewiredAction)
@@ -150,6 +168,23 @@ public class PlayerUI : MonoBehaviour {
 		else return rewiredAction;
 	}
 
+	public void UpdatePlayerState(PlayerState state)
+	{  
+		switch (state)
+		{
+			case (PlayerState.COMBAT):
+				{
+					stateImage.sprite = puzzlePhaseSprite;
+					break;
+				}
+			case (PlayerState.PUZZLE_BROWSING):
+			case (PlayerState.PUZZLE_MOVING_SPELLGEM):
+				{
+					stateImage.sprite = combatPhaseSprite;
+					break;
+				}
+		}
+	}
 
 	public void OnPickUpStaff (PuzzleKey region, PuzzleGameData puzzleGameData) {
 
