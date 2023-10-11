@@ -15,7 +15,8 @@ MonoBehaviour:
   id: 2001
   poolSize: 2
   outerClearance: 1
-  school: 0
+  school: 1
+  zone: 1
   spawnObjectPrefab: {fileID: 3151322532891022119, guid: 5726a48319eb5f1468c138d23d84b619, type: 3}
   creatureName: Wizard
   maxHealth: 100
