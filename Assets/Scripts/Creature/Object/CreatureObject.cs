@@ -145,7 +145,6 @@ public class CreatureObject : PoolObject {
 		if (this.faceDirection == faceDirection) {
 			return;//cancel event, this is old news.
 		}
-		Debug.Log (GetInstanceID() + "Flipping face direction");
 		this.faceDirection = faceDirection;
 		OnSetFaceDirEvent?.Invoke (faceDirection);
 	}
