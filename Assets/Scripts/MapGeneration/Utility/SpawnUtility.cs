@@ -2,6 +2,8 @@
 using UnityEngine;
 
 public class SpawnUtility {
+
+	private static int MAX_RETRY_COUNT = 10;
 	public static List<SpawnPoint> GenerateCreatureSpawnPoints (MapDetails details, CreatureSpawnInfo creatureSpawnInfo, SpawnSectorInfo sectorInfo) {
 		List<SpawnPoint> spawnPoints = new List<SpawnPoint>();
 		int spawnCount = creatureSpawnInfo.GetSpawnCountWithinRange();
@@ -30,13 +32,25 @@ public class SpawnUtility {
 		return spawnPoints;
 	}
 
-	public static List<SpawnPoint> GenerateSetPieceSpawnPoints (MapDetails details, SetPieceData setPieceData, int count, SpawnSectorInfo sector) {
+	public static List<SpawnPoint> GenerateSetPieceSpawnPoints (MapDetails details, SetPieceData setPieceData, int count, SpawnSectorInfo sector, SpawnSectorInfo fallbackSector)
+	{
+		SpawnSectorInfo currentSector = sector;
+		Debug.Log("SpawnUtility: Generating " + count + " Spawn Points for " + setPieceData.spawnObjectPrefab.name + " between " + sector.minCoord.ToString() + " and " + sector.maxCoord.ToString());
 		List<SpawnPoint> spawnPoints = new List<SpawnPoint>();
 		for (int i = 0; i < count; i++) {
 			bool spawnPointAdded = false;
+			int attemptCount = 0;
 			while (spawnPointAdded == false) {
-				int randomX = UnityEngine.Random.Range (sector.minCoord.x, sector.maxCoord.x);
-				int randomY = UnityEngine.Random.Range  (sector.minCoord.y, sector.maxCoord.y);
+				if (attemptCount > MAX_RETRY_COUNT)
+				{
+					currentSector = fallbackSector; 
+					Debug.Log("SpawnUtility: Max retry attempt exceeded, using fallback sector...");
+
+				}
+				int randomX = UnityEngine.Random.Range (currentSector.minCoord.x, currentSector.maxCoord.x);
+				int randomY = UnityEngine.Random.Range  (currentSector.minCoord.y, currentSector.maxCoord.y); 
+				Debug.Log("SpawnUtility: Checking SpawnPointEligibility for " + randomX + ", " + randomY);
+
 				Vector2Int coord = new Vector2Int (randomX, randomY);
 				if (details.mapTileInfo [randomX, randomY].baseValue == 0) {
 					if (MapGenerationUtility.CheckSpawnPointEligibility (details, coord, setPieceData.outerClearance)) {
@@ -46,10 +60,13 @@ public class SpawnUtility {
 						spawnPointAdded = true;
 					}
 				}
+				attemptCount++;
 			}
 		}
 		return spawnPoints;
 	}
+
+
 	public static List<SpawnPoint> GenerateRandomLargeSetpieceSpawnPoints (MapDetails details) {
 		List<SpawnPoint> spawnPoints = new List<SpawnPoint>();
 		int largeSetpieceSpawnCount = details.mapData.mapGenerationData.GetLargeSetpieceCount();
