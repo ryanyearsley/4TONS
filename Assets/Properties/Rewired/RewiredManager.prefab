@@ -447,7 +447,7 @@ MonoBehaviour:
     - _id: 33
       _name: RotateItemCCW
       _type: 1
-      _descriptiveName: RotateItem CCW
+      _descriptiveName: RotateItemCCW
       _positiveDescriptiveName: 
       _negativeDescriptiveName: 
       _behaviorId: 0
@@ -456,7 +456,7 @@ MonoBehaviour:
     - _id: 46
       _name: RotateItemCW
       _type: 1
-      _descriptiveName: RotateItem CW
+      _descriptiveName: RotateItemCW
       _positiveDescriptiveName: 
       _negativeDescriptiveName: 
       _behaviorId: 0
