@@ -155,13 +155,28 @@ public class PlayerAimingComponent : PlayerComponent {
 					}
 					break;
 				}
-			case (PlayerState.PUZZLE_BROWSING):
-			case (PlayerState.PUZZLE_MOVING_SPELLGEM): {
-					CameraController2D.instance.SetCameraRigidFollow (playerObject.creaturePositions.centerTransform);
-					staffAimObject.gameObject.SetActive (false);
-					if (!playerObject.usingMouseControls) {
+			case (PlayerState.PUZZLE_BROWSING): {
+					CameraController2D.instance.SetCameraRigidFollow(playerObject.creaturePositions.centerTransform);
+					staffAimObject.gameObject.SetActive(false);
+					if (!playerObject.usingMouseControls)
+					{
 						currentJoystickSensitivity = puzzleJoystickSensitivity;
-						playerObject.SetAimingMode (AimingMode.CURSOR);
+						playerObject.SetAimingMode(AimingMode.CURSOR);
+					} 
+					break;
+				}
+			case (PlayerState.PUZZLE_MOVING_SPELLGEM): {
+					CameraController2D.instance.SetCameraRigidFollow(playerObject.creaturePositions.centerTransform);
+					staffAimObject.gameObject.SetActive(false);
+					if (!playerObject.usingMouseControls)
+					{
+						currentJoystickSensitivity = puzzleJoystickSensitivity;
+						playerObject.SetAimingMode(AimingMode.CURSOR);
+					}
+					else
+					{
+						cursorPivotTransform.rotation = Quaternion.identity;
+						cursorTransform.rotation = Quaternion.identity;
 					}
 					break;
 				}
@@ -186,7 +201,10 @@ public class PlayerAimingComponent : PlayerComponent {
 
 
 		aimingPivotTransform.rotation = Quaternion.AngleAxis (angle, Vector3.forward);
-		cursorTransform.rotation = Quaternion.AngleAxis (angle - 90, Vector3.forward);
+		if (playerObject.currentPlayerState != PlayerState.PUZZLE_MOVING_SPELLGEM)
+		{
+			cursorTransform.rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
+		}
 	}
 
 
