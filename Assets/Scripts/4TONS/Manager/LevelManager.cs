@@ -132,7 +132,8 @@ public class LevelManager : MonoBehaviour, IGameManager {
 		CreateLevelPools(zoneData, objectiveData);
 		yield return new WaitForSeconds(0.25f);
 		currentMapDetails = null;
-		Log("Generating Map Details");
+		Log("Generating Map Details...");
+		Debug.Log("Generating Map Details...");
 		GenerateMapDetails (zoneData, objectiveData, levelIndex);
 		yield return new WaitForSeconds(0.25f);
 
@@ -392,23 +393,14 @@ public class LevelManager : MonoBehaviour, IGameManager {
 				MapTileInfo tile = mapDetails.mapTileInfo[x, y];
 
 				Vector3 worldPoint = grid.GetCellCenterWorld(new Vector3Int(worldIsoCoordinate.x, worldIsoCoordinate.y, 1));
-				Debug.Log ("LevelManager: Checking coordinate " + worldIsoCoordinate +" @ world point " + worldPoint);
-					
 				if (Physics2D.OverlapCircle (worldPoint, 0.1f, unwalkableMask)) {
-					Debug.Log ("LevelManager: Found obstacle @ " + worldIsoCoordinate +", marking unwalkable.");
 					tile.walkable = false;
 				}
-
 				int movementPenalty = 0;
-
 				Collider2D hitCollider2D = Physics2D.OverlapPoint (worldPoint, walkableMask);
-
-				//print ("hit Collider 2d: " + ((hitCollider2D) ? "true" : "false"));
 				if (hitCollider2D != null) {
-					Debug.Log ("LevelManager: Found obstacle @ " + worldIsoCoordinate + ", setting movement penalty.");
 					walkableRegionsDictionary.TryGetValue (hitCollider2D.gameObject.layer, out movementPenalty);
 				}
-
 				if (!tile.walkable) {
 					movementPenalty += obstacleProximityPenalty;
 				}
