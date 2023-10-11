@@ -44,17 +44,23 @@ public class MapGenerator : MonoBehaviour {
 		this.objectiveData = objectiveData;
 		this.currentMapData = zoneData.mapDatas [floorIndex];
 		map = new int [currentMapData.mapGenerationData.mapSize.x, currentMapData.mapGenerationData.mapSize.y];
-		Log ("Generating dungeon...");
+		Log ("Generating map..."); 
+		Debug.Log("Generating map...");
 		RandomFillMap ();
 		for (int i = 0; i < currentMapData.mapGenerationData.smoothingIterations; i++) {
 			SmoothMap ();
+			Log("Smoothing map... " + i);
+			Debug.Log("Smoothing map... " + i);
 		}
+		Log("Processing map...");
+		Debug.Log("Processing map...");
 		ProcessMap ();
 
 		mapTileInfo = MapConversionUtility.ConvertMapToTileInfo (map);
 
 
 		Log ("Generating border...");
+		Debug.Log("Generating border...");
 		GenerateMapBorder (mapTileInfo);
 		spawnPoints = new MapSpawnPoints ();
 		Vector2Int floorOrigin = floorIndex * Vector2Int.one * 80;
@@ -68,18 +74,20 @@ public class MapGenerator : MonoBehaviour {
 
 
 		Log ("Generating spawn points...");
+		Debug.Log("Generating spawn points...");
 		SpawnSectorInfo playerSector = GetSpawnSector(objectiveData.playerSpawnInfo.spawnSector);
 		spawnPoints.playerSpawnPoints = SpawnUtility.GenerateCreatureSpawnPoints (details, objectiveData.playerSpawnInfo, playerSector);
 
 		Log ("Generating objectives...");
+		Debug.Log("Generating objectives...");
 		foreach (SetPieceSpawnInfo objectiveSpawnInfo in objectiveData.objectiveSpawnInfos) {
 			SpawnSectorInfo setpieceSector = GetSpawnSector(objectiveSpawnInfo.setPieceSpawnSector);
-
-			spawnPoints.objectiveSpawnPoints.AddRange (SpawnUtility.GenerateSetPieceSpawnPoints (details, objectiveSpawnInfo.setPieceData, objectiveSpawnInfo.spawnCount, setpieceSector));
+			spawnPoints.objectiveSpawnPoints.AddRange (SpawnUtility.GenerateSetPieceSpawnPoints (details, objectiveSpawnInfo.setPieceData, objectiveSpawnInfo.spawnCount, setpieceSector, fallbackSector));
 		}
 
 
 		Log ("Generating enemy spawn points...");
+		Debug.Log("Generating enemy spawn points...");
 		foreach (CreatureSpawnInfo enemySpawnInfo in currentMapData.enemySpawnInfos) {
 			if (enemySpawnInfo.spawnCountRange.y != 0) {
 				SpawnSectorInfo enemySector = GetSpawnSector(enemySpawnInfo.spawnSector);
