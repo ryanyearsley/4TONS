@@ -2992,7 +2992,7 @@ MonoBehaviour:
   rotateBind: {fileID: 1386250152723124816}
   socketBind: {fileID: 4757773667190709216}
   dropBind: {fileID: 3385719781548395329}
-  tooltipOffset: 2
+  tooltipOffset: 1
 --- !u!1 &9184992135840067863
 GameObject:
   m_ObjectHideFlags: 0
