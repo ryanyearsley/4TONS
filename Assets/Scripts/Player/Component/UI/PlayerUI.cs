@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using Rewired;
@@ -19,9 +20,12 @@ public class PlayerUI : MonoBehaviour {
 
 	[SerializeField]
 	private TMP_Text changeStateBind;
-	[SerializeField]
-	private TMP_Text rollDodgeBind;
 
+	[SerializeField]
+	private Image dodgeImage;
+	[SerializeField]
+	private TMP_Text dodgeBindText;
+	// Start is called before the first frame update
 
 	private Dictionary<string, string> currentBindingDictionary;
 
@@ -151,7 +155,7 @@ public class PlayerUI : MonoBehaviour {
 		}
 		if (currentBindingDictionary.ContainsKey("Dash"))
 		{
-			rollDodgeBind.text = currentBindingDictionary["Dash"];
+			dodgeBindText.text = currentBindingDictionary["Dash"];
 		}
 		if (currentBindingDictionary.ContainsKey("TogglePuzzle"))
 		{
@@ -212,6 +216,21 @@ public class PlayerUI : MonoBehaviour {
 		} else if (region == PuzzleKey.SECONDARY_STAFF) {
 			secondaryStaffSlot.OnEquipStaff ();
 			primaryStaffSlot.OnUnequipStaff ();
+		}
+	}
+	public void UpdateDodgeUICooldown(float cdTimer, float cooldown)
+	{
+		float fillPercentage = cdTimer / cooldown;
+		dodgeImage.fillAmount = fillPercentage;
+		dodgeBindText.text = Math.Round(cooldown - cdTimer, 1).ToString();
+	}
+
+	public void ClearDodgeUI()
+	{
+		dodgeImage.fillAmount = 1;
+		if (currentBindingDictionary.ContainsKey("Dash"))
+		{
+			dodgeBindText.text = currentBindingDictionary["Dash"];
 		}
 	}
 }
