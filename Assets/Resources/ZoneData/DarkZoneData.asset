@@ -46,7 +46,7 @@ MonoBehaviour:
     - sprite: {fileID: 21300000, guid: 8cbb9deafb5860a47a1d249ba478175f, type: 3}
       spriteOffset: {x: 0, y: -5}
       distanceScaleX: 0.9
-      distanceScaleY: 0.95
+      distanceScaleY: 1
       opacity: 1
     - sprite: {fileID: 21300000, guid: a705d6dab02f8cf4bbb8f0be9ef4a5e9, type: 3}
       spriteOffset: {x: 0, y: -5}
