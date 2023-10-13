@@ -171,7 +171,7 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: 7b498416b689656408a2a62a8dca006a, type: 3}
     - target: {fileID: 9208858513810747361, guid: f1dec2cdb3f40584d81bf72a0d55cf8f, type: 3}
       propertyPath: genericGameSounds.Array.size
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 9208858513810747361, guid: f1dec2cdb3f40584d81bf72a0d55cf8f, type: 3}
       propertyPath: currentAudioSettings.sfxVolume
@@ -274,6 +274,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9208858513810747361, guid: f1dec2cdb3f40584d81bf72a0d55cf8f, type: 3}
+      propertyPath: genericGameSounds.Array.data[9].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9208858513810747361, guid: f1dec2cdb3f40584d81bf72a0d55cf8f, type: 3}
       propertyPath: genericGameSounds.Array.data[0].volume
       value: 1
       objectReference: {fileID: 0}
@@ -307,6 +311,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9208858513810747361, guid: f1dec2cdb3f40584d81bf72a0d55cf8f, type: 3}
       propertyPath: genericGameSounds.Array.data[8].volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9208858513810747361, guid: f1dec2cdb3f40584d81bf72a0d55cf8f, type: 3}
+      propertyPath: genericGameSounds.Array.data[9].volume
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9208858513810747361, guid: f1dec2cdb3f40584d81bf72a0d55cf8f, type: 3}
@@ -381,6 +389,14 @@ PrefabInstance:
       propertyPath: genericGameSounds.Array.data[8].singleClip
       value: 
       objectReference: {fileID: 8300000, guid: 56520ca359465b64085d652d47cb0054, type: 3}
+    - target: {fileID: 9208858513810747361, guid: f1dec2cdb3f40584d81bf72a0d55cf8f, type: 3}
+      propertyPath: genericGameSounds.Array.data[9].mixerGroup
+      value: 
+      objectReference: {fileID: -7302680629657921355, guid: 004a37a2c22918345b123859e614950a, type: 2}
+    - target: {fileID: 9208858513810747361, guid: f1dec2cdb3f40584d81bf72a0d55cf8f, type: 3}
+      propertyPath: genericGameSounds.Array.data[9].singleClip
+      value: 
+      objectReference: {fileID: 8300000, guid: ab8028ed9ff1bf9499c4c281793b706b, type: 3}
     - target: {fileID: 9208858513810747366, guid: f1dec2cdb3f40584d81bf72a0d55cf8f, type: 3}
       propertyPath: m_RootOrder
       value: 1
