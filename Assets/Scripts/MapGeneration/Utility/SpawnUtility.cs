@@ -74,20 +74,27 @@ public class SpawnUtility {
 		for (int i = 0; i < largeSetpieceSpawnCount; i++) {
 			bool spawnPointAdded = false; 
 			int randomSetpieceIndex = UnityEngine.Random.Range(0, details.zoneData.largeSetpieceDatas.Count);
-
+			int attemptCount = 0;
 			SetPieceData setPieceData = details.zoneData.largeSetpieceDatas[randomSetpieceIndex];
 			while (spawnPointAdded == false) {
+				attemptCount++;
 				int randomX = UnityEngine.Random.Range (5, details.mapData.mapGenerationData.mapSize.x - 5);
 				int randomY = UnityEngine.Random.Range (5, details.mapData.mapGenerationData.mapSize.y - 5);
 				Vector2Int coord = new Vector2Int (randomX, randomY);
 				if (details.mapTileInfo [randomX, randomY].baseValue == 0) {
 					if (MapGenerationUtility.CheckSpawnPointEligibility (details, coord, setPieceData.outerClearance)) {
-						MapGenerationUtility.ClearSetpieceSpawnPointArea (details, coord, setPieceData.outerClearance, details.zoneData.secondaryFloorTile);
-						MapGenerationUtility.ClearSetpieceSpawnPointArea (details, coord, setPieceData.innerClearance, details.zoneData.underTile);
+						MapGenerationUtility.ClearSpawnPointArea(details, coord, setPieceData.outerClearance); 
+						MapGenerationUtility.ClearSetpieceSpawnPointArea(details, coord, setPieceData.innerClearance, details.zoneData.underTile);
+
 						SpawnPoint spawnPoint = new SpawnPoint (new Vector2Int (randomX, randomY), setPieceData);
 						spawnPoints.Add (spawnPoint);
 						spawnPointAdded = true;
 					}
+				}
+				if (attemptCount > MAX_RETRY_COUNT)
+				{
+					Debug.Log("SpawnUtility: LargeSetPiece Exceeded Retry count");
+					break;
 				}
 			}
 		}
