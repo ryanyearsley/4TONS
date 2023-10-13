@@ -48,6 +48,8 @@ public class PlayerUI : MonoBehaviour {
 		bindAbbreviationDictionary.Add ("Left Trigger", "LT");
 		bindAbbreviationDictionary.Add ("Right Shoulder", "RB");
 		bindAbbreviationDictionary.Add ("Left Shoulder", "LB");
+		bindAbbreviationDictionary.Add("Left Stick Button", "LSB");
+		bindAbbreviationDictionary.Add("Right Stick Button", "RSB");
 
 		IEnumerable<ControllerMap> keyboardMaps = rewiredController.controllers.maps.GetMaps(ControllerType.Keyboard, 0);
 		IEnumerable<ControllerMap> mouseMaps = rewiredController.controllers.maps.GetMaps(ControllerType.Mouse, 0);
