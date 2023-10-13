@@ -15,20 +15,25 @@ MonoBehaviour:
   spellName: Bone Arrow
   spellSchool: 1
   spellSchoolData: {fileID: 11400000, guid: 96174b60ed687704a95fd4f57c8a288e, type: 2}
-  id: 2403
+  id: 3402
   description: Hurl a deadly arrow with blistering speed.
   icon: {fileID: 21300000, guid: e012246b4102b874cae1b721602eda97, type: 3}
-  castObject: {fileID: 576230467533564272, guid: f32051077d456fd498eec8a992f83391, type: 3}
-  manaCost: 8
+  manaCost: 4
   castTime: 0.3
   castSpeedReduction: 0.5
   coolDown: 0.5
-  spellCastLocation: 0
-  spellCastSound: {fileID: 0}
-  spellChannelSound: {fileID: 0}
-  spellEndSound: {fileID: 0}
-  spellObject: {fileID: 3122348574846256414, guid: 8e787a92aac285b4f8194c6aa375739e, type: 3}
+  castObject: {fileID: 576230467533564272, guid: f32051077d456fd498eec8a992f83391, type: 3}
   poolSize: 5
-  spellPreviewSprite: {fileID: 0}
-  spellObjectData: {fileID: 11400000, guid: 6581e62661ac3d04bb89c72e562c9e78, type: 2}
+  spellObject: {fileID: 3122348574846256414, guid: 8e787a92aac285b4f8194c6aa375739e, type: 3}
+  spellCastLocation: 0
+  spellCastSound:
+    clipName: 
+    singleClip: {fileID: 0}
+    volume: 1
+    pitch: 1
+    mixerGroup: {fileID: 0}
+    loop: 0
+    randomize: 0
+    randomClips: []
+  spellEndSound: {fileID: 0}
   puzzlePieceData: {fileID: 11400000, guid: eaa1924a4c758b3429c1c4a8f3ee5631, type: 2}

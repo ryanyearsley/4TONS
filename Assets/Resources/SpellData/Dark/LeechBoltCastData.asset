@@ -15,8 +15,8 @@ MonoBehaviour:
   spellName: LeechBolt
   spellSchool: 1
   spellSchoolData: {fileID: 11400000, guid: 96174b60ed687704a95fd4f57c8a288e, type: 2}
-  id: 3400
-  description: Hurl a lecherous leech at your enemy, stealing their mana and health.
+  id: 3408
+  description: Hurl a leech at your enemy, stealing their mana and health.
   icon: {fileID: 21300000, guid: b12ef7c5da09ffb4c8e4151c64fed96b, type: 3}
   manaCost: 3
   castTime: 0.15

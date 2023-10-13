@@ -15,20 +15,25 @@ MonoBehaviour:
   spellName: Pentagram
   spellSchool: 1
   spellSchoolData: {fileID: 11400000, guid: 96174b60ed687704a95fd4f57c8a288e, type: 2}
-  id: 2402
-  description: Reign hell from below in target area.
+  id: 3409
+  description: Reign hell in target area. Heals player for every enemy killed within.
   icon: {fileID: 21300000, guid: 08dddac117afb9e419e46b50406250da, type: 3}
-  castObject: {fileID: 576230467533564272, guid: 98f292d68d234834fb24bc31fa4beb80, type: 3}
   manaCost: 20
   castTime: 0.5
   castSpeedReduction: 0.2
   coolDown: 10
-  spellCastLocation: 1
-  spellCastSound: {fileID: 0}
-  spellChannelSound: {fileID: 0}
-  spellEndSound: {fileID: 0}
-  spellObject: {fileID: 7184398735751379231, guid: 98e5cee9fa4d94a41ad6e8d6ce7ffb81, type: 3}
+  castObject: {fileID: 576230467533564272, guid: 98f292d68d234834fb24bc31fa4beb80, type: 3}
   poolSize: 5
-  spellPreviewSprite: {fileID: 0}
-  spellObjectData: {fileID: 11400000, guid: 8bd865135b0bf2c4bb27042dcd29ab44, type: 2}
+  spellObject: {fileID: 7184398735751379231, guid: 98e5cee9fa4d94a41ad6e8d6ce7ffb81, type: 3}
+  spellCastLocation: 1
+  spellCastSound:
+    clipName: 
+    singleClip: {fileID: 0}
+    volume: 1
+    pitch: 1
+    mixerGroup: {fileID: 0}
+    loop: 0
+    randomize: 0
+    randomClips: []
+  spellEndSound: {fileID: 0}
   puzzlePieceData: {fileID: 11400000, guid: 41ad1d79c8f01534c989bdba233ef123, type: 2}

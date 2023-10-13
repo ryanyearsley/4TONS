@@ -15,17 +15,16 @@ MonoBehaviour:
   spellName: HomingSpirit
   spellSchool: 1
   spellSchoolData: {fileID: 11400000, guid: 96174b60ed687704a95fd4f57c8a288e, type: 2}
-  id: 2476274
-  description: 
+  id: 3407
+  description: Release a spirit. It follows enemies.
   icon: {fileID: -9169843796943247677, guid: df82514d887d0e44da615f0ce3d6f9ad, type: 3}
-  castObject: {fileID: 576230467533564272, guid: 56db8557a53164a4c9ca3adff4f710df, type: 3}
-  manaCost: 8
+  manaCost: 6
   castTime: 0.3
   castSpeedReduction: 0.8
   coolDown: 1
-  damage: 40
-  snareSpeedReduction: 0
-  snareDuration: 0
+  castObject: {fileID: 576230467533564272, guid: 56db8557a53164a4c9ca3adff4f710df, type: 3}
+  poolSize: 10
+  spellObject: {fileID: 5349493896159913635, guid: 45dd21ff9e76b194eb558c5cf39eb6aa, type: 3}
   spellCastLocation: 0
   spellCastSound:
     clipName: 
@@ -37,6 +36,4 @@ MonoBehaviour:
     randomize: 0
     randomClips: []
   spellEndSound: {fileID: 0}
-  spellObject: {fileID: 5349493896159913635, guid: 45dd21ff9e76b194eb558c5cf39eb6aa, type: 3}
-  poolSize: 10
   puzzlePieceData: {fileID: 11400000, guid: 4ec08e93c431f0f46ba4bfdd8ce69822, type: 2}
