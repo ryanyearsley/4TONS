@@ -168,15 +168,12 @@ public class PlayerAimingComponent : PlayerComponent {
 			case (PlayerState.PUZZLE_MOVING_SPELLGEM): {
 					CameraController2D.instance.SetCameraRigidFollow(playerObject.creaturePositions.centerTransform);
 					staffAimObject.gameObject.SetActive(false);
+					cursorPivotTransform.rotation = Quaternion.identity;
+					cursorTransform.rotation = Quaternion.identity;
 					if (!playerObject.usingMouseControls)
 					{
 						currentJoystickSensitivity = puzzleJoystickSensitivity;
 						playerObject.SetAimingMode(AimingMode.CURSOR);
-					}
-					else
-					{
-						cursorPivotTransform.rotation = Quaternion.identity;
-						cursorTransform.rotation = Quaternion.identity;
 					}
 					break;
 				}
@@ -208,29 +205,31 @@ public class PlayerAimingComponent : PlayerComponent {
 	}
 
 
-	public void JoystickAimingUpdate (Vector2 joystickInput) {
+	public void JoystickAimingUpdate (Vector2 joystickInput)
+	{
+		float angle = Mathf.Atan2(CursorDirection.y, CursorDirection.x) * Mathf.Rad2Deg;
+		
 		if (playerObject.currentAimingMode == AimingMode.CURSOR) {
 			Bounds screenBounds = mainCamera.OrthographicBounds ();
 			float x = Mathf.Clamp (cursorTransform.position.x + joystickInput.x * currentJoystickSensitivity, screenBounds.min.x, screenBounds.max.x);
 			float y = Mathf.Clamp (cursorTransform.position.y + joystickInput.y * currentJoystickSensitivity, screenBounds.min.y, screenBounds.max.y);
 			cursorTransform.position = new Vector3 (x, y, -9f);
-
-			float angle = Mathf.Atan2 (CursorDirection.y, CursorDirection.x) * Mathf.Rad2Deg;
-			aimingPivotTransform.rotation = Quaternion.AngleAxis (angle, Vector3.forward);
-			cursorTransform.rotation = Quaternion.AngleAxis (angle - 90, Vector3.forward);
-
+			aimingPivotTransform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 		} else if (playerObject.currentAimingMode == AimingMode.RADIAL) {
 			if (joystickInput.sqrMagnitude > 1f)
 				joystickInput = joystickInput.normalized;
 			Vector3 targetPosition = joystickInput * joystickCursorDistance * new Vector3(1, 0.65f, -9f);
 			targetPosition.z = -9f;
-			float angle = Mathf.Atan2(CursorDirection.y, CursorDirection.x) * Mathf.Rad2Deg;
 			cursorTransform.localPosition = Vector3.SmoothDamp (cursorTransform.localPosition, targetPosition, ref cursorSmoothVelocity, cursorSmoothTime);
-			cursorTransform.rotation = Quaternion.AngleAxis (angle - 90, Vector3.forward);
 
-			if (joystickInput != Vector2.zero) {
-				aimingPivotTransform.rotation = Quaternion.AngleAxis (angle, Vector3.forward);
+			if (joystickInput != Vector2.zero)
+			{
+				aimingPivotTransform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 			}
+		}
+		if (playerObject.currentPlayerState != PlayerState.PUZZLE_MOVING_SPELLGEM)
+		{
+			cursorTransform.rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
 		}
 	}
 	private void AimStaffWithDeadzone () {
