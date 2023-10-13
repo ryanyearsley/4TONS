@@ -6469,7 +6469,7 @@ PrefabInstance:
     - target: {fileID: 4316811044498637260, guid: 7d9131ffa20c6e94096ad9b95c28c6af, type: 3}
       propertyPath: playerUIs.Array.data[1]
       value: 
-      objectReference: {fileID: 3827912852285958147}
+      objectReference: {fileID: 2634367069173908261}
     - target: {fileID: 4316811044880385856, guid: 7d9131ffa20c6e94096ad9b95c28c6af, type: 3}
       propertyPath: m_SizeDelta.x
       value: 141.9482
@@ -6592,9 +6592,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d9131ffa20c6e94096ad9b95c28c6af, type: 3}
---- !u!114 &3827912852285958147 stripped
+--- !u!114 &2634367069173908261 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6527570470131574059, guid: 7d9131ffa20c6e94096ad9b95c28c6af, type: 3}
+  m_CorrespondingSourceObject: {fileID: 5406230862267452941, guid: 7d9131ffa20c6e94096ad9b95c28c6af, type: 3}
   m_PrefabInstance: {fileID: 8037215281567599912}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
