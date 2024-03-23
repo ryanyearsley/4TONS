@@ -27,7 +27,9 @@ MonoBehaviour:
   enemySpawnInfos:
   - spawnCountRange: {x: 4, y: 4}
     creatureData: {fileID: 11400000, guid: 217ed99b20a5ef84483df537037326ca, type: 2}
+    spawnSector: 0
   - spawnCountRange: {x: 2, y: 2}
     creatureData: {fileID: 11400000, guid: f2a858c595dc31d4ab6153d8278630c9, type: 2}
-  seed: 637916023978690129
+    spawnSector: 0
+  seed: 638328013883387728
   useCustomSeed: 0

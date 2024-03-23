@@ -397,8 +397,8 @@ MonoBehaviour:
   maxAttackDistance: 7.5
   poolSize: 5
   rangedProjectilePrefab: {fileID: 5349493896159913635, guid: b69c46467d87b624db55627dc8a16548, type: 3}
-  spread: 50
-  shotCount: 6
+  spread: 30
+  shotCount: 8
   shotInterval: 0.2
 --- !u!114 &3092602356733019838
 MonoBehaviour:
@@ -435,9 +435,9 @@ MonoBehaviour:
   Cooldown: 4
   _started: 0
   _finished: 0
-  minRange: 3
-  maxRange: 12
-  tilesFromPlayerRadius: 8
+  minRange: 5
+  maxRange: 10
+  tilesFromPlayerRadius: 10
   teleportSound:
     clipName: 
     singleClip: {fileID: 8300000, guid: 71930591a8c796143b72538fec1e1ef8, type: 3}

@@ -146,7 +146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fadbdc5f6251d7428df8b918a21b0d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 15
+  damage: 20
 --- !u!114 &947004920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -159,7 +159,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c1b0345fae13464eb4636320e3a61aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manaDamage: 2
+  manaDamage: 3
 --- !u!1 &3845180452588583504
 GameObject:
   m_ObjectHideFlags: 0
@@ -330,7 +330,7 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 8448
-  rotationSpeed: 2
+  rotationSpeed: 1
 --- !u!50 &1779106717497858659
 Rigidbody2D:
   serializedVersion: 4
